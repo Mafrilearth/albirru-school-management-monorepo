@@ -3,6 +3,7 @@ import { Inter, Roboto_Mono } from "next/font/google";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 import type React from "react";
 import "@/app/globals.css";
+import { FloatingFeedbackWidget } from "@/components/common/FloatingFeedbackWidget";
 import { FloatingWhatsApp } from "@/components/common/FloatingWhatsApp";
 import { GlobalGrid } from "@/components/common/GlobalGrid";
 import { ScrollToTop } from "@/components/common/ScrollToTop";
@@ -209,6 +210,7 @@ export default function PublicRootLayout({
               </main>
               <PublicFooter />
               <FloatingWhatsApp />
+              <FloatingFeedbackWidget />
               <ScrollToTop />
 
               {/* Vercel Observability Zero-Config */}
