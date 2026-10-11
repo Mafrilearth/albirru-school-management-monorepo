@@ -540,7 +540,7 @@ importers:
         specifier: workspace:*
         version: link:../../packages/typescript-config
       '@chromatic-com/storybook':
-        specifier: latest
+        specifier: ^5.4.0
         version: 5.4.0(storybook@10.6.1(@types/react@19.3.0)(prettier@3.9.9)(react@19.2.8))
       '@next/bundle-analyzer':
         specifier: ^16.4.0
@@ -579,7 +579,7 @@ importers:
         specifier: ^4
         version: 4.1.11(@vitest/browser@4.1.11)(vitest@4.1.11)
       playwright:
-        specifier: latest
+        specifier: ^1.64.0
         version: 1.64.0
       storybook:
         specifier: ^10.6.1
@@ -591,7 +591,7 @@ importers:
         specifier: ^5
         version: 5.9.3
       vite:
-        specifier: latest
+        specifier: ^8.3.4
         version: 8.3.4(@types/node@20.19.43)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.15)(yaml@2.9.1)
       vitest:
         specifier: ^4

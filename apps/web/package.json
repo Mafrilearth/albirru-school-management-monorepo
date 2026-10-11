@@ -53,7 +53,7 @@
   },
   "devDependencies": {
     "@albirru/typescript-config": "workspace:*",
-    "@chromatic-com/storybook": "latest",
+    "@chromatic-com/storybook": "^5.4.0",
     "@next/bundle-analyzer": "^16.4.0",
     "@storybook/addon-a11y": "^10.6.1",
     "@storybook/addon-docs": "^10.6.1",
@@ -66,11 +66,11 @@
     "@types/react-dom": "^19",
     "@vitest/browser-playwright": "^4",
     "@vitest/coverage-v8": "^4",
-    "playwright": "latest",
+    "playwright": "^1.64.0",
     "storybook": "^10.6.1",
     "tailwindcss": "^4",
     "typescript": "^5",
-    "vite": "latest",
+    "vite": "^8.3.4",
     "vitest": "^4"
   }
 }
