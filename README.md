@@ -78,8 +78,13 @@ Repositori menerapkan dokumentasi spesifikasi in-tree pada direktori `/docs/` se
 Repositori ini diorganisasikan sebagai **Turborepo Multi-Package Monorepo** (terinspirasi dari arsitektur *next-forge* tingkat enterprise) dengan pembagian workspace:
 
 ### Aplikasi (*Applications*)
-- **`apps/web` (`@albirru/web`):** Aplikasi web publik, pendaftaran PPDB daring, arsip warta, galeri, dan profil statutori institusi SD Al-Birru.
-- **`apps/portal` (`@albirru/portal`):** Sistem Informasi Sekolah (SIS) internal untuk modul administrasi terpusat (Master Identity, Presensi Siswa, Rekapitulasi Penilaian & Rapor Akademik, dan Portal Wali Murid).
+- **`apps/app` (`@albirru/app`):** Aplikasi web utama terautentikasi (SaaS/SIS) untuk administrasi civitas, Master Identity, presensi siswa sekuensial, dan komputasi rapor (Port 3000).
+- **`apps/web` (`@albirru/web`):** Aplikasi web publik, profil institusi terakreditasi, pendaftaran PPDB daring berpelindung Turnstile/Upstash, warta, dan galeri (Port 3001).
+- **`apps/api` (`@albirru/api`):** Layanan mikro API lintas platform, health check endpoint, serta webhook ingress Clerk dan Resend (Port 3002).
+- **`apps/email` (`@albirru/email`):** Lingkungan pengembangan dan preview template email transaksional berbasis React Email dan Resend SDK (Port 3003).
+- **`apps/docs` (`@albirru/docs`):** Portal penjelajah dokumentasi teknis in-tree untuk seluruh 11 berkas spesifikasi statutori dan ADR (Port 3004).
+- **`apps/studio` (`@albirru/studio`):** Editor basis data visual lokal berbasis Drizzle Studio (`drizzle-kit studio`) terhubung ke Neon PostgreSQL (Port 3005).
+- **`apps/storybook` (`@albirru/storybook`):** Bengkel kerja isolasi komponen frontend UI dan verifikasi visual design system (Port 6006).
 
 ### Paket Bersama (*Shared Packages*)
 - **`packages/database` (`@albirru/database`):** Pustaka basis data bersama berisikan skema DDL Drizzle ORM, migrasi SQL statis terkelola, dan koneksi *connection pooler* PostgreSQL.

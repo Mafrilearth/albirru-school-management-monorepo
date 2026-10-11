@@ -9,24 +9,33 @@ This section provides a high-level overview of the project's directory and file 
 ```plain text
 [Project Root]/
 ├── apps/
-│   ├── web/                          # Public-facing web application (@albirru/web)
-│   │   ├── src/
-│   │   │   ├── app/                  # Next.js App Router (Public routes, /admissions, /news, /about)
-│   │   │   ├── components/           # Public UI components, blocks, and forms (AdmissionsForm, etc.)
-│   │   │   ├── hooks/                # Client hooks (use-mobile, etc.)
-│   │   │   ├── lib/                  # Utilities (utils.ts), validations (zod), motion presets
-│   │   │   ├── modules/              # Domain modules for public application
-│   │   │   └── types/                # Type definitions (ActionResponse, etc.)
-│   │   ├── public/                   # Static public assets (images, logos, favicon)
-│   │   └── package.json              # Web app dependencies and scripts
+│   ├── app/                          # Main authenticated SaaS/SIS application (@albirru/app) - Port 3000
+│   │   ├── src/                      # Admin & Portal routes (/admin, /admin/identity, /attendance, /grading)
+│   │   └── package.json              # Next.js 16 + Clerk + shadcn/ui + Tailwind CSS v4
 │   │
-│   └── portal/                       # Internal School Information System portal (@albirru/portal)
-│       ├── src/
-│       │   ├── app/                  # Next.js App Router (Admin & Portal routes, /admin, /admin/identity)
-│       │   ├── components/           # Portal-specific dashboard and data-table components
-│       │   ├── lib/                  # Portal utilities and validation schemas
-│       │   └── modules/              # Domain-specific internal actions & service bridges
-│       └── package.json              # Portal app dependencies and scripts
+│   ├── web/                          # Public-facing web application (@albirru/web) - Port 3001
+│   │   ├── src/                      # Public routes (/admissions, /news, /about, /gallery), PPDB Form
+│   │   └── package.json              # Next.js 16 + Turnstile + Upstash Rate Limiting + SEO
+│   │
+│   ├── api/                          # Cross-platform API & webhook service (@albirru/api) - Port 3002
+│   │   ├── src/                      # Endpoints (/health, /webhooks/clerk, /webhooks/resend)
+│   │   └── package.json              # Next.js 16 Serverless API microservice
+│   │
+│   ├── email/                        # React-based email templates & preview workshop (@albirru/email) - Port 3003
+│   │   ├── src/emails/               # Transactional email components (AdmissionConfirmation.tsx)
+│   │   └── package.json              # React Email + Resend SDK
+│   │
+│   ├── docs/                         # Technical documentation website (@albirru/docs) - Port 3004
+│   │   ├── src/                      # Automated statutory specs reader and architecture explorer
+│   │   └── package.json              # Next.js 16 + Design System
+│   │
+│   ├── studio/                       # Visual database editor (@albirru/studio) - Port 3005
+│   │   ├── src/                      # Visual schema inspector and data browser
+│   │   └── package.json              # Drizzle Studio (drizzle-kit studio)
+│   │
+│   └── storybook/                    # Frontend UI component workshop (@albirru/storybook) - Port 6006
+│       ├── src/                      # Isolated component testing and documentation workbench
+│       └── package.json              # Storybook 10 + Vite + Design System
 │
 ├── packages/
 │   ├── database/                     # Central database library (@albirru/database)
@@ -98,7 +107,7 @@ Provide a simple block diagram or a clear text-based description of the major co
                       │
         ┌─────────────┴─────────────┐
         ▼                           ▼
-  [apps/web (Public Portal)]   [apps/portal (Internal SIS)]
+  [apps/web (Public Portal)]   [apps/app (Internal SIS)]
   - Next.js 16 App Router      - Next.js 16 App Router
   - RSC & SSR Landing Pages    - Authenticated Portals
   - Online PPDB Form Island    - Academic / Attendance Views
@@ -137,9 +146,18 @@ Provide a simple block diagram or a clear text-based description of the major co
 
 (List and briefly describe the main components of the system. For each, include its primary responsibility and key technologies used.)
 
-### 3.1. Frontend
+### 3.1. Next-Forge Applications (`apps/*`)
 
-#### 3.1.1. Public Web Application (`apps/web`)
+Adhering to the standardized **next-forge** monorepo architecture, user-facing applications and developer tools are organized under `apps/` with dedicated responsibilities and port allocations:
+
+#### 3.1.1. Main Authenticated SaaS & SIS Application (`apps/app`) — Port 3000
+
+- **Name:** SD Al-Birru Authenticated SIS Application (`@albirru/app`)
+- **Description:** Protected web application for school administration, academic instructors, guardians, and students. Manages Master Identity provisioning (RBAC), daily sequential attendance sessions with immutability locking, academic grading calculation with report card freezing, and student performance monitoring for guardians.
+- **Technologies:** Next.js 16 (App Router, RSC), React 19, TypeScript, Clerk (`@clerk/nextjs`), Tailwind CSS v4, shadcn/ui, Radix UI, Recharts, React Hook Form, Zod, ZSA.
+- **Deployment:** Vercel (Production Edge Serverless Compute).
+
+#### 3.1.2. Public Web Application (`apps/web`) — Port 3001
 
 - **Name:** SD Al-Birru Public Web Application (`@albirru/web`)
 - **Description:** The primary public-facing portal for SD Al-Birru Tahfidzul Qur'an. Serves the high-performance institutional profile, statutory accreditation badges (NPSN `70010111` & BAN-S/M), school programs, news and gallery archives, and the online student registration (PPDB) form. Interacts directly with Cloudflare Turnstile for bot deterrence and Upstash Redis for submission throttling.
@@ -149,16 +167,44 @@ Provide a simple block diagram or a clear text-based description of the major co
   - Staging: `https://staging.albirru.mafrilearth.com`
   - Development: `https://dev.albirru.mafrilearth.com`
 
-#### 3.1.2. Internal SIS Portal Application (`apps/portal`)
+#### 3.1.3. Cross-Platform API & Webhook Service (`apps/api`) — Port 3002
 
-- **Name:** SD Al-Birru Internal School Information System (`@albirru/portal`)
-- **Description:** Protected web application for school administration, academic instructors, guardians, and students. Manages Master Identity provisioning (RBAC), daily sequential attendance sessions with immutability locking, academic grading calculation with report card freezing, and student performance monitoring for guardians.
-- **Technologies:** Next.js 16 (App Router, RSC), React 19, TypeScript, Clerk (`@clerk/nextjs`), Tailwind CSS v4, shadcn/ui, Radix UI, Recharts, React Hook Form, Zod, ZSA.
-- **Deployment:** Vercel (Production Edge Serverless).
+- **Name:** SD Al-Birru API Microservice (`@albirru/api`)
+- **Description:** Dedicated edge API microservice handling system health monitoring (`/health`), public API routes, and incoming external statutory webhooks (Clerk identity events, Resend delivery status notifications).
+- **Technologies:** Next.js 16 Route Handlers, TypeScript, Drizzle ORM, Zod, Svix.
+- **Deployment:** Vercel Serverless Functions.
 
-### 3.2. Backend Services
+#### 3.1.4. React Email Templates & Preview Workshop (`apps/email`) — Port 3003
 
-The backend follows a **Modern Modular Monolith** pattern where domain services and mutations execute as Next.js Server Actions ("use server") and isolated domain modules within `@albirru/web` and `@albirru/portal`, backed by the shared `@albirru/database` package.
+- **Name:** SD Al-Birru Transactional Email Studio (`@albirru/email`)
+- **Description:** React-based email template development and preview workbench. Hosts standardized transactional email components (e.g., `AdmissionConfirmation.tsx`) rendered with `@react-email/components` and dispatched via the Resend API.
+- **Technologies:** React Email (`@react-email/components`), Resend (`resend`), TypeScript, Tailwind CSS.
+- **Deployment:** Vercel Serverless / Local Preview Studio.
+
+#### 3.1.5. In-Tree Documentation Explorer (`apps/docs`) — Port 3004
+
+- **Name:** SD Al-Birru In-Tree Documentation Portal (`@albirru/docs`)
+- **Description:** Technical documentation website rendering all 11 statutory specifications, architecture decision records (ADRs), and operational runbooks directly from in-tree markdown sources.
+- **Technologies:** Next.js 16 (App Router, RSC), TypeScript, Tailwind CSS v4, shadcn/ui.
+- **Deployment:** Vercel Edge Serverless.
+
+#### 3.1.6. Visual Database Editor (`apps/studio`) — Port 3005
+
+- **Name:** SD Al-Birru Database Studio (`@albirru/studio`)
+- **Description:** Local visual database administration console utilizing Drizzle Studio (`drizzle-kit studio`) to inspect tables, relations, indexes, and execute schema queries directly against Neon PostgreSQL.
+- **Technologies:** Drizzle Studio (`drizzle-kit`), Drizzle ORM, TypeScript.
+- **Deployment:** Local Developer Environment (`pnpm --filter @albirru/studio dev`).
+
+#### 3.1.7. Frontend UI Component Workshop (`apps/storybook`) — Port 6006
+
+- **Name:** SD Al-Birru Component Workbench (`@albirru/storybook`)
+- **Description:** Isolated UI component workshop for developing, previewing, and testing design system primitives, widgets, and layout components in isolation before integration.
+- **Technologies:** Storybook 10, Vite, React 19, TypeScript, Tailwind CSS v4, Radix UI.
+- **Deployment:** Chromatic / Local Workbench.
+
+### 3.2. Backend Services & Domain Modules
+
+The backend follows a **Modern Modular Monolith** pattern where domain services and mutations execute as Next.js Server Actions ("use server") and isolated domain modules within `@albirru/app`, `@albirru/web`, and `@albirru/api`, backed by the shared `@albirru/database` package.
 
 #### 3.2.1. Master Identity & RBAC Service (`src/modules/identity/`)
 
@@ -284,7 +330,7 @@ The backend follows a **Modern Modular Monolith** pattern where domain services 
   2. Switch to the development branch: `git checkout dev`
   3. Install dependencies: `pnpm install`
   4. Prepare local environment variables: copy `.env.example` to `.env.local` and populate Neon, Clerk, and Upstash credentials
-  5. Start development servers: `pnpm run dev` (spins up Turborepo pipelines for `apps/web` and `apps/portal`)
+  5. Start development servers: `pnpm run dev` (spins up Turborepo pipelines across applications: `app`, `web`, `api`, `email`, `docs`, `studio`, `storybook`)
 - **Testing Frameworks:**
   - Unit & Integration Testing: Vitest (`vitest`) with `@vitest/browser-playwright`
   - End-to-End Testing: Playwright (`playwright`)

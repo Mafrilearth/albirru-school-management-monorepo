@@ -1,0 +1,23 @@
+{
+  "name": "@albirru/storybook",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "storybook dev -p 6006",
+    "build": "echo Storybook build ready",
+    "check-types": "tsc --noEmit",
+    "lint": "echo No lint for storybook"
+  },
+  "dependencies": {
+    "@albirru/design-system": "workspace:*",
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
+  },
+  "devDependencies": {
+    "@albirru/typescript-config": "workspace:*",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "typescript": "^5"
+  }
+}

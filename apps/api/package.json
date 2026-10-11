@@ -1,0 +1,30 @@
+{
+  "name": "@albirru/api",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 3002",
+    "build": "next build",
+    "start": "next start -p 3002",
+    "check-types": "tsc --noEmit",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "@albirru/database": "workspace:*",
+    "dotenv": "^18.0.5",
+    "next": "16.3.8",
+    "postgres": "^3.4.9",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@albirru/eslint-config": "workspace:*",
+    "@albirru/typescript-config": "workspace:*",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "typescript": "^5"
+  }
+}

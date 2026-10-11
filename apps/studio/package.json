@@ -1,0 +1,21 @@
+{
+  "name": "@albirru/studio",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "drizzle-kit studio --port 3005",
+    "build": "echo Studio build ready",
+    "check-types": "tsc --noEmit",
+    "lint": "echo No lint for studio"
+  },
+  "dependencies": {
+    "@albirru/database": "workspace:*",
+    "dotenv": "^18.0.5",
+    "drizzle-kit": "^0.31.4"
+  },
+  "devDependencies": {
+    "@albirru/typescript-config": "workspace:*",
+    "@types/node": "^20",
+    "typescript": "^5"
+  }
+}

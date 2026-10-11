@@ -1,0 +1,29 @@
+{
+  "name": "@albirru/email",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 3003",
+    "build": "next build",
+    "start": "next start -p 3003",
+    "check-types": "tsc --noEmit",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "@react-email/components": "^1.0.12",
+    "@react-email/render": "^2.1.0",
+    "next": "16.3.8",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "resend": "^6.32.0"
+  },
+  "devDependencies": {
+    "@albirru/eslint-config": "workspace:*",
+    "@albirru/typescript-config": "workspace:*",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "typescript": "^5"
+  }
+}
