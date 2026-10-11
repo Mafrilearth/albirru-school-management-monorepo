@@ -1,8 +1,7 @@
 "use server";
 
 import { ActionResponse } from "@/types/action";
-import { db } from "@/db";
-import { admissionApplications } from "@/db/schema";
+import { db, admissionApplications } from "@albirru/database";
 import { AdmissionsSubmissionSchema, type AdmissionsSubmissionPayload } from "@/lib/validations/admissions";
 
 // Pseudo rate limit

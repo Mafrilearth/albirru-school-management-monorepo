@@ -75,9 +75,17 @@ Repositori menerapkan dokumentasi spesifikasi in-tree pada direktori `/docs/` se
 
 ## 🛠️ Tumpukan Teknologi & Arsitektur Monorepo (*Technology Stack & Monorepo Architecture*)
 
-Repositori ini diorganisasikan sebagai **Turborepo Multi-Package Monorepo** dengan pembagian workspace:
-- **`apps/web` (`@albirru/web`):** Aplikasi web portal dan antarmuka publik Next.js 16 (App Router, React Server Components & Server Actions).
-- **`packages/database` (`@albirru/database`):** Pustaka basis data bersama berisikan skema DDL Drizzle ORM, migrasi SQL statis, dan klien PostgreSQL.
+Repositori ini diorganisasikan sebagai **Turborepo Multi-Package Monorepo** (terinspirasi dari arsitektur *next-forge* tingkat enterprise) dengan pembagian workspace:
+
+### Aplikasi (*Applications*)
+- **`apps/web` (`@albirru/web`):** Aplikasi web publik, pendaftaran PPDB daring, arsip warta, galeri, dan profil statutori institusi SD Al-Birru.
+- **`apps/portal` (`@albirru/portal`):** Sistem Informasi Sekolah (SIS) internal untuk modul administrasi terpusat (Master Identity, Presensi Siswa, Rekapitulasi Penilaian & Rapor Akademik, dan Portal Wali Murid).
+
+### Paket Bersama (*Shared Packages*)
+- **`packages/database` (`@albirru/database`):** Pustaka basis data bersama berisikan skema DDL Drizzle ORM, migrasi SQL statis terkelola, dan koneksi *connection pooler* PostgreSQL.
+- **`packages/design-system` (`@albirru/design-system`):** Pustaka UI design system terstandarisasi (primitif Base UI, tema Fine-Line Boxy Brutalism, utilitas Tailwind CSS, hooks, dan ThemeProvider).
+- **`packages/eslint-config` (`@albirru/eslint-config`):** Aturan linting terpusat lintas monorepo (`base.js` dan `nextjs.js`).
+- **`packages/typescript-config` (`@albirru/typescript-config`):** Konfigurasi kompilasi TypeScript modular (`base.json`, `nextjs.json`, `react-library.json`).
 
 ### Tumpukan Teknologi Inti
 - **Orkestrasi Monorepo:** [Turborepo](https://turbo.build/repo) (Task caching, parallel execution, and workspace pipelines)

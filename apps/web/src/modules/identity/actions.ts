@@ -1,7 +1,6 @@
 "use server";
 
-import { db } from "@/db";
-import { users, profiles } from "@/db/schema";
+import { db, users, profiles } from "@albirru/database";
 import { eq } from "drizzle-orm";
 import { ActionResponse } from "@/types/action";
 import { IdentityProvisioningSchema, type IdentityProvisioningPayload } from "@/lib/validations/identity";
