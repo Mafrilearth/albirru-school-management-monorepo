@@ -1,6 +1,6 @@
 # Deployment & Infrastructure Runbook
 
-This document specifies the authoritative deployment procedures, cloud infrastructure topology, and environment configuration for the **SD Al-Birru School Information System (`albirru-sis-web`)**.
+This document specifies the authoritative deployment procedures, cloud infrastructure topology, and environment configuration for the **Al-Birru School Information System (`albirru-sis`)**.
 
 ---
 

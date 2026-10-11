@@ -1,6 +1,6 @@
 # Architecture Overview
 
-This document serves as the authoritative, living architectural specification for the **SD Al-Birru School Information System (`albirru-sis-web`)**. It equips engineers and autonomous agents with a clear understanding of the codebase's architecture, directory topology, domain boundaries, network routing, and quality invariants. Update this document as the system evolves.
+This document serves as the authoritative, living architectural specification for the **Al-Birru School Information System (`albirru-sis`)**. It equips engineers and autonomous agents with a clear understanding of the codebase's architecture, directory topology, domain boundaries, network routing, and quality invariants. Update this document as the system evolves.
 
 ---
 
@@ -448,7 +448,7 @@ Every pull request and push to protected branches must satisfy the 4-stage autom
 
 ## 10. Project Identification
 
-- **Project Name:** SD Al-Birru School Information System (`albirru-sis-web`)
+- **Project Name:** Al-Birru School Information System (`albirru-sis`)
 - **Institution:** SD Al-Birru Tahfidzul Qur'an
 - **National School Identification (NPSN):** `70010111`
 - **Accreditation Authority:** Badan Akreditasi Nasional Sekolah/Madrasah (BAN-S/M)

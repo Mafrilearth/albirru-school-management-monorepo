@@ -1,4 +1,4 @@
-# Albirru Primary School Information System (albirru-sis-web)
+# Al-Birru School Information System (albirru-sis)
 # Autonomous Agent Operational Constitution & Engineering Invariants
 
 ## 1. Agent Operational Role and Principles

@@ -1,6 +1,6 @@
 # Strategic Product & Engineering Roadmap
 
-This document outlines the strategic development milestones and engineering roadmap for the **SD Al-Birru School Information System (`albirru-sis-web`)**.
+This document outlines the strategic development milestones and engineering roadmap for the **Al-Birru School Information System (`albirru-sis`)**.
 
 ---
 

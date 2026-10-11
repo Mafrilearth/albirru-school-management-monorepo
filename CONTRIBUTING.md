@@ -1,6 +1,6 @@
-# Contributing to Albirru SIS Web
+# Contributing to Al-Birru School Information System
 
-Thank you for your interest in contributing to the **Albirru Primary School Information System (`albirru-sis-web`)**. This project operates under rigorous engineering standards to ensure high reliability, accessibility, and relational integrity.
+Thank you for your interest in contributing to the **Al-Birru School Information System (`albirru-sis`)**. This project operates under rigorous engineering standards to ensure high reliability, accessibility, and relational integrity.
 
 Please review this document thoroughly before opening an issue or submitting a pull request.
 

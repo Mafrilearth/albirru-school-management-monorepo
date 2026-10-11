@@ -1,6 +1,6 @@
 # Environment Variables & Configuration Matrix
 
-This document provides the authoritative specification for all environment variables used across the **SD Al-Birru School Information System (`albirru-sis-web`)**.
+This document provides the authoritative specification for all environment variables used across the **Al-Birru School Information System (`albirru-sis`)**.
 
 ---
 

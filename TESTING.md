@@ -1,6 +1,6 @@
 # Quality Assurance & Testing Engineering
 
-This document outlines the testing strategy, tools, and quality gates for the **SD Al-Birru School Information System (`albirru-sis-web`)**.
+This document outlines the testing strategy, tools, and quality gates for the **Al-Birru School Information System (`albirru-sis`)**.
 
 ---
 

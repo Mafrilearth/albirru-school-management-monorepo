@@ -1,6 +1,6 @@
 # Engineering & Institutional Governance
 
-This document outlines the governance model, decision-making framework, and maintenance standards for the **SD Al-Birru School Information System (`albirru-sis-web`)**.
+This document outlines the governance model, decision-making framework, and maintenance standards for the **Al-Birru School Information System (`albirru-sis`)**.
 
 ---
 

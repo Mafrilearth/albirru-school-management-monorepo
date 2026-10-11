@@ -1,6 +1,6 @@
 # Security Policy
 
-The security of student, guardian, educator, and institutional data within the **Albirru Primary School Information System (`albirru-sis-web`)** is of paramount importance. This document outlines our vulnerability disclosure process, threat mitigations, and compliance standards.
+The security of student, guardian, educator, and institutional data within the **Al-Birru School Information System (`albirru-sis`)** is of paramount importance. This document outlines our vulnerability disclosure process, threat mitigations, and compliance standards.
 
 ---
 

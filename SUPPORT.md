@@ -1,6 +1,6 @@
 # Support Channels & Assistance Guidelines
 
-Thank you for engaging with the **SD Al-Birru School Information System (`albirru-sis-web`)**. To ensure rapid resolution of your inquiry, please review the designated support channels outlined below.
+Thank you for engaging with the **Al-Birru School Information System (`albirru-sis`)**. To ensure rapid resolution of your inquiry, please review the designated support channels outlined below.
 
 ---
 

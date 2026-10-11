@@ -1,4 +1,4 @@
-# SD Al-Birru School Information System (`albirru-sis-web`)
+# Al-Birru School Information System (`albirru-sis`)
 
 [![Next.js](https://img.shields.io/badge/Next.js-16.x-black?style=flat-square&logo=next.js)](https://nextjs.org/)
 [![React](https://img.shields.io/badge/React-19.x-blue?style=flat-square&logo=react)](https://react.dev/)
@@ -9,17 +9,17 @@
 [![Vercel Deployment](https://img.shields.io/badge/Vercel-Production_Edge-black?style=flat-square&logo=vercel)](https://vercel.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
 
-> Official Institutional Governance Platform of **SD Al-Birru Tahfidzul Qur'an**.  
+> Official Institutional Governance Platform of **Al-Birru School**.  
 > Engineered with a Modern Modular Monolith architecture, Fine-Line Boxy Brutalism design system, end-to-end static type safety, and serverless edge cloud infrastructure.
 
 ---
 
 ## 🏛️ Institutional Credentials
 
-- **Institution**: SD Al-Birru Tahfidzul Qur'an
+- **Institution**: Al-Birru School
 - **National School Identification Number (NPSN)**: `70010111`
 - **Accreditation Authority**: National Accreditation Board (BAN-S/M) — Grade A
-- **Governing Foundation**: Yayasan Pendidikan Al-Birru
+- **Governing Foundation**: Yayasan Amal Cahaya Indonesia
 - **Medium of Instruction**: Indonesian and Formal English Immersion
 - **Campus Location**: Cicantayan, Kabupaten Sukabumi, Jawa Barat, Indonesia
 
@@ -169,4 +169,4 @@ pnpm run db:studio
 ## 📜 License & Copyright
 
 Distributed under the official [MIT License](LICENSE).  
-Copyright © 2026 **Yayasan Pendidikan Al-Birru** / **SD Al-Birru Tahfidzul Qur'an**. All rights reserved.
+Copyright © 2026 **Yayasan Amal Cahaya Indonesia** / **SD Al-Birru Tahfidzul Qur'an**. All rights reserved.

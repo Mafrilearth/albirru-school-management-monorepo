@@ -1,6 +1,6 @@
 # Institutional Authorship & Project Attribution
 
-The **SD Al-Birru School Information System (`albirru-sis-web`)** is engineered and governed under the institutional stewardship of **Yayasan Pendidikan Al-Birru**.
+The **Al-Birru School Information System (`albirru-sis`)** is engineered and governed under the institutional stewardship of **Yayasan Pendidikan Al-Birru**.
 
 ---
 

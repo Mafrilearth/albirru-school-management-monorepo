@@ -1,4 +1,4 @@
-# Albirru Primary School Information System (albirru-sis-web)
+# Al-Birru School Information System (albirru-sis)
 # Technical Design Document (TDD) & Design System Specification
 
 **Document Status:** Approved & Authoritative  

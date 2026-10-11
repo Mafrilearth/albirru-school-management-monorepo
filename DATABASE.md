@@ -1,6 +1,6 @@
 # Relational Database Architecture & Invariants
 
-This document outlines the data model, relational architecture, and engineering invariants governing the **SD Al-Birru School Information System (`@albirru/database`)**.
+This document outlines the data model, relational architecture, and engineering invariants governing the **Al-Birru School Information System (`@albirru/database`)**.
 
 ---
 
