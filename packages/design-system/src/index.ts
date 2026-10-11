@@ -19,6 +19,7 @@ export * from "./components/ui/sheet";
 export * from "./components/ui/skeleton";
 export * from "./components/ui/table";
 export * from "./components/ui/tabs";
+export * from "./components/ui/typography";
 export * from "./hooks/use-mobile";
 export * from "./lib/utils";
 export * from "./providers/ThemeProvider";
