@@ -9,7 +9,7 @@
 [![Vercel Deployment](https://img.shields.io/badge/Vercel-Production_Edge-black?style=flat-square&logo=vercel)](https://vercel.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
 
-> Official Institutional Governance Platform of **Al-Birru School**.  
+> Official Institutional Governance Platform of **Al-Birru Primary School**.  
 > Engineered with a Modern Modular Monolith architecture, Fine-Line Boxy Brutalism design system, end-to-end static type safety, and serverless edge cloud infrastructure.
 
 ---
