@@ -32,6 +32,7 @@ Setiap rekaman keputusan dievaluasi secara ketat berdasarkan empat kriteria utam
 | **ADR-005** | Headless shadcn/ui Component Primitives | Accepted | 2026-10-08 | User Interface Design System |
 | **ADR-006** | Cloudflare Turnstile & Upstash Rate Limiting | Accepted | 2026-10-09 | Public Ingress and Security Layer |
 | **ADR-007** | Cloudflare R2 S3-Compatible Cold Archive | Accepted | 2026-10-09 | Distributed File Storage Layer |
+| **ADR-008** | Turborepo Multi-Package Monorepo (next-forge Alignment) | Accepted | 2026-10-11 | System Workspace Topology |
 ---
 ## 4. Comprehensive Architecture Decision Records
 ### 4.1 Architecture Decision Record 001: Modular Monolith Deployment Topology
@@ -73,6 +74,13 @@ Setiap rekaman keputusan dievaluasi secara ketat berdasarkan empat kriteria utam
 - **Consequences:**
 	- **Positif:** Eliminasi biaya transfer data keluar (*zero egress fees*) dan kapasitas penyimpanan dokumen yang elastis tanpa batas waktu.
 	- **Negatif:** Membutuhkan adaptor klien S3 mandiri di `src/lib/` untuk menangani transfer arsip dokumen historis.
+### 4.8 Architecture Decision Record 008: Turborepo Multi-Package Monorepo Topology (next-forge Alignment)
+- **Status:** Accepted (2026-10-11)
+- **Context:** Seiring pertumbuhan platform SIS dengan kebutuhan situs pemasaran publik (`apps/web`), portal administrasi terautentikasi (`apps/app`), microservice API/webhook (`apps/api`), email transaksional (`apps/email`), penjelajah dokumentasi (`apps/docs`), studio basis data (`apps/studio`), dan bengkel kerja komponen UI (`apps/storybook`), pemeliharaan seluruh kapabilitas dalam satu direktori tunggal memicu fragmentasi dependensi dan waktu build yang membengkak.
+- **Decision:** Menstandardisasi repositori menjadi Turborepo Multi-Package Monorepo mengikuti arsitektur baku **next-forge** enterprise dengan pembagian 7 aplikasi pada `apps/*` dan 4 pustaka bersama pada `packages/*` (`database`, `design-system`, `eslint-config`, `typescript-config`).
+- **Consequences:**
+	- **Positif:** Isolasi dependensi yang ketat, caching kompilasi deterministik dengan Turborepo, alokasi port kanonikal (3000-3005, 6006), dan kemudahan ekspansi fitur tanpa risiko regresi antar-aplikasi.
+	- **Negatif:** Memerlukan konfigurasi `pnpm-workspace.yaml` terkelola dan penegakan sinkronisasi dependensi lintas workspace.
 ---
 ## 5. Architectural Evolution and Modification Protocol
 Setiap usulan fitur atau perubahan teknologi yang bertentangan dengan keputusan arsitektur yang telah disetujui dalam dokumen ini wajib mengikuti protokol tata kelola berikut sebelum penggabungan kode (*merging*):

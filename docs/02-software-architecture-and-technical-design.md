@@ -58,7 +58,22 @@ Sistem dirancang sebagai **Modern Modular Monolith** yang dikemas ke dalam satu 
 ```plain text
 albirru-sis-web/
 ├── .github/workflows/ci.yml               # Pipeline CI pengujian dan build otomatis
-├── docs/                                  # Registri spesifikasi rekayasa in-tree
+├── apps/                                  # 7 Aplikasi terspesialisasi (pola next-forge)
+│   ├── app/                               # Aplikasi SaaS/SIS internal terautentikasi - Port 3000 (@albirru/app)
+│   │   ├── src/app/                       # Rute portal: /admin, /instructor, /guardian
+│   │   └── src/modules/                   # Logika domain terisolasi: attendance, grading, guardian, identity
+│   ├── web/                               # Aplikasi web publik & formulir admisi PPDB - Port 3001 (@albirru/web)
+│   ├── api/                               # Microservice API & webhook ingress - Port 3002 (@albirru/api)
+│   ├── email/                             # Studio template email React Email - Port 3003 (@albirru/email)
+│   ├── docs/                              # Penjelajah 11 spesifikasi teknis in-tree - Port 3004 (@albirru/docs)
+│   ├── studio/                            # Visual database manager Drizzle Studio - Port 3005 (@albirru/studio)
+│   └── storybook/                         # Workbench isolasi komponen UI frontend - Port 6006 (@albirru/storybook)
+├── packages/                              # 4 Paket pustaka bersama
+│   ├── database/                          # Skema DDL Drizzle ORM, driver postgres, UUIDv7 (@albirru/database)
+│   ├── design-system/                     # Primitif shadcn/ui & Radix UI (@albirru/design-system)
+│   ├── eslint-config/                     # Aturan linting terpusat monorepo (@albirru/eslint-config)
+│   └── typescript-config/                 # Konfigurasi TypeScript modular (@albirru/typescript-config)
+├── docs/                                  # Registri 11 spesifikasi rekayasa in-tree
 │   ├── 01-product-requirements-specification.md
 │   ├── 02-software-architecture-and-technical-design.md
 │   ├── 03-relational-database-specification.md
@@ -70,37 +85,17 @@ albirru-sis-web/
 │   ├── 09-architecture-decision-records.md
 │   ├── 10-quality-assurance-and-verification-plan.md
 │   └── 11-operational-runbook-and-incident-procedures.md
-├── public/                                # Aset statis publik
-├── src/
-│   ├── app/                               # Rute halaman Next.js App Router
-│   │   ├── (auth)/authentication/sign-in/ # Rute login lintas peran
-│   │   ├── (portal)/portal/               # Shell portal terproteksi otorisasi
-│   │   │   ├── admin/                     # Rute kerja administrator
-│   │   │   ├── instructor/                # Rute kerja instruktur
-│   │   │   └── guardian/                  # Rute kerja wali murid
-│   │   ├── (public)/                      # Rute web publik unauthenticated
-│   │   │   ├── admission/                 # Portal admisi dan pelacakan status
-│   │   │   └── page.tsx                   # Beranda publik profil sekolah
-│   │   └── api/health/route.ts            # Endpoint health check & keep-alive cron
-│   ├── components/                        # Primitif UI bersama (shadcn/ui, layout, tables)
-│   ├── db/                                # Skema deklaratif Drizzle dan berkas migrasi
-│   ├── lib/                               # Utilitas inti dan konfigurasi client adapter (Neon, Upstash, Clerk)
-│   └── modules/                           # Modul logika modular monolit terisolasi
-│       ├── attendance/                    # actions.ts, components/, service.ts, types.ts
-│       ├── grading/                       # actions.ts, components/, service.ts, types.ts
-│       ├── guardian/                      # actions.ts, components/, service.ts, types.ts
-│       ├── identity/                      # actions.ts, components/, service.ts, types.ts
-│       └── admissions/                    # actions.ts, components/, service.ts, types.ts
-├── drizzle.config.ts                      # Konfigurasi migrasi Drizzle ORM
-├── next.config.ts                         # Konfigurasi kompilasi Next.js
-├── package.json                           # Manifes dependensi Node.js
-├── tailwind.config.ts                     # Konfigurasi token visual Tailwind CSS
-└── tsconfig.json                          # Aturan ketat compiler TypeScript
+├── .env.example                           # Templat variabel lingkungan resmi
+├── ARCHITECTURE.md                        # Dokumen arsitektur komprehensif monorepo
+├── README.md                              # Dasbor tata kelola dan panduan monorepo
+├── biome.json                             # Konfigurasi linter & formatter Biome
+├── pnpm-workspace.yaml                    # Definisi pnpm workspaces
+└── turbo.json                             # Pipeline build Turborepo
 ```
 ### 5.2 Module Interaction Guardrails
-- **Isolasi Impor Silang:** Modul pada `src/modules/attendance/` dilarang mengimpor implementasi internal dari `src/modules/grading/`. Integrasi lintas domain wajib melalui kontrak publik antarmuka yang diekspos melalui `src/modules/{domain}/service.ts`.
-- **Konsumsi Bersama:** Modul internal berhak mengonsumsi utilitas global `src/lib/`, komponen antarmuka bersama `src/components/`, dan skema basis data `src/db/`.
-- **Validasi Gerbang Server Actions:** Seluruh berkas `actions.ts` wajib memvalidasi muatan parameter menggunakan skema Zod sebelum meneruskannya ke fungsi logika domain di `service.ts`.
+- **Isolasi Impor Silang:** Modul pada `apps/app/src/modules/attendance/` dilarang mengimpor implementasi internal dari `apps/app/src/modules/grading/`. Integrasi lintas domain wajib melalui kontrak publik antarmuka yang diekspos melalui `service.ts` masing-masing domain.
+- **Konsumsi Paket Bersama:** Aplikasi monorepo mengonsumsi basis data melalui `@albirru/database` dan komponen antarmuka bersama melalui `@albirru/design-system`.
+- **Validasi Gerbang Server Actions:** Seluruh berkas `actions.ts` wajib memvalidasi muatan parameter menggunakan skema Zod sebelum meneruskannya ke fungsi logika domain di `service.ts` dan mengembalikan amplop terstandarisasi `ActionResponse`.
 ## 6. Access Control and Technical Execution Constraints
 ### 6.1 Role-Based Boundary Enforcement
 | **Canonical System Role** | **Session Scope** | **Database Access Policy** | **Permitted Route Scope** |

@@ -67,7 +67,7 @@ Repositori menerapkan dokumentasi spesifikasi in-tree pada direktori `/docs/` se
 | **[06-application-layout-and-navigation-architecture.md](./docs/06-application-layout-and-navigation-architecture.md)** | Tiga viewport shell (Public, Auth, Portal) dan dimensi layout navigasi. | Disetujui (*Approved*) |
 | **[07-user-interface-component-anatomy-specification.md](./docs/07-user-interface-component-anatomy-specification.md)** | Anatomi komponen visual, mikrokopi statutori, dan mesin state interaktif. | Disetujui (*Approved*) |
 | **[08-landing-page-view-architecture.md](./docs/08-landing-page-view-architecture.md)** | Dekonstruksi 6 seksi beranda publik dan mikrokopi legalitas NPSN/BAN-S/M. | Disetujui (*Approved*) |
-| **[09-architecture-decision-records.md](./docs/09-architecture-decision-records.md)** | Kronologi catatan keputusan arsitektur (ADR-001 hingga ADR-005). | Disetujui (*Approved*) |
+| **[09-architecture-decision-records.md](./docs/09-architecture-decision-records.md)** | Kronologi catatan keputusan arsitektur (ADR-001 hingga ADR-008). | Disetujui (*Approved*) |
 | **[10-quality-assurance-and-verification-plan.md](./docs/10-quality-assurance-and-verification-plan.md)** | Piramida pengujian, skenario batas, dan gerbang mutu CI berkelanjutan. | Disetujui (*Approved*) |
 | **[11-operational-runbook-and-incident-procedures.md](./docs/11-operational-runbook-and-incident-procedures.md)** | Tata kelola percabangan Git, runbook darurat, mitigasi kuota, dan orkestrasi agen. | Disetujui (*Approved*) |
 

@@ -45,7 +45,7 @@ const DOCS_LIST = [
   {
     num: "09",
     title: "Architecture Decision Records",
-    desc: "ADR-001 through ADR-007 chronologies and tradeoff evaluations.",
+    desc: "ADR-001 through ADR-008 chronologies, next-forge monorepo, and tradeoff evaluations.",
   },
   {
     num: "10",
