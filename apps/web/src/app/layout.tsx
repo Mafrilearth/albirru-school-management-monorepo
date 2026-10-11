@@ -10,11 +10,7 @@ import { PublicFooter } from "@/components/layout/PublicFooter";
 import { PublicNavbar } from "@/components/layout/PublicNavbar";
 import { ScrollProgressBar } from "@/components/layout/ScrollProgressBar";
 
-const inter = Inter({
-  variable: "--font-sans",
-  subsets: ["latin"],
-  display: "swap",
-});
+const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
 const robotoMono = Roboto_Mono({
   variable: "--font-mono",
@@ -153,6 +149,7 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { cn } from "@/lib/utils";
 
 export default function PublicRootLayout({
   children,
@@ -164,7 +161,13 @@ export default function PublicRootLayout({
   return (
     <html
       lang={locale}
-      className={`${inter.variable} ${robotoMono.variable} font-sans h-full antialiased`}
+      className={cn(
+        "h-full",
+        "antialiased",
+        robotoMono.variable,
+        "font-sans",
+        inter.variable,
+      )}
       suppressHydrationWarning
     >
       <head>

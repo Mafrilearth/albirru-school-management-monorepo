@@ -49,38 +49,38 @@
 }
 
 :root {
-  --background: oklch(0.992 0.005 85);       /* #FDFDFB - Slate 50 */
-  --foreground: oklch(0.18 0.025 240);       /* #0F172A - Slate 900 */
-  --card: oklch(1 0 0);                      /* #FFFFFF - White */
-  --card-foreground: oklch(0.18 0.025 240);
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.18 0.025 240);
-  --primary: oklch(0.75 0.18 75);            /* #F59E0B - Amber 500 */
-  --primary-foreground: oklch(0.14 0.03 240);/* #020617 - Slate 950 */
-  --secondary: oklch(0.96 0.045 85);         /* #FEF3C7 - Amber 100 */
-  --secondary-foreground: oklch(0.4 0.12 70);
-  --muted: oklch(0.96 0.01 240);
-  --muted-foreground: oklch(0.5 0.02 240);
-  --accent: oklch(0.95 0.05 85);
-  --accent-foreground: oklch(0.35 0.12 70);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.92 0.01 240);
-  --input: oklch(0.92 0.01 240);
-  --ring: oklch(0.75 0.18 75);               /* Amber 500 */
-  --chart-1: oklch(0.75 0.18 75);
-  --chart-2: oklch(0.42 0.12 165);           /* Emerald 800 */
-  --chart-3: oklch(0.556 0 0);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
   --chart-4: oklch(0.371 0 0);
   --chart-5: oklch(0.269 0 0);
-  --radius: 0.625rem;                        /* 10px - Ergonomic Curvature */
+  --radius: 0.625rem;
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.75 0.18 75);
-  --sidebar-primary-foreground: oklch(0.14 0.03 240);
-  --sidebar-accent: oklch(0.96 0.045 85);
-  --sidebar-accent-foreground: oklch(0.4 0.12 70);
-  --sidebar-border: oklch(0.92 0.01 240);
-  --sidebar-ring: oklch(0.75 0.18 75);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
 }
 
 .dark {
@@ -117,16 +117,6 @@
   --sidebar-ring: oklch(0.556 0 0);
 }
 
-/* Hide Scrollbar Globally for a cleaner app-like experience */
-::-webkit-scrollbar {
-  display: none;
-}
-
-* {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;     /* Firefox */
-}
-
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -137,83 +127,5 @@
   html {
     @apply font-sans;
     scroll-behavior: smooth;
-  }
-  @media (prefers-reduced-motion: reduce) {
-    html {
-      scroll-behavior: auto;
-    }
-  }
-}
-
-@keyframes border-beam {
-  100% {
-    offset-distance: 100%;
-  }
-}
-
-.animate-border-beam {
-  animation: border-beam var(--duration, 12s) infinite linear;
-}
-
-@keyframes marquee {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(calc(-50% - 24px));
-  }
-}
-
-.animate-marquee {
-  animation: marquee 35s linear infinite;
-}
-
-/* ==========================================================================
-   First-Paint Entrance (CSS-only, runs before hydration)
-   --ease-apple-spring is sampled from appleSpring in src/lib/motion.ts
-   (stiffness 300, damping 28, mass 0.8 -> zeta 0.904, settles in ~430ms).
-   Regenerate with `node scripts/spring-to-linear.mjs` if the tokens change.
-
-   LCP rule: headline and lead paragraph use .animate-enter-rise, which only
-   animates transform. Opacity stays 1 so the text is paintable at first
-   paint. Secondary chrome (kickers, badges) may use .animate-enter-fade.
-   ========================================================================== */
-:root {
-  --ease-apple-spring: linear(0, 0.0675, 0.2113, 0.3738, 0.5255, 0.654, 0.7561, 0.8335, 0.8899, 0.9298, 0.957, 0.9749, 0.9864, 0.9935, 0.9976, 0.9998, 1.0009, 1.0013, 1.0013, 1.0012, 1);
-  --duration-apple-spring: 430ms;
-}
-
-@keyframes enter-rise {
-  from {
-    transform: translateY(16px);
-  }
-  to {
-    transform: none;
-  }
-}
-
-@keyframes enter-fade {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-.animate-enter-rise {
-  animation: enter-rise var(--duration-apple-spring) var(--ease-apple-spring) both;
-}
-
-.animate-enter-fade {
-  animation: enter-fade var(--duration-apple-spring) var(--ease-apple-spring) both;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .animate-enter-rise,
-  .animate-enter-fade {
-    animation: none;
   }
 }
