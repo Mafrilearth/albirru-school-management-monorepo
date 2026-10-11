@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Roboto_Mono } from "next/font/google";
+import { NuqsAdapter } from "nuqs/adapters/next/app";
 import type React from "react";
 import "@/app/globals.css";
 import { FloatingWhatsApp } from "@/components/common/FloatingWhatsApp";
@@ -194,24 +195,26 @@ export default function PublicRootLayout({
           </a>
 
           <TooltipProvider>
-            <ScrollProgressBar />
-            <GlobalGrid />
-            <AnnouncementBanner />
-            <PublicNavbar />
-            <main
-              id="main-content"
-              tabIndex={-1}
-              className="flex-1 flex flex-col outline-none"
-            >
-              {children}
-            </main>
-            <PublicFooter />
-            <FloatingWhatsApp />
-            <ScrollToTop />
+            <NuqsAdapter>
+              <ScrollProgressBar />
+              <GlobalGrid />
+              <AnnouncementBanner />
+              <PublicNavbar />
+              <main
+                id="main-content"
+                tabIndex={-1}
+                className="flex-1 flex flex-col outline-none"
+              >
+                {children}
+              </main>
+              <PublicFooter />
+              <FloatingWhatsApp />
+              <ScrollToTop />
 
-            {/* Vercel Observability Zero-Config */}
-            <Analytics />
-            <SpeedInsights />
+              {/* Vercel Observability Zero-Config */}
+              <Analytics />
+              <SpeedInsights />
+            </NuqsAdapter>
           </TooltipProvider>
         </ThemeProvider>
       </body>
