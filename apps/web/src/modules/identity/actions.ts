@@ -1,6 +1,6 @@
 "use server";
 
-import { db, profiles, users, eq } from "@albirru/database";
+import { db, eq, profiles, users } from "@albirru/database";
 import {
   type IdentityProvisioningPayload,
   IdentityProvisioningSchema,
