@@ -1,0 +1,12 @@
+[allowlist]
+description = "Global allowlist for mock keys and example environment files"
+paths = [
+  '''^\.env\.example$''',
+  '''^README\.md$''',
+  '''^SECURITY\.md$''',
+  '''^docs/'''
+]
+regexes = [
+  '''sk_test_placeholder''',
+  '''pk_test_placeholder'''
+]
