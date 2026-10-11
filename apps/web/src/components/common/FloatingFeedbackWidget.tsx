@@ -10,6 +10,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import { motion } from "motion/react";
+import Script from "next/script";
 import { useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -22,6 +23,23 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+
+declare global {
+  interface Window {
+    Tally?: {
+      openPopup: (
+        formId: string,
+        options?: {
+          layout?: "modal" | "default";
+          width?: number;
+          autoClose?: number;
+          emoji?: { text: string; animation: string };
+        },
+      ) => void;
+      closePopup: (formId: string) => void;
+    };
+  }
+}
 
 const FEEDBACK_CATEGORIES = [
   { id: "fitur", label: "💡 Ide Fitur Baru" },
@@ -42,6 +60,24 @@ export function FloatingFeedbackWidget() {
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [whatsappUrl, setWhatsappUrl] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+  const tallyFormId = process.env.NEXT_PUBLIC_TALLY_FORM_ID;
+
+  const handleOpenFeedback = () => {
+    // If a Tally form ID is configured and Tally SDK is loaded, open modern Tally popup
+    if (tallyFormId && typeof window !== "undefined" && window.Tally) {
+      window.Tally.openPopup(tallyFormId, {
+        layout: "modal",
+        width: 600,
+        autoClose: 3000,
+        emoji: { text: "💡", animation: "wave" },
+      });
+      return;
+    }
+    // Otherwise open instant native dialog
+    resetForm();
+    setIsOpen(true);
+  };
 
   const resetForm = () => {
     setTitle("");
@@ -100,6 +136,9 @@ export function FloatingFeedbackWidget() {
 
   return (
     <>
+      {/* Tally.so Modern Embed Runtime */}
+      <Script src="https://tally.so/widgets/embed.js" strategy="lazyOnload" />
+
       {/* Floating Trigger Button (Bottom Left) */}
       <aside
         aria-label="Kotak Saran dan Usul Fitur Instan"
@@ -111,10 +150,13 @@ export function FloatingFeedbackWidget() {
           className="relative"
         >
           <Button
-            onClick={() => {
-              resetForm();
-              setIsOpen(true);
-            }}
+            onClick={handleOpenFeedback}
+            data-tally-open={tallyFormId || undefined}
+            data-tally-layout="modal"
+            data-tally-width="600"
+            data-tally-emoji-text="💡"
+            data-tally-emoji-animation="wave"
+            data-tally-auto-close="2000"
             variant="outline"
             className="rounded-full shadow-lg border-primary/30 bg-card/95 backdrop-blur-md hover:bg-card px-4 py-2.5 h-auto text-xs font-semibold gap-2 text-foreground group"
           >
