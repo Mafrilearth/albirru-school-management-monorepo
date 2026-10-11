@@ -47,6 +47,13 @@ Every foreign key column (`*_id`) must be indexed to ensure join performance and
 
 Never execute raw, unmanaged SQL DDL commands in production. All schema evolution must follow the deterministic Drizzle Kit migration workflow:
 
+```mermaid
+flowchart LR
+    Edit["1. Edit Schema<br/>packages/database/src/schema.ts"] -->|"pnpm run db:generate"| Gen["2. Generate SQL Migration<br/>drizzle/migrations/*.sql"]
+    Gen -->|"pnpm run db:migrate"| Apply["3. Apply to Database<br/>Neon Serverless PostgreSQL"]
+    Apply -->|"pnpm run db:studio"| Studio["4. Inspect Visually<br/>Drizzle Studio (:3005)"]
+```
+
 ```bash
 # 1. Modify schema declarations in packages/database/src/schema.ts
 

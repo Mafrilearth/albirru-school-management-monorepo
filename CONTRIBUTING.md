@@ -16,8 +16,11 @@ All contributors, maintainers, and autonomous agents are expected to adhere to o
 
 Our git workflow uses strict branch hierarchy with linear history:
 
-```plain text
-[feature/*, fix/*]  --> PR -->  dev  --> Fast-Forward -->  staging  --> Fast-Forward -->  main (Production)
+```mermaid
+flowchart LR
+    FB["feature/*, fix/*<br/>(Ephemeral Branch)"] -->|"Pull Request & CI"| DEV["dev<br/>(Active Integration)"]
+    DEV -->|"Fast-Forward Merge"| STG["staging<br/>(Pre-Production UAT)"]
+    STG -->|"Fast-Forward Merge"| PROD["main<br/>(Production Live)"]
 ```
 
 1. **`main`**: Production branch. Deployments are triggered automatically upon release tags or verified merges. Direct commits to `main` are strictly prohibited.

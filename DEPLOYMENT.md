@@ -8,28 +8,40 @@ This document specifies the authoritative deployment procedures, cloud infrastru
 
 The platform operates on a zero-maintenance, serverless edge architecture:
 
-```plain text
-[Public / Client Ingress]
-           │
-           ▼ HTTPS (Port 443)
-[Cloudflare DNS & WAF]
-  - Turnstile Bot Protection
-  - Apex & Subdomain DNS Routing
-  - TLS 1.3 Termination & DDoS Shield
-           │
-           ▼
-[Vercel Edge Network]
-  ├── apps/web      ──► sd-albirru.sch.id (Public Web & PPDB)
-  ├── apps/app      ──► app.sd-albirru.sch.id (Authenticated SIS)
-  ├── apps/api      ──► api.sd-albirru.sch.id (Edge Webhooks & Health)
-  ├── apps/docs     ──► docs.sd-albirru.sch.id (Internal Documentation)
-  └── apps/email    ──► email.sd-albirru.sch.id (Email Preview Studio)
-           │
-           ├───────────────────────┬───────────────────────┐
-           ▼                       ▼                       ▼
-[Neon Serverless Postgres]  [Upstash Redis]         [Cloudflare R2]
-  - Transaction Pooling       - Rate Limiting REST    - Student Document Storage
-  - Primary Relational DB     - 5 req / 15 min        - Zero Egress Fees
+```mermaid
+flowchart TD
+    Client["Public / Client Ingress"] -->|"HTTPS / Port 443"| CF["Cloudflare DNS & WAF<br/>• Turnstile Bot Protection<br/>• TLS 1.3 Termination & DDoS Shield"]
+    CF --> Vercel["Vercel Edge Network"]
+
+    subgraph Apps ["Monorepo Applications"]
+        direction TB
+        Web["apps/web (Port 3001)<br/>sd-albirru.sch.id (Public Web & PPDB)"]
+        App["apps/app (Port 3000)<br/>app.sd-albirru.sch.id (Authenticated SIS)"]
+        Api["apps/api (Port 3002)<br/>api.sd-albirru.sch.id (Edge Webhooks & Health)"]
+        Docs["apps/docs (Port 3004)<br/>docs.sd-albirru.sch.id (Documentation)"]
+        Email["apps/email (Port 3003)<br/>email.sd-albirru.sch.id (Email Studio)"]
+    end
+
+    Vercel --> Web
+    Vercel --> App
+    Vercel --> Api
+    Vercel --> Docs
+    Vercel --> Email
+
+    subgraph Services ["Serverless Cloud Backend"]
+        direction LR
+        Neon[("Neon Postgres<br/>• Transaction Pooling<br/>• Primary Relational DB")]
+        Upstash[("Upstash Redis<br/>• Rate Limiting REST<br/>• 5 req / 15 min")]
+        R2[("Cloudflare R2<br/>• Document Storage<br/>• Zero Egress Fees")]
+    end
+
+    Web --> Neon
+    Web --> Upstash
+    Web --> R2
+    App --> Neon
+    App --> Upstash
+    App --> R2
+    Api --> Neon
 ```
 
 ---
@@ -41,6 +53,12 @@ The platform operates on a zero-maintenance, serverless edge architecture:
 | **Production** | `main` | `https://sd-albirru.sch.id` | Push / PR Merge to `main` |
 | **Staging** | `staging` | `https://staging.albirru.mafrilearth.com` | Push / PR Merge to `staging` |
 | **Development** | `dev` | `https://dev.albirru.mafrilearth.com` | Push / PR Merge to `dev` |
+
+```mermaid
+flowchart LR
+    DEV["dev (Development)<br/>dev.albirru.mafrilearth.com"] -->|"User Acceptance Testing (UAT)"| STG["staging (Staging)<br/>staging.albirru.mafrilearth.com"]
+    STG -->|"Fast-Forward Merge & Tag"| PROD["main (Production Live)<br/>sd-albirru.sch.id"]
+```
 
 ---
 

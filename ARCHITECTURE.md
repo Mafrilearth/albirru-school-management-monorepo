@@ -116,59 +116,54 @@ The repository is structured as a **Modern Modular Monolith** utilizing the stan
 
 The architecture implements a **Subdomain Routing Topology** where external traffic is routed to specialized Next.js applications at the edge. A single root apex domain (`sd-albirru.sch.id`) shares cross-subdomain authentication cookies via Clerk single sign-on (SSO).
 
-```plain text
-[Public Visitors / Prospective Parents]     [Civitas Academica: Admin / Teachers / Guardians]
-                  │                                                 │
-                  ▼                                                 ▼
-      https://sd-albirru.sch.id                         https://app.sd-albirru.sch.id
-      (Marketing & PPDB Portal)                          (Authenticated SIS Platform)
-                  │                                                 │
-                  └─────────────────────────┬───────────────────────┘
-                                            │
-                                            ▼ HTTPS / DNS / Bot Shield
-                           [Cloudflare (Turnstile & WAF)]
-                                            │
-                                            ▼ Edge Ingress Routing
-                               [Vercel Serverless Hosting]
-                                            │
-            ┌───────────────────────────────┼───────────────────────────────┐
-            ▼                               ▼                               ▼
-       [apps/web]                      [apps/app]                       [apps/api]
-       Port: 3001                      Port: 3000                       Port: 3002
-    - Marketing & News              - Admin Portal (/admin)          - Edge Route Handlers
-    - Accreditation Badges          - Identity Management            - /health Probe
-    - Public PPDB Forms             - Attendance Sessions            - Webhook Ingress
-    - Cloudflare Turnstile          - Grading & Report Cards           (Clerk / Resend)
-            │                               │                               │
-            └───────────────────────────────┼───────────────────────────────┘
-                                            │
-                                            ▼
-                               [Next.js Server Actions]
-                               - ZSA (Zero-overhead Server Actions)
-                               - Runtime Schema Validation (Zod)
-                               - Envelope Contract (ActionResponse)
-                                            │
-                      ┌─────────────────────┼─────────────────────┐
-                      ▼                     ▼                     ▼
-                [Clerk Auth]         [Upstash Redis]        [Cloudflare R2]
-                - SSO Wildcard       - Sliding Window       - Student Files
-                  Cookies (.domain)    Rate Limiter           Cold Archive
-                - RBAC Claim Checks    (5 req / 15 min)     - Zero Egress Fees
-                      │                     │                     │
-                      └─────────────────────┼─────────────────────┘
-                                            │
-                                            ▼
-                                 [@albirru/database]
-                                 - Drizzle ORM Type-Safe Query Builder
-                                 - postgres-js Driver (porsager/postgres)
-                                 - Built-in Connection Pooling (Transaction Mode)
-                                            │
-                                            ▼
-                           [Neon Serverless PostgreSQL 16+]
-                           - Primary Keys: UUIDv7 (Monotonically Ordered)
-                           - Logical Soft-Delete: is_active (Zero Hard Delete)
-                           - Statutory Audit Columns: created_at, updated_at, created_by
-                           - Foreign Key Indexes: Supporting B-trees on all *_id columns
+```mermaid
+flowchart TD
+    subgraph Clients ["Ingress & Actors"]
+        PublicUser["Public Visitors / Parents<br/>sd-albirru.sch.id"]
+        AuthUser["Civitas Academica (Staff / Teachers / Guardians)<br/>app.sd-albirru.sch.id"]
+    end
+
+    PublicUser --> CF["Cloudflare Edge (Turnstile & WAF)"]
+    AuthUser --> CF
+
+    CF --> Vercel["Vercel Serverless Edge Compute"]
+
+    subgraph Applications ["Monorepo Applications"]
+        direction TB
+        Web["apps/web (Port 3001)<br/>• Marketing & News<br/>• Accreditation Badges<br/>• Public PPDB Form"]
+        App["apps/app (Port 3000)<br/>• Admin Portal (/admin)<br/>• Identity Management<br/>• Attendance & Grading"]
+        Api["apps/api (Port 3002)<br/>• Edge Route Handlers<br/>• /health Probe<br/>• Webhook Ingress (Clerk / Resend)"]
+    end
+
+    Vercel --> Web
+    Vercel --> App
+    Vercel --> Api
+
+    subgraph ActionsContract ["Server Action Mutation Pipeline"]
+        Actions["Next.js Server Actions<br/>• ZSA Wrapper<br/>• Zod Schema Validation<br/>• ActionResponse Envelope Contract"]
+    end
+
+    Web --> Actions
+    App --> Actions
+
+    subgraph SecurityStorage ["Security & Storage Infrastructure"]
+        Clerk["Clerk IAM<br/>• Wildcard Session Cookie<br/>• RBAC Claim Verification"]
+        Upstash[("Upstash Redis<br/>• Sliding Window Rate Limiting<br/>• 5 req / 15 min")]
+        R2[("Cloudflare R2<br/>• Student Files & Documents<br/>• Zero Egress Fees")]
+    end
+
+    Actions --> Clerk
+    Actions --> Upstash
+    Actions --> R2
+
+    subgraph DataTier ["Data Persistence Tier"]
+        Drizzle["@albirru/database<br/>• Drizzle ORM Type-Safe Builder<br/>• postgres-js Connection Pool"]
+        Neon[("Neon Serverless Postgres 16+<br/>• RFC 9562 UUIDv7 Primary Keys<br/>• Logical Soft-Delete (is_active)<br/>• Mandatory Audit Columns (created_at, updated_at)<br/>• Foreign Key B-Tree Supporting Indexes")]
+    end
+
+    Actions --> Drizzle
+    Api --> Drizzle
+    Drizzle --> Neon
 ```
 
 ---
@@ -366,6 +361,13 @@ Development follows strict branch governance with automated CI quality gates:
 ### 6.3. Continuous Integration Quality Gates
 
 Every pull request and push to protected branches must satisfy the 4-stage automated CI pipeline on standard Ubuntu runners:
+
+```mermaid
+flowchart LR
+    Gate1["Gate 1: Biome Check<br/>pnpm run check<br/>Format & Lint"] --> Gate2["Gate 2: TypeScript<br/>pnpm run check-types<br/>Strict Compiler Verification"]
+    Gate2 --> Gate3["Gate 3: Vitest<br/>pnpm run test<br/>Unit & Integration Suite"]
+    Gate3 --> Gate4["Gate 4: Turborepo Build<br/>pnpm run build<br/>Full Monorepo Artifact"]
+```
 
 1. **Linting & Code Formatting:** Biome format check (`pnpm run check`). Enforces tabs indentation, 100 print width, and strict LF line endings.
 2. **Static Type Checking:** TypeScript strict compiler verification (`pnpm run check-types`). Zero `@ts-ignore` or `any` permitted.

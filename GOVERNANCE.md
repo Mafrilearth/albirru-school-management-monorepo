@@ -45,8 +45,11 @@ Significant changes require an **Architecture Decision Record (ADR)** or formal 
 
 Releases follow a deterministic linear progression:
 
-```plain text
-[Feature Branch] ──► [dev] ──► [staging] ──► [main] (Production)
+```mermaid
+flowchart LR
+    FB["Feature Branch<br/>(feat/*, fix/*)"] -->|"Pull Request & CI"| DEV["dev<br/>(Daily Integration)"]
+    DEV -->|"UAT Sign-off"| STG["staging<br/>(Pre-Production)"]
+    STG -->|"Fast-Forward Merge"| PROD["main<br/>(Production Live)"]
 ```
 
 1. **`dev`**: Daily integration branch. Code must pass automated Biome, TypeScript, and Vitest gates.

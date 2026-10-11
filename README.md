@@ -39,6 +39,36 @@
 
 Built on Turborepo and pnpm workspaces following the enterprise **next-forge** pattern across 7 applications and 3 shared packages:
 
+```mermaid
+flowchart TD
+    subgraph Apps ["Applications (apps/*)"]
+        direction TB
+        Web["@albirru/web (:3001)<br/>Public Web & PPDB"]
+        App["@albirru/app (:3000)<br/>Authenticated SIS Portal"]
+        Api["@albirru/api (:3002)<br/>Edge Webhooks & Health"]
+        Email["@albirru/email (:3003)<br/>Email Preview Studio"]
+        Docs["@albirru/docs (:3004)<br/>In-Tree Documentation"]
+        Studio["@albirru/studio (:3005)<br/>Drizzle Studio"]
+        Storybook["@albirru/storybook (:6006)<br/>Component Workbench"]
+    end
+
+    subgraph Packages ["Shared Packages (packages/*)"]
+        direction LR
+        DB["@albirru/database<br/>Drizzle ORM & UUIDv7"]
+        DS["@albirru/design-system<br/>Base UI, shadcn & Tailwind v4"]
+        TS["@albirru/typescript-config<br/>Strict Compiler Presets"]
+    end
+
+    Web --> DB
+    Web --> DS
+    App --> DB
+    App --> DS
+    Api --> DB
+    Storybook --> DS
+    Apps -.-> TS
+    Packages -.-> TS
+```
+
 ### Applications (`apps/*`)
 - **[`apps/web`](apps/web)** (`@albirru/web` — Port 3001): Public institutional portal, accreditation showcase, and admissions portal (protected by Cloudflare Turnstile and Upstash Redis rate limiting).
 - **[`apps/app`](apps/app)** (`@albirru/app` — Port 3000): Authenticated internal School Information System (SIS) for administrative operations, master identity, attendance, and grading.

@@ -8,16 +8,16 @@ This document outlines the testing strategy, tools, and quality gates for the **
 
 Our testing suite follows the industry-standard three-tier testing hierarchy:
 
-```plain text
-      ▲
-     / \     E2E Tests (Playwright)
-    /   \    - Critical User Journeys (PPDB Submission, Login)
-   /─────\
-  /       \   Integration & Component Tests (Vitest + Storybook)
- /         \  - UI Primitives, Server Actions, Validation Schemas
-/───────────\
-/             \ Unit Tests (Vitest)
-/───────────────\ Pure Logic, Decimal Grading Computations, Date Math
+```mermaid
+flowchart TB
+    subgraph TestingPyramid ["Testing Pyramid Hierarchy"]
+        direction TB
+        E2E["Tier 1: E2E Tests (Playwright)<br/>• Critical User Journeys (PPDB Submission, Auth, Portal Workflows)<br/>• Full Browser Runtime Emulation (Chromium, Firefox, WebKit)"]
+        Integration["Tier 2: Integration & Component Tests (Vitest + Storybook)<br/>• UI Primitives, Server Actions, Dynamic Form Validation<br/>• Isolated Component Rendering & Visual Regression"]
+        Unit["Tier 3: Unit Tests (Vitest)<br/>• Pure Business Logic, Decimal Grading Computations, Utilities<br/>• Fast Sub-Second Feedback Loop"]
+
+        E2E --> Integration --> Unit
+    end
 ```
 
 ---

@@ -30,6 +30,14 @@ If you discover a security vulnerability within this repository, **do not open a
    - Any suggested mitigations.
 
 ### 2.2 Response SLA
+
+```mermaid
+flowchart LR
+    Report["Private Vulnerability Report"] -->|"<= 24h"| Ack["Initial Acknowledgment"]
+    Ack -->|"<= 48h"| Triage["Triage & Impact Assessment"]
+    Triage -->|"<= 72h"| Patch["Critical Patch Deployed"]
+```
+
 - **Initial Acknowledgment**: Within 24 hours.
 - **Triage & Impact Assessment**: Within 48 hours.
 - **Remediation & Patch Deployment**: Critical severity within 72 hours; High/Medium within 7 business days.
@@ -44,6 +52,16 @@ If you discover a security vulnerability within this repository, **do not open a
 - **Server Component Verification**: Route authorization is enforced server-side before any UI markup or payload is streamed to the browser.
 
 ### 3.2 Public Mutation Hardening & Anti-Abuse
+
+```mermaid
+flowchart LR
+    Client["Client Submission<br/>(PPDB Form)"] --> Turnstile{"Cloudflare Turnstile<br/>Valid Token?"}
+    Turnstile -->|No / Bot| Reject["403 Forbidden<br/>Bot Deterred"]
+    Turnstile -->|Yes| RateLimit{"Upstash Redis<br/>Limit <= 5 / 15m?"}
+    RateLimit -->|Exceeded| Throttle["429 Too Many Requests<br/>ERR_RATE_LIMITED"]
+    RateLimit -->|Allowed| Action["Next.js Server Action<br/>Zod Validation & Neon DB"]
+```
+
 - **Cloudflare Turnstile**: Public admissions registrations require valid interactive Turnstile CAPTCHA tokens, preventing scripted automated submissions.
 - **Distributed Edge Rate Limiting**: Protected by `@upstash/ratelimit` over Upstash Redis REST. Form submissions are strictly throttled to 5 requests per 15-minute sliding window per IP. Exceeded limits return HTTP 429 (`ERR_RATE_LIMITED`).
 

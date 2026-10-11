@@ -4,6 +4,18 @@ This document outlines the strategic development milestones and engineering road
 
 ---
 
+## 🗺️ Engineering Progression Timeline
+
+```mermaid
+flowchart LR
+    M0["v0.1.0 (Q3 2026)<br/>• Baseline Infra<br/>• Public Web & PPDB<br/>• Status: Stable"] --> M1["v0.2.0 (Q4 2026)<br/>• Authenticated SIS<br/>• Attendance & Grading<br/>• Target: Q4 2026"]
+    M1 --> M2["v0.3.0 (Q1 2027)<br/>• Guardian Portal<br/>• Digital Report Cards<br/>• Target: Q1 2027"]
+    M2 --> M3["v0.4.0 (Q2 2027)<br/>• Dapodik & EMIS<br/>• Offline PWA Sync<br/>• Target: Q2 2027"]
+    M3 --> M4["v1.0.0 (Q3 2027)<br/>• Multi-Campus Scale<br/>• Biometric Webhooks<br/>• Target: Q3 2027"]
+```
+
+---
+
 ## 🎯 Current Milestone: v0.1.0 (Baseline Infrastructure & Public Portal)
 *Status: Completed & Stable*
 

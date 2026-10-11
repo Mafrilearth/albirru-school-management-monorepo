@@ -96,6 +96,17 @@ Any violation of the following invariants constitutes an automatic task failure:
 - Third-party external paid CMS SaaS (Sanity, Strapi, Contentful) or unintegrated school systems (Moodle, Jibas) are prohibited to maintain zero-cost serverless runtime, single-sign-on uniformity, and direct relational integrity.
 
 ## 5. Self-Healing Autonomous Loop
+
+```mermaid
+flowchart TD
+    Slice["1. Slice Task Vertically<br/>Thin, verifiable units"] --> Red["2. Write Failing Test (Red)<br/>Vitest assertions"]
+    Red --> Green["3. Minimal Implementation (Green)<br/>Pass unit assertions"]
+    Green --> Verify["4. Verification Gates<br/>check-types + check + test"]
+    Verify -->|"Failure / Errors"| Healing["5. Self-Healing Error Recovery<br/>debugging-and-error-recovery<br/>Systematic root-cause resolution"]
+    Healing --> Verify
+    Verify -->|"0 Errors (All Green)"| Done(["Proceed to Next Slice / Ship"])
+```
+
 When executing tasks autonomously:
 1. Decompose the task into small, isolated vertical slices.
 2. Write automated tests first until they fail (Red).
@@ -123,6 +134,16 @@ A task is formally complete when:
 6. A concise summary of modified files and verification logs is provided.
 
 ## 8. Full Autonomous SDLC Protocol
+
+```mermaid
+flowchart LR
+    P1["Phase 1: Ideate<br/>idea-refine, interview-me"] --> P2["Phase 2: Spec<br/>Linear & Notion specs"]
+    P2 --> P3["Phase 3: Database<br/>Drizzle & migrations"]
+    P3 --> P4["Phase 4: Build<br/>TDD & Server Actions"]
+    P4 --> P5["Phase 5: Verify<br/>Security, a11y, Playwright"]
+    P5 --> P6["Phase 6: Ship<br/>Git rebase, PR, Vercel"]
+```
+
 When given high-level directives, the agent executes all 6 lifecycle phases sequentially and continuously:
 
 Phase 1: Ideation & Clarification (Skills: `idea-refine`, `interview-me`)
