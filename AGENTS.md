@@ -178,9 +178,27 @@ Phase 6: Shipping, Deployment, & Reporting (MCP: GitHub, Vercel, Linear, Slack)
 - Define referential relationships explicitly using Drizzle `relations()` to prevent N+1 query anomalies.
 - All schema changes MUST use `pnpm run db:generate` to generate static SQL migration files. Never execute raw SQL DDL directly against production databases.
 
-### UI/UX & Design System
-- Do not construct primitive HTML components from scratch when equivalents exist in `packages/design-system` or shadcn/ui.
-- Interactive forms must use React Hook Form paired with `@hookform/resolvers/zod`.
+### UI/UX & Design System (shadcn/ui & Base UI Architecture)
+- **Component Primacy**: Do not construct primitive HTML components or custom styled `div`s from scratch when equivalents exist in `packages/design-system` or shadcn/ui (63 primitives available: `Card`, `Dialog`, `Sheet`, `Drawer`, `Table`, `Badge`, `Empty`, `Separator`, etc.).
+- **Tailwind v4 Styling Standards**:
+  - Prohibit `space-x-*` and `space-y-*`. Always use `flex` with `gap-*` (or `flex flex-col gap-*`).
+  - Use `size-*` instead of `w-* h-*` when dimensions are equal (e.g., `size-10`).
+  - Use `truncate` shorthand instead of `overflow-hidden text-ellipsis whitespace-nowrap`.
+  - Prohibit manual `z-index` hacks on overlay components (`Dialog`, `Sheet`, `Popover`, `Tooltip` handle their own stacking contexts).
+  - Prohibit manual `dark:` overrides in JSX; rely strictly on semantic tokens (`bg-background`, `text-muted-foreground`, `bg-primary`).
+  - Use canonical `cn()` helper (`clsx` + `tailwind-merge`) from `@albirru/design-system` or `src/lib/utils.ts`.
+- **Accessible Form Architecture**:
+  - Forms MUST use `FieldGroup` + `Field` + `FieldLabel` for structure instead of raw `div` tags with `space-y-*`.
+  - Interactive forms must use React Hook Form paired with `@hookform/resolvers/zod`.
+  - Buttons or icons inside inputs must use `InputGroup` + `InputGroupInput` + `InputGroupAddon`.
+  - Field validation must assign `data-invalid` on `Field` and `aria-invalid` on the interactive input.
+  - Option sets (2–7 choices) must use `ToggleGroup` instead of custom buttons with manual toggle states.
+- **Component Anatomy & Accessibility Invariants**:
+  - `Card`: Compose fully using `CardHeader`, `CardTitle`, `CardDescription`, `CardContent`, and `CardFooter`.
+  - `Dialog`, `Sheet`, and `Drawer`: MUST provide an accessible title (`DialogTitle`, `SheetTitle`, `DrawerTitle`). If visually hidden, apply `className="sr-only"`.
+  - `Button`: Does not have `isLoading`/`isPending` props. Compose with `<Spinner />` + `data-icon` + `disabled`.
+  - `Avatar`: MUST always provide `<AvatarFallback />` for image load failures.
+  - Icons: Use `lucide-react`. Position icons in buttons with `data-icon="inline-start"` or `data-icon="inline-end"`. Prohibit hardcoded icon sizes (`size-4` / `w-4 h-4`) inside component slots where CSS handles sizing.
 
 ### TypeScript Strict Mode
 - Prohibit `any` types (both explicit and implicit).
