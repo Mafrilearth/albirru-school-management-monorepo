@@ -32,6 +32,9 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   compress: true,
   transpilePackages: ["@albirru/design-system", "@albirru/database"],
+  experimental: {
+    optimizePackageImports: ["lucide-react", "motion", "date-fns"],
+  },
   images: {
     formats: ["image/avif", "image/webp"],
     minimumCacheTTL: 60,
