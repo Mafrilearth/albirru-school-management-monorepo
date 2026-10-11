@@ -7,9 +7,13 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizePackageImports: [
       "lucide-react",
+      "motion",
       "date-fns",
+      "recharts",
+      "@base-ui/react",
       "clsx",
       "tailwind-merge",
+      "nuqs",
     ],
   },
   images: {
