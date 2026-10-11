@@ -3,23 +3,26 @@ import { z } from "zod";
 export const AdmissionsSubmissionSchema = z.object({
   prospectiveStudentName: z
     .string()
-    .min(3, "Nama siswa terlalu pendek")
-    .max(255, "Nama siswa terlalu panjang"),
+    .min(3, "Student name is too short")
+    .max(255, "Student name is too long"),
   prospectiveStudentBirthDate: z
     .string()
     .refine((date) => !Number.isNaN(Date.parse(date)), {
-      message: "Format tanggal tidak valid",
+      message: "Invalid date format",
     }),
   guardianContactName: z
     .string()
-    .min(3, "Nama wali terlalu pendek")
-    .max(255, "Nama wali terlalu panjang"),
+    .min(3, "Guardian name is too short")
+    .max(255, "Guardian name is too long"),
   guardianContactPhone: z
     .string()
-    .min(10, "Nomor telepon tidak valid (minimal 10 digit)")
-    .max(32, "Nomor telepon terlalu panjang")
-    .regex(/^[0-9]+$/, "Nomor telepon hanya boleh berisi angka"),
-  guardianContactEmail: z.string().email("Format email tidak valid").max(255),
+    .min(10, "Invalid phone number (minimum 10 digits)")
+    .max(32, "Phone number is too long")
+    .regex(/^[0-9]+$/, "Phone number must contain only numbers"),
+  guardianContactEmail: z
+    .string()
+    .email("Invalid email address format")
+    .max(255),
   submittedDocumentsUrl: z.string().url().optional(),
 });
 

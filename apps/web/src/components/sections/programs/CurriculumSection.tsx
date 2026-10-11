@@ -33,77 +33,78 @@ interface CurriculumPillar {
 const pillars: CurriculumPillar[] = [
   {
     id: "tahfidz",
-    code: "KUR // 01",
-    title: "Curriculum Tahfidzul Qur'an",
+    code: "CUR // 01",
+    title: "Tahfidzul Qur'an Curriculum",
     icon: BookMarked,
-    badge: "Keunggulan Khas",
+    badge: "Signature Excellence",
     description:
-      "Program hafalan Al-Qur'an intensif dengan metode Talaqqi dan Muroja'ah mandiri. Menekankan ketepatan makharijul huruf, tajwid bersanad, dan pemahaman makna ayat pilihan.",
+      "Intensive Al-Qur'an memorization program using Talaqqi and self-directed Muroja'ah methods. Emphasizes makharijul huruf precision, certified sanad tajweed, and deep comprehension of selected verses.",
     target:
-      "Target Lulusan: Minimal 3 Juz Mutqin (Juz 30, 29, 28) + 40 Hadits Pilihan",
-    schedule: "Senin – Jumat | 07.15 – 08.45 WIB (Halaqah Pagi)",
+      "Graduate Target: Minimum 3 Mutqin Juz (Juz 30, 29, 28) + 40 Selected Hadiths",
+    schedule: "Monday – Friday | 07:15 – 08:45 AM (Morning Halaqah)",
     highlights: [
-      "Metode Talaqqi harian bersama asatidz pemegang sanad Al-Qur'an",
-      "Setoran hafalan baru (ziyadah) dan pengulangan terprogram (muroja'ah)",
-      "Buku mutaba'ah harian yang terhubung langsung dengan wali students",
-      "Ujian Tasmi' sekali duduk per juz disaksikan orang tua",
-      "Wisuda Akbar Tahfidz dengan sertifikasi syahadah resmi kelulusan",
+      "Daily Talaqqi method guided by certified Al-Qur'an sanad teachers",
+      "New memorization deposits (ziyadah) and structured review cycles (muroja'ah)",
+      "Daily mutaba'ah tracking log directly accessible to student guardians",
+      "Single-sitting Tasmi' examination per juz witnessed by parents",
+      "Grand Tahfidz Graduation with official graduation syahadah certification",
     ],
   },
   {
     id: "merdeka",
     code: "KUR // 02",
-    title: "Curriculum Merdeka Nasional",
+    title: "National Merdeka Curriculum",
     icon: BookOpen,
-    badge: "Standar Kemdikdasmen",
+    badge: "Ministry Standard",
     description:
-      "Menerapkan struktur Curriculum Merdeka yang fleksibel dan berfokus pada materi esensial, pengembangan karakter Pancasila, serta kompetensi literasi dan numerasi siswa secara mendalam.",
+      "Implements the flexible Merdeka Curriculum structure focusing on essential subject matter, Pancasila character development, and rigorous literacy and numeracy competencies.",
     target:
-      "Target Capaian: Kemandirian Nalar Kritis & Penguasaan Konseptual Sains",
-    schedule: "Senin – Kamis | 09.00 – 14.15 WIB (Pembelajaran Tematik)",
+      "Achievement Target: Critical Thinking Independence & Conceptual Science Mastery",
+    schedule: "Monday – Thursday | 09:00 AM – 02:15 PM (Thematic Learning)",
     highlights: [
-      "Pembelajaran diferensiasi yang menghargai keunikan kecepatan belajar anak",
-      "Projek P5 bertema kelestarian alam, adab sosial, dan rekayasa teknologi sederhana",
-      "Praktikum sains terapan di laboratorium alam school",
-      "Asesmen diagnostik berkala tanpa pembebanan ranking kaku",
-      "Pengembangan literasi bedah buku cerita anak setiap pekan",
+      "Differentiated learning honoring each student's unique learning pace",
+      "P5 interdisciplinary projects themed on environmental sustainability, social adab, and applied technology",
+      "Applied science laboratory experiments in the school's outdoor nature lab",
+      "Regular diagnostic assessments without rigid ranking pressure",
+      "Weekly children's literature book club and literacy development",
     ],
   },
   {
     id: "adab",
     code: "KUR // 03",
-    title: "Pembiasaan Adab & Karakter",
+    title: "Adab & Character Cultivation",
     icon: Heart,
-    badge: "Kultivasi Akhlak",
+    badge: "Moral Cultivation",
     description:
-      "Pendidikan adab sebelum ilmu. Menanamkan 7 kebiasaan shalih harian agar nilai-nilai Islam mendarah daging dalam tingkah laku students sehari-hari baik di school maupun di rumah.",
+      "Cultivating adab before formal knowledge. Instilling 7 daily righteous habits so Islamic values become second nature in students' daily conduct at school and home.",
     target:
-      "Target Capaian: Akhlakul Karimah, Mandiri, dan Berbakti kepada Orang Tua",
-    schedule: "Sepanjang Hari Belajar (Budaya Hidup School)",
+      "Achievement Target: Noble Character, Independence, and Devotion to Parents",
+    schedule: "Full School Day (Living School Culture)",
     highlights: [
-      "Pelaksanaan Sholat Dhuha harian dan Sholat Dzuhur berjamaah tepat waktu",
-      "Praktek adab harian: adab makan, adab berteman, adab kepada orang tua & teachers",
-      "Gerakan Budaya 5S (Senyum, Salam, Sapa, Sopan, Santun) di gerbang",
-      "Infaq & Sedekah Subuh pekanan untuk mengasah empati sosial",
-      "Pekan Kemandirian ibadah dan pembinaan kedisiplinan positif",
+      "Daily Dhuha prayers and punctual congregational Dhuhr prayer",
+      "Daily adab practice: dining etiquette, friendship adab, respect towards parents & teachers",
+      "5S Culture Movement (Smile, Greet, Welcome, Polite, Courteous) at the entrance gates",
+      "Weekly dawn charity (Infaq Subuh) to nurture empathy and social solidarity",
+      "Independence Week for self-reliance in worship and positive discipline",
     ],
   },
   {
     id: "bahasa",
     code: "KUR // 04",
-    title: "Bahasa & Literasi Digital",
+    title: "Languages & Digital Literacy",
     icon: Globe2,
-    badge: "Wawasan Global",
+    badge: "Global Perspective",
     description:
-      "Membekali students dengan kemampuan komunikasi dwibahasa (Arab - Inggris) dasar yang aplikatif, serta pengenalan logika algoritma komputer sejak usia dini.",
-    target: "Target Capaian: Percakapan Harian Aktif & Melek Digital Sehat",
-    schedule: "Terintegrasi dalam Halaqah Bahasa & Praktikum Komputer",
+      "Equipping students with practical bilingual communication skills (Arabic and English), alongside foundational algorithmic thinking and computer literacy from an early age.",
+    target:
+      "Achievement Target: Active Daily Conversation & Healthy Digital Literacy",
+    schedule: "Integrated across Language Halaqah & Computer Labs",
     highlights: [
-      "Arabic Day & English Day tematik dengan kosakata lingkungan students",
-      "Pengenalan dasar komputasi dan pemecahan masalah (coding unplugged)",
-      "Pemanfaatan media multimedia untuk visualisasi materi sains",
-      "Edukasi etika digital dan bahaya ketergantungan gawai pada anak",
-      "Lomba pidato 3 bahasa dan storytelling pada pekan ekspresi students",
+      "Thematic Arabic Day & English Day using immersive vocabulary in student environments",
+      "Foundational computational thinking and problem solving (unplugged coding)",
+      "Multimedia integration for visualizing complex scientific concepts",
+      "Digital ethics education and healthy screen time habits",
+      "Trilingual speech contests and storytelling during Student Expression Week",
     ],
   },
 ];
@@ -126,25 +127,25 @@ export function CurriculumSection() {
         >
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-none bg-slate-100 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 text-[11px] font-mono font-bold uppercase tracking-wider mb-5">
             <span className="size-1.5 rounded-none bg-amber-500 animate-pulse" />
-            <span>AKADEMIK // STRUKTUR SILABUS TERINTEGRASI</span>
+            <span>ACADEMICS // INTEGRATED SYLLABUS STRUCTURE</span>
           </div>
           <h2
             id="curriculum-heading"
             className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-950 dark:text-slate-50 tracking-tight leading-[1.12]"
           >
-            Sinergi Curriculum Merdeka &amp; Kepesantrenan
+            Synergy of Merdeka Curriculum &amp; Islamic Education
           </h2>
           <p className="mt-4 text-base sm:text-lg text-slate-600 dark:text-slate-400 leading-relaxed font-normal">
-            Dirancang secara holistik agar students tidak hanya kokoh dalam
-            hafalan Al-Qur&apos;an, namun juga unggul secara akademik dan lincah
-            bernalar sains.
+            Holistically designed so students are not only firmly grounded in
+            Al-Qur&apos;an memorization, but also excel academically with agile
+            scientific reasoning.
           </p>
         </ScrollReveal>
 
         {/* WAI-ARIA Sliding Tab Bar */}
         <div
           role="tablist"
-          aria-label="Pilihan Pilar Curriculum Unggulan"
+          aria-label="Curriculum Pillar Options"
           className="flex flex-wrap items-center gap-2.5 p-2 rounded-none bg-slate-100/90 border border-slate-200/80 dark:border-slate-700/80 max-w-4xl mb-16"
         >
           {pillars.map((pillar) => {
@@ -250,7 +251,7 @@ export function CurriculumSection() {
                       />
                       <div>
                         <dt className="block text-[11px] font-bold text-slate-400 uppercase font-mono tracking-wider">
-                          Waktu Operasional
+                          Operational Schedule
                         </dt>
                         <dd className="block text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200 mt-0.5">
                           {selectedPillar.schedule}
@@ -265,7 +266,7 @@ export function CurriculumSection() {
                       />
                       <div>
                         <dt className="block text-[11px] font-bold text-amber-900 uppercase font-mono tracking-wider">
-                          Standar Capaian
+                          Learning Standard
                         </dt>
                         <dd className="block text-xs sm:text-sm font-bold text-slate-900 dark:text-slate-50 mt-0.5">
                           {selectedPillar.target}
@@ -285,7 +286,7 @@ export function CurriculumSection() {
                       aria-hidden="true"
                       className="size-4.5 text-amber-500"
                     />
-                    <span>STRATEGI &amp; AKTIVITAS PEMBELAJARAN:</span>
+                    <span>STRATEGY &amp; LEARNING ACTIVITIES:</span>
                   </h4>
 
                   <ul

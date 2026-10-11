@@ -30,7 +30,7 @@ export async function submitAdmissionAction(
         error_descriptor: {
           code: "TOO_MANY_REQUESTS",
           message:
-            "Frekuensi pendaftaran melampaui batas kuota 5 submisi per 15 menit.",
+            "Submission rate limit exceeded. Maximum 5 submissions allowed per 15 minutes.",
         },
       };
     }
@@ -73,7 +73,7 @@ export async function submitAdmissionAction(
         message:
           error instanceof Error
             ? error.message
-            : "Gagal memproses pendaftaran. Silakan coba lagi nanti.",
+            : "Failed to process admission registration. Please try again later.",
       },
     };
   }

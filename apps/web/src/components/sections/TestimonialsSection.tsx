@@ -14,23 +14,23 @@ import {
 const testimonials = [
   {
     quote:
-      "Sejak menyekolahkan anak kami di SD Al-Birru, perubahan adab dan kedisiplinan beribadahnya sangat luar biasa. Hafalan Al-Qur'an 3 Juz mutqin yang dijanjikan terbukti bukan sekadar slogan.",
-    author: "Bunda Aisha",
-    role: "Wali Murid Angkatan 2",
+      "Since enrolling our child at SD Al-Birru, the development in his etiquette and prayer discipline has been truly remarkable. The 3 Juz mutqin Qur'an memorization promise is proven to be a reality, not just a slogan.",
+    author: "Mrs. Aisha",
+    role: "Parent of Cohort 2 Student",
     avatar: "https://i.pravatar.cc/150?img=47",
   },
   {
     quote:
-      "Curriculum Merdeka yang dipadukan dengan nilai-nilai Islami membuat anak saya yang dulunya pasif menjadi sangat kritis dan berani berpendapat. Facilities sekolahnya juga sangat mendukung.",
-    author: "Bapak Ridwan",
-    role: "Komite School",
+      "The national curriculum combined with authentic Islamic values has transformed my previously shy child into an inquisitive, confident speaker. The school facilities are also exceptional.",
+    author: "Mr. Ridwan",
+    role: "School Committee Representative",
     avatar: "https://i.pravatar.cc/150?img=11",
   },
   {
     quote:
-      "Teachers-gurunya sangat sabar dan penyayang. Anak saya selalu semangat berangkat ke school setiap hari. Lingkungan school yang asri sangat membantu konsentrasi belajar.",
-    author: "Bunda Fatimah",
-    role: "Wali Murid Angkatan 4",
+      "The teachers are remarkably patient and nurturing. My daughter looks forward to going to school every single morning. The lush green campus environment greatly supports learning focus.",
+    author: "Mrs. Fatimah",
+    role: "Parent of Cohort 4 Student",
     avatar: "https://i.pravatar.cc/150?img=9",
   },
 ];
@@ -41,11 +41,11 @@ export function TestimonialsSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal direction="up" className="text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-black text-slate-950 dark:text-slate-50 tracking-tight">
-            Apa Kata Mereka?
+            What Parents Say
           </h2>
           <p className="mt-4 text-slate-600 dark:text-slate-400 text-lg max-w-2xl mx-auto">
-            Testimoni jujur dari orang tua students tentang pengalaman
-            pendidikan di SD Al-Birru.
+            Honest perspectives from parents on their children&apos;s
+            educational experience at SD Al-Birru.
           </p>
         </ScrollReveal>
 

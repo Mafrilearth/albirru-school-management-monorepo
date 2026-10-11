@@ -9,168 +9,168 @@
 [![Vercel Deployment](https://img.shields.io/badge/Vercel-Production_Edge-black?style=flat-square&logo=vercel)](https://vercel.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 
-> **Platform Tata Kelola Institusi Resmi SD Al-Birru Tahfidzul Qur'an**  
-> Dibangun dengan arsitektur **Modern Modular Monolith**, desain visual **Fine-Line Boxy Brutalism**, penegakan tipe data *end-to-end* TypeScript, serta integrasi infrastruktur *serverless cloud* performa tinggi berlatensi rendah.
+> **Official Institutional Governance Platform of SD Al-Birru Tahfidzul Qur'an**  
+> Built with a **Modern Modular Monolith** architecture, **Fine-Line Boxy Brutalism** design system, end-to-end TypeScript static type enforcement, and high-performance serverless cloud infrastructure.
 
 ---
 
-## 🌐 Lingkungan & Rilis Resmi (*Live Environments*)
+## 🌐 Live Environments & Deployments
 
-Sistem dideploy secara otomatis melalui pipa integrasi berkelanjutan Vercel Edge Network:
+The system deploys continuously via the Vercel Edge Network pipeline across dedicated environments:
 
-| Lingkungan (*Environment*) | Target Cabang Git | Alamat URL Resmi | Status Infrastruktur |
+| Environment | Git Target Branch | Canonical URL | Infrastructure Status |
 | :--- | :--- | :--- | :--- |
-| **Produksi (*Production*)** | `main` | [albirru.mafrilearth.com](https://albirru.mafrilearth.com) | ![Status](https://img.shields.io/badge/Status-READY-success?style=flat-square) |
-| **Prapraproduksi (*Staging*)** | `staging` | [staging.albirru.mafrilearth.com](https://staging.albirru.mafrilearth.com) | ![Status](https://img.shields.io/badge/Status-READY-success?style=flat-square) |
-| **Pengembangan (*Development*)** | `dev` | [dev.albirru.mafrilearth.com](https://dev.albirru.mafrilearth.com) | ![Status](https://img.shields.io/badge/Status-READY-success?style=flat-square) |
+| **Production** | `main` | [albirru.mafrilearth.com](https://albirru.mafrilearth.com) | ![Status](https://img.shields.io/badge/Status-READY-success?style=flat-square) |
+| **Staging** | `staging` | [staging.albirru.mafrilearth.com](https://staging.albirru.mafrilearth.com) | ![Status](https://img.shields.io/badge/Status-READY-success?style=flat-square) |
+| **Development** | `dev` | [dev.albirru.mafrilearth.com](https://dev.albirru.mafrilearth.com) | ![Status](https://img.shields.io/badge/Status-READY-success?style=flat-square) |
 
 ---
 
-## 🏛️ Identitas & Legalitas Statutori Institusi
+## 🏛️ Institutional Identity & Statutory Credentials
 
-- **Nama Institusi:** SD Al-Birru Tahfidzul Qur'an
-- **Nomor Pokok Sekolah Nasional (NPSN):** `70010111`
-- **Badan Sertifikasi Akreditasi:** Badan Akreditasi Nasional (BAN-S/M)
-- **Yayasan Penyelenggara:** Yayasan Pendidikan Al-Birru
-- **Bahasa Pengantar:** Bahasa Indonesia & Pengenalan Bahasa Inggris Formal
+- **Institution Name:** SD Al-Birru Tahfidzul Qur'an
+- **National School Identification Number (NPSN):** `70010111`
+- **Accreditation Authority:** National Accreditation Board (BAN-S/M)
+- **Governing Foundation:** Yayasan Pendidikan Al-Birru
+- **Medium of Instruction:** Indonesian & Formal English Immersion
 
 ---
 
-## 📦 Modul Fungsional Utama (*Domain Modules*)
+## 📦 Core Domain Modules
 
-Logika bisnis dikelompokkan secara independen pada direktori `src/modules/{domain}/` dengan komunikasi antarmuka publik yang terisolasi ketat:
+Business logic is strictly modularized under `src/modules/{domain}/` with enforced public service boundaries:
 
 1. **Master Identity & RBAC Provisioning (`src/modules/identity/`)**  
-   Penyediaan akun terpusat civitas sekolah (Administrator, Instruktur/Guru, Wali Murid, Siswa) dengan kunci UUIDv7 dan validasi NIK unik.
-2. **Penerimaan Peserta Didik Baru / PPDB (`src/modules/admissions/`)**  
-   Formulir pendaftaran publik daring berpelindung Cloudflare Turnstile (verifikasi bot) dan Upstash Redis (pembatasan frekuensi 5 submisi / 15 menit).
-3. **Presensi Harian Rombongan Belajar (`src/modules/attendance/`)**  
-   Pencatatan kehadiran kelas harian sekuensial (Hadir, Sakit, Izin, Alpa) dengan penguncian mutasi (*immutability lock*) pascafinalisasi.
-4. **Komputasi Nilai Akademik & Rapor (`src/modules/grading/`)**  
-   Kalkulasi nilai terbobot desimal deterministik (presisi 100%) dan pembekuan buku rapor semesteran.
-5. **Portal Mandiri Wali Murid (`src/modules/guardian/`)**  
-   Akses informasi riwayat presensi harian, grafik capaian akademik, dan lembar rapor digital putra-putri secara terisolasi.
+   Centralized civitas accounts (Administrator, Instructor/Teacher, Guardian, Student) backed by UUIDv7 keys and unique identity validation.
+2. **Online Admissions / PPDB (`src/modules/admissions/`)**  
+   Public registration portal shielded by Cloudflare Turnstile (bot deterrence) and Upstash Redis rate limiting (5 submissions / 15 minutes).
+3. **Daily Attendance Tracking (`src/modules/attendance/`)**  
+   Sequential cohort attendance records (Present, Sick, Excused, Absent) with post-verification immutability locking.
+4. **Academic Grading & Report Cards (`src/modules/grading/`)**  
+   Deterministic decimal weighted calculation (100% precision) and semester report card publication freezing.
+5. **Guardian Self-Service Portal (`src/modules/guardian/`)**  
+   Isolated access to daily attendance records, academic progress analytics, and downloadable digital report cards.
 
 ---
 
-## 📚 Peta Dokumentasi In-Tree (*Single Source of Truth*)
+## 📚 In-Tree Statutory Specifications (Single Source of Truth)
 
-Repositori menerapkan dokumentasi spesifikasi in-tree pada direktori `/docs/` sebagai acuan mutlak operasional sistem:
+The repository maintains authoritative in-tree specifications under the `/docs/` directory:
 
-| Berkas Spesifikasi | Ruang Lingkup & Tanggung Jawab | Status Siklus Hidup |
+| Specification Document | Scope & Responsibility | Lifecycle State |
 | :--- | :--- | :--- |
-| **[01-product-requirements-specification.md](./docs/01-product-requirements-specification.md)** | Kebutuhan bisnis, matriks izin RBAC, modul MVP, dan anggaran batas latensi. | Disetujui (*Approved*) |
-| **[02-software-architecture-and-technical-design.md](./docs/02-software-architecture-and-technical-design.md)** | Arsitektur Modular Monolith, tumpukan teknologi, dan batasan Server Actions. | Disetujui (*Approved*) |
-| **[03-relational-database-specification.md](./docs/03-relational-database-specification.md)** | Skema DDL lengkap Drizzle ORM, UUIDv7, indeks kunci asing, dan aturan audit. | Disetujui (*Approved*) |
-| **[04-application-route-and-mutation-contract.md](./docs/04-application-route-and-mutation-contract.md)** | Kontrak amplop `ActionResponse`, validasi skema Zod, dan limit Upstash Redis. | Disetujui (*Approved*) |
-| **[05-visual-design-system-specification.md](./docs/05-visual-design-system-specification.md)** | Skala spasial 8px, rasio tipografi Major Third (1.250), dan token semantik WCAG. | Disetujui (*Approved*) |
-| **[06-application-layout-and-navigation-architecture.md](./docs/06-application-layout-and-navigation-architecture.md)** | Tiga viewport shell (Public, Auth, Portal) dan dimensi layout navigasi. | Disetujui (*Approved*) |
-| **[07-user-interface-component-anatomy-specification.md](./docs/07-user-interface-component-anatomy-specification.md)** | Anatomi komponen visual, mikrokopi statutori, dan mesin state interaktif. | Disetujui (*Approved*) |
-| **[08-landing-page-view-architecture.md](./docs/08-landing-page-view-architecture.md)** | Dekonstruksi 6 seksi beranda publik dan mikrokopi legalitas NPSN/BAN-S/M. | Disetujui (*Approved*) |
-| **[09-architecture-decision-records.md](./docs/09-architecture-decision-records.md)** | Kronologi catatan keputusan arsitektur (ADR-001 hingga ADR-008). | Disetujui (*Approved*) |
-| **[10-quality-assurance-and-verification-plan.md](./docs/10-quality-assurance-and-verification-plan.md)** | Piramida pengujian, skenario batas, dan gerbang mutu CI berkelanjutan. | Disetujui (*Approved*) |
-| **[11-operational-runbook-and-incident-procedures.md](./docs/11-operational-runbook-and-incident-procedures.md)** | Tata kelola percabangan Git, runbook darurat, mitigasi kuota, dan orkestrasi agen. | Disetujui (*Approved*) |
+| **[01-product-requirements-specification.md](./docs/01-product-requirements-specification.md)** | Product scope, RBAC permission matrix, MVP modules, and latency budgets. | Approved |
+| **[02-software-architecture-and-technical-design.md](./docs/02-software-architecture-and-technical-design.md)** | Modular Monolith architecture, technology stack, and Server Action bounds. | Approved |
+| **[03-relational-database-specification.md](./docs/03-relational-database-specification.md)** | Drizzle ORM DDL schemas, UUIDv7 primary keys, foreign key indexes, and audit invariants. | Approved |
+| **[04-application-route-and-mutation-contract.md](./docs/04-application-route-and-mutation-contract.md)** | Standard `ActionResponse` envelope, Zod validation schemas, and Upstash limits. | Approved |
+| **[05-visual-design-system-specification.md](./docs/05-visual-design-system-specification.md)** | 8px spatial scale, Major Third typography ratio (1.250), and WCAG semantic tokens. | Approved |
+| **[06-application-layout-and-navigation-architecture.md](./docs/06-application-layout-and-navigation-architecture.md)** | Three viewport shells (Public, Auth, Portal) and layout navigation architecture. | Approved |
+| **[07-user-interface-component-anatomy-specification.md](./docs/07-user-interface-component-anatomy-specification.md)** | UI component anatomy, statutory microcopy, and interactive state machines. | Approved |
+| **[08-landing-page-view-architecture.md](./docs/08-landing-page-view-architecture.md)** | 6-section landing page deconstruction and NPSN/BAN-S/M legal microcopy. | Approved |
+| **[09-architecture-decision-records.md](./docs/09-architecture-decision-records.md)** | Chronological Architecture Decision Records (ADR-001 through ADR-008). | Approved |
+| **[10-quality-assurance-and-verification-plan.md](./docs/10-quality-assurance-and-verification-plan.md)** | Testing pyramid, boundary test scenarios, and automated CI quality gates. | Approved |
+| **[11-operational-runbook-and-incident-procedures.md](./docs/11-operational-runbook-and-incident-procedures.md)** | Git branching governance, disaster recovery runbooks, and agent constitution. | Approved |
 
 ---
 
-## 🛠️ Tumpukan Teknologi & Arsitektur Monorepo (*Technology Stack & Monorepo Architecture*)
+## 🛠️ Technology Stack & Monorepo Architecture
 
-Repositori ini diorganisasikan sebagai **Turborepo Multi-Package Monorepo** (terinspirasi dari arsitektur *next-forge* tingkat enterprise) dengan pembagian workspace:
+The repository is structured as a **Turborepo Multi-Package Monorepo** (adhering to the enterprise **next-forge** pattern) across 7 applications and 4 shared packages:
 
-### Aplikasi (*Applications*)
-- **`apps/app` (`@albirru/app`):** Aplikasi web utama terautentikasi (SaaS/SIS) untuk administrasi civitas, Master Identity, presensi siswa sekuensial, dan komputasi rapor (Port 3000).
-- **`apps/web` (`@albirru/web`):** Aplikasi web publik, profil institusi terakreditasi, pendaftaran PPDB daring berpelindung Turnstile/Upstash, warta, dan galeri (Port 3001).
-- **`apps/api` (`@albirru/api`):** Layanan mikro API lintas platform, health check endpoint, serta webhook ingress Clerk dan Resend (Port 3002).
-- **`apps/email` (`@albirru/email`):** Lingkungan pengembangan dan preview template email transaksional berbasis React Email dan Resend SDK (Port 3003).
-- **`apps/docs` (`@albirru/docs`):** Portal penjelajah dokumentasi teknis in-tree untuk seluruh 11 berkas spesifikasi statutori dan ADR (Port 3004).
-- **`apps/studio` (`@albirru/studio`):** Editor basis data visual lokal berbasis Drizzle Studio (`drizzle-kit studio`) terhubung ke Neon PostgreSQL (Port 3005).
-- **`apps/storybook` (`@albirru/storybook`):** Bengkel kerja isolasi komponen frontend UI dan verifikasi visual design system (Port 6006).
+### Applications (`apps/*`)
+- **`apps/app` (`@albirru/app`):** Authenticated internal School Information System (SIS) for administrative workflows, Master Identity, sequential attendance, and grade computations (Port 3000).
+- **`apps/web` (`@albirru/web`):** Public-facing marketing website, accredited school profile, admissions portal with Turnstile/Upstash protection, news, and gallery (Port 3001).
+- **`apps/api` (`@albirru/api`):** Cross-platform edge API microservice, health check endpoints, and Clerk/Resend webhook ingress (Port 3002).
+- **`apps/email` (`@albirru/email`):** Transactional email development and preview studio powered by React Email and Resend SDK (Port 3003).
+- **`apps/docs` (`@albirru/docs`):** In-tree technical documentation explorer rendering all 11 statutory specifications and ADRs (Port 3004).
+- **`apps/studio` (`@albirru/studio`):** Visual database editor powered by Drizzle Studio (`drizzle-kit studio`) connected to Neon PostgreSQL (Port 3005).
+- **`apps/storybook` (`@albirru/storybook`):** Isolated frontend UI component workshop and visual regression test bench (Port 6006).
 
-### Paket Bersama (*Shared Packages*)
-- **`packages/database` (`@albirru/database`):** Pustaka basis data bersama berisikan skema DDL Drizzle ORM, migrasi SQL statis terkelola, dan koneksi *connection pooler* PostgreSQL.
-- **`packages/design-system` (`@albirru/design-system`):** Pustaka UI design system terstandarisasi (primitif Radix UI, tema Fine-Line Boxy Brutalism, utilitas Tailwind CSS, hooks, dan ThemeProvider).
-- **`packages/eslint-config` (`@albirru/eslint-config`):** Aturan linting terpusat lintas monorepo (`base.js` dan `nextjs.js`).
-- **`packages/typescript-config` (`@albirru/typescript-config`):** Konfigurasi kompilasi TypeScript modular (`base.json`, `nextjs.json`, `react-library.json`).
+### Shared Packages (`packages/*`)
+- **`packages/database` (`@albirru/database`):** Central database package containing Drizzle ORM DDL schemas, managed static SQL migrations, and connection pooling.
+- **`packages/design-system` (`@albirru/design-system`):** Standardized design system library (Radix UI primitives, Fine-Line Boxy Brutalism tokens, Tailwind CSS utilities, and ThemeProvider).
+- **`packages/eslint-config` (`@albirru/eslint-config`):** Centralized ESLint configuration (`base.js` and `nextjs.js`).
+- **`packages/typescript-config` (`@albirru/typescript-config`):** Modular TypeScript compiler configurations (`base.json`, `nextjs.json`, `react-library.json`).
 
-### Tumpukan Teknologi Resmi Terkurasi (*Zero Redundancy Stack*)
+### Curated Zero-Redundancy Technology Stack
 
-| Lapisan / Fungsi | Teknologi Terpilih |
+| Layer / Purpose | Selected Technology |
 | :--- | :--- |
-| **Bahasa Pemrograman** | TypeScript 5 (Strict Mode) |
+| **Programming Language** | TypeScript 5 (Strict Mode) |
 | **Package Manager** | [pnpm (Workspaces)](https://pnpm.io/) |
 | **Monorepo Engine** | [Turborepo](https://turbo.build/repo) |
-| **Framework Utama** | [Next.js 16](https://nextjs.org/) (App Router, RSC) |
-| **Library UI Core** | React 19 + React DOM |
-| **Platform Hosting & Serverless** | [Vercel](https://vercel.com/) |
-| **DNS & Proteksi Jaringan** | Cloudflare |
-| **Basis Data Relasional** | Neon (Serverless PostgreSQL) |
+| **Primary Framework** | [Next.js 16](https://nextjs.org/) (App Router, RSC) |
+| **Core UI Library** | React 19 + React DOM |
+| **Hosting & Serverless Platform** | [Vercel](https://vercel.com/) |
+| **DNS & Network Shield** | Cloudflare |
+| **Relational Database** | Neon (Serverless PostgreSQL) |
 | **Database Driver** | `postgres` (porsager/postgres) |
 | **ORM & Migrations** | Drizzle ORM + Drizzle Kit |
-| **Autentikasi & Akun** | Clerk (`@clerk/nextjs`) |
+| **Authentication & Accounts** | Clerk (`@clerk/nextjs`) |
 | **Cache & Rate Limiting** | Upstash (`@upstash/ratelimit`, `@upstash/redis`) |
 | **Server Actions Wrapper** | ZSA (`zsa`, `zsa-react`) |
-| **Validasi Skema** | Zod (`zod`) |
+| **Schema Validation** | Zod (`zod`) |
 | **Form Controller** | React Hook Form + `@hookform/resolvers` |
 | **CSS Framework** | Tailwind CSS v4 |
-| **Primitive Headless UI** | Radix UI |
-| **Sistem Komponen** | shadcn/ui |
+| **Headless UI Primitives** | Radix UI |
+| **Component System** | shadcn/ui |
 | **Class Merging Utility** | `clsx` + `tailwind-merge` |
 | **Variant Authority** | `class-variance-authority` |
-| **Animasi** | Motion (`motion`) |
-| **Ikon** | Lucide React (`lucide-react`) |
-| **Komponen Layout** | `react-resizable-panels` |
-| **Komponen Carousel** | Embla Carousel (`embla-carousel-react`) |
-| **Komponen Input Khusus** | `input-otp` |
-| **Komponen Date Picker** | `react-day-picker` |
-| **Komponen Command Palette** | cmdk (`cmdk`) |
-| **Grafik & Visualisasi** | Recharts (`recharts`) |
-| **Dark/Light Mode Theme** | `next-themes` |
-| **Mesin Pencari In-Memory** | Orama (`@orama/orama`) |
-| **Unique ID Generator** | UUID v7 (`uuidv7`) |
-| **Manipulasi Tanggal** | date-fns (`date-fns`) |
-| **Layanan Kirim Email** | Resend (`resend`) |
-| **Komponen Desain Email** | React Email (`@react-email/components`) |
-| **Error & Crash Monitoring** | Sentry (`@sentry/nextjs`) |
+| **Animation Engine** | Motion (`motion`) |
+| **Iconography** | Lucide React (`lucide-react`) |
+| **Layout Panels** | `react-resizable-panels` |
+| **Carousel Component** | Embla Carousel (`embla-carousel-react`) |
+| **Specialized Input** | `input-otp` |
+| **Date Picker** | `react-day-picker` |
+| **Command Palette** | cmdk (`cmdk`) |
+| **Charts & Visualization** | Recharts (`recharts`) |
+| **Dark/Light Theme** | `next-themes` |
+| **In-Memory Search** | Orama (`@orama/orama`) |
+| **Unique Identifier Generator** | UUIDv7 (`uuidv7`) |
+| **Date Manipulation** | date-fns (`date-fns`) |
+| **Email Delivery Service** | Resend (`resend`) |
+| **Email Design Components** | React Email (`@react-email/components`) |
+| **Crash & Error Monitoring** | Sentry (`@sentry/nextjs`) |
 | **Product Analytics & Flags** | PostHog (`posthog-js`) |
 | **Web Vitals & Performance** | `@vercel/speed-insights` + `@vercel/analytics` |
 | **Secrets Management** | Doppler |
 | **Linter & Formatter** | Biome (`@biomejs/biome`) |
-| **Automasi Git Pre-commit** | Husky + Lint-Staged |
-| **Unit & Integration Test** | Vitest (`vitest`) |
-| **End-to-End Test** | Playwright (`playwright`) |
-| **Dokumentasi UI** | Storybook (`storybook`) |
-| **Visual Regression Platform**| Chromatic |
+| **Git Pre-commit Automation** | Husky + Lint-Staged |
+| **Unit & Integration Testing** | Vitest (`vitest`) |
+| **End-to-End Testing** | Playwright (`playwright`) |
+| **UI Workshop** | Storybook (`storybook`) |
+| **Visual Regression Platform** | Chromatic |
 | **Version Control & CI/CD** | GitHub + GitHub Actions |
 
 ---
 
-## 🚀 Panduan Memulai (*Getting Started*)
+## 🚀 Getting Started
 
-### 1. Prasyarat Sistem
-- **Node.js:** Versi `>= 20.18.0` (Direkomendasikan `v22.x LTS`)
-- **Package Manager:** `pnpm` versi `12.x`
-- **PostgreSQL Database:** Instans aktif Serverless PostgreSQL (Neon)
+### 1. System Prerequisites
+- **Node.js:** `>= 20.18.0` (Recommended: `v22.x LTS`)
+- **Package Manager:** `pnpm` version `12.x`
+- **PostgreSQL Database:** Active Neon Serverless PostgreSQL instance
 
-### 2. Kloning Repositori & Instalasi Dependensi
+### 2. Repository Setup & Dependencies
 ```bash
-# Kloning repositori
+# Clone the repository
 git clone https://github.com/Mafrilearth/albirru-school-management-monorepo.git
 cd albirru-school-management-monorepo
 
-# Sinkronisasi ke cabang pengembangan dev
+# Switch to the development branch
 git checkout dev
 
-# Instalasi paket dependensi via pnpm
+# Install workspace dependencies via pnpm
 pnpm install
 ```
 
-### 3. Konfigurasi Variabel Lingkungan
-Salin templat konfigurasi dan sesuaikan kredensial lokal:
+### 3. Environment Variables Configuration
+Copy the configuration template and fill in local credentials:
 ```bash
 cp .env.example .env.local
 ```
 
-Pastikan variabel-variabel kunci berikut terisi pada `.env.local`:
+Ensure the key variables are provided in `.env.local`:
 ```ini
 NEXT_PUBLIC_SITE_URL=http://localhost:3000
 NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_...
@@ -178,104 +178,104 @@ CLERK_SECRET_KEY=sk_test_...
 DATABASE_URL=postgresql://neondb_owner:<password>@ep-...neon.tech/neondb?sslmode=require
 ```
 
-### 4. Perintah Operasional Monorepo & Basis Data
+### 4. Monorepo & Database Operational Commands
 ```bash
-# Menjalankan server pengembangan (Next.js via Turborepo & pnpm)
+# Start all development servers (Next.js via Turborepo & pnpm)
 pnpm run dev
 
-# Menjalankan kompilasi produksi seluruh workspace
+# Run full production build across all workspaces
 pnpm run build
 
-# Menjalankan linter & formatting via Biome
+# Run Biome linter and format verification
 pnpm run check
 pnpm run format
 
-# Memeriksa validasi tipe TypeScript di seluruh workspace
+# Run TypeScript static type checking across all workspaces
 pnpm run check-types
 
-# Menjalankan pengujian otomatis (Vitest)
+# Run automated unit and integration tests (Vitest)
 pnpm run test
 
-# Menghasilkan berkas migrasi SQL Drizzle
+# Generate Drizzle SQL migration files
 pnpm run db:generate
 
-# Menjalankan Drizzle Studio untuk inspeksi visual basis data
+# Launch Drizzle Studio for visual database inspection
 pnpm run db:studio
 ```
-Buka peramban pada alamat [http://localhost:3000](http://localhost:3000) untuk antarmuka web.
+Open [http://localhost:3000](http://localhost:3000) for the internal app or [http://localhost:3001](http://localhost:3001) for the public marketing site.
 
 ---
 
-## 🌿 Tata Kelola Percabangan Git (*Branch Governance*)
+## 🌿 Git Branching Governance
 
-Repositori menerapkan regulasi resmi berbasis **Trunk-Based Development** dan **GitLab/GitHub Flow** yang mengikat seluruh kontributor:
+The repository strictly enforces a **Trunk-Based Development** model with automated CI quality gates:
 
-### 1. Taksonomi Cabang Permanen
-- `main`: Lingkungan Produksi resmi (`albirru.mafrilearth.com`).
-- `staging`: Lingkungan Prapraproduksi (`staging.albirru.mafrilearth.com`).
-- `dev`: Lingkungan Integrasi Pengembangan internal (`dev.albirru.mafrilearth.com`).
-- `dr`, `uat`, `sandbox`: Lingkungan pemulihan bencana, pengujian penerimaan sekolah, dan integrasi mitra.
+### 1. Permanent Branch Taxonomy
+- `main`: Official Production environment (`albirru.mafrilearth.com`).
+- `staging`: Pre-production Staging environment (`staging.albirru.mafrilearth.com`).
+- `dev`: Internal Development and integration environment (`dev.albirru.mafrilearth.com`).
+- `dr`, `uat`, `sandbox`: Disaster recovery, user acceptance testing, and third-party integrations.
 
-### 2. Konvensi Penamaan Cabang Efemeral
-Seluruh cabang kerja wajib berpangkal dari `dev` dan menggunakan notasi huruf kecil kebab-case:
+### 2. Ephemeral Branch Naming Convention
+All ephemeral branches must branch off `dev` using lowercase kebab-case:
 ```
-feat/<lingkup>/<id-tiket>-<deskripsi>     # Fitur baru domain
-fix/<lingkup>/<id-tiket>-<deskripsi>      # Perbaikan cacat kode
-docs/<id-tiket>-<deskripsi>               # Pembaruan dokumentasi
-hotfix/<id-tiket>-<deskripsi>             # Perbaikan darurat produksi (dari main)
+feat/<scope>/<ticket-id>-<description>     # New domain features
+fix/<scope>/<ticket-id>-<description>      # Bug fixes
+docs/<ticket-id>-<description>             # Documentation updates
+hotfix/<ticket-id>-<description>           # Urgent production fixes (branched off main)
 ```
 
-### 3. Protokol Alur Kerja Kontributor
+### 3. Contributor Workflow Protocol
 ```bash
-# 1. Sinkronisasi hulu
+# 1. Synchronize upstream
 git checkout dev && git pull --ff-only origin dev
 
-# 2. Inisiasi cabang kerja efemeral
+# 2. Create ephemeral feature branch
 git checkout -b feat/grading/DEV-201-report-card dev
 
-# 3. Perekaman komit atomik (Conventional Commits 1.0.0)
+# 3. Record atomic commit (Conventional Commits 1.0.0)
 git commit -m "feat(grading): implement report card calculation formula"
 
-# 4. Rekonsiliasi riwayat linear rebase
+# 4. Rebase against latest origin/dev
 git fetch origin && git rebase origin/dev
 
-# 5. Publikasi ke repositori peladen
+# 5. Push to remote repository
 git push origin feat/grading/DEV-201-report-card
 
-# 6. Buka Pull Request ke dev (Metode integrasi: Squash and Merge)
+# 6. Open Pull Request to dev (Integration: Squash and Merge)
 ```
 
 ---
 
-## 🧪 Parameter Gerbang Kendali Mutu (*Quality Gates*)
+## 🧪 Quality Gates
 
-Sebelum penggabungan kode disetujui, perubahan wajib lolos verifikasi mutlak:
+Before merging any change, the following quality gates must pass with zero exceptions:
 
 ```bash
-# Verifikasi tipe statis TypeScript (Wajib 0 error)
-npx tsc --noEmit
+# TypeScript static type check (0 errors required)
+pnpm run check-types
 
-# Audit penataan dan aturan kode ESLint
-npm run lint
+# Biome linter and code formatting check
+pnpm run check
 
-# Eksekusi seluruh rangkaian pengujian otomatis
-npm run test
+# Automated test suite execution
+pnpm run test
 ```
 
-- **Uji Unit & Integrasi:** 100% Lolos
-- **Cakupan Pengujian (*Coverage*):** Ambang batas minimal 80%
-- **Tinjauan Kode Manusia:** Minimal 1 persetujuan sah (*Approved PR*)
-- **Strategi Integrasi Akhir:** *Squash and Merge*
+- **Unit & Integration Tests:** 100% Pass
+- **Test Coverage:** Minimum threshold of 80%
+- **Code Review:** At least 1 approved review
+- **Integration Strategy:** Squash and Merge
 
 ---
 
-## 🤝 Kontribusi & Standar Kode
+## 🤝 Contribution & Coding Standards
 
-Kami menyambut kontribusi perbaikan dan pengembangan fitur baru. Silakan baca dokumen acuan [AGENTS.md](./AGENTS.md) dan [02-software-architecture-and-technical-design.md](./docs/02-software-architecture-and-technical-design.md) untuk memahami batasan *hard invariants* arsitektur (penggunaan UUIDv7, larangan SQL DELETE fisik, Server Actions envelope `ActionResponse`, dan kepatuhan WCAG 2.1 AA).
+We welcome contributions and architectural enhancements. Please consult [AGENTS.md](./AGENTS.md) and [02-software-architecture-and-technical-design.md](./docs/02-software-architecture-and-technical-design.md) for architectural invariants (UUIDv7 primary keys, physical SQL DELETE prohibition, `ActionResponse` server action envelopes, and WCAG 2.1 AA compliance).
 
 ---
 
-## 📜 Lisensi & Hak Cipta
+## 📜 License & Copyright
 
-Didistribusikan di bawah lisensi resmi [MIT License](https://opensource.org/licenses/MIT).  
-Hak Cipta © 2026 **SD Al-Birru Tahfidzul Qur'an** & **Yayasan Pendidikan Al-Birru**. Seluruh hak dilindungi undang-undang.
+Distributed under the official [MIT License](https://opensource.org/licenses/MIT).  
+Copyright © 2026 **SD Al-Birru Tahfidzul Qur'an** & **Yayasan Pendidikan Al-Birru**. All rights reserved.

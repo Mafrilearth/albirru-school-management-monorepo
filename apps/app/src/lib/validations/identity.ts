@@ -7,17 +7,17 @@ export const IdentityProvisioningSchema = z.object({
     "Guardian",
     "Public Guest",
   ]),
-  email: z.string().email("Format email tidak valid").max(255),
+  email: z.string().email("Invalid email format").max(255),
   fullLegalName: z
     .string()
-    .min(3, "Nama terlalu pendek")
-    .max(255, "Nama terlalu panjang"),
+    .min(3, "Full legal name is too short")
+    .max(255, "Full legal name is too long"),
   nationalIdentityNumber: z
     .string()
-    .regex(/^[0-9]{16}$/, "NIK harus tepat 16 digit angka"),
+    .regex(/^[0-9]{16}$/, "National identity number must be exactly 16 digits"),
   gender: z.enum(["Male", "Female"]),
   birthDate: z.string().refine((date) => !Number.isNaN(Date.parse(date)), {
-    message: "Format tanggal tidak valid",
+    message: "Invalid date format",
   }),
 });
 

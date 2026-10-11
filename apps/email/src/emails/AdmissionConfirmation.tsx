@@ -6,10 +6,10 @@ export interface AdmissionConfirmationEmailProps {
 }
 
 export function AdmissionConfirmationEmail({
-  studentName = "Fulan bin Fulan",
+  studentName = "John Doe",
   trackingCode = "ADM-20261011-0001",
-  guardianName = "Orang Tua / Wali",
-  registrationDate = "11 Oktober 2026",
+  guardianName = "Parent / Guardian",
+  registrationDate = "October 11, 2026",
 }: AdmissionConfirmationEmailProps) {
   return (
     <div
@@ -41,7 +41,7 @@ export function AdmissionConfirmationEmail({
             SD Al-Birru Tahfidzul Qur&apos;an
           </h1>
           <p style={{ fontSize: "14px", color: "#64748b", margin: "4px 0 0" }}>
-            NPSN: 70010111 | Akreditasi BAN-S/M
+            NPSN: 70010111 | BAN-S/M Accreditation
           </p>
         </div>
 
@@ -53,17 +53,17 @@ export function AdmissionConfirmationEmail({
             marginBottom: "16px",
           }}
         >
-          Konfirmasi Pendaftaran PPDB 2026/2027
+          Admissions Registration Confirmation 2026/2027
         </h2>
 
         <p style={{ fontSize: "14px", color: "#334155", lineHeight: 1.6 }}>
-          Yth. Bapak/Ibu <strong>{guardianName}</strong>,
+          Dear <strong>{guardianName}</strong>,
         </p>
 
         <p style={{ fontSize: "14px", color: "#334155", lineHeight: 1.6 }}>
-          Pendaftaran calon peserta didik baru atas nama{" "}
-          <strong>{studentName}</strong> telah berhasil kami terima. Berikut
-          adalah rincian pendaftaran:
+          We have successfully received the prospective student admission
+          application for <strong>{studentName}</strong>. Below are the
+          registration details:
         </p>
 
         <div
@@ -75,19 +75,19 @@ export function AdmissionConfirmationEmail({
           }}
         >
           <p style={{ margin: "4px 0", fontSize: "14px", color: "#334155" }}>
-            <strong>Kode Pelacakan:</strong> {trackingCode}
+            <strong>Tracking Code:</strong> {trackingCode}
           </p>
           <p style={{ margin: "4px 0", fontSize: "14px", color: "#334155" }}>
-            <strong>Tanggal Registrasi:</strong> {registrationDate}
+            <strong>Registration Date:</strong> {registrationDate}
           </p>
           <p style={{ margin: "4px 0", fontSize: "14px", color: "#334155" }}>
-            <strong>Status:</strong> Menunggu Verifikasi Berkas
+            <strong>Status:</strong> Pending Document Verification
           </p>
         </div>
 
         <p style={{ fontSize: "14px", color: "#64748b", lineHeight: 1.5 }}>
-          Simpan kode pelacakan di atas untuk memeriksa status penerimaan
-          melalui portal resmi kami di{" "}
+          Please keep the tracking code above to check your admission status via
+          our official portal at{" "}
           <a
             href="https://albirru.mafrilearth.com/admissions"
             style={{ color: "#0284c7" }}
@@ -113,7 +113,7 @@ export function AdmissionConfirmationEmail({
             margin: 0,
           }}
         >
-          Yayasan Pendidikan Al-Birru &copy; 2026. Hak Cipta Dilindungi.
+          Yayasan Pendidikan Al-Birru &copy; 2026. All Rights Reserved.
         </p>
       </div>
     </div>

@@ -15,10 +15,10 @@ export interface CTASectionProps {
 }
 
 export function CTASection({
-  kicker = "Penerimaan Siswa Baru TA 2026/2027",
-  title = "Siapkan Fondasi Terbaik untuk Masa Depan Ananda",
-  description = "Kuota dibatasi maksimal 2 kelas (40 siswa) demi menjamin perhatian personal dan mutu bimbingan tahfidz yang optimal. Konsultasikan minat dan kesiapan ananda bersama tim kami.",
-  primaryBtnText = "Formulir Konsultasi Pendaftaran",
+  kicker = "New Student Admissions AY 2026/2027",
+  title = "Lay the Strongest Foundation for Your Child's Future",
+  description = "Enrollment is capped at 2 classes (40 students) to guarantee individual mentorship and optimal tahfidz guidance. Consult your child's readiness with our admissions team.",
+  primaryBtnText = "Admissions Consultation Form",
   primaryBtnHref = "/contact",
 }: CTASectionProps) {
   return (
@@ -79,7 +79,7 @@ export function CTASection({
                   <Button
                     render={
                       <a
-                        href="https://wa.me/6281234567890?text=Assalamu'alaikum%20Admin%20SD%20Al-Birru,%20saya%20ingin%20konsultasi%20PPDB%20Tahun%20Ajaran%202026/2027."
+                        href="https://wa.me/6281234567890?text=Assalamu'alaikum%20SD%20Al-Birru%20Admissions%20Team,%20I%20would%20like%20to%20inquire%20about%20Admissions%20for%20Academic%20Year%202026/2027."
                         target="_blank"
                         rel="noopener noreferrer"
                       />
@@ -92,7 +92,7 @@ export function CTASection({
                       aria-hidden="true"
                       className="size-5 text-emerald-600 dark:text-emerald-400 group-hover:scale-110 transition-transform"
                     />
-                    <span>Chat WhatsApp Sekolah</span>
+                    <span>Chat on WhatsApp</span>
                   </Button>
                 </div>
 
@@ -102,8 +102,8 @@ export function CTASection({
                     className="size-4 text-emerald-400 shrink-0"
                   />
                   <span>
-                    Konsultasi &amp; observasi awal ramah anak tanpa biaya
-                    tersembunyi
+                    Child-friendly initial consultation and developmental
+                    observation with zero hidden fees
                   </span>
                 </div>
               </div>

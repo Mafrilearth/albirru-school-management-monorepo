@@ -9,11 +9,11 @@ export function FloatingWhatsApp() {
   const [isOpen, setIsOpen] = useState(true);
 
   const waUrl =
-    "https://wa.me/6281234567890?text=Assalamu'alaikum%20Admin%20SD%20Al-Birru,%20saya%20ingin%20konsultasi%20informasi%20sekolah%20dan%20PPDB.";
+    "https://wa.me/6281234567890?text=Assalamu'alaikum%20Admin%20SD%20Al-Birru,%20I%20would%20like%20to%20inquire%20about%20school%20information%20and%20admissions.";
 
   return (
     <aside
-      aria-label="Kontak Cepat WhatsApp"
+      aria-label="Quick WhatsApp Contact"
       className="fixed bottom-22 lg:bottom-6 right-4 sm:right-6 z-40 flex flex-col items-end gap-2"
     >
       {/* Speech bubble teaser in Liquid Glass Regular */}
@@ -27,12 +27,12 @@ export function FloatingWhatsApp() {
         >
           <span className="flex size-2 rounded-none bg-emerald-500 animate-ping shrink-0" />
           <p className="font-medium leading-tight">
-            Ada pertanyaan seputar Admissions? Chat kami di sini!
+            Have questions about Admissions? Chat with us here!
           </p>
           <button
             onClick={() => setIsOpen(false)}
             className="size-5 rounded-none text-slate-400 hover:text-slate-700 dark:text-slate-300 flex items-center justify-center cursor-pointer shrink-0"
-            aria-label="Tutup notifikasi WhatsApp"
+            aria-label="Close WhatsApp notification"
           >
             <X className="size-3.5" />
           </button>
@@ -45,7 +45,7 @@ export function FloatingWhatsApp() {
           href={waUrl}
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="Chat WhatsApp Committee Admissions SD Al-Birru"
+          aria-label="Chat via WhatsApp with SD Al-Birru Admissions Committee"
           className="group relative flex size-13 items-center justify-center rounded-none bg-emerald-700 hover:bg-emerald-700 text-white shadow-xl shadow-emerald-900/25 transition-all duration-300 border-2 border-white/80"
         >
           {/* Ambient pulse ring */}

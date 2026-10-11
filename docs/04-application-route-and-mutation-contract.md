@@ -1,197 +1,197 @@
-> **Tujuan Dokumen:** Spesifikasi kontrak antarmuka jaringan, topologi rute web, mutasi Server Actions, skema data muatan, dan kode status galat sistem.
+> **Document Purpose:** Network interface contract specifications, web route topology, Server Actions mutations, payload data schemas, and standard system error codes.
 ---
 ## 1. Document Metadata
 | Attribute | Value | Description |
 |---|---|---|
-| **Document Title** | Application Route and Mutation Contract | Judul statutori spesifikasi kontrak jaringan |
-| **Dashboard Reference** | `albirru-sis-web/README.md` | Dasbor tata kelola induk repositori |
-| **Specification Version** | 1.0.0 | Versi pembaruan perlindungan gerbang publik |
-| **Lifecycle State** | Approved (In Development) | Status kesiapan tata kelola operasional |
-| **File Path** | `/docs/04-application-route-and-mutation-contract.md` | Jalur berkas dalam repositori |
+| **Document Title** | Application Route and Mutation Contract | Statutory network contract specification title |
+| **Dashboard Reference** | `albirru-sis-web/README.md` | Repository governance root dashboard |
+| **Specification Version** | 1.0.0 | Production public gate protection contract revision |
+| **Lifecycle State** | Approved (In Development) | Operational governance readiness state |
+| **File Path** | `/docs/04-application-route-and-mutation-contract.md` | File path within the repository |
 ---
 ## 2. Network Topology and Communication Standards
 ### 2.1 Interface Distribution Architecture
-Sistem memanfaatkan Next.js Server Actions untuk seluruh operasi mutasi data transaksional terautentikasi dan pengambilan data dinamis. Pola ini mengeliminasi *overhead* pemeliharaan gateway REST API eksternal serta menjamin kepatuhan tipe statis waktu kompilasi. Route Handlers HTTP standar dikhususkan hanya untuk verifikasi kesehatan platform (*health check* & *keep-alive cron*), webhook telemetri eksternal, dan berkas sitemap metadata publik.
+The system leverages Next.js Server Actions for all authenticated transactional data mutations and dynamic data fetching. This pattern eliminates the maintenance overhead of external REST API gateways and guarantees compile-time static type safety. Standard HTTP Route Handlers are dedicated strictly to platform health checks (`/api/health`), cron keep-alives, external telemetry webhooks, and public metadata sitemaps.
 ### 2.2 Global Envelope and Idempotency Directives
-Setiap Server Action mengembalikan struktur amplop respons deterministik dengan empat kunci standar:
-- **`is_success`**: Boolean penanda status keberhasilan mutasi.
-- **`status_code`**: Integer kode status HTTP kanonikal.
-- **`response_payload`**: Objek data hasil eksekusi atau `null` jika terjadi kegagalan.
-- **`error_descriptor`**: Objek rincian galat (`code`, `message`, `field_errors`) atau `null` jika berhasil.
-Semua kontrak mutasi kritis menerima token idempotensi opsional guna mencegah eksekusi transaksi ganda saat terjadi transmisi ulang jaringan. Seluruh aksi memverifikasi integritas sesi autentikasi, aturan otorisasi berbasis peran, dan parsing skema runtime Zod sebelum logika domain dieksekusi.
+Every Server Action returns a deterministic response envelope containing four standard keys:
+- **`is_success`**: Boolean indicating mutation success.
+- **`status_code`**: Canonical HTTP status code integer.
+- **`response_payload`**: Execution result data object or `null` on failure.
+- **`error_descriptor`**: Error descriptor object (`code`, `message`, `field_errors`) or `null` on success.
+All critical mutation contracts accept an optional idempotency token to prevent duplicate transaction execution during network retransmissions. All actions verify session integrity, role-based authorization rules, and runtime Zod parsing before domain business logic executes.
 ---
 ## 3. Canonical Route Ingress and Access Boundaries
 | URL Route Pattern | Rendering & Execution Strategy | Canonical Authorization Level | Purpose and Content Scope |
 |---|---|---|---|
-| **`/`** | Static Edge Prerendered | Public Guest | Beranda publik, profil sekolah, dan akreditasi institusi |
-| **`/admission`** | Server Component with Client Island | Public Guest | Formulir pendaftaran mandiri calon peserta didik baru |
-| **`/admission/status`** | Dynamic Server Rendered | Public Guest | Verifikasi mandiri status pendaftaran via kode pelacak |
-| **`/authentication/sign-in`** | Server Component with Client Island | Public Guest | Antarmuka autentikasi kredensial pengguna multi-peran |
-| **`/portal/admin/*`** | Dynamic Server Rendered | System Administrator | Konsol identitas master, alokasi rombel, dan putusan admisi |
-| **`/portal/instructor/*`** | Dynamic Server Rendered | Instructor | Pengisian presensi harian dan lembar evaluasi nilai |
-| **`/portal/guardian/*`** | Dynamic Server Rendered | Guardian | Pemantauan kehadiran anak terhubung dan unduh buku rapor |
-| **`/api/health`** | Route Handler (GET) | Public Guest / Internal Monitor | Verifikasi kesehatan platform dan pemeliharaan denyut database |
+| **`/`** | Static Edge Prerendered | Public Guest | Public homepage, institutional profile, and accreditation |
+| **`/admission`** | Server Component with Client Island | Public Guest | Self-service prospective student application form |
+| **`/admission/status`** | Dynamic Server Rendered | Public Guest | Self-service application tracking via registration code |
+| **`/authentication/sign-in`** | Server Component with Client Island | Public Guest | Multi-role user authentication interface |
+| **`/portal/admin/*`** | Dynamic Server Rendered | System Administrator | Master directory console, cohort allocations, admissions adjudication |
+| **`/portal/instructor/*`** | Dynamic Server Rendered | Instructor | Daily attendance logging and grading registers |
+| **`/portal/guardian/*`** | Dynamic Server Rendered | Guardian | Dependent attendance monitoring and report card downloads |
+| **`/api/health`** | Route Handler (GET) | Public Guest / Internal Monitor | Platform health verification and database keep-alive |
 ---
 ## 4. Domain Server Action Mutation Contracts
 ### 4.1 Daily Attendance Tracking (`attendance`)
 #### 4.1.1 `initialize_attendance_session`
-- **Execution Context:** Dipicu oleh instruktur saat membuka lembar presensi rombongan belajar.
-- **Access Authorization:** Instructor penanggung jawab rombel, System Administrator.
+- **Execution Context:** Triggered by instructor when opening the cohort attendance sheet.
+- **Access Authorization:** Assigned Cohort Instructor, System Administrator.
 - **Input Parameters:**
-	- `classroom_cohort_id` (UUID, Wajib)
-	- `session_date` (Date, Wajib, Format: `YYYY-MM-DD`)
+	- `classroom_cohort_id` (UUID, Required)
+	- `session_date` (Date, Required, Format: `YYYY-MM-DD`)
 - **Output Payload:**
 	- `attendance_session_id` (UUID)
-	- `session_status` (Enumerasi: `Initialized`, `Previously Existing`)
+	- `session_status` (Enumeration: `Initialized`, `Previously Existing`)
 	- `cohort_roster_headcount` (Integer)
 - **Exception Conditions:**
-	- `403 Forbidden`: Pengguna tidak memiliki penugasan atas rombongan belajar terkait.
-	- `422 Unprocessable Content`: Tanggal sesi melampaui tanggal kalender server.
+	- `403 Forbidden`: User does not have homeroom/instructor assignment over target cohort.
+	- `422 Unprocessable Content`: Session date exceeds current server calendar date.
 #### 4.1.2 `submit_attendance_register`
-- **Execution Context:** Mengunci lembar kehadiran siswa ke status final terverifikasi.
-- **Access Authorization:** Instructor penanggung jawab rombel, System Administrator.
+- **Execution Context:** Locks the cohort attendance sheet into verified status.
+- **Access Authorization:** Assigned Cohort Instructor, System Administrator.
 - **Input Parameters:**
-	- `attendance_session_id` (UUID, Wajib)
-	- `status_records` (Array of Objects, Wajib):
-		- `student_profile_id` (UUID, Wajib)
-		- `status` (Enumerasi: `Present`, `Absent`, `Sick`, `Excused`, Wajib)
-		- `remarks` (Text, Opsional)
+	- `attendance_session_id` (UUID, Required)
+	- `status_records` (Array of Objects, Required):
+		- `student_profile_id` (UUID, Required)
+		- `status` (Enumeration: `Present`, `Absent`, `Sick`, `Excused`, Required)
+		- `remarks` (Text, Optional)
 - **Output Payload:**
 	- `is_verified` (Boolean: `true`)
 	- `submitted_records_count` (Integer)
 	- `verification_timestamp` (Timestamp with Time Zone)
 - **Exception Conditions:**
-	- `400 Bad Request`: Data siswa aktif belum terisi status presensi secara lengkap.
-	- `409 Conflict`: Sesi presensi telah melewati batas kunci tengah malam (*midnight lock*).
+	- `400 Bad Request`: Incomplete attendance records for enrolled students.
+	- `409 Conflict`: Attendance session has passed the midnight lock threshold.
 ---
 ### 4.2 Grading and Academic Reporting (`grading`)
 #### 4.2.1 `configure_assessment_weights`
-- **Execution Context:** Menentukan komponen evaluasi dan bobot nilai per mata pelajaran dalam semester.
+- **Execution Context:** Configures evaluation components and percentage weights per subject for a term.
 - **Access Authorization:** System Administrator.
 - **Input Parameters:**
-	- `subject_id` (UUID, Wajib)
-	- `academic_term_id` (UUID, Wajib)
-	- `weight_allocations` (Array of Objects, Wajib):
-		- `category_name` (Varchar(64), Wajib)
-		- `weight_percentage` (Integer, Wajib)
+	- `subject_id` (UUID, Required)
+	- `academic_term_id` (UUID, Required)
+	- `weight_allocations` (Array of Objects, Required):
+		- `category_name` (Varchar(64), Required)
+		- `weight_percentage` (Integer, Required)
 - **Output Payload:**
 	- `configured_categories_count` (Integer)
-	- `total_cumulative_weight` (Integer: Tepat bernilai 100)
+	- `total_cumulative_weight` (Integer: Exactly 100)
 - **Exception Conditions:**
-	- `422 Unprocessable Content`: Akumulasi bobot persentase tidak sama dengan 100%.
-	- `409 Conflict`: Komponen nilai telah memiliki rekaman nilai siswa aktif untuk periode ini.
+	- `422 Unprocessable Content`: Cumulative percentage weight sum does not equal 100%.
+	- `409 Conflict`: Assessment category already possesses active student grade entries.
 #### 4.2.2 `record_student_grade`
-- **Execution Context:** Menyimpan atau memperbarui nilai numerik mentah siswa per komponen penilaian.
+- **Execution Context:** Records or updates raw numeric grade scores per assessment category.
 - **Access Authorization:** Assigned Course Instructor, System Administrator.
 - **Input Parameters:**
-	- `assessment_config_id` (UUID, Wajib)
-	- `student_profile_id` (UUID, Wajib)
-	- `raw_score` (Decimal(5,2), Wajib, Rentang: 0.00 s.d. 100.00)
+	- `assessment_config_id` (UUID, Required)
+	- `student_profile_id` (UUID, Required)
+	- `raw_score` (Decimal(5,2), Required, Range: 0.00 to 100.00)
 - **Output Payload:**
 	- `grade_entry_id` (UUID)
 	- `calculated_running_average` (Decimal)
 - **Exception Conditions:**
-	- `422 Unprocessable Content`: Nilai numerik berada di luar batas rentang 0.00 hingga 100.00.
-	- `403 Forbidden`: Siswa tidak terdaftar aktif pada kelas mata pelajaran bersangkutan.
+	- `422 Unprocessable Content`: Numeric score falls outside 0.00 to 100.00 range.
+	- `403 Forbidden`: Student is not enrolled in the target course cohort.
 #### 4.2.3 `publish_term_report_card`
-- **Execution Context:** Membekukan seluruh rekaman nilai mata pelajaran dan menerbitkan rapor resmi.
+- **Execution Context:** Freezes all course grade records and publishes official term report card.
 - **Access Authorization:** System Administrator.
 - **Input Parameters:**
-	- `student_profile_id` (UUID, Wajib)
-	- `academic_term_id` (UUID, Wajib)
+	- `student_profile_id` (UUID, Required)
+	- `academic_term_id` (UUID, Required)
 - **Output Payload:**
 	- `report_card_id` (UUID)
-	- `publication_status` (Enumerasi: `Published`)
+	- `publication_status` (Enumeration: `Published`)
 	- `calculated_grade_point` (Decimal)
 	- `published_at` (Timestamp with Time Zone)
 - **Exception Conditions:**
-	- `412 Precondition Failed`: Terdapat mata pelajaran wajib yang belum memiliki komponen nilai tuntas.
+	- `412 Precondition Failed`: Core compulsory courses lack complete assessment scores.
 ---
 ### 4.3 Guardian Self-Service (`guardian`)
 #### 4.3.1 `query_dependent_overview`
-- **Execution Context:** Mengambil ringkasan profil akademik dan presensi seluruh anak terhubung.
+- **Execution Context:** Retrieves academic profile summaries and attendance metrics for connected dependents.
 - **Access Authorization:** Authenticated Guardian.
-- **Input Parameters:** Tidak ada (Diambil otomatis secara kriptografis dari sesi akun pengguna aktif).
+- **Input Parameters:** None (Cryptographically extracted from active session identity).
 - **Output Payload:**
 	- `dependents` (Array of Objects):
 		- `student_profile_id` (UUID)
 		- `full_legal_name` (Varchar)
 		- `classroom_cohort_label` (Varchar)
 		- `cumulative_attendance_percentage` (Decimal)
-		- `latest_published_report_id` (UUID atau Null)
+		- `latest_published_report_id` (UUID or Null)
 - **Exception Conditions:**
-	- `404 Not Found`: Akun wali murid belum memiliki relasi terverifikasi ke profil siswa.
+	- `404 Not Found`: Guardian account lacks verified relationships to student profiles.
 ---
 ### 4.4 Roster and Identity Allocation (`identity`)
 #### 4.4.1 `provision_master_identity`
-- **Execution Context:** Menambahkan entitas biodata master civitas ke direktori sekolah.
+- **Execution Context:** Inserts master community member biodata into the institutional directory.
 - **Access Authorization:** System Administrator.
 - **Input Parameters:**
-	- `full_legal_name` (Varchar(255), Wajib)
-	- `national_identity_number` (Varchar(32), Wajib)
-	- `gender` (Enumerasi: `Male`, `Female`, Wajib)
-	- `birth_date` (Date, Wajib)
-	- `role_classification` (Enumerasi: `Student`, `Instructor`, `Administrative Staff`, Wajib)
-	- `email` (Varchar(255), Opsional)
+	- `full_legal_name` (Varchar(255), Required)
+	- `national_identity_number` (Varchar(32), Required)
+	- `gender` (Enumeration: `Male`, `Female`, Required)
+	- `birth_date` (Date, Required)
+	- `role_classification` (Enumeration: `Student`, `Instructor`, `Administrative Staff`, Required)
+	- `email` (Varchar(255), Optional)
 - **Output Payload:**
 	- `profile_id` (UUID)
 	- `institutional_identifier` (Varchar)
 - **Exception Conditions:**
-	- `409 Conflict`: Nomor Induk Kependudukan (NIK) telah terdaftar di direktori master.
+	- `409 Conflict`: National Identity Number (NIK) is already registered in master directory.
 #### 4.4.2 `assign_cohort_roster`
-- **Execution Context:** Memasukkan siswa aktif ke rombongan belajar kelas per semester.
+- **Execution Context:** Enrolls active students into classroom cohorts per semester.
 - **Access Authorization:** System Administrator.
 - **Input Parameters:**
-	- `student_profile_id` (UUID, Wajib)
-	- `classroom_cohort_id` (UUID, Wajib)
+	- `student_profile_id` (UUID, Required)
+	- `classroom_cohort_id` (UUID, Required)
 - **Output Payload:**
 	- `enrollment_id` (UUID)
 	- `remaining_cohort_capacity` (Integer)
 - **Exception Conditions:**
-	- `409 Conflict`: Siswa telah terdaftar pada rombel aktif lain dalam periode akademik yang sama.
-	- `422 Unprocessable Content`: Kapasitas maksimum rombongan belajar telah terpenuhi.
+	- `409 Conflict`: Student is already enrolled in another cohort within the same term.
+	- `422 Unprocessable Content`: Maximum classroom cohort capacity has been reached.
 ---
 ### 4.5 Public Admissions (`admissions`)
 #### 4.5.1 `submit_public_admission_application`
-- **Execution Context:** Menerima formulir pendaftaran mandiri calon siswa dari portal publik via proteksi Upstash Redis & Cloudflare Turnstile.
-- **Access Authorization:** Public Guest (Anonim).
+- **Execution Context:** Ingests self-service applicant form from public portal guarded by Upstash Redis & Cloudflare Turnstile.
+- **Access Authorization:** Public Guest (Anonymous).
 - **Input Parameters:**
-	- `prospective_student_name` (Varchar(255), Wajib)
-	- `prospective_student_birth_date` (Date, Wajib)
-	- `guardian_contact_name` (Varchar(255), Wajib)
-	- `guardian_contact_phone` (Varchar(32), Wajib)
-	- `guardian_contact_email` (Varchar(255), Wajib)
-	- `submitted_documents_url` (Text, Opsional, Tautan berkas Cloudflare R2)
-	- `turnstile_token` (Text, Wajib, Token validasi Cloudflare Turnstile)
+	- `prospective_student_name` (Varchar(255), Required)
+	- `prospective_student_birth_date` (Date, Required)
+	- `guardian_contact_name` (Varchar(255), Required)
+	- `guardian_contact_phone` (Varchar(32), Required)
+	- `guardian_contact_email` (Varchar(255), Required)
+	- `submitted_documents_url` (Text, Optional, Cloudflare R2 storage URI)
+	- `turnstile_token` (Text, Required, Cloudflare Turnstile challenge token)
 - **Output Payload:**
 	- `registration_tracking_code` (Varchar, Format: `ADM-YYYYMMDD-XXXX`)
-	- `application_status` (Enumerasi: `Pending Review`)
+	- `application_status` (Enumeration: `Pending Review`)
 	- `submission_timestamp` (Timestamp with Time Zone)
 - **Exception Conditions:**
-	- `429 Too Many Requests`: Frekuensi pendaftaran melampaui batas kuota 5 submisi per 15 menit per IP (Upstash Redis guardrail).
-	- `403 Forbidden`: Token Cloudflare Turnstile tidak valid atau gagal verifikasi bot.
-	- `422 Unprocessable Content`: Format surat elektronik atau nomor telepon tidak memenuhi sintaks valid.
+	- `429 Too Many Requests`: Submission rate exceeds quota of 5 submissions per 15 minutes per IP (Upstash Redis guardrail).
+	- `403 Forbidden`: Cloudflare Turnstile token is invalid or fails challenge verification.
+	- `422 Unprocessable Content`: Email or phone format fails schema validation syntax.
 #### 4.5.2 `adjudicate_admission_application`
-- **Execution Context:** Memberikan putusan verifikasi atas berkas formulir calon siswa.
+- **Execution Context:** Records an adjudication verdict over prospective student application files.
 - **Access Authorization:** System Administrator.
 - **Input Parameters:**
-	- `application_id` (UUID, Wajib)
-	- `adjudication_verdict` (Enumerasi: `Approved`, `Rejected`, `Information Required`, Wajib)
-	- `adjudication_notes` (Text, Opsional)
+	- `application_id` (UUID, Required)
+	- `adjudication_verdict` (Enumeration: `Approved`, `Rejected`, `Information Required`, Required)
+	- `adjudication_notes` (Text, Optional)
 - **Output Payload:**
-	- `application_status` (Enumerasi: Status putusan baru)
-	- `provisioned_profile_id` (UUID atau Null, Dihasilkan otomatis saat status `Approved`)
+	- `application_status` (Enumeration: Updated verdict status)
+	- `provisioned_profile_id` (UUID or Null, Generated automatically upon `Approved` status)
 - **Exception Conditions:**
-	- `404 Not Found`: Berkas pendaftaran tidak ditemukan.
+	- `404 Not Found`: Application record not found.
 ---
 ## 5. Standard Operational Error Response Codes
 | Status Code | Classification | Meaning and Recovery Directives |
 |---|---|---|
-| **`400 Bad Request`** | Validation Syntax Error | Muatan parameter gagal validasi skema dasar; perbaiki struktur input data |
-| **`401 Unauthorized`** | Authentication Missing | Token sesi otentikasi tidak ada atau kedaluwarsa; autentikasi ulang akun |
-| **`403 Forbidden`** | Authorization Violation | Pengguna melanggar hak peran atau token perlindungan bot ditolak |
-| **`404 Not Found`** | Resource Missing | Entitas target tidak ditemukan di dalam ruang nama relasional basis data |
-| **`409 Conflict`** | Constraint Conflict | Melanggar indeks unik, alokasi duplikat, atau batas kunci tengah malam |
-| **`422 Unprocessable Content`** | Business Logic Rejection | Sintaks masukan valid namun melanggar aturan bisnis modul |
-| **`429 Too Many Requests`** | Rate Limiting Triggered | Frekuensi permintaan melampaui batas ambang pada rute publik |
-| **`500 Internal Error`** | Unhandled System Exception | Galat komputasi sisi server; telemetri insiden otomatis terkirim ke Slack |
+| **`400 Bad Request`** | Validation Syntax Error | Parameter payload failed baseline schema validation; adjust input format |
+| **`401 Unauthorized`** | Authentication Missing | Session token absent or expired; re-authenticate user account |
+| **`403 Forbidden`** | Authorization Violation | User violates role privilege or bot protection token was rejected |
+| **`404 Not Found`** | Resource Missing | Target entity does not exist within the relational database namespace |
+| **`409 Conflict`** | Constraint Conflict | Unique index violation, duplicate allocation, or midnight lock boundary |
+| **`422 Unprocessable Content`** | Business Logic Rejection | Input syntax valid but violates domain operational rules |
+| **`429 Too Many Requests`** | Rate Limiting Triggered | Request frequency exceeds throttled quota on public routes |
+| **`500 Internal Error`** | Unhandled System Exception | Uncaught server exception; automated incident telemetry dispatched to Slack |

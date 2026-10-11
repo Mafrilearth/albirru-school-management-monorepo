@@ -1,56 +1,56 @@
-> **Tujuan Dokumen:** Spesifikasi kerangka arsitektur tata letak antarmuka, pembagian shell aplikasi, hierarki navigasi rute berbasis peran, zonasi spasial layar, dan strategi responsivitas peramban web.
+> **Document Purpose:** Application layout framework specifications, viewport shell boundaries, role-based navigation route hierarchy, spatial layout zoning, and responsive web browser strategies.
 ---
 ## 1. Document Metadata
 | Attribute | Value | Description |
 |---|---|---|
-| **Document Title** | Application Layout and Navigation Architecture | Judul statutori spesifikasi arsitektur tata letak dan navigasi |
-| **Dashboard Reference** | `albirru-sis-web/README.md` | Dasbor tata kelola induk repositori |
-| **Specification Version** | 1.0.0 | Versi dasar arsitektur tata letak produksi |
-| **Lifecycle State** | Approved (In Development) | Status kesiapan tata kelola operasional |
-| **File Path** | `/docs/06-application-layout-and-navigation-architecture.md` | Jalur berkas dalam repositori |
+| **Document Title** | Application Layout and Navigation Architecture | Statutory layout and navigation architecture specification title |
+| **Dashboard Reference** | `albirru-sis-web/README.md` | Repository governance root dashboard |
+| **Specification Version** | 1.0.0 | Production application layout baseline specification |
+| **Lifecycle State** | Approved (In Development) | Operational governance readiness state |
+| **File Path** | `/docs/06-application-layout-and-navigation-architecture.md` | File path within the repository |
 ---
 ## 2. Global Viewport Shell Topologies
-Aplikasi mengelompokkan struktur tata letak ke dalam tiga kerangka shell (*root viewport wrappers*) independen di bawah Next.js App Router:
+The application structures its layouts into three independent root viewport shells under the Next.js App Router:
 | Shell Classification | Route Group Context | Structural Boundaries | Global Behavior and State |
 |---|---|---|---|
-| **Public Guest Shell** | `src/app/(public)/*` | Bilah navigasi atas (64px) dan footer institusi statutori | Akses bebas unauthenticated, konten kanonikal terindeks mesin pencari |
-| **Authentication Shell** | `src/app/(auth)/*` | Kartu dialog terpusat vertikal dan horizontal (lebar maksimal 440px) | Terisolasi dari navigasi umum, fokus penuh pada formulir autentikasi |
-| **Protected Portal Shell** | `src/app/(portal)/*` | Bilah samping tetap kiri (260px) dan pita utilitas atas (60px) | Terproteksi sesi autentikasi, isolasi data berbasis peran, area kerja modular |
+| **Public Guest Shell** | `src/app/(public)/*` | Fixed top navigation bar (64px) and statutory institutional footer | Unauthenticated access, search-engine indexed canonical content |
+| **Authentication Shell** | `src/app/(auth)/*` | Vertically and horizontally centered card dialog (max-width 440px) | Isolated from global navigation, focused entirely on auth forms |
+| **Protected Portal Shell** | `src/app/(portal)/*` | Persistent left sidebar (260px) and top utility ribbon (60px) | Session protected, role-based data isolation, modular workspace |
 ---
 ## 3. Spatial Layout Zoning for Protected Portal Shell
-Kerangka kerja portal terproteksi (`/portal/*`) menerapkan zonasi spasial kisi layar standar untuk memastikan keseragaman alur kerja antar-peran:
+The protected portal shell (`/portal/*`) applies standardized grid zoning to ensure workflow uniformity across all user roles:
 | Layout Zone | Spatial Dimensions | Layout Alignment | Canonical Functional Scope |
 |---|---|---|---|
-| **Persistent Left Sidebar** | Lebar tetap 260px, tinggi 100vh | Menempel di batas kiri layar (*fixed desktop*) | Lambang sekolah, penanda profil aktif, dan menu navigasi vertikal |
-| **Top Utility Ribbon** | Tinggi tetap 60px, lebar fleksibel | Menempel di batas atas area kerja (*sticky top*) | Jejak rekam navigasi (*breadcrumbs*), notifikasi sistem, dan tombol keluar sesi |
-| **Primary Workstage Canvas** | Lebar fleksibel, tinggi otomatis | Area kontainer utama dengan pengguliran vertikal | Area kerja konten tabel presensi, kisi input nilai, kartu metrik, dan form |
-| **Contextual Flyout Drawer** | Lebar tetap 480px, tinggi 100vh | Menempel di batas kanan (*slide-over modal*) | Form pendataan civitas master, inspeksi rincian siswa, dan log verifikasi |
+| **Persistent Left Sidebar** | Fixed width 260px, height 100vh | Fixed to left viewport edge on desktop | School emblem, active profile tag, and vertical nav tree |
+| **Top Utility Ribbon** | Fixed height 60px, flexible width | Sticky top boundary of workspace | Navigation breadcrumbs, system alerts, and sign-out controls |
+| **Primary Workstage Canvas** | Flexible width, auto height | Main container area with vertical scrolling | Tabular registers, gradebooks, metric cards, and forms |
+| **Contextual Flyout Drawer** | Fixed width 480px, height 100vh | Slide-over drawer docked to right edge | Member provisioning forms, student inspection, and audit logs |
 ---
 ## 4. Role-Based Navigation Routing Tree
 ### 4.1 System Administrator Workspace Navigation (`/portal/admin/*`)
 | Navigation Menu Item | Target URL Route | Leading Icon Identifier | Functional Purpose |
 |---|---|---|---|
-| **Master Civitas Directory** | `/portal/admin/identities` | `Users` | Pendataan biodata master, penerbitan NIS, dan audit akun civitas |
-| **Cohort Roster Setup** | `/portal/admin/rosters` | `Layers` | Alokasi pembagian rombongan belajar kelas per semester aktif |
-| **Admissions Adjudication** | `/portal/admin/admissions` | `UserCheck` | Antrean verifikasi berkas pendaftaran calon peserta didik baru |
-| **Academic Term Calendar** | `/portal/admin/terms` | `Calendar` | Konfigurasi semester kalender ajaran aktif dan batas operasional |
-| **Institutional Settings** | `/portal/admin/settings` | `Settings` | Konfigurasi profil sekolah, kurikulum mata pelajaran, dan audit log |
+| **Master Civitas Directory** | `/portal/admin/identities` | `Users` | Master biodata provisioning, NIS issuance, and account audits |
+| **Cohort Roster Setup** | `/portal/admin/rosters` | `Layers` | Classroom cohort allocations per active academic term |
+| **Admissions Adjudication** | `/portal/admin/admissions` | `UserCheck` | Review and verification queue for prospective student applications |
+| **Academic Term Calendar** | `/portal/admin/terms` | `Calendar` | Term calendar configuration and operational date boundaries |
+| **Institutional Settings** | `/portal/admin/settings` | `Settings` | Institutional profile, subject curriculum, and audit logs |
 ### 4.2 Instructor Workspace Navigation (`/portal/instructor/*`)
 | Navigation Menu Item | Target URL Route | Leading Icon Identifier | Functional Purpose |
 |---|---|---|---|
-| **Daily Attendance Register** | `/portal/instructor/attendance` | `ClipboardCheck` | Inisialisasi sesi, mutasi status presensi siswa, dan kunci finalisasi |
-| **Grade Assessment Ledger** | `/portal/instructor/grading` | `Award` | Masukan nilai numerik komponen kurikulum dan perhitungan rata-rata |
-| **Homeroom Cohort Overview** | `/portal/instructor/roster` | `GraduationCap` | Ikhtisar daftar siswa aktif binaan dan rekapitulasi capaian kelas |
+| **Daily Attendance Register** | `/portal/instructor/attendance` | `ClipboardCheck` | Session inception, attendance mutations, and lock submission |
+| **Grade Assessment Ledger** | `/portal/instructor/grading` | `Award` | Component score entry and running average computation |
+| **Homeroom Cohort Overview** | `/portal/instructor/roster` | `GraduationCap` | Overview of assigned cohort students and achievement summary |
 ### 4.3 Guardian Self-Service Navigation (`/portal/guardian/*`)
 | Navigation Menu Item | Target URL Route | Leading Icon Identifier | Functional Purpose |
 |---|---|---|---|
-| **Dependent Monitoring** | `/portal/guardian` | `Home` | Kartu ringkasan kehadiran dan status evaluasi seluruh anak terhubung |
-| **Attendance History** | `/portal/guardian/attendance` | `CalendarDays` | Kalender riwayat kehadiran harian dan persentase kehadiran semester |
-| **Academic Report Cards** | `/portal/guardian/reports` | `FileText` | Akses peninjauan dan unduh dokumen buku rapor resmi berstatus Published |
+| **Dependent Monitoring** | `/portal/guardian` | `Home` | Overview dashboard of dependent presence and academic progress |
+| **Attendance History** | `/portal/guardian/attendance` | `CalendarDays` | Daily presence calendar log and term attendance percentages |
+| **Academic Report Cards** | `/portal/guardian/reports` | `FileText` | Review and PDF export of official published report cards |
 ---
 ## 5. Responsive Breakpoint and Collapsible Behavior
-Sistem menegakkan aturan adaptasi tata letak antarmuka peramban desktop dan seluler:
-- **Desktop Viewport (**$`\ge`$** 1024px):** Bilah samping kiri (*sidebar*) tampil permanen selebar 260px; area kerja utama menempati sisa lebar layar secara proporsional.
-- **Tablet & Mobile Viewport (\< 1024px):** Bilah samping kiri disembunyikan secara baku ke dalam laci geser (*off-canvas sheet*); pemicu menu burger (*menu trigger*) muncul pada pita utilitas atas untuk membuka navigasi.
-- **Workstage Density Adaptation:** Pada layar peramban dengan resolusi lebar di bawah 1280px, tabel data presensi dan nilai mengaktifkan pengguliran horizontal mandiri (*horizontal scroll containment*) tanpa merusak struktur tata letak induk.
-- **Breadcrumb Truncation:** Jejak rekam navigasi membatasi visualisasi hingga maksimal 3 tingkatan hierarki rute; tingkatan perantara disingkat menjadi ikon elipsis jika melampaui lebar pita atas.
+The system enforces layout adaptation rules across desktop and mobile browsers:
+- **Desktop Viewport (**$`\ge`$** 1024px):** The left sidebar is persistently visible at 260px; the workstage canvas occupies remaining width proportionally.
+- **Tablet & Mobile Viewports (\< 1024px):** The left sidebar collapses into an off-canvas slide-out sheet; a hamburger trigger appears in the top ribbon to open navigation.
+- **Workstage Density Adaptation:** On viewport widths below 1280px, tabular attendance and grade grids activate horizontal scroll containment without breaking parent layout bounds.
+- **Breadcrumb Truncation:** Breadcrumbs limit display to a maximum of 3 hierarchy levels; intermediate levels collapse into an ellipsis icon if ribbon width is constrained.

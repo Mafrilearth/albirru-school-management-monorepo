@@ -6,10 +6,11 @@ export default function AdminDashboardPage() {
     <div className="max-w-7xl mx-auto py-10 px-4 sm:px-6 lg:px-8">
       <div className="mb-8 border-b border-slate-200 pb-5">
         <h1 className="text-3xl font-black tracking-tight text-slate-900">
-          Konsol Manajemen Administrator
+          Administrator Management Console
         </h1>
         <p className="mt-2 text-slate-600 font-medium">
-          Kelola master data, pendaftaran, dan konfigurasi sistem Al-Birru.
+          Manage master data, admissions adjudication, and Al-Birru system
+          configurations.
         </p>
       </div>
 
@@ -23,13 +24,13 @@ export default function AdminDashboardPage() {
               Master Identity Provisioning
             </h3>
             <p className="text-slate-600 text-sm mt-auto">
-              Tambahkan dan kelola profil Guru, Siswa, dan Administrator baru ke
-              dalam basis data utama.
+              Create and provision profiles for Teachers, Students, and
+              Administrators into the primary database.
             </p>
           </div>
         </Link>
 
-        {/* Adjudication Link (Modul 4.5.3 Placeholder) */}
+        {/* Admissions Adjudication Link */}
         <Link href="/admin/admissions" className="group block">
           <div className="bg-white border border-slate-200 rounded-none p-6 shadow-none hover:border-emerald-500 hover:bg-emerald-50 transition-colors h-full flex flex-col">
             <div className="size-12 bg-slate-100 group-hover:bg-emerald-100 flex items-center justify-center mb-4 border border-slate-200 group-hover:border-emerald-200">
@@ -39,7 +40,8 @@ export default function AdminDashboardPage() {
               Admissions Adjudication
             </h3>
             <p className="text-slate-600 text-sm mt-auto">
-              Tinjau dan setujui atau tolak aplikasi pendaftaran siswa baru.
+              Review and adjudicate (approve or reject) incoming student
+              admission applications.
             </p>
           </div>
         </Link>

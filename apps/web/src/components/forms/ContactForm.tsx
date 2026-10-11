@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import {
   AlertCircle,
@@ -24,11 +24,11 @@ import {
 } from "@/lib/validations/contact";
 
 const QUICK_TOPICS = [
-  "Registration Kelas 1 (Admissions 2026)",
-  "Program 3 Juz Tahfidz & Metode",
-  "Jadwal Survei & Observasi Kampus",
-  "Biaya Pendidikan & Beasiswa",
-  "Pindahan / Mutasi School",
+  "Grade 1 Admissions Registration (2026)",
+  "3 Juz Tahfidz Program & Methodology",
+  "Campus Tour & Observation Schedule",
+  "Tuition Fees & Scholarships",
+  "School Transfer Inquiries",
 ];
 
 export function ContactForm() {
@@ -51,10 +51,10 @@ export function ContactForm() {
     setSelectedTopic(topic);
     // Append or replace topic in message if empty or starts with previous topic
     setFormData((prev) => {
-      const topicPrefix = `[Topik: ${topic}]\n`;
+      const topicPrefix = `[Topic: ${topic}]\n`;
       let newMessage = prev.message;
-      if (!newMessage.trim() || newMessage.startsWith("[Topik:")) {
-        newMessage = `${topicPrefix}Assalamu'alaikum, saya ingin bertanya lebih lanjut mengenai ${topic.toLowerCase()} untuk ananda kami.`;
+      if (!newMessage.trim() || newMessage.startsWith("[Topic:")) {
+        newMessage = `${topicPrefix}Assalamu'alaikum, I would like to inquire further about ${topic.toLowerCase()} for our child.`;
       }
       return {
         ...prev,
@@ -114,7 +114,7 @@ export function ContactForm() {
           setErrors(data.errors);
         } else {
           setGeneralError(
-            data.message || "Gagal mengirimkan pesan. Silakan coba kembali.",
+            data.message || "Failed to send message. Please try again.",
           );
         }
         setIsSubmitting(false);
@@ -126,7 +126,7 @@ export function ContactForm() {
       setIsSubmitting(false);
     } catch {
       setGeneralError(
-        "Koneksi terputus. Pastikan jaringan internet Anda aktif.",
+        "Connection interrupted. Please ensure your internet connection is active.",
       );
       setIsSubmitting(false);
     }
@@ -174,22 +174,21 @@ export function ContactForm() {
             </div>
             <div>
               <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-3 py-1 rounded-none border border-emerald-200/60">
-                STATUS // TERKIRIM
+                STATUS // SENT
               </span>
               <h3
                 id="submit-success-heading"
                 className="text-xl sm:text-2xl font-black text-slate-950 dark:text-slate-50 mt-1.5"
               >
-                Alhamdulillah, Pesan Diterima!
+                Alhamdulillah, Message Received!
               </h3>
             </div>
           </div>
 
           <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed">
-            Pertanyaan Anda telah kami catat dalam sistem administrasi SD
-            Al-Birru. Untuk respon instan dan penjadwalan survei lokasi langsung
-            bersama panitia Admissions, Anda dapat langsung terhubung ke
-            WhatsApp resmi kami:
+            Your inquiry has been recorded in the SD Al-Birru administrative
+            system. For immediate response and campus survey scheduling with our
+            Admissions team, you may connect directly via our official WhatsApp:
           </p>
 
           {/* WhatsApp Direct Action Button */}
@@ -201,7 +200,7 @@ export function ContactForm() {
               className="flex-1 flex items-center justify-center gap-2 h-13 rounded-none bg-emerald-700 hover:bg-emerald-700 text-white font-bold text-sm shadow-md shadow-emerald-900/30 transition-all hover:scale-[1.01] active:scale-[0.99]"
             >
               <MessageCircle aria-hidden="true" className="size-5" />
-              <span>Buka Chat WhatsApp Committee</span>
+              <span>Open Admissions WhatsApp Chat</span>
               <ExternalLink aria-hidden="true" className="size-4 opacity-75" />
             </a>
 
@@ -211,7 +210,7 @@ export function ContactForm() {
               className="flex items-center justify-center gap-2 h-13 px-6 rounded-none border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 dark:bg-slate-800 font-bold text-xs transition-colors cursor-pointer"
             >
               <RotateCcw aria-hidden="true" className="size-4" />
-              <span>Submit Pesan Lain</span>
+              <span>Submit Another Message</span>
             </button>
           </div>
         </div>
@@ -232,17 +231,17 @@ export function ContactForm() {
         <div className="mb-8">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-none bg-amber-50 border border-amber-200/60 text-amber-800 text-[11px] font-mono font-bold uppercase tracking-wider mb-4">
             <span className="size-1.5 rounded-none bg-amber-500 animate-pulse" />
-            <span>FORMULIR // KONSULTASI RESMI</span>
+            <span>FORM // OFFICIAL INQUIRY</span>
           </div>
           <h3
             id="contact-form-title"
             className="text-2xl sm:text-3xl font-black text-slate-950 dark:text-slate-50 tracking-tight"
           >
-            Konsultasi &amp; Pertanyaan Calon Students
+            Prospective Student Consultation &amp; Inquiries
           </h3>
           <p className="mt-2 text-sm text-slate-500 leading-relaxed font-normal">
-            Lengkapi data di bawah ini. Tim panitia Admissions akan merespon
-            pertanyaan Anda secara personal.
+            Please fill out the information below. Our Admissions team will
+            respond to your inquiry personally.
           </p>
         </div>
 
@@ -250,12 +249,12 @@ export function ContactForm() {
         <fieldset className="mb-8 pb-8 border-b border-slate-100 dark:border-slate-800 border-none p-0">
           <legend className="block text-xs font-mono font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-3 flex items-center gap-2">
             <Tag aria-hidden="true" className="size-3.5 text-amber-600" />
-            <span>Pilih Topik Konsultasi (Opsional)</span>
+            <span>Select Inquiry Topic (Optional)</span>
           </legend>
           <div
             className="flex flex-wrap gap-2.5"
             role="group"
-            aria-label="Pilihan Topik Konsultasi"
+            aria-label="Inquiry Topic Options"
           >
             {QUICK_TOPICS.map((topic) => {
               const isSelected = selectedTopic === topic;
@@ -296,7 +295,7 @@ export function ContactForm() {
               htmlFor="fullName"
               className="block text-xs font-mono font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-2"
             >
-              Nama Lengkap Orang Tua / Wali{" "}
+              Parent / Guardian Legal Name{" "}
               <span className="text-rose-500" aria-hidden="true">
                 *
               </span>
@@ -311,7 +310,7 @@ export function ContactForm() {
               aria-describedby={errors.fullName ? "fullName-error" : undefined}
               value={formData.fullName}
               onChange={handleChange}
-              placeholder="Contoh: Bapak Hendra Wijaya"
+              placeholder="Example: Mr. Hendra Wijaya"
               className="h-12 rounded-none border-slate-200 dark:border-slate-700 text-sm focus-visible:ring-amber-500"
             />
             {errors.fullName && (
@@ -332,7 +331,7 @@ export function ContactForm() {
                 htmlFor="phone"
                 className="block text-xs font-mono font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-2"
               >
-                No. WhatsApp Aktif{" "}
+                Active WhatsApp Number{" "}
                 <span className="text-rose-500" aria-hidden="true">
                   *
                 </span>
@@ -366,7 +365,7 @@ export function ContactForm() {
                 htmlFor="email"
                 className="block text-xs font-mono font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-2"
               >
-                Email (Opsional)
+                Email (Optional)
               </label>
               <Input
                 id="email"
@@ -376,7 +375,7 @@ export function ContactForm() {
                 aria-describedby={errors.email ? "email-error" : undefined}
                 value={formData.email}
                 onChange={handleChange}
-                placeholder="nama@email.com"
+                placeholder="name@example.com"
                 className="h-12 rounded-none border-slate-200 dark:border-slate-700 text-sm focus-visible:ring-amber-500"
               />
               {errors.email && (
@@ -397,7 +396,7 @@ export function ContactForm() {
               htmlFor="studentCandidateName"
               className="block text-xs font-mono font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-2"
             >
-              Nama Calon Students Ananda (Opsional)
+              Prospective Student&apos;s Name (Optional)
             </label>
             <Input
               id="studentCandidateName"
@@ -411,7 +410,7 @@ export function ContactForm() {
               }
               value={formData.studentCandidateName}
               onChange={handleChange}
-              placeholder="Contoh: Muhammad Rayhan"
+              placeholder="Example: Muhammad Rayhan"
               className="h-12 rounded-none border-slate-200 dark:border-slate-700 text-sm focus-visible:ring-amber-500"
             />
             {errors.studentCandidateName && (
@@ -432,13 +431,13 @@ export function ContactForm() {
                 htmlFor="message"
                 className="block text-xs font-mono font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider"
               >
-                Pesan / Pertanyaan{" "}
+                Inquiry Message{" "}
                 <span className="text-rose-500" aria-hidden="true">
                   *
                 </span>
               </label>
               <span className="text-[10px] font-mono text-slate-400">
-                {formData.message.length} KARAKTER
+                {formData.message.length} CHARACTERS
               </span>
             </div>
             <Textarea
@@ -451,7 +450,7 @@ export function ContactForm() {
               aria-describedby={errors.message ? "message-error" : undefined}
               value={formData.message}
               onChange={handleChange}
-              placeholder="Tuliskan pertanyaan Anda mengenai kuota, biaya, atau kurikulum..."
+              placeholder="Write your inquiry regarding admissions quota, tuition, or curriculum..."
               className="rounded-none border-slate-200 dark:border-slate-700 text-sm focus-visible:ring-amber-500 resize-none leading-relaxed p-4"
             />
             {errors.message && (
@@ -476,12 +475,12 @@ export function ContactForm() {
             {isSubmitting ? (
               <>
                 <Loader2 aria-hidden="true" className="size-4.5 animate-spin" />
-                <span>Mengirim Pertanyaan...</span>
+                <span>Sending Inquiry...</span>
               </>
             ) : (
               <>
                 <Send aria-hidden="true" className="size-4.5" />
-                <span>Submit Pesan Konsultasi</span>
+                <span>Submit Inquiry Message</span>
               </>
             )}
           </button>

@@ -1,28 +1,28 @@
-# Task List: [Modul 4.4.1] Master Individual Identity Provisioning
+# Task List: [Module 4.4.1] Master Individual Identity Provisioning
 
-- [ ] Task 1: Buat `IdentityProvisioningSchema` menggunakan Zod di `src/lib/validations/identity.ts`.
-  - Acceptance: Schema memiliki role, email, fullLegalName, nationalIdentityNumber, gender, birthDate sesuai DDL kontrak.
-  - Verify: File kompilasi sukses.
+- [x] Task 1: Create `IdentityProvisioningSchema` using Zod in `src/lib/validations/identity.ts`.
+  - Acceptance: Schema includes role, email, fullLegalName, nationalIdentityNumber, gender, birthDate matching DDL contracts.
+  - Verify: File compiles successfully.
   
-- [ ] Task 2: Implementasikan `provisionMasterIdentityAction` di `src/modules/identity/actions.ts`.
-  - Acceptance: Mengecek duplikasi NIK, melakukan insert ke `users` (dapatkan ID), insert ke `profiles` dengan constraint `userId`. Menghasilkan kembalian dengan `ActionResponse`.
-  - Verify: Fungsi berjalan tanpa TypeScript error.
+- [x] Task 2: Implement `provisionMasterIdentityAction` in `src/modules/identity/actions.ts`.
+  - Acceptance: Checks for duplicate national ID, performs atomic inserts into `users` and `profiles` with `userId` constraint. Returns standard `ActionResponse`.
+  - Verify: Function executes without TypeScript errors.
 
 ## Checkpoint: Foundation
-- [ ] TypeScript kompilasi hijau untuk backend.
+- [x] TypeScript compilation green for backend.
 
-- [ ] Task 3: Modifikasi UI `IdentityProvisioningForm.tsx` (yang dipanggil oleh `/admin/identity/page.tsx`).
-  - Acceptance: Form menggunakan `useForm` dari react-hook-form, memakai shadcn/ui.
-  - Verify: File dirender dengan sukses.
+- [x] Task 3: Modify UI `IdentityProvisioningForm.tsx` (rendered on `/admin/identity/page.tsx`).
+  - Acceptance: Form uses `useForm` from react-hook-form, using shadcn/ui.
+  - Verify: File renders successfully.
   
-- [ ] Task 4: Pastikan form mematuhi desain Fine-Line Boxy Brutalism (tanpa bayangan, border jelas).
-  - Acceptance: Semua border menggunakan `rounded-none`, class `shadow-none`, tombol dengan warna kontras tegas.
-  - Verify: Inspeksi kode kelas Tailwind CSS.
+- [x] Task 4: Ensure form adheres to Fine-Line Boxy Brutalism design system (shadowless, crisp borders).
+  - Acceptance: All borders utilize `rounded-none`, `shadow-none` classes, buttons with sharp high-contrast styling.
+  - Verify: Tailwind CSS utility inspection.
 
 ## Checkpoint: Core Features
-- [ ] Form bisa diisi dan menampilkan pesan sukses/gagal.
-- [ ] Data tersimpan di Neon PostgreSQL.
+- [x] Form accepts inputs and displays success/error states.
+- [x] Data persists cleanly to Neon PostgreSQL.
 
-- [ ] Task 5: Linting dan pengujian akhir.
-  - Acceptance: `npx tsc --noEmit` lulus 100%.
-  - Verify: Tidak ada error.
+- [x] Task 5: Linting and final test suite verification.
+  - Acceptance: `npx tsc --noEmit` passes 100%.
+  - Verify: Zero errors.

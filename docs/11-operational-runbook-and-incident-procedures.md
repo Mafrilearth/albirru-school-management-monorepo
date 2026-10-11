@@ -1,208 +1,208 @@
-> **Tujuan Dokumen:** Spesifikasi tata kelola operasional platform, topologi layanan terkelola, alur kerja pengiriman berkelanjutan, protokol migrasi skema basis data, prosedur mitigasi insiden darurat, pedoman orkestrasi agen pengodean otonom, serta mitigasi batas kuota gratis dan kontinjensi platform.
+> **Document Purpose:** Platform operational governance specification, managed cloud service topology, continuous delivery workflows, database schema migration protocols, emergency incident mitigation procedures, autonomous coding agent orchestration guidelines, complimentary tier quota mitigation, and platform contingencies.
 ---
 ## 1. Document Metadata
 | Attribute | Value | Description |
 |---|---|---|
-| **Document Title** | Operational Runbook and Incident Procedures | Judul statutori spesifikasi operasional sistem |
-| **Dashboard Reference** | `albirru-sis-web/README.md` | Dasbor tata kelola induk repositori |
-| **Specification Version** | 1.2.0 | Versi dasar prosedur operasional produksi dan tata kelola percabangan diperluas |
-| **Lifecycle State** | Approved (In Development) | Status kesiapan tata kelola operasional |
-| **File Path** | `/docs/11-operational-runbook-and-incident-procedures.md` | Jalur berkas dalam repositori |
+| **Document Title** | Operational Runbook and Incident Procedures | Statutory specification title for system operations |
+| **Dashboard Reference** | `albirru-sis-web/README.md` | Master repository governance dashboard |
+| **Specification Version** | 1.2.0 | Production operational procedures and extended branch governance baseline |
+| **Lifecycle State** | Approved (In Development) | Operational governance readiness state |
+| **File Path** | `/docs/11-operational-runbook-and-incident-procedures.md` | File path within repository |
 ---
 ## 2. Platform Operational Topology
-Infrastruktur sistem beroperasi sepenuhnya di atas platform awan terkelola (*managed serverless cloud*) yang dirancang untuk ketersediaan tinggi, eliminasi pemeliharaan server fisik, dan keandalan eksekusi dalam batas kuota gratis institusi:
+The system infrastructure operates entirely on managed serverless cloud services designed for high availability, zero physical server maintenance, and execution resilience within institutional complimentary quotas:
 | Operational Tier Classification | Dedicated Management Platform | Operational Responsibility Scope | Management Access Location |
 |---|---|---|---|
-| **Application Hosting Tier** | Vercel Platform | Pipeline kompilasi build, perutean edge, SSL, dan log runtime | Dasbor Vercel Proyek |
-| **Relational Database Tier** | Neon Serverless PostgreSQL | Mesin PostgreSQL 16+, pooling koneksi, dan pencadangan terkelola | Konsol Neon Proyek |
-| **Source and Continuous Delivery** | GitHub Actions | Repositori kode, perlindungan cabang, dan gerbang verifikasi otomatis | Repositori GitHub Proyek |
-| **Operational Telemetry** | Slack Integration | Notifikasi rilis produksi, kegagalan build, dan telemetri sistem | Saluran `#albirru-project-stream` |
+| **Application Hosting Tier** | Vercel Platform | Build compilation pipelines, edge routing, SSL termination, and runtime telemetry | Project Vercel Dashboard |
+| **Relational Database Tier** | Neon Serverless PostgreSQL | PostgreSQL 16+ engine, connection pooling, and managed snapshots | Project Neon Console |
+| **Source and Continuous Delivery** | GitHub Actions | Source versioning, branch protection, and automated verification gates | Project GitHub Repository |
+| **Operational Telemetry** | Slack Integration | Production release notices, build break alerts, and system telemetry | `#albirru-project-stream` Channel |
 ---
-## 3. Tata Kelola Percabangan dan Pengiriman Berkelanjutan (Branch Governance & Continuous Delivery)
-Dokumentasi ini menetapkan arsitektur dan spesifikasi tata kelola percabangan Git resmi yang mencakup lingkungan infrastruktur, arsitektur monorepo, inisiatif tim, integrasi otomatisasi pihak ketiga, pemulihan insiden, dan tata kelola rilis berdasarkan standar Trunk-Based Development, GitLab Flow, GitHub Flow, GitVersion, Semantic Versioning 2.0.0, dan Conventional Commits 1.0.0.
+## 3. Branch Governance and Continuous Delivery
+This section establishes the official Git branch governance architecture across infrastructure environments, monorepo packages, team initiatives, automated third-party integrations, incident mitigation, and release governance anchored in Trunk-Based Development, GitLab Flow, GitHub Flow, GitVersion, Semantic Versioning 2.0.0, and Conventional Commits 1.0.0.
 
-### 3.1 Taksonomi dan Matriks Klasifikasi Cabang Repositori
-Tabel taksonomi ini memetakan seluruh kategori cabang repositori beserta titik asal, tujuan integrasi, dan durasi keberadaannya:
+### 3.1 Repository Branch Taxonomy and Classification Matrix
+This taxonomy maps all repository branch categories, originating base branches, integration targets, and branch retention characteristics:
 
-| Kategori Cabang | Kunci Identifikasi | Titik Asal Percabangan | Target Integrasi Akhir | Karakteristik Retensi |
+| Branch Category | Identification Key | Branch Origin | Final Integration Target | Retention Characteristic |
 | --- | --- | --- | --- | --- |
-| Produksi | `main` | Inisialisasi repositori | Nihil | Permanen |
-| Pemulihan Bencana | `dr` | `main` | `main` | Permanen |
-| Uji Penerimaan Pengguna | `uat` | `staging` | `main` | Permanen |
-| Prapraproduksi | `staging` | `main` | `main` | Permanen |
-| Integrasi Mitra | `sandbox` | `staging` | Nihil | Permanen |
-| Integrasi Pengembangan | `dev` | `staging` | `staging` | Permanen |
-| Fitur Standar | `feat/` | `dev` | `dev` | Efemeral |
-| Inisiatif Lintas Tim | `epic/` | `dev` | `dev` | Efemeral |
-| Subfitur Bagian Epik | `subfeat/` | Cabang `epic/` terkait | Cabang `epic/` terkait | Efemeral |
-| Fitur Paket Monorepo | `feat/<lingkup>/` | `dev` | `dev` | Efemeral |
-| Eksperimen Flag Fitur | `experiment/` | `dev` | `dev` | Efemeral |
-| Perbaikan Cacat Standar | `fix/` | `dev` | `dev` | Efemeral |
-| Perbaikan Cacat Monorepo | `fix/<lingkup>/` | `dev` | `dev` | Efemeral |
-| Perbaikan Kritis Produksi | `hotfix/` | `main` | `main`, `staging`, dan `dev` | Efemeral |
-| Pembatalan Regresi Komit | `revert/` | Cabang terjadinya regresi | Cabang target pemulihan | Efemeral |
-| Rilis Distribusi Terjadwal | `release/` | `dev` | `staging` dan `main` | Efemeral |
-| Optimasi Performa | `perf/` | `dev` | `dev` | Efemeral |
-| Restrukturisasi Kode | `refactor/` | `dev` | `dev` | Efemeral |
-| Riset Kelayakan Teknis | `spike/` | `dev` | Nihil | Efemeral |
-| Draf Mandiri Pengembang | `users/<inisial>/` | `dev` | `dev` | Efemeral |
-| Pembaruan Dokumentasi | `docs/` | `dev` | `dev` | Efemeral |
-| Penulisan Modul Uji | `test/` | `dev` | `dev` | Efemeral |
-| Pemeliharaan Dependensi | `chore/` | `dev` | `dev` | Efemeral |
-| Konfigurasi Pipa Alur Kerja | `ci/` | `dev` | `dev` | Efemeral |
-| Pembaruan Dependensi Bot | `deps/` | `dev` | `dev` | Efemeral |
-| Modifikasi Berbantuan AI | `ai/` | `dev` | `dev` | Efemeral |
-| Dukungan Jangka Panjang | `support/` | Tag rilis spesifik | Cabang versi terkait | Permanen |
-| Kontribusi Eksternal Garpu | `external/` | `upstream/main` | `upstream/dev` | Efemeral |
+| Production | `main` | Repository initialization | None | Permanent |
+| Disaster Recovery | `dr` | `main` | `main` | Permanent |
+| User Acceptance Testing | `uat` | `staging` | `main` | Permanent |
+| Pre-Production / Staging | `staging` | `main` | `main` | Permanent |
+| Partner Sandbox | `sandbox` | `staging` | None | Permanent |
+| Development Integration | `dev` | `staging` | `staging` | Permanent |
+| Standard Feature | `feat/` | `dev` | `dev` | Ephemeral |
+| Cross-Team Initiative | `epic/` | `dev` | `dev` | Ephemeral |
+| Epic Subfeature | `subfeat/` | Associated `epic/` branch | Associated `epic/` branch | Ephemeral |
+| Monorepo Package Feature | `feat/<scope>/` | `dev` | `dev` | Ephemeral |
+| Feature Flag Experiment | `experiment/` | `dev` | `dev` | Ephemeral |
+| Standard Defect Fix | `fix/` | `dev` | `dev` | Ephemeral |
+| Monorepo Defect Fix | `fix/<scope>/` | `dev` | `dev` | Ephemeral |
+| Critical Production Hotfix | `hotfix/` | `main` | `main`, `staging`, and `dev` | Ephemeral |
+| Commit Regression Revert | `revert/` | Branch where regression occurred | Recovery target branch | Ephemeral |
+| Scheduled Distribution Release | `release/` | `dev` | `staging` and `main` | Ephemeral |
+| Performance Optimization | `perf/` | `dev` | `dev` | Ephemeral |
+| Codebase Restructuring | `refactor/` | `dev` | `dev` | Ephemeral |
+| Feasibility Spike Research | `spike/` | `dev` | None | Ephemeral |
+| Developer Local Draft | `users/<initials>/` | `dev` | `dev` | Ephemeral |
+| Documentation Modification | `docs/` | `dev` | `dev` | Ephemeral |
+| Test Suite Module | `test/` | `dev` | `dev` | Ephemeral |
+| Project Dependency Chore | `chore/` | `dev` | `dev` | Ephemeral |
+| CI Pipeline Workflow | `ci/` | `dev` | `dev` | Ephemeral |
+| Automated Bot Dependency Update | `deps/` | `dev` | `dev` | Ephemeral |
+| AI-Assisted Modification | `ai/` | `dev` | `dev` | Ephemeral |
+| Long-Term Support Maintenance | `support/` | Specific release tag | Associated release branch | Permanent |
+| External Fork Contribution | `external/` | `upstream/main` | `upstream/dev` | Ephemeral |
 
-**Prinsip Pemisahan Kategori:**
-1. Cabang berstatus permanen merefleksikan alokasi server fisik dan gerbang promosi lingkungan.
-2. Cabang berstatus efemeral merefleksikan isolasi unit modifikasi kode sumber yang wajib dimusnahkan pascaintegrasi.
+**Category Separation Principles:**
+1. Permanent branches correspond to physical infrastructure allocations and environment promotion gates.
+2. Ephemeral branches isolate units of source modification that must be deleted post-integration.
 
 ---
 
-### 3.2 Rumus Sintaksis Penamaan Cabang Berbagai Kondisi
-Tabel formula sintaksis ini merinci formula notasi penamaan cabang untuk seluruh skenario rekayasa perangkat lunak:
+### 3.2 Branch Naming Syntax Formulas
+This syntax table specifies the exact naming notations for all software engineering scenarios:
 
-| Kondisi Rekayasa | Formula Sintaksis Baku | Contoh Penerapan Riil |
+| Engineering Scenario | Standard Syntax Formula | Real-World Application Example |
 | --- | --- | --- |
-| Lingkungan Produksi | `main` | `main` |
-| Lingkungan Pemulihan Bencana | `dr` | `dr` |
-| Lingkungan Uji Penerimaan Pengguna | `uat` | `uat` |
-| Lingkungan Prapraproduksi | `staging` | `staging` |
-| Lingkungan Integrasi Mitra | `sandbox` | `sandbox` |
-| Lingkungan Pengembangan Internal | `dev` | `dev` |
-| Fitur Repositori Tunggal | `feat/<id-tiket>-<deskripsi>` | `feat/DEV-101-auth-oauth2` |
-| Fitur Inisiatif Lintas Tim | `epic/<id-tiket>-<deskripsi>` | `epic/DEV-200-banking-migration` |
-| Subfitur Bagian Epik | `subfeat/<id-tiket>-<deskripsi>` | `subfeat/DEV-201-ledger-table` |
-| Fitur Paket Monorepo | `feat/<lingkup>/<id-tiket>-<deskripsi>` | `feat/billing/DEV-301-invoice-pdf` |
-| Eksperimen Flag Fitur | `experiment/<id-tiket>-<deskripsi>` | `experiment/DEV-302-new-checkout-ab` |
-| Perbaikan Cacat Repositori Tunggal | `fix/<id-tiket>-<deskripsi>` | `fix/DEV-102-memory-leak` |
-| Perbaikan Cacat Paket Monorepo | `fix/<lingkup>/<id-tiket>-<deskripsi>` | `fix/auth/DEV-303-session-null` |
-| Penanganan Insiden Produksi | `hotfix/<id-tiket>-<deskripsi>` | `hotfix/INC-911-sqli-patch` |
-| Pembatalan Regresi Komit | `revert/<id-tiket>-<deskripsi>` | `revert/DEV-103-rollback-migration` |
-| Penyiapan Rilis Versi | `release/v<mayor>.<minor>.<patch>` | `release/v2.4.0` |
-| Peningkatan Efisiensi Kode | `perf/<id-tiket>-<deskripsi>` | `perf/DEV-104-cache-redis` |
-| Restrukturisasi Basis Kode | `refactor/<id-tiket>-<deskripsi>` | `refactor/DEV-105-clean-handler` |
-| Riset Prototipe Kelayakan | `spike/<id-tiket>-<deskripsi>` | `spike/DEV-106-wasm-parser` |
-| Isolasi Eksperimen Pengembang | `users/<inisial>/<deskripsi>` | `users/budi/dark-mode-test` |
-| Modifikasi Berkas Dokumentasi | `docs/<id-tiket>-<deskripsi>` | `docs/DEV-107-swagger-spec` |
-| Penulisan Modul Pengujian | `test/<id-tiket>-<deskripsi>` | `test/DEV-108-payment-e2e` |
-| Pemeliharaan Dependensi Proyek | `chore/<id-tiket>-<deskripsi>` | `chore/DEV-109-upgrade-node20` |
-| Penyetelan Konfigurasi Pipa | `ci/<id-tiket>-<deskripsi>` | `ci/DEV-110-matrix-build` |
-| Otomasi Pembaruan Bot | `deps/<nama-pustaka>-v<versi>` | `deps/lodash-v4.17.21` |
-| Modifikasi Berbantuan AI | `ai/<id-tiket>-<deskripsi>` | `ai/DEV-111-gen-unit-test` |
-| Dukungan Pemeliharaan Versi Lama | `support/v<mayor>.<minor>.x` | `support/v1.2.x` |
-| Kontribusi Repositori Terpisah | `external/<id-isu>-<deskripsi>` | `external/GH-504-cors-fix` |
+| Production Environment | `main` | `main` |
+| Disaster Recovery Environment | `dr` | `dr` |
+| User Acceptance Testing Environment | `uat` | `uat` |
+| Pre-Production Staging Environment | `staging` | `staging` |
+| Partner Integration Sandbox | `sandbox` | `sandbox` |
+| Internal Development Integration | `dev` | `dev` |
+| Single-Repo Feature | `feat/<ticket-id>-<description>` | `feat/DEV-101-auth-oauth2` |
+| Cross-Team Initiative Feature | `epic/<ticket-id>-<description>` | `epic/DEV-200-banking-migration` |
+| Epic Subfeature | `subfeat/<ticket-id>-<description>` | `subfeat/DEV-201-ledger-table` |
+| Monorepo Package Feature | `feat/<scope>/<ticket-id>-<description>` | `feat/billing/DEV-301-invoice-pdf` |
+| Feature Flag Experiment | `experiment/<ticket-id>-<description>` | `experiment/DEV-302-new-checkout-ab` |
+| Single-Repo Defect Fix | `fix/<ticket-id>-<description>` | `fix/DEV-102-memory-leak` |
+| Monorepo Package Defect Fix | `fix/<scope>/<ticket-id>-<description>` | `fix/auth/DEV-303-session-null` |
+| Production Hotfix Incident | `hotfix/<ticket-id>-<description>` | `hotfix/INC-911-sqli-patch` |
+| Commit Regression Revert | `revert/<ticket-id>-<description>` | `revert/DEV-103-rollback-migration` |
+| Version Release Preparation | `release/v<major>.<minor>.<patch>` | `release/v2.4.0` |
+| Code Performance Enhancement | `perf/<ticket-id>-<description>` | `perf/DEV-104-cache-redis` |
+| Codebase Restructuring | `refactor/<ticket-id>-<description>` | `refactor/DEV-105-clean-handler` |
+| Technical Spike Feasibility | `spike/<ticket-id>-<description>` | `spike/DEV-106-wasm-parser` |
+| Developer Sandbox Isolation | `users/<initials>/<description>` | `users/budi/dark-mode-test` |
+| Documentation File Updates | `docs/<ticket-id>-<description>` | `docs/DEV-107-swagger-spec` |
+| Test Suite Implementation | `test/<ticket-id>-<description>` | `test/DEV-108-payment-e2e` |
+| Dependency Maintenance Chore | `chore/<ticket-id>-<description>` | `chore/DEV-109-upgrade-node20` |
+| Pipeline Configuration Tuning | `ci/<ticket-id>-<description>` | `ci/DEV-110-matrix-build` |
+| Automated Bot Dependency Update | `deps/<pkg-name>-v<version>` | `deps/lodash-v4.17.21` |
+| AI-Assisted Modification | `ai/<ticket-id>-<description>` | `ai/DEV-111-gen-unit-test` |
+| Legacy Long-Term Support | `support/v<major>.<minor>.x` | `support/v1.2.x` |
+| External Repository Fork | `external/<issue-id>-<description>` | `external/GH-504-cors-fix` |
 
-1. **Batasan Pembentuk Variabel:**
-    - Komponen `<id-tiket>` menggunakan nomor identitas resmi pelacak pekerjaan.
-    - Komponen `<lingkup>` menggunakan nama folder paket mandiri pada struktur monorepo.
-    - Komponen `<deskripsi>` menggunakan format kebab-case huruf kecil.
-2. **Restriksi Notasi Simbol:**
-    - Karakter huruf kapital, spasi kosong, garis bawah, dan karakter nonalfanumerik dilarang.
+1. **Variable Component Constraints:**
+    - The `<ticket-id>` component uses official work-tracking issue identifiers.
+    - The `<scope>` component corresponds to autonomous package directory names within monorepo structure.
+    - The `<description>` component uses lowercase kebab-case formatting.
+2. **Character Notation Restrictions:**
+    - Uppercase characters, whitespace, underscores, and non-alphanumeric symbols are prohibited in branch descriptions.
 
 ---
 
-### 3.3 Protokol Siklus Hidup Eksekusi Alur Kerja
-Tabel protokol ini memetakan urutan instruksi operasional Git dari pembentukan awal hingga penghapusan cabang:
+### 3.3 Workflow Lifecycle Execution Protocol
+This operational protocol outlines the sequential Git commands from creation through post-merge deletion:
 
-| Tahapan Operasional | Instruksi Baris Perintah Git Baku | Kriteria Keberhasilan Validasi |
+| Operational Stage | Standard Git CLI Command | Validation Success Criteria |
 | --- | --- | --- |
-| Sinkronisasi Hulu | `git checkout dev && git pull --ff-only origin dev` | Salinan lokal mutakhir |
-| Inisiasi Cabang Kerja | `git checkout -b <nama-cabang> dev` | Kepala cabang berada pada posisi komit terbaru |
-| Perekaman Perubahan | `git commit -m "<tipe>(<lingkup>): <deskripsi>"` | Pesan komit mematuhi format baku |
-| Rekonsiliasi Linear | `git fetch origin && git rebase origin/dev` | Riwayat garis cabang lurus tanpa percabangan |
-| Publikasi Jarak Jauh | `git push origin <nama-cabang>` | Cabang terdaftar pada repositori peladen |
-| Penghapusan Pascaproses | `git branch -d <nama-cabang>` | Jejak cabang lokal terhapus tuntas |
+| Upstream Sync | `git checkout dev && git pull --ff-only origin dev` | Local copy is fully up to date |
+| Work Branch Initiation | `git checkout -b <branch-name> dev` | Branch HEAD points to latest synced commit |
+| Change Recording | `git commit -m "<type>(<scope>): <description>"` | Commit message adheres to Conventional Commits |
+| Linear Reconciliation | `git fetch origin && git rebase origin/dev` | Linear commit history without merge bubbles |
+| Remote Publication | `git push origin <branch-name>` | Branch is published on upstream remote |
+| Post-Merge Deletion | `git branch -d <branch-name>` | Local branch reference cleanly purged |
 
-1. **Disiplin Tata Urut Operasional:**
-    - Inisiasi cabang kerja wajib mengambil titik tolak dari cabang basis yang telah tersinkronisasi.
-    - Penyelesaian konflik integrasi wajib dieksekusi melalui strategi rebase sebelum pembukaan Pull Request.
+1. **Sequential Operational Discipline:**
+    - Initiating a working branch must always branch off a freshly synchronized base branch.
+    - Resolving integration conflicts must be executed via rebase strategy prior to opening a Pull Request.
 
 ---
 
-### 3.4 Parameter Gerbang Kendali Mutu Integrasi
-Tabel parameter ini menetapkan kriteria ambang batas verifikasi mutlak sebelum penggabungan kode disetujui:
+### 3.4 Integration Quality Gate Parameters
+This parameters table specifies mandatory verification thresholds before code merges are authorized:
 
-| Parameter Evaluasi | Batas Ambang Minimal | Instrumen Penegakan |
+| Evaluation Parameter | Minimum Threshold | Enforcement Instrument |
 | --- | --- | --- |
-| Uji Otomatis Unit dan Integrasi | 100% Lolos | Continuous Integration |
-| Cakupan Pengujian Kode Sumber | 80% Lolos | Code Coverage Analyzer |
-| Tinjauan Kode Manusia | 1 Persetujuan Sah | Pull Request Review Protection |
-| Integritas Kriptografis Komit | Lolos Audit GPG | Cryptographic Verification |
-| Metode Integrasi Akhir | Squash and merge | Branch Protection Rule |
+| Automated Unit & Integration Tests | 100% Pass Rate | Continuous Integration |
+| Source Code Test Coverage | 80% Coverage | Code Coverage Analyzer |
+| Human Peer Code Review | 1 Valid Approval | Pull Request Review Protection |
+| Cryptographic Commit Integrity | Verified GPG Signature | Cryptographic Verification |
+| Final Integration Strategy | Squash and merge | Branch Protection Rule |
 
-1. **Ketentuan Integrasi Mutlak:**
-    - Penggabungan kode hanya diizinkan apabila seluruh parameter pengujian memberikan status lulus.
-    - Riwayat komit pada cabang efemeral wajib disatukan menjadi satu komit atomik pada cabang target.
+1. **Mandatory Integration Rules:**
+    - Code integration is authorized exclusively when all testing parameters pass.
+    - Commit history on ephemeral branches must be squashed into a single atomic commit upon merging to target branches.
 
 ---
 
-### 3.5 Alur Kerja Promosi Lingkungan dan Pengiriman Berkelanjutan
-Komitmen langsung (*direct commit*) ke cabang utama (`main`) maupun cabang terlindungi (`staging`, `dev`) dilarang keras oleh kebijakan proteksi cabang repositori. Seluruh perubahan kode bergerak melalui gerbang promosi lingkungan:
-1. **Inisialisasi Cabang Efemeral:** Buat cabang fitur/perbaikan terisolasi dari cabang `dev` tersinkronisasi (`git checkout -b <nama-cabang> dev`) sesuai notasi baku.
-2. **Pra-Verifikasi Lokal:** Jalankan verifikasi tipe statis TypeScript (`tsc --noEmit`), audit linting kode (`eslint`), dan rangkaian pengujian unit lokal sebelum membuka permohonan penggabungan (*pull request*).
-3. **Pembukaan Pull Request ke `dev`:** Ajukan pull request ke cabang `dev`. Tindakan ini memicu eksekusi otomatis seluruh gerbang verifikasi GitHub Actions.
-4. **Promosi ke `staging` (Prapraproduksi):** Melalui cabang `release/` yang stabil, kode diintegrasikan ke `staging` untuk pengujian integrasi menyeluruh dan inspeksi *preview deployment* Vercel.
-5. **Uji Penerimaan Pengguna (`uat`):** Cabang `uat` yang berpangkal dari `staging` digunakan untuk validasi fungsional civitas sekolah sebelum otorisasi rilis produksi.
-6. **Penggabungan ke Produksi (`main`):** Setelah seluruh gerbang uji mutu lulus mutlak, lakukan merger pull request ke `main` menggunakan strategi *Squash and Merge*. Jaringan Vercel secara otomatis mendistribusikan kode terbaru ke alamat produksi resmi (`sd-albirru.vercel.app`).
-7. **Verifikasi Telemetri:** Konfirmasi penerimaan pesan keberhasilan rilis yang dipancarkan secara otomatis ke saluran Slack `#albirru-project-stream`.
+### 3.5 Environment Promotion and Continuous Delivery Flow
+Direct commits to production (`main`) or protected integration branches (`staging`, `dev`) are strictly prohibited by repository protection rules. All changes progress through environment promotion gates:
+1. **Ephemeral Branch Initiation:** Create an isolated feature/fix branch branched off synchronized `dev` (`git checkout -b <branch-name> dev`) using standard syntax.
+2. **Local Pre-Verification:** Execute static TypeScript compilation (`tsc --noEmit`), ESLint audits, and local unit test suites prior to opening a pull request.
+3. **Pull Request Submission to `dev`:** Open a pull request against `dev`. This triggers all GitHub Actions automated verification gates.
+4. **Promotion to `staging` (Pre-Production):** Via stable `release/` branches, code integrates into `staging` for comprehensive integration testing and Vercel preview deployment inspections.
+5. **User Acceptance Testing (`uat`):** A `uat` branch stemming from `staging` is utilized for operational acceptance testing by school administrators prior to production release authorization.
+6. **Production Integration (`main`):** Once all quality gates pass, merge the pull request into `main` using *Squash and Merge*. Vercel edge networks immediately deploy latest assets to the official production URL (`sd-albirru.vercel.app`).
+7. **Telemetry Verification:** Verify receipt of automated production release notices broadcast to `#albirru-project-stream`.
 ---
 ## 4. Database Migration and Schema Management Protocol
-Modifikasi skema basis data relasional wajib menerapkan pola migrasi progresif kompatibel-mundur (*backward-compatible progressive migration*) guna menjamin layanan beroperasi tanpa henti (*zero-downtime*):
+Relational database modifications must follow a backward-compatible progressive migration pattern to guarantee zero-downtime operation:
 ### 4.1 Zero-Downtime Schema Modification Procedure
-- **Fase 1 (Eksekusi Migrasi Aditif):** Terapkan perubahan skema non-destruktif (seperti penambahan kolom baru bernilai *nullable* atau pembuatan tabel independen baru) sebelum kode aplikasi yang mengonsumsinya diterapkan ke produksi.
-- **Fase 2 (Penyebaran Kode Aplikasi):** Rilis kode aplikasi baru yang menulis ke struktur skema lama maupun skema baru secara paralel jika memproses transisi rekaman aktif.
-- **Fase 3 (Pembersihan Migrasi Subtraktif):** Setelah kode aplikasi berjalan stabil di produksi, jalankan migrasi pembersihan untuk menghentikan kolom usang atau batasan integritas yang didepresiasi.
+- **Phase 1 (Additive Migration Execution):** Apply non-destructive schema changes (such as adding nullable columns or creating new independent tables) before deploying application code that consumes them.
+- **Phase 2 (Application Code Deployment):** Deploy application updates writing to both legacy and updated schema structures in parallel when handling active record transitions.
+- **Phase 3 (Subtractive Migration Cleanup):** Once the application stabilizes in production, execute cleanup migrations to retire deprecated columns or integrity constraints.
 ### 4.2 Automated Database Backup and Snapshot Schedule
-- **Pencadangan Otomatis Harian:** Snapshot harian basis data berjalan otomatis pada tengah malam melalui infrastruktur terkelola Neon.
-- **Pencadangan Manual Pra-Migrasi:** Sebelum mengeksekusi migrasi struktural besar, buat snapshot cadangan manual sesuai permintaan (*on-demand snapshot*) melalui konsol manajemen Neon.
+- **Automated Daily Snapshots:** Daily database snapshots run automatically at midnight through Neon managed infrastructure.
+- **Pre-Migration Manual Snapshots:** Prior to executing major structural migrations, create an on-demand manual snapshot via the Neon management console.
 ---
 ## 5. Emergency Incident Management and Disaster Recovery
 ### 5.1 Incident Severity Classification Framework
 | Severity Level | Operational Impact Scope | Incident Response Target | Escalation Notification Protocol |
 |---|---|---|---|
-| **Severity 1 (Critical)** | Platform lumpuh total, pencatatan presensi terblokir, atau koneksi basis data terputus | Kurang dari 30 menit | Peringatan darurat instan ke saluran `#albirru-project-stream` |
-| **Severity 2 (Major)** | Modul fungsional terdegradasi (seperti kalkulasi nilai terhambat) dengan alternatif tersedia | Kurang dari 2 jam | Pencatatan tiket operasional di Linear dengan prioritas *Urgent* |
-| **Severity 3 (Minor)** | Defek visual kosmetik, peringatan masukan non-pemblokir, atau anomali teks mikro | Kurang dari 24 jam | Pencatatan tiket tugas standar di Linear pada siklus sprint berjalan |
+| **Severity 1 (Critical)** | Complete platform outage, attendance tracking blocked, or database connection severed | Under 30 minutes | Instant emergency alert to `#albirru-project-stream` |
+| **Severity 2 (Major)** | Functional module degradation (such as grade calculations blocked) with workarounds available | Under 2 hours | Urgent operational ticket logged in Linear |
+| **Severity 3 (Minor)** | Cosmetic visual defects, non-blocking form warnings, or microcopy anomalies | Under 24 hours | Standard task ticket logged in Linear within active sprint |
 ### 5.2 Application Instant Rollback Procedure
-1. **Konfirmasi Gangguan:** Verifikasi degradasi sistem melalui log galat runtime pada konsol manajemen Vercel atau laporan insiden di Slack.
-2. **Pemilihan Titik Rilis Stabil:** Buka riwayat deployment proyek di konsol Vercel dan tentukan versi rilis terverifikasi terakhir sebelum kegagalan terjadi.
-3. **Promosi Rilis Cepat:** Eksekusi aksi promosi (*instant rollback promotion*). Jaringan edge Vercel seketika mengalihkan lalu lintas global ke rilis stabil dalam hitungan detik.
-4. **Remediasi Kode Sumber:** Batalkan (*revert*) pull request penyebab galat pada repositori GitHub, selidiki akar masalah secara lokal, dan catat tindakan perbaikan di Linear.
+1. **Outage Confirmation:** Confirm system degradation via runtime error logs in Vercel console or incident reports in Slack.
+2. **Stable Release Selection:** Inspect project deployment history in Vercel and identify the last verified stable deployment before the failure occurred.
+3. **Instant Rollback Promotion:** Execute the instant rollback promotion action. Vercel edge networks immediately re-route global traffic to the stable release within seconds.
+4. **Source Remediation:** Revert the breaking pull request on GitHub, investigate root causes locally, and track remedial tasks in Linear.
 ### 5.3 Database Disaster Recovery Procedure
-1. **Akses Konsol Pencadangan:** Masuk ke panel direktori pencadangan basis data di konsol manajemen proyek Neon.
-2. **Pemilihan Titik Pemulihan:** Pilih snapshot cadangan bersih terakhir yang tercatat sebelum anomali mutasi atau kerusakan integritas relasional terjadi.
-3. **Eksekusi Restorasi:** Jalankan prosedur pemulihan terkelola (*managed point-in-time restore*) ke basis data utama.
-4. **Verifikasi Integritas Data:** Lakukan audit validasi atas integritas data civitas, keterikatan rombongan belajar, lembar presensi, dan buku rapor yang telah disahkan.
+1. **Backup Console Access:** Access the database snapshot directory within the Neon management console.
+2. **Restore Point Selection:** Select the cleanest snapshot recorded prior to mutation anomalies or relational corruption.
+3. **Restoration Execution:** Execute the managed point-in-time restore procedure to the primary database.
+4. **Data Integrity Verification:** Conduct validation audits across civitas records, classroom cohort links, attendance sheets, and finalized report cards.
 ---
 ## 6. Autonomous Coding Agent and Environment Orchestration
-Seluruh agen perangkat lunak otonom (*autonomous coding agents*) yang beroperasi pada repositori ini wajib mematuhi batasan operasional berikut guna mencegah kontaminasi kode:
-- **Prinsip Prioritas Dokumentasi:** Agen wajib membaca berkas spesifikasi teknis (`01-product-requirements-specification.md`, `02-software-architecture-and-technical-design.md`, dan `03-relational-database-specification.md`) sebelum memodifikasi kode atau membuat berkas baru.
-- **Isolasi Batas Tugas Tunggal:** Pekerjaan agen dibatasi secara ketat hanya pada batas tiket Linear yang ditugaskan. Agen dilarang keras melakukan refaktor struktural di luar cakupan tugas tanpa otorisasi tertulis.
-- **Validasi Pra-Commit Mandatori:** Setiap mutasi kode yang dibuat oleh agen wajib lolos uji kompilasi statis TypeScript penuh (`tsc --noEmit`), audit sintaks, dan seluruh rangkaian pengujian otomatis sebelum mengajukan pull request.
-- **Persyaratan Pertahanan Berlapis:** Seluruh penanganan masukan pengguna yang dibuat agen wajib menyertakan verifikasi skema Zod di sisi server serta pembungkus penanganan galat standar sistem.
+All autonomous coding agents operating within this repository must adhere strictly to these operational constraints to prevent codebase degradation:
+- **Documentation Precedence Principle:** Agents must read relevant technical specifications (`01-product-requirements-specification.md`, `02-software-architecture-and-technical-design.md`, and `03-relational-database-specification.md`) prior to modifying code or authoring new files.
+- **Single-Task Scope Isolation:** Agent scope is strictly confined to the assigned Linear ticket boundary. Agents are prohibited from performing out-of-scope structural refactors without explicit authorization.
+- **Mandatory Pre-Commit Validation:** Every code mutation by agents must pass full static TypeScript compilation (`tsc --noEmit`), syntax linting audits, and automated test suites before opening pull requests.
+- **Multi-Layer Defense Requirement:** All user input handlers authored by agents must include server-side Zod schema validation and standard system error boundary handling.
 ---
 ## 7. Complimentary Quota Exhaustion and Platform Incident Mitigations
 ### 7.1 Database Storage Quota Thresholds and Escalation
-- **Ambang Batas Peringatan (80% Kapasitas):** Peringatan otomatis dipancarkan ke saluran Slack `#albirru-project-stream` jika ruang basis data mencapai 400 MB (dari batas kuota 500 MB).
-- **Ambang Batas Kritis (90% Kapasitas):** Tim pengelola wajib mengeksekusi salah satu dari tiga prosedur eskalasi dalam jangka waktu maksimal 7 hari kerja:
-	- **Jalur 1 (Optimasi & Pengarsipan In-Tree — Biaya Rp0):** Ekspor rekaman presensi yang telah melewati batas retensi 3 tahun ke berkas arsip terkompresi, lalu eksekusi pembersihan ruang fisik (*VACUUM FULL*) via Neon SQL Editor untuk mereklamasi ruang penyimpanan cakram.
-	- **Jalur 2 (Peningkatan Layanan Terkelola — Skala Resmi):** Tingkatkan kapasitas komputasi Neon melalui anggaran Bantuan Operasional Sekolah (BOS). Kapasitas bertambah instan tanpa jeda padam (*zero downtime*) dan tanpa modifikasi kode.
-	- **Jalur 3 (Migrasi Mandiri Tanpa Keterikatan Vendor — Self-Hosted VPS):** Siapkan server VPS mandiri dengan kontainer PostgreSQL 16+, ekspor data via `pg_dump`, pulihkan via `pg_restore`, dan alihkan variabel lingkungan `DATABASE_URL` pada konsol Vercel tanpa perlu menulis ulang kode.
+- **Warning Threshold (80% Capacity):** Automated alert is dispatched to Slack channel `#albirru-project-stream` if database storage reaches 400 MB (of the 500 MB quota).
+- **Critical Threshold (90% Capacity):** The operations team must execute one of three escalation pathways within 7 business days:
+	- **Path 1 (In-Tree Optimization & Archiving — Zero Cost):** Export attendance records past the 3-year statutory retention limit to compressed archives, then execute disk space reclamation (`VACUUM FULL`) via Neon SQL Editor.
+	- **Path 2 (Managed Plan Upgrade — Official Scaling):** Scale Neon compute and storage tiers funded through School Operational Assistance (BOS) budgets. Capacity expands instantly with zero downtime and zero code changes.
+	- **Path 3 (Self-Hosted Migration — Self-Hosted VPS):** Provision an independent VPS container running PostgreSQL 16+, dump data via `pg_dump`, restore via `pg_restore`, and update `DATABASE_URL` in Vercel environment variables without code rewrites.
 ### 7.2 Connection Pool Starvation Mitigation
-- **Kanal Koneksi Terkelola:** Seluruh string koneksi basis data pada konfigurasi aplikasi wajib menggunakan Neon Connection Pooler guna mencegah kehabisan slot koneksi PostgreSQL langsung.
-- **Batas Waktu Eksekusi Transaksi:** Menetapkan batas waktu transaksi maksimal 3000 milidetik pada Drizzle ORM agar koneksi yang menggantung (*dangling connections*) diputus otomatis dan dikembalikan ke antrean pool.
+- **Managed Connection Pooling:** All database connection strings in application configuration must use the Neon Connection Pooler to prevent exhausting direct PostgreSQL connection slots.
+- **Transaction Timeout Safeguard:** Enforce a maximum transaction timeout of 3000ms in Drizzle ORM so dangling connections terminate automatically and return to the pool queue.
 ### 7.3 Document Attachment Storage Quota Mitigation
-- **Kompresi Dokumen Sisi Klien:** Skema validasi Zod membatasi ukuran maksimal berkas unggahan pendaftaran hingga 2 MB per berkas serta mewajibkan format terkompresi (PDF/WebP) sebelum dikirimkan ke server.
-- **Pengalihan Penyimpanan Dingin (Cold Storage Offloading):** Berkas lampiran admisi tahun ajaran lampau dipindahkan ke Cloudflare R2 (kuota gratis 10 GB per bulan tanpa biaya transfer data keluar).
+- **Client-Side Document Compression:** Zod validation schemas cap admissions upload sizes at 2 MB per file and enforce compressed formats (PDF/WebP) prior to server submission.
+- **Cold Storage Offloading:** Historical admissions document attachments are archived to Cloudflare R2 (10 GB monthly free quota with zero egress fees).
 ### 7.4 Public Ingress Protection and Rate Limiting
-- **Pembatasan Frekuensi Permintaan:** Menerapkan pembatasan frekuensi (*rate limiting*) pada rute `/admission` maksimal 5 pengiriman formulir per 15 menit per alamat protokol internet klien guna mencegah serangan spam formulir yang menghabiskan memori basis data.
-- **Verifikasi Otomasi Headless:** Mengintegrasikan widget Cloudflare Turnstile pada Client Island formulir pendaftaran publik guna memblokir bot pengisi data otomatis tanpa membebani biaya API.
+- **Request Rate Limiting:** Apply rate limiting on `/admission` routes capped at 5 form submissions per 15 minutes per client IP to prevent spam attacks and protect database memory.
+- **Headless Bot Protection:** Integrate Cloudflare Turnstile widgets on public admission client islands to block automated submission bots without API subscription fees.
 ### 7.5 Serverless Execution Budget and Batching
-- **Pemindahan Komputasi Agregat:** Kalkulasi rata-rata nilai semester dan rekonsiliasi presensi dieksekusi melalui kueri agregasi SQL langsung di basis data, bukan di-*looping* pada runtime serverless Next.js, guna menghemat kuota eksekusi bulanan Vercel.
-- **Pemrosesan Data Berkelompok (Chunk Processing):** Operasi massal seperti pembekuan rapor dijalankan bertahap per rombongan belajar (maksimal 30 siswa per eksekusi Server Action) untuk menghindari batas waktu henti paksa (*serverless timeout execution limit*).
+- **Database Aggregation Offloading:** Semester GPA calculations and attendance reconciliations execute directly via SQL database aggregation queries rather than in-memory loops on Next.js serverless runtimes, saving monthly execution quotas.
+- **Batch Chunk Processing:** Bulk operations such as report card finalization run in phased batches per cohort (maximum 30 students per Server Action execution) to prevent serverless execution timeout limits.
 ### 7.6 Academic Holiday Inactivity Guard
-- **Pencegahan Suspensi Proyek:** Untuk mencegah suspensi otomatis instans serverless PostgreSQL akibat ketiadaan aktivitas saat libur panjang semester, sistem menggunakan alur kerja GitHub Actions terjadwal (*scheduled cron job*) setiap 48 jam.
-- **Kueri Denyut Sistem:** Alur kerja memanggil rute `/api/health` yang menjalankan kueri baca ringan (`SELECT 1`) guna menjaga status proyek tetap aktif secara terus-menerus tanpa intervensi manual.
+- **Project Suspension Guard:** To prevent automatic suspension of serverless PostgreSQL instances during extended school holiday intervals, the system runs a scheduled GitHub Actions cron job every 48 hours.
+- **System Heartbeat Query:** The workflow requests the `/api/health` endpoint executing a lightweight read query (`SELECT 1`) to keep the database instance active continuously without manual intervention.

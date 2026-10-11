@@ -1,4 +1,4 @@
-﻿import {
+import {
   CalendarCheck,
   Clock,
   ExternalLink,
@@ -15,16 +15,16 @@ import { ContactForm } from "@/components/forms/ContactForm";
 import { PageHeader } from "@/components/layout/PageHeader";
 
 export const metadata: Metadata = {
-  title: "Kontak, Lokasi & Konsultasi Admissions",
+  title: "Contact, Location & Admissions Consultation",
   description:
-    "Hubungi panitia Admissions SD Al-Birru Sukabumi. Dapatkan konsultasi kurikulum tahfidz, informasi biaya registration, jadwal survei kampus, dan lokasi school.",
+    "Contact the Admissions committee of SD Al-Birru Sukabumi. Inquire about our tahfidz curriculum, tuition and registration details, schedule a campus tour, and view campus location.",
   alternates: {
     canonical: "/contact",
   },
   openGraph: {
-    title: "Kontak, Lokasi & Konsultasi Admissions | SD Al-Birru Sukabumi",
+    title: "Contact, Location & Admissions Consultation | SD Al-Birru Sukabumi",
     description:
-      "Hubungi sekretariat dan panitia Admissions SD Al-Birru Sukabumi. Konsultasi langsung via WhatsApp atau jadwalkan survei lingkungan kampus.",
+      "Contact the secretariat and Admissions committee of SD Al-Birru Sukabumi. Consult directly via WhatsApp or schedule an on-campus tour.",
     url: "/contact",
   },
 };
@@ -42,7 +42,7 @@ const breadcrumbSchema = {
     {
       "@type": "ListItem",
       position: 2,
-      name: "Kontak & Lokasi",
+      name: "Contact & Location",
       item: "https://sdalbirru.sch.id/contact",
     },
   ],
@@ -51,18 +51,18 @@ const breadcrumbSchema = {
 const visitProtocols = [
   {
     step: "01",
-    title: "Konfirmasi Janji Temu",
-    desc: "Beri tahu rencana kedatangan via WhatsApp H-1 agar tim penyambut dapat mendampingi optimal.",
+    title: "Confirm Appointment",
+    desc: "Notify us of your arrival plans via WhatsApp at least 1 day prior so our welcoming team can assist you optimally.",
   },
   {
     step: "02",
-    title: "Ajak Serta Calon Students",
-    desc: "Biarkan ananda merasakan kenyamanan ruang kelas, masjid, dan lingkungan belajar Al-Birru.",
+    title: "Bring Prospective Student",
+    desc: "Let your child experience the comfortable classrooms, mosque, and serene Al-Birru learning environment.",
   },
   {
     step: "03",
-    title: "Konsultasi Tatap Muka",
-    desc: "Diskusi mendalam seputar target tahfidz 3 juz, kesiapan ananda, dan pembiayaan transparan.",
+    title: "In-Person Consultation",
+    desc: "Engage in an in-depth dialogue regarding our 3-juz tahfidz goals, your child's developmental readiness, and transparent tuition.",
   },
 ];
 
@@ -74,13 +74,13 @@ export default function ContactPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <PageHeader
-        kicker="SEKRETARIAT // LAYANAN & KONSULTASI"
-        title="Hubungi Committee &amp; Kunjungi Kampus"
-        description="Kami siap menyambut dan mendampingi Bapak/Ibu untuk berdiskusi seputar masa depan pendidikan buah hati tercinta di SD Al-Birru Sukabumi."
+        kicker="SECRETARIAT // INQUIRIES & KONSULTASI"
+        title="Contact the Committee &amp; Visit Our Campus"
+        description="We warmly welcome you and are ready to assist you in discussing the future of your child's education at SD Al-Birru Sukabumi."
         badges={[
           { iconName: "map-pin", label: "Jl. Selabintana Km. 5 Sukabumi" },
-          { iconName: "clock", label: "Senin–Jumat: 07.30 – 15.00 WIB" },
-          { iconName: "phone", label: "Layanan Respon Cepat Humas" },
+          { iconName: "clock", label: "Monday–Friday: 07:30 AM – 03:00 PM" },
+          { iconName: "phone", label: "Fast-Response Admissions Team" },
         ]}
       />
 
@@ -91,7 +91,7 @@ export default function ContactPage() {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 id="contact-section-heading" className="sr-only">
-            Informasi Kontak &amp; Form Konsultasi
+            Contact Information &amp; Consultation Form
           </h2>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-14 lg:gap-16 items-start">
@@ -107,7 +107,7 @@ export default function ContactPage() {
                     <div className="flex items-center gap-2">
                       <span className="size-2 rounded-none bg-amber-500 animate-pulse" />
                       <h3 className="text-xl font-black text-slate-900 dark:text-slate-50 tracking-tight">
-                        Sekretariat &amp; Layanan Humas
+                        Secretariat &amp; Admissions Services
                       </h3>
                     </div>
                     <span className="text-[10px] font-mono text-slate-400 font-bold">
@@ -125,7 +125,7 @@ export default function ContactPage() {
                       </div>
                       <div>
                         <h4 className="font-bold text-slate-900 dark:text-slate-50">
-                          Alamat Kampus
+                          Campus Address
                         </h4>
                         <p className="mt-1 leading-relaxed text-xs sm:text-sm">
                           Jl. Selabintana Km. 5, Warnasari, Kec. Sukabumi,
@@ -143,13 +143,13 @@ export default function ContactPage() {
                       </div>
                       <div>
                         <h4 className="font-bold text-slate-900 dark:text-slate-50">
-                          Telepon &amp; WhatsApp
+                          Phone &amp; WhatsApp
                         </h4>
                         <p className="mt-1 text-xs sm:text-sm font-mono">
-                          Hotline TU: (0266) 123-456
+                          Front Office Hotline: (0266) 123-456
                         </p>
                         <p className="text-emerald-700 font-bold text-xs sm:text-sm font-mono mt-0.5">
-                          WA Humas: 0812-3456-7890
+                          WhatsApp Support: 0812-3456-7890
                         </p>
                       </div>
                     </div>
@@ -163,7 +163,7 @@ export default function ContactPage() {
                       </div>
                       <div>
                         <h4 className="font-bold text-slate-900 dark:text-slate-50">
-                          Email Resmi
+                          Official Email
                         </h4>
                         <p className="mt-1 text-xs sm:text-sm font-mono">
                           info@sdalbirru.sch.id
@@ -183,13 +183,13 @@ export default function ContactPage() {
                       </div>
                       <div>
                         <h4 className="font-bold text-slate-900 dark:text-slate-50">
-                          Jam Layanan Admissions &amp; Tata Usaha
+                          Admissions &amp; Administration Office Hours
                         </h4>
                         <p className="mt-1 text-xs sm:text-sm font-mono">
-                          Senin – Jumat: 07.30 – 15.00 WIB
+                          Monday – Friday: 07:30 AM – 03:00 PM
                         </p>
                         <p className="text-xs text-slate-500 font-mono mt-0.5">
-                          Sabtu: 08.00 – 12.00 WIB (Dengan Janji Temu)
+                          Saturday: 08:00 AM – 12:00 PM (By Appointment)
                         </p>
                       </div>
                     </div>
@@ -204,7 +204,7 @@ export default function ContactPage() {
                       className="flex items-center justify-center gap-2 w-full py-3.5 rounded-none bg-emerald-700 hover:bg-emerald-700 text-white font-bold text-xs sm:text-sm shadow-2xs transition-all hover:scale-[1.01]"
                     >
                       <MessageCircle aria-hidden="true" className="size-4.5" />
-                      <span>Chat Cepat ke WhatsApp Committee</span>
+                      <span>Fast Chat with Admissions Committee</span>
                       <ExternalLink
                         aria-hidden="true"
                         className="size-3.5 opacity-80"
@@ -227,11 +227,11 @@ export default function ContactPage() {
                         id="visit-protocols-heading"
                         className="text-xs font-bold text-slate-900 dark:text-slate-50 uppercase tracking-wider font-mono"
                       >
-                        PANDUAN KUNJUNGAN KAMPUS
+                        CAMPUS VISIT PROTOCOL
                       </h3>
                     </div>
                     <span className="text-[10px] font-mono text-slate-400">
-                      SURVEI
+                      TOUR
                     </span>
                   </div>
 
@@ -272,10 +272,10 @@ export default function ContactPage() {
                       id="campus-map-heading"
                       className="text-xs font-mono font-bold text-slate-900 dark:text-slate-50 uppercase tracking-wider"
                     >
-                      PETA LOKASI KAMPUS
+                      CAMPUS LOCATION MAP
                     </h3>
                     <span className="text-[10px] font-mono text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-none border border-emerald-200/60 font-bold">
-                      KOORDINAT AKTIF
+                      ACTIVE COORDINATES
                     </span>
                   </div>
 
@@ -304,7 +304,7 @@ export default function ContactPage() {
                       rel="noopener noreferrer"
                       className="mt-4 inline-flex items-center gap-2 px-4 py-2 rounded-none bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 dark:bg-slate-800 shadow-2xs transition-colors relative z-10"
                     >
-                      <span>Buka di Google Maps</span>
+                      <span>Open in Google Maps</span>
                       <ExternalLink
                         aria-hidden="true"
                         className="size-3.5 text-slate-400"
@@ -318,8 +318,8 @@ export default function ContactPage() {
                       className="size-4 text-emerald-700 shrink-0"
                     />
                     <span>
-                      Area parkir tertata &amp; lingkungan belajar asri bebas
-                      polusi
+                      Organized parking &amp; clean, eco-friendly learning
+                      environment
                     </span>
                   </div>
                 </SpotlightCard>

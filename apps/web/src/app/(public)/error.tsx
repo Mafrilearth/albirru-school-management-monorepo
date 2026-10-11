@@ -29,8 +29,8 @@ export default function ErrorBoundary({
       </h1>
 
       <p className="text-slate-500 dark:text-slate-400 max-w-md mb-8">
-        Maaf, sistem mendeteksi anomali saat memuat komponen ini. Klik tombol di
-        bawah untuk mencoba memuat ulang.
+        We apologize, the system encountered an unexpected error while loading
+        this component. Click the button below to reload.
       </p>
 
       <button

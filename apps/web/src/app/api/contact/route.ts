@@ -25,20 +25,21 @@ export async function POST(request: Request) {
     // Build personalized WhatsApp pre-filled link
     const waPhone = "6281234567890"; // Official School WhatsApp hotline
     const greetingText = `Assalamu'alaikum Admin SD Al-Birru,
-Nama saya: ${fullName}
-No. WhatsApp: ${phone}${email ? `\nEmail: ${email}` : ""}${studentCandidateName ? `\nNama Calon Ananda: ${studentCandidateName}` : ""}
+My Name: ${fullName}
+WhatsApp No: ${phone}${email ? `\nEmail: ${email}` : ""}${studentCandidateName ? `\nProspective Student Name: ${studentCandidateName}` : ""}
 
-Pesan Pertanyaan Admissions:
+Admissions Inquiry Message:
 "${message}"
 
-Mohon informasi lebih lanjut mengenai registration dan jadwal survei school. Terima kasih.`;
+Please provide further information regarding registration and campus visit schedules. Thank you.`;
 
     const encodedText = encodeURIComponent(greetingText);
     const whatsappUrl = `https://wa.me/${waPhone}?text=${encodedText}`;
 
     return NextResponse.json({
       success: true,
-      message: "Pesan Anda berhasil diterima oleh sistem SD Al-Birru.",
+      message:
+        "Your message has been successfully received by the SD Al-Birru system.",
       whatsappUrl,
     });
   } catch (error) {
@@ -46,7 +47,7 @@ Mohon informasi lebih lanjut mengenai registration dan jadwal survei school. Ter
     return NextResponse.json(
       {
         success: false,
-        message: "Terjadi kesalahan server saat memproses pesan Anda.",
+        message: "A server error occurred while processing your message.",
       },
       { status: 500 },
     );

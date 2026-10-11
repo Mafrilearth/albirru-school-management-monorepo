@@ -20,11 +20,11 @@ export function PublicNavbar() {
   const pathname = usePathname();
 
   const navLinks = [
-    { href: "/", label: "Beranda" },
-    { href: "/about", label: "Profil" },
-    { href: "/programs", label: "Program" },
-    { href: "/news", label: "Berita" },
-    { href: "/gallery", label: "Galeri" },
+    { href: "/", label: "Home" },
+    { href: "/about", label: "About" },
+    { href: "/programs", label: "Programs" },
+    { href: "/news", label: "News" },
+    { href: "/gallery", label: "Gallery" },
   ];
 
   return (
@@ -71,14 +71,14 @@ export function PublicNavbar() {
               variant="default"
               className="hidden xl:flex items-center justify-center px-8 h-full border-0 rounded-none bg-slate-900 hover:bg-slate-800 text-slate-50 dark:bg-slate-100 dark:hover:bg-slate-200 dark:text-slate-900 font-bold font-mono uppercase text-xs tracking-widest whitespace-nowrap outline-none shadow-none"
             >
-              <span>Kontak</span>
+              <span>Contact</span>
             </Button>
 
             {/* Mobile/Tablet Menu Trigger */}
             <Sheet>
               <SheetTrigger className="xl:hidden flex items-center justify-center h-full px-4 hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors">
                 <Menu className="size-5 text-slate-600 dark:text-slate-400" />
-                <span className="sr-only">Buka Menu</span>
+                <span className="sr-only">Open Menu</span>
               </SheetTrigger>
               <SheetContent
                 side="right"
@@ -86,7 +86,7 @@ export function PublicNavbar() {
               >
                 <SheetHeader className="p-6 border-b border-slate-200 dark:border-slate-800 text-start">
                   <SheetTitle className="font-mono text-base font-bold uppercase text-slate-900 dark:text-slate-100 tracking-widest text-start">
-                    Menu Utama
+                    Main Menu
                   </SheetTitle>
                 </SheetHeader>
                 <div className="flex-1 overflow-y-auto flex flex-col py-4">
@@ -103,7 +103,7 @@ export function PublicNavbar() {
                     href="/contact"
                     className="px-6 py-4 text-sm font-bold font-mono uppercase tracking-widest border-b border-slate-100 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-900 hover:text-amber-500 text-slate-600 dark:text-slate-400"
                   >
-                    Kontak
+                    Contact
                   </Link>
                 </div>
                 <div className="p-6 border-t border-slate-200 dark:border-slate-800 mt-auto">
@@ -112,7 +112,7 @@ export function PublicNavbar() {
                     nativeButton={false}
                     className="w-full border-0 rounded-none bg-amber-500 hover:bg-amber-400 text-slate-900 font-bold font-mono uppercase tracking-widest shadow-none"
                   >
-                    Pendaftaran Siswa Baru
+                    Admissions
                   </Button>
                 </div>
               </SheetContent>

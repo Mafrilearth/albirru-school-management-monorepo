@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Portal Sistem Informasi Sekolah | SD Al-Birru",
+  title: "School Information System Portal | SD Al-Birru",
   description:
-    "Portal Manajemen dan Sistem Informasi Akademik Terpadu SD Islam Terpadu Al-Birru.",
+    "Integrated Academic Management and Information System Portal for SD Al-Birru.",
 };
 
 export default function RootLayout({
@@ -13,7 +13,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="id">
+    <html lang="en">
       <body className="antialiased bg-slate-50 text-slate-900 font-sans min-h-screen">
         {children}
       </body>

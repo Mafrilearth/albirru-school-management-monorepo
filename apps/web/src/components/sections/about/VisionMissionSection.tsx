@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import {
   CheckCircle2,
@@ -17,64 +17,64 @@ export function VisionMissionSection() {
   const missionPoints = [
     {
       num: "01",
-      title: "Pondasi Aqidah & Ibadah",
-      desc: "Menanamkan aqidah Islam yang kokoh serta pembiasaan ibadah harian sesuai tuntunan Rasulullah ﷺ sejak usia dini.",
+      title: "Foundations of Faith & Worship",
+      desc: "Instilling deep-rooted Islamic faith and daily devotional habits modeled on the prophetic teachings of Rasulullah ﷺ from an early age.",
     },
     {
       num: "02",
-      title: "Tahfidzul Qur'an Bersanad",
-      desc: "Menyelenggarakan halaqah Al-Qur'an intensif dengan target minimal 3 juz mutqin, makhraj presisi, dan bertajwid.",
+      title: "Certified Sanad Tahfidzul Qur'an",
+      desc: "Delivering intensive Qur'anic halaqah sessions with a target of at least 3 mutqin juz, precise articulation (makharij), and verified tajweed.",
     },
     {
       num: "03",
-      title: "Kultivasi Adab & 7 Karakter",
-      desc: "Membudayakan adab islami, etika 5S, empati sosial, dan birrul walidain dalam keseharian school maupun keluarga.",
+      title: "Cultivation of Adab & 7 Core Virtues",
+      desc: "Institutionalizing Islamic manners, 5S etiquette, social empathy, and filial devotion (birrul walidain) across campus and home routines.",
     },
     {
       num: "04",
-      title: "Inkuiri Sains & Komputasi",
-      desc: "Mengembangkan nalar kritis sains, praktikum laboratorium alam, dan computational thinking melalui Curriculum Merdeka.",
+      title: "Scientific Inquiry & Computing",
+      desc: "Cultivating critical scientific reasoning, outdoor laboratory practicums, and algorithmic thinking through the National Curriculum.",
     },
     {
       num: "05",
-      title: "Sinergi Sahabat Pendidikan",
-      desc: "Membangun kemitraan harmonis antara asatidz, orang tua, dan lingkungan sekitar demi menjaga kemurnian fitrah anak.",
+      title: "Educational Community Synergy",
+      desc: "Fostering harmonious partnerships among faculty, parents, and the broader community to nurture each child's innate fitrah.",
     },
   ];
 
   const coreValues = [
     {
       letter: "B",
-      title: "Beriman & Bertaqwa",
-      desc: "Menjadikan tauhid dan syariat Islam sebagai pondasi utama seluruh aspek kehidupan dan adab menuntut ilmu.",
+      title: "Faith & Devotion",
+      desc: "Anchoring monotheistic belief (Tawhid) and Islamic ethics as the guiding foundation of all knowledge acquisition.",
       accent: "text-amber-500",
       glow: "rgba(245, 158, 11, 0.12)",
     },
     {
       letter: "I",
-      title: "Integritas & Adab",
-      desc: "Mengutamakan kejujuran, kesantunan, dan akhlakul karimah mendahului penyerapan ilmu formal akademik.",
+      title: "Integrity & Adab",
+      desc: "Prioritizing honesty, modesty, and noble character above mere academic acquisition.",
       accent: "text-emerald-500",
       glow: "rgba(16, 185, 129, 0.12)",
     },
     {
       letter: "R",
-      title: "Rajin & Tangguh",
-      desc: "Membangun ketekunan belajar, daya juang pantang menyerah, dan kegemaran membaca literasi bermanfaat.",
+      title: "Resilience & Diligence",
+      desc: "Building perseverance, resilient learning endurance, and an enduring passion for beneficial literature.",
       accent: "text-sky-500",
       glow: "rgba(14, 165, 233, 0.12)",
     },
     {
       letter: "R",
-      title: "Ramah & Peduli",
-      desc: "Menghadirkan lingkungan school ramah anak yang aman, asri, saling menyayangi, dan berempati sosial.",
+      title: "Respect & Compassion",
+      desc: "Providing a secure, nurturing, child-friendly school environment imbued with mutual kindness and social empathy.",
       accent: "text-purple-500",
       glow: "rgba(168, 85, 247, 0.12)",
     },
     {
       letter: "U",
-      title: "Unggul Berkarya",
-      desc: "Memacu setiap students untuk berprestasi maksimal dan percaya diri sesuai bakat unik anugerah Ilahi.",
+      title: "Unwavering Excellence",
+      desc: "Empowering every student to achieve their highest personal potential and creative confidence.",
       accent: "text-rose-500",
       glow: "rgba(244, 63, 94, 0.12)",
     },
@@ -90,18 +90,17 @@ export function VisionMissionSection() {
         <ScrollReveal direction="up" className="max-w-3xl mb-16 md:mb-20">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-none bg-slate-100 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 text-[11px] font-mono font-bold uppercase tracking-wider mb-5">
             <span className="size-1.5 rounded-none bg-amber-500 animate-pulse" />
-            <span>HALUAN // VISI, MISI &amp; NILAI INTI</span>
+            <span>FOUNDATION // VISION, MISSION &amp; CORE VALUES</span>
           </div>
           <h2
             id="vision-mission-heading"
             className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-950 dark:text-slate-50 tracking-tight leading-[1.12]"
           >
-            Arah Filosofis Pendidikan Terpadu
+            Philosophical Direction of Integrated Education
           </h2>
           <p className="mt-4 text-base sm:text-lg text-slate-600 dark:text-slate-400 leading-relaxed font-normal">
-            Pondasi konseptual yang melandasi seluruh denyut aktivitas belajar,
-            pembiasaan fitrah anak, dan perancangan kurikulum di SD Al-Birru
-            Sukabumi.
+            The conceptual foundation anchoring every learning pulse, child
+            habituation routine, and curriculum design at SD Al-Birru Sukabumi.
           </p>
         </ScrollReveal>
 
@@ -142,7 +141,7 @@ export function VisionMissionSection() {
                       <Compass className="size-6 text-amber-400 group-hover:rotate-45 transition-transform duration-300" />
                     </div>
                     <span className="font-mono text-[11px] font-bold text-amber-400 tracking-widest uppercase px-3 py-1.5 rounded-none bg-slate-900 border border-slate-800">
-                      VISI UTAMA 2026-2030
+                      CORE VISION 2026-2030
                     </span>
                   </div>
 
@@ -150,21 +149,21 @@ export function VisionMissionSection() {
                     id="vision-card-title"
                     className="text-2xl sm:text-3xl font-black text-white leading-snug tracking-tight"
                   >
-                    Terwujudnya Generasi Qur&apos;ani yang Bertaqwa, Berakhlak
-                    Mulia, Cerdas, dan Berwawasan Global.
+                    The Realization of a Qur&apos;anic Generation: Devout, Noble
+                    in Character, Intellectually Brilliant, and Globally Aware.
                   </h3>
 
                   <p className="mt-6 text-slate-300 text-sm sm:text-base leading-relaxed font-normal">
-                    Visi ini menjadi bintang penuntun kami dalam membentuk
-                    profil students yang kokoh spiritualnya, anggun akhlaknya,
-                    serta tanggap terhadap sains masa depan.
+                    This vision serves as our guiding North Star in cultivating
+                    students with unshakeable spirituality, refined ethics, and
+                    modern scientific competence.
                   </p>
                 </div>
 
                 <div className="relative z-10 mt-12 pt-6 border-t border-slate-800 flex items-center justify-between text-xs text-amber-400 font-mono">
                   <div className="flex items-center gap-2">
                     <Star className="size-4 fill-amber-400" />
-                    <span>Target 3 Juz Mutqin &amp; Akhlak Mulia</span>
+                    <span>Target: 3 Mutqin Juz &amp; Noble Character</span>
                   </div>
                   <ShieldCheck className="size-4 text-emerald-400" />
                 </div>
@@ -186,13 +185,13 @@ export function VisionMissionSection() {
               </div>
               <div>
                 <span className="text-emerald-700 text-[11px] font-bold uppercase tracking-wider font-mono">
-                  MISI OPERASIONAL
+                  OPERATIONAL MISSION
                 </span>
                 <h3
                   id="misi-subheading"
                   className="text-xl sm:text-2xl font-black text-slate-950 dark:text-slate-50 tracking-tight"
                 >
-                  5 Langkah Strategis Pembinaan Fitrah Anak
+                  5 Strategic Steps in Nurturing Child Fitrah
                 </h3>
               </div>
             </div>
@@ -224,8 +223,8 @@ export function VisionMissionSection() {
             <div className="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 text-xs text-slate-500 flex items-center gap-2 font-mono">
               <CheckCircle2 className="size-4 text-emerald-700 shrink-0" />
               <span>
-                Dievaluasi secara berkala untuk penjaminan mutu pendidikan
-                berkelanjutan
+                Evaluated periodically for continuous educational quality
+                assurance
               </span>
             </div>
           </motion.div>
@@ -246,11 +245,11 @@ export function VisionMissionSection() {
                 id="core-values-heading"
                 className="text-2xl sm:text-3xl font-black text-slate-950 dark:text-slate-50 tracking-tight"
               >
-                Nilai Inti Budaya Karakter (B - I - R - R - U)
+                Core Cultural Values (B - I - R - R - U)
               </h3>
             </div>
             <span className="text-xs text-slate-500 font-mono">
-              5 PILAR AKHLAKUL KARIMAH
+              5 PILLARS OF NOBLE CHARACTER
             </span>
           </ScrollReveal>
 
@@ -303,7 +302,7 @@ export function VisionMissionSection() {
                     </div>
 
                     <div className="relative z-10 mt-8 pt-3 border-t border-slate-100 dark:border-slate-800 text-[10px] text-slate-400 font-mono">
-                      PILAR #{idx + 1}
+                      PILLAR #{idx + 1}
                     </div>
                   </SpotlightCard>
                 </article>

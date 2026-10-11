@@ -58,11 +58,12 @@ export default function MasterIdentityProvisioningPage() {
         reset();
       } else {
         setErrorMessage(
-          response.error_descriptor?.message || "Gagal menyimpan identitas.",
+          response.error_descriptor?.message ||
+            "Failed to save identity record.",
         );
       }
     } catch (_err) {
-      setErrorMessage("Terjadi kesalahan sistem.");
+      setErrorMessage("A system error occurred.");
     } finally {
       setIsPending(false);
     }
@@ -77,18 +78,18 @@ export default function MasterIdentityProvisioningPage() {
               <CheckCircle2 className="size-8 text-emerald-600 dark:text-emerald-400" />
             </div>
             <h3 className="text-2xl font-black text-slate-950 dark:text-slate-50 tracking-tight">
-              Identitas Master Berhasil Ditambahkan
+              Master Identity Successfully Provisioned
             </h3>
             <p className="text-sm text-slate-600 dark:text-slate-400 max-w-md mx-auto">
-              Akun pengguna baru telah berhasil dimasukkan ke dalam sistem
-              dengan profil lengkap.
+              The new user account has been successfully registered in the
+              system with a complete profile.
             </p>
             <Button
               onClick={() => setIsSuccess(false)}
               variant="outline"
               className="mt-4 rounded-none h-11 shadow-none"
             >
-              Tambah Identitas Lainnya
+              Provision Another Identity
             </Button>
           </div>
         </div>
@@ -103,8 +104,8 @@ export default function MasterIdentityProvisioningPage() {
           Master Identity Provisioning
         </h1>
         <p className="text-slate-500 mt-2">
-          Tambahkan identitas baru untuk Siswa, Instruktur, atau Administrator
-          sistem ke dalam basis data utama.
+          Provision new identity records for students, instructors, or system
+          administrators in the primary database.
         </p>
       </div>
 
@@ -118,13 +119,13 @@ export default function MasterIdentityProvisioningPage() {
               {/* Email */}
               <Field orientation="vertical" data-invalid={!!errors.email}>
                 <FieldLabel htmlFor="email">
-                  Email Akun <span className="text-rose-500">*</span>
+                  Account Email <span className="text-rose-500">*</span>
                 </FieldLabel>
                 <FieldContent>
                   <Input
                     id="email"
                     type="email"
-                    placeholder="email@contoh.com"
+                    placeholder="email@example.com"
                     className="h-11 rounded-none shadow-none focus-visible:ring-1 focus-visible:ring-offset-0"
                     disabled={isPending}
                     {...register("email")}
@@ -138,7 +139,7 @@ export default function MasterIdentityProvisioningPage() {
               {/* Role */}
               <Field orientation="vertical" data-invalid={!!errors.role}>
                 <FieldLabel htmlFor="role">
-                  Peran Pengguna <span className="text-rose-500">*</span>
+                  User Role <span className="text-rose-500">*</span>
                 </FieldLabel>
                 <FieldContent>
                   <Controller
@@ -151,16 +152,18 @@ export default function MasterIdentityProvisioningPage() {
                         disabled={isPending}
                       >
                         <SelectTrigger className="h-11 rounded-none shadow-none focus-visible:ring-1 focus-visible:ring-offset-0">
-                          <SelectValue placeholder="Pilih Peran" />
+                          <SelectValue placeholder="Select Role" />
                         </SelectTrigger>
                         <SelectContent className="rounded-none shadow-sm">
                           <SelectItem value="System Administrator">
                             System Administrator
                           </SelectItem>
                           <SelectItem value="Instructor">
-                            Instruktur (Guru)
+                            Instructor (Teacher)
                           </SelectItem>
-                          <SelectItem value="Guardian">Wali Murid</SelectItem>
+                          <SelectItem value="Guardian">
+                            Parent / Guardian
+                          </SelectItem>
                           <SelectItem value="Public Guest">
                             Public Guest
                           </SelectItem>
@@ -179,12 +182,12 @@ export default function MasterIdentityProvisioningPage() {
                   data-invalid={!!errors.fullLegalName}
                 >
                   <FieldLabel htmlFor="fullLegalName">
-                    Nama Lengkap Resmi <span className="text-rose-500">*</span>
+                    Full Legal Name <span className="text-rose-500">*</span>
                   </FieldLabel>
                   <FieldContent>
                     <Input
                       id="fullLegalName"
-                      placeholder="Sesuai KTP / Akta Kelahiran"
+                      placeholder="As stated on legal identity document"
                       className="h-11 rounded-none shadow-none focus-visible:ring-1 focus-visible:ring-offset-0"
                       disabled={isPending}
                       {...register("fullLegalName")}
@@ -202,13 +205,13 @@ export default function MasterIdentityProvisioningPage() {
                 data-invalid={!!errors.nationalIdentityNumber}
               >
                 <FieldLabel htmlFor="nationalIdentityNumber">
-                  Nomor Induk Kependudukan (NIK){" "}
+                  National Identity Number (NIK){" "}
                   <span className="text-rose-500">*</span>
                 </FieldLabel>
                 <FieldContent>
                   <Input
                     id="nationalIdentityNumber"
-                    placeholder="16 Digit NIK"
+                    placeholder="16-Digit NIK"
                     maxLength={16}
                     className="h-11 rounded-none shadow-none focus-visible:ring-1 focus-visible:ring-offset-0"
                     disabled={isPending}
@@ -225,7 +228,7 @@ export default function MasterIdentityProvisioningPage() {
               {/* Gender */}
               <Field orientation="vertical" data-invalid={!!errors.gender}>
                 <FieldLabel htmlFor="gender">
-                  Jenis Kelamin <span className="text-rose-500">*</span>
+                  Gender <span className="text-rose-500">*</span>
                 </FieldLabel>
                 <FieldContent>
                   <Controller
@@ -238,11 +241,11 @@ export default function MasterIdentityProvisioningPage() {
                         disabled={isPending}
                       >
                         <SelectTrigger className="h-11 rounded-none shadow-none focus-visible:ring-1 focus-visible:ring-offset-0">
-                          <SelectValue placeholder="Pilih Jenis Kelamin" />
+                          <SelectValue placeholder="Select Gender" />
                         </SelectTrigger>
                         <SelectContent className="rounded-none shadow-sm">
-                          <SelectItem value="Male">Laki-Laki</SelectItem>
-                          <SelectItem value="Female">Perempuan</SelectItem>
+                          <SelectItem value="Male">Male</SelectItem>
+                          <SelectItem value="Female">Female</SelectItem>
                         </SelectContent>
                       </Select>
                     )}
@@ -257,7 +260,7 @@ export default function MasterIdentityProvisioningPage() {
               <div className="md:col-span-2">
                 <Field orientation="vertical" data-invalid={!!errors.birthDate}>
                   <FieldLabel htmlFor="birthDate">
-                    Tanggal Lahir <span className="text-rose-500">*</span>
+                    Date of Birth <span className="text-rose-500">*</span>
                   </FieldLabel>
                   <FieldContent>
                     <Input
@@ -290,10 +293,10 @@ export default function MasterIdentityProvisioningPage() {
                 {isPending ? (
                   <>
                     <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                    Menyimpan...
+                    Saving...
                   </>
                 ) : (
-                  "Simpan Identitas Master"
+                  "Save Master Identity"
                 )}
               </Button>
             </div>

@@ -36,7 +36,7 @@ export async function generateMetadata({
 
   if (!article) {
     return {
-      title: "Artikel Tidak Ditemukan | SD Al-Birru",
+      title: "Article Not Found | SD Al-Birru",
     };
   }
 
@@ -84,7 +84,7 @@ export default async function ArticleDetailPage({ params }: PageProps) {
     .slice(0, 3);
 
   const shareText = encodeURIComponent(
-    `${article.title} - Baca selengkapnya warta resmi SD Al-Birru Sukabumi:`,
+    `${article.title} - Read more official news from SD Al-Birru Sukabumi:`,
   );
 
   const articleStructuredData = {
@@ -157,7 +157,7 @@ export default async function ArticleDetailPage({ params }: PageProps) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Breadcrumb Navigation */}
         <nav
-          aria-label="Navigasi Jejak News"
+          aria-label="Breadcrumb Navigation"
           className="mb-10 flex items-center gap-2 text-xs font-mono text-slate-500"
         >
           <Link
@@ -168,7 +168,7 @@ export default async function ArticleDetailPage({ params }: PageProps) {
               aria-hidden="true"
               className="size-3.5 group-hover:-translate-x-1 transition-transform"
             />
-            <span>KEMBALI KE SEMUA WARTA</span>
+            <span>BACK TO ALL NEWS</span>
           </Link>
           <span className="text-slate-300">/</span>
           <span className="text-slate-400 truncate max-w-xs">
@@ -197,7 +197,7 @@ export default async function ArticleDetailPage({ params }: PageProps) {
 
               <div className="flex items-center gap-1.5 text-xs text-slate-500 font-mono">
                 <Clock aria-hidden="true" className="size-3.5 text-slate-400" />
-                <span>3 MENIT BACA</span>
+                <span>3 MIN READ</span>
               </div>
             </div>
 
@@ -220,14 +220,14 @@ export default async function ArticleDetailPage({ params }: PageProps) {
                     {article.author}
                   </p>
                   <p className="text-[11px] text-slate-400 font-mono">
-                    Humas &amp; Tim Redaksi SD Al-Birru
+                    Public Relations &amp; Editorial Team SD Al-Birru
                   </p>
                 </address>
               </div>
 
               <div className="hidden sm:flex items-center gap-1.5 text-[11px] text-emerald-700 font-mono bg-emerald-50 px-3 py-1.5 rounded-none border border-emerald-200/60">
                 <ShieldCheck aria-hidden="true" className="size-3.5" />
-                <span>DIVERIFIKASI RESMI</span>
+                <span>OFFICIALLY VERIFIED</span>
               </div>
             </div>
 
@@ -264,7 +264,7 @@ export default async function ArticleDetailPage({ params }: PageProps) {
                   className="size-4 text-slate-400 mr-1"
                 />
                 <ul
-                  aria-label="Topik terkait warta"
+                  aria-label="Article related topics"
                   className="flex flex-wrap items-center gap-2 list-none p-0"
                 >
                   {article.tags.map((tag, idx) => (
@@ -284,7 +284,7 @@ export default async function ArticleDetailPage({ params }: PageProps) {
 
           {/* Sidebar with Semantic Aside & H2 Landmark */}
           <aside
-            aria-label="Informasi Pelengkap &amp; News Terkait"
+            aria-label="Supplementary Information &amp; Related News"
             className="lg:col-span-4 space-y-10 sticky top-28"
           >
             {/* Admissions Action Widget */}
@@ -305,12 +305,13 @@ export default async function ArticleDetailPage({ params }: PageProps) {
               </span>
 
               <h2 className="text-xl font-black mt-4 leading-snug tracking-tight">
-                Penerimaan Students Baru Telah Dibuka
+                New Student Admissions Are Now Open
               </h2>
 
               <p className="mt-4 text-xs sm:text-sm text-slate-300 leading-relaxed font-normal">
-                Mendidik generasi Qur&apos;ani berakhlak mulia dengan rasio
-                ideal 1:15. Kuota gelombang I dibatasi 2 kelas.
+                Educating a Qur&apos;anic generation of noble character with an
+                ideal 1:15 ratio. Wave I capacity is strictly limited to 2
+                classes.
               </p>
 
               <div className="mt-8 flex flex-col gap-3">
@@ -319,16 +320,16 @@ export default async function ArticleDetailPage({ params }: PageProps) {
                   className="flex items-center justify-center gap-2 w-full py-3.5 rounded-none bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-xs shadow-2xs transition-all hover:scale-[1.01]"
                 >
                   <Sparkles aria-hidden="true" className="size-4" />
-                  <span>Form Registration &amp; Konsultasi</span>
+                  <span>Registration Form &amp; Inquiries</span>
                 </Link>
 
                 <a
-                  href="https://wa.me/6281234567890?text=Assalamu'alaikum%20Admin%20SD%20Al-Birru,%20saya%20tertarik%20mendaftar%20PPDB%20setelah%20membaca%20warta%20sekolah."
+                  href="https://wa.me/6281234567890?text=Assalamu'alaikum%20Admin%20SD%20Al-Birru,%20I%20am%20interested%20in%20admissions%20after%20reading%20the%20school%20article."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-center gap-2 w-full py-3 rounded-none border border-slate-700 bg-slate-900 hover:bg-slate-800 text-slate-200 font-semibold text-xs transition-colors"
                 >
-                  <span>Chat WhatsApp Committee</span>
+                  <span>Chat WhatsApp Admissions</span>
                   <ArrowUpRight
                     aria-hidden="true"
                     className="size-3.5 text-slate-400"
@@ -344,15 +345,15 @@ export default async function ArticleDetailPage({ params }: PageProps) {
             >
               <div className="flex items-center justify-between pb-3.5 border-b border-slate-200 dark:border-slate-700 mb-5">
                 <h2 className="text-sm font-bold text-slate-900 dark:text-slate-50 font-mono uppercase tracking-wider">
-                  WARTA LAINNYA
+                  MORE ARTICLES
                 </h2>
                 <span className="text-[10px] font-mono text-slate-400">
-                  ARSIP
+                  ARCHIVE
                 </span>
               </div>
 
               <ul
-                aria-label="News Terkait Lainnya"
+                aria-label="Other Related News"
                 className="space-y-5 list-none p-0"
               >
                 {otherArticles.map((other) => (

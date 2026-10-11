@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import {
   BookOpen,
@@ -27,80 +27,80 @@ interface FacilityItem {
 const facilities: FacilityItem[] = [
   {
     code: "FAS // 01",
-    title: "Ruang Kelas Representatif & Ber-AC",
-    category: "Ruang Belajar",
+    title: "Air-Conditioned Ergonomic Classrooms",
+    category: "Learning Spaces",
     description:
-      "Ruang kelas berpendingin udara yang bersih, dilengkapi multimedia proyektor, pencahayaan alami, dan loker pribadi setiap students.",
+      "Clean, air-conditioned learning spaces equipped with multimedia projectors, natural daylighting, and personal student lockers.",
     icon: Building2,
     specs: [
-      "Maksimal 20 students/kelas",
+      "Maximum 20 students/class",
       "Smart Display & Audio",
-      "Pencahayaan Alami Sehat",
+      "Healthy Natural Lighting",
     ],
   },
   {
     code: "FAS // 02",
-    title: "Masjid & Aula Sholat Berjamaah",
-    category: "Pusat Spiritual",
+    title: "Mosque & Congregational Prayer Hall",
+    category: "Spiritual Center",
     description:
-      "Tempat pelaksanaan sholat dhuha harian, sholat fardhu berjamaah, dan majelis tasmi' Al-Qur'an students bersama orang tua.",
+      "Sacred space for daily Dhuha prayers, congregational obligatory prayers, and student Al-Qur'an tasmi' assemblies with parents.",
     icon: Sun,
     specs: [
-      "Kapasitas 300+ jamaah",
-      "Area wudhu higienis terpisah",
-      "Karpet empuk & penyejuk",
+      "Capacity 300+ congregants",
+      "Hygienic separated ablution areas",
+      "Plush carpeting & climate control",
     ],
   },
   {
     code: "FAS // 03",
-    title: "Perpustakaan & Pojok Baca Anak",
-    category: "Literasi",
+    title: "Library & Children's Reading Corner",
+    category: "Literacy",
     description:
-      "Pusat literasi dengan ratusan koleksi buku cerita anak bergambar, ensiklopedia sains Islam, dan sudut baca lesehan santai.",
+      "Literacy center featuring hundreds of illustrated children's storybooks, Islamic science encyclopedias, and a comfortable floor-seating reading area.",
     icon: BookOpen,
     specs: [
-      "500+ Judul buku pilihan",
-      "Area duduk lesehan beanbag",
-      "Sistem peminjaman rapi",
+      "500+ Curated book titles",
+      "Beanbag lounge reading space",
+      "Structured lending system",
     ],
   },
   {
     code: "FAS // 04",
-    title: "Laboratorium Sains & Komputer",
-    category: "Teknologi",
+    title: "Science & Computer Laboratory",
+    category: "Technology",
     description:
-      "Ruang praktikum sains eksperimen terapan dan komputer workstation untuk pengenalan logika koding dasar.",
+      "Laboratory for hands-on applied science experiments and computer workstations introducing fundamental coding and computational logic.",
     icon: Laptop,
     specs: [
-      "Kit praktikum sains aman",
-      "Workstation komputer terproteksi",
-      "Akses internet sehat",
+      "Safe science experiment kits",
+      "Protected computer workstations",
+      "Safe, filtered internet access",
     ],
   },
   {
     code: "FAS // 05",
-    title: "Lapangan Olahraga & Area Panahan",
-    category: "Jasmani",
+    title: "Sports Field & Archery Range",
+    category: "Physical Fitness",
     description:
-      "Area terbuka multifungsi untuk senam pagi, futsal mini, bulutangkis, dan arena panahan tradisional sunnah.",
+      "Multipurpose open-air grounds for morning calisthenics, mini futsal, badminton, and traditional sunnah archery range.",
     icon: Trophy,
     specs: [
-      "Lantai lapangan berstandar aman",
-      "Bantalan target panahan khusus",
-      "Peralatan olahraga lengkap",
+      "Safety-standard court flooring",
+      "Dedicated archery target butts",
+      "Comprehensive sporting equipment",
     ],
   },
   {
     code: "FAS // 06",
-    title: "UKS & Ruang Konseling Ramah Anak",
-    category: "Kesehatan & Mental",
+    title: "School Clinic & Child-Friendly Counseling",
+    category: "Health & Wellness",
     description:
-      "Unit kesehatan school siap tanggap pertolongan pertama bekerja sama dengan faskes terdekat, serta ruang konseling psikologi.",
+      "First-aid medical response unit coordinated with nearby health clinics, alongside a child psychology counseling space.",
     icon: HeartPulse,
     specs: [
-      "Tempat tidur observasi medis",
-      "Obat-obatan darurat lengkap",
-      "Konseling psikolog anak",
+      "Medical observation beds",
+      "Comprehensive emergency first aid supplies",
+      "Child psychologist counseling",
     ],
   },
 ];
@@ -119,17 +119,17 @@ export function FacilitiesSection() {
         >
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-none bg-slate-100 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 text-[11px] font-mono font-bold uppercase tracking-wider mb-5">
             <span className="size-1.5 rounded-none bg-amber-500 animate-pulse" />
-            <span>SARANA // FASILITAS KAMPUS MODERN</span>
+            <span>FACILITIES // MODERN CAMPUS INFRASTRUCTURE</span>
           </div>
           <h2
             id="facilities-heading"
             className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-950 dark:text-slate-50 tracking-tight leading-[1.12]"
           >
-            Facilities Kampus Nyaman, Sejuk &amp; Aman
+            Comfortable, Scenic &amp; Secure Campus Facilities
           </h2>
           <p className="mt-4 text-base sm:text-lg text-slate-600 dark:text-slate-400 leading-relaxed font-normal">
-            SD Al-Birru menyediakan sarana representatif untuk mendukung
-            kenyamanan belajar, ibadah, dan aktivitas fisik students.
+            SD Al-Birru provides state-of-the-art facilities to support
+            comfortable learning, worship, and physical activity for students.
           </p>
         </ScrollReveal>
 
@@ -169,7 +169,7 @@ export function FacilitiesSection() {
                           <Icon className="size-6.5" />
                         </div>
                         <figcaption className="text-[10px] font-bold text-slate-400 uppercase tracking-widest font-mono">
-                          Foto {fac.title}
+                          Photo of {fac.title}
                         </figcaption>
                       </figure>
 
@@ -195,7 +195,7 @@ export function FacilitiesSection() {
 
                       {/* Checklist */}
                       <ul
-                        aria-label={`Spesifikasi ${fac.title}`}
+                        aria-label={`Specifications for ${fac.title}`}
                         className="space-y-2 border-t border-slate-200/70 pt-4 list-none p-0"
                       >
                         {fac.specs.map((spec, sIdx) => (
@@ -218,7 +218,7 @@ export function FacilitiesSection() {
                         aria-hidden="true"
                         className="size-4 text-emerald-700"
                       />
-                      <span>Kebersihan &amp; Keamanan Terjaga</span>
+                      <span>Impeccable Hygiene &amp; 24/7 Security</span>
                     </footer>
                   </SpotlightCard>
                 </motion.article>

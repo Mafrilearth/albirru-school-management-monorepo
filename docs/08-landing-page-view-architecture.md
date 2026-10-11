@@ -1,117 +1,117 @@
-> **Tujuan Dokumen:** Spesifikasi tata letak sekuensial laman publik, dekomposisi anatomis seksi visual, kontrak mikrokopi produksi, dan struktur konten statutori peramban web.
+> **Document Purpose:** Sequential layout specification for public web views, visual section anatomical decomposition, production microcopy contracts, and browser statutory content structure.
 ---
 ## 1. Document Metadata
 | Attribute | Value | Description |
 |---|---|---|
-| **Document Title** | Landing Page View Architecture | Judul statutori spesifikasi arsitektur laman publik |
-| **Dashboard Reference** | `albirru-sis-web/README.md` | Dasbor tata kelola induk repositori |
-| **Specification Version** | 1.0.0 | Versi dasar arsitektur tampilan publik |
-| **Lifecycle State** | Approved (In Development) | Status kesiapan tata kelola operasional |
-| **File Path** | `/docs/08-landing-page-view-architecture.md` | Jalur berkas dalam repositori |
+| **Document Title** | Landing Page View Architecture | Statutory specification title for public page architecture |
+| **Dashboard Reference** | `albirru-sis-web/README.md` | Master repository governance dashboard |
+| **Specification Version** | 1.0.0 | Baseline version for public presentation architecture |
+| **Lifecycle State** | Approved (In Development) | Operational governance readiness state |
+| **File Path** | `/docs/08-landing-page-view-architecture.md` | File path within repository |
 ---
 ## 2. Page Hierarchy and Layout Foundations
-Laman beranda publik (`/`) beroperasi di dalam kerangka kerja *Public Guest Shell* tanpa rintangan autentikasi. Tata letak dirender secara linier satu halaman (*single-page vertical flow*) yang terdiri atas enam seksi berurutan:
-1. **Global Public Navigation Header:** Bilah navigasi lekat (*sticky ribbon*) dengan identitas sekolah dan tautan navigasi seksi.
-2. **Hero Presentation Section:** Proposisi nilai utama institusi, gerbang pendaftaran aktif, dan kartu metrik operasional sekolah.
-3. **Institutional Identity and Accreditation Strip:** Jalur validasi legalitas statutori, nomor registrasi nasional, dan yayasan.
-4. **Academic Pillar and Curriculum Highlights:** Tiga pilar kurikulum terpadu (Karakter, STEM, Komunikasi Bilingual).
-5. **Direct Action and Admission Intake Callout:** Kartu aksi utama terpusat (*primary call-to-action*) menuju formulir pendaftaran.
-6. **Statutory Public Institutional Footer:** Direktori kontak resmi, akses portal terautentikasi, dan hak cipta statutori.
+The public homepage (`/`) operates within the *Public Guest Shell* framework without authentication barriers. The layout renders in a linear single-page vertical flow comprising six sequential sections:
+1. **Global Public Navigation Header:** Sticky ribbon featuring school identity and section navigation anchors.
+2. **Hero Presentation Section:** Primary institutional value proposition, active admissions intake gate, and operational metric cards.
+3. **Institutional Identity and Accreditation Strip:** Statutory legality validation banner, national registration identifiers, and foundation registry.
+4. **Academic Pillar and Curriculum Highlights:** Integrated curriculum pillars (Character, STEM, Bilingual Communication).
+5. **Direct Action and Admission Intake Callout:** Centralized primary call-to-action card routing to the admission application form.
+6. **Statutory Public Institutional Footer:** Official campus directory, authenticated portal shortcuts, and statutory copyright notices.
 ---
 ## 3. Granular Section Anatomy and Production Content
 ### 3.1 Global Public Navigation Header
-- **Penempatan & Dimensi:** Menempel permanen di batas atas layar (*sticky*, `z-index: 50`), tinggi tetap 64 piksel, latar `color-surface-card` dengan opasitas 95% dan efek *backdrop blur*, batas bawah 1 piksel `color-border-subtle`.
-- **Tata Letak Internal:** Kontainer tengah dengan lebar maksimum 1200 piksel, padding horizontal `space-24`, perataan vertikal tengah (*justify-between*).
-- **Hierarki Slot & Teks Mikrokopi:**
-	- **Slot Kiri (Identitas Institusi):**
-		- Lambang Vektor: Ikon perisai navy slate dan buku terbuka emerald (36 piksel × 36 piksel).
-		- Tumpukan Teks: Judul institusi `SD Al-Birru` (`font-heading-2`, Semi-Bold 600, `color-brand-primary`) dan sub-label statutori `NPSN: 70010111` (`font-caption`, `color-text-muted`).
-	- **Slot Tengah (Tautan Navigasi Desktop):** Tersembunyi pada viewport di bawah 768 piksel, celah antartautan `space-24`:
-		- Tautan 1: Teks `Profil Sekolah` (target penanda jangkar: `#institutional-profile`).
-		- Tautan 2: Teks `Program Akademik` (target penanda jangkar: `#academic-pillars`).
-		- Tautan 3: Teks `Kriteria Admisi` (target rute: `/admission`).
-		- Tautan 4: Teks `Lacak Status` (target rute: `/admission/status`).
-	- **Slot Kanan (Aksi Akses Cepat):** Celah antartombol `space-12`:
-		- Tombol Sekunder: Teks `Masuk Portal`, rute `/authentication/sign-in`, gaya latar transparan dengan batas 1 piksel `color-border-subtle`, teks slate gelap.
-		- Tombol Primer: Teks `Daftar Siswa Baru`, rute `/admission`, gaya latar terisi `color-brand-primary` dengan teks putih.
+- **Placement & Dimensions:** Permanently docked to top viewport (`sticky`, `z-index: 50`), fixed height 64px, background `color-surface-card` at 95% opacity with backdrop blur, 1px bottom border `color-border-subtle`.
+- **Internal Layout:** Centered container with max-width 1200px, horizontal padding `space-24`, vertically centered flex row (`justify-between`).
+- **Slot Hierarchy & Microcopy:**
+	- **Left Slot (Institutional Identity):**
+		- Vector Emblem: Slate shield and emerald open book insignia (36px × 36px).
+		- Text Stack: Institutional title `SD Al-Birru` (`font-heading-2`, Semi-Bold 600, `color-brand-primary`) and statutory sub-label `NPSN: 70010111` (`font-caption`, `color-text-muted`).
+	- **Center Slot (Desktop Navigation Links):** Hidden on viewports below 768px, inter-link gap `space-24`:
+		- Link 1: Text `School Profile` (anchor target: `#institutional-profile`).
+		- Link 2: Text `Academic Programs` (anchor target: `#academic-pillars`).
+		- Link 3: Text `Admissions Criteria` (route target: `/admissions`).
+		- Link 4: Text `Track Status` (route target: `/admissions/status`).
+	- **Right Slot (Quick Action Triggers):** Action gap `space-12`:
+		- Secondary Action: Text `Portal Sign In`, route `/sign-in`, transparent background with 1px border `color-border-subtle`, dark slate text.
+		- Primary Action: Text `Enroll New Student`, route `/admissions`, solid background `color-brand-primary` with crisp white text.
 ---
 ### 3.2 Hero Presentation Section
-- **Penempatan & Dimensi:** Tepat di bawah bilah navigasi, lebar penuh, padding vertikal `space-48`, padding horizontal `space-24`, latar `color-surface-base`.
-- **Tata Letak Internal:** Kisi asimetris dua kolom pada desktop (60% konten teks kiri, 40% kartu data kanan; satu kolom tumpuk vertikal pada perangkat seluler), lebar maksimum 1200 piksel, celah antarkolom `space-32`.
-- **Hierarki Slot & Teks Mikrokopi:**
-	- **Kolom Kiri (Blok Proposisi Inti):**
-		- Lencana Operasional: Kontainer bentuk pil, latar emerald (opasitas 10%), batas 1 piksel `color-brand-accent`, padding vertikal `space-4`, padding horizontal `space-12`, margin bawah `space-16`. Ikon `Sparkles` 14 piksel emerald + Teks: `Penerimaan Siswa Baru TP 2026/2027 Dibuka`.
-		- Judul Utama (`font-display`, Bold 700, tinggi baris 40 piksel, `color-brand-primary`): `Membentuk Karakter, Membina Ilmu, Membangun Integritas.`
-		- Paragraf Deskripsi (`font-subheading`, Regular 400, tinggi baris 24 piksel, `color-text-muted`, margin atas `space-16`): `Sekolah Dasar Al-Birru menyelenggarakan kurikulum dasar nasional terintegrasi nilai Islam di Bandung yang berfokus pada pembiasaan adab disiplin, nalar analitis, dan keunggulan budi pekerti.`
-		- Kelompok Tombol Aksi (celah antartombol `space-16`, margin atas `space-32`):
-			- Tombol Utama: Tinggi 48 piksel, padding horizontal `space-24`, latar `color-brand-primary`, ikon `ArrowRight` 18 piksel di kanan, teks `Daftarkan Siswa Sekarang`.
-			- Tombol Sekunder: Tinggi 48 piksel, padding horizontal `space-20`, latar transparan, batas 1 piksel `color-border-subtle`, ikon `FileText` 18 piksel di kiri, teks `Unduh Brosur Informasi`.
-	- **Kolom Kanan (Kartu Metrik Operasional):**
-		- Kontainer Kartu: Latar `color-surface-card`, batas 1 piksel `color-border-subtle`, radius 16 piksel, padding `space-24`, elevasi halus.
-		- Header Kartu: Teks `Metrik Kinerja Operasional Sekolah` (`font-heading-2`), batas bawah 1 piksel `color-border-subtle`, padding bawah `space-12`.
-		- Baris Metrik 1: Label `Status Akreditasi Institusi` \| Nilai `Peringkat A (Unggul)` (badge bentuk pil terisi emerald).
-		- Baris Metrik 2: Label `Kepatuhan Presensi Siswa Harian` \| Nilai `98.4% Kehadiran Tepat Waktu`.
-		- Baris Metrik 3: Label `Rasio Maksimum Pengajar dan Siswa` \| Nilai `15 : 1 Pembelajaran Fokus`.
+- **Placement & Dimensions:** Directly below the navigation header, full width, vertical padding `space-48`, horizontal padding `space-24`, background `color-surface-base`.
+- **Internal Layout:** Asymmetric two-column desktop grid (60% text content left, 40% metric data card right; single-column stacked on mobile devices), max-width 1200px, column gap `space-32`.
+- **Slot Hierarchy & Microcopy:**
+	- **Left Column (Core Proposition Block):**
+		- Operational Badge: Pill container, emerald background (10% opacity), 1px border `color-brand-accent`, vertical padding `space-4`, horizontal padding `space-12`, bottom margin `space-16`. Emerald `Sparkles` icon 14px + Text: `Academic Year 2026/2027 Admissions Open`.
+		- Main Headline (`font-display`, Bold 700, line-height 40px, `color-brand-primary`): `Nurturing Character, Cultivating Knowledge, Building Integrity.`
+		- Supporting Paragraph (`font-subheading`, Regular 400, line-height 24px, `color-text-muted`, top margin `space-16`): `SD Al-Birru delivers an integrated primary curriculum grounded in Islamic values in Bandung, fostering disciplined adab, analytical reasoning, and noble moral excellence.`
+		- Action Button Group (button gap `space-16`, top margin `space-32`):
+			- Primary Button: Height 48px, horizontal padding `space-24`, background `color-brand-primary`, trailing `ArrowRight` icon 18px, text `Register Student Now`.
+			- Secondary Button: Height 48px, horizontal padding `space-20`, transparent background, 1px border `color-border-subtle`, leading `FileText` icon 18px, text `Download Information Brochure`.
+	- **Right Column (Operational Metric Card):**
+		- Card Container: Background `color-surface-card`, 1px border `color-border-subtle`, border radius 16px, padding `space-24`, subtle elevation shadow.
+		- Card Header: Text `School Operational Performance Metrics` (`font-heading-2`), bottom border 1px `color-border-subtle`, bottom padding `space-12`.
+		- Metric Row 1: Label `Institutional Accreditation Status` \| Value `Grade A (Superior)` (filled emerald pill badge).
+		- Metric Row 2: Label `Daily Student Attendance Compliance` \| Value `98.4% On-Time Attendance`.
+		- Metric Row 3: Label `Maximum Student-to-Teacher Ratio` \| Value `15 : 1 Focused Instruction`.
 ---
 ### 3.3 Institutional Identity and Accreditation Strip
-- **Penempatan & Dimensi:** Jalur pembatas lebar penuh, padding vertikal `space-24`, padding horizontal `space-24`, latar `color-surface-card`, batas atas dan bawah 1 piksel `color-border-subtle`.
-- **Tata Letak Internal:** Baris fleksibel terpusat, lebar maksimum 1200 piksel, perataan multi-kolom responsif, celah antarelemen `space-24`.
-- **Elemen Data Statutori:**
-	- Butir 1: Label `Nomor Pokok Sekolah Nasional (NPSN)` $`\rightarrow`$ Nilai `70010111`.
-	- Butir 2: Label `Badan Sertifikasi Akreditasi` $`\rightarrow`$ Nilai `Badan Akreditasi Nasional (BAN-S/M)`.
-	- Butir 3: Label `Yayasan Penyelenggara Pendidikan` $`\rightarrow`$ Nilai `Yayasan Pendidikan Al-Birru`.
-	- Butir 4: Label `Bahasa Pengantar Pembelajaran` $`\rightarrow`$ Nilai `Bahasa Indonesia & Pengenalan Bahasa Inggris Formal`.
+- **Placement & Dimensions:** Full-width dividing banner, vertical padding `space-24`, horizontal padding `space-24`, background `color-surface-card`, top and bottom 1px border `color-border-subtle`.
+- **Internal Layout:** Centered flex row, max-width 1200px, responsive multi-column alignment, item gap `space-24`.
+- **Statutory Data Items:**
+	- Item 1: Label `National School Identification Number (NPSN)` $`\rightarrow`$ Value `70010111`.
+	- Item 2: Label `Accreditation Authority` $`\rightarrow`$ Value `National Accreditation Board (BAN-S/M)`.
+	- Item 3: Label `Founding Educational Foundation` $`\rightarrow`$ Value `Yayasan Pendidikan Al-Birru`.
+	- Item 4: Label `Instructional Medium of Language` $`\rightarrow`$ Value `Indonesian & Formal English Immersion`.
 ---
 ### 3.4 Academic Pillar and Curriculum Highlights
-- **Penempatan & Dimensi:** Lebar penuh, padding vertikal `space-48`, padding horizontal `space-24`, latar `color-surface-base`, penanda jangkar `#academic-pillars`.
-- **Tata Letak Internal:** Kontainer vertikal terpusat, lebar maksimum 1200 piksel.
-- **Header Seksi:**
-	- Sub-label: `font-caption`, Semi-Bold 600, huruf kapital, warna `color-brand-accent`: `KEUNGGULAN KURIKULUM PEMBELAJARAN`.
-	- Judul: `font-heading-1`, warna `color-brand-primary`: `Tiga Fondasi Pendidikan Terpadu SD Al-Birru`.
-	- Subtitle: `font-body`, warna `color-text-muted`: `Pendekatan pedagogis seimbang yang memadukan kedalaman nilai akhlak dengan standar capaian kompetensi akademik.`
-- **Struktur Tiga Kartu Kisi:** Tiga kolom seimbang (`1fr 1fr 1fr`), celah antarkartu `space-24`, margin atas `space-32`:
-	- **Kartu 1 (Fondasi Nilai dan Adab):**
-		- Ikon: `ShieldCheck` 28 piksel navy slate.
-		- Judul Kartu: `font-heading-2`, teks `Fondasi Nilai dan Adab`.
-		- Deskripsi: `font-body`, teks `Pembiasaan ibadah harian terstruktur, penanaman adab kesantunan, internalisasi kejujuran, dan pembiasaan budaya gotong royong antar-siswa.`
-	- **Kartu 2 (Literasi Matematis & Nalar STEM):**
-		- Ikon: `Compass` 28 piksel navy slate.
-		- Judul Kartu: `font-heading-2`, teks `Literasi Matematis & Nalar STEM`.
-		- Deskripsi: `font-body`, teks `Penguatan daya pikir logis, dasar nalar komputasi dasar, rasa ingin tahu ilmiah, dan literasi numerasi praktis pemecahan masalah.`
-	- **Kartu 3 (Kecakapan Bahasa Terpadu):**
-		- Ikon: `Languages` 28 piksel navy slate.
-		- Judul Kartu: `font-heading-2`, teks `Kecakapan Bahasa Terpadu`.
-		- Deskripsi: `font-body`, teks `Pengembangan keterampilan berbahasa Indonesia yang runtut dan pengenalan kosakata bahasa Inggris aktif melalui aktivitas dialog tematik harian.`
+- **Placement & Dimensions:** Full width, vertical padding `space-48`, horizontal padding `space-24`, background `color-surface-base`, section anchor `#academic-pillars`.
+- **Internal Layout:** Centered vertical container, max-width 1200px.
+- **Section Header:**
+	- Sub-label: `font-caption`, Semi-Bold 600, uppercase, `color-brand-accent`: `CURRICULUM EXCELLENCE PILLARS`.
+	- Title: `font-heading-1`, `color-brand-primary`: `Three Pillars of Integrated Education at SD Al-Birru`.
+	- Subtitle: `font-body`, `color-text-muted`: `A balanced pedagogical approach harmonizing profound spiritual adab with rigorous academic competency standards.`
+- **Three-Card Grid Structure:** Balanced three columns (`1fr 1fr 1fr`), card gap `space-24`, top margin `space-32`:
+	- **Card 1 (Moral Character & Adab Foundations):**
+		- Icon: `ShieldCheck` 28px navy slate.
+		- Card Title: `font-heading-2`, text `Moral Character & Adab Foundations`.
+		- Description: `font-body`, text `Structured daily worship habits, courtesy cultivation, internalized honesty, and mutual cooperation among students.`
+	- **Card 2 (Mathematical Literacy & STEM Reasoning):**
+		- Icon: `Compass` 28px navy slate.
+		- Card Title: `font-heading-2`, text `Mathematical Literacy & STEM Reasoning`.
+		- Description: `font-body`, text `Strengthening logical deduction, computational thinking fundamentals, scientific curiosity, and practical problem-solving numeracy.`
+	- **Card 3 (Integrated Language Proficiency):**
+		- Icon: `Languages` 28px navy slate.
+		- Card Title: `font-heading-2`, text `Integrated Language Proficiency`.
+		- Description: `font-body`, text `Structured Indonesian language articulation paired with active English vocabulary immersion through daily thematic dialogue.`
 ---
 ### 3.5 Direct Action and Admission Intake Callout
-- **Penempatan & Dimensi:** Lebar penuh, padding vertikal `space-48`, padding horizontal `space-24`, latar `color-surface-base`.
-- **Tata Letak Internal:** Kontainer kartu hero terpusat, lebar maksimum 1000 piksel, latar `color-brand-primary`, radius 16 piksel, padding vertikal `space-48`, padding horizontal `space-32`, perataan teks tengah, warna teks putih.
-- **Hierarki Slot & Teks Mikrokopi:**
-	- Judul: `font-heading-1`, teks putih: `Daftarkan Putra-Putri Anda untuk Tahun Pelajaran 2026/2027`.
-	- Paragraf Deskripsi: `font-body`, warna Slate 200, batas lebar 600 piksel, margin tengah, margin atas `space-16`, margin bawah `space-32`: `Pendaftaran siswa baru reguler dan mutasi Kelas 1 s.d. 6 dibuka secara digital. Proses mandiri, cepat, dan dilengkapi kode pelacakan verifikasi berkas seketika.`
-	- Bilah Tombol Aksi: Baris flex tengah, celah antartombol `space-16`:
-		- Tombol Primer: Tinggi 48 piksel, padding horizontal `space-24`, latar `color-brand-accent` (emerald), teks `Buka Formulir Pendaftaran`, tautan rute `/admission`.
-		- Tombol Sekunder: Tinggi 48 piksel, padding horizontal `space-20`, latar transparan, batas 1 piksel solid putih (opasitas 30%), teks `Hubungi Meja Bantuan Admisi`, tautan surat `mailto:admissions@sd-albirru.sch.id`.
+- **Placement & Dimensions:** Full width, vertical padding `space-48`, horizontal padding `space-24`, background `color-surface-base`.
+- **Internal Layout:** Centered hero card container, max-width 1000px, background `color-brand-primary`, border radius 16px, vertical padding `space-48`, horizontal padding `space-32`, text-align center, white text.
+- **Slot Hierarchy & Microcopy:**
+	- Title: `font-heading-1`, white text: `Enroll Your Child for Academic Year 2026/2027`.
+	- Supporting Paragraph: `font-body`, Slate 200, max-width 600px, centered margin, top margin `space-16`, bottom margin `space-32`: `Digital registration is open for regular and transfer admissions for Grades 1 through 6. Streamlined self-service equipped with instant verification tracking codes.`
+	- Action Button Bar: Centered flex row, button gap `space-16`:
+		- Primary Button: Height 48px, horizontal padding `space-24`, background `color-brand-accent` (emerald), text `Open Admission Form`, route link `/admissions`.
+		- Secondary Button: Height 48px, horizontal padding `space-20`, transparent background, 1px solid white border (30% opacity), text `Contact Admissions Helpdesk`, mailto link `mailto:admissions@sd-albirru.sch.id`.
 ---
 ### 3.6 Statutory Public Institutional Footer
-- **Penempatan & Dimensi:** Batas paling bawah dokumen, lebar penuh, padding atas `space-48`, padding samping dan bawah `space-24`, latar `color-surface-card`, batas atas 1 piksel `color-border-subtle`.
-- **Tata Letak Internal:** Tiga kolom kisi atas dengan bilah hak cipta terpisah di bawah, lebar maksimum 1200 piksel, margin tengah, celah antarkolom `space-32`.
-- **Rincian Kolom:**
-	- **Kolom 1 (Legalitas Institusi Sekolah):**
-		- Judul: `font-heading-2`, teks `Sekolah Dasar Al-Birru`.
-		- Deskripsi: `font-caption`, teks `Institusi pendidikan dasar formal yang menyelenggarakan kegiatan belajar mengajar sesuai standar otoritas pendidikan nasional.`
-		- Butir Identitas: `NPSN: 70010111` \| `Status: Institusi Swasta Terakreditasi`.
-	- **Kolom 2 (Alamat dan Kontak Kampus):**
-		- Judul: `font-subheading`, teks `Sekretariat Administrasi Kampus`.
-		- Alamat: `font-caption`, teks `Jl. Al-Birru Educational Precinct No. 12, Bandung, Jawa Barat, Indonesia`.
-		- Telepon: `font-caption`, teks `+62 (022) 7001-0111`.
-		- Surat Elektronik: `font-caption`, teks `administration@sd-albirru.sch.id`.
-	- **Kolom 3 (Akses Portal Terautentikasi):**
-		- Judul: `font-subheading`, teks `Gerbang Portal Sistem`.
-		- Tautan 1: Teks `Portal Wali Murid` (target rute: `/portal/guardian`).
-		- Tautan 2: Teks `Ruang Kerja Guru & Instruktur` (target rute: `/portal/instructor`).
-		- Tautan 3: Teks `Konsol Manajemen Administrator` (target rute: `/portal/admin`).
-		- Tautan 4: Teks `Pengecekan Status Pendaftaran Admisi` (target rute: `/admission/status`).
-- **Bilah Bawah (*Bottom Bar*):** Batas atas 1 piksel `color-border-subtle`, margin atas `space-32`, padding atas `space-16`, baris flex rata kanan-kiri (*justify-between*), tipografi `font-caption` (`color-text-muted`):
-	- Sisi Kiri: `© 2026 Sekolah Dasar Al-Birru. Seluruh hak cipta statutori dilindungi undang-undang.`
-	- Sisi Kanan: `Primary School Information System Core (PSIS) Baseline v1.0.0`
+- **Placement & Dimensions:** Bottom document boundary, full width, top padding `space-48`, horizontal and bottom padding `space-24`, background `color-surface-card`, top border 1px `color-border-subtle`.
+- **Internal Layout:** Three upper grid columns with separate bottom copyright bar, max-width 1200px, centered margin, column gap `space-32`.
+- **Column Details:**
+	- **Column 1 (School Institutional Legality):**
+		- Title: `font-heading-2`, text `SD Al-Birru Primary School`.
+		- Description: `font-caption`, text `A formal primary education institution conducting teaching and learning in compliance with national educational standards.`
+		- Identity Attributes: `NPSN: 70010111` \| `Status: Accredited Private Institution`.
+	- **Column 2 (Campus Address and Contact):**
+		- Title: `font-subheading`, text `Campus Administrative Secretariat`.
+		- Address: `font-caption`, text `Jl. Al-Birru Educational Precinct No. 12, Bandung, West Java, Indonesia`.
+		- Phone: `font-caption`, text `+62 (022) 7001-0111`.
+		- Email: `font-caption`, text `administration@sd-albirru.sch.id`.
+	- **Column 3 (Authenticated Portal Access):**
+		- Title: `font-subheading`, text `System Portal Gateway`.
+		- Link 1: Text `Parent & Guardian Portal` (route target: `/portal/guardian`).
+		- Link 2: Text `Teacher & Staff Workspace` (route target: `/portal/instructor`).
+		- Link 3: Text `Administrative Operations Console` (route target: `/portal/admin`).
+		- Link 4: Text `Track Admission Status` (route target: `/admissions/status`).
+- **Bottom Bar:** Top border 1px `color-border-subtle`, top margin `space-32`, top padding `space-16`, flex row space-between (`justify-between`), typography `font-caption` (`color-text-muted`):
+	- Left: `© 2026 SD Al-Birru Primary School. All statutory rights reserved.`
+	- Right: `Primary School Information System Core (PSIS) Baseline v1.0.0`

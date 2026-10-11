@@ -15,34 +15,34 @@ export function HistoryTimelineSection() {
   const milestones = [
     {
       year: "2019",
-      badge: "FASE 01 // INISIASI",
-      title: "Inisiasi & Peletakan Batu Pertama",
+      badge: "PHASE 01 // INITIATION",
+      title: "Initiation & Groundbreaking",
       description:
-        "Berangkat dari keprihatinan para tokoh pendidikan dan asatidz di Sukabumi akan minimnya lembaga pendidikan dasar yang mampu menyeimbangkan tahfidz mutqin dengan literasi sains modern tanpa membebani mental anak.",
+        "Founded out of concern among community educational figures and scholars in Sukabumi regarding the scarcity of primary schools balancing mutqin tahfidz with modern scientific literacy without causing academic burnout.",
       icon: Milestone,
     },
     {
       year: "2020",
-      badge: "FASE 02 // LEGALITAS & PERDANA",
-      title: "Izin Operasional & Angkatan Perdana",
+      badge: "PHASE 02 // LEGALITY & INAUGURATION",
+      title: "Operational Permit & Inaugural Cohort",
       description:
-        "SD Al-Birru secara resmi mengantongi izin operasional dari Dinas Pendidikan dan Kebudayaan serta NPSN resmi. Memulai pembelajaran angkatan pertama dengan fasilitas ruang kelas terpadu dan rasio pengajaran terukur 1:15.",
+        "SD Al-Birru officially received its operational permit from the Education and Culture Office alongside an official NPSN. Classes began for the first cohort with modern facilities and an ideal 1:15 student-teacher ratio.",
       icon: Calendar,
     },
     {
       year: "2023",
-      badge: "FASE 03 // TRANSFORMASI SAINS",
-      title: "Penerapan Curriculum Merdeka & Lab Digital",
+      badge: "PHASE 03 // SCIENTIFIC TRANSFORMATION",
+      title: "National Curriculum & Digital Labs",
       description:
-        "Mengadopsi Curriculum Merdeka secara penuh, mengintegrasikan metode talaqqi tahfidz bersanad, serta meluncurkan Pojok Literasi Digital & Laboratorium Sains Eksperimen Terapan.",
+        "Adopted the National Curriculum fully, integrated certified sanad talaqqi tahfidz, and launched the Digital Literacy Corner and Applied Science Laboratory.",
       icon: BookOpen,
     },
     {
       year: "2026",
-      badge: "FASE 04 // KAMPUS UNGGUL",
-      title: "Pengembangan Terpadu & Akreditasi Unggul",
+      badge: "PHASE 04 // EXCELLENT CAMPUS",
+      title: "Integrated Growth & Institutional Accreditation",
       description:
-        "Menjadi salah satu SD Islam rujukan di Sukabumi dengan prestasi kejuaraan tahfidz tingkat wilayah dan provinsi, serta perluasan aula ibadah dan sarana olahraga ramah anak.",
+        "Established as a benchmark Islamic primary school in Sukabumi with regional and provincial tahfidz championship titles, accompanied by expanded prayer halls and child-friendly sports arenas.",
       icon: ShieldCheck,
     },
   ];
@@ -59,22 +59,22 @@ export function HistoryTimelineSection() {
             <ScrollReveal direction="up">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-none bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 shadow-2xs text-[11px] font-mono font-bold tracking-wider text-slate-800 dark:text-slate-200 uppercase mb-5">
                 <span className="size-1.5 rounded-none bg-amber-500 animate-pulse" />
-                <span>FILOSOFI // ASAL-USUL NAMA</span>
+                <span>PHILOSOPHY // ORIGIN OF THE NAME</span>
               </div>
 
               <h2
                 id="history-heading"
                 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-950 dark:text-slate-50 tracking-tight leading-[1.12]"
               >
-                Mengapa Bernama <span className="text-amber-600">Al-Birru</span>
-                ?
+                Why the Name <span className="text-amber-600">Al-Birru</span>?
               </h2>
 
               <p className="mt-5 text-base sm:text-lg text-slate-600 dark:text-slate-400 leading-relaxed font-normal">
-                Kata <strong>&quot;Al-Birr&quot; (الْبِرِّ)</strong> bersumber dari
-                Al-Qur&apos;an Surah Al-Baqarah ayat 177, yang melambangkan{" "}
-                <em>kebajikan paripurna</em>: perpaduan antara keimanan lurus,
-                adab santun, kepekaan sosial, dan integritas moral.
+                The term <strong>&quot;Al-Birr&quot; (الْبِرِّ)</strong> originates
+                from the Holy Qur&apos;an Surah Al-Baqarah verse 177,
+                symbolizing <em>comprehensive virtue</em>: the harmonious
+                integration of upright faith, refined etiquette, social
+                compassion, and moral integrity.
               </p>
 
               {/* Quranic Verse Showcase Card with Semantic Blockquote */}
@@ -102,10 +102,10 @@ export function HistoryTimelineSection() {
                     cite="https://quran.com/2/177"
                     className="mt-6 text-xs sm:text-sm text-slate-600 dark:text-slate-400 font-medium italic leading-relaxed border-t border-slate-100 dark:border-slate-800 pt-4"
                   >
-                    &quot;Bukanlah menghadapkan wajahmu ke arah timur dan barat
-                    itu suatu kebajikan (al-birr), akan tetapi kebajikan itu
-                    ialah beriman kepada Allah, hari kemudian,
-                    malaikat-malaikat, kitab-kitab, dan nabi-nabi...&quot;
+                    &quot;Righteousness is not that you turn your faces toward
+                    the east or the west, but [true] righteousness is [in] one
+                    who believes in Allah, the Last Day, the angels, the Book,
+                    and the prophets...&quot;
                   </blockquote>
                 </SpotlightCard>
               </motion.div>
@@ -113,7 +113,7 @@ export function HistoryTimelineSection() {
               <div className="mt-8 flex items-center gap-3 text-xs text-slate-500 font-mono">
                 <HeartHandshake className="size-4 text-amber-600 shrink-0" />
                 <span>
-                  Membimbing dengan cinta, mendidik dengan keteladanan
+                  Guiding with compassion, educating through living example
                 </span>
               </div>
             </ScrollReveal>
@@ -153,7 +153,7 @@ export function HistoryTimelineSection() {
                             dateTime={item.year}
                             className="text-xs font-mono font-bold text-amber-600 bg-amber-50 px-2.5 py-0.5 rounded-none border border-amber-200/60"
                           >
-                            TAHUN {item.year}
+                            YEAR {item.year}
                           </time>
                           <span className="text-[10px] font-mono text-slate-400 uppercase tracking-wider">
                             {item.badge}

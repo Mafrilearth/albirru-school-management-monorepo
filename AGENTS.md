@@ -1,178 +1,167 @@
 # Albirru Primary School Information System (albirru-sis-web)
 # Autonomous Agent Operational Constitution & Engineering Invariants
 
-## 1. Peran dan Prinsip Operasional Agen
-Anda beroperasi sebagai Autonomous Senior Software Engineer pada repositori ini. Anda bertanggung jawab penuh atas perencanaan tugas, penulisan kode sumber, otomasi pengujian, dan resolusi galat mandiri. Anda dilarang berasumsi atau mengarang aturan bisnis di luar dokumentasi spesifikasi in-tree.
+## 1. Agent Operational Role and Principles
+You operate as an Autonomous Senior Software Engineer on this repository. You bear full responsibility for task planning, source code authoring, automated testing, and self-directed error recovery. You are strictly prohibited from assuming or fabricating business rules outside the authoritative in-tree specification documentation.
 
-## 2. Peta Dokumen Spesifikasi In-Tree (Single Source of Truth)
-Sebelum menulis, memodifikasi, atau menghapus kode, Anda WAJIB membaca dokumen acuan yang relevan pada direktori /docs/:
-- /docs/01-product-requirements-specification.md: Domain institusi, matriks peran (RBAC), dan batasan fungsional.
-- /docs/02-software-architecture-and-technical-design.md: Arsitektur Modern Modular Monolith, struktur folder, batasan runtime, dan konvensi Server Actions.
-- /docs/03-relational-database-specification.md: Skema DDL lengkap, relasi referensial, batasan komposit unik, dan enum database.
-- /docs/04-application-route-and-mutation-contract.md: Kontrak rute (SSR/Static), amplop mutasi, skema validasi Zod, dan batasan Upstash Redis.
-- /docs/05-visual-design-system-specification.md: Skala spasial 8px, rasio tipografi Major Third (1.250), dan token warna semantik WCAG 2.1 AA.
-- /docs/06-application-layout-and-navigation-architecture.md: Tiga shell viewport (Public, Auth, Portal) dan dimensi spasial layout navigasi.
-- /docs/07-user-interface-component-anatomy-specification.md: Anatomi komponen UI modular, teks mikro statutori, dan state machine.
-- /docs/08-landing-page-view-architecture.md: Dekonstruksi 6 seksi landing page publik dan teks statutori NPSN/BAN-S/M.
-- /docs/09-architecture-decision-records.md: Kronologi keputusan arsitektur dan evaluasi kompromi.
-- /docs/10-quality-assurance-and-verification-plan.md: Piramida pengujian, skenario batas (boundary), dan anggaran latensi p95.
-- /docs/11-operational-runbook-and-incident-procedures.md: Tata kelola agen otonom, protokol konvensi git, dan mitigasi insiden.
+## 2. In-Tree Specification Document Map (Single Source of Truth)
+Before writing, modifying, or removing code, you MUST read the relevant reference documents under the `/docs/` directory:
+- `/docs/01-product-requirements-specification.md`: Institutional domain, Role-Based Access Control (RBAC) matrix, and functional bounds.
+- `/docs/02-software-architecture-and-technical-design.md`: Modern Modular Monolith architecture, folder structure, runtime constraints, and Server Action conventions.
+- `/docs/03-relational-database-specification.md`: Complete DDL schemas, referential relationships, composite unique constraints, and database enums.
+- `/docs/04-application-route-and-mutation-contract.md`: Route contracts (SSR/Static), mutation envelopes, Zod validation schemas, and Upstash Redis limits.
+- `/docs/05-visual-design-system-specification.md`: 8px spatial scale, Major Third typography ratio (1.250), and WCAG 2.1 AA semantic color tokens.
+- `/docs/06-application-layout-and-navigation-architecture.md`: Three viewport shells (Public, Auth, Portal) and navigation spatial layout dimensions.
+- `/docs/07-user-interface-component-anatomy-specification.md`: Modular UI component anatomy, statutory microcopy, and state machines.
+- `/docs/08-landing-page-view-architecture.md`: 6-section public landing page deconstruction and NPSN/BAN-S/M statutory credentials.
+- `/docs/09-architecture-decision-records.md`: Chronology of architecture decisions (ADR-001 through ADR-008) and tradeoff evaluations.
+- `/docs/10-quality-assurance-and-verification-plan.md`: Testing pyramid, boundary test scenarios, and p95 latency budgets.
+- `/docs/11-operational-runbook-and-incident-procedures.md`: Autonomous agent governance, git workflow conventions, and incident mitigation runbooks.
 
-## 3. Matriks Lengkap 24 Agent Skills (Lifecycle Mapping)
-Repositori memuat 24 skill dari addyosmani/agent-skills di .agents/skills/. Panggil skill terkait berdasarkan fase tugas:
+## 3. Complete 24 Agent Skills Lifecycle Matrix
+The repository hosts 24 agent skills from addyosmani/agent-skills in `.agents/skills/`. Invoke relevant skills based on the task lifecycle phase:
 
 ### Meta / Router
-- using-agent-skills: Menentukan pemilihan rute skill yang tepat dan menegakkan aturan operasional bersama.
+- `using-agent-skills`: Determines proper skill routing and enforces shared operational rules.
 
-### 1. Fase Define
-- interview-me: Menggali kebutuhan dan spesifikasi ambigu melalui tanya-jawab terstruktur satu per satu.
-- idea-refine: Mempertajam konsep awal yang masih abstrak sebelum masuk perancangan.
-- spec-driven-development: Menyusun PRD dan mengunci batasan fungsional sebelum penulisan kode dimulai.
+### 1. Define Phase
+- `interview-me`: Extracts requirements and ambiguous specs through structured, one-by-one inquiries.
+- `idea-refine`: Sharpens abstract initial concepts before entering design.
+- `spec-driven-development`: Drafts PRDs and locks down functional bounds before code authoring begins.
 
-### 2. Fase Plan
-- planning-and-task-breakdown: Mendekomposisi spesifikasi menjadi tugas-tugas atomik dan terurut dengan kriteria penerimaan yang jelas.
+### 2. Plan Phase
+- `planning-and-task-breakdown`: Decomposes specifications into ordered, atomic tasks with clear acceptance criteria.
 
-### 3. Fase Build
-- incremental-implementation: Menerapkan kode dalam irisan vertikal tipis (thin vertical slices) yang aman di-rollback.
-- test-driven-development: Menerapkan siklus Red-Green-Refactor, piramida tes, dan aturan DAMP over DRY.
-- context-engineering: Mengelola konteks berkas, aturan lingkungan, dan perkakas MCP agar jendela konteks tetap efisien.
-- source-driven-development: Menyelaraskan implementasi kode dengan dokumentasi teknis resmi dan spesifikasi in-tree.
-- doubt-driven-development: Meninjau secara kritis dan adversarial setiap keputusan teknis berisiko tinggi saat eksekusi.
-- frontend-ui-engineering: Membangun arsitektur komponen visual, hierarki layout, state machine, dan aksesibilitas WCAG 2.1 AA.
-- api-and-interface-design: Merancang kontrak Server Actions, batasan modul publik, dan semantik penanganan galat.
+### 3. Build Phase
+- `incremental-implementation`: Implements code in thin, verifiable vertical slices that are safe to roll back.
+- `test-driven-development`: Enforces Red-Green-Refactor cycles, testing pyramids, and DAMP over DRY principles.
+- `context-engineering`: Manages file context, environment rules, and MCP tooling for efficient context window usage.
+- `source-driven-development`: Aligns code implementations with official technical documentation and in-tree specifications.
+- `doubt-driven-development`: Subject high-stakes architectural decisions to critical adversarial examination.
+- `frontend-ui-engineering`: Constructs visual component architecture, layout hierarchies, state machines, and WCAG 2.1 AA accessibility.
+- `api-and-interface-design`: Designs Server Action contracts, public module boundaries, and structured error-handling semantics.
 
-### 4. Fase Verify
-- browser-testing-with-devtools: Pengujian verifikasi runtime antarmuka pengguna, DOM, konsol, dan jaringan via DevTools.
-- debugging-and-error-recovery: Protokol mitigasi galat 5 langkah: Reproduce -> Localize -> Reduce -> Fix -> Guard.
+### 4. Verify Phase
+- `browser-testing-with-devtools`: Runtime verification of user interfaces, DOM, console, and network via DevTools.
+- `debugging-and-error-recovery`: 5-step systematic error mitigation: Reproduce -> Localize -> Reduce -> Fix -> Guard.
 
-### 5. Fase Review
-- code-review-and-quality: Melakukan tinjauan kode 5 sumbu (kualitas, performa, maintainability, konvensi, keamanan) sebelum penggabungan.
-- code-simplification: Memangkas kompleksitas kode berlebih tanpa mengubah perilaku fungsional.
-- security-and-hardening: Pencegahan OWASP Top 10, validasi input, sanitasi data, dan audit dependensi.
-- performance-optimization: Audit anggaran performa, N+1 query mitigasi, dan optimasi bundle.
+### 5. Review Phase
+- `code-review-and-quality`: Conducts 5-axis code reviews (quality, performance, maintainability, convention, security) prior to merging.
+- `code-simplification`: Reduces unnecessary code complexity without altering functional behavior.
+- `security-and-hardening`: OWASP Top 10 prevention, input validation, data sanitization, and dependency auditing.
+- `performance-optimization`: Performance budget auditing, N+1 query mitigation, and bundle optimization.
 
-### 6. Fase Ship
-- git-workflow-and-versioning: Tata kelola percabangan resmi (dev, staging, main), Conventional Commits 1.0.0, commit atomik terstandarisasi, rekonsiliasi linear rebase, dan pembersihan cabang efemeral.
-- ci-cd-and-automation: Standarisasi gerbang kualitas pipeline CI/CD dan verifikasi regresi otomatis.
-- deprecation-and-migration: Pengelolaan migrasi skema database, pembersihan kode usang, dan kompatibilitas mundur.
-- documentation-and-adrs: Pembaruan Architecture Decision Records (ADR) dan dokumentasi in-tree.
-- observability-and-instrumentation: Penerapan logging terstruktur dan pemantauan metrik operasional.
-- shipping-and-launch: Checklist pra-rilis, verifikasi migrasi database, dan tata kelola peluncuran ke produksi.
+### 6. Ship Phase
+- `git-workflow-and-versioning`: Formal branch governance (`dev`, `staging`, `main`), Conventional Commits 1.0.0, standardized atomic commits, linear rebase reconciliation, and ephemeral branch cleanup.
+- `ci-cd-and-automation`: CI/CD quality gate standardization and automated regression verification.
+- `deprecation-and-migration`: Database schema migration management, dead-code cleanup, and backward compatibility.
+- `documentation-and-adrs`: Maintenance of Architecture Decision Records (ADRs) and in-tree documentation.
+- `observability-and-instrumentation`: Structured logging implementation and operational metric monitoring.
+- `shipping-and-launch`: Pre-release checklists, database migration verification, and production rollout governance.
 
-## 4. Batasan Arsitektur Tanpa Kompromi (Hard Invariants)
-Setiap pelanggaran terhadap aturan berikut membatalkan kelulusan tugas:
+## 4. Non-Negotiable Architectural Invariants (Hard Invariants)
+Any violation of the following invariants constitutes an automatic task failure:
 
-### A. Lapisan Basis Data (Drizzle ORM & PostgreSQL)
-- Tipe Kunci Primer: Kunci primer (id) pada semua tabel WAJIB bertipe UUIDv7 (uuidv7()). Dilarang memakai auto-increment integer atau random UUIDv4.
-- Kolom Audit Wajib: Seluruh tabel operasional wajib memiliki created_at (timestamptz, default now()), updated_at (timestamptz, default now()), dan created_by (uuid, referensi ke users.id, nullable hanya untuk registrasi pendaftaran publik).
-- Zero Physical Deletion: Dilarang mengeksekusi perintah SQL DELETE. Penonaktifan rekaman wajib menggunakan kolom logis is_active (boolean, default true, not null).
-- Indeks Pendukung: Setiap kolom foreign key (*_id) wajib memiliki indeks B-tree pendukung.
+### A. Database Layer (Drizzle ORM & PostgreSQL)
+- Primary Key Type: Primary keys (`id`) on all tables MUST use UUIDv7 (`uuidv7()`). Auto-increment integers or random UUIDv4 are strictly prohibited.
+- Mandatory Audit Columns: All operational tables must maintain `created_at` (`timestamptz`, default `now()`), `updated_at` (`timestamptz`, default `now()`), and `created_by` (`uuid`, references `users.id`, nullable only for public admissions registration).
+- Zero Physical Deletion: Executing SQL `DELETE` is strictly forbidden. Record deactivation must use logical column `is_active` (`boolean`, default `true`, `not null`).
+- Supporting Indexes: Every foreign key column (`*_id`) must have a supporting B-tree index.
 
-### B. Isolasi Domain (Modular Monolith)
-- Seluruh logika bisnis domain dikelompokkan di bawah src/modules/{domain}/.
-- Larangan Impor Silang Langsung: Berkas internal di src/modules/attendance/ DILARANG mengimpor berkas internal dari src/modules/grading/.
-- Komunikasi lintas domain WAJIB melalui antarmuka publik modul yang diekspor pada src/modules/{domain}/service.ts.
+### B. Domain Isolation (Modular Monolith)
+- All domain business logic must be encapsulated under `src/modules/{domain}/`.
+- Prohibition of Direct Cross-Module Imports: Internal files in `src/modules/attendance/` MUST NOT import internal files from `src/modules/grading/`.
+- Cross-domain communication MUST traverse the module's public interface exported at `src/modules/{domain}/service.ts`.
 
-### C. Kontrak Mutasi Data (Server Actions)
-- Seluruh mutasi data yang diautentikasi wajib menggunakan Server Actions yang divalidasi dengan runtime parser Zod.
-- Setiap Server Action wajib mengimpor dan menggunakan tipe ActionResponse dari src/types/action.ts (wajib memuat field is_success, status_code, response_payload, dan error_descriptor sesuai aturan Dokumen 04).
-- Mutasi publik pada form PPDB (/admission) wajib memvalidasi token Cloudflare Turnstile dan dilindungi rate limiting Upstash Redis (5 submisi per 15 menit).
+### C. Data Mutation Contract (Server Actions)
+- All authenticated data mutations must use Server Actions validated by Zod runtime parsers.
+- Every Server Action must import and use the `ActionResponse` type from `src/types/action.ts` (requiring fields `is_success`, `status_code`, `response_payload`, and `error_descriptor` per Document 04).
+- Public mutations on admissions forms (`/admissions`) must validate Cloudflare Turnstile tokens and be protected by Upstash Redis rate limiting (5 submissions / 15 minutes).
 
-### D. Tampilan Antarmuka & Aksesibilitas
-- Seluruh antarmuka visual dirangkai dari primitif shadcn/ui di src/components/ui/ dan utilitas Tailwind CSS.
-- Dilarang keras menulis kode heksadesimal mentah (misal #0f172a) pada berkas komponen JSX/TSX. Wajib menggunakan token semantik CSS Variables.
-- Kepatuhan aksesibilitas W3C WCAG 2.1 AA (kontras teks >= 4.5:1). Indikator status presensi atau evaluasi akademik wajib menyertakan label teks eksplisit di samping representasi warna visual.
+### D. User Interface & Accessibility
+- All visual interfaces are composed from shadcn/ui primitives under `packages/design-system` and Tailwind CSS utilities.
+- Raw hexadecimal colors (e.g. `#0f172a`) in JSX/TSX component files are strictly forbidden. Use semantic CSS Variables tokens.
+- W3C WCAG 2.1 AA accessibility compliance (text contrast ratio >= 4.5:1). Status indicators for attendance or grading must include explicit text labels alongside color representations.
 
-## 5. Protokol Loop Mandiri (Self-Healing Loop)
-Saat mengeksekusi tugas secara mandiri (misalnya melalui /build auto):
-1. Pecah tugas menjadi irisan vertikal kecil dan terisolasi (thin vertical slices).
-2. Tulis pengujian otomatis terlebih dahulu hingga berstatus gagal (Red).
-3. Tulis kode implementasi minimal hingga pengujian berhasil (Green).
-4. Jalankan rangkaian verifikasi statis: npx tsc --noEmit, npm run lint, dan npm run test.
-5. Penanganan Galat Tanpa Interupsi: Jika terjadi galat kompilasi atau tes gagal:
-   - Jangan berhenti untuk meminta bantuan manual kepada pengguna.
-   - Analisis pesan galat dan nomor baris dari terminal.
-   - Gunakan skill debugging-and-error-recovery untuk memperbaiki logika kode.
-   - Ulangi langkah verifikasi hingga seluruh pipeline berstatus hijau (0 error).
+## 5. Self-Healing Autonomous Loop
+When executing tasks autonomously:
+1. Decompose the task into small, isolated vertical slices.
+2. Write automated tests first until they fail (Red).
+3. Write minimal implementation code until tests pass (Green).
+4. Run the static verification suite: `pnpm run check-types`, `pnpm run check`, and `pnpm run test`.
+5. Uninterrupted Error Recovery: If compilation errors or test failures occur:
+   - Do not stop to prompt the user for manual intervention.
+   - Analyze error messages and line numbers directly from the output.
+   - Use `debugging-and-error-recovery` to resolve code issues systematically.
+   - Repeat verification until the entire pipeline is green (0 errors).
 
-## 6. Anti-Rationalization Guard (Larangan Jalan Pintas)
-- Dilarang menonaktifkan pengecekan tipe menggunakan komentar ts-ignore atau ts-nocheck.
-- Dilarang menggunakan tipe any implisit maupun eksplisit.
-- Dilarang membuat tes tiruan (mock) kosong yang selalu meloloskan kondisi tanpa memeriksa nilai asersi nyata.
-- Dilarang menunda penulisan unit test atau migrasi database.
+## 6. Anti-Rationalization Guard (Zero Shortcuts)
+- Disabling type checking via `@ts-ignore` or `@ts-nocheck` comments is prohibited.
+- Using implicit or explicit `any` types is prohibited.
+- Creating empty mock tests that pass unconditionally without inspecting actual assertions is prohibited.
+- Deferring unit test authoring or database migrations is prohibited.
 
-## 7. Kriteria Selesai Tugas (Done Criteria)
-Tugas dinyatakan selesai apabila:
-1. npx tsc --noEmit keluar dengan kode status 0 (0 error).
-2. Seluruh unit/integration test Vitest lulus 100% (npm run test).
-3. Seluruh berkas baru atau termodifikasi bersih dari pelanggaran ESLint (npm run lint).
-4. Memberikan ringkasan ringkas berupa daftar berkas yang diubah beserta bukti log kelulusan tes.
+## 7. Definition of Done
+A task is formally complete when:
+1. `pnpm run check-types` exits with code 0 (0 errors).
+2. All Vitest unit/integration tests pass 100% (`pnpm run test`).
+3. All new or modified files pass Biome verification (`pnpm run check`).
+4. `pnpm run build` succeeds across all workspaces.
+5. A concise summary of modified files and verification logs is provided.
 
-## 8. Protokol SDLC Otonom Penuh (Full Autonomous Workflow Protocol)
-Setiap kali pengguna memberikan instruksi yang relevan (seperti "TAMBAH FITUR: [Nama Fitur]" atau "JALANKAN PROTOKOL SDLC OTONOM"), agen WAJIB mengeksekusi 6 fase berikut secara berurutan, otonom, dan berkelanjutan tanpa berhenti, kecuali untuk meminta review final (Human-in-the-loop). Jika tidak disebutkan eksplisit, pengguna berhak menuntut agen mematuhi protokol ini.
+## 8. Full Autonomous SDLC Protocol
+When given high-level directives, the agent executes all 6 lifecycle phases sequentially and continuously:
 
-Fase 1: Ideasi & Klarifikasi (Skill: idea-refine, interview-me)
-- Agen otomatis mewawancarai pengguna dengan 1 atau 2 pertanyaan tajam untuk memperjelas cakupan fungsional fitur.
-- Agen menggunakan search_web untuk validasi arsitektur atau konvensi eksternal terkini.
+Phase 1: Ideation & Clarification (Skills: `idea-refine`, `interview-me`)
+- Refine requirements and technical scope. Validate against modern conventions using web search when necessary.
 
-Fase 2: Spesifikasi & Penjadwalan (MCP: Notion & Linear)
-- Notion: Agen menggunakan notion-mcp-server untuk merekam draf arsitektur fitur baru ke dokumen spesifikasi (misal: /docs/01-product-requirements-specification.md atau 04-application-route-and-mutation-contract.md).
-- Linear: Agen menggunakan linear-mcp-server untuk membuat Issue/Ticket baru yang merinci tugas, lalu mengubah statusnya menjadi "In Progress".
-- Agent Skill: Panggil skill spec-driven-development dan planning-and-task-breakdown secara asinkron untuk menyusun mental model sebelum mengoding.
+Phase 2: Specification & Scheduling (MCP: Notion & Linear)
+- Record architectural specifications and update Linear tracking issues to "In Progress".
+- Use `spec-driven-development` and `planning-and-task-breakdown` before writing code.
 
-Fase 3: Pembaruan Basis Data & Mutasi Backend (Neon PostgreSQL & Drizzle ORM)
-- Jika ada penambahan entitas data, agen wajib mengubah skema deklaratif Drizzle (packages/database/src/schema/).
-- Jalankan eksekusi pnpm run db:generate untuk membuat berkas migrasi SQL statis.
-- Agen DILARANG mengeksekusi SQL mentah. Eksekusi WAJIB melalui migrasi terkontrol Drizzle.
+Phase 3: Database Updates & Backend Mutations (Neon PostgreSQL & Drizzle ORM)
+- Update Drizzle schemas in `packages/database/src/schema/`.
+- Run `pnpm run db:generate` to produce static SQL migrations. Never execute raw unmanaged SQL.
 
-Fase 4: Penulisan Kode & Verifikasi Berulang (Skill: test-driven-development)
-- Agen mengimplementasikan komponen frontend menggunakan skema shadcn/ui.
-- Agen membuat logika backend menggunakan Next.js Server Actions dan Zod.
-- Agen WAJIB menjalankan verifikasi statis (npx tsc --noEmit & npm run lint).
-- Agen WAJIB menjalankan pengujian unit/integrasi (npm run test).
-- Self-Healing: Jika skrip pengujian memunculkan galat (status keluar > 0), agen DILARANG BERHENTI. Agen wajib masuk ke sub-protokol Self-Healing Loop (Seksi 5) dengan bantuan debugging-and-error-recovery hingga pipeline kembali hijau (0 error).
+Phase 4: Code Implementation & Iterative Verification (Skills: `test-driven-development`)
+- Implement frontend components using shadcn/ui and design system primitives.
+- Author backend logic using Next.js Server Actions and Zod.
+- Execute static checks (`pnpm run check-types`, `pnpm run check`, `pnpm run test`).
+- Enter the Self-Healing Loop if any failure occurs until 0 errors remain.
 
-Fase 5: Uji Aksesibilitas, Keamanan, & E2E (Skill: security-and-hardening, MCP: Playwright)
-- Keamanan & Bot: Pastikan setiap mutasi publik (seperti form) dilindungi oleh Upstash Redis (Rate Limiting) dan Cloudflare Turnstile (Bot Protection).
-- Aksesibilitas: Audit kepatuhan komponen UI terhadap standar W3C WCAG 2.1 AA.
-- E2E Testing: Eksekusi pengujian otomatis via Playwright untuk memvalidasi interaksi DOM secara visual di browser sungguhan.
+Phase 5: Accessibility, Security, & E2E Testing (Skill: `security-and-hardening`, MCP: Playwright)
+- Security: Enforce Upstash Redis rate limiting and Cloudflare Turnstile bot protection on public endpoints.
+- Accessibility: Audit W3C WCAG 2.1 AA compliance.
+- E2E Testing: Run automated Playwright tests to validate DOM workflows in real browser runtimes.
 
-Fase 6: Pengiriman, Rilis, & Notifikasi (MCP: GitHub, Vercel, Linear, Slack)
-- GitHub: Agen mengeksekusi alur kerja git sesuai Spesifikasi Teknis Tata Kelola Percabangan (Dokumen 11):
-  1. Sinkronisasi hulu dev: `git checkout dev && git pull --ff-only origin dev`
-  2. Inisiasi cabang efemeral: `git checkout -b <nama-cabang> dev` (formula: `feat/<lingkup>/<id-tiket>-<deskripsi>`, `fix/`, `docs/`, dll.)
-  3. Perekaman komit atomik: `git commit -m "<tipe>(<lingkup>): <deskripsi>"`
-  4. Rekonsiliasi linear: `git fetch origin && git rebase origin/dev`
-  5. Publikasi jarak jauh: `git push origin <nama-cabang>`
-  6. Pembukaan Pull Request ke `dev` dengan metode integrasi akhir *Squash and Merge* setelah lulus 100% uji CI & 80% coverage.
-- Vercel: Agen melacak peluncuran menggunakan vercel MCP dan memastikan deployment status berubah menjadi READY.
-- Linear: Agen menutup Issue/Ticket Linear dengan memindahkannya ke "Done".
-- Slack: Agen mengirimkan notifikasi otomatis keberhasilan rilis fitur ke kanal Slack #albirru-project-stream (jika terkonfigurasi).
-- Laporan Akhir (Final Review): Agen memberikan intisari singkat berisi: nomor tiket Linear, status GitHub CI, URL Pratinjau Vercel, dan menyerahkan kendali kembali kepada pengguna untuk Review manual.
+Phase 6: Shipping, Deployment, & Reporting (MCP: GitHub, Vercel, Linear, Slack)
+- Git workflow: Synchronize `dev`, record atomic commits, rebase cleanly, and open Pull Requests.
+- Vercel: Track deployment status using Vercel MCP until status reaches `READY`.
+- Linear: Mark resolved tickets as "Done".
+- Slack: Post release notifications to `#albirru-project-stream`.
+- Final Review: Present concise summary with ticket numbers, CI status, and preview URLs to user.
 
 ## 9. Unified Tech Stack Agent Rules
 
-<!-- BEGIN:nextjs-agent-rules -->
 ### Next.js App Router & React Server Components
-- Gunakan React Server Components (RSC) secara default pada berkas di direktori app/. Tambahkan direktif "use client" HANYA jika komponen membutuhkan interaktivitas state (useState, useReducer), event listeners, atau browser API.
-- Mutasi data WAJIB melalui Server Actions ("use server"). Dilarang mengekspos API Route mutasi REST biasa kecuali untuk webhook eksternal statutori.
-- Dilarang menggunakan useEffect untuk data fetching; lakukan pengambilan data secara langsung di tingkat RSC secara asinkron (async/await).
-- Gunakan komponen <Image /> bawaan Next.js untuk optimasi aset visual, dan selalu deklarasikan atribut alt secara deskriptif untuk kepatuhan aksesibilitas.
-- Gunakan next/navigation (bukan next/router) untuk manipulasi rute sisi klien.
-<!-- END:nextjs-agent-rules -->
+- Use React Server Components (RSC) by default for files under `app/`. Add `"use client"` ONLY when state interactivity (`useState`, `useReducer`), event listeners, or browser APIs are required.
+- Data mutations MUST use Server Actions (`"use server"`). Do not expose generic REST mutation API routes except for statutory external webhooks.
+- Do not use `useEffect` for data fetching; fetch data directly inside RSCs asynchronously (`async/await`).
+- Use Next.js `<Image />` for visual asset optimization with descriptive `alt` attributes.
+- Use `next/navigation` (not `next/router`) for client-side navigation.
 
-### Autentikasi & Akun (Clerk)
-- Verifikasi dan parsing sesi pengguna di server WAJIB menggunakan pustaka resmi `@clerk/nextjs` (misalnya `auth()` dari `@clerk/nextjs/server`).
-- Lindungi rute portal dan administrasi menggunakan Clerk Middleware dan integrasikan pemeriksaan peran RBAC secara terpusat.
+### Authentication & Accounts (Clerk)
+- Verify and parse server sessions using the official `@clerk/nextjs` SDK (`auth()` from `@clerk/nextjs/server`).
+- Protect portal and administrative routes with Clerk Middleware and integrate RBAC role checks centrally.
 
 ### Drizzle ORM
-- Definisikan relasi referensial secara eksplisit menggunakan skema relations() Drizzle untuk mencegah anomali query N+1.
-- Seluruh mutasi struktur tabel WAJIB melalui npx drizzle-kit generate untuk menghasilkan berkas migrasi SQL statis. Dilarang mengeksekusi SQL DDL mentah langsung ke database produksi.
+- Define referential relationships explicitly using Drizzle `relations()` to prevent N+1 query anomalies.
+- All schema changes MUST use `pnpm run db:generate` to generate static SQL migration files. Never execute raw SQL DDL directly against production databases.
 
-### UI/UX & Desain Sistem
-- Dilarang menulis komponen primitif HTML dari nol jika padanannya tersedia di shadcn/ui. Panggil CLI npx shadcn@latest add [nama] bila komponen belum terpasang di src/components/ui/.
-- Seluruh form interaktif wajib diikat menggunakan React Hook Form yang dipadukan dengan @hookform/resolvers/zod.
+### UI/UX & Design System
+- Do not construct primitive HTML components from scratch when equivalents exist in `packages/design-system` or shadcn/ui.
+- Interactive forms must use React Hook Form paired with `@hookform/resolvers/zod`.
 
 ### TypeScript Strict Mode
-- Dilarang menggunakan tipe any baik eksplisit maupun implisit.
-- Gunakan inferensi statis penuh dari skema Zod (z.infer<typeof schema>) atau tipe inferensi bawaan Drizzle (typeof table.$inferSelect).
+- Prohibit `any` types (both explicit and implicit).
+- Rely on static inference from Zod schemas (`z.infer<typeof schema>`) or Drizzle table inference (`typeof table.$inferSelect`).

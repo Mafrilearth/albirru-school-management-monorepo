@@ -1,23 +1,23 @@
-> **Tujuan Dokumen:** Spesifikasi kebutuhan bisnis, batasan fungsional produk, matriks otorisasi peran pengguna, dan kriteria penerimaan rilis produk layak minimum sistem informasi sekolah.
+> **Document Purpose:** Business requirements specification, product functional boundaries, user role authorization matrix, and minimum viable product release acceptance criteria for the school information system.
 ---
 ## 1. Document Metadata
 | Attribute | Value | Description |
 |---|---|---|
-| **Document Title** | Product Requirements Specification | Judul statutori spesifikasi kebutuhan produk |
-| **Dashboard Reference** | `albirru-sis-web/README.md` | Dasbor tata kelola induk repositori |
-| **Specification Version** | 1.0.0 | Versi dasar produk layak minimum |
-| **Lifecycle State** | Approved (In Development) | Status kesiapan tata kelola operasional |
-| **File Path** | `/docs/01-product-requirements-specification.md` | Jalur berkas dalam repositori |
+| **Document Title** | Product Requirements Specification | Statutory product requirements specification title |
+| **Dashboard Reference** | `albirru-sis-web/README.md` | Repository root governance dashboard |
+| **Specification Version** | 1.0.0 | Baseline minimum viable product version |
+| **Lifecycle State** | Approved (In Development) | Operational governance readiness state |
+| **File Path** | `/docs/01-product-requirements-specification.md` | File path within the repository |
 ---
 ## 2. Executive Summary and Problem Statement
 ### 2.1 Operational Problem
-Administrasi sekolah menghadapi inefisiensi pencatatan presensi manual, kalkulasi nilai siswa yang rentan galat pada lembar kerja tersebar, serta keterlambatan distribusi buku rapor akademik kepada wali murid.
+School administration faces operational inefficiencies with manual attendance taking, error-prone student grading calculations across scattered spreadsheets, and delayed delivery of academic report cards to guardians.
 ### 2.2 System Solution
-Menyediakan aplikasi web terisolasi modern modular monolit yang mengonsolidasikan direktori civitas sekolah, pencatatan presensi harian rombongan belajar, komputasi nilai akademik terbobot, portal mandiri wali murid, dan admisi peserta didik baru.
+Provide an isolated, modern modular monolith web application that consolidates the school community directory, daily cohort attendance tracking, weighted academic grade computation, a self-service guardian portal, and prospective student admissions.
 ### 2.3 Measurable Key Performance Indicators
-- Pencatatan presensi harian tuntas dalam waktu kurang dari 3 menit per rombongan belajar.
-- Perhitungan nilai akhir dan pembulatan buku rapor memiliki akurasi matematis mutlak 100%.
-- Waktu respons mutasi antarmuka dan transaksi komputasi selesai di bawah ambang batas 1000 milidetik.
+- Daily classroom attendance recorded in under 3 minutes per cohort.
+- Final grade computation and report card rounding achieve 100% absolute mathematical precision.
+- Interface mutation and computational transaction response times execute below the 1000 millisecond threshold.
 ---
 ## 3. Canonical User Roles and Permission Matrix
 | Capability Scope | System Administrator | Instructor | Guardian | Public Guest |
@@ -32,98 +32,98 @@ Menyediakan aplikasi web terisolasi modern modular monolit yang mengonsolidasika
 ## 4. Minimum Viable Product Functional Modules
 ### 4.1 Daily Attendance Tracking
 #### 4.1.1 Cohort Attendance Session Inception
-- **Initialization:** Instruktur membuka sesi presensi harian pada rombongan belajar yang ditugaskan untuk tanggal kalender aktif.
-- **Execution & Data Intake:** Sistem memuat seluruh siswa aktif yang terdaftar, terurut menurut abjad nama resmi, dengan status awal `Present`.
-- **Validation & Exception:** Sistem memblokir pembuatan sesi jika tanggal kalender klien melampaui tanggal kalender server. Sesi yang telah ada dialihkan ke mode pembaruan.
-- **Finalization:** Tampilan ringkasan menyajikan rekapitulasi status kehadiran siswa secara langsung.
+- **Initialization:** Instructor initiates a daily attendance session for the assigned cohort on the active calendar date.
+- **Execution & Data Intake:** The system populates all active enrolled students, sorted alphabetically by official legal name, defaulting to `Present`.
+- **Validation & Exception:** The system rejects session creation if the client calendar date exceeds the server calendar date. Existing sessions redirect to update mode.
+- **Finalization:** A summary panel provides immediate real-time attendance metric tallying.
 #### 4.1.2 Real-Time Attendance Status Mutation
-- **Initialization:** Instruktur memilih baris data siswa yang mengalami perubahan kehadiran.
-- **Execution & Data Intake:** Instruktur menentukan status pengganti (`Absent`, `Sick`, atau `Excused`) beserta catatan keterangan opsional.
-- **Validation & Exception:** Penetapan status bersifat saling lepas (*mutually exclusive*). Satu siswa hanya memiliki tepat satu status presensi per sesi.
-- **Finalization:** Nilai status tersimpan sementara pada antarmuka dan memperbarui total rekapitulasi tanpa memuat ulang layar penuh.
+- **Initialization:** Instructor selects a student record row experiencing an attendance status change.
+- **Execution & Data Intake:** Instructor assigns a replacement status (`Absent`, `Sick`, or `Excused`) along with optional explanatory notes.
+- **Validation & Exception:** Status assignment is strictly mutually exclusive. Each student has exactly one attendance status per session.
+- **Finalization:** Status values are temporarily preserved in the UI and update running totals without a full page reload.
 #### 4.1.3 Register Submission and Immutability Lock
-- **Initialization:** Instruktur memicu aksi finalisasi lembar presensi rombongan belajar.
-- **Execution & Data Intake:** Sistem membungkus seluruh status kehadiran siswa ke dalam satu transaksi basis data atomik.
-- **Validation & Exception:** Sistem menolak penyimpanan jika terdapat baris data siswa aktif tanpa status eksplisit.
-- **Finalization:** Status lembar presensi berubah menjadi `Verified` dan terkunci otomatis pada tengah malam kalender lokal (*midnight lock*).
+- **Initialization:** Instructor triggers the cohort attendance register finalization action.
+- **Execution & Data Intake:** The system wraps all student attendance statuses into an atomic database transaction.
+- **Validation & Exception:** The system rejects persistence if any active enrolled student lacks an explicit status.
+- **Finalization:** Register status transitions to `Verified` and locks automatically at local calendar midnight (*midnight lock*).
 ---
 ### 4.2 Grading and Academic Reporting
 #### 4.2.1 Assessment Component Weight Configuration
-- **Initialization:** Administrator atau instruktur penanggung jawab memilih kurikulum mata pelajaran dan semester akademik aktif.
-- **Execution & Data Intake:** Pengguna menetapkan bobot persentase bilangan bulat pada setiap komponen penilaian (Tugas Harian, Penilaian Tengah Semester, Penilaian Akhir Semester, dan Keterampilan).
-- **Validation & Exception:** Sistem memblokir penyimpanan jika akumulasi penjumlahan bobot seluruh komponen tidak tepat bernilai 100 persen.
-- **Finalization:** Skema bobot penilaian terkunci sebagai rujukan dasar perhitungan nilai akhir rapor.
+- **Initialization:** Administrator or lead instructor selects the course curriculum and active academic term.
+- **Execution & Data Intake:** User configures integer percentage weights for each assessment component (Daily Assignments, Midterm Exam, Final Exam, and Practical Skills).
+- **Validation & Exception:** The system rejects persistence if the cumulative weight sum does not equal exactly 100 percent.
+- **Finalization:** The weighted grading formula locks as the baseline reference for final report card calculations.
 #### 4.2.2 Continuous Numeric Score Intake
-- **Initialization:** Instruktur membuka buku nilai kelas untuk mata pelajaran yang diampu.
-- **Execution & Data Intake:** Instruktur memasukkan nilai numerik mentah berbasis skala 0 hingga 100 per siswa dalam antarmuka tabular.
-- **Validation & Exception:** Masukan bernilai kurang dari 0 atau lebih dari 100 ditolak langsung oleh validasi batas. Masukan non-numerik diabaikan.
-- **Finalization:** Rata-rata tertimbang mata pelajaran terhitung secara otomatis di sisi antarmuka.
+- **Initialization:** Instructor opens the class gradebook for their assigned course.
+- **Execution & Data Intake:** Instructor enters raw numeric scores on a scale of 0 to 100 per student in a tabular spreadsheet-style interface.
+- **Validation & Exception:** Scores below 0 or above 100 are rejected immediately by boundary validation. Non-numeric input is discarded.
+- **Finalization:** Weighted course averages recalculate automatically on the client interface.
 #### 4.2.3 Report Card Review and Publication Freeze
-- **Initialization:** Instruktur atau administrator membuka dasbor penerbitan rapor di akhir periode akademik.
-- **Execution & Data Intake:** Sistem mengompilasi seluruh nilai tertimbang mata pelajaran ke dalam lembar draf buku rapor siswa.
-- **Validation & Exception:** Rapor tidak dapat diterbitkan jika terdapat mata pelajaran wajib yang belum memiliki komponen nilai tuntas.
-- **Finalization:** Administrator menandatangani pengesahan; status rapor berubah menjadi `Published`, bersifat kekal (*immutable*), dan dapat diakses oleh akun wali murid.
+- **Initialization:** Instructor or administrator opens the report card issuance dashboard at the close of the academic term.
+- **Execution & Data Intake:** The system compiles all weighted course scores into student draft report card records.
+- **Validation & Exception:** Report cards cannot be published if required core courses lack finalized grades.
+- **Finalization:** Administrator executes official sign-off; report card state transitions to `Published`, becomes strictly immutable, and is accessible to guardian accounts.
 ---
 ### 4.3 Guardian Portal
 #### 4.3.1 Dependent Association Verification
-- **Initialization:** Wali murid melakukan autentikasi ke dalam portal menggunakan kredensial resmi terdaftar.
-- **Execution & Data Intake:** Gerbang keamanan memverifikasi ikatan relasi legal dan menampilkan kartu profil siswa terhubung.
-- **Validation & Exception:** Upaya mengakses profil siswa di luar ikatan relasi legal ditolak dengan galat otorisasi akses. Akun tanpa relasi diarahkan ke verifikasi identitas administratif.
-- **Finalization:** Wali murid memilih profil siswa untuk masuk ke area pemantauan spesifik siswa bersangkutan.
+- **Initialization:** Guardian authenticates into the portal using officially registered credentials.
+- **Execution & Data Intake:** The security boundary verifies legal relationship ties and renders connected student profile cards.
+- **Validation & Exception:** Unauthorized attempts to access student profiles outside legal relationships are rejected with access authorization errors. Unassociated accounts redirect to administrative verification.
+- **Finalization:** Guardian selects a student profile to access that specific dependent's monitoring workspace.
 #### 4.3.2 Dependent Attendance Metric Monitoring
-- **Initialization:** Wali murid membuka tab ringkasan kehadiran siswa.
-- **Execution & Data Intake:** Sistem memuat statistik persentase kehadiran semester berjalan beserta log riwayat kalender harian.
-- **Validation & Exception:** Catatan administrasi internal instruktur disaring dan disembunyikan; antarmuka hanya menampilkan label status resmi.
-- **Finalization:** Wali murid menerima representasi visual status kehadiran dan indikasi ketidakhadiran siswa.
+- **Initialization:** Guardian navigates to the student attendance summary tab.
+- **Execution & Data Intake:** The system renders semester-to-date attendance percentage metrics alongside daily calendar logs.
+- **Validation & Exception:** Internal teacher notes are filtered out and hidden; the interface displays only statutory status indicators.
+- **Finalization:** Guardian receives a clear visual summary of student attendance patterns and unexcused absence flags.
 #### 4.3.3 Published Report Card Inspection
-- **Initialization:** Wali murid membuka tab capaian akademik siswa.
-- **Execution & Data Intake:** Sistem menampilkan daftar rapor akademik yang tersedia untuk periode semester berjalan.
-- **Validation & Exception:** Rapor dengan status draf atau peninjauan internal disembunyikan sepenuhnya dari tampilan.
-- **Finalization:** Lembar rincian nilai mata pelajaran, catatan instruktur, dan predikat resmi ditampilkan dengan opsi cetak dokumen.
+- **Initialization:** Guardian navigates to the student academic achievement tab.
+- **Execution & Data Intake:** The system displays the catalog of published report cards available for active and historical terms.
+- **Validation & Exception:** Report cards in draft or internal review status are completely hidden from view.
+- **Finalization:** Complete course grades, instructor remarks, and official achievement ribbons are rendered with PDF document print export options.
 ---
 ### 4.4 Roster and Identity Allocation
 #### 4.4.1 Master Individual Identity Provisioning
-- **Initialization:** Administrator membuka konsol manajemen direktori civitas sekolah.
-- **Execution & Data Intake:** Administrator memasukkan identitas master (Nama Lengkap, Nomor Induk Kependudukan, Tanggal Lahir, Jenis Kelamin, dan Peran: Siswa, Instruktur, atau Staf Administrasi).
-- **Validation & Exception:** Sistem memvalidasi keunikan Nomor Induk Kependudukan; masukan duplikat diblokir dengan pemberitahuan konflik data.
-- **Finalization:** Sistem menerbitkan Nomor Induk Siswa permanen dan menyimpan entitas ke dalam direktori master.
+- **Initialization:** Administrator opens the school master identity directory console.
+- **Execution & Data Intake:** Administrator inputs identity records (Full Legal Name, National Identity Number, Date of Birth, Gender, and Role: Student, Instructor, or Staff).
+- **Validation & Exception:** The system verifies uniqueness of the National Identity Number; duplicates are blocked with conflict notifications.
+- **Finalization:** The system issues a permanent Student Identification Number (NISN/NIS) and stores the entity in the master directory.
 #### 4.4.2 Cohort Roster Assembly and Term Enrollment
-- **Initialization:** Administrator membuka konfigurasi pembagian rombongan belajar untuk tahun ajaran aktif.
-- **Execution & Data Intake:** Administrator memilih siswa aktif dari direktori untuk dialokasikan ke dalam rombongan belajar kelas tertentu.
-- **Validation & Exception:** Penugasan diblokir jika jumlah siswa melampaui daya tampung maksimal kelas atau jika siswa telah terdaftar pada rombongan belajar lain pada semester yang sama.
-- **Finalization:** Ikatan rombongan belajar terkunci dan otomatis memetakan siswa ke buku presensi serta buku nilai instruktur terkait.
+- **Initialization:** Administrator opens cohort allocation management for the active academic year.
+- **Execution & Data Intake:** Administrator assigns active students from the directory into designated classroom cohorts.
+- **Validation & Exception:** Enrollment is blocked if class size exceeds maximum capacity or if the student is already assigned to another cohort in the same term.
+- **Finalization:** Cohort enrollment locks and automatically provisions students into instructor attendance and grading registers.
 #### 4.4.3 Logical Identity Deactivation and Archive Preservation
-- **Initialization:** Administrator memproses penonaktifan civitas (kelulusan, mutasi, atau pengunduran diri).
-- **Execution & Data Intake:** Administrator menandai status profil menjadi tidak aktif dengan mencantumkan alasan administratif resmi.
-- **Validation & Exception:** Penghapusan baris data fisik (*hard delete*) dilarang keras. Seluruh riwayat presensi dan nilai tetap utuh.
-- **Finalization:** Akun pengguna dialihkan ke status `Inactive`, mencabut izin autentikasi aktif, dan mengecualikan profil dari alokasi rombongan belajar baru.
+- **Initialization:** Administrator initiates member deactivation (graduation, transfer, or withdrawal).
+- **Execution & Data Intake:** Administrator marks profile status as inactive with official administrative reason documentation.
+- **Validation & Exception:** Physical row deletion (*hard delete*) is strictly prohibited. All historical attendance and grade data remain intact.
+- **Finalization:** Account transitions to `Inactive`, revoking active authentication sessions and excluding the profile from future cohort rosters.
 ---
 ### 4.5 Public Information and Admission
 #### 4.5.1 Public Institutional Profile Display
-- **Initialization:** Pengunjung umum membuka rute alamat web beranda sekolah (`/`).
-- **Execution & Data Intake:** Sistem menyajikan konten profil sekolah, visi misi, struktur akreditasi, dan pengumuman resmi.
-- **Validation & Exception:** Jalur akses publik disajikan tanpa hambatan autentikasi dan sepenuhnya terisolasi dari direktori data civitas internal.
-- **Finalization:** Mesin pencari mengindeks halaman publik melalui konfigurasi Open Graph dan tag kanonikal.
+- **Initialization:** Public guest visits the school home URL (`/`).
+- **Execution & Data Intake:** The system serves the institutional profile, mission and vision, accreditation metrics, and statutory announcements.
+- **Validation & Exception:** Public routes require no authentication and operate completely isolated from internal member data directories.
+- **Finalization:** Search engines index public pages through Open Graph tags and canonical metadata configurations.
 #### 4.5.2 Electronic Admission Application Intake
-- **Initialization:** Calon wali murid mengakses portal pendaftaran siswa baru (`/admission`).
-- **Execution & Data Intake:** Pendaftar mengisi formulir digital data calon siswa, kontak orang tua, serta mengunggah berkas persyaratan (Kartu Keluarga dan Akta Kelahiran).
-- **Validation & Exception:** Berkas unggahan divalidasi atas batas ukuran maksimal berkas dan format tipe MIME dokumen resmi; masukan formulir wajib diverifikasi lengkap.
-- **Finalization:** Sistem menerbitkan nomor registrasi pendaftaran unik dan mengalihkan status data ke antrean `Pending Review`.
+- **Initialization:** Prospective guardian navigates to the new student admissions portal (`/admissions`).
+- **Execution & Data Intake:** Applicant submits digital prospective student data, guardian contacts, and uploads statutory documents (Family Card and Birth Certificate).
+- **Validation & Exception:** Uploads are validated against file size boundaries and permitted MIME types; all required fields must pass schema validation.
+- **Finalization:** The system issues a unique tracking registration number and places the application into the `Pending Review` queue.
 #### 4.5.3 Administrative Admission Application Adjudication
-- **Initialization:** Panitia admisi membuka antrean verifikasi pendaftaran peserta didik baru.
-- **Execution & Data Intake:** Administrator menelaah berkas lampiran dan keabsahan isian formulir calon peserta didik.
-- **Validation & Exception:** Administrator memberikan keputusan status: `Approved`, `Rejected`, atau `Information Required`.
-- **Finalization:** Penetapan status `Approved` memicu pembuatan entitas awal siswa yang siap dialokasikan ke dalam rombongan belajar tahun ajaran baru.
+- **Initialization:** Admissions committee opens the application verification review queue.
+- **Execution & Data Intake:** Administrator reviews submitted documents and application data integrity.
+- **Validation & Exception:** Administrator records an adjudication decision: `Approved`, `Rejected`, or `Information Required`.
+- **Finalization:** An `Approved` decision triggers initial student profile generation ready for upcoming academic term roster assignment.
 ---
 ## 5. Non-Functional System Constraints
-- **Strict Domain Decoupling:** Modul beroperasi dengan isolasi konteks domain di dalam arsitektur modular monolit tanpa ketergantungan logika lintas tabel yang tidak terdefinisi.
-- **Transactional Integrity:** Penyimpanan presensi dan finalisasi buku nilai dieksekusi di dalam batas transaksi atomik basis data.
-- **Audit Trail and Retention:** Setiap perubahan status nilai dan presensi mencatat log identitas pengguna serta stempel waktu sistem tanpa penghapusan fisik rekaman data (*zero hard delete*).
-- **Response Latency Upper Bound:** Seluruh komputasi agregasi nilai dan mutasi antarmuka wajib merespons di bawah ambang batas 1000 milidetik pada koneksi standar.
+- **Strict Domain Decoupling:** Modules operate with isolated domain context boundaries in a modular monolith without undefined cross-table logic couplings.
+- **Transactional Integrity:** Attendance persistence and gradebook finalization execute within atomic database transactions.
+- **Audit Trail and Retention:** Every state change in grades and attendance logs user identity and timestamp without physical deletion (*zero hard delete*).
+- **Response Latency Upper Bound:** All grade aggregations and interface mutations must respond under the 1000 millisecond threshold under standard connectivity.
 ---
 ## 6. Post-Baseline Scalability Registry
 | Extended Scope Title | Target Lifecycle Phase | In-Tree Documentation Directive |
 |---|---|---|
-| **Automated Tuition Billing** | Post-MVP Active (Sprint 2) | Ditambahkan pada seksi 4.6 menggunakan struktur alur kerja 4 fase |
-| **Computer-Based Examination** | Post-MVP Active (Sprint 3) | Ditambahkan pada seksi 4.7 menggunakan struktur alur kerja 4 fase |
-| **Learning Management Resources** | Research Pipeline | Ditambahkan pada seksi 4.8 setelah justifikasi arsitektur disetujui |
+| **Automated Tuition Billing** | Post-MVP Active (Sprint 2) | Append to Section 4.6 using standard 4-phase workflow template |
+| **Computer-Based Examination** | Post-MVP Active (Sprint 3) | Append to Section 4.7 using standard 4-phase workflow template |
+| **Learning Management Resources** | Research Pipeline | Append to Section 4.8 following approved architectural justification |

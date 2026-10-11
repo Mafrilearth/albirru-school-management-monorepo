@@ -23,11 +23,11 @@ interface NewsArchiveGridProps {
 }
 
 const categories = [
-  { id: "all", label: "Semua Kategori" },
-  { id: "tahfidz", label: "Tahfidz & Keislaman" },
-  { id: "prestasi", label: "Prestasi Students" },
-  { id: "kegiatan", label: "News Kegiatan" },
-  { id: "pengumuman", label: "Pengumuman Resmi" },
+  { id: "all", label: "All Categories" },
+  { id: "tahfidz", label: "Tahfidz & Islamic Studies" },
+  { id: "achievements", label: "Student Achievements" },
+  { id: "activities", label: "School Activities" },
+  { id: "announcements", label: "Official Announcements" },
 ];
 
 export function NewsArchiveGrid({ articles }: NewsArchiveGridProps) {
@@ -56,19 +56,19 @@ export function NewsArchiveGrid({ articles }: NewsArchiveGridProps) {
   return (
     <div className="space-y-14 md:space-y-16">
       <h2 id="news-archive-heading" className="sr-only">
-        Arsip &amp; Indeks News School
+        School News Archive &amp; Index
       </h2>
 
       {/* Search & Category Filter Bar */}
       <div
         role="search"
-        aria-label="Pencarian dan Filter News"
+        aria-label="Search and Filter News"
         className="flex flex-col md:flex-row md:items-center justify-between gap-6 p-6 sm:p-7 rounded-none bg-[#FDFDFB] dark:bg-slate-950 border border-slate-200 dark:border-slate-700 shadow-2xs"
       >
         {/* Animated Category Pills with layoutId */}
         <div
           role="group"
-          aria-label="Pilihan Kategori News"
+          aria-label="News Category Filter"
           className="flex flex-wrap items-center gap-2"
         >
           {categories.map((cat) => {
@@ -106,8 +106,8 @@ export function NewsArchiveGrid({ articles }: NewsArchiveGridProps) {
           />
           <Input
             type="text"
-            placeholder="Search kata kunci berita..."
-            aria-label="Search kata kunci berita"
+            placeholder="Search news by keyword..."
+            aria-label="Search news by keyword"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="pl-10 h-11 rounded-none border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-xs text-slate-900 dark:text-slate-50 placeholder:text-slate-400 focus-visible:ring-amber-500 font-sans shadow-2xs"
@@ -145,7 +145,7 @@ export function NewsArchiveGrid({ articles }: NewsArchiveGridProps) {
                         className="size-12 text-slate-700 dark:text-slate-300 group-hover:scale-110 transition-transform duration-300"
                       />
                       <figcaption className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-2 font-mono">
-                        Liputan Utama
+                        Featured Story
                       </figcaption>
                     </figure>
                   </div>
@@ -188,14 +188,14 @@ export function NewsArchiveGrid({ articles }: NewsArchiveGridProps) {
                           aria-hidden="true"
                           className="size-3.5 text-slate-500"
                         />
-                        <span>Oleh: {featuredArticle.author}</span>
+                        <span>By: {featuredArticle.author}</span>
                       </address>
 
                       <Link
                         href={`/news/${featuredArticle.slug}`}
-                        className="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold px-5 h-11 rounded-none text-xs transition-transform hover:scale-[1.02] active:scale-[0.98]"
+                        className="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold px-5 h-11 rounded-none text-xs transition-transform hover:scale-[1.02] active:scale-[0.99]"
                       >
-                        <span>Baca News Lengkap</span>
+                        <span>Read Full Article</span>
                         <ArrowRight aria-hidden="true" className="size-3.5" />
                       </Link>
                     </footer>
@@ -207,7 +207,7 @@ export function NewsArchiveGrid({ articles }: NewsArchiveGridProps) {
 
           {/* Regular Articles Semantic List */}
           <ul
-            aria-label="Register News School"
+            aria-label="School News Directory"
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 list-none p-0"
           >
             {(searchQuery || selectedCategory !== "all"
@@ -239,7 +239,7 @@ export function NewsArchiveGrid({ articles }: NewsArchiveGridProps) {
                           className="size-8 text-slate-300 group-hover:scale-110 transition-transform duration-300"
                         />
                         <figcaption className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-1 font-mono">
-                          Foto News
+                          News Photo
                         </figcaption>
                       </figure>
 
@@ -281,7 +281,7 @@ export function NewsArchiveGrid({ articles }: NewsArchiveGridProps) {
                         href={`/news/${article.slug}`}
                         className="text-xs font-bold text-slate-900 dark:text-slate-50 group-hover:text-amber-700 transition-colors flex items-center gap-1.5 group/link"
                       >
-                        <span>Baca Read More</span>
+                        <span>Read More</span>
                         <ArrowRight
                           aria-hidden="true"
                           className="size-3.5 text-amber-600 group-hover/link:translate-x-1 transition-transform"
@@ -311,11 +311,11 @@ export function NewsArchiveGrid({ articles }: NewsArchiveGridProps) {
             className="size-14 text-slate-400 mx-auto mb-4"
           />
           <h3 className="text-xl font-bold text-slate-900 dark:text-slate-50">
-            Tidak ada warta yang sesuai pencarian
+            No articles match your search
           </h3>
           <p className="text-xs sm:text-sm text-slate-500 mt-2 max-w-sm mx-auto leading-relaxed">
-            Silakan coba kata kunci pencarian lain atau pilih kategori warta
-            yang berbeda.
+            Please try a different search keyword or select another news
+            category.
           </p>
         </motion.div>
       )}

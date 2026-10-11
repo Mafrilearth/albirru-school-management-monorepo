@@ -25,7 +25,7 @@ export async function provisionMasterIdentityAction(
         response_payload: null,
         error_descriptor: {
           code: "CONFLICT",
-          message: "Nomor Induk Kependudukan sudah terdaftar.",
+          message: "National identity number is already registered.",
         },
       };
     }
@@ -77,7 +77,7 @@ export async function provisionMasterIdentityAction(
         response_payload: null,
         error_descriptor: {
           code: "CONFLICT",
-          message: "Alamat email sudah terdaftar di sistem.",
+          message: "Email address is already registered in the system.",
         },
       };
     }
@@ -89,7 +89,9 @@ export async function provisionMasterIdentityAction(
       error_descriptor: {
         code: "INTERNAL_SERVER_ERROR",
         message:
-          error instanceof Error ? error.message : "Terjadi kesalahan internal",
+          error instanceof Error
+            ? error.message
+            : "An internal server error occurred",
       },
     };
   }

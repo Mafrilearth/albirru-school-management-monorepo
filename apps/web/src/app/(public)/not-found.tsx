@@ -16,8 +16,8 @@ export default function NotFound() {
       </h1>
 
       <p className="text-slate-500 dark:text-slate-400 max-w-md mb-8">
-        Kode panggil gagal. Halaman atau dokumen yang Anda cari mungkin telah
-        dihapus, diubah namanya, atau tidak pernah ada dalam sistem.
+        Routing resolution failed. The page or document you are looking for may
+        have been moved, renamed, or does not exist.
       </p>
 
       <Link
@@ -25,7 +25,7 @@ export default function NotFound() {
         className="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold px-8 h-12 rounded-none font-mono uppercase text-sm transition-colors shadow-none"
       >
         <ArrowLeft className="size-4" />
-        <span>Kembali ke Home</span>
+        <span>Return to Home</span>
       </Link>
     </div>
   );

@@ -7,24 +7,24 @@ import { ScrollReveal } from "@/components/common/ScrollReveal";
 const programs = [
   {
     code: "PROG // 01",
-    title: "Kurikulum Merdeka Terpadu",
-    desc: "Mengintegrasikan standar nasional pendidikan dengan nilai-nilai keislaman. Menekankan pada nalar kritis sains, proyek penguatan profil Pelajar Pancasila, dan pembentukan karakter akhlakul karimah sejak dini.",
+    title: "Integrated National Curriculum",
+    desc: "Harmonizing national educational standards with Islamic values. Emphasizing critical scientific reasoning, student character projects, and early moral excellence.",
     icon: BookOpen,
-    link: "/programs#kurikulum",
+    link: "/programs#curriculum",
   },
   {
     code: "PROG // 02",
-    title: "Tahfidzul Qur'an Mutqin",
-    desc: "Target hafalan mutqin minimal 3 Juz bersanad (Juz 30, 29, 28) selama 6 tahun pendidikan. Menggunakan metode tajwid standar dan pembiasaan murajaah harian yang ketat namun menyenangkan.",
+    title: "Mutqin Tahfidzul Qur'an",
+    desc: "Targeting certified memorization of at least 3 Mutqin Juz (Juz 30, 29, 28) over 6 primary school years using standard tajweed rules and enjoyable daily muroja'ah routines.",
     icon: Book,
     link: "/programs#tahfidz",
   },
   {
     code: "PROG // 03",
-    title: "Pengembangan Minat & Bakat",
-    desc: "Fasilitas ekstrakurikuler komprehensif mulai dari Pemrograman & Robotika, Panahan, Bela Diri (Pencak Silat), hingga Klub Bahasa Inggris untuk mempersiapkan siswa bersaing di era globalisasi.",
+    title: "Talent & Passion Development",
+    desc: "Comprehensive extracurricular offerings ranging from Coding & Robotics, Archery, Martial Arts (Pencak Silat), to English Club to equip students for global readiness.",
     icon: Target,
-    link: "/programs#ekstrakurikuler",
+    link: "/programs#extracurricular",
   },
 ];
 
@@ -41,14 +41,14 @@ export function AcademicProgramsSection() {
             <div className="max-w-2xl">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-none bg-emerald-50 border border-emerald-200/60 text-emerald-800 text-[11px] font-mono font-bold uppercase tracking-wider mb-5">
                 <span className="size-1.5 rounded-none bg-emerald-500 animate-pulse" />
-                <span>KURIKULUM // AKADEMIK</span>
+                <span>CURRICULUM // ACADEMICS</span>
               </div>
               <h2
                 id="programs-heading"
                 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-950 dark:text-slate-50 tracking-tight leading-tight"
               >
-                Program Pendidikan <br className="hidden sm:block" /> Unggulan
-                &amp; Holistik
+                Flagship &amp; Holistic <br className="hidden sm:block" />{" "}
+                Academic Programs
               </h2>
             </div>
 
@@ -57,7 +57,7 @@ export function AcademicProgramsSection() {
                 href="/programs"
                 className="group inline-flex items-center gap-2 border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 font-bold px-6 h-12 rounded-none text-xs sm:text-sm transition-all shadow-2xs"
               >
-                <span>Lihat Seluruh Program</span>
+                <span>View All Programs</span>
                 <ArrowRight className="size-3.5 group-hover:translate-x-1 transition-transform" />
               </Link>
             </div>
@@ -101,7 +101,7 @@ export function AcademicProgramsSection() {
                       href={prog.link}
                       className="inline-flex items-center gap-2 text-xs font-mono font-bold text-amber-600 hover:text-amber-700 uppercase tracking-wider group/link"
                     >
-                      <span>Pelajari Silabus</span>
+                      <span>Explore Syllabus</span>
                       <ArrowRight className="size-3.5 group-hover/link:translate-x-1 transition-transform" />
                     </Link>
                   </div>

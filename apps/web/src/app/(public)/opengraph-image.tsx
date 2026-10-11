@@ -3,7 +3,7 @@ import { ImageResponse } from "next/og";
 export const runtime = "nodejs";
 
 export const alt =
-  "SD Al-Birru Tahfidzul Qur'an Sukabumi - Sahabat Pendidikan Anak";
+  "SD Al-Birru Tahfidzul Qur'an Sukabumi - Partner in Islamic Education";
 export const size = {
   width: 1200,
   height: 630,
@@ -64,7 +64,7 @@ export default function Image() {
             fontSize: "15px",
           }}
         >
-          <span>Admissions 2026/2027 TELAH DIBUKA</span>
+          <span>Admissions 2026/2027 NOW OPEN</span>
         </div>
       </div>
 
@@ -116,7 +116,7 @@ export default function Image() {
             margin: 0,
           }}
         >
-          Sahabat Pendidikan Anak
+          Partner in Islamic Education
         </h1>
 
         <p
@@ -128,8 +128,8 @@ export default function Image() {
             maxWidth: "850px",
           }}
         >
-          Membina Generasi Qur&apos;ani Berakhlak Mulia, Tahfidz 3 Juz Mutqin
-          Bersanad &amp; Berwawasan Global
+          Nurturing a Qur&apos;anic Generation of Noble Character, 3 Mutqin Juz
+          Memorization with Sanad &amp; Global Horizons
         </p>
       </div>
 
@@ -154,7 +154,7 @@ export default function Image() {
           }}
         >
           <span style={{ color: "#f59e0b", fontWeight: "bold" }}>[+]</span>{" "}
-          Minimal 3 Juz Mutqin
+          Minimum 3 Mutqin Juz
         </div>
 
         <div
@@ -168,7 +168,7 @@ export default function Image() {
           }}
         >
           <span style={{ color: "#10b981", fontWeight: "bold" }}>[+]</span>{" "}
-          Curriculum Merdeka Terpadu
+          Integrated Merdeka Curriculum
         </div>
 
         <div
@@ -182,7 +182,7 @@ export default function Image() {
           }}
         >
           <span style={{ color: "#38bdf8", fontWeight: "bold" }}>[+]</span>{" "}
-          Panahan &amp; Olahraga Sunnah
+          Archery &amp; Sunnah Sports
         </div>
 
         <div

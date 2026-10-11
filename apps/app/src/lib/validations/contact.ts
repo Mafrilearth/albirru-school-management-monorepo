@@ -3,30 +3,32 @@ import { z } from "zod";
 export const contactFormSchema = z.object({
   fullName: z
     .string()
-    .min(3, { message: "Nama lengkap minimal 3 karakter." })
-    .max(100, { message: "Nama lengkap maksimal 100 karakter." }),
+    .min(3, { message: "Full name must be at least 3 characters." })
+    .max(100, { message: "Full name must not exceed 100 characters." }),
   phone: z
     .string()
-    .min(9, { message: "Nomor WhatsApp minimal 9 digit angka." })
-    .max(16, { message: "Nomor WhatsApp maksimal 16 digit angka." })
+    .min(9, { message: "WhatsApp number must be at least 9 digits." })
+    .max(16, { message: "WhatsApp number must not exceed 16 digits." })
     .regex(/^[0-9+\s-]+$/, {
       message:
-        "Format nomor WhatsApp hanya boleh angka, spasi, atau tanda hubung.",
+        "WhatsApp number format may only contain digits, spaces, or hyphens.",
     }),
   email: z
     .string()
-    .email({ message: "Format alamat email tidak valid." })
+    .email({ message: "Invalid email address format." })
     .optional()
     .or(z.literal("")),
   studentCandidateName: z
     .string()
-    .max(100, { message: "Nama calon siswa maksimal 100 karakter." })
+    .max(100, {
+      message: "Prospective student name must not exceed 100 characters.",
+    })
     .optional()
     .or(z.literal("")),
   message: z
     .string()
-    .min(10, { message: "Pesan pertanyaan minimal 10 karakter." })
-    .max(1000, { message: "Pesan pertanyaan maksimal 1000 karakter." }),
+    .min(10, { message: "Message inquiry must be at least 10 characters." })
+    .max(1000, { message: "Message inquiry must not exceed 1000 characters." }),
 });
 
 export type ContactFormData = z.infer<typeof contactFormSchema>;

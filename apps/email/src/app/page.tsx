@@ -8,8 +8,8 @@ export default function EmailPreviewPage() {
           SD Al-Birru React Email Workshop (/apps/email)
         </h1>
         <p style={{ color: "#64748b", fontSize: "14px" }}>
-          Preview template email transaksional resmi berbasis React Email &
-          Resend
+          Interactive transactional email template preview powered by React
+          Email & Resend
         </p>
       </header>
 
@@ -32,11 +32,11 @@ export default function EmailPreviewPage() {
               color: "#334155",
             }}
           >
-            Template: AdmissionConfirmation.tsx (PPDB 2026/2027)
+            Template: AdmissionConfirmation.tsx (Admissions 2026/2027)
           </div>
           <AdmissionConfirmationEmail
             guardianName="Ahmad Dahlan"
-            registrationDate="11 Oktober 2026"
+            registrationDate="October 11, 2026"
             studentName="Muhammad Zaid"
             trackingCode="ADM-20261011-0042"
           />

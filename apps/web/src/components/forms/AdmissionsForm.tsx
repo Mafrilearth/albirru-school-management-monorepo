@@ -54,11 +54,12 @@ export function AdmissionsForm() {
         reset();
       } else {
         setErrorMessage(
-          response.error_descriptor?.message || "Gagal memproses pendaftaran.",
+          response.error_descriptor?.message ||
+            "Failed to process registration.",
         );
       }
     } catch (_error) {
-      setErrorMessage("Terjadi kesalahan sistem. Silakan coba lagi.");
+      setErrorMessage("A system error occurred. Please try again.");
     }
   };
 
@@ -74,19 +75,19 @@ export function AdmissionsForm() {
             <CheckCircle2 className="size-8 text-emerald-600 dark:text-emerald-400" />
           </div>
           <h3 className="text-2xl font-black text-slate-950 dark:text-slate-50 tracking-tight">
-            Pendaftaran Diterima!
+            Registration Received!
           </h3>
           <p className="text-sm text-slate-600 dark:text-slate-400 max-w-md mx-auto">
-            Alhamdulillah, data pendaftaran ananda telah masuk ke sistem kami.
-            Panitia PPDB akan menghubungi Anda via Email/WhatsApp dalam 1x24 jam
-            untuk tahapan selanjutnya.
+            Alhamdulillah, your student registration data has been received. Our
+            admissions committee will contact you via Email/WhatsApp within 24
+            hours for next steps.
           </p>
           <Button
             onClick={() => setIsSuccess(false)}
             variant="outline"
             className="mt-4 rounded-none h-11"
           >
-            Daftarkan Calon Siswa Lainnya
+            Register Another Student
           </Button>
         </div>
       </SpotlightCard>
@@ -100,11 +101,11 @@ export function AdmissionsForm() {
     >
       <div className="mb-8">
         <h3 className="text-2xl font-black text-slate-950 dark:text-slate-50 tracking-tight">
-          Form Registration Admissions 2026
+          Admissions Registration Form 2026
         </h3>
         <p className="mt-2 text-sm text-slate-500">
-          Mohon lengkapi data calon students dengan valid. Bidang bertanda{" "}
-          <span className="text-rose-500">*</span> wajib diisi.
+          Please complete the prospective student details accurately. Fields
+          marked with <span className="text-rose-500">*</span> are required.
         </p>
       </div>
 
@@ -115,12 +116,13 @@ export function AdmissionsForm() {
             data-invalid={!!errors.prospectiveStudentName}
           >
             <FieldLabel htmlFor="prospectiveStudentName">
-              Nama Lengkap Calon Siswa <span className="text-rose-500">*</span>
+              Student&apos;s Full Legal Name{" "}
+              <span className="text-rose-500">*</span>
             </FieldLabel>
             <FieldContent>
               <Input
                 id="prospectiveStudentName"
-                placeholder="Sesuai Akta Kelahiran"
+                placeholder="As shown on Birth Certificate"
                 className="h-11 rounded-none shadow-none focus-visible:ring-offset-0 focus-visible:ring-1"
                 disabled={isSubmitting}
                 {...register("prospectiveStudentName")}
@@ -136,7 +138,8 @@ export function AdmissionsForm() {
             data-invalid={!!errors.prospectiveStudentBirthDate}
           >
             <FieldLabel htmlFor="prospectiveStudentBirthDate">
-              Tanggal Lahir Calon Siswa <span className="text-rose-500">*</span>
+              Student&apos;s Date of Birth{" "}
+              <span className="text-rose-500">*</span>
             </FieldLabel>
             <FieldContent>
               <Input
@@ -159,12 +162,13 @@ export function AdmissionsForm() {
             data-invalid={!!errors.guardianContactName}
           >
             <FieldLabel htmlFor="guardianContactName">
-              Nama Lengkap Wali <span className="text-rose-500">*</span>
+              Guardian&apos;s Full Legal Name{" "}
+              <span className="text-rose-500">*</span>
             </FieldLabel>
             <FieldContent>
               <Input
                 id="guardianContactName"
-                placeholder="Nama Orang Tua / Wali"
+                placeholder="Parent / Guardian Name"
                 className="h-11 rounded-none shadow-none focus-visible:ring-offset-0 focus-visible:ring-1"
                 disabled={isSubmitting}
                 {...register("guardianContactName")}
@@ -180,13 +184,13 @@ export function AdmissionsForm() {
             data-invalid={!!errors.guardianContactPhone}
           >
             <FieldLabel htmlFor="guardianContactPhone">
-              Nomor Telepon Aktif <span className="text-rose-500">*</span>
+              Active Phone Number <span className="text-rose-500">*</span>
             </FieldLabel>
             <FieldContent>
               <Input
                 type="tel"
                 id="guardianContactPhone"
-                placeholder="Contoh: 081234567890"
+                placeholder="Example: 081234567890"
                 className="h-11 rounded-none shadow-none focus-visible:ring-offset-0 focus-visible:ring-1"
                 disabled={isSubmitting}
                 {...register("guardianContactPhone")}
@@ -202,13 +206,13 @@ export function AdmissionsForm() {
             data-invalid={!!errors.guardianContactEmail}
           >
             <FieldLabel htmlFor="guardianContactEmail">
-              Email Aktif <span className="text-rose-500">*</span>
+              Active Email Address <span className="text-rose-500">*</span>
             </FieldLabel>
             <FieldContent>
               <Input
                 type="email"
                 id="guardianContactEmail"
-                placeholder="Contoh: nama@gmail.com"
+                placeholder="Example: name@example.com"
                 className="h-11 rounded-none shadow-none focus-visible:ring-offset-0 focus-visible:ring-1"
                 disabled={isSubmitting}
                 {...register("guardianContactEmail")}
@@ -224,13 +228,13 @@ export function AdmissionsForm() {
             data-invalid={!!errors.submittedDocumentsUrl}
           >
             <FieldLabel htmlFor="submittedDocumentsUrl">
-              Tautan Dokumen (Google Drive, dll)
+              Document Link (Google Drive, etc.)
             </FieldLabel>
             <FieldContent>
               <Input
                 type="url"
                 id="submittedDocumentsUrl"
-                placeholder="Tautan folder berisi KK dan Akta (Opsional)"
+                placeholder="Folder link containing Family Card & Birth Certificate (Optional)"
                 className="h-11 rounded-none shadow-none focus-visible:ring-offset-0 focus-visible:ring-1"
                 disabled={isSubmitting}
                 {...register("submittedDocumentsUrl")}
@@ -252,11 +256,11 @@ export function AdmissionsForm() {
                 htmlFor="terms"
                 className="text-sm font-medium text-slate-700 dark:text-slate-300 leading-relaxed cursor-pointer"
               >
-                Saya menyetujui syarat &amp; ketentuan pendaftaran
+                I agree to the admissions terms &amp; conditions
               </Label>
               <p className="text-xs text-slate-500">
-                Dengan ini saya menyatakan bahwa data kontak yang diisi adalah
-                benar agar panitia dapat menghubungi saya.
+                I hereby certify that the contact details provided are accurate
+                so the admissions committee can reach me.
               </p>
             </div>
           </div>
@@ -276,12 +280,12 @@ export function AdmissionsForm() {
           {isSubmitting ? (
             <>
               <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-              Memproses Pendaftaran...
+              Processing Registration...
             </>
           ) : (
             <>
               <Send className="mr-2 h-5 w-5" />
-              Kirim Pendaftaran
+              Submit Registration
             </>
           )}
         </Button>

@@ -19,9 +19,9 @@ export default function DesignSystemPage() {
             </span>
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed">
-            Ini adalah galeri hidup dari token desain yang telah kita bahas.
-            Semua elemen di sini didukung oleh hukum psikologi kognitif (Fitts's
-            Law, Hick's Law) dan rasio spasial matematika.
+            This is a living gallery of our design tokens. All elements here are
+            grounded in cognitive psychology laws (Fitts&apos;s Law, Hick&apos;s
+            Law) and mathematical spatial proportions.
           </p>
         </div>
 
@@ -29,10 +29,11 @@ export default function DesignSystemPage() {
         <section className="space-y-8">
           <div>
             <h2 className="text-2xl font-bold tracking-tight border-b border-border pb-2">
-              1. Color Palette & Tokens (OKLCH)
+              1. Color Palette &amp; Tokens (OKLCH)
             </h2>
             <p className="text-sm text-muted-foreground mt-2 font-mono">
-              Prinsip: Kontras Aksesibilitas (WCAG 2.2) & Psikologi Warna
+              Principle: Accessibility Contrast (WCAG 2.2) &amp; Color
+              Psychology
             </p>
           </div>
 
@@ -46,7 +47,7 @@ export default function DesignSystemPage() {
               <div>
                 <p className="font-bold text-sm">Al-Birru Solar Gold</p>
                 <p className="text-xs text-muted-foreground">
-                  #F59E0B / Aksen Aksi (CTA)
+                  #F59E0B / Primary Action (CTA)
                 </p>
               </div>
             </div>
@@ -59,9 +60,7 @@ export default function DesignSystemPage() {
               </div>
               <div>
                 <p className="font-bold text-sm">Alabaster / Obsidian</p>
-                <p className="text-xs text-muted-foreground">
-                  Kanvas Utama Web
-                </p>
+                <p className="text-xs text-muted-foreground">Main Web Canvas</p>
               </div>
             </div>
 
@@ -74,7 +73,7 @@ export default function DesignSystemPage() {
               <div>
                 <p className="font-bold text-sm">Crisp Surface</p>
                 <p className="text-xs text-muted-foreground">
-                  Permukaan Komponen
+                  Component Surface
                 </p>
               </div>
             </div>
@@ -88,7 +87,7 @@ export default function DesignSystemPage() {
               <div>
                 <p className="font-bold text-sm">Tahfidz Accent</p>
                 <p className="text-xs text-muted-foreground">
-                  #065F46 / Lencana Agama
+                  #065F46 / Sacred Institution Badge
                 </p>
               </div>
             </div>
@@ -102,7 +101,7 @@ export default function DesignSystemPage() {
               2. Typography (Modular Major Third: 1.250)
             </h2>
             <p className="text-sm text-muted-foreground mt-2 font-mono">
-              Prinsip: Hirarki Visual & Keterbacaan Optik
+              Principle: Visual Hierarchy &amp; Optical Legibility
             </p>
           </div>
 
@@ -120,7 +119,7 @@ export default function DesignSystemPage() {
                 Heading 1
               </div>
               <div className="text-3xl lg:text-4xl font-bold tracking-tight">
-                Pendaftaran PPDB
+                Admissions Registration
               </div>
             </div>
             <div className="py-4 flex flex-col md:flex-row md:items-center gap-4">
@@ -128,7 +127,7 @@ export default function DesignSystemPage() {
                 Heading 2
               </div>
               <div className="text-2xl lg:text-3xl font-bold leading-snug">
-                Kurikulum Merdeka Belajar
+                National Merdeka Curriculum
               </div>
             </div>
             <div className="py-4 flex flex-col md:flex-row md:items-center gap-4">
@@ -136,8 +135,8 @@ export default function DesignSystemPage() {
                 Body Base
               </div>
               <div className="text-base text-muted-foreground leading-relaxed max-w-2xl">
-                Membentuk generasi Qur'ani yang berakhlak mulia dan kritis. Ini
-                adalah teks paragraf standar berukuran 16px.
+                Nurturing a Qur&apos;anic generation of noble character and
+                critical inquiry. This is standard body copy set at 16px.
               </div>
             </div>
             <div className="py-4 flex flex-col md:flex-row md:items-center gap-4">
@@ -145,7 +144,7 @@ export default function DesignSystemPage() {
                 Caption / Meta
               </div>
               <div className="text-xs font-bold font-mono tracking-wider uppercase text-amber-600">
-                Terakreditasi A
+                Grade A Accredited
               </div>
             </div>
           </div>
@@ -155,11 +154,11 @@ export default function DesignSystemPage() {
         <section className="space-y-8">
           <div>
             <h2 className="text-2xl font-bold tracking-tight border-b border-border pb-2">
-              3. Meta-Material & Interaksi (Apple HIG)
+              3. Meta-Materials &amp; Interactions (Apple HIG)
             </h2>
             <p className="text-sm text-muted-foreground mt-2 font-mono">
-              Prinsip: Kedalaman Spasial (Z-Index) & Fitts's Law (Target Sentuh
-              48px)
+              Principle: Spatial Depth (Z-Index) &amp; Fitts&apos;s Law (48px
+              Touch Target)
             </p>
           </div>
 
@@ -167,7 +166,7 @@ export default function DesignSystemPage() {
             {/* Liquid Glass Showcase */}
             <div className="space-y-4">
               <h3 className="text-sm font-bold uppercase tracking-wider text-muted-foreground">
-                Kaca Transparan (Liquid Glass)
+                Liquid Glass Material
               </h3>
 
               {/* Background to show transparency */}
@@ -179,10 +178,12 @@ export default function DesignSystemPage() {
 
                 {/* The Glass Element */}
                 <div className="liquid-glass-regular specular-rim p-6 w-full max-w-sm relative z-10 text-center">
-                  <h4 className="font-bold text-foreground">Menu Transparan</h4>
+                  <h4 className="font-bold text-foreground">
+                    Translucent Menu
+                  </h4>
                   <p className="text-xs text-foreground/70 mt-1">
-                    Sistem ini mem-blur latar belakang secara real-time. Cocok
-                    untuk Navbar dan Floating Badge.
+                    This material blurs the background in real time. Optimized
+                    for Navbars and Floating Badges.
                   </p>
                 </div>
               </div>
@@ -191,7 +192,7 @@ export default function DesignSystemPage() {
             {/* Buttons & Fitts's Law */}
             <div className="space-y-4">
               <h3 className="text-sm font-bold uppercase tracking-wider text-muted-foreground">
-                Interaksi Fitts's Law (Min 48px)
+                Fitts&apos;s Law Interactions (Min 48px)
               </h3>
 
               <div className="p-8 bg-card border border-border space-y-6">
@@ -200,7 +201,7 @@ export default function DesignSystemPage() {
                     Primary Action (CTA) - 52px Height
                   </p>
                   <button className="flex items-center justify-center gap-2 bg-linear-to-r from-amber-400 via-amber-500 to-amber-600 text-slate-950 font-bold px-8 h-13 w-full sm:w-auto shadow-md transition-transform hover:scale-105 active:scale-95">
-                    Daftar PPDB Sekarang
+                    Apply for Admissions Now
                   </button>
                 </div>
 
@@ -209,15 +210,16 @@ export default function DesignSystemPage() {
                     Secondary Action - 48px Height
                   </p>
                   <button className="flex items-center justify-center gap-2 bg-transparent border-2 border-slate-200 dark:border-slate-800 text-foreground font-semibold px-6 h-12 w-full sm:w-auto transition-colors hover:bg-slate-50 dark:hover:bg-slate-900">
-                    Pelajari Kurikulum
+                    Explore Curriculum
                   </button>
                 </div>
 
                 <div className="p-4 bg-amber-500/10 border-l-2 border-amber-500">
                   <p className="text-xs text-amber-700 dark:text-amber-400 leading-snug">
-                    <strong className="font-bold">Fitts's Law:</strong> Tinggi
-                    minimum tombol di atas dirancang spesifik agar jempol
-                    manusia tidak kesulitan saat menekan dari layar HP.
+                    <strong className="font-bold">Fitts&apos;s Law:</strong>{" "}
+                    Minimum button heights above are engineered so mobile
+                    users&apos; thumbs can comfortably tap targets without
+                    friction.
                   </p>
                 </div>
               </div>

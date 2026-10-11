@@ -12,17 +12,17 @@ export default function PortalHomePage() {
           </div>
           <div>
             <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-amber-500">
-              Sistem Informasi Sekolah
+              School Information System
             </span>
             <h1 className="text-xl font-black text-slate-100 tracking-tight">
-              Portal SD Al-Birru
+              SD Al-Birru Portal
             </h1>
           </div>
         </div>
 
         <p className="text-slate-400 text-sm mb-6 leading-relaxed">
-          Pusat kendali operasional akademik, presensi, evaluasi penilaian, dan
-          manajemen identitas terpadu.
+          Operational command center for academics, attendance, grading
+          evaluations, and unified identity management.
         </p>
 
         <div className="space-y-3">
@@ -31,7 +31,7 @@ export default function PortalHomePage() {
             nativeButton={false}
             className="w-full justify-between bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold font-mono uppercase text-xs tracking-wider"
           >
-            <span>Konsol Admin</span>
+            <span>Admin Console</span>
             <ArrowRight className="size-4" />
           </Button>
 
@@ -50,7 +50,7 @@ export default function PortalHomePage() {
         </div>
 
         <div className="mt-8 pt-6 border-t border-slate-900 flex items-center justify-between text-xs text-slate-500 font-mono">
-          <span>NPSN: 69984214</span>
+          <span>NPSN: 70010111</span>
           <span>SIS v1.0</span>
         </div>
       </div>

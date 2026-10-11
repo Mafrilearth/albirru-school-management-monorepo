@@ -6,16 +6,16 @@ import { ExtracurricularSection } from "@/components/sections/programs/Extracurr
 import { FacilitiesSection } from "@/components/sections/programs/FacilitiesSection";
 
 export const metadata: Metadata = {
-  title: "Program Curriculum & Facilities Kampus",
+  title: "Academic Curriculum & Campus Facilities",
   description:
-    "Pelajari rincian kurikulum tahfidzul qur'an 3 juz mutqin, kurikulum merdeka, 6 ekstrakurikuler pilihan (panahan, robotik, silat), serta sarana fasilitas modern di SD Al-Birru Sukabumi.",
+    "Explore our 3 mutqin juz tahfidzul qur'an curriculum, national Merdeka curriculum, 6 signature extracurriculars (archery, robotics, martial arts), and modern campus facilities at SD Al-Birru Sukabumi.",
   alternates: {
     canonical: "/programs",
   },
   openGraph: {
-    title: "Program Curriculum & Facilities Kampus | SD Al-Birru Sukabumi",
+    title: "Academic Curriculum & Campus Facilities | SD Al-Birru Sukabumi",
     description:
-      "Harmoni Curriculum Merdeka, Tahfidz 3 Juz Mutqin, Extracurriculars Panahan Sunnah, dan Facilities Kampus Representatif di Sukabumi.",
+      "Harmonizing the Merdeka Curriculum, 3 Mutqin Juz Tahfidz, Sunnah Archery Extracurriculars, and State-of-the-Art Campus Facilities in Sukabumi.",
     url: "/programs",
   },
 };
@@ -33,7 +33,7 @@ const breadcrumbSchema = {
     {
       "@type": "ListItem",
       position: 2,
-      name: "Program & Facilities",
+      name: "Programs & Facilities",
       item: "https://sdalbirru.sch.id/programs",
     },
   ],
@@ -47,13 +47,16 @@ export default function ProgramsPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <PageHeader
-        kicker="AKADEMIK // STRUKTUR KURIKULUM & FASILITAS"
-        title="Harmoni Curriculum Merdeka &amp; Tahfidz Bersanad"
-        description="Membina kedalaman hafalan Al-Qur'an mutqin tanpa mengesampingkan nalar kritis sains, didukung 6 ekstrakurikuler unggulan dan fasilitas belajar representatif."
+        kicker="ACADEMICS // CURRICULUM STRUCTURE & FACILITIES"
+        title="Harmonizing Merdeka Curriculum &amp; Certified Tahfidz"
+        description="Fostering deep Al-Qur'an memorization with verified sanad without compromising critical scientific reasoning, supported by 6 signature extracurriculars and state-of-the-art facilities."
         badges={[
-          { iconName: "book", label: "Target 3 Juz Mutqin & Tajwid" },
-          { iconName: "trophy", label: "6 Extracurriculars Pilihan" },
-          { iconName: "building", label: "Ruang Kelas Ber-AC & Lab Alam" },
+          { iconName: "book", label: "Target 3 Mutqin Juz & Tajweed" },
+          { iconName: "trophy", label: "6 Signature Extracurriculars" },
+          {
+            iconName: "building",
+            label: "Air-Conditioned Classrooms & Nature Lab",
+          },
         ]}
       />
 
@@ -61,10 +64,10 @@ export default function ProgramsPage() {
       <ExtracurricularSection />
       <FacilitiesSection />
       <CTASection
-        kicker="KONSULTASI // KESIAPAN KURIKULUM ANANDA"
-        title="Diskusikan Minat &amp; Potensi Unik Buah Hati"
-        description="Tim kurikulum dan pendidik kami siap membantu memetakan gaya belajar serta kesiapan adaptasi ananda memasuki fase school dasar."
-        primaryBtnText="Konsultasi Curriculum Sekarang"
+        kicker="CONSULTATION // STUDENT CURRICULUM READINESS"
+        title="Discuss Your Child's Unique Interests &amp; Potential"
+        description="Our curriculum team and educators are ready to help map your child's learning style and developmental readiness for primary school."
+        primaryBtnText="Consult Curriculum Today"
         primaryBtnHref="/contact"
       />
     </>

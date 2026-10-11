@@ -22,7 +22,7 @@ export function HeroSection() {
                 aria-hidden="true"
                 className="size-3 text-emerald-500"
               />
-              <span>Penerimaan Siswa Baru TP 2026/2027 Dibuka</span>
+              <span>New Student Admissions AY 2026/2027 Open</span>
             </div>
 
             {/* High-Impact Headline */}
@@ -30,15 +30,16 @@ export function HeroSection() {
               id="hero-title"
               className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-950 dark:text-slate-50 tracking-tight leading-tight uppercase"
             >
-              Membentuk Karakter, <br className="hidden sm:block" /> Membina
-              Ilmu, Membangun Integritas.
+              Shaping Character, <br className="hidden sm:block" /> Cultivating
+              Knowledge, Building Integrity.
             </h1>
 
             {/* Subheading */}
             <p className="mt-6 text-base md:text-lg text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl font-medium">
-              Sekolah Dasar Al-Birru menyelenggarakan kurikulum dasar nasional
-              terintegrasi nilai Islam di Bandung yang berfokus pada pembiasaan
-              adab disiplin, nalar analitis, dan keunggulan budi pekerti.
+              SD Al-Birru delivers an integrated primary curriculum combining
+              national academic rigor with Islamic ethical foundations,
+              fostering disciplined conduct, analytical inquiry, and moral
+              excellence.
             </p>
 
             <div className="mt-10 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto">
@@ -47,7 +48,7 @@ export function HeroSection() {
                 nativeButton={false}
                 className="flex items-center justify-center bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-8 h-12 rounded-none text-sm border-0 uppercase tracking-widest shadow-none transition-colors"
               >
-                <span>Daftarkan Siswa Sekarang</span>
+                <span>Register Student Now</span>
                 <ArrowRight className="ml-2 size-4" />
               </Button>
 
@@ -58,7 +59,7 @@ export function HeroSection() {
                 className="flex items-center justify-center bg-white dark:bg-slate-950 hover:bg-slate-50 dark:hover:bg-slate-900 text-slate-900 dark:text-slate-100 font-bold px-8 h-12 rounded-none text-sm border border-slate-200 dark:border-slate-800 uppercase tracking-widest shadow-none transition-colors"
               >
                 <FileText className="mr-2 size-4" />
-                <span>Unduh Brosur Informasi</span>
+                <span>Download Information Brochure</span>
               </Button>
             </div>
           </div>
@@ -74,7 +75,7 @@ export function HeroSection() {
 
                 <div className="relative z-10 flex items-center justify-between">
                   <span className="text-xs font-bold tracking-widest text-slate-600 dark:text-slate-400 uppercase font-mono">
-                    Metrik Kinerja Operasional Sekolah
+                    School Operational Metrics
                   </span>
                   <Badge
                     variant="outline"
@@ -84,7 +85,7 @@ export function HeroSection() {
                       aria-hidden="true"
                       className="size-2 rounded-none bg-emerald-500"
                     />
-                    Peringkat A (Unggul)
+                    Grade A (Excellence)
                   </Badge>
                 </div>
 
@@ -96,18 +97,18 @@ export function HeroSection() {
                     />
                   </div>
                   <p className="text-base font-bold text-slate-900 dark:text-slate-50 uppercase tracking-tight">
-                    Sekolah Dasar Al-Birru
+                    SD Al-Birru Primary School
                   </p>
                   <address className="text-sm text-slate-600 dark:text-slate-400 mt-2 font-mono not-italic font-medium">
-                    Status Akreditasi Institusi
+                    Institutional Accreditation Status
                   </address>
                 </div>
               </CardContent>
 
               <CardFooter className="bg-slate-50 dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-xs text-slate-600 dark:text-slate-400 font-mono font-bold uppercase tracking-wider rounded-none">
-                <span>Kepatuhan Presensi Siswa Harian</span>
+                <span>Daily Student Attendance Compliance</span>
                 <span className="text-emerald-600 dark:text-emerald-500">
-                  98.4% Kehadiran Tepat Waktu
+                  98.4% On-Time Attendance
                 </span>
               </CardFooter>
             </Card>
@@ -121,7 +122,7 @@ export function HeroSection() {
               15 : 1
             </dd>
             <dt className="text-xs font-bold text-slate-600 dark:text-slate-400 mt-2 uppercase tracking-widest font-mono">
-              Rasio Maksimum Pengajar & Siswa
+              Maximum Student-Teacher Ratio
             </dt>
           </div>
 
@@ -130,7 +131,7 @@ export function HeroSection() {
               A
             </dd>
             <dt className="text-xs font-bold text-slate-600 dark:text-slate-400 mt-2 uppercase tracking-widest font-mono">
-              Peringkat BAN-S/M
+              BAN-S/M Accreditation Grade
             </dt>
           </div>
 
@@ -139,7 +140,7 @@ export function HeroSection() {
               98.4%
             </dd>
             <dt className="text-xs font-bold text-slate-600 dark:text-slate-400 mt-2 uppercase tracking-widest font-mono">
-              Kehadiran Tepat Waktu
+              On-Time Attendance Rate
             </dt>
           </div>
         </dl>

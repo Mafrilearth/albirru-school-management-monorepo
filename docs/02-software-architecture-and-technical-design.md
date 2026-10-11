@@ -1,79 +1,79 @@
-> **Tujuan Dokumen:** Spesifikasi arsitektur modular monolit, batas pemisahan modul internal, tumpukan teknologi produksi komprehensif, struktur direktori repositori, dan protokol eksekusi transaksi sistem.
+> **Document Purpose:** Modular monolith architecture specification, internal module decoupling boundaries, comprehensive production technology stack, repository directory layout, and transactional execution protocols.
 ---
 ## 1. Document Metadata
 | Attribute | Value | Description |
 |---|---|---|
-| **Document Title** | Software Architecture and Technical Design | Judul statutori spesifikasi teknis |
-| **Dashboard Reference** | `albirru-sis-web/README.md` | Dasbor tata kelola induk repositori |
-| **Specification Version** | 1.0.0 | Versi pembaruan tumpukan teknologi produksi lengkap |
-| **Lifecycle State** | Approved (In Development) | Status kesiapan tata kelola operasional |
-| **File Path** | `/docs/02-software-architecture-and-technical-design.md` | Jalur berkas dalam repositori |
+| **Document Title** | Software Architecture and Technical Design | Statutory technical architecture specification title |
+| **Dashboard Reference** | `albirru-sis-web/README.md` | Repository governance root dashboard |
+| **Specification Version** | 1.0.0 | Full production technology stack revision |
+| **Lifecycle State** | Approved (In Development) | Operational governance readiness state |
+| **File Path** | `/docs/02-software-architecture-and-technical-design.md` | File path within the repository |
 ---
 ## 2. Architectural Pattern and Monolith Boundary Decoupling
 ### 2.1 Structural Topology
-Sistem dirancang sebagai **Modern Modular Monolith** yang dikemas ke dalam satu unit distribusi rilis (*single deployable unit*). Isolasi domain ditegakkan secara ketat melalui batas direktori modul internal, skema relasional terpisah, dan isolasi konteks transaksi untuk mencegah percampuran logika bisnis lintas domain.
+The system is architected as a **Modern Modular Monolith** packaged into a single deployable release unit. Domain isolation is strictly enforced via internal module directory boundaries, segregated relational schemas, and transaction context isolation to prevent cross-domain business logic leakage.
 ### 2.2 Monolith Layer Decoupling Matrix
 | Architectural Layer | Scope and Boundary Responsibility | Permitted Interaction Direction |
 |---|---|---|
-| **Presentation and Route Layer** | Antarmuka Server Components, hidrasi form client, dan validasi rute | Pemanggilan langsung ke Domain Service Layer secara eksklusif |
-| **Domain Service Layer** | Enkapsulasi aturan bisnis, kalkulasi deterministik, dan alur mutasi status | Meneruskan operasi mutasi data ke Data Access Layer |
-| **Data Access Layer** | Transaksi relasional, pemetaan skema, penjaga integritas referensial, dan RLS | Interaksi basis data terisolasi tanpa dependensi ke lapisan luar |
+| **Presentation and Route Layer** | Server Components interfaces, client form hydration, and route validation | Calls directly and exclusively into Domain Service Layer |
+| **Domain Service Layer** | Business rule encapsulation, deterministic calculations, and state mutation workflows | Dispatches data mutation operations to Data Access Layer |
+| **Data Access Layer** | Relational transactions, schema mapping, referential integrity guards, and RLS | Isolated database interactions with no upward layer dependencies |
 ---
 ## 3. Production Technology Stack
 | Layer Classification | Technology Platform | Specification Standard | Technical Scope | Operational Rationale |
 |---|---|---|---|---|
-| **Server Runtime** | Node.js | Version 22.x LTS | Lingkungan eksekusi server & build pipeline | Stabilitas jangka panjang dan latensi I/O prediktif |
-| **Language System** | TypeScript | Version 5.7+ | Verifikasi tipe data statis waktu kompilasi | Eliminasi *undefined runtime exception* antar-domain |
-| **Application Framework** | Next.js (App Router) | Version 16.x | Server Components, Server Actions, Route Handlers | Arsitektur monolit modern tanpa *overhead* gateway REST terpisah |
-| **Styling Engine** | Tailwind CSS | Version 4.x | Penataan visual responsif berbasis utilitas | Kompilasi performa tinggi tanpa *runtime JavaScript bundle* |
-| **Component Primitives** | shadcn/ui (Radix UI) | Current Stable | Primitif dialog, sheet, dropdown, dan menu aksesibel | Primitif *headless in-tree* sesuai standar W3C WCAG 2.1 AA |
-| **Iconography Engine** | Lucide React | Version 1.x | Ikon navigasi, status chip, dan pemicu aksi | Format SVG ringan dengan dukungan *tree-shaking* |
-| **High-Density Data Grid** | TanStack Table | Version 8.x | Pengurutan tabel, filter rombel, dan paginasi data | Manajemen state tabular tanpa memicu *re-render* kanvas induk |
-| **Client Form Manager** | React Hook Form | Version 7.x | Manajemen formulir tak terkontrol (*uncontrolled inputs*) | Efisiensi memori tinggi saat input nilai dan presensi massal |
-| **Schema Validation** | Zod | Version 3.x | Validasi form klien dan Server Action boundaries | Inferensi tipe statis dua arah dari skema validasi runtime |
-| **Relational Database** | Neon (Serverless PostgreSQL) | PostgreSQL 16+ | Persistensi data relasional, kunci asing, dan integritas ACID | Integritas transaksi ACID dengan pencadangan terkelola |
-| **Connection Pooling** | Neon Connection Pooler | Transaction Mode | Manajemen antrean koneksi basis data serverless | Pencegahan kehabisan slot koneksi saat akses presensi serentak |
-| **Database ORM** | Drizzle ORM | Version 0.45+ (`drizzle-kit 0.31+`) | *Query builder* tipe-aman dan migrasi SQL deklaratif | *Zero runtime overhead* tanpa penalti *serverless cold start* |
-| **Session Authentication** | Clerk (`@clerk/nextjs`) | Managed Auth Engine | Sesi cookie aman dan integrasi klaim peran RBAC | Manajemen identitas dan sesi aman terpadu |
-| **Cold Document Archive** | Cloudflare R2 | S3-Compatible API | Penyimpanan arsip berkas lampiran admisi lampau | Penyimpanan objek terdistribusi tanpa biaya transfer data keluar |
-| **Ingress Rate Limiter** | Upstash Redis | REST Redis API | Pembatasan frekuensi pengiriman form publik `/admission` | Perlindungan memori basis data dari serangan pengisian massal |
-| **Bot Protection Shield** | Cloudflare Turnstile | Managed Challenge API | Verifikasi pengguna manusia pada formulir pendaftaran | Alternatif CAPTCHA modern yang menjaga privasi pengguna |
-| **Application Cloud Host** | Vercel Platform | Production Edge Serverless | Jalur build otomatis, CDN global, dan rilis edge | Ketersediaan tinggi tanpa pemeliharaan server fisik mandiri |
-| **Unit & Integration Runner** | Vitest | Vite-Native Runner | Pengujian kalkulasi nilai dan transaksi basis data | Eksekusi paralel multi-thread cepat tanpa penalti transpiler |
-| **Browser Automation Engine** | Playwright | Headless Chromium & WebKit | Pengujian simulasi peramban alur presensi & admisi | Otomasi lintas platform dengan mekanisme *auto-waiting* bawaan |
-| **Version Control & CI** | GitHub Actions | Ubuntu Standard Runner | Repositori kode, proteksi branch, dan pipeline CI | Eksekusi otomatis seluruh gerbang verifikasi sebelum rilis |
-| **Operational Telemetry** | Slack Webhook | Webhook API Specification | Log rilis produksi dan laporan insiden darurat | Notifikasi otomatis terpusat ke kanal `#albirru-project-stream` |
+| **Server Runtime** | Node.js | Version 22.x LTS | Server execution environment & build pipeline | Long-term operational stability and predictable I/O latency |
+| **Language System** | TypeScript | Version 5.7+ | Static compile-time type verification | Eliminates undefined runtime exceptions across domain boundaries |
+| **Application Framework** | Next.js (App Router) | Version 16.x | Server Components, Server Actions, Route Handlers | Modern monolith architecture without separate REST gateway overhead |
+| **Styling Engine** | Tailwind CSS | Version 4.x | Utility-first responsive visual design | High-performance CSS compilation without client JS runtime bloat |
+| **Component Primitives** | shadcn/ui (Radix UI) | Current Stable | Accessible dialogs, sheets, dropdowns, and menu primitives | Headless in-tree primitives compliant with W3C WCAG 2.1 AA |
+| **Iconography Engine** | Lucide React | Version 1.x | Navigation icons, status chips, and action triggers | Lightweight SVG iconography with complete tree-shaking support |
+| **High-Density Data Grid** | TanStack Table | Version 8.x | Table sorting, cohort filtering, and data pagination | Tabular state management without triggering parent canvas re-renders |
+| **Client Form Manager** | React Hook Form | Version 7.x | Uncontrolled inputs form lifecycle management | High memory efficiency during bulk grading and attendance inputs |
+| **Schema Validation** | Zod | Version 3.x | Client forms and Server Action boundaries validation | Bidirectional static type inference from runtime schemas |
+| **Relational Database** | Neon (Serverless PostgreSQL) | PostgreSQL 16+ | Relational persistence, foreign keys, and ACID integrity | ACID transaction integrity with managed serverless backups |
+| **Connection Pooling** | Neon Connection Pooler | Transaction Mode | Serverless database connection queue management | Prevents connection slot exhaustion during concurrent attendance entries |
+| **Database ORM** | Drizzle ORM | Version 0.45+ (`drizzle-kit 0.31+`) | Type-safe query builder and declarative SQL migrations | Zero runtime overhead without serverless cold start penalties |
+| **Session Authentication** | Clerk (`@clerk/nextjs`) | Managed Auth Engine | Secure cookie sessions and RBAC claim integration | Unified secure identity and session governance |
+| **Cold Document Archive** | Cloudflare R2 | S3-Compatible API | Historical admissions attachment file archiving | Distributed object storage with zero egress data transfer fees |
+| **Ingress Rate Limiter** | Upstash Redis | REST Redis API | Request throttling for public `/admission` forms | Protects database memory from automated spam submissions |
+| **Bot Protection Shield** | Cloudflare Turnstile | Managed Challenge API | Human user verification on admissions forms | Privacy-preserving modern CAPTCHA alternative |
+| **Application Cloud Host** | Vercel Platform | Production Edge Serverless | Automated CI build pipeline, global CDN, and edge deployments | High availability without manual physical server maintenance |
+| **Unit & Integration Runner** | Vitest | Vite-Native Runner | Grade calculations and database transaction test suites | Fast multi-threaded parallel execution without transpiler drag |
+| **Browser Automation Engine** | Playwright | Headless Chromium & WebKit | Browser simulation tests for attendance & admissions workflows | Cross-platform automation with built-in auto-waiting mechanisms |
+| **Version Control & CI** | GitHub Actions | Ubuntu Standard Runner | Source control, branch protections, and CI verification | Automated quality gate enforcement prior to releases |
+| **Operational Telemetry** | Slack Webhook | Webhook API Specification | Production release logs and emergency incident alerts | Centralized automated telemetry to `#albirru-project-stream` |
 ---
 ## 4. Subsystem Domain Architecture and Internal Module Boundaries
 | Subsystem Domain | Scope Responsibility | Internal Namespace | Inbound Dependencies | Outbound Exposure |
 |---|---|---|---|---|
-| **Daily Attendance Tracking** | Sesi presensi rombel, pencatatan kehadiran harian, dan ringkasan | `attendance` | Rombongan belajar dan profil siswa dari `identity` | Rekapitulasi presensi harian ke `guardian` |
-| **Grading and Academic Reporting** | Konfigurasi bobot nilai, input nilai, dan pembekuan buku rapor | `grading` | Data siswa aktif dari modul `identity` | Artefak rapor yang telah disahkan ke `guardian` |
-| **Guardian Portal** | Tampilan profil siswa, pemantauan presensi, dan akses unduh rapor | `guardian` | Data presensi dari `attendance` dan rapor dari `grading` | Khusus antarmuka pengguna wali murid (read-only) |
-| **Roster and Identity Allocation** | Profil civitas, direktori master, pembagian rombel, dan tahun ajaran | `identity` | Data calon siswa baru terverifikasi dari `admissions` | Referensi data profil ke `attendance` dan `grading` |
-| **Public Information and Admission** | Beranda profil sekolah dan formulir pendaftaran siswa baru mandiri | `admissions` | Tidak memiliki dependensi inbound | Entitas calon siswa terverifikasi ke `identity` |
+| **Daily Attendance Tracking** | Cohort attendance sessions, daily tracking, and summaries | `attendance` | Cohorts and student profiles from `identity` | Daily attendance summaries to `guardian` |
+| **Grading and Academic Reporting** | Assessment weight config, score entry, and report card locking | `grading` | Active student records from `identity` | Certified report card artifacts to `guardian` |
+| **Guardian Portal** | Student profile viewer, attendance logs, and report card downloads | `guardian` | Attendance logs from `attendance` & report cards from `grading` | Guardian-facing user interface (read-only) |
+| **Roster and Identity Allocation** | Member profiles, master directory, cohort allocations, and terms | `identity` | Verified prospective student data from `admissions` | Profile data references to `attendance` and `grading` |
+| **Public Information and Admission** | Institutional public homepage and new student application intake | `admissions` | No inbound domain dependencies | Verified applicant entities to `identity` |
 ---
 ## 5. Canonical Directory Structure and Import Rules
 ### 5.1 Repository File Tree Layout
 ```plain text
 albirru-sis-web/
-├── .github/workflows/ci.yml               # Pipeline CI pengujian dan build otomatis
-├── apps/                                  # 7 Aplikasi terspesialisasi (pola next-forge)
-│   ├── app/                               # Aplikasi SaaS/SIS internal terautentikasi - Port 3000 (@albirru/app)
-│   │   ├── src/app/                       # Rute portal: /admin, /instructor, /guardian
-│   │   └── src/modules/                   # Logika domain terisolasi: attendance, grading, guardian, identity
-│   ├── web/                               # Aplikasi web publik & formulir admisi PPDB - Port 3001 (@albirru/web)
+├── .github/workflows/ci.yml               # Automated CI test and build pipeline
+├── apps/                                  # 7 specialized applications (next-forge pattern)
+│   ├── app/                               # Authenticated internal SIS portal - Port 3000 (@albirru/app)
+│   │   ├── src/app/                       # Portal routes: /admin, /instructor, /guardian
+│   │   └── src/modules/                   # Isolated domain logic: attendance, grading, guardian, identity
+│   ├── web/                               # Public website & admissions forms - Port 3001 (@albirru/web)
 │   ├── api/                               # Microservice API & webhook ingress - Port 3002 (@albirru/api)
-│   ├── email/                             # Studio template email React Email - Port 3003 (@albirru/email)
-│   ├── docs/                              # Penjelajah 11 spesifikasi teknis in-tree - Port 3004 (@albirru/docs)
+│   ├── email/                             # React Email template preview studio - Port 3003 (@albirru/email)
+│   ├── docs/                              # In-tree technical documentation viewer - Port 3004 (@albirru/docs)
 │   ├── studio/                            # Visual database manager Drizzle Studio - Port 3005 (@albirru/studio)
-│   └── storybook/                         # Workbench isolasi komponen UI frontend - Port 6006 (@albirru/storybook)
-├── packages/                              # 4 Paket pustaka bersama
-│   ├── database/                          # Skema DDL Drizzle ORM, driver postgres, UUIDv7 (@albirru/database)
-│   ├── design-system/                     # Primitif shadcn/ui & Radix UI (@albirru/design-system)
-│   ├── eslint-config/                     # Aturan linting terpusat monorepo (@albirru/eslint-config)
-│   └── typescript-config/                 # Konfigurasi TypeScript modular (@albirru/typescript-config)
-├── docs/                                  # Registri 11 spesifikasi rekayasa in-tree
+│   └── storybook/                         # Frontend UI component isolation workbench - Port 6006 (@albirru/storybook)
+├── packages/                              # 4 shared library packages
+│   ├── database/                          # Drizzle ORM DDL schemas, postgres driver, UUIDv7 (@albirru/database)
+│   ├── design-system/                     # shadcn/ui & Radix UI design primitives (@albirru/design-system)
+│   ├── eslint-config/                     # Centralized monorepo linting rules (@albirru/eslint-config)
+│   └── typescript-config/                 # Modular TypeScript configurations (@albirru/typescript-config)
+├── docs/                                  # 11 statutory in-tree engineering specifications
 │   ├── 01-product-requirements-specification.md
 │   ├── 02-software-architecture-and-technical-design.md
 │   ├── 03-relational-database-specification.md
@@ -85,30 +85,30 @@ albirru-sis-web/
 │   ├── 09-architecture-decision-records.md
 │   ├── 10-quality-assurance-and-verification-plan.md
 │   └── 11-operational-runbook-and-incident-procedures.md
-├── .env.example                           # Templat variabel lingkungan resmi
-├── ARCHITECTURE.md                        # Dokumen arsitektur komprehensif monorepo
-├── README.md                              # Dasbor tata kelola dan panduan monorepo
-├── biome.json                             # Konfigurasi linter & formatter Biome
-├── pnpm-workspace.yaml                    # Definisi pnpm workspaces
-└── turbo.json                             # Pipeline build Turborepo
+├── .env.example                           # Canonical environment variable template
+├── ARCHITECTURE.md                        # Comprehensive monorepo architecture reference
+├── README.md                              # Governance dashboard and monorepo manual
+├── biome.json                             # Biome linter & formatter configuration
+├── pnpm-workspace.yaml                    # pnpm workspaces definition
+└── turbo.json                             # Turborepo build pipeline declaration
 ```
 ### 5.2 Module Interaction Guardrails
-- **Isolasi Impor Silang:** Modul pada `apps/app/src/modules/attendance/` dilarang mengimpor implementasi internal dari `apps/app/src/modules/grading/`. Integrasi lintas domain wajib melalui kontrak publik antarmuka yang diekspos melalui `service.ts` masing-masing domain.
-- **Konsumsi Paket Bersama:** Aplikasi monorepo mengonsumsi basis data melalui `@albirru/database` dan komponen antarmuka bersama melalui `@albirru/design-system`.
-- **Validasi Gerbang Server Actions:** Seluruh berkas `actions.ts` wajib memvalidasi muatan parameter menggunakan skema Zod sebelum meneruskannya ke fungsi logika domain di `service.ts` dan mengembalikan amplop terstandarisasi `ActionResponse`.
+- **Cross-Import Isolation:** Modules in `apps/app/src/modules/attendance/` are strictly prohibited from importing internal implementation files in `apps/app/src/modules/grading/`. Cross-domain integration must strictly traverse public interface contracts exported via each domain's `service.ts`.
+- **Shared Package Consumption:** Monorepo applications consume the database via `@albirru/database` and shared UI components via `@albirru/design-system`.
+- **Server Actions Gate Validation:** All `actions.ts` files must validate input payloads using Zod schemas before delegating to domain logic in `service.ts` and returning standardized `ActionResponse` envelopes.
 ## 6. Access Control and Technical Execution Constraints
 ### 6.1 Role-Based Boundary Enforcement
 | **Canonical System Role** | **Session Scope** | **Database Access Policy** | **Permitted Route Scope** |
 |---|---|---|---|
-| **System Administrator** | Hak institusional penuh | Akses baca dan tulis penuh pada semua skema data | Rute internal bebas (`/portal/admin/*`) |
-| **Instructor** | Rombel dan mata pelajaran penugasan | Izin tulis terbatas pada baris rombel dan mata pelajaran yang diampu | Rute instruktur (`/portal/instructor/*`) |
-| **Guardian** | Hak ikatan wali-murid terverifikasi | Izin baca terbatas secara eksklusif pada data anak terhubung | Rute mandiri wali (`/portal/guardian/*`) |
-| **Public Guest** | Sesi anonim tanpa login | Izin baca pada entitas publik; izin tulis pada pendaftaran admisi | Rute publik (`/`, `/admission/*`) |
+| **System Administrator** | Full institutional authority | Full read and write access across all data schemas | Unrestricted internal routes (`/portal/admin/*`) |
+| **Instructor** | Assigned cohorts and subject courses | Write access scoped strictly to assigned cohort rows | Instructor routes (`/portal/instructor/*`) |
+| **Guardian** | Verified dependent relationship ties | Read access strictly scoped to connected dependents | Guardian self-service routes (`/portal/guardian/*`) |
+| **Public Guest** | Unauthenticated anonymous session | Read access to public entities; write access to admissions | Public routes (`/`, `/admission/*`) |
 ### 6.2 Performance and Latency Budgets
-- **Edge Static Delivery:** Rute statis publik tersaji di bawah ambang batas 200 milidetik.
-- **Server Action Mutation:** Mutasi data transaksional (penguncian presensi, simpan nilai) selesai di bawah 800 milidetik.
-- **Interactive Data Grid Hydration:** Kisi data tabular presensi dan nilai interaktif penuh di bawah 1000 milidetik pada jaringan standar.
+- **Edge Static Delivery:** Public static routes served under the 200 millisecond threshold.
+- **Server Action Mutation:** Transactional data mutations (attendance lock, score commit) complete under 800 milliseconds.
+- **Interactive Data Grid Hydration:** Tabular registers (attendance, gradebooks) hydrate fully interactive under 1000 milliseconds on standard networks.
 ### 6.3 Transactional and Retention Integrity
-- **Atomic Persistence:** Penguncian presensi harian dan pembukuan nilai dieksekusi di dalam satu blok transaksi atomik.
-- **Zero Hard Delete:** Penghapusan baris fisik dilarang keras untuk data civitas, presensi, dan rapor; penonaktifan menggunakan penanda status logis.
-- **Audit Columns:** Seluruh entitas tabel wajib memelihara kolom rekam jejak: `created_at`, `updated_at`, dan identitas akun pelaksana mutasi.
+- **Atomic Persistence:** Daily attendance locking and gradebook finalization execute within single atomic transaction blocks.
+- **Zero Hard Delete:** Physical row deletion is strictly forbidden for user records, attendance, and grades; deactivations utilize logical boolean flags.
+- **Audit Columns:** All table entities must maintain audit metadata: `created_at`, `updated_at`, and the performing actor's user identifier.

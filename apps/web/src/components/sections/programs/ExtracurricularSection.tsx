@@ -32,11 +32,11 @@ interface ExtracurricularItem {
 const extracurriculars: ExtracurricularItem[] = [
   {
     code: "EKS // 01",
-    title: "Panahan Tradisional (Archery Sunnah)",
-    category: "Olahraga Sunnah",
-    schedule: "Setiap Sabtu Pagi",
+    title: "Traditional Archery (Sunnah Archery)",
+    category: "Sunnah Sports",
+    schedule: "Every Saturday Morning",
     description:
-      "Melatih konsentrasi, ketenangan emosi, kekuatan postur bahu, dan keselarasan fokus students sesuai sunnah Rasulullah ﷺ dengan bantalan target panahan standar aman.",
+      "Trains concentration, emotional composure, shoulder posture strength, and alignment of student focus in accordance with the Prophet's ﷺ sunnah using safety-standard archery targets.",
     icon: Target,
     glow: "rgba(245, 158, 11, 0.12)",
     borderColor: "rgba(245, 158, 11, 0.35)",
@@ -44,44 +44,44 @@ const extracurriculars: ExtracurricularItem[] = [
   },
   {
     code: "EKS // 02",
-    title: "Pencak Silat / Tapak Suci",
-    category: "Bela Diri & Karakter",
-    schedule: "Setiap Kamis Sore",
+    title: "Pencak Silat Martial Arts",
+    category: "Martial Arts & Character",
+    schedule: "Every Thursday Afternoon",
     description:
-      "Membentuk postur tubuh yang tangguh, kebugaran kardio, serta menanamkan etika ksatria dan perlindungan diri tanpa kesombongan.",
+      "Develops resilient physical posture, cardiovascular fitness, and instills knightly ethics and self-defense without arrogance.",
     icon: Shield,
     glow: "rgba(16, 185, 129, 0.1)",
     borderColor: "rgba(16, 185, 129, 0.35)",
   },
   {
     code: "EKS // 03",
-    title: "Sains Cilik & Robotik Dasar",
-    category: "Teknologi & Kreativitas",
-    schedule: "Setiap Selasa Sore",
+    title: "Junior Science & Basic Robotics",
+    category: "Technology & Creativity",
+    schedule: "Every Tuesday Afternoon",
     description:
-      "Eksperimen sains aplikatif yang mengasyikkan, perakitan mekanika sederhana, dan pengenalan algoritma logika pemecahan masalah.",
+      "Exciting applied science experiments, simple mechanical assembly, and introduction to algorithmic problem-solving logic.",
     icon: Cpu,
     glow: "rgba(168, 85, 247, 0.1)",
     borderColor: "rgba(168, 85, 247, 0.35)",
   },
   {
     code: "EKS // 04",
-    title: "Pramuka Islam Terpadu (SIT)",
-    category: "Kepemimpinan & Alam",
-    schedule: "Setiap Jumat Siang",
+    title: "Integrated Islamic Scouting",
+    category: "Leadership & Nature",
+    schedule: "Every Friday Midday",
     description:
-      "Latihan kepanduan bernafaskan Islam: tali-temali, navigasi arah kiblat, sandi morse, cinta kelestarian alam, dan kemah ibadah.",
+      "Islamic-oriented scouting drills: pioneering knots, qibla direction navigation, morse code, environmental stewardship, and devotional camping.",
     icon: Compass,
     glow: "rgba(14, 165, 233, 0.1)",
     borderColor: "rgba(14, 165, 233, 0.35)",
   },
   {
     code: "EKS // 05",
-    title: "Seni Kaligrafi Khat & Tilawah",
-    category: "Seni Islam & Estetika",
-    schedule: "Setiap Rabu Sore",
+    title: "Calligraphy & Tilawah Art",
+    category: "Islamic Arts & Aesthetics",
+    schedule: "Every Wednesday Afternoon",
     description:
-      "Mengasah kehalusan rasa estetika melalui kaidah penulisan huruf Al-Qur'an (khat naskhi/riq'ah) serta seni lagu tilawah Al-Qur'an.",
+      "Hones aesthetic refinement through Al-Qur'an script writing rules (Naskhi and Riq'ah khat) alongside the melodic art of Al-Qur'an recitation.",
     icon: Feather,
     glow: "rgba(244, 63, 94, 0.1)",
     borderColor: "rgba(244, 63, 94, 0.35)",
@@ -89,10 +89,10 @@ const extracurriculars: ExtracurricularItem[] = [
   {
     code: "EKS // 06",
     title: "Bilingual Public Speaking Club",
-    category: "Bahasa & Percakapan",
-    schedule: "Setiap Senin Sore",
+    category: "Languages & Speech",
+    schedule: "Every Monday Afternoon",
     description:
-      "Membangun rasa percaya diri students dalam berpidato, mendongeng, dan berdialog santai dalam Bahasa Arab dan Bahasa Inggris sederhana.",
+      "Builds student confidence in speech delivery, storytelling, and casual conversations in practical Arabic and English.",
     icon: Languages,
     glow: "rgba(245, 158, 11, 0.1)",
     borderColor: "rgba(245, 158, 11, 0.35)",
@@ -113,18 +113,17 @@ export function ExtracurricularSection() {
         >
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-none bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 shadow-2xs text-slate-800 dark:text-slate-200 text-[11px] font-mono font-bold uppercase tracking-wider mb-5">
             <span className="size-1.5 rounded-none bg-amber-500 animate-pulse" />
-            <span>PENGEMBANGAN // BAKAT &amp; MINAT SANTRI</span>
+            <span>DEVELOPMENT // TALENTS &amp; STUDENT INTERESTS</span>
           </div>
           <h2
             id="extracurricular-heading"
             className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-950 dark:text-slate-50 tracking-tight leading-[1.12]"
           >
-            Extracurriculars Pilihan &amp; Olahraga Sunnah
+            Extracurricular Programs &amp; Sunnah Sports
           </h2>
           <p className="mt-4 text-base sm:text-lg text-slate-600 dark:text-slate-400 leading-relaxed font-normal">
-            Menumbuhkan ketangkasan fisik, ketajaman konsentrasi, serta
-            kepemimpinan students di bawah asuhan pelatih dan asatidz
-            berpengalaman.
+            Nurturing physical agility, focus sharpness, and student leadership
+            under the guidance of certified coaches and experienced instructors.
           </p>
         </ScrollReveal>
 
@@ -216,9 +215,9 @@ export function ExtracurricularSection() {
                           aria-hidden="true"
                           className="size-3.5 text-amber-500"
                         />
-                        <span>Pelatih Bersertifikasi Resmi</span>
+                        <span>Officially Certified Instructors</span>
                       </div>
-                      <span className="text-slate-400">KUOTA TERJADWAL</span>
+                      <span className="text-slate-400">SCHEDULED CAPACITY</span>
                     </footer>
                   </SpotlightCard>
                 </motion.article>

@@ -360,10 +360,10 @@ The backend follows a **Modern Modular Monolith** pattern where domain services 
 (Define any project-specific terms or acronyms.)
 
 - **NPSN:** Nomor Pokok Sekolah Nasional (Statutory National School Identification Number: `70010111`)
-- **BAN-S/M:** Badan Akreditasi Nasional Sekolah/Madrasah (Official national accreditation board for primary and secondary schools)
-- **PPDB:** Penerimaan Peserta Didik Baru (Indonesian statutory term for student admissions and enrollment)
-- **RBAC:** Role-Based Access Control (Sistem kontrol akses berbasis peran)
-- **RSC:** React Server Components (Komponen React sisi server bawaan Next.js App Router)
-- **SIS:** School Information System (Sistem Informasi Sekolah terpadu)
-- **UUIDv7:** Universally Unique Identifier Version 7 (Pengenal unik 128-bit terurut waktu)
-- **ZSA:** Zero-overhead Server Actions Wrapper (Pustaka pembungkus Server Action dengan validasi Zod dan penanganan galat terstandar)
+- **BAN-S/M:** Badan Akreditasi Nasional Sekolah/Madrasah (National Accreditation Board for Schools/Madrasahs)
+- **PPDB:** Penerimaan Peserta Didik Baru (Statutory Student Admission & Enrollment Portal)
+- **RBAC:** Role-Based Access Control
+- **RSC:** React Server Components (Next.js App Router native server execution)
+- **SIS:** School Information System (Integrated institutional management platform)
+- **UUIDv7:** Universally Unique Identifier Version 7 (Time-ordered 128-bit unique identifier)
+- **ZSA:** Zero-overhead Server Actions Wrapper (Type-safe Server Action wrapper with Zod validation)

@@ -15,20 +15,20 @@ import { ScrollReveal } from "@/components/common/ScrollReveal";
 const fitrahPillars = [
   {
     code: "FITRAH // 01",
-    title: "Qudwah Hasanah (Teladan Nyata)",
-    desc: "Setiap ustadz dan ustadzah diposisikan sebagai teladan akhlak hidup yang disaksikan langsung oleh siswa.",
+    title: "Qudwah Hasanah (Living Role Model)",
+    desc: "Every teacher and instructor serves as an active exemplar of noble character observed directly by students.",
     icon: Sparkles,
   },
   {
     code: "FITRAH // 02",
-    title: "Disiplin Positif & Memuliakan",
-    desc: "Membentuk kemandirian dan adab tanpa kekerasan verbal ataupun hukuman fisik yang merusak mental.",
+    title: "Positive & Dignified Discipline",
+    desc: "Cultivating independence and etiquette without verbal aggression or harmful physical punishments.",
     icon: Compass,
   },
   {
     code: "FITRAH // 03",
-    title: "Sinergi Sekolah & Keluarga",
-    desc: "Keselarasan pembiasaan harian terpadu melalui mutaba'ah yaumiyah antara guru dan orang tua.",
+    title: "School & Family Synergy",
+    desc: "Harmonizing integrated daily habits through structured mutaba'ah collaboration between educators and parents.",
     icon: HeartHandshake,
   },
 ];
@@ -80,27 +80,27 @@ export function WelcomeSection() {
                     Ustadz H. Ahmad Fauzi, M.Pd.
                   </h3>
                   <p className="text-xs font-bold text-amber-700 mt-1 uppercase tracking-wider font-mono">
-                    Kepala Sekolah SD Al-Birru
+                    Principal of SD Al-Birru
                   </p>
                   <p className="text-xs text-slate-500 mt-0.5 font-mono">
-                    Magister Manajemen Pendidikan Islam (UIN)
+                    Master of Islamic Educational Management (UIN)
                   </p>
 
                   <blockquote
                     cite="Ustadz H. Ahmad Fauzi, M.Pd."
                     className="mt-8 pt-6 border-t border-slate-200 dark:border-slate-800 text-sm text-slate-700 dark:text-slate-300 leading-relaxed italic bg-amber-50/40 p-5 border border-amber-100"
                   >
-                    &quot;Mendidik bukan sekadar mentransfer pengetahuan,
-                    melainkan menghidupkan fitrah, menjaga kemurnian hati, dan
-                    menanamkan akhlak mulia sebelum ilmu diajarkan.&quot;
+                    &quot;Education is not merely transferring knowledge, but
+                    awakening fitrah, guarding purity of heart, and cultivating
+                    noble morals before formal scholarship is taught.&quot;
                   </blockquote>
 
                   <div className="mt-6 flex items-center justify-between text-[11px] text-slate-500 font-mono">
                     <div className="flex items-center gap-1.5 text-emerald-700 font-semibold">
                       <ShieldCheck className="size-3.5 text-emerald-700" />
-                      <span>Komitmen Sekolah Ramah Anak</span>
+                      <span>Child-Friendly School Commitment</span>
                     </div>
-                    <span className="text-slate-400">STANDAR JSIT</span>
+                    <span className="text-slate-400">JSIT STANDARD</span>
                   </div>
                 </article>
               </div>
@@ -112,22 +112,22 @@ export function WelcomeSection() {
             <ScrollReveal direction="up" delay={0.2}>
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-none bg-amber-50 border border-amber-200/60 text-amber-800 text-[11px] font-mono font-bold uppercase tracking-wider mb-5">
                 <span className="size-1.5 rounded-none bg-amber-500 animate-pulse" />
-                <span>FILOSOFI // PENDIDIKAN FITRAH</span>
+                <span>PHILOSOPHY // NATURE-BASED EDUCATION</span>
               </div>
 
               <h2
                 id="welcome-heading"
                 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-950 dark:text-slate-50 tracking-tight leading-[1.12]"
               >
-                Menjaga Fitrah Anak Melalui Keteladanan, Adab, &amp; Kasih
-                Sayang
+                Nurturing Children&apos;s Fitrah Through Role Modeling,
+                Character, &amp; Compassion
               </h2>
 
               <p className="mt-6 text-base sm:text-lg text-slate-600 dark:text-slate-400 leading-relaxed font-normal">
-                Anak usia sekolah dasar belajar paling mendalam dari apa yang
-                mereka saksikan dan rasakan. Di SD Al-Birru, setiap sudut ruang
-                belajar dirancang untuk menumbuhkan cinta ilmu dan keluhuran
-                pekerti.
+                Primary school students learn most profoundly from what they
+                witness and experience firsthand. At SD Al-Birru, every
+                classroom corner is crafted to foster love of knowledge and
+                moral excellence.
               </p>
 
               {/* Semantic List of 3 Out-of-the-Box Fitrah Blueprint Cards */}
@@ -166,14 +166,14 @@ export function WelcomeSection() {
                   href="/about"
                   className="group inline-flex items-center gap-2 border border-transparent bg-amber-500 text-slate-950 hover:bg-amber-600 font-bold px-6 h-12 rounded-none text-xs sm:text-sm transition-all hover:scale-[1.01] active:scale-[0.99] shadow-2xs"
                 >
-                  <span>Pelajari Tentang &amp; Sejarah Al-Birru</span>
+                  <span>Learn About &amp; History of Al-Birru</span>
                   <ArrowRight className="size-3.5 text-slate-900 group-hover:translate-x-1 transition-transform" />
                 </Link>
                 <Link
                   href="/programs"
                   className="inline-flex items-center gap-2 px-5 h-12 rounded-none border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 dark:bg-slate-800 font-bold text-xs sm:text-sm transition-colors shadow-2xs"
                 >
-                  <span>Eksplorasi Kurikulum</span>
+                  <span>Explore Curriculum</span>
                 </Link>
               </div>
             </ScrollReveal>

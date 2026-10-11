@@ -17,50 +17,50 @@ interface FacultyMember {
 const facultyMembers: FacultyMember[] = [
   {
     name: "Ustadz H. Ahmad Fauzi, M.Pd.",
-    role: "Kepala School",
-    degree: "Magister Manajemen Pendidikan Islam (UIN)",
-    specialty: "Kepemimpinan Pendidikan & Karakter",
-    bio: "Berpengalaman lebih dari 15 tahun membina lembaga pendidikan dasar Islam terpadu dengan fokus fitrah anak.",
+    role: "School Principal",
+    degree: "Master of Islamic Education Management (UIN)",
+    specialty: "Educational Leadership & Character",
+    bio: "Over 15 years of leadership in integrated Islamic primary education with a focus on child fitrah.",
     badgeColor: "bg-amber-50 text-amber-800 border-amber-200",
   },
   {
     name: "Ustadzah Siti Fatimah, Lc., M.Ag.",
-    role: "Koordinator Tahfidz & Al-Qur'an",
-    degree: "Al-Azhar University Kairo & Ilmu Al-Qur'an",
-    specialty: "Tahfidz Bersanad & Makharijul Huruf",
-    bio: "Pemegang sanad bacaan riwayat Hafs 'an 'Ashim, berpengalaman dalam metode talaqqi anak usia dini.",
+    role: "Tahfidz & Qur'an Coordinator",
+    degree: "Al-Azhar University Cairo & Qur'anic Studies",
+    specialty: "Certified Sanad Tahfidz & Makharijul Huruf",
+    bio: "Holder of Hafs 'an 'Ashim recitation sanad with extensive experience in early childhood talaqqi methods.",
     badgeColor: "bg-emerald-50 text-emerald-800 border-emerald-200",
   },
   {
     name: "Ustadz Rahmat Hidayat, S.Pd.",
-    role: "Koordinator Curriculum & Sains",
-    degree: "S1 Pendidikan Sains & Teknologi (UPI)",
-    specialty: "Curriculum Merdeka & Inkuiri Sains",
-    bio: "Pengembang modul pembelajaran sains eksperimen terapan dan computational thinking untuk tingkat school dasar.",
+    role: "Curriculum & Science Coordinator",
+    degree: "B.Ed in Science & Technology Education (UPI)",
+    specialty: "National Curriculum & Scientific Inquiry",
+    bio: "Developer of applied science experiment modules and computational thinking for primary education.",
     badgeColor: "bg-sky-50 text-sky-800 border-sky-200",
   },
   {
     name: "Ustadzah Nurul Aini, S.Psi.",
-    role: "Koordinator Bimbingan & Karakter",
-    degree: "S1 Psikologi Perkembangan Anak",
-    specialty: "Parenting Positif & Konseling Students",
-    bio: "Mendampingi pemetaan gaya belajar anak, penanganan hambatan perkembangan, dan konseling orang tua.",
+    role: "Guidance & Character Coordinator",
+    degree: "B.A. in Child Developmental Psychology",
+    specialty: "Positive Parenting & Student Counseling",
+    bio: "Directs learning style mapping, developmental support, and parent consultation sessions.",
     badgeColor: "bg-purple-50 text-purple-800 border-purple-200",
   },
   {
     name: "Ustadz Muhammad Ilham, S.Pd.I.",
-    role: "Teachers Bahasa Arab & Hadits",
-    degree: "S1 Pendidikan Bahasa Arab (LIPIA)",
-    specialty: "Percakapan Harian Arab & Adab",
-    bio: "Mengembangkan metode cerita dan dialog interaktif untuk memperkenalkan adab Rasulullah dengan riang gembira.",
+    role: "Arabic & Hadith Instructor",
+    degree: "B.A. in Arabic Language Education (LIPIA)",
+    specialty: "Daily Conversational Arabic & Sunnah Ethics",
+    bio: "Developed interactive storytelling and role-play methods to introduce Prophetic ethics with joy and engagement.",
     badgeColor: "bg-amber-50 text-amber-800 border-amber-200",
   },
   {
     name: "Ustadzah Dewi Anggraeni, S.Pd.",
-    role: "Wali Kelas & Literasi Bahasa Inggris",
-    degree: "S1 Pendidikan Bahasa Inggris",
-    specialty: "Phonics & Literasi Membaca",
-    bio: "Menerapkan pendekatan pembelajaran komunikatif aktif dan penanaman budaya gemar membaca buku cerita anak.",
+    role: "Homeroom Teacher & English Literacy",
+    degree: "B.Ed in English Language Education",
+    specialty: "Phonics & Reading Literacy",
+    bio: "Applies active communicative pedagogy and builds a daily culture of reading illustrated books.",
     badgeColor: "bg-rose-50 text-rose-800 border-rose-200",
   },
 ];
@@ -76,17 +76,17 @@ export function FacultyGridSection() {
         <ScrollReveal direction="up" className="max-w-3xl mb-16 md:mb-20">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-none bg-slate-100 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 text-[11px] font-mono font-bold uppercase tracking-wider mb-5">
             <span className="size-1.5 rounded-none bg-amber-500 animate-pulse" />
-            <span>PENDIDIK // DEWAN ASATIDZ</span>
+            <span>EDUCATORS // FACULTY COUNCIL</span>
           </div>
           <h2
             id="faculty-heading"
             className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-950 dark:text-slate-50 tracking-tight leading-[1.12]"
           >
-            Dewan Asatidz &amp; Pengajar Berdedikasi
+            Faculty Council &amp; Dedicated Instructors
           </h2>
           <p className="mt-4 text-base sm:text-lg text-slate-600 dark:text-slate-400 leading-relaxed font-normal">
-            Teachers di SD Al-Birru adalah teladan hidup (qudwah hasanah) yang
-            mendampingi dengan keilmuan, kesabaran, dan ketulusan hati.
+            Teachers at SD Al-Birru are living role models (qudwah hasanah)
+            guiding students with scholarship, patience, and sincere devotion.
           </p>
         </ScrollReveal>
 
@@ -121,7 +121,7 @@ export function FacultyGridSection() {
                         <UserCheck className="size-9" />
                       </div>
                       <span className="text-[11px] font-bold text-slate-400 uppercase tracking-widest font-mono">
-                        Foto Pengajar
+                        Faculty Photo
                       </span>
                     </div>
 
@@ -147,7 +147,7 @@ export function FacultyGridSection() {
                       </div>
                       <div className="flex items-center gap-2">
                         <Award className="size-4 text-slate-400 shrink-0" />
-                        <span>Fokus: {teacher.specialty}</span>
+                        <span>Focus: {teacher.specialty}</span>
                       </div>
                     </div>
 

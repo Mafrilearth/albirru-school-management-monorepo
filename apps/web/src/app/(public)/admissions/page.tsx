@@ -3,9 +3,9 @@ import { AdmissionsForm } from "@/components/forms/AdmissionsForm";
 import { PageHeader } from "@/components/layout/PageHeader";
 
 export const metadata: Metadata = {
-  title: "Registration Admissions 2026",
+  title: "Admissions Registration 2026",
   description:
-    "Form registration Penerimaan Peserta Didik Baru (Admissions) SD Al-Birru Sukabumi Academic Year 2026/2027.",
+    "New student admissions registration form for SD Al-Birru Sukabumi Academic Year 2026/2027.",
   alternates: {
     canonical: "/admissions",
   },
@@ -15,12 +15,12 @@ export default function AdmissionsPage() {
   return (
     <>
       <PageHeader
-        kicker="Admissions 2026 // GELOMBANG 1"
-        title="Form Registration Students Baru"
-        description="Langkah pertama mewujudkan generasi Qur'ani yang berakhlak mulia dan unggul dalam sains. Kuota sangat terbatas demi menjaga kualitas rasio 1:15."
+        kicker="ADMISSIONS 2026 // WAVE 1"
+        title="New Student Registration Form"
+        description="The first step toward cultivating a Qur'anic generation with noble character and scientific excellence. Limited capacity maintained to preserve an optimal 1:15 ratio."
         badges={[
-          { iconName: "map-pin", label: "Kuota Terbatas" },
-          { iconName: "clock", label: "Registration Online 24 Jam" },
+          { iconName: "map-pin", label: "Limited Seats Available" },
+          { iconName: "clock", label: "24/7 Online Registration" },
         ]}
       />
 
@@ -30,7 +30,7 @@ export default function AdmissionsPage() {
       >
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 id="ppdb-form-section" className="sr-only">
-            Form Registration
+            Registration Form
           </h2>
           <AdmissionsForm />
         </div>

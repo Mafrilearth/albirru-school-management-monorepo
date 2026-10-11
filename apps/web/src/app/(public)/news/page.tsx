@@ -5,16 +5,16 @@ import { NewsArchiveGrid } from "@/components/sections/news/NewsArchiveGrid";
 import { getArticles } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: "News, Prestasi & Pengumuman School",
+  title: "News, Achievements & School Announcements",
   description:
-    "Ikuti informasi terkini seputar kegiatan belajar students, agenda tahfidz akbar, pengumuman resmi Admissions, dan dokumentasi kejuaraan SD Al-Birru Sukabumi.",
+    "Stay informed with the latest updates on student learning activities, major tahfidz events, official Admissions announcements, and competition achievements at SD Al-Birru Sukabumi.",
   alternates: {
     canonical: "/news",
   },
   openGraph: {
-    title: "News, Prestasi & Pengumuman School | SD Al-Birru Sukabumi",
+    title: "News, Achievements & School Announcements | SD Al-Birru Sukabumi",
     description:
-      "Dinamika aktivitas belajar students, capaian prestasi tahfidz dan sains, serta pengumuman resmi SD Al-Birru Sukabumi.",
+      "Student learning dynamics, tahfidz & science accomplishments, and official announcements from SD Al-Birru Sukabumi.",
     url: "/news",
   },
 };
@@ -32,7 +32,7 @@ const breadcrumbSchema = {
     {
       "@type": "ListItem",
       position: 2,
-      name: "News & News",
+      name: "News & Articles",
       item: "https://sdalbirru.sch.id/news",
     },
   ],
@@ -48,13 +48,13 @@ export default async function NewsPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <PageHeader
-        kicker="PUBLIKASI // WARTA & PRESTASI"
-        title="Dinamika Kampus &amp; Kabar Prestasi Students"
-        description="Dokumentasi resmi liputan aktivitas belajar, capaian kejuaraan tahfidz &amp; sains, serta pengumuman penting bagi wali students SD Al-Birru."
+        kicker="PUBLICATIONS // NEWS & ACHIEVEMENTS"
+        title="Campus Dynamics &amp; Student Achievements"
+        description="Official coverage of classroom activities, tahfidz and science tournament accolades, alongside vital announcements for SD Al-Birru guardians."
         badges={[
-          { iconName: "newspaper", label: "News Resmi Terverifikasi" },
-          { iconName: "trophy", label: "Dokumentasi Prestasi" },
-          { iconName: "calendar", label: "Agenda & Kalender Akademik" },
+          { iconName: "newspaper", label: "Verified Official News" },
+          { iconName: "trophy", label: "Achievement Documentation" },
+          { iconName: "calendar", label: "Events & Academic Calendar" },
         ]}
       />
 
@@ -68,10 +68,10 @@ export default async function NewsPage() {
       </section>
 
       <CTASection
-        kicker="PENERIMAAN // JALUR PRESTASI & REGULER"
-        title="Dukung Bakat Ananda Bersama SD Al-Birru"
-        description="Tersedia jalur apresiasi bagi ananda yang memiliki hafalan Al-Qur'an atau prestasi minat bakat. Konsultasikan kuota rombel yang tersedia."
-        primaryBtnText="Konsultasi Jalur Masuk"
+        kicker="ADMISSIONS // MERIT & REGULAR TRACKS"
+        title="Support Your Child's Talents with SD Al-Birru"
+        description="Special recognition tracks available for children with Al-Qur'an memorization or talent achievements. Inquire about remaining class cohort capacity."
+        primaryBtnText="Consult Admissions Tracks"
         primaryBtnHref="/contact"
       />
     </>

@@ -22,18 +22,18 @@ export function BentoValuesSection() {
         <div className="max-w-3xl mb-16 md:mb-20">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-none bg-white dark:bg-slate-900 border border-slate-200/90 shadow-2xs text-[11px] font-mono font-bold uppercase tracking-wider text-slate-800 dark:text-slate-200 mb-5">
             <span className="size-1.5 rounded-none bg-amber-500 animate-pulse" />
-            <span>KURIKULUM // 4 PILAR TERPADU</span>
+            <span>CURRICULUM // 4 INTEGRATED PILLARS</span>
           </div>
           <h2
             id="bento-values-heading"
             className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-950 dark:text-slate-50 tracking-tight leading-[1.12]"
           >
-            Kerangka Pembelajaran Holistik
+            Holistic Learning Framework
           </h2>
           <p className="mt-4 text-base sm:text-lg text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl font-normal">
-            Struktur pengajaran yang memadukan kedalaman spiritual
-            Al-Qur&apos;an, keluhuran adab, dan kelincahan nalar sains secara
-            terukur.
+            An educational structure harmonizing spiritual depth of the Holy
+            Qur&apos;an, noble character building, and critical scientific
+            reasoning.
           </p>
         </div>
 
@@ -61,7 +61,7 @@ export function BentoValuesSection() {
               <div className="relative z-10">
                 <div className="flex items-center justify-between mb-8">
                   <span className="font-mono text-xs font-bold text-slate-500 dark:text-slate-400 tracking-wider">
-                    PILAR 01
+                    PILLAR 01
                   </span>
                   <BookMarked className="size-5 text-slate-400 group-hover:text-amber-500 transition-colors" />
                 </div>
@@ -69,26 +69,26 @@ export function BentoValuesSection() {
                   id="pillar-01-title"
                   className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight leading-snug"
                 >
-                  Metode Talaqqi Bersanad &amp; Muroja&apos;ah Mandiri
+                  Certified Sanad Talaqqi &amp; Self-Directed Muroja&apos;ah
                 </h3>
                 <p className="mt-5 text-slate-700 dark:text-slate-300 text-sm sm:text-base leading-relaxed font-normal">
-                  Students dibimbing secara intensif dalam halaqah pagi untuk
-                  menguasai makharijul huruf dan kaidah tajwid yang benar.
-                  Evaluasi hafalan dilakukan melalui ujian tasmi&apos; terbuka
-                  per juz disaksikan langsung oleh orang tua.
+                  Students receive personalized instruction during morning
+                  halaqah sessions to master makharijul huruf and accurate
+                  tajweed rules. Memorization is evaluated through open
+                  single-sitting tasmi&apos; examinations witnessed by parents.
                 </p>
                 <div className="mt-8 flex flex-wrap gap-2.5">
                   <Badge
                     variant="outline"
                     className="bg-slate-900 border-slate-800 text-slate-300 font-mono rounded-none"
                   >
-                    Talaqqi Asatidz Bersanad
+                    Certified Sanad Teachers
                   </Badge>
                   <Badge
                     variant="outline"
                     className="bg-slate-900 border-slate-800 text-slate-300 font-mono rounded-none"
                   >
-                    Tasmi&apos; Sekali Duduk
+                    Single-Sitting Tasmi&apos;
                   </Badge>
                 </div>
               </div>
@@ -100,7 +100,7 @@ export function BentoValuesSection() {
                   href="/programs"
                   className="text-xs font-bold text-slate-300 hover:text-amber-400 flex items-center gap-1.5 transition-colors group/link font-mono uppercase"
                 >
-                  <span>Silabus</span>
+                  <span>Syllabus</span>
                   <ArrowRight className="size-3.5 group-hover/link:translate-x-1 transition-transform" />
                 </Link>
               </div>
@@ -114,7 +114,7 @@ export function BentoValuesSection() {
               <div>
                 <div className="flex items-center justify-between mb-8">
                   <span className="font-mono text-xs font-bold text-slate-500 tracking-wider">
-                    PILAR 02
+                    PILLAR 02
                   </span>
                   <Heart className="size-5 text-slate-400 group-hover:text-amber-500 transition-colors" />
                 </div>
@@ -122,13 +122,13 @@ export function BentoValuesSection() {
                   id="pillar-02-title"
                   className="text-xl sm:text-2xl font-black text-slate-950 dark:text-slate-50 tracking-tight leading-snug"
                 >
-                  Habit-Forming &amp; 7 Kebiasaan Shalih
+                  Habit-Forming &amp; 7 Virtuous Habits
                 </h3>
                 <div className="mt-5 text-slate-600 dark:text-slate-400 text-sm sm:text-base leading-relaxed font-normal">
-                  Pembiasaan sholat dhuha dan dzuhur berjamaah,{" "}
+                  Daily congregational Dhuha and Zuhr prayers,{" "}
                   <HoverCard>
                     <HoverCardTrigger className="underline decoration-dashed decoration-slate-400 underline-offset-4 cursor-help font-bold text-slate-900 dark:text-slate-100">
-                      kultur 5S
+                      the 5S Culture
                     </HoverCardTrigger>
                     <HoverCardContent
                       className="w-80 p-4 rounded-none border-slate-800"
@@ -136,22 +136,22 @@ export function BentoValuesSection() {
                     >
                       <div className="space-y-2">
                         <h4 className="text-sm font-bold flex items-center gap-2 text-slate-800 dark:text-slate-200">
-                          <Heart className="size-4" /> Senyum, Salam, Sapa,
-                          Sopan, Santun
+                          <Heart className="size-4" /> Smile, Greet, Welcome,
+                          Polite, Courteous
                         </h4>
                         <p className="text-sm text-slate-600 dark:text-slate-400">
-                          Adab harian yang wajib diterapkan oleh seluruh
-                          students dan asatidz.
+                          Daily etiquette practiced consistently by all students
+                          and instructors.
                         </p>
                       </div>
                     </HoverCardContent>
                   </HoverCard>
-                  , serta latihan kepedulian sosial melalui infaq pekanan dan
-                  projek bakti orang tua (birrul walidain).
+                  , as well as social empathy projects through weekly charity
+                  and filial devotion (birrul walidain).
                 </div>
               </div>
               <div className="mt-12 pt-6 border-t border-slate-100 dark:border-slate-800 font-mono text-xs text-slate-500 uppercase">
-                <span>Adab mendahului Ilmu Formal</span>
+                <span>Adab Precedes Formal Knowledge</span>
               </div>
             </article>
 
@@ -163,7 +163,7 @@ export function BentoValuesSection() {
               <div>
                 <div className="flex items-center justify-between mb-8">
                   <span className="font-mono text-xs font-bold text-slate-500 tracking-wider">
-                    PILAR 03
+                    PILLAR 03
                   </span>
                   <Cpu className="size-5 text-slate-400 group-hover:text-amber-500 transition-colors" />
                 </div>
@@ -171,16 +171,16 @@ export function BentoValuesSection() {
                   id="pillar-03-title"
                   className="text-xl sm:text-2xl font-black text-slate-950 dark:text-slate-50 tracking-tight leading-snug"
                 >
-                  Inkuiri Sains &amp; Logika Koding Cilik
+                  Scientific Inquiry &amp; Junior Coding Logic
                 </h3>
                 <p className="mt-5 text-slate-600 dark:text-slate-400 text-sm sm:text-base leading-relaxed font-normal">
-                  Pembelajaran aktif berbasis Curriculum Merdeka yang memadukan
-                  eksplorasi praktikum sains di laboratorium alam, pengenalan
-                  algoritma computational thinking, dan literasi teknologi.
+                  Active inquiry-based learning integrating applied open-air
+                  science experiments, algorithmic computational thinking, and
+                  technology literacy.
                 </p>
               </div>
               <div className="mt-12 pt-6 border-t border-slate-100 dark:border-slate-800 font-mono text-xs text-slate-500 uppercase">
-                <span>Mengasah daya cipta masalah</span>
+                <span>Sharpening creative problem solving</span>
               </div>
             </article>
 
@@ -192,7 +192,7 @@ export function BentoValuesSection() {
               <div>
                 <div className="flex items-center justify-between mb-8">
                   <span className="font-mono text-xs font-bold text-slate-500 tracking-wider">
-                    PILAR 04
+                    PILLAR 04
                   </span>
                   <Sparkles className="size-5 text-slate-400 group-hover:text-amber-500 transition-colors" />
                 </div>
@@ -200,18 +200,18 @@ export function BentoValuesSection() {
                   id="pillar-04-title"
                   className="text-2xl sm:text-3xl font-black text-slate-950 dark:text-slate-50 tracking-tight leading-snug"
                 >
-                  Rasio Terbatas &amp; Ekosistem Pembelajaran Sehat
+                  Limited Class Ratios &amp; Wholesome Campus Ecosystem
                 </h3>
                 <p className="mt-5 text-slate-600 dark:text-slate-400 text-sm sm:text-base leading-relaxed font-normal">
-                  Pembatasan kuota kelas maksimal 20 students memastikan
-                  kedekatan emosional dan pemantauan perkembangan unik setiap
-                  anak. Didukung ruang kelas ber-AC, masjid representatif,
-                  perpustakaan baca, dan arena bermain terbuka yang aman.
+                  Strict caps of at most 20 students per class ensure personal
+                  emotional connection and individualized developmental
+                  attention. Supported by air-conditioned classrooms, dedicated
+                  school mosque, library, and secure playgrounds.
                 </p>
               </div>
               <div className="mt-12 pt-6 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
                 <span className="text-xs text-slate-500 font-mono uppercase">
-                  Maksimal 20 students/kelas
+                  Max 20 students per class
                 </span>
                 <Link
                   href="/programs"

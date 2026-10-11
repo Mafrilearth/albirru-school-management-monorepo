@@ -5,16 +5,16 @@ import { GalleryViewer } from "@/components/sections/gallery/GalleryViewer";
 import { getGalleryItems } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: "Gallery Foto Dokumentasi Kegiatan Students",
+  title: "Photo Gallery & Student Activities",
   description:
-    "Dokumentasi foto kegiatan tahfidzul qur'an, ekstrakurikuler panahan sunnah, sains praktikum, dan wisuda akbar students SD Al-Birru Sukabumi.",
+    "Photo documentation of tahfidzul qur'an activities, traditional archery, science experiments, and grand student graduation at SD Al-Birru Sukabumi.",
   alternates: {
     canonical: "/gallery",
   },
   openGraph: {
-    title: "Gallery Dokumentasi Kegiatan Students | SD Al-Birru Sukabumi",
+    title: "Photo Gallery & Student Activities | SD Al-Birru Sukabumi",
     description:
-      "Rekam jejak aktivitas belajar, tahfidz Al-Qur'an, dan pembiasaan adab harian students SD Al-Birru Sukabumi.",
+      "Visual record of learning activities, Al-Qur'an tahfidz, and daily student character cultivation at SD Al-Birru Sukabumi.",
     url: "/gallery",
   },
 };
@@ -32,7 +32,7 @@ const breadcrumbSchema = {
     {
       "@type": "ListItem",
       position: 2,
-      name: "Gallery Foto",
+      name: "Photo Gallery",
       item: "https://sdalbirru.sch.id/gallery",
     },
   ],
@@ -48,13 +48,13 @@ export default async function GalleryPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <PageHeader
-        kicker="DOKUMENTASI // REKAM JEJAK AKTIVITAS"
-        title="Gallery Aktivitas &amp; Pembiasaan Students"
-        description="Merekam keceriaan, kesungguhan melafalkan ayat Al-Qur'an, dan eksplorasi sains interaktif para students dalam lingkungan school yang aman dan asri."
+        kicker="DOCUMENTATION // ACTIVITY ARCHIVES"
+        title="Student Activities &amp; Daily Habits Gallery"
+        description="Capturing the joy, Al-Qur'an recitation diligence, and interactive scientific exploration of our students in a secure, nurturing campus environment."
         badges={[
-          { iconName: "camera", label: "Dokumentasi Riil Kampus" },
-          { iconName: "sparkles", label: "Kegiatan Tahfidz & Akademik" },
-          { iconName: "heart", label: "Kultur Ramah Anak" },
+          { iconName: "camera", label: "Real Campus Photography" },
+          { iconName: "sparkles", label: "Tahfidz & Academic Programs" },
+          { iconName: "heart", label: "Child-Friendly Culture" },
         ]}
       />
 
@@ -68,10 +68,10 @@ export default async function GalleryPage() {
       </section>
 
       <CTASection
-        kicker="KUNJUNGAN // SURVEI LINGKUNGAN KAMPUS"
-        title="Lihat Suasana Belajar Secara Langsung"
-        description="Bapak dan Ibu dipersilakan berkunjung ke kampus untuk menyaksikan langsung keseharian halaqah Al-Qur'an dan fasilitas school."
-        primaryBtnText="Register Jadwal Survei Kampus"
+        kicker="CAMPUS VISIT // CAMPUS ENVIRONMENT TOUR"
+        title="Experience Our Learning Atmosphere Firsthand"
+        description="Parents are warmly invited to visit our campus to observe our daily Al-Qur'an halaqahs and modern school facilities."
+        primaryBtnText="Book a Campus Visit"
         primaryBtnHref="/contact"
       />
     </>

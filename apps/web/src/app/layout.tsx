@@ -37,29 +37,30 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "SD Al-Birru Tahfidzul Qur'an Bandung | Sahabat Pendidikan Anak",
-    template: "%s | SD Al-Birru Bandung",
+    default:
+      "SD Al-Birru Tahfidzul Qur'an Sukabumi | Partner in Islamic Education",
+    template: "%s | SD Al-Birru Sukabumi",
   },
   description:
-    "Website Resmi SD Al-Birru Tahfidzul Qur'an Bandung. Membina generasi Qur'ani berakhlak mulia, hafal Al-Qur'an minimal 3 juz bersanad, unggul dalam nalar kritis sains Kurikulum Merdeka, dan berwawasan global.",
-  applicationName: "SD Al-Birru Bandung",
+    "Official Website of SD Al-Birru Tahfidzul Qur'an Sukabumi. Nurturing a Qur'anic generation with noble character, minimum 3 mutqin juz Al-Qur'an memorization with sanad, Merdeka Curriculum critical reasoning, and global horizons.",
+  applicationName: "SD Al-Birru Sukabumi",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
     title: "SD Al-Birru",
   },
-  authors: [{ name: "SD Al-Birru Bandung", url: siteUrl }],
-  creator: "SD Al-Birru Bandung",
-  publisher: "Yayasan Al-Birru Bandung",
+  authors: [{ name: "SD Al-Birru Sukabumi", url: siteUrl }],
+  creator: "SD Al-Birru Sukabumi",
+  publisher: "Yayasan Pendidikan Al-Birru",
   keywords: [
     "SD Al-Birru",
-    "SDIT Al-Birru Bandung",
-    "SD Tahfidz Bandung",
-    "Sekolah Dasar Islam Terpadu Bandung",
-    "Pendaftaran SD Al-Birru 2026",
-    "Tahfidz Quran Anak Bandung",
-    "Kurikulum Merdeka SD Bandung",
-    "Sekolah Ramah Anak Bandung",
+    "SDIT Al-Birru Sukabumi",
+    "SD Tahfidz Sukabumi",
+    "Integrated Islamic Primary School Sukabumi",
+    "SD Al-Birru Admissions 2026",
+    "Children Tahfidz Quran Sukabumi",
+    "Merdeka Curriculum Primary School Sukabumi",
+    "Child-Friendly Islamic School Sukabumi",
   ],
   formatDetection: {
     telephone: false,
@@ -71,19 +72,21 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "SD Al-Birru Tahfidzul Qur'an Bandung | Sahabat Pendidikan Anak",
+    title:
+      "SD Al-Birru Tahfidzul Qur'an Sukabumi | Partner in Islamic Education",
     description:
-      "Membina generasi Qur'ani berakhlak mulia, tahfidz minimal 3 juz mutqin bersanad, dan unggul dalam nalar kritis sains Kurikulum Merdeka.",
+      "Nurturing a Qur'anic generation of noble character, minimum 3 mutqin juz memorization with sanad, and applied science excellence.",
     url: siteUrl,
-    siteName: "SD Al-Birru Bandung",
-    locale: "id_ID",
+    siteName: "SD Al-Birru Sukabumi",
+    locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "SD Al-Birru Tahfidzul Qur'an Bandung | Sahabat Pendidikan Anak",
+    title:
+      "SD Al-Birru Tahfidzul Qur'an Sukabumi | Partner in Islamic Education",
     description:
-      "Sekolah Dasar Islam Terpadu Tahfidzul Qur'an di Bandung. Sahabat Pendidikan Anak menuju generasi Qur'ani masa depan.",
+      "Integrated Islamic Primary School Tahfidzul Qur'an in Sukabumi. Partner in Islamic education toward future generations.",
   },
   robots: {
     index: true,
@@ -105,20 +108,20 @@ const schoolStructuredData = {
   "@context": "https://schema.org",
   "@type": "School",
   "@id": `${siteUrl}/#school`,
-  name: "SD Al-Birru Tahfidzul Qur'an Bandung",
-  alternateName: ["SD Al-Birru", "SDIT Al-Birru Bandung"],
+  name: "SD Al-Birru Tahfidzul Qur'an Sukabumi",
+  alternateName: ["SD Al-Birru", "SDIT Al-Birru Sukabumi"],
   url: siteUrl,
   logo: `${siteUrl}/favicon.ico`,
   description:
-    "Sekolah Dasar Islam Terpadu Tahfidzul Qur'an unggulan di Bandung. Pembinaan karakter akhlakul karimah, hafalan Al-Qur'an 3 juz mutqin bersanad, dan pembelajaran sains terapan Kurikulum Merdeka.",
+    "Integrated Islamic Primary School Tahfidzul Qur'an of excellence in Sukabumi. Noble character cultivation, 3 mutqin juz Al-Qur'an memorization with verified sanad, and applied science learning.",
   telephone: "+6281234567890",
   email: "info@sdalbirru.sch.id",
   address: {
     "@type": "PostalAddress",
-    streetAddress: "Jl. Merdeka No. 1, Sumurbandung, Kota Bandung",
-    addressLocality: "Bandung",
+    streetAddress: "Jl. Selabintana Km. 5, Warnasari, Sukabumi",
+    addressLocality: "Sukabumi",
     addressRegion: "Jawa Barat",
-    postalCode: "40111",
+    postalCode: "43151",
     addressCountry: "ID",
   },
   geo: {
@@ -156,7 +159,7 @@ export default function PublicRootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const locale = "id";
+  const locale = "en";
 
   return (
     <html
@@ -184,7 +187,7 @@ export default function PublicRootLayout({
             href="#main-content"
             className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-amber-500 focus:text-slate-950 focus:font-bold focus:rounded-none focus:shadow-lg focus:outline-none"
           >
-            Menuju ke Konten Utama
+            Skip to Main Content
           </a>
 
           <TooltipProvider>

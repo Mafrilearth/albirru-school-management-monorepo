@@ -22,43 +22,44 @@ const faqs: FaqItem[] = [
     id: "faq-hours",
     num: "01",
     question:
-      "Bagaimana jam operasional belajar dan ritme harian students di school?",
+      "What are the daily school hours and operational routine for students?",
     answer:
-      "Kegiatan students berlangsung hari Senin hingga Kamis pukul 07.15 – 15.00 WIB. Hari dimulai dengan Sholat Dhuha bersama dan halaqah tahfidz talaqqi pagi, dilanjutkan pembelajaran tematik Curriculum Merdeka, Sholat Dzuhur berjamaah, serta makan siang bersama. Khusus hari Jumat, kepulangan pada pukul 11.30 WIB untuk persiapan ibadah Sholat Jumat.",
+      "Student activities run Monday through Thursday from 07:15 AM to 03:00 PM. The day begins with congregational Dhuha prayer and morning tahfidz talaqqi halaqah, followed by Merdeka Curriculum thematic learning, congregational Dhuhr prayer, and shared lunch. On Fridays, school dismisses early at 11:30 AM in preparation for Friday congregational prayers.",
   },
   {
     id: "faq-catering",
     num: "02",
     question:
-      "Bagaimana standar penyediaan makan siang dan asupan gizi students?",
+      "What are the standards for student school lunches and nutritional catering?",
     answer:
-      "SD Al-Birru menyediakan katering makan siang sehat higienis dengan menu seimbang setiap hari (karbohidrat kompleks, protein hewani/nabati, sayuran segar, dan buah) tanpa penyedap sintetis berlebih. Waktu makan juga menjadi sarana pembiasaan adab islami: duduk tertib, membaca doa bersama, dan menjaga adab tanpa menyisakan makanan.",
+      "SD Al-Birru provides hygienic, wholesome hot lunches with daily balanced menus (complex carbohydrates, animal and plant proteins, fresh vegetables, and fruits) free from excessive synthetic additives. Mealtime also reinforces Islamic dining adab: seated etiquette, communal prayers, mindful eating, and zero food waste.",
   },
   {
     id: "faq-shuttle",
     num: "03",
     question:
-      "Apakah tersedia armada layanan antar-jemput bagi students yang berdomisili jauh?",
+      "Is there a school bus shuttle service available for students living further away?",
     answer:
-      "Tersedia layanan antar-jemput armada resmi berpendingin udara dengan rute terpadu di wilayah Kota dan Kabupaten Sukabumi. Setiap armada didampingi oleh staf school serta dilengkapi koordinasi komunikasi aktif bersama orang tua untuk memastikan keselamatan, ketepatan waktu, dan kenyamanan students selama perjalanan.",
+      "Yes, official air-conditioned shuttle transport is available with integrated routes across Sukabumi City and Regency. Each shuttle is accompanied by dedicated school staff and connected with parents via real-time communications to ensure student safety, punctuality, and travel comfort.",
   },
   {
     id: "faq-matrikulasi",
     num: "04",
     question:
-      "Bagaimana jika calon students baru belum lancar mengenal huruf hijaiyah atau membaca Iqra'?",
+      "What if a prospective student is not yet fluent in hijaiyah letters or reading Iqra'?",
     answer:
-      "Bapak/Ibu tidak perlu berkecil hati. Kami menyelenggarakan program matrikulasi tahsin intensif pada 3 bulan pertama semester ganjil. Asatidz membimbing dengan metode talaqqi personal penuh kesabaran dari tingkat dasar tanpa menghakimi kemampuan awal anak, sehingga ananda merasa dihargai dan antusias belajar.",
+      "Parents need not worry. We host an intensive tahsin matriculation program during the first 3 months of the odd semester. Teachers guide students through patient, personalized talaqqi from the fundamentals without judging baseline abilities, ensuring children feel encouraged, safe, and enthusiastic.",
   },
   {
     id: "faq-observation",
     num: "05",
     question:
-      "Bagaimana tahapan observasi masuk penerimaan students baru (Admissions)?",
+      "What does the new student admissions observation process entail?",
     answer:
-      "Observasi dirancang dengan pendekatan ramah anak (child-friendly assessment) melalui kegiatan bermain edukatif terarah untuk memetakan kesiapan motorik, kemandirian emosional, dan interaksi sosial anak. Kami tidak memberlakukan tes calistung kaku sebagai penentu kelulusan, dan menyertakan sesi dialog kemitraan bersama orang tua demi penyelarasan visi di rumah dan school.",
+      "Observations are designed with a child-friendly assessment approach through guided educational play activities to observe fine/gross motor readiness, emotional independence, and social interactions. We do not enforce rigid reading/writing/arithmetic tests as pass-fail barriers, and include a partnership dialogue session with parents to align home and school values.",
   },
 ];
+
 export function FaqSection() {
   const faqSchema = {
     "@context": "https://schema.org",
@@ -89,20 +90,20 @@ export function FaqSection() {
             <ScrollReveal direction="up" delay={0.1}>
               <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-none bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 shadow-2xs text-[11px] font-mono font-bold tracking-wider text-slate-800 dark:text-slate-200 uppercase mb-6">
                 <span className="size-1.5 rounded-none bg-amber-500 animate-pulse" />
-                <span>FAQ // INFORMASI OPERASIONAL</span>
+                <span>FAQ // OPERATIONAL INFORMATION</span>
               </div>
 
               <h2
                 id="faq-section-heading"
                 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-950 dark:text-slate-50 tracking-tight leading-[1.12]"
               >
-                Pertanyaan Logistik &amp; Keseharian Students
+                Frequently Asked Questions &amp; Daily Student Life
               </h2>
 
               <p className="mt-4 text-base sm:text-lg text-slate-600 dark:text-slate-400 leading-relaxed font-normal max-w-xl">
-                Transparansi menyeluruh seputar jam belajar harian, standar
-                katering gizi sehat, armada antar-jemput, dan tata cara
-                observasi masuk ramah anak di SD Al-Birru.
+                Comprehensive transparency regarding daily schedules, healthy
+                catering standards, shuttle transit, and child-friendly
+                admissions observation at SD Al-Birru.
               </p>
 
               <aside aria-labelledby="faq-support-title" className="mt-8">
@@ -116,12 +117,12 @@ export function FaqSection() {
                       id="faq-support-title"
                       className="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-slate-50 font-mono"
                     >
-                      Bantuan &amp; Konsultasi Langsung
+                      Direct Support &amp; Consultation
                     </h3>
                   </div>
                   <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-6 font-normal">
-                    Memerlukan informasi lebih mendalam terkait registration,
-                    survei lokasi, atau konsultasi pemindahan students?
+                    Need deeper information regarding admissions, campus visits,
+                    or student transfer consultations?
                   </p>
 
                   <div className="flex flex-col sm:flex-row lg:flex-col gap-3">
@@ -132,7 +133,7 @@ export function FaqSection() {
                       className="flex items-center justify-center gap-2 px-6 h-12 rounded-none bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs sm:text-sm transition-all shadow-md shadow-emerald-900/30 active:scale-95 min-h-[48px]"
                     >
                       <MessageCircle className="size-4.5" />
-                      <span>Chat Langsung ke Tim Humas (WA)</span>
+                      <span>Direct WhatsApp Chat with Admissions Team</span>
                     </a>
 
                     <a

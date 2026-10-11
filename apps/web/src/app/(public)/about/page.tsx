@@ -6,16 +6,16 @@ import { VisionMissionSection } from "@/components/sections/about/VisionMissionS
 import { CTASection } from "@/components/sections/CTASection";
 
 export const metadata: Metadata = {
-  title: "About & Sejarah School",
+  title: "About & School History",
   description:
-    "Mengenal visi, misi, nilai-nilai BIRRU, dewan pengajar, dan sejarah berdirinya SD Al-Birru Tahfidzul Qur'an Sukabumi sebagai Sahabat Pendidikan Anak.",
+    "Discover the vision, mission, BIRRU core values, distinguished faculty, and history of SD Al-Birru Tahfidzul Qur'an Sukabumi.",
   alternates: {
     canonical: "/about",
   },
   openGraph: {
-    title: "About & Sejarah School | SD Al-Birru Sukabumi",
+    title: "About & School History | SD Al-Birru Sukabumi",
     description:
-      "Mengenal visi, misi, nilai-nilai BIRRU, dewan pengajar, dan sejarah berdirinya SD Al-Birru Tahfidzul Qur'an Sukabumi.",
+      "Discover the vision, mission, BIRRU core values, distinguished faculty, and history of SD Al-Birru Tahfidzul Qur'an Sukabumi.",
     url: "/about",
   },
 };
@@ -47,13 +47,16 @@ export default function AboutPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <PageHeader
-        kicker="KAMPUS // PROFIL RESMI"
-        title="Mengenal SD Al-Birru Lebih Dekat"
-        description="Menelusuri cita-cita luhur, filosofi nama, dan dedikasi para pendidik yang berkomitmen melahirkan generasi Qur'ani berakhlak mulia dan berwawasan masa depan."
+        kicker="CAMPUS // OFFICIAL PROFILE"
+        title="Discover SD Al-Birru"
+        description="Exploring our noble aspirations, institutional philosophy, and dedicated educators committed to nurturing a Qur'anic generation with noble character and future-ready horizons."
         badges={[
-          { iconName: "shield", label: "NPSN Terdaftar Resmi" },
-          { iconName: "book", label: "Curriculum Merdeka + Khas Al-Birru" },
-          { iconName: "users", label: "100% Pengajar Berkualifikasi S1/S2" },
+          { iconName: "shield", label: "Officially Registered NPSN" },
+          {
+            iconName: "book",
+            label: "Merdeka Curriculum + Signature Al-Birru",
+          },
+          { iconName: "users", label: "100% Bachelor's & Master's Faculty" },
         ]}
       />
 
@@ -61,10 +64,10 @@ export default function AboutPage() {
       <HistoryTimelineSection />
       <FacultyGridSection />
       <CTASection
-        kicker="KONSULTASI // AKADEMIK & TAHFIDZ"
-        title="Ingin Mengenal Lebih Dekat Lingkungan Kami?"
-        description="Jadwalkan agenda kunjungan silaturahmi langsung ke kampus SD Al-Birru untuk melihat dinamika halaqah tahfidz dan fasilitas school."
-        primaryBtnText="Jadwalkan Kunjungan Kampus"
+        kicker="CONSULTATION // ACADEMICS & TAHFIDZ"
+        title="Would You Like to Experience Our Campus Directly?"
+        description="Schedule a campus visit to SD Al-Birru to experience morning tahfidz halaqahs, classroom dynamics, and our school facilities firsthand."
+        primaryBtnText="Schedule a Campus Tour"
         primaryBtnHref="/contact"
       />
     </>

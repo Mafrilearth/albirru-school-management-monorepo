@@ -70,7 +70,7 @@ export default function DocsHomePage() {
           </h1>
         </div>
         <p style={{ margin: 0, color: "#64748b", fontSize: "16px" }}>
-          Spesifikasi Teknis Resmi, Arsitektur Sistem, dan Pedoman Rekayasa Perangkat Lunak
+          Official Technical Specifications, System Architecture, and Software Engineering Guidelines
         </p>
       </header>
 
@@ -98,7 +98,7 @@ export default function DocsHomePage() {
                 marginBottom: "8px",
               }}
             >
-              Dokumen {doc.num}
+              Document {doc.num}
             </span>
             <h3 style={{ margin: "4px 0 8px", fontSize: "16px", color: "#0f172a" }}>
               {doc.title}

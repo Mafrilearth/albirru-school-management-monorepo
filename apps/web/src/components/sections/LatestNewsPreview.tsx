@@ -27,36 +27,36 @@ export const fallbackArticles: ArticlePreview[] = [
   {
     id: "1",
     title:
-      "Gebyar Wisuda Tahfidz Angkatan Ke-IV: 35 Students Tuntaskan Ujian Tasmi'",
-    slug: "gebyar-wisuda-tahfidz-angkatan-iv",
-    category: "Prestasi",
-    code: "WRT // 01",
+      "Grand Tahfidz Graduation Cohort IV: 35 Students Complete Tasmi' Examination",
+    slug: "grand-tahfidz-graduation-cohort-iv",
+    category: "Achievements",
+    code: "NEWS // 01",
     excerpt:
-      "Sebanyak 35 students berhasil mengkhatamkan ujian hafalan Al-Qur'an dengan predikat Jayyid Jiddan disaksikan orang tua dan dewan asatidz.",
-    date: "28 September 2026",
+      "A total of 35 students successfully completed their Qur'anic memorization exams with top honors, witnessed by parents and the academic council.",
+    date: "September 28, 2026",
     isoDate: "2026-09-28",
   },
   {
     id: "2",
-    title: "Kunjungan Edukasi Sains & Alam: Students Belajar Ekosistem Terapan",
-    slug: "kunjungan-edukasi-sains-dan-alam",
-    category: "Kegiatan",
-    code: "WRT // 02",
+    title:
+      "Science & Nature Educational Visit: Students Explore Applied Ecosystems",
+    slug: "science-and-nature-educational-visit",
+    category: "Activities",
+    code: "NEWS // 02",
     excerpt:
-      "Tadabbur alam terpadu Curriculum Merdeka. Para students mengamati keanekaragaman flora dan fauna secara langsung di alam terbuka.",
-    date: "15 September 2026",
+      "Integrated environmental learning. Students directly explored flora and fauna biodiversity in natural open-air habitats.",
+    date: "September 15, 2026",
     isoDate: "2026-09-15",
   },
   {
     id: "3",
-    title:
-      "Penerimaan Peserta Didik Baru (Admissions) 2026/2027 Phase I Dibuka",
-    slug: "sosialisasi-ppdb-2026-2027-gelombang-1",
-    category: "Pengumuman",
-    code: "WRT // 03",
+    title: "New Student Admissions (PPDB) 2026/2027 Phase I Officially Open",
+    slug: "admissions-2026-2027-phase-1-open",
+    category: "Announcements",
+    code: "NEWS // 03",
     excerpt:
-      "Registration students baru telah dibuka dengan kuota terbatas maksimal 2 kelas demi menjaga kualitas rasio pendampingan 1:15.",
-    date: "01 September 2026",
+      "New student enrollment is now open with strict quota limits of 2 classrooms to preserve an ideal 1:15 mentorship ratio.",
+    date: "September 01, 2026",
     isoDate: "2026-09-01",
   },
 ];
@@ -76,17 +76,17 @@ export function LatestNewsPreview() {
           <div className="max-w-xl">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-none bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 text-[11px] font-mono font-bold uppercase tracking-wider mb-5 shadow-2xs">
               <span className="size-1.5 rounded-none bg-slate-400 dark:bg-slate-500 animate-pulse" />
-              <span>WARTA // PUBLIKASI RESMI</span>
+              <span>NEWS // OFFICIAL PUBLICATIONS</span>
             </div>
             <h2
               id="latest-news-heading"
               className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-950 dark:text-slate-50 tracking-tight leading-[1.12]"
             >
-              Kabar &amp; Prestasi Terkini
+              Latest News &amp; Achievements
             </h2>
             <p className="mt-4 text-base sm:text-lg text-slate-600 dark:text-slate-400 leading-relaxed font-normal">
-              Dokumentasi kegiatan students, prestasi hafalan Al-Qur&apos;an,
-              dan pengumuman resmi SD Al-Birru.
+              Documentation of student activities, Qur&apos;an memorization
+              milestones, and official school announcements from SD Al-Birru.
             </p>
           </div>
 
@@ -94,7 +94,7 @@ export function LatestNewsPreview() {
             href="/news"
             className="group inline-flex items-center gap-2 border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-50 hover:bg-slate-50 dark:hover:bg-slate-800 font-bold self-start md:self-auto rounded-none px-6 h-12 text-xs sm:text-sm transition-all hover:scale-[1.01] active:scale-[0.99] focus-visible:ring-4 focus-visible:ring-slate-200 outline-none shadow-2xs"
           >
-            <span>Semua News &amp; Agenda</span>
+            <span>All News &amp; Events</span>
             <ChevronRight className="size-4 text-slate-400 group-hover:translate-x-1 transition-transform" />
           </Link>
         </ScrollReveal>
@@ -129,7 +129,7 @@ export function LatestNewsPreview() {
                       <Newspaper className="size-6" />
                     </div>
                     <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest font-mono">
-                      Dokumentasi Foto
+                      Photo Documentation
                     </span>
                   </div>
 
@@ -172,7 +172,7 @@ export function LatestNewsPreview() {
                     href={`/news/${article.slug}`}
                     className="text-xs font-bold text-slate-900 dark:text-slate-50 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors flex items-center gap-1.5 focus-visible:ring-2 focus-visible:ring-slate-400 outline-none uppercase font-mono group/btn"
                   >
-                    <span>Baca News</span>
+                    <span>Read Article</span>
                     <ArrowRight className="size-3.5 text-slate-400 group-hover/btn:translate-x-1.5 transition-transform" />
                   </Link>
 

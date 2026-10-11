@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import {
   BookMarked,
@@ -24,11 +24,11 @@ interface GalleryViewerProps {
 }
 
 const categories = [
-  { id: "all", label: "Semua Kategori" },
+  { id: "all", label: "All Categories" },
   { id: "tahfidz", label: "Tahfidzul Qur'an" },
-  { id: "kegiatan", label: "Kegiatan & Ekskul" },
-  { id: "prestasi", label: "Wisuda & Prestasi" },
-  { id: "fasilitas", label: "Facilities Kampus" },
+  { id: "activities", label: "Activities & Character" },
+  { id: "achievements", label: "Graduation & Honors" },
+  { id: "facilities", label: "Campus Facilities" },
 ];
 
 export function GalleryViewer({ items }: GalleryViewerProps) {
@@ -44,9 +44,9 @@ export function GalleryViewer({ items }: GalleryViewerProps) {
     switch (category) {
       case "tahfidz":
         return BookMarked;
-      case "prestasi":
+      case "achievements":
         return Trophy;
-      case "fasilitas":
+      case "facilities":
         return Building2;
       default:
         return Compass;
@@ -56,13 +56,13 @@ export function GalleryViewer({ items }: GalleryViewerProps) {
   return (
     <div className="space-y-16">
       <h2 id="gallery-grid-heading" className="sr-only">
-        Koleksi Foto &amp; Dokumentasi Pembiasaan Students
+        Photo Collection &amp; Student Routine Documentation
       </h2>
 
       {/* Category Filter Pills with Sliding Spring layoutId */}
       <div
         role="toolbar"
-        aria-label="Filter Kategori Gallery"
+        aria-label="Gallery Category Filter"
         className="flex flex-wrap items-center justify-center gap-2.5 p-2 rounded-none bg-slate-100/90 border border-slate-200/80 dark:border-slate-700/80 max-w-fit mx-auto"
       >
         {categories.map((cat) => {
@@ -95,7 +95,7 @@ export function GalleryViewer({ items }: GalleryViewerProps) {
       {/* Semantic Gallery Grid with Spotlight Cards & Layout Animation */}
       <motion.ul
         layout
-        aria-label="Register Foto Dokumentasi"
+        aria-label="Photo Documentation Directory"
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 list-none p-0"
         role="list"
       >
@@ -141,7 +141,7 @@ export function GalleryViewer({ items }: GalleryViewerProps) {
                           <ItemIcon className="size-8" />
                         </div>
                         <figcaption className="text-[10px] font-bold text-slate-400 uppercase tracking-widest font-mono">
-                          Foto Dokumentasi
+                          Photo Documentation
                         </figcaption>
 
                         <span
@@ -230,7 +230,7 @@ export function GalleryViewer({ items }: GalleryViewerProps) {
                 type="button"
                 onClick={() => setActiveItem(null)}
                 className="absolute top-5 right-5 size-9 rounded-none border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-500 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-50 transition-colors focus-visible:ring-2 focus-visible:ring-slate-900 outline-none cursor-pointer z-20"
-                aria-label="Tutup Detail"
+                aria-label="Close Details"
               >
                 <X aria-hidden="true" className="size-5" />
               </button>
@@ -242,7 +242,7 @@ export function GalleryViewer({ items }: GalleryViewerProps) {
                   className="size-10 text-slate-300 mb-1"
                 />
                 <figcaption className="text-xs font-bold text-slate-400 uppercase tracking-widest font-mono">
-                  Pratinjau Foto Dokumentasi
+                  Photo Documentation Preview
                 </figcaption>
               </figure>
 
@@ -272,7 +272,7 @@ export function GalleryViewer({ items }: GalleryViewerProps) {
                   className="size-4 text-amber-600 shrink-0"
                 />
                 <address className="not-italic">
-                  Lokasi: {activeItem.location}
+                  Location: {activeItem.location}
                 </address>
               </div>
 
@@ -285,7 +285,9 @@ export function GalleryViewer({ items }: GalleryViewerProps) {
                   aria-hidden="true"
                   className="size-4 text-emerald-700 shrink-0"
                 />
-                <span>Dokumentasi resmi pembelajaran students SD Al-Birru</span>
+                <span>
+                  Official learning and campus life documentation of SD Al-Birru
+                </span>
               </footer>
             </motion.div>
           </motion.div>
