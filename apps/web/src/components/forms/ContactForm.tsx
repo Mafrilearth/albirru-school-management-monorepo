@@ -12,9 +12,10 @@ import {
 } from "lucide-react";
 import type React from "react";
 import { useState } from "react";
-import { BorderBeam } from "@/components/common/BorderBeam";
 import { ConfettiCelebration } from "@/components/common/ConfettiCelebration";
-import { SpotlightCard } from "@/components/common/SpotlightCard";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
@@ -49,7 +50,6 @@ export function ContactForm() {
 
   const handleSelectTopic = (topic: string) => {
     setSelectedTopic(topic);
-    // Append or replace topic in message if empty or starts with previous topic
     setFormData((prev) => {
       const topicPrefix = `[Topic: ${topic}]\n`;
       let newMessage = prev.message;
@@ -77,7 +77,6 @@ export function ContactForm() {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
 
-    // Clear field-specific error upon typing
     if (errors[name]) {
       setErrors((prev) => {
         const next = { ...prev };
@@ -91,7 +90,6 @@ export function ContactForm() {
     e.preventDefault();
     setGeneralError(null);
 
-    // Client-side Zod validation
     const result = contactFormSchema.safeParse(formData);
     if (!result.success) {
       setErrors(result.error.flatten().fieldErrors);
@@ -149,17 +147,7 @@ export function ContactForm() {
 
   if (submitSuccess) {
     return (
-      <SpotlightCard
-        spotlightColor="rgba(16, 185, 129, 0.12)"
-        borderColor="rgba(16, 185, 129, 0.4)"
-        className="rounded-none bg-white dark:bg-slate-900 p-8 sm:p-12 shadow-lg text-slate-900 dark:text-slate-50 animate-in fade-in-0 duration-300 relative overflow-hidden"
-      >
-        <BorderBeam
-          size={220}
-          duration={10}
-          colorFrom="#10b981"
-          colorTo="#f59e0b"
-        />
+      <Card className="p-8 sm:p-12 text-foreground animate-in fade-in-0 duration-300 relative overflow-hidden shadow-sm">
         <ConfettiCelebration />
 
         <div
@@ -168,91 +156,99 @@ export function ContactForm() {
           aria-labelledby="submit-success-heading"
           className="relative z-10"
         >
-          <div className="flex items-center gap-4 text-emerald-700 mb-6">
-            <div className="flex size-14 items-center justify-center rounded-none bg-emerald-50 border border-emerald-200 shadow-2xs">
+          <div className="flex items-center gap-4 text-emerald-600 mb-6">
+            <div className="flex size-14 items-center justify-center rounded-full bg-emerald-500/10">
               <CheckCircle2 aria-hidden="true" className="size-7" />
             </div>
             <div>
-              <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-3 py-1 rounded-none border border-emerald-200/60">
-                STATUS // SENT
-              </span>
+              <Badge
+                variant="outline"
+                className="text-emerald-600 border-emerald-200"
+              >
+                SENT
+              </Badge>
               <h3
                 id="submit-success-heading"
-                className="text-xl sm:text-2xl font-black text-slate-950 dark:text-slate-50 mt-1.5"
+                className="text-xl sm:text-2xl font-bold text-foreground mt-1.5"
               >
                 Alhamdulillah, Message Received!
               </h3>
             </div>
           </div>
 
-          <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed">
+          <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
             Your inquiry has been recorded in the SD Al-Birru administrative
             system. For immediate response and campus survey scheduling with our
             Admissions team, you may connect directly via our official WhatsApp:
           </p>
 
-          {/* WhatsApp Direct Action Button */}
           <div className="mt-8 flex flex-col sm:flex-row gap-3.5">
-            <a
-              href={whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex-1 flex items-center justify-center gap-2 h-13 rounded-none bg-emerald-700 hover:bg-emerald-700 text-white font-bold text-sm shadow-md shadow-emerald-900/30 transition-all hover:scale-[1.01] active:scale-[0.99]"
+            <Button
+              render={
+                <a
+                  href={whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                />
+              }
+              nativeButton={false}
+              size="lg"
+              className="flex-1 gap-2 font-medium"
             >
               <MessageCircle aria-hidden="true" className="size-5" />
               <span>Open Admissions WhatsApp Chat</span>
               <ExternalLink aria-hidden="true" className="size-4 opacity-75" />
-            </a>
+            </Button>
 
-            <button
+            <Button
               onClick={handleReset}
-              type="button"
-              className="flex items-center justify-center gap-2 h-13 px-6 rounded-none border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 dark:bg-slate-800 font-bold text-xs transition-colors cursor-pointer"
+              variant="outline"
+              size="lg"
+              className="gap-2 font-medium"
             >
               <RotateCcw aria-hidden="true" className="size-4" />
               <span>Submit Another Message</span>
-            </button>
+            </Button>
           </div>
         </div>
-      </SpotlightCard>
+      </Card>
     );
   }
 
   return (
-    <SpotlightCard
-      spotlightColor="rgba(245, 158, 11, 0.08)"
-      className="rounded-none bg-white dark:bg-slate-900 p-8 sm:p-12 shadow-2xs border border-slate-200 dark:border-slate-700 relative overflow-hidden"
-    >
+    <Card className="p-8 sm:p-12 shadow-sm relative overflow-hidden">
       <form
         onSubmit={handleSubmit}
         noValidate
         aria-labelledby="contact-form-title"
       >
         <div className="mb-8">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-none bg-amber-50 border border-amber-200/60 text-amber-800 text-[11px] font-mono font-bold uppercase tracking-wider mb-4">
-            <span className="size-1.5 rounded-none bg-amber-500 animate-pulse" />
-            <span>FORM // OFFICIAL INQUIRY</span>
-          </div>
+          <Badge
+            variant="outline"
+            className="gap-2 px-3.5 py-1 mb-4 text-xs font-medium rounded-full"
+          >
+            <span>OFFICIAL INQUIRY</span>
+          </Badge>
           <h3
             id="contact-form-title"
-            className="text-2xl sm:text-3xl font-black text-slate-950 dark:text-slate-50 tracking-tight"
+            className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight"
           >
             Prospective Student Consultation &amp; Inquiries
           </h3>
-          <p className="mt-2 text-sm text-slate-500 leading-relaxed font-normal">
+          <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
             Please fill out the information below. Our Admissions team will
             respond to your inquiry personally.
           </p>
         </div>
 
-        {/* Quick Topic Selector Chips with Fieldset & Legend */}
-        <fieldset className="mb-8 pb-8 border-b border-slate-100 dark:border-slate-800 border-none p-0">
-          <legend className="block text-xs font-mono font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-3 flex items-center gap-2">
-            <Tag aria-hidden="true" className="size-3.5 text-amber-600" />
+        {/* Quick Topic Selector Chips */}
+        <fieldset className="mb-8 pb-8 border-b border-border p-0">
+          <legend className="text-xs font-semibold text-foreground uppercase tracking-wider mb-3 flex items-center gap-2">
+            <Tag aria-hidden="true" className="size-3.5 text-primary" />
             <span>Select Inquiry Topic (Optional)</span>
           </legend>
           <div
-            className="flex flex-wrap gap-2.5"
+            className="flex flex-wrap gap-2"
             role="group"
             aria-label="Inquiry Topic Options"
           >
@@ -265,10 +261,10 @@ export function ContactForm() {
                   onClick={() => handleSelectTopic(topic)}
                   aria-pressed={isSelected}
                   className={cn(
-                    "text-xs px-3.5 py-2 rounded-none border font-medium transition-all cursor-pointer",
+                    "text-xs px-3 py-1.5 rounded-full border font-medium transition-colors cursor-pointer",
                     isSelected
-                      ? "bg-slate-900 border-slate-900 text-white shadow-2xs"
-                      : "bg-[#FDFDFB] dark:bg-slate-950 border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 hover:border-slate-300 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-800 dark:bg-slate-800",
+                      ? "bg-primary border-primary text-primary-foreground"
+                      : "bg-background border-input text-muted-foreground hover:bg-muted hover:text-foreground",
                   )}
                 >
                   {topic}
@@ -281,7 +277,7 @@ export function ContactForm() {
         {generalError && (
           <div
             role="alert"
-            className="mb-6 p-4 rounded-none bg-rose-50 border border-rose-200 text-rose-700 text-xs flex items-center gap-2"
+            className="mb-6 p-4 rounded-md bg-destructive/10 border border-destructive/20 text-destructive text-sm flex items-center gap-2"
           >
             <AlertCircle aria-hidden="true" className="size-4 shrink-0" />
             <span>{generalError}</span>
@@ -293,10 +289,10 @@ export function ContactForm() {
           <div>
             <label
               htmlFor="fullName"
-              className="block text-xs font-mono font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-2"
+              className="block text-xs font-medium text-foreground mb-1.5"
             >
               Parent / Guardian Legal Name{" "}
-              <span className="text-rose-500" aria-hidden="true">
+              <span className="text-destructive" aria-hidden="true">
                 *
               </span>
             </label>
@@ -311,28 +307,27 @@ export function ContactForm() {
               value={formData.fullName}
               onChange={handleChange}
               placeholder="Example: Mr. Hendra Wijaya"
-              className="h-12 rounded-none border-slate-200 dark:border-slate-700 text-sm focus-visible:ring-amber-500"
             />
             {errors.fullName && (
               <p
                 id="fullName-error"
                 role="alert"
-                className="mt-1.5 text-xs text-rose-600 font-medium"
+                className="mt-1.5 text-xs text-destructive font-medium"
               >
                 {errors.fullName[0]}
               </p>
             )}
           </div>
 
-          {/* WhatsApp & Email (2 Cols) */}
+          {/* Phone and Email Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
             <div>
               <label
                 htmlFor="phone"
-                className="block text-xs font-mono font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-2"
+                className="block text-xs font-medium text-foreground mb-1.5"
               >
-                Active WhatsApp Number{" "}
-                <span className="text-rose-500" aria-hidden="true">
+                Active WhatsApp Phone{" "}
+                <span className="text-destructive" aria-hidden="true">
                   *
                 </span>
               </label>
@@ -346,14 +341,13 @@ export function ContactForm() {
                 aria-describedby={errors.phone ? "phone-error" : undefined}
                 value={formData.phone}
                 onChange={handleChange}
-                placeholder="0812-3456-7890"
-                className="h-12 rounded-none border-slate-200 dark:border-slate-700 text-sm focus-visible:ring-amber-500 font-mono"
+                placeholder="Example: 081234567890"
               />
               {errors.phone && (
                 <p
                   id="phone-error"
                   role="alert"
-                  className="mt-1.5 text-xs text-rose-600 font-medium"
+                  className="mt-1.5 text-xs text-destructive font-medium"
                 >
                   {errors.phone[0]}
                 </p>
@@ -363,9 +357,9 @@ export function ContactForm() {
             <div>
               <label
                 htmlFor="email"
-                className="block text-xs font-mono font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-2"
+                className="block text-xs font-medium text-foreground mb-1.5"
               >
-                Email (Optional)
+                Email Address (Optional)
               </label>
               <Input
                 id="email"
@@ -376,13 +370,12 @@ export function ContactForm() {
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="name@example.com"
-                className="h-12 rounded-none border-slate-200 dark:border-slate-700 text-sm focus-visible:ring-amber-500"
               />
               {errors.email && (
                 <p
                   id="email-error"
                   role="alert"
-                  className="mt-1.5 text-xs text-rose-600 font-medium"
+                  className="mt-1.5 text-xs text-destructive font-medium"
                 >
                   {errors.email[0]}
                 </p>
@@ -390,74 +383,53 @@ export function ContactForm() {
             </div>
           </div>
 
-          {/* Candidate Student Name */}
+          {/* Student Candidate Name */}
           <div>
             <label
               htmlFor="studentCandidateName"
-              className="block text-xs font-mono font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-2"
+              className="block text-xs font-medium text-foreground mb-1.5"
             >
-              Prospective Student&apos;s Name (Optional)
+              Prospective Student Full Name (Optional)
             </label>
             <Input
               id="studentCandidateName"
               name="studentCandidateName"
               type="text"
-              aria-invalid={!!errors.studentCandidateName}
-              aria-describedby={
-                errors.studentCandidateName
-                  ? "studentCandidateName-error"
-                  : undefined
-              }
               value={formData.studentCandidateName}
               onChange={handleChange}
-              placeholder="Example: Muhammad Rayhan"
-              className="h-12 rounded-none border-slate-200 dark:border-slate-700 text-sm focus-visible:ring-amber-500"
+              placeholder="Child's full name"
             />
-            {errors.studentCandidateName && (
-              <p
-                id="studentCandidateName-error"
-                role="alert"
-                className="mt-1.5 text-xs text-rose-600 font-medium"
-              >
-                {errors.studentCandidateName[0]}
-              </p>
-            )}
           </div>
 
-          {/* Message */}
+          {/* Message Textarea */}
           <div>
-            <div className="flex items-center justify-between mb-2">
-              <label
-                htmlFor="message"
-                className="block text-xs font-mono font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider"
-              >
-                Inquiry Message{" "}
-                <span className="text-rose-500" aria-hidden="true">
-                  *
-                </span>
-              </label>
-              <span className="text-[10px] font-mono text-slate-400">
-                {formData.message.length} CHARACTERS
+            <label
+              htmlFor="message"
+              className="block text-xs font-medium text-foreground mb-1.5"
+            >
+              Inquiry / Consultation Message{" "}
+              <span className="text-destructive" aria-hidden="true">
+                *
               </span>
-            </div>
+            </label>
             <Textarea
               id="message"
               name="message"
-              rows={4}
               required
               aria-required="true"
               aria-invalid={!!errors.message}
               aria-describedby={errors.message ? "message-error" : undefined}
+              rows={4}
               value={formData.message}
               onChange={handleChange}
-              placeholder="Write your inquiry regarding admissions quota, tuition, or curriculum..."
-              className="rounded-none border-slate-200 dark:border-slate-700 text-sm focus-visible:ring-amber-500 resize-none leading-relaxed p-4"
+              placeholder="State your child's age, specific questions about admission, curriculum, or tahfidz programs..."
+              className="min-h-[120px] resize-none leading-relaxed p-3.5"
             />
             {errors.message && (
               <p
                 id="message-error"
                 role="alert"
-                className="mt-1.5 text-xs text-rose-600 font-medium"
+                className="mt-1.5 text-xs text-destructive font-medium"
               >
                 {errors.message[0]}
               </p>
@@ -467,25 +439,26 @@ export function ContactForm() {
 
         {/* Submit Button */}
         <div className="mt-8">
-          <button
+          <Button
             type="submit"
             disabled={isSubmitting}
-            className="w-full flex items-center justify-center gap-2 h-13 rounded-none bg-amber-500 hover:bg-amber-600 active:scale-[0.98] text-slate-950 font-bold text-sm shadow-md shadow-amber-500/20 transition-all cursor-pointer disabled:opacity-50 disabled:pointer-events-none"
+            size="lg"
+            className="w-full gap-2 font-medium"
           >
             {isSubmitting ? (
               <>
-                <Loader2 aria-hidden="true" className="size-4.5 animate-spin" />
+                <Loader2 aria-hidden="true" className="size-4 animate-spin" />
                 <span>Sending Inquiry...</span>
               </>
             ) : (
               <>
-                <Send aria-hidden="true" className="size-4.5" />
+                <Send aria-hidden="true" className="size-4" />
                 <span>Submit Inquiry Message</span>
               </>
             )}
-          </button>
+          </Button>
         </div>
       </form>
-    </SpotlightCard>
+    </Card>
   );
 }

@@ -3,6 +3,7 @@
 import { Quote } from "lucide-react";
 import { ScrollReveal } from "@/components/common/ScrollReveal";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Card } from "@/components/ui/card";
 import {
   Carousel,
   CarouselContent,
@@ -37,13 +38,13 @@ const testimonials = [
 
 export function TestimonialsSection() {
   return (
-    <section className="py-28 bg-slate-50 dark:bg-slate-900/30 border-y border-slate-200/70 overflow-hidden relative">
+    <section className="py-20 md:py-28 bg-muted/30 border-b border-border overflow-hidden relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <ScrollReveal direction="up" className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-black text-slate-950 dark:text-slate-50 tracking-tight">
+        <ScrollReveal direction="up" className="text-center mb-12 md:mb-16">
+          <h2 className="text-3xl md:text-5xl font-bold text-foreground tracking-tight">
             What Parents Say
           </h2>
-          <p className="mt-4 text-slate-600 dark:text-slate-400 text-lg max-w-2xl mx-auto">
+          <p className="mt-4 text-muted-foreground text-base sm:text-lg max-w-2xl mx-auto">
             Honest perspectives from parents on their children&apos;s
             educational experience at SD Al-Birru.
           </p>
@@ -54,45 +55,41 @@ export function TestimonialsSection() {
             align: "start",
             loop: true,
           }}
-          className="w-full max-w-5xl mx-auto relative"
+          className="w-full max-w-5xl mx-auto relative px-4 sm:px-8"
         >
-          <CarouselContent className="ml-0">
+          <CarouselContent className="-ml-4">
             {testimonials.map((t, i) => (
-              <CarouselItem key={i} className="pl-0 md:basis-1/2 lg:basis-1/2">
-                <div className="bg-white dark:bg-slate-950 p-8 md:p-10 rounded-none border border-slate-200 dark:border-slate-800 h-full flex flex-col justify-between hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors group">
+              <CarouselItem key={i} className="pl-4 md:basis-1/2">
+                <Card className="p-8 h-full flex flex-col justify-between shadow-sm">
                   <div>
-                    <Quote className="size-10 text-slate-200 dark:text-slate-800 mb-6" />
-                    <p className="text-slate-700 dark:text-slate-300 font-medium leading-relaxed italic">
-                      "{t.quote}"
+                    <Quote className="size-8 text-muted-foreground/30 mb-4" />
+                    <p className="text-foreground/90 font-medium leading-relaxed italic text-sm sm:text-base">
+                      &quot;{t.quote}&quot;
                     </p>
                   </div>
-                  <div className="mt-8 pt-6 border-t border-slate-100 dark:border-slate-800 flex items-center gap-4">
-                    <Avatar className="size-12 rounded-none border border-slate-200 dark:border-slate-700">
-                      <AvatarImage
-                        src={t.avatar}
-                        alt={t.author}
-                        className="rounded-none"
-                      />
-                      <AvatarFallback className="bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-none font-mono font-bold text-lg">
+                  <div className="mt-6 pt-4 border-t border-border flex items-center gap-3">
+                    <Avatar className="size-10">
+                      <AvatarImage src={t.avatar} alt={t.author} />
+                      <AvatarFallback className="font-semibold text-sm">
                         {t.author.charAt(0)}
                       </AvatarFallback>
                     </Avatar>
                     <div>
-                      <h4 className="font-bold text-slate-950 dark:text-slate-50 text-sm font-mono">
+                      <h4 className="font-semibold text-foreground text-sm">
                         {t.author}
                       </h4>
-                      <p className="text-[10px] sm:text-xs text-slate-500 dark:text-slate-400 font-mono uppercase tracking-wide mt-0.5">
+                      <p className="text-xs text-muted-foreground mt-0.5">
                         {t.role}
                       </p>
                     </div>
                   </div>
-                </div>
+                </Card>
               </CarouselItem>
             ))}
           </CarouselContent>
           <div className="hidden md:block">
-            <CarouselPrevious className="absolute -left-12 top-1/2 -translate-y-1/2 rounded-none border-slate-300 dark:border-slate-600" />
-            <CarouselNext className="absolute -right-12 top-1/2 -translate-y-1/2 rounded-none border-slate-300 dark:border-slate-600" />
+            <CarouselPrevious className="-left-4" />
+            <CarouselNext className="-right-4" />
           </div>
         </Carousel>
       </div>

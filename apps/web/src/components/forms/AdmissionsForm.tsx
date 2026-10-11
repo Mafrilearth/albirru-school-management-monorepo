@@ -5,8 +5,8 @@ import { CheckCircle2, Loader2, Send } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { ConfettiCelebration } from "@/components/common/ConfettiCelebration";
-import { SpotlightCard } from "@/components/common/SpotlightCard";
 import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
   Field,
@@ -65,19 +65,16 @@ export function AdmissionsForm() {
 
   if (isSuccess) {
     return (
-      <SpotlightCard
-        spotlightColor="rgba(16, 185, 129, 0.1)"
-        className="rounded-none bg-white dark:bg-slate-900 p-8 sm:p-12 border border-emerald-200 dark:border-emerald-900 shadow-none text-center relative overflow-hidden"
-      >
+      <Card className="p-8 sm:p-12 text-center relative overflow-hidden shadow-sm">
         <ConfettiCelebration />
         <div className="flex flex-col items-center justify-center space-y-4 relative z-10">
-          <div className="size-16 rounded-none bg-emerald-50 dark:bg-emerald-950 border border-emerald-200 dark:border-emerald-800 flex items-center justify-center">
-            <CheckCircle2 className="size-8 text-emerald-600 dark:text-emerald-400" />
+          <div className="size-16 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-600 dark:text-emerald-400">
+            <CheckCircle2 className="size-8" />
           </div>
-          <h3 className="text-2xl font-black text-slate-950 dark:text-slate-50 tracking-tight">
+          <h3 className="text-2xl font-bold text-foreground tracking-tight">
             Registration Received!
           </h3>
-          <p className="text-sm text-slate-600 dark:text-slate-400 max-w-md mx-auto">
+          <p className="text-sm text-muted-foreground max-w-md mx-auto">
             Alhamdulillah, your student registration data has been received. Our
             admissions committee will contact you via Email/WhatsApp within 24
             hours for next steps.
@@ -85,27 +82,24 @@ export function AdmissionsForm() {
           <Button
             onClick={() => setIsSuccess(false)}
             variant="outline"
-            className="mt-4 rounded-none h-11"
+            className="mt-4"
           >
             Register Another Student
           </Button>
         </div>
-      </SpotlightCard>
+      </Card>
     );
   }
 
   return (
-    <SpotlightCard
-      spotlightColor="rgba(150, 150, 150, 0.05)"
-      className="rounded-none bg-white dark:bg-slate-900 p-8 sm:p-10 border border-slate-200 dark:border-slate-700 shadow-none"
-    >
+    <Card className="p-8 sm:p-10 shadow-sm">
       <div className="mb-8">
-        <h3 className="text-2xl font-black text-slate-950 dark:text-slate-50 tracking-tight">
+        <h3 className="text-2xl font-bold text-foreground tracking-tight">
           Admissions Registration Form 2026
         </h3>
-        <p className="mt-2 text-sm text-slate-500">
+        <p className="mt-2 text-sm text-muted-foreground">
           Please complete the prospective student details accurately. Fields
-          marked with <span className="text-rose-500">*</span> are required.
+          marked with <span className="text-destructive">*</span> are required.
         </p>
       </div>
 
@@ -117,13 +111,12 @@ export function AdmissionsForm() {
           >
             <FieldLabel htmlFor="prospectiveStudentName">
               Student&apos;s Full Legal Name{" "}
-              <span className="text-rose-500">*</span>
+              <span className="text-destructive">*</span>
             </FieldLabel>
             <FieldContent>
               <Input
                 id="prospectiveStudentName"
                 placeholder="As shown on Birth Certificate"
-                className="h-11 rounded-none shadow-none focus-visible:ring-offset-0 focus-visible:ring-1"
                 disabled={isSubmitting}
                 {...register("prospectiveStudentName")}
               />
@@ -139,13 +132,12 @@ export function AdmissionsForm() {
           >
             <FieldLabel htmlFor="prospectiveStudentBirthDate">
               Student&apos;s Date of Birth{" "}
-              <span className="text-rose-500">*</span>
+              <span className="text-destructive">*</span>
             </FieldLabel>
             <FieldContent>
               <Input
                 type="date"
                 id="prospectiveStudentBirthDate"
-                className="h-11 rounded-none shadow-none focus-visible:ring-offset-0 focus-visible:ring-1"
                 disabled={isSubmitting}
                 {...register("prospectiveStudentBirthDate")}
               />
@@ -163,13 +155,12 @@ export function AdmissionsForm() {
           >
             <FieldLabel htmlFor="guardianContactName">
               Guardian&apos;s Full Legal Name{" "}
-              <span className="text-rose-500">*</span>
+              <span className="text-destructive">*</span>
             </FieldLabel>
             <FieldContent>
               <Input
                 id="guardianContactName"
                 placeholder="Parent / Guardian Name"
-                className="h-11 rounded-none shadow-none focus-visible:ring-offset-0 focus-visible:ring-1"
                 disabled={isSubmitting}
                 {...register("guardianContactName")}
               />
@@ -184,14 +175,13 @@ export function AdmissionsForm() {
             data-invalid={!!errors.guardianContactPhone}
           >
             <FieldLabel htmlFor="guardianContactPhone">
-              Active Phone Number <span className="text-rose-500">*</span>
+              Active Phone Number <span className="text-destructive">*</span>
             </FieldLabel>
             <FieldContent>
               <Input
                 type="tel"
                 id="guardianContactPhone"
                 placeholder="Example: 081234567890"
-                className="h-11 rounded-none shadow-none focus-visible:ring-offset-0 focus-visible:ring-1"
                 disabled={isSubmitting}
                 {...register("guardianContactPhone")}
               />
@@ -206,14 +196,13 @@ export function AdmissionsForm() {
             data-invalid={!!errors.guardianContactEmail}
           >
             <FieldLabel htmlFor="guardianContactEmail">
-              Active Email Address <span className="text-rose-500">*</span>
+              Active Email Address <span className="text-destructive">*</span>
             </FieldLabel>
             <FieldContent>
               <Input
                 type="email"
                 id="guardianContactEmail"
                 placeholder="Example: name@example.com"
-                className="h-11 rounded-none shadow-none focus-visible:ring-offset-0 focus-visible:ring-1"
                 disabled={isSubmitting}
                 {...register("guardianContactEmail")}
               />
@@ -235,7 +224,6 @@ export function AdmissionsForm() {
                 type="url"
                 id="submittedDocumentsUrl"
                 placeholder="Folder link containing Family Card & Birth Certificate (Optional)"
-                className="h-11 rounded-none shadow-none focus-visible:ring-offset-0 focus-visible:ring-1"
                 disabled={isSubmitting}
                 {...register("submittedDocumentsUrl")}
               />
@@ -246,19 +234,15 @@ export function AdmissionsForm() {
           </Field>
 
           <div className="flex items-start space-x-3 pt-2">
-            <Checkbox
-              id="terms"
-              required
-              className="mt-1 rounded-none shadow-none"
-            />
+            <Checkbox id="terms" required className="mt-1" />
             <div className="grid gap-1.5 leading-none">
               <Label
                 htmlFor="terms"
-                className="text-sm font-medium text-slate-700 dark:text-slate-300 leading-relaxed cursor-pointer"
+                className="text-sm font-medium leading-relaxed cursor-pointer"
               >
                 I agree to the admissions terms &amp; conditions
               </Label>
-              <p className="text-xs text-slate-500">
+              <p className="text-xs text-muted-foreground">
                 I hereby certify that the contact details provided are accurate
                 so the admissions committee can reach me.
               </p>
@@ -267,7 +251,7 @@ export function AdmissionsForm() {
         </div>
 
         {errorMessage && (
-          <div className="mt-6 p-3 bg-rose-50 border border-rose-200 text-rose-600 text-sm rounded-none">
+          <div className="mt-6 p-3 bg-destructive/10 border border-destructive/20 text-destructive text-sm rounded-md">
             {errorMessage}
           </div>
         )}
@@ -275,21 +259,22 @@ export function AdmissionsForm() {
         <Button
           type="submit"
           disabled={isSubmitting}
-          className="mt-8 w-full h-[52px] text-base font-bold bg-amber-500 hover:bg-amber-600 text-white rounded-none shadow-none transition-all"
+          size="lg"
+          className="mt-8 w-full font-medium"
         >
           {isSubmitting ? (
             <>
-              <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
               Processing Registration...
             </>
           ) : (
             <>
-              <Send className="mr-2 h-5 w-5" />
+              <Send className="mr-2 h-4 w-4" />
               Submit Registration
             </>
           )}
         </Button>
       </form>
-    </SpotlightCard>
+    </Card>
   );
 }

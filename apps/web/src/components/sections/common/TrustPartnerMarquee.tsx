@@ -30,7 +30,7 @@ const trustItems: TrustItem[] = [
   {
     icon: BookOpen,
     label: "JSIT INDONESIA",
-    sub: "Jaringan School Islam Terpadu",
+    sub: "Jaringan Sekolah Islam Terpadu",
   },
   {
     icon: Compass,
@@ -45,40 +45,40 @@ const trustItems: TrustItem[] = [
   {
     icon: HeartHandshake,
     label: "PARENTING SAHABAT ANAK",
-    sub: "Kemitraan Positif Rumah & School",
+    sub: "Kemitraan Positif Rumah & Sekolah",
   },
 ];
 
 export function TrustPartnerMarquee() {
   return (
-    <section className="py-8 sm:py-10 bg-transparent border-b border-slate-200/80 dark:border-slate-700/80 overflow-hidden relative">
+    <section className="py-8 bg-background border-b border-border overflow-hidden relative">
       {/* Subtle edge fades */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#FAF9F5] to-transparent z-10"
+        className="pointer-events-none absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-background to-transparent z-10"
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#FAF9F5] to-transparent z-10"
+        className="pointer-events-none absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-background to-transparent z-10"
       />
 
-      <div className="flex w-max animate-marquee hover:[animation-play-state:paused] items-center gap-16 sm:gap-20">
-        {/* First track */}
+      <div className="flex w-max animate-marquee hover:[animation-play-state:paused] items-center gap-12 sm:gap-16">
+        {/* Track 1 */}
         {trustItems.map((item, idx) => {
           const Icon = item.icon;
           return (
             <div
               key={`track-1-${idx}`}
-              className="flex items-center gap-3.5 shrink-0 text-slate-700 dark:text-slate-300 opacity-80 hover:opacity-100 transition-opacity cursor-default"
+              className="flex items-center gap-3 shrink-0 text-muted-foreground hover:text-foreground transition-colors cursor-default"
             >
-              <div className="size-9 rounded-none bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-700/80 flex items-center justify-center text-slate-700 dark:text-slate-300 shrink-0 shadow-2xs">
-                <Icon className="size-4.5 text-amber-600" />
+              <div className="size-9 rounded-lg bg-muted border border-border flex items-center justify-center text-primary shrink-0">
+                <Icon className="size-4.5" />
               </div>
-              <div className="text-left font-mono">
-                <span className="block text-xs font-bold text-slate-900 dark:text-slate-50 tracking-wider">
+              <div className="text-left">
+                <span className="block text-xs font-semibold text-foreground tracking-wide">
                   {item.label}
                 </span>
-                <span className="block text-[11px] text-slate-500 font-sans">
+                <span className="block text-[11px] text-muted-foreground">
                   {item.sub}
                 </span>
               </div>
@@ -86,22 +86,22 @@ export function TrustPartnerMarquee() {
           );
         })}
 
-        {/* Second track for seamless loop */}
+        {/* Track 2 */}
         {trustItems.map((item, idx) => {
           const Icon = item.icon;
           return (
             <div
               key={`track-2-${idx}`}
-              className="flex items-center gap-3.5 shrink-0 text-slate-700 dark:text-slate-300 opacity-80 hover:opacity-100 transition-opacity cursor-default"
+              className="flex items-center gap-3 shrink-0 text-muted-foreground hover:text-foreground transition-colors cursor-default"
             >
-              <div className="size-9 rounded-none bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-700/80 flex items-center justify-center text-slate-700 dark:text-slate-300 shrink-0 shadow-2xs">
-                <Icon className="size-4.5 text-amber-600" />
+              <div className="size-9 rounded-lg bg-muted border border-border flex items-center justify-center text-primary shrink-0">
+                <Icon className="size-4.5" />
               </div>
-              <div className="text-left font-mono">
-                <span className="block text-xs font-bold text-slate-900 dark:text-slate-50 tracking-wider">
+              <div className="text-left">
+                <span className="block text-xs font-semibold text-foreground tracking-wide">
                   {item.label}
                 </span>
-                <span className="block text-[11px] text-slate-500 font-sans">
+                <span className="block text-[11px] text-muted-foreground">
                   {item.sub}
                 </span>
               </div>

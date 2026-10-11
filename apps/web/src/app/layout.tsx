@@ -178,7 +178,7 @@ export default function PublicRootLayout({
           }}
         />
       </head>
-      <body className="min-h-full flex flex-col bg-background text-foreground selection:bg-amber-500 selection:text-slate-950 font-sans relative overflow-x-hidden">
+      <body className="min-h-full flex flex-col bg-background text-foreground font-sans relative overflow-x-hidden">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -188,7 +188,7 @@ export default function PublicRootLayout({
           {/* Skip to Content for Keyboard Accessibility */}
           <a
             href="#main-content"
-            className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-amber-500 focus:text-slate-950 focus:font-bold focus:rounded-none focus:shadow-lg focus:outline-none"
+            className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-foreground focus:font-medium focus:rounded-md focus:shadow-md focus:outline-none"
           >
             Skip to Main Content
           </a>

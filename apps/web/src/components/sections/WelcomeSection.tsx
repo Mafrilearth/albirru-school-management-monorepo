@@ -9,25 +9,27 @@ import {
   UserCheck,
 } from "lucide-react";
 import Link from "next/link";
-import { BorderBeam } from "@/components/common/BorderBeam";
 import { ScrollReveal } from "@/components/common/ScrollReveal";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 
 const fitrahPillars = [
   {
-    code: "FITRAH // 01",
-    title: "Qudwah Hasanah (Living Role Model)",
+    title: "Qudwah Hasanah",
+    subtitle: "Living Role Model",
     desc: "Every teacher and instructor serves as an active exemplar of noble character observed directly by students.",
     icon: Sparkles,
   },
   {
-    code: "FITRAH // 02",
-    title: "Positive & Dignified Discipline",
+    title: "Positive Discipline",
+    subtitle: "Dignified Guidance",
     desc: "Cultivating independence and etiquette without verbal aggression or harmful physical punishments.",
     icon: Compass,
   },
   {
-    code: "FITRAH // 03",
-    title: "School & Family Synergy",
+    title: "Family Synergy",
+    subtitle: "School & Home Harmony",
     desc: "Harmonizing integrated daily habits through structured mutaba'ah collaboration between educators and parents.",
     icon: HeartHandshake,
   },
@@ -37,144 +39,124 @@ export function WelcomeSection() {
   return (
     <section
       aria-labelledby="welcome-heading"
-      className="py-28 md:py-36 lg:py-44 bg-slate-50 dark:bg-slate-900/30 border-b border-slate-200/70 relative overflow-hidden"
+      className="py-20 md:py-28 lg:py-36 bg-muted/30 border-b border-border relative overflow-hidden"
     >
-      {/* Removed conflicting background dots to allow GlobalGrid to shine clearly */}
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20 items-center">
-          {/* Left Column: Headmaster Identity Card (Exposed Grid Style) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          {/* Left Column: Headmaster Identity Card */}
           <div className="lg:col-span-5">
             <ScrollReveal direction="up" delay={0.1}>
-              <div className="relative group">
-                {/* Crosshairs */}
-                <div className="absolute -top-1.5 -left-1.5 size-3 border border-amber-500 z-20 bg-white dark:bg-slate-950" />
-                <div className="absolute -top-1.5 -right-1.5 size-3 border border-amber-500 z-20 bg-white dark:bg-slate-950" />
-                <div className="absolute -bottom-1.5 -left-1.5 size-3 border border-amber-500 z-20 bg-white dark:bg-slate-950" />
-                <div className="absolute -bottom-1.5 -right-1.5 size-3 border border-amber-500 z-20 bg-white dark:bg-slate-950" />
-
-                <article
-                  aria-labelledby="headmaster-name"
-                  className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-8 sm:p-10 h-full flex flex-col justify-between relative z-10 hover:bg-slate-50 dark:hover:bg-slate-900/80 transition-colors"
-                >
-                  <BorderBeam
-                    size={220}
-                    duration={14}
-                    colorFrom="#f59e0b"
-                    colorTo="#10b981"
-                  />
-
-                  <div className="flex items-center justify-between mb-8">
-                    <div className="size-20 bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-600 shadow-2xs">
-                      <UserCheck className="size-9" />
+              <Card className="p-8 sm:p-10 h-full flex flex-col justify-between shadow-sm">
+                <div>
+                  <div className="flex items-center justify-between mb-6">
+                    <div className="size-16 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                      <UserCheck className="size-8" />
                     </div>
-                    <span className="font-mono text-[10px] font-bold text-amber-700 bg-amber-50 px-3 py-1 border border-amber-200/60 uppercase">
-                      LEADERSHIP // KS-01
-                    </span>
+                    <Badge variant="secondary" className="font-medium">
+                      Leadership
+                    </Badge>
                   </div>
 
                   <h3
                     id="headmaster-name"
-                    className="text-2xl font-black text-slate-950 dark:text-slate-50 tracking-tight"
+                    className="text-2xl font-bold text-foreground tracking-tight"
                   >
                     Ustadz H. Ahmad Fauzi, M.Pd.
                   </h3>
-                  <p className="text-xs font-bold text-amber-700 mt-1 uppercase tracking-wider font-mono">
+                  <p className="text-sm font-medium text-primary mt-1">
                     Principal of SD Al-Birru
                   </p>
-                  <p className="text-xs text-slate-500 mt-0.5 font-mono">
+                  <p className="text-xs text-muted-foreground mt-0.5">
                     Master of Islamic Educational Management (UIN)
                   </p>
 
                   <blockquote
                     cite="Ustadz H. Ahmad Fauzi, M.Pd."
-                    className="mt-8 pt-6 border-t border-slate-200 dark:border-slate-800 text-sm text-slate-700 dark:text-slate-300 leading-relaxed italic bg-amber-50/40 p-5 border border-amber-100"
+                    className="mt-6 p-4 rounded-lg bg-muted text-sm text-foreground/90 leading-relaxed italic border-l-2 border-primary"
                   >
                     &quot;Education is not merely transferring knowledge, but
                     awakening fitrah, guarding purity of heart, and cultivating
                     noble morals before formal scholarship is taught.&quot;
                   </blockquote>
+                </div>
 
-                  <div className="mt-6 flex items-center justify-between text-[11px] text-slate-500 font-mono">
-                    <div className="flex items-center gap-1.5 text-emerald-700 font-semibold">
-                      <ShieldCheck className="size-3.5 text-emerald-700" />
-                      <span>Child-Friendly School Commitment</span>
-                    </div>
-                    <span className="text-slate-400">JSIT STANDARD</span>
+                <div className="mt-6 pt-4 border-t border-border flex items-center justify-between text-xs text-muted-foreground font-medium">
+                  <div className="flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400">
+                    <ShieldCheck className="size-4" />
+                    <span>Child-Friendly School</span>
                   </div>
-                </article>
-              </div>
+                  <span>JSIT STANDARD</span>
+                </div>
+              </Card>
             </ScrollReveal>
           </div>
 
-          {/* Right Column: Pedagogical Philosophy & 3 Fitrah Blueprint Cards */}
+          {/* Right Column: Pedagogical Philosophy & Pillars */}
           <div className="lg:col-span-7 flex flex-col items-start">
             <ScrollReveal direction="up" delay={0.2}>
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-none bg-amber-50 border border-amber-200/60 text-amber-800 text-[11px] font-mono font-bold uppercase tracking-wider mb-5">
-                <span className="size-1.5 rounded-none bg-amber-500 animate-pulse" />
-                <span>PHILOSOPHY // NATURE-BASED EDUCATION</span>
-              </div>
+              <Badge
+                variant="outline"
+                className="gap-1.5 px-3.5 py-1 mb-5 text-xs font-medium rounded-full"
+              >
+                <span>NATURE-BASED EDUCATION</span>
+              </Badge>
 
               <h2
                 id="welcome-heading"
-                className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-950 dark:text-slate-50 tracking-tight leading-[1.12]"
+                className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground tracking-tight leading-tight"
               >
                 Nurturing Children&apos;s Fitrah Through Role Modeling,
                 Character, &amp; Compassion
               </h2>
 
-              <p className="mt-6 text-base sm:text-lg text-slate-600 dark:text-slate-400 leading-relaxed font-normal">
+              <p className="mt-6 text-base sm:text-lg text-muted-foreground leading-relaxed">
                 Primary school students learn most profoundly from what they
                 witness and experience firsthand. At SD Al-Birru, every
                 classroom corner is crafted to foster love of knowledge and
                 moral excellence.
               </p>
 
-              {/* Semantic List of 3 Out-of-the-Box Fitrah Blueprint Cards */}
-              <ul className="mt-10 grid grid-cols-1 sm:grid-cols-3 bg-slate-200 dark:bg-slate-800 gap-[1px] border border-slate-200 dark:border-slate-800 w-full relative">
+              {/* 3 Pillar Cards */}
+              <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4 w-full">
                 {fitrahPillars.map((item, idx) => {
                   const Icon = item.icon;
                   return (
-                    <li key={idx} className="flex">
-                      <article
-                        aria-labelledby={`fitrah-title-${idx}`}
-                        className="p-6 sm:p-8 bg-[#FDFDFB] dark:bg-slate-950 hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors flex flex-col justify-start w-full group"
-                      >
-                        <div className="flex items-center justify-between gap-1 mb-6">
-                          <Icon className="size-6 text-amber-600 group-hover:scale-110 transition-transform" />
-                          <span className="text-[10px] font-mono font-bold text-slate-400">
-                            {item.code}
-                          </span>
-                        </div>
-                        <h3
-                          id={`fitrah-title-${idx}`}
-                          className="text-sm sm:text-base font-bold text-slate-950 dark:text-slate-50 leading-snug"
-                        >
-                          {item.title}
-                        </h3>
-                        <p className="mt-3 text-xs text-slate-500 leading-relaxed font-normal">
-                          {item.desc}
-                        </p>
-                      </article>
-                    </li>
+                    <Card key={idx} className="p-5 flex flex-col justify-start">
+                      <div className="size-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary mb-3">
+                        <Icon className="size-5" />
+                      </div>
+                      <h3 className="text-sm font-semibold text-foreground">
+                        {item.title}
+                      </h3>
+                      <p className="text-xs text-muted-foreground mt-1 leading-relaxed">
+                        {item.desc}
+                      </p>
+                    </Card>
                   );
                 })}
-              </ul>
+              </div>
 
-              <div className="mt-10 flex flex-wrap items-center gap-4">
-                <Link
-                  href="/about"
-                  className="group inline-flex items-center gap-2 border border-transparent bg-amber-500 text-slate-950 hover:bg-amber-600 font-bold px-6 h-12 rounded-none text-xs sm:text-sm transition-all hover:scale-[1.01] active:scale-[0.99] shadow-2xs"
+              {/* Action Buttons */}
+              <div className="mt-8 flex flex-wrap items-center gap-4">
+                <Button
+                  render={<Link href="/about" />}
+                  nativeButton={false}
+                  size="lg"
+                  className="gap-2 font-medium"
                 >
-                  <span>Learn About &amp; History of Al-Birru</span>
-                  <ArrowRight className="size-3.5 text-slate-900 group-hover:translate-x-1 transition-transform" />
-                </Link>
-                <Link
-                  href="/programs"
-                  className="inline-flex items-center gap-2 px-5 h-12 rounded-none border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 dark:bg-slate-800 font-bold text-xs sm:text-sm transition-colors shadow-2xs"
+                  <span>Learn About SD Al-Birru</span>
+                  <ArrowRight className="size-4" />
+                </Button>
+
+                <Button
+                  render={<Link href="/programs" />}
+                  nativeButton={false}
+                  variant="outline"
+                  size="lg"
+                  className="font-medium"
                 >
                   <span>Explore Curriculum</span>
-                </Link>
+                </Button>
               </div>
             </ScrollReveal>
           </div>

@@ -1,7 +1,8 @@
 "use client";
 
-import { RotateCcw } from "lucide-react";
+import { AlertCircle, RotateCcw } from "lucide-react";
 import { useEffect } from "react";
+import { Button } from "@/components/ui/button";
 
 export default function ErrorBoundary({
   error,
@@ -11,35 +12,28 @@ export default function ErrorBoundary({
   reset: () => void;
 }) {
   useEffect(() => {
-    // Log the error to an error reporting service
     console.error(error);
   }, [error]);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-[60vh] text-center px-4">
-      {/* Brutalist Error block */}
-      <div className="flex items-center justify-center bg-red-600 text-white w-32 h-32 rounded-none mb-8 shadow-2xl">
-        <span className="text-5xl font-black font-mono tracking-tighter">
-          ERR
-        </span>
+      <div className="flex items-center justify-center bg-destructive/10 text-destructive size-20 rounded-full mb-6">
+        <AlertCircle className="size-10" />
       </div>
 
-      <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-50 mb-3 uppercase tracking-wide">
-        System Error Occurred
+      <h1 className="text-2xl font-bold text-foreground mb-3 tracking-tight">
+        Something Went Wrong
       </h1>
 
-      <p className="text-slate-500 dark:text-slate-400 max-w-md mb-8">
+      <p className="text-muted-foreground max-w-md mb-8 text-sm">
         We apologize, the system encountered an unexpected error while loading
-        this component. Click the button below to reload.
+        this component. Click the button below to try again.
       </p>
 
-      <button
-        onClick={() => reset()}
-        className="inline-flex items-center gap-2 bg-slate-900 dark:bg-slate-800 hover:bg-slate-800 dark:hover:bg-slate-700 text-white font-bold px-8 h-12 rounded-none font-mono uppercase text-sm transition-colors border border-transparent dark:border-slate-700"
-      >
+      <Button onClick={() => reset()} className="gap-2">
         <RotateCcw className="size-4" />
-        <span>Reload System</span>
-      </button>
+        <span>Try Again</span>
+      </Button>
     </div>
   );
 }

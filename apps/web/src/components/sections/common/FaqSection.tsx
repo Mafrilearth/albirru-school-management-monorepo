@@ -1,7 +1,6 @@
 "use client";
 
 import { MessageCircle, Phone, Sparkles } from "lucide-react";
-import { motion } from "motion/react";
 import { ScrollReveal } from "@/components/common/ScrollReveal";
 import {
   Accordion,
@@ -9,6 +8,9 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 
 interface FaqItem {
   id: string;
@@ -77,7 +79,7 @@ export function FaqSection() {
   return (
     <section
       aria-labelledby="faq-section-heading"
-      className="py-24 md:py-32 lg:py-36 bg-transparent border-b border-slate-200/80 dark:border-slate-700/80 relative"
+      className="py-20 md:py-28 lg:py-36 bg-background border-b border-border relative"
     >
       <script
         type="application/ld+json"
@@ -86,110 +88,91 @@ export function FaqSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           {/* Left Column */}
-          <div className="lg:col-span-5 lg:sticky lg:top-28">
+          <div className="lg:col-span-5 lg:sticky lg:top-24">
             <ScrollReveal direction="up" delay={0.1}>
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-none bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 shadow-2xs text-[11px] font-mono font-bold tracking-wider text-slate-800 dark:text-slate-200 uppercase mb-6">
-                <span className="size-1.5 rounded-none bg-amber-500 animate-pulse" />
-                <span>FAQ // OPERATIONAL INFORMATION</span>
-              </div>
+              <Badge
+                variant="outline"
+                className="gap-2 px-3.5 py-1 mb-5 text-xs font-medium rounded-full"
+              >
+                <span>OPERATIONAL INFORMATION</span>
+              </Badge>
 
               <h2
                 id="faq-section-heading"
-                className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-950 dark:text-slate-50 tracking-tight leading-[1.12]"
+                className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground tracking-tight leading-tight"
               >
                 Frequently Asked Questions &amp; Daily Student Life
               </h2>
 
-              <p className="mt-4 text-base sm:text-lg text-slate-600 dark:text-slate-400 leading-relaxed font-normal max-w-xl">
-                Comprehensive transparency regarding daily schedules, healthy
-                catering standards, shuttle transit, and child-friendly
-                admissions observation at SD Al-Birru.
+              <p className="mt-5 text-base text-muted-foreground leading-relaxed">
+                Clear answers regarding daily schedules, nutrition, school bus
+                routes, and academic matriculation at SD Al-Birru.
               </p>
 
-              <aside aria-labelledby="faq-support-title" className="mt-8">
-                <motion.div
-                  whileHover={{ y: -2, transition: { duration: 0.2 } }}
-                  className="p-8 rounded-none bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-700 shadow-none hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors"
-                >
-                  <div className="flex items-center gap-2.5 mb-3">
-                    <Sparkles className="size-5 text-amber-500 shrink-0" />
-                    <h3
-                      id="faq-support-title"
-                      className="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-slate-50 font-mono"
-                    >
-                      Direct Support &amp; Consultation
-                    </h3>
-                  </div>
-                  <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-6 font-normal">
-                    Need deeper information regarding admissions, campus visits,
-                    or student transfer consultations?
-                  </p>
+              {/* Consultation Card */}
+              <Card className="mt-8 p-6 shadow-sm">
+                <div className="flex items-center gap-2 text-primary font-semibold text-sm mb-2">
+                  <Sparkles className="size-4" />
+                  <span>Have Specific Questions?</span>
+                </div>
+                <p className="text-xs text-muted-foreground leading-relaxed mb-6">
+                  Our admissions consultation team is ready to answer specific
+                  inquiries about your child&apos;s development and school
+                  readiness.
+                </p>
 
-                  <div className="flex flex-col sm:flex-row lg:flex-col gap-3">
-                    <a
-                      href="https://wa.me/6281234567890"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-2 px-6 h-12 rounded-none bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs sm:text-sm transition-all shadow-md shadow-emerald-900/30 active:scale-95 min-h-[48px]"
-                    >
-                      <MessageCircle className="size-4.5" />
-                      <span>Direct WhatsApp Chat with Admissions Team</span>
-                    </a>
+                <div className="flex flex-col gap-3">
+                  <Button
+                    render={
+                      <a
+                        href="https://wa.me/6281234567890"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      />
+                    }
+                    nativeButton={false}
+                    className="w-full gap-2 font-medium"
+                  >
+                    <MessageCircle className="size-4" />
+                    <span>WhatsApp Admissions Team</span>
+                  </Button>
 
-                    <a
-                      href="tel:+6281234567890"
-                      className="flex items-center justify-center gap-2 px-6 h-12 rounded-none bg-slate-50 dark:bg-slate-800 hover:bg-slate-100 text-slate-700 dark:text-slate-300 font-semibold text-xs sm:text-sm border border-slate-200 dark:border-slate-700 transition-colors active:scale-95 min-h-[48px]"
-                    >
-                      <Phone className="size-4 text-slate-500" />
-                      <span>Hotline: (0266) 123-456</span>
-                    </a>
-                  </div>
-                </motion.div>
-              </aside>
+                  <Button
+                    render={<a href="tel:+6281234567890" />}
+                    nativeButton={false}
+                    variant="outline"
+                    className="w-full gap-2 font-medium"
+                  >
+                    <Phone className="size-4 text-muted-foreground" />
+                    <span>Hotline: (0266) 123-456</span>
+                  </Button>
+                </div>
+              </Card>
             </ScrollReveal>
           </div>
 
-          {/* Right Column: Shadcn Accordion List */}
+          {/* Right Column: Shadcn Accordion */}
           <div className="lg:col-span-7">
-            <div className="bg-slate-200 dark:bg-slate-800 p-[1px] relative">
-              {/* Crosshairs */}
-              <div className="absolute -top-1.5 -left-1.5 size-3 border border-amber-500 z-10 bg-white dark:bg-slate-950" />
-              <div className="absolute -top-1.5 -right-1.5 size-3 border border-amber-500 z-10 bg-white dark:bg-slate-950" />
-              <div className="absolute -bottom-1.5 -left-1.5 size-3 border border-amber-500 z-10 bg-white dark:bg-slate-950" />
-              <div className="absolute -bottom-1.5 -right-1.5 size-3 border border-amber-500 z-10 bg-white dark:bg-slate-950" />
+            <Accordion
+              defaultValue={["faq-hours"]}
+              className="w-full space-y-3"
+            >
+              {faqs.map((faq) => (
+                <AccordionItem
+                  key={faq.id}
+                  value={faq.id}
+                  className="border border-border rounded-lg px-6 bg-card shadow-xs overflow-hidden"
+                >
+                  <AccordionTrigger className="hover:no-underline py-5 text-left font-semibold text-foreground text-base sm:text-lg">
+                    <span>{faq.question}</span>
+                  </AccordionTrigger>
 
-              <Accordion
-                defaultValue={["faq-hours"]}
-                className="bg-[#FDFDFB] dark:bg-slate-950 w-full space-y-[1px]"
-              >
-                {faqs.map((faq) => (
-                  <AccordionItem
-                    key={faq.id}
-                    value={faq.id}
-                    className="border-0 bg-white dark:bg-slate-900"
-                  >
-                    <AccordionTrigger className="w-full flex items-start justify-between gap-4 p-6 sm:p-8 hover:no-underline group data-open:bg-white dark:data-open:bg-slate-900 bg-[#FDFDFB] dark:bg-slate-950 hover:bg-slate-50 dark:hover:bg-slate-900/50 transition-colors">
-                      <span className="flex items-start gap-4 sm:gap-5 text-left">
-                        <span className="font-mono text-xs font-bold px-3 py-1.5 rounded-none shrink-0 transition-colors border group-data-open:bg-slate-950 group-data-open:text-amber-400 group-data-open:border-slate-950 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700">
-                          {faq.num}
-                        </span>
-                        <span className="leading-snug text-base sm:text-lg text-slate-950 dark:text-slate-50 pt-0.5">
-                          {faq.question}
-                        </span>
-                      </span>
-                    </AccordionTrigger>
-
-                    <AccordionContent className="bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800">
-                      <div className="px-6 sm:px-8 py-6 text-slate-600 dark:text-slate-400 text-sm sm:text-base leading-relaxed">
-                        <div className="sm:pl-14">
-                          <p>{faq.answer}</p>
-                        </div>
-                      </div>
-                    </AccordionContent>
-                  </AccordionItem>
-                ))}
-              </Accordion>
-            </div>
+                  <AccordionContent className="pb-5 pt-1 text-muted-foreground text-sm sm:text-base leading-relaxed">
+                    <p>{faq.answer}</p>
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
           </div>
         </div>
       </div>

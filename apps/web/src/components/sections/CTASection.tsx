@@ -2,9 +2,10 @@
 
 import { ArrowRight, MessageCircle, ShieldCheck } from "lucide-react";
 import Link from "next/link";
-import { BorderBeam } from "@/components/common/BorderBeam";
 import { ScrollReveal } from "@/components/common/ScrollReveal";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 
 export interface CTASectionProps {
   kicker?: string;
@@ -24,91 +25,68 @@ export function CTASection({
   return (
     <section
       aria-labelledby="cta-heading"
-      className="py-28 md:py-36 lg:py-44 bg-transparent"
+      className="py-20 md:py-28 lg:py-36 bg-background"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal direction="up" scale={0.98}>
-          <div className="relative group">
-            {/* Corner Crosshairs */}
-            <div className="absolute -top-1.5 -left-1.5 size-3 border border-amber-500 z-20 bg-[#FDFDFB] dark:bg-slate-950" />
-            <div className="absolute -top-1.5 -right-1.5 size-3 border border-amber-500 z-20 bg-[#FDFDFB] dark:bg-slate-950" />
-            <div className="absolute -bottom-1.5 -left-1.5 size-3 border border-amber-500 z-20 bg-[#FDFDFB] dark:bg-slate-950" />
-            <div className="absolute -bottom-1.5 -right-1.5 size-3 border border-amber-500 z-20 bg-[#FDFDFB] dark:bg-slate-950" />
+          <Card className="p-8 sm:p-12 md:p-16 text-center flex flex-col items-center shadow-sm relative overflow-hidden">
+            <div className="max-w-3xl mx-auto flex flex-col items-center">
+              <Badge
+                variant="outline"
+                className="gap-2 px-3.5 py-1 mb-6 text-xs font-medium rounded-full"
+              >
+                <span>{kicker}</span>
+              </Badge>
 
-            <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 relative overflow-hidden">
-              <BorderBeam
-                size={260}
-                duration={14}
-                colorFrom="#f59e0b"
-                colorTo="#10b981"
-              />
-              {/* Removed conflicting background dots to allow GlobalGrid to shine clearly */}
+              <h2
+                id="cta-heading"
+                className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-foreground tracking-tight leading-tight"
+              >
+                {title}
+              </h2>
 
-              <div className="p-8 sm:p-12 md:p-16 max-w-4xl mx-auto text-center flex flex-col items-center relative z-10 w-full">
-                {/* Top Monospace Tag */}
-                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-amber-600 dark:text-amber-400 text-[11px] font-mono font-bold uppercase tracking-wider mb-6">
-                  <span className="size-1.5 rounded-none bg-amber-500 dark:bg-amber-400 animate-pulse" />
-                  <span>{kicker}</span>
-                </div>
+              <p className="mt-6 text-base sm:text-lg text-muted-foreground leading-relaxed max-w-2xl">
+                {description}
+              </p>
 
-                <h2
-                  id="cta-heading"
-                  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-slate-900 dark:text-white tracking-tight leading-[1.12]"
+              <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
+                <Button
+                  render={<Link href={primaryBtnHref} />}
+                  nativeButton={false}
+                  size="lg"
+                  className="w-full sm:w-auto gap-2 font-medium"
                 >
-                  {title}
-                </h2>
+                  <span>{primaryBtnText}</span>
+                  <ArrowRight className="size-4" />
+                </Button>
 
-                <p className="mt-6 text-base sm:text-lg md:text-xl text-slate-700 dark:text-slate-300 leading-relaxed max-w-2xl font-normal">
-                  {description}
-                </p>
-
-                {/* CTAs with generous touch targets & accessible contrast */}
-                <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
-                  <Button
-                    render={<Link href={primaryBtnHref} />}
-                    nativeButton={false}
-                    className="w-full sm:w-auto flex items-center justify-center gap-2 bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold px-8 h-13 rounded-none shadow-xs transition-all text-base group"
-                  >
-                    <span>{primaryBtnText}</span>
-                    <ArrowRight
-                      aria-hidden="true"
-                      className="size-4.5 group-hover:translate-x-1 transition-transform"
+                <Button
+                  render={
+                    <a
+                      href="https://wa.me/6281234567890?text=Assalamu'alaikum%20SD%20Al-Birru%20Admissions%20Team,%20I%20would%20like%20to%20inquire%20about%20Admissions%20for%20Academic%20Year%202026/2027."
+                      target="_blank"
+                      rel="noopener noreferrer"
                     />
-                  </Button>
+                  }
+                  nativeButton={false}
+                  variant="outline"
+                  size="lg"
+                  className="w-full sm:w-auto gap-2 font-medium"
+                >
+                  <MessageCircle className="size-4 text-emerald-600 dark:text-emerald-400" />
+                  <span>Chat on WhatsApp</span>
+                </Button>
+              </div>
 
-                  <Button
-                    render={
-                      <a
-                        href="https://wa.me/6281234567890?text=Assalamu'alaikum%20SD%20Al-Birru%20Admissions%20Team,%20I%20would%20like%20to%20inquire%20about%20Admissions%20for%20Academic%20Year%202026/2027."
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      />
-                    }
-                    nativeButton={false}
-                    variant="outline"
-                    className="w-full sm:w-auto flex items-center justify-center gap-2 border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 font-semibold px-7 h-13 rounded-none transition-all text-base group"
-                  >
-                    <MessageCircle
-                      aria-hidden="true"
-                      className="size-5 text-emerald-600 dark:text-emerald-400 group-hover:scale-110 transition-transform"
-                    />
-                    <span>Chat on WhatsApp</span>
-                  </Button>
-                </div>
-
-                <div className="mt-10 flex items-center justify-center gap-2 text-xs text-slate-400 font-mono">
-                  <ShieldCheck
-                    aria-hidden="true"
-                    className="size-4 text-emerald-400 shrink-0"
-                  />
-                  <span>
-                    Child-friendly initial consultation and developmental
-                    observation with zero hidden fees
-                  </span>
-                </div>
+              <div className="mt-8 flex items-center justify-center gap-2 text-xs text-muted-foreground font-medium">
+                <ShieldCheck className="size-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
+                <span>
+                  Child-friendly initial consultation and developmental
+                  observation with zero hidden fees
+                </span>
               </div>
             </div>
-          </div>
+          </Card>
         </ScrollReveal>
       </div>
     </section>
