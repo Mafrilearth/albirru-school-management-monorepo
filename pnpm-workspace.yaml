@@ -8,3 +8,7 @@ allowBuilds:
   core-js: true
   esbuild: true
   unrs-resolver: true
+
+overrides:
+  esbuild: ">=0.25.0"
+

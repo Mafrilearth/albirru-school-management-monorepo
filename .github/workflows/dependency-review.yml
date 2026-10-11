@@ -24,5 +24,6 @@ jobs:
       - name: Dependency Review
         uses: actions/dependency-review-action@v4
         with:
-          fail-on-severity: moderate
-          comment-on-pr: true
+          fail-on-severity: high
+          comment-on-pr: false
+
