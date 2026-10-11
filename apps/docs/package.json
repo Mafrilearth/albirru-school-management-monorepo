@@ -19,12 +19,10 @@
     "tailwind-merge": "^3.7.0"
   },
   "devDependencies": {
-    "@albirru/eslint-config": "workspace:*",
     "@albirru/typescript-config": "workspace:*",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "eslint": "^9",
     "typescript": "^5"
   }
 }
