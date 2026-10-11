@@ -8,7 +8,7 @@ This document outlines the governance model, decision-making framework, and main
 
 The engineering and operational governance of the platform adheres to three core tenets:
 
-1. **Pedagogical Alignment**: Every digital feature must serve the educational mission of SD Al-Birru Tahfidzul Qur'an and preserve Islamic institutional integrity.
+1. **Pedagogical Alignment**: Every digital feature must serve the educational mission of Al-Birru Primary School and preserve Islamic institutional integrity.
 2. **Hard Technical Invariants**: Zero shortcuts on security, database integrity, type safety, and WCAG 2.1 AA accessibility.
 3. **Open Architecture & Transparency**: Architectural decisions are documented in living specifications, ensuring long-term maintainability without vendor lock-in.
 

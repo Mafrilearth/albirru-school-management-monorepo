@@ -190,49 +190,49 @@ Each application in `apps/` corresponds to a distinct network endpoint, port all
 | **Storybook** | `@albirru/storybook` | `storybook.sd-albirru.sch.id` | `:6006` | Isolated UI component development and design system documentation workbench |
 
 #### 3.1.1. Authenticated SIS Application (`apps/app`) — Port 3000
-- **Name:** SD Al-Birru Authenticated SIS Application (`@albirru/app`)
+- **Name:** Al-Birru Authenticated SIS Application (`@albirru/app`)
 - **Subdomain:** `app.sd-albirru.sch.id` (Preview: `app.albirru.mafrilearth.com`)
 - **Description:** Protected enterprise web application for school administrators, instructors, guardians, and students. Manages Master Identity provisioning (RBAC), daily sequential attendance sessions with immutability locking, academic grading calculation with report card freezing, and student performance monitoring for guardians.
 - **Technologies:** Next.js 16 (App Router, RSC), React 19, TypeScript, Clerk SDK (`@clerk/nextjs`), Tailwind CSS v4, shadcn/ui, Radix UI, Recharts, React Hook Form, Zod, ZSA.
 - **Deployment:** Vercel (Production Edge Serverless Compute).
 
 #### 3.1.2. Public Web Application (`apps/web`) — Port 3001
-- **Name:** SD Al-Birru Public Web Application (`@albirru/web`)
+- **Name:** Al-Birru Public Web Application (`@albirru/web`)
 - **Subdomain:** `sd-albirru.sch.id` (Apex root; Preview: `albirru.mafrilearth.com`)
-- **Description:** The primary public-facing portal for SD Al-Birru Tahfidzul Qur'an. Houses the high-performance institutional profile, statutory accreditation badges (NPSN `70010111` & BAN-S/M), school curriculum programs, news and gallery archives, and the online student registration (PPDB) form. Interacts with Cloudflare Turnstile for bot deterrence and Upstash Redis for submission throttling.
+- **Description:** The primary public-facing portal for Al-Birru Primary School. Houses the high-performance institutional profile, statutory accreditation badges (NPSN `70010111` & BAN-S/M), school curriculum programs, news and gallery archives, and the online student registration (PPDB) form. Interacts with Cloudflare Turnstile for bot deterrence and Upstash Redis for submission throttling.
 - **Architectural Boundary:** Strictly contains public web pages (`/`, `/about`, `/admissions`, `/programs`, `/news`, `/gallery`, `/contact`). All authenticated portal features and domain management tools are isolated in `apps/app`. Ad-hoc in-app design-system pages are prohibited; Storybook (`apps/storybook`) serves as the official component workshop.
 - **Technologies:** Next.js 16 (App Router, RSC), React 19, TypeScript, Tailwind CSS v4, shadcn/ui, Radix UI, Motion, Lucide React, React Hook Form, Zod, ZSA.
 - **Deployment:** Vercel (Edge & Serverless Compute).
 
 #### 3.1.3. Cross-Platform API & Webhook Service (`apps/api`) — Port 3002
-- **Name:** SD Al-Birru API Microservice (`@albirru/api`)
+- **Name:** Al-Birru API Microservice (`@albirru/api`)
 - **Subdomain:** `api.sd-albirru.sch.id`
 - **Description:** Dedicated edge API microservice handling system health monitoring (`/health`), public API routes, and incoming external statutory webhooks (Clerk identity synchronization, Resend delivery status notifications).
 - **Technologies:** Next.js 16 Route Handlers, TypeScript, Drizzle ORM, Zod, Svix.
 - **Deployment:** Vercel Serverless Functions.
 
 #### 3.1.4. React Email Templates & Preview Workshop (`apps/email`) — Port 3003
-- **Name:** SD Al-Birru Transactional Email Studio (`@albirru/email`)
+- **Name:** Al-Birru Transactional Email Studio (`@albirru/email`)
 - **Subdomain:** `email.sd-albirru.sch.id` (Local Preview: `localhost:3003`)
 - **Description:** React-based email template development and preview workbench. Hosts standardized transactional email components (e.g., `AdmissionConfirmation.tsx`) rendered with `@react-email/components` and dispatched via the Resend API.
 - **Technologies:** React Email (`@react-email/components`), Resend (`resend`), TypeScript, Tailwind CSS.
 - **Deployment:** Vercel Serverless / Local Preview Studio.
 
 #### 3.1.5. In-Tree Documentation Explorer (`apps/docs`) — Port 3004
-- **Name:** SD Al-Birru In-Tree Documentation Portal (`@albirru/docs`)
+- **Name:** Al-Birru In-Tree Documentation Portal (`@albirru/docs`)
 - **Subdomain:** `docs.sd-albirru.sch.id`
 - **Description:** Technical documentation website rendering all 11 statutory specifications, architecture decision records (ADRs), and operational runbooks directly from in-tree markdown sources.
 - **Technologies:** Next.js 16 (App Router, RSC), TypeScript, Tailwind CSS v4, shadcn/ui.
 - **Deployment:** Vercel Edge Serverless.
 
 #### 3.1.6. Visual Database Editor (`apps/studio`) — Port 3005
-- **Name:** SD Al-Birru Database Studio (`@albirru/studio`)
+- **Name:** Al-Birru Database Studio (`@albirru/studio`)
 - **Description:** Local visual database administration console utilizing Drizzle Studio (`drizzle-kit studio`) to inspect tables, relations, and indexes, and execute schema queries directly against Neon PostgreSQL.
 - **Technologies:** Drizzle Studio (`drizzle-kit`), Drizzle ORM, TypeScript.
 - **Command:** `pnpm --filter @albirru/studio dev`.
 
 #### 3.1.7. Frontend UI Component Workshop (`apps/storybook`) — Port 6006
-- **Name:** SD Al-Birru Component Workbench (`@albirru/storybook`)
+- **Name:** Al-Birru Component Workbench (`@albirru/storybook`)
 - **Subdomain:** `storybook.sd-albirru.sch.id` (Local Workbench: `localhost:6006`)
 - **Description:** Isolated UI component workshop for developing, previewing, and testing design system primitives, widgets, and layout components in isolation before integration. Serves as the central design system catalog for the monorepo.
 - **Technologies:** Storybook 10, Vite, React 19, TypeScript, Tailwind CSS v4, Radix UI.
@@ -442,14 +442,14 @@ Every pull request and push to protected branches must satisfy the 4-stage autom
 
 - **Offline-First PWA Synchronization:** Progressive web app service workers with background sync capabilities for rural attendance recording under unstable network connectivity.
 - **Statutory Dapodik / EMIS Adapters:** Automated synchronization adapters for the Indonesian Ministry of Education (Kemendikbudristek) Dapodik and Ministry of Religious Affairs (Kemenag) EMIS APIs.
-- **Multi-Branch Campus Architecture:** Schema extensions to support prospective regional branch campuses under Yayasan Pendidikan Al-Birru without database fragmentation.
+- **Multi-Branch Campus Architecture:** Schema extensions to support prospective regional branch campuses under Yayasan Amal Cahaya Indonesia without database fragmentation.
 
 ---
 
 ## 10. Project Identification
 
 - **Project Name:** Al-Birru School Information System (`albirru-sis`)
-- **Institution:** SD Al-Birru Tahfidzul Qur'an
+- **Institution:** Al-Birru Primary School
 - **National School Identification (NPSN):** `70010111`
 - **Accreditation Authority:** Badan Akreditasi Nasional Sekolah/Madrasah (BAN-S/M)
 - **Repository URL:** `https://github.com/Mafrilearth/albirru-school-management-monorepo`

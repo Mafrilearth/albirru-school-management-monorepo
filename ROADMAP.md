@@ -59,6 +59,6 @@ This document outlines the strategic development milestones and engineering road
 ## 🔮 Future Vision: v1.0.0 — Multi-Campus Foundation
 *Target: Q3 2027*
 
-- [ ] Multi-branch campus isolation under Yayasan Pendidikan Al-Birru.
+- [ ] Multi-branch campus isolation under Yayasan Amal Cahaya Indonesia.
 - [ ] Advanced biometric attendance integration with hardware terminal webhooks.
 - [ ] AI-assisted student tahfidz memorization analytics and progression forecasting.

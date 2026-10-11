@@ -3,7 +3,7 @@ import { ImageResponse } from "next/og";
 export const runtime = "nodejs";
 
 export const alt =
-  "SD Al-Birru Tahfidzul Qur'an Sukabumi - Partner in Islamic Education";
+  "Al-Birru Primary School Sukabumi - Partner in Islamic Education";
 export const size = {
   width: 1200,
   height: 630,
@@ -102,7 +102,7 @@ export default function Image() {
               letterSpacing: "-1px",
             }}
           >
-            SD AL-BIRRU
+            AL-BIRRU PRIMARY SCHOOL
           </span>
         </div>
 

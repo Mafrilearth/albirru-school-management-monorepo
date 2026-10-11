@@ -2,10 +2,10 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "SD Al-Birru Tahfidzul Qur'an Sukabumi",
-    short_name: "SD Al-Birru",
+    name: "Al-Birru Primary School Sukabumi",
+    short_name: "Al-Birru Primary",
     description:
-      "Official Portal of SD Al-Birru Tahfidzul Qur'an Sukabumi - Partner in Islamic Education, 3 Juz Tahfidz & Merdeka Curriculum",
+      "Official Portal of Al-Birru Primary School Sukabumi - Partner in Islamic Education, 3 Juz Tahfidz & Merdeka Curriculum",
     start_url: "/",
     display: "standalone",
     background_color: "#FDFDFB",

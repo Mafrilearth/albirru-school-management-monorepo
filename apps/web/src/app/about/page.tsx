@@ -8,14 +8,14 @@ import { CTASection } from "@/components/sections/CTASection";
 export const metadata: Metadata = {
   title: "About & School History",
   description:
-    "Discover the vision, mission, BIRRU core values, distinguished faculty, and history of SD Al-Birru Tahfidzul Qur'an Sukabumi.",
+    "Discover the vision, mission, BIRRU core values, distinguished faculty, and history of Al-Birru Primary School Sukabumi.",
   alternates: {
     canonical: "/about",
   },
   openGraph: {
-    title: "About & School History | SD Al-Birru Sukabumi",
+    title: "About & School History | Al-Birru Primary School",
     description:
-      "Discover the vision, mission, BIRRU core values, distinguished faculty, and history of SD Al-Birru Tahfidzul Qur'an Sukabumi.",
+      "Discover the vision, mission, BIRRU core values, distinguished faculty, and history of Al-Birru Primary School Sukabumi.",
     url: "/about",
   },
 };

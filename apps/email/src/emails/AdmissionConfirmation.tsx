@@ -38,7 +38,7 @@ export function AdmissionConfirmationEmail({
               margin: 0,
             }}
           >
-            SD Al-Birru Tahfidzul Qur&apos;an
+            Al-Birru Primary School
           </h1>
           <p style={{ fontSize: "14px", color: "#64748b", margin: "4px 0 0" }}>
             NPSN: 70010111 | BAN-S/M Accreditation
@@ -113,7 +113,7 @@ export function AdmissionConfirmationEmail({
             margin: 0,
           }}
         >
-          Yayasan Pendidikan Al-Birru &copy; 2026. All Rights Reserved.
+          Yayasan Amal Cahaya Indonesia &copy; 2026. All Rights Reserved.
         </p>
       </div>
     </div>

@@ -26,7 +26,7 @@ const statutoryData: readonly StatutoryItem[] = [
   {
     id: "foundation",
     label: "Yayasan Penyelenggara",
-    value: "Yayasan Pendidikan Al-Birru",
+    value: "Yayasan Amal Cahaya Indonesia",
     subValue: "Legalitas SK Kemenkumham RI",
     icon: Building2,
   },

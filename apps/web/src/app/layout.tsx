@@ -35,27 +35,27 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default:
-      "SD Al-Birru Tahfidzul Qur'an Sukabumi | Partner in Islamic Education",
-    template: "%s | SD Al-Birru Sukabumi",
+    default: "Al-Birru Primary School Sukabumi | Partner in Islamic Education",
+    template: "%s | Al-Birru Primary School",
   },
   description:
-    "Official Website of SD Al-Birru Tahfidzul Qur'an Sukabumi. Nurturing a Qur'anic generation with noble character, minimum 3 mutqin juz Al-Qur'an memorization with sanad, Merdeka Curriculum critical reasoning, and global horizons.",
-  applicationName: "SD Al-Birru Sukabumi",
+    "Official Website of Al-Birru Primary School Sukabumi. Nurturing a Qur'anic generation with noble character, minimum 3 mutqin juz Al-Qur'an memorization with sanad, Merdeka Curriculum critical reasoning, and global horizons.",
+  applicationName: "Al-Birru Primary School",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "SD Al-Birru",
+    title: "Al-Birru Primary",
   },
-  authors: [{ name: "SD Al-Birru Sukabumi", url: siteUrl }],
-  creator: "SD Al-Birru Sukabumi",
-  publisher: "Yayasan Pendidikan Al-Birru",
+  authors: [{ name: "Al-Birru Primary School", url: siteUrl }],
+  creator: "Al-Birru Primary School",
+  publisher: "Yayasan Amal Cahaya Indonesia",
   keywords: [
-    "SD Al-Birru",
+    "Al-Birru Primary School",
+    "SD Al-Birru Sukabumi",
     "SDIT Al-Birru Sukabumi",
     "SD Tahfidz Sukabumi",
     "Integrated Islamic Primary School Sukabumi",
-    "SD Al-Birru Admissions 2026",
+    "Al-Birru Primary Admissions 2026",
     "Children Tahfidz Quran Sukabumi",
     "Merdeka Curriculum Primary School Sukabumi",
     "Child-Friendly Islamic School Sukabumi",
@@ -70,21 +70,19 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title:
-      "SD Al-Birru Tahfidzul Qur'an Sukabumi | Partner in Islamic Education",
+    title: "Al-Birru Primary School Sukabumi | Partner in Islamic Education",
     description:
       "Nurturing a Qur'anic generation of noble character, minimum 3 mutqin juz memorization with sanad, and applied science excellence.",
     url: siteUrl,
-    siteName: "SD Al-Birru Sukabumi",
+    siteName: "Al-Birru Primary School",
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title:
-      "SD Al-Birru Tahfidzul Qur'an Sukabumi | Partner in Islamic Education",
+    title: "Al-Birru Primary School Sukabumi | Partner in Islamic Education",
     description:
-      "Integrated Islamic Primary School Tahfidzul Qur'an in Sukabumi. Partner in Islamic education toward future generations.",
+      "Integrated Islamic Primary School in Sukabumi. Partner in Islamic education toward future generations.",
   },
   robots: {
     index: true,
@@ -106,12 +104,16 @@ const schoolStructuredData = {
   "@context": "https://schema.org",
   "@type": "School",
   "@id": `${siteUrl}/#school`,
-  name: "SD Al-Birru Tahfidzul Qur'an Sukabumi",
-  alternateName: ["SD Al-Birru", "SDIT Al-Birru Sukabumi"],
+  name: "Al-Birru Primary School Sukabumi",
+  alternateName: [
+    "Al-Birru Primary School",
+    "SD Al-Birru Sukabumi",
+    "SDIT Al-Birru Sukabumi",
+  ],
   url: siteUrl,
   logo: `${siteUrl}/favicon.ico`,
   description:
-    "Integrated Islamic Primary School Tahfidzul Qur'an of excellence in Sukabumi. Noble character cultivation, 3 mutqin juz Al-Qur'an memorization with verified sanad, and applied science learning.",
+    "Integrated Islamic Primary School of excellence in Sukabumi. Noble character cultivation, 3 mutqin juz Al-Qur'an memorization with verified sanad, and applied science learning.",
   telephone: "+6281234567890",
   email: "info@sdalbirru.sch.id",
   address: {
