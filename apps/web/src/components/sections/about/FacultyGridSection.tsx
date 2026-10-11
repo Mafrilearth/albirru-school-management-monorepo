@@ -114,7 +114,7 @@ export function FacultyGridSection() {
                   {teacher.name}
                 </h3>
 
-                <div className="space-y-1.5 my-3 text-xs text-muted-foreground border-y border-border py-3">
+                <div className="flex flex-col gap-1.5 my-3 text-xs text-muted-foreground border-y border-border py-3">
                   <div className="flex items-center gap-2">
                     <GraduationCap className="size-4 shrink-0 text-primary" />
                     <span>{teacher.degree}</span>

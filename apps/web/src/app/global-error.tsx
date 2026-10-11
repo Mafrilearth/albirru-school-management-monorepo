@@ -16,7 +16,7 @@ export default function GlobalError({
   return (
     <html lang="id">
       <body className="flex min-h-screen flex-col items-center justify-center p-6 bg-slate-950 text-slate-50 font-sans">
-        <div className="max-w-md w-full text-center space-y-6 p-8 rounded-xl bg-slate-900 border border-slate-800 shadow-xl">
+        <div className="max-w-md w-full text-center flex flex-col gap-6 p-8 rounded-xl bg-slate-900 border border-slate-800 shadow-xl">
           <div className="size-16 rounded-full bg-red-500/10 text-red-500 mx-auto flex items-center justify-center text-2xl font-bold">
             !
           </div>

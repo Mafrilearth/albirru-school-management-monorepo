@@ -90,7 +90,7 @@ export function BentoValuesSection() {
                     the 5S Culture
                   </HoverCardTrigger>
                   <HoverCardContent className="w-80 p-4" side="top">
-                    <div className="space-y-2">
+                    <div className="flex flex-col gap-2">
                       <h4 className="text-sm font-semibold flex items-center gap-2 text-foreground">
                         <Heart className="size-4 text-primary" /> Smile, Greet,
                         Welcome, Polite, Courteous
@@ -143,14 +143,15 @@ export function BentoValuesSection() {
                 Limited Class Ratios &amp; Wholesome Campus Ecosystem
               </h3>
               <p className="mt-4 text-muted-foreground text-sm sm:text-base leading-relaxed">
-                Strict caps of at most 20 students per class ensure personal
-                emotional connection and individualized developmental attention.
-                Supported by air-conditioned classrooms, dedicated school
-                mosque, library, and secure playgrounds.
+                Strict caps of 15–20 students per class (1:15 ratio, limited to
+                40 seats per cohort) ensure personal emotional connection and
+                individualized developmental attention. Supported by
+                air-conditioned classrooms, dedicated school mosque, library,
+                and secure playgrounds.
               </p>
             </div>
             <div className="mt-8 pt-4 border-t border-border flex items-center justify-between text-xs text-muted-foreground">
-              <span>Max 20 students per class</span>
+              <span>Ratio 1:15 (Max 40 per Cohort)</span>
               <Link
                 href="/programs"
                 className="font-medium text-primary hover:underline flex items-center gap-1.5"

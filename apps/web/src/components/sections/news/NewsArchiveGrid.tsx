@@ -61,7 +61,7 @@ export function NewsArchiveGrid({ articles }: NewsArchiveGridProps) {
   const regularArticles = filteredArticles.slice(1);
 
   return (
-    <div className="space-y-10 md:space-y-12">
+    <div className="flex flex-col gap-10 md:gap-12">
       <h2 id="news-archive-heading" className="sr-only">
         Arsip &amp; Indeks Berita Sekolah
       </h2>
@@ -111,7 +111,7 @@ export function NewsArchiveGrid({ articles }: NewsArchiveGridProps) {
       </Card>
 
       {filteredArticles.length > 0 ? (
-        <div className="space-y-10">
+        <div className="flex flex-col gap-10">
           {/* Featured Headline Article */}
           {featuredArticle && !searchQuery && selectedCategory === "all" && (
             <motion.article

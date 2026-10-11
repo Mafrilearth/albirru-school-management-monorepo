@@ -67,8 +67,8 @@ export function AdmissionsForm() {
     return (
       <Card className="p-8 sm:p-12 text-center relative overflow-hidden shadow-sm">
         <ConfettiCelebration />
-        <div className="flex flex-col items-center justify-center space-y-4 relative z-10">
-          <div className="size-16 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-600 dark:text-emerald-400">
+        <div className="flex flex-col items-center justify-center gap-4 relative z-10">
+          <div className="size-16 rounded-full bg-emerald-500/10 flex items-center justify-center text-primary">
             <CheckCircle2 className="size-8" />
           </div>
           <h3 className="text-2xl font-bold text-foreground tracking-tight">
@@ -233,7 +233,7 @@ export function AdmissionsForm() {
             )}
           </Field>
 
-          <div className="flex items-start space-x-3 pt-2">
+          <div className="flex items-start gap-3 pt-2">
             <Checkbox id="terms" required className="mt-1" />
             <div className="grid gap-1.5 leading-none">
               <Label
@@ -264,13 +264,16 @@ export function AdmissionsForm() {
         >
           {isSubmitting ? (
             <>
-              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              Processing Registration...
+              <Loader2
+                className="size-4 animate-spin"
+                data-icon="inline-start"
+              />
+              <span>Processing Registration...</span>
             </>
           ) : (
             <>
-              <Send className="mr-2 h-4 w-4" />
-              Submit Registration
+              <Send className="size-4" data-icon="inline-start" />
+              <span>Submit Registration</span>
             </>
           )}
         </Button>

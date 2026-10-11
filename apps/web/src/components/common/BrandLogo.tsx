@@ -28,7 +28,7 @@ export function BrandLogo({
         {/* We draw the path with a thick stroke to guarantee mathematically perfect uniform thickness everywhere. */}
         <path
           d="M 50 18 L 82 34 L 82 74 A 32 34 0 0 1 18 74 L 18 34 Z"
-          className="fill-slate-900 dark:fill-slate-100 stroke-slate-900 dark:stroke-slate-100"
+          className="fill-foreground stroke-foreground"
           strokeWidth="24"
           strokeLinejoin="round"
         />
@@ -49,14 +49,14 @@ export function BrandLogo({
              L 72 63 L 54.4 63.9 L 58.3 66.4 L 53.7 65.5 L 59.2 72.2 L 52.5 66.7 L 53.4 71.3 L 50.9 67.4 
              L 50 85 L 49.1 67.4 L 46.6 71.3 L 47.5 66.7 L 40.8 72.2 L 46.3 65.5 L 41.7 66.4 L 45.6 63.9 
              L 28 63 L 45.6 62.1 L 41.7 59.6 L 46.3 60.5 L 40.8 53.8 L 47.5 59.3 L 46.6 54.7 L 49.1 58.6 Z"
-          className="fill-slate-900 dark:fill-slate-100"
+          className="fill-foreground"
         />
       </svg>
       <div className="flex flex-col justify-center text-start">
-        <span className="font-sans font-black text-lg xl:text-xl leading-none text-slate-900 dark:text-slate-100 tracking-tight">
+        <span className="font-sans font-black text-lg xl:text-xl leading-none text-foreground tracking-tight">
           SD Al-Birru
         </span>
-        <span className="font-mono text-[9px] xl:text-[10px] font-bold text-amber-500 uppercase tracking-widest mt-1">
+        <span className="font-mono text-[9px] xl:text-[10px] font-bold text-primary uppercase tracking-widest mt-1">
           NPSN: 70010111
         </span>
       </div>

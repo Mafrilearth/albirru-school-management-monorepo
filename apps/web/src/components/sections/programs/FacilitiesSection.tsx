@@ -39,7 +39,7 @@ const facilities: FacilityItem[] = [
       "Ruang belajar bersih dan berpendingin udara yang dilengkapi proyektor multimedia, pencahayaan alami sehat, serta loker pribadi peserta didik.",
     icon: Building2,
     specs: [
-      "Maksimal 20 siswa/kelas",
+      "Maksimal 15–20 siswa (Rasio Terfokus 1:15)",
       "Smart Display & Sistem Audio",
       "Pencahayaan Alami Sehat",
     ],
@@ -177,14 +177,14 @@ export function FacilitiesSection() {
                       </CardTitle>
                     </CardHeader>
 
-                    <CardContent className="space-y-4">
+                    <CardContent className="flex flex-col gap-4">
                       <p className="text-sm text-muted-foreground leading-relaxed">
                         {fac.description}
                       </p>
 
                       <ul
                         aria-label={`Spesifikasi untuk ${fac.title}`}
-                        className="space-y-2 border-t border-border pt-4 list-none p-0"
+                        className="flex flex-col gap-2 border-t border-border pt-4 list-none p-0"
                       >
                         {fac.specs.map((spec, sIdx) => (
                           <li
@@ -193,7 +193,7 @@ export function FacilitiesSection() {
                           >
                             <Check
                               aria-hidden="true"
-                              className="size-4 text-emerald-600 dark:text-emerald-400 shrink-0"
+                              className="size-4 text-primary shrink-0"
                             />
                             <span>{spec}</span>
                           </li>
@@ -205,7 +205,7 @@ export function FacilitiesSection() {
                   <CardFooter className="pt-4 border-t border-border flex items-center gap-2 text-xs text-muted-foreground">
                     <ShieldCheck
                       aria-hidden="true"
-                      className="size-4 text-emerald-600 dark:text-emerald-400"
+                      className="size-4 text-primary"
                     />
                     <span>Standar Kebersihan &amp; Keamanan Terjaga</span>
                   </CardFooter>

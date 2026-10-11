@@ -154,7 +154,7 @@ export function VisionMissionSection() {
 
             <ol
               aria-labelledby="misi-subheading"
-              className="space-y-3 list-none p-0"
+              className="flex flex-col gap-3 list-none p-0"
             >
               {missionPoints.map((item, idx) => (
                 <li key={idx}>

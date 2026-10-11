@@ -60,7 +60,7 @@ export function GalleryViewer({ items }: GalleryViewerProps) {
   };
 
   return (
-    <div className="space-y-12">
+    <div className="flex flex-col gap-12">
       <h2 id="gallery-grid-heading" className="sr-only">
         Dokumentasi Foto dan Aktivitas Siswa
       </h2>
@@ -235,7 +235,7 @@ export function GalleryViewer({ items }: GalleryViewerProps) {
               {activeItem.description}
             </p>
 
-            <div className="pt-3 border-t border-border flex items-center gap-2 text-xs text-emerald-600 dark:text-emerald-400 font-medium">
+            <div className="pt-3 border-t border-border flex items-center gap-2 text-xs text-primary font-medium">
               <CheckCircle2 aria-hidden="true" className="size-4 shrink-0" />
               <span>
                 Dokumentasi resmi pembelajaran dan kehidupan kampus SD Al-Birru

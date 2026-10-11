@@ -42,7 +42,7 @@ export function SpotlightCard({
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       className={cn(
-        "group relative rounded-none border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 transition-all overflow-hidden",
+        "group relative rounded-none border border-border bg-card transition-all overflow-hidden",
         className,
       )}
       {...props}

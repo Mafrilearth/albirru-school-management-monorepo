@@ -221,7 +221,7 @@ export default async function ArticleDetailPage({ params }: PageProps) {
                 </address>
               </div>
 
-              <div className="hidden sm:flex items-center gap-1.5 text-xs text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-md">
+              <div className="hidden sm:flex items-center gap-1.5 text-xs text-primary bg-primary/10 px-2.5 py-1 rounded-md">
                 <ShieldCheck aria-hidden="true" className="size-3.5" />
                 <span className="font-medium">Terverifikasi Resmi</span>
               </div>
@@ -236,7 +236,7 @@ export default async function ArticleDetailPage({ params }: PageProps) {
             </blockquote>
 
             {/* Article Body Paragraphs */}
-            <div className="space-y-6 text-foreground/90 text-base leading-relaxed">
+            <div className="flex flex-col gap-6 text-foreground/90 text-base leading-relaxed">
               {article.content.map((paragraph, idx) => (
                 <p key={idx}>{paragraph}</p>
               ))}
@@ -272,7 +272,7 @@ export default async function ArticleDetailPage({ params }: PageProps) {
           {/* Sidebar */}
           <aside
             aria-label="Informasi Tambahan &amp; Berita Terkait"
-            className="lg:col-span-4 space-y-8 sticky top-24"
+            className="lg:col-span-4 flex flex-col gap-8 sticky top-24"
           >
             {/* Admissions Action Widget */}
             <Card className="border-border bg-card shadow-sm p-6 sm:p-7">
@@ -291,11 +291,11 @@ export default async function ArticleDetailPage({ params }: PageProps) {
 
               <div className="mt-6 flex flex-col gap-2.5">
                 <Link
-                  href="/contact"
-                  className={cn(buttonVariants(), "w-full")}
+                  href="/admissions"
+                  className={cn(buttonVariants(), "w-full gap-2")}
                 >
-                  <Sparkles aria-hidden="true" className="size-4 mr-2" />
-                  <span>Formulir &amp; Konsultasi</span>
+                  <Sparkles aria-hidden="true" className="size-4" />
+                  <span>Daftar Sekarang (Online)</span>
                 </Link>
 
                 <a
@@ -327,7 +327,7 @@ export default async function ArticleDetailPage({ params }: PageProps) {
               <CardContent className="pt-4">
                 <ul
                   aria-label="Berita Terkait Lainnya"
-                  className="space-y-4 list-none p-0"
+                  className="flex flex-col gap-4 list-none p-0"
                 >
                   {otherArticles.map((other) => (
                     <li

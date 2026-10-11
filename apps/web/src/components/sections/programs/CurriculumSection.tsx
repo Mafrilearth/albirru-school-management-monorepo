@@ -226,7 +226,7 @@ export function CurriculumSection() {
                       </p>
                     </div>
 
-                    <dl className="mt-8 space-y-3">
+                    <dl className="mt-8 flex flex-col gap-3">
                       <div className="p-4 rounded-lg bg-muted/50 border border-border flex items-start gap-3">
                         <Clock
                           aria-hidden="true"
@@ -274,14 +274,14 @@ export function CurriculumSection() {
 
                     <ul
                       aria-labelledby={`strategy-heading-${selectedPillar.id}`}
-                      className="space-y-3 list-none p-0"
+                      className="flex flex-col gap-3 list-none p-0"
                     >
                       {selectedPillar.highlights.map((item, idx) => (
                         <li key={idx}>
                           <div className="flex items-start gap-3.5 p-4 rounded-lg bg-muted/40 border border-border/70 hover:border-border transition-colors">
                             <CheckCircle2
                               aria-hidden="true"
-                              className="size-5 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5"
+                              className="size-5 text-primary shrink-0 mt-0.5"
                             />
                             <p className="text-xs sm:text-sm text-foreground/90 leading-relaxed font-medium">
                               {item}

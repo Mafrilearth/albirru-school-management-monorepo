@@ -80,7 +80,7 @@ export default function ContactPage() {
         title="Contact the Committee &amp; Visit Our Campus"
         description="We warmly welcome you and are ready to assist you in discussing the future of your child's education at SD Al-Birru Sukabumi."
         badges={[
-          { iconName: "map-pin", label: "Jl. Selabintana Km. 5 Sukabumi" },
+          { iconName: "map-pin", label: "Cicantayan, Kab. Sukabumi" },
           { iconName: "clock", label: "Monday–Friday: 07:30 AM – 03:00 PM" },
           { iconName: "phone", label: "Fast-Response Admissions Team" },
         ]}
@@ -98,10 +98,10 @@ export default function ContactPage() {
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
             {/* Left Column: Contact Cards, Protocols & Map Preview (5 cols) */}
-            <div className="lg:col-span-5 space-y-6">
+            <div className="lg:col-span-5 flex flex-col gap-6">
               {/* Info Card */}
               <ScrollReveal direction="up" delay={0.1}>
-                <Card className="p-6 sm:p-8 space-y-6 shadow-sm">
+                <Card className="p-6 sm:p-8 flex flex-col gap-6 shadow-sm">
                   <div className="flex items-center justify-between">
                     <h3 className="text-xl font-bold text-foreground tracking-tight">
                       Secretariat &amp; Admissions
@@ -109,7 +109,7 @@ export default function ContactPage() {
                     <Badge variant="secondary">Info</Badge>
                   </div>
 
-                  <address className="not-italic space-y-5 text-sm text-muted-foreground">
+                  <address className="not-italic flex flex-col gap-5 text-sm text-muted-foreground">
                     <div className="flex items-start gap-3.5">
                       <div
                         aria-hidden="true"
@@ -122,8 +122,9 @@ export default function ContactPage() {
                           Campus Address
                         </h4>
                         <p className="mt-0.5 leading-relaxed text-xs sm:text-sm">
-                          Jl. Selabintana Km. 5, Warnasari, Kec. Sukabumi,
-                          Kabupaten Sukabumi, Jawa Barat 43151, Indonesia
+                          Kp. Cisande RT 006/002, Desa Cijalingan, Kec.
+                          Cicantayan, Kabupaten Sukabumi, Jawa Barat 43155,
+                          Indonesia
                         </p>
                       </div>
                     </div>
@@ -231,7 +232,7 @@ export default function ContactPage() {
 
                   <ol
                     aria-labelledby="visit-protocols-heading"
-                    className="space-y-3 list-none p-0"
+                    className="flex flex-col gap-3 list-none p-0"
                   >
                     {visitProtocols.map((item, idx) => (
                       <li
@@ -288,12 +289,13 @@ export default function ContactPage() {
                       SD Al-Birru Tahfidzul Qur&apos;an Sukabumi
                     </p>
                     <p className="text-xs text-muted-foreground mt-0.5 relative z-10">
-                      Jl. Selabintana Km. 5, Warnasari, Sukabumi
+                      Kp. Cisande RT 006/002, Desa Cijalingan, Kec. Cicantayan,
+                      Kab. Sukabumi
                     </p>
                     <Button
                       render={
                         <a
-                          href="https://maps.google.com/?q=Sukabumi"
+                          href="https://maps.google.com/?q=Kp.+Cisande+Cijalingan+Cicantayan+Sukabumi"
                           target="_blank"
                           rel="noopener noreferrer"
                         />

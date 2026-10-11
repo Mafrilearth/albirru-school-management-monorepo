@@ -115,7 +115,7 @@ export function HistoryTimelineSection() {
 
           {/* Right Column: Timeline */}
           <div className="lg:col-span-7">
-            <ol className="relative pl-6 sm:pl-8 border-l-2 border-border space-y-8 sm:space-y-10">
+            <ol className="relative pl-6 sm:pl-8 border-l-2 border-border flex flex-col gap-8 sm:gap-10">
               {milestones.map((item, idx) => {
                 const Icon = item.icon;
                 return (

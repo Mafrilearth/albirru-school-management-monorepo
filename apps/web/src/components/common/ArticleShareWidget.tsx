@@ -55,10 +55,8 @@ export function ArticleShareWidget({
       >
         {copied ? (
           <>
-            <Check className="size-4 mr-1.5 text-emerald-600 dark:text-emerald-400" />
-            <span className="text-emerald-600 dark:text-emerald-400">
-              Tautan Tersalin!
-            </span>
+            <Check className="size-4 mr-1.5 text-primary" />
+            <span className="text-primary">Tautan Tersalin!</span>
           </>
         ) : (
           <>

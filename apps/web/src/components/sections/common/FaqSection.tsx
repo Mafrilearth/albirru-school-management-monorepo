@@ -155,7 +155,7 @@ export function FaqSection() {
           <div className="lg:col-span-7">
             <Accordion
               defaultValue={["faq-hours"]}
-              className="w-full space-y-3"
+              className="w-full flex flex-col gap-3"
             >
               {faqs.map((faq) => (
                 <AccordionItem

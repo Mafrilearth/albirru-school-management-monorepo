@@ -284,7 +284,7 @@ export function ContactForm() {
           </div>
         )}
 
-        <div className="space-y-5">
+        <div className="flex flex-col gap-5">
           {/* Full Name */}
           <div>
             <label
