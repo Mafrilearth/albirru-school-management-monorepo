@@ -14,6 +14,10 @@
     "vercel": {
       "command": "npx",
       "args": ["-y", "mcp-remote", "https://mcp.vercel.com"]
+    },
+    "shadcn": {
+      "command": "npx",
+      "args": ["-y", "shadcn@latest", "mcp"]
     }
   }
 }
