@@ -60,7 +60,7 @@ export default async function NewsPage() {
 
       <section
         aria-labelledby="news-archive-heading"
-        className="py-24 md:py-32 lg:py-40 bg-white dark:bg-slate-900"
+        className="py-16 md:py-24 lg:py-32 bg-background"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <NewsArchiveGrid articles={articles} />

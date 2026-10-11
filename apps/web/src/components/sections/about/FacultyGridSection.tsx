@@ -1,9 +1,9 @@
 "use client";
 
 import { Award, GraduationCap, UserCheck } from "lucide-react";
-import { motion } from "motion/react";
 import { ScrollReveal } from "@/components/common/ScrollReveal";
-import { SpotlightCard } from "@/components/common/SpotlightCard";
+import { Badge } from "@/components/ui/badge";
+import { Card } from "@/components/ui/card";
 
 interface FacultyMember {
   name: string;
@@ -11,7 +11,6 @@ interface FacultyMember {
   degree: string;
   specialty: string;
   bio: string;
-  badgeColor: string;
 }
 
 const facultyMembers: FacultyMember[] = [
@@ -21,7 +20,6 @@ const facultyMembers: FacultyMember[] = [
     degree: "Master of Islamic Education Management (UIN)",
     specialty: "Educational Leadership & Character",
     bio: "Over 15 years of leadership in integrated Islamic primary education with a focus on child fitrah.",
-    badgeColor: "bg-amber-50 text-amber-800 border-amber-200",
   },
   {
     name: "Ustadzah Siti Fatimah, Lc., M.Ag.",
@@ -29,7 +27,6 @@ const facultyMembers: FacultyMember[] = [
     degree: "Al-Azhar University Cairo & Qur'anic Studies",
     specialty: "Certified Sanad Tahfidz & Makharijul Huruf",
     bio: "Holder of Hafs 'an 'Ashim recitation sanad with extensive experience in early childhood talaqqi methods.",
-    badgeColor: "bg-emerald-50 text-emerald-800 border-emerald-200",
   },
   {
     name: "Ustadz Rahmat Hidayat, S.Pd.",
@@ -37,7 +34,6 @@ const facultyMembers: FacultyMember[] = [
     degree: "B.Ed in Science & Technology Education (UPI)",
     specialty: "National Curriculum & Scientific Inquiry",
     bio: "Developer of applied science experiment modules and computational thinking for primary education.",
-    badgeColor: "bg-sky-50 text-sky-800 border-sky-200",
   },
   {
     name: "Ustadzah Nurul Aini, S.Psi.",
@@ -45,7 +41,6 @@ const facultyMembers: FacultyMember[] = [
     degree: "B.A. in Child Developmental Psychology",
     specialty: "Positive Parenting & Student Counseling",
     bio: "Directs learning style mapping, developmental support, and parent consultation sessions.",
-    badgeColor: "bg-purple-50 text-purple-800 border-purple-200",
   },
   {
     name: "Ustadz Muhammad Ilham, S.Pd.I.",
@@ -53,7 +48,6 @@ const facultyMembers: FacultyMember[] = [
     degree: "B.A. in Arabic Language Education (LIPIA)",
     specialty: "Daily Conversational Arabic & Sunnah Ethics",
     bio: "Developed interactive storytelling and role-play methods to introduce Prophetic ethics with joy and engagement.",
-    badgeColor: "bg-amber-50 text-amber-800 border-amber-200",
   },
   {
     name: "Ustadzah Dewi Anggraeni, S.Pd.",
@@ -61,7 +55,6 @@ const facultyMembers: FacultyMember[] = [
     degree: "B.Ed in English Language Education",
     specialty: "Phonics & Reading Literacy",
     bio: "Applies active communicative pedagogy and builds a daily culture of reading illustrated books.",
-    badgeColor: "bg-rose-50 text-rose-800 border-rose-200",
   },
 ];
 
@@ -69,97 +62,76 @@ export function FacultyGridSection() {
   return (
     <section
       aria-labelledby="faculty-heading"
-      className="py-28 md:py-36 lg:py-44 bg-white dark:bg-slate-900"
+      className="py-20 md:py-28 lg:py-36 bg-background border-b border-border"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <ScrollReveal direction="up" className="max-w-3xl mb-16 md:mb-20">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-none bg-slate-100 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 text-[11px] font-mono font-bold uppercase tracking-wider mb-5">
-            <span className="size-1.5 rounded-none bg-amber-500 animate-pulse" />
-            <span>EDUCATORS // FACULTY COUNCIL</span>
-          </div>
+        <ScrollReveal direction="up" className="max-w-3xl mb-12 md:mb-16">
+          <Badge
+            variant="outline"
+            className="gap-2 px-3.5 py-1 mb-5 text-xs font-medium rounded-full"
+          >
+            <span>FACULTY COUNCIL</span>
+          </Badge>
           <h2
             id="faculty-heading"
-            className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-950 dark:text-slate-50 tracking-tight leading-[1.12]"
+            className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground tracking-tight leading-tight"
           >
             Faculty Council &amp; Dedicated Instructors
           </h2>
-          <p className="mt-4 text-base sm:text-lg text-slate-600 dark:text-slate-400 leading-relaxed font-normal">
+          <p className="mt-4 text-base sm:text-lg text-muted-foreground leading-relaxed">
             Teachers at SD Al-Birru are living role models (qudwah hasanah)
             guiding students with scholarship, patience, and sincere devotion.
           </p>
         </ScrollReveal>
 
-        {/* Faculty Grid with Semantic List & Article Elements */}
-        <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+        {/* Faculty Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {facultyMembers.map((teacher, idx) => (
-            <motion.li
+            <Card
               key={idx}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{
-                duration: 0.55,
-                delay: idx * 0.08,
-                ease: [0.21, 0.47, 0.32, 0.98],
-              }}
-              whileHover={{ y: -5, transition: { duration: 0.25 } }}
-              className="list-none flex"
+              className="p-6 sm:p-7 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow"
             >
-              <article
-                aria-labelledby={`teacher-name-${idx}`}
-                className="flex-1 flex"
-              >
-                <SpotlightCard
-                  spotlightColor="rgba(245, 158, 11, 0.09)"
-                  className="p-7 sm:p-8 bg-[#FDFDFB] dark:bg-slate-950 hover:bg-white dark:hover:bg-slate-700 dark:bg-slate-900 shadow-2xs hover:shadow-xl transition-all flex-1 flex flex-col justify-between rounded-none"
-                >
-                  <div>
-                    {/* Photo Placeholder Area with subtle zoom on hover */}
-                    <div className="relative aspect-square w-full rounded-none bg-slate-100 border border-slate-200/80 dark:border-slate-700/80 mb-6 flex flex-col items-center justify-center text-center p-4 group-hover:bg-slate-150 transition-colors overflow-hidden">
-                      <div className="size-18 rounded-none bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-400 group-hover:text-amber-600 group-hover:scale-105 transition-all mb-2 shadow-2xs">
-                        <UserCheck className="size-9" />
-                      </div>
-                      <span className="text-[11px] font-bold text-slate-400 uppercase tracking-widest font-mono">
-                        Faculty Photo
-                      </span>
-                    </div>
-
-                    <span
-                      className={`inline-block px-3 py-1 rounded-none text-xs font-semibold border ${teacher.badgeColor} font-mono`}
-                    >
-                      {teacher.role}
-                    </span>
-
-                    <h3
-                      id={`teacher-name-${idx}`}
-                      className="text-lg sm:text-xl font-bold text-slate-950 dark:text-slate-50 mt-3 leading-snug"
-                    >
-                      {teacher.name}
-                    </h3>
-
-                    <div className="space-y-2 my-4 text-xs text-slate-600 dark:text-slate-400 border-y border-slate-200/60 py-3 font-mono">
-                      <div className="flex items-center gap-2">
-                        <GraduationCap className="size-4 text-slate-400 shrink-0" />
-                        <span className="font-medium text-slate-800 dark:text-slate-200">
-                          {teacher.degree}
-                        </span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Award className="size-4 text-slate-400 shrink-0" />
-                        <span>Focus: {teacher.specialty}</span>
-                      </div>
-                    </div>
-
-                    <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed font-normal">
-                      {teacher.bio}
-                    </p>
+              <div>
+                {/* Photo Placeholder Area */}
+                <div className="aspect-[4/3] w-full rounded-lg bg-muted border border-border mb-6 flex flex-col items-center justify-center text-center p-4 overflow-hidden">
+                  <div className="size-16 rounded-full bg-background border border-border flex items-center justify-center text-primary mb-2 shadow-xs">
+                    <UserCheck className="size-8" />
                   </div>
-                </SpotlightCard>
-              </article>
-            </motion.li>
+                  <span className="text-xs text-muted-foreground font-medium">
+                    Faculty Photo
+                  </span>
+                </div>
+
+                <Badge variant="secondary" className="mb-2">
+                  {teacher.role}
+                </Badge>
+
+                <h3
+                  id={`teacher-name-${idx}`}
+                  className="text-lg font-bold text-foreground leading-snug"
+                >
+                  {teacher.name}
+                </h3>
+
+                <div className="space-y-1.5 my-3 text-xs text-muted-foreground border-y border-border py-3">
+                  <div className="flex items-center gap-2">
+                    <GraduationCap className="size-4 shrink-0 text-primary" />
+                    <span>{teacher.degree}</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Award className="size-4 shrink-0 text-primary" />
+                    <span>Focus: {teacher.specialty}</span>
+                  </div>
+                </div>
+
+                <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                  {teacher.bio}
+                </p>
+              </div>
+            </Card>
           ))}
-        </ul>
+        </div>
       </div>
     </section>
   );

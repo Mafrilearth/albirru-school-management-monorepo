@@ -10,10 +10,16 @@ import {
   Sun,
   Trophy,
 } from "lucide-react";
-import { motion } from "motion/react";
 import type React from "react";
 import { ScrollReveal } from "@/components/common/ScrollReveal";
-import { SpotlightCard } from "@/components/common/SpotlightCard";
+import { Badge } from "@/components/ui/badge";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 interface FacilityItem {
   code: string;
@@ -27,80 +33,80 @@ interface FacilityItem {
 const facilities: FacilityItem[] = [
   {
     code: "FAS // 01",
-    title: "Air-Conditioned Ergonomic Classrooms",
-    category: "Learning Spaces",
+    title: "Ruang Kelas Ber-AC & Ergonomis",
+    category: "Ruang Belajar",
     description:
-      "Clean, air-conditioned learning spaces equipped with multimedia projectors, natural daylighting, and personal student lockers.",
+      "Ruang belajar bersih dan berpendingin udara yang dilengkapi proyektor multimedia, pencahayaan alami sehat, serta loker pribadi peserta didik.",
     icon: Building2,
     specs: [
-      "Maximum 20 students/class",
-      "Smart Display & Audio",
-      "Healthy Natural Lighting",
+      "Maksimal 20 siswa/kelas",
+      "Smart Display & Sistem Audio",
+      "Pencahayaan Alami Sehat",
     ],
   },
   {
     code: "FAS // 02",
-    title: "Mosque & Congregational Prayer Hall",
-    category: "Spiritual Center",
+    title: "Masjid & Hall Shalat Berjamaah",
+    category: "Pusat Ibadah",
     description:
-      "Sacred space for daily Dhuha prayers, congregational obligatory prayers, and student Al-Qur'an tasmi' assemblies with parents.",
+      "Sentra pembinaan ibadah shalat Dhuha harian, shalat fardhu berjamaah, serta majelis tasmi' Al-Qur'an santri bersama orang tua.",
     icon: Sun,
     specs: [
-      "Capacity 300+ congregants",
-      "Hygienic separated ablution areas",
-      "Plush carpeting & climate control",
+      "Kapasitas 300+ jamaah",
+      "Area wudhu higienis terpisah",
+      "Karpet empuk & ruangan sejuk",
     ],
   },
   {
     code: "FAS // 03",
-    title: "Library & Children's Reading Corner",
-    category: "Literacy",
+    title: "Perpustakaan & Pojok Literasi Anak",
+    category: "Literasi",
     description:
-      "Literacy center featuring hundreds of illustrated children's storybooks, Islamic science encyclopedias, and a comfortable floor-seating reading area.",
+      "Pusat literasi dengan ratusan judul buku cerita anak bergambar, ensiklopedia sains Islam, serta area baca santai lesehan yang nyaman.",
     icon: BookOpen,
     specs: [
-      "500+ Curated book titles",
-      "Beanbag lounge reading space",
-      "Structured lending system",
+      "500+ Koleksi buku pilihan",
+      "Area baca lesehan beanbag",
+      "Sistem peminjaman terstruktur",
     ],
   },
   {
     code: "FAS // 04",
-    title: "Science & Computer Laboratory",
-    category: "Technology",
+    title: "Laboratorium Sains & Komputer",
+    category: "Teknologi",
     description:
-      "Laboratory for hands-on applied science experiments and computer workstations introducing fundamental coding and computational logic.",
+      "Ruang praktikum sains terapan sederhana dan unit komputer edukasi untuk mengenalkan logika komputasi dan coding dasar sejak dini.",
     icon: Laptop,
     specs: [
-      "Safe science experiment kits",
-      "Protected computer workstations",
-      "Safe, filtered internet access",
+      "Kit eksperimen sains aman",
+      "Workstation komputer edukatif",
+      "Akses internet sehat terfilter",
     ],
   },
   {
     code: "FAS // 05",
-    title: "Sports Field & Archery Range",
-    category: "Physical Fitness",
+    title: "Lapangan Olahraga & Area Panahan",
+    category: "Kebugaran Fisik",
     description:
-      "Multipurpose open-air grounds for morning calisthenics, mini futsal, badminton, and traditional sunnah archery range.",
+      "Area terbuka multifungsi untuk senam pagi, mini futsal, bulu tangkis, dan lapangan panahan sunnah standar keamanan.",
     icon: Trophy,
     specs: [
-      "Safety-standard court flooring",
-      "Dedicated archery target butts",
-      "Comprehensive sporting equipment",
+      "Lantai lapangan ramah anak",
+      "Bantalan target panahan khusus",
+      "Peralatan olahraga lengkap",
     ],
   },
   {
     code: "FAS // 06",
-    title: "School Clinic & Child-Friendly Counseling",
-    category: "Health & Wellness",
+    title: "UKS & Ruang Konseling Ramah Anak",
+    category: "Kesehatan & Tumbuh Kembang",
     description:
-      "First-aid medical response unit coordinated with nearby health clinics, alongside a child psychology counseling space.",
+      "Unit pertolongan pertama kesehatan yang terkoordinasi dengan faskes terdekat serta ruang konsultasi psikolog anak.",
     icon: HeartPulse,
     specs: [
-      "Medical observation beds",
-      "Comprehensive emergency first aid supplies",
-      "Child psychologist counseling",
+      "Tempat tidur observasi medis",
+      "Perlengkapan P3K lengkap",
+      "Konsultasi psikolog anak",
     ],
   },
 ];
@@ -109,119 +115,101 @@ export function FacilitiesSection() {
   return (
     <section
       aria-labelledby="facilities-heading"
-      className="py-28 md:py-36 lg:py-44 bg-white dark:bg-slate-900 border-b border-slate-200/80 dark:border-slate-700/80"
+      className="py-20 md:py-28 lg:py-32 bg-background border-b border-border"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <ScrollReveal
           direction="up"
-          className="max-w-3xl mb-16 md:mb-20 text-center sm:text-left"
+          className="max-w-3xl mb-12 md:mb-16 text-center sm:text-left"
         >
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-none bg-slate-100 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 text-[11px] font-mono font-bold uppercase tracking-wider mb-5">
-            <span className="size-1.5 rounded-none bg-amber-500 animate-pulse" />
-            <span>FACILITIES // MODERN CAMPUS INFRASTRUCTURE</span>
-          </div>
+          <Badge variant="secondary" className="mb-4">
+            Sarana &amp; Prasarana
+          </Badge>
           <h2
             id="facilities-heading"
-            className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-950 dark:text-slate-50 tracking-tight leading-[1.12]"
+            className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-foreground"
           >
-            Comfortable, Scenic &amp; Secure Campus Facilities
+            Fasilitas Kampus yang Nyaman, Asri &amp; Aman
           </h2>
-          <p className="mt-4 text-base sm:text-lg text-slate-600 dark:text-slate-400 leading-relaxed font-normal">
-            SD Al-Birru provides state-of-the-art facilities to support
-            comfortable learning, worship, and physical activity for students.
+          <p className="mt-4 text-base sm:text-lg text-muted-foreground leading-relaxed">
+            SD Al-Birru menyediakan fasilitas lengkap untuk menunjang kenyamanan
+            belajar, ibadah, dan aktivitas fisik peserta didik setiap hari.
           </p>
         </ScrollReveal>
 
-        {/* Facility Cards List with Spotlight Cards */}
+        {/* Facility Cards Grid */}
         <ul
           aria-labelledby="facilities-heading"
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 items-stretch list-none p-0"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 items-stretch list-none p-0"
         >
           {facilities.map((fac, idx) => {
             const Icon = fac.icon;
             return (
               <li key={idx} className="flex">
-                <motion.article
-                  aria-labelledby={`facility-${idx}-title`}
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{
-                    duration: 0.55,
-                    delay: idx * 0.08,
-                    ease: [0.21, 0.47, 0.32, 0.98],
-                  }}
-                  whileHover={{ y: -5, transition: { duration: 0.25 } }}
-                  className="flex-1 flex"
-                >
-                  <SpotlightCard
-                    spotlightColor="rgba(245, 158, 11, 0.08)"
-                    className="p-8 bg-[#FDFDFB] dark:bg-slate-950 hover:bg-white dark:hover:bg-slate-700 dark:bg-slate-900 shadow-2xs hover:shadow-xl transition-all flex-1 flex flex-col justify-between rounded-none group"
-                  >
-                    <div>
-                      {/* Clean Geometric Image Placeholder with Subtle Zoom */}
-                      <figure className="relative aspect-[16/10] w-full rounded-none bg-slate-100 border border-slate-200/80 dark:border-slate-700/80 mb-6 flex flex-col items-center justify-center text-center p-4 group-hover:bg-slate-150 transition-colors overflow-hidden">
-                        <div
-                          aria-hidden="true"
-                          className="size-13 rounded-none bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-400 group-hover:text-amber-600 group-hover:scale-105 transition-all mb-2 shadow-2xs"
-                        >
-                          <Icon className="size-6.5" />
-                        </div>
-                        <figcaption className="text-[10px] font-bold text-slate-400 uppercase tracking-widest font-mono">
-                          Photo of {fac.title}
-                        </figcaption>
-                      </figure>
+                <Card className="flex-1 flex flex-col justify-between border-border bg-card shadow-sm hover:shadow-md transition-shadow">
+                  <div>
+                    {/* Visual Placeholder */}
+                    <div className="aspect-[16/10] w-full rounded-t-lg bg-muted flex flex-col items-center justify-center text-center p-4 border-b border-border">
+                      <div
+                        aria-hidden="true"
+                        className="size-12 rounded-xl bg-background border border-border flex items-center justify-center text-primary mb-2 shadow-xs"
+                      >
+                        <Icon className="size-6" />
+                      </div>
+                      <span className="text-xs font-medium text-muted-foreground">
+                        Dokumentasi {fac.title}
+                      </span>
+                    </div>
 
-                      <div className="flex items-center justify-between mb-3">
-                        <span className="text-[11px] font-semibold text-amber-700 bg-amber-50 px-2.5 py-0.5 rounded-none font-mono border border-amber-200/50">
+                    <CardHeader className="pb-3">
+                      <div className="flex items-center justify-between gap-2 mb-2">
+                        <Badge variant="outline" className="text-xs">
                           {fac.category}
-                        </span>
-                        <span className="text-[10px] font-mono text-slate-400 font-bold">
-                          {fac.code}
-                        </span>
+                        </Badge>
                       </div>
 
-                      <h3
+                      <CardTitle
                         id={`facility-${idx}-title`}
-                        className="text-lg sm:text-xl font-bold text-slate-900 dark:text-slate-50 mt-1 leading-snug"
+                        className="text-lg sm:text-xl font-bold text-foreground"
                       >
                         {fac.title}
-                      </h3>
+                      </CardTitle>
+                    </CardHeader>
 
-                      <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed mt-2.5 mb-5 font-normal">
+                    <CardContent className="space-y-4">
+                      <p className="text-sm text-muted-foreground leading-relaxed">
                         {fac.description}
                       </p>
 
-                      {/* Checklist */}
                       <ul
-                        aria-label={`Specifications for ${fac.title}`}
-                        className="space-y-2 border-t border-slate-200/70 pt-4 list-none p-0"
+                        aria-label={`Spesifikasi untuk ${fac.title}`}
+                        className="space-y-2 border-t border-border pt-4 list-none p-0"
                       >
                         {fac.specs.map((spec, sIdx) => (
                           <li
                             key={sIdx}
-                            className="flex items-center gap-2.5 text-xs text-slate-700 dark:text-slate-300"
+                            className="flex items-center gap-2.5 text-xs text-foreground/90"
                           >
                             <Check
                               aria-hidden="true"
-                              className="size-4 text-emerald-700 shrink-0"
+                              className="size-4 text-emerald-600 dark:text-emerald-400 shrink-0"
                             />
                             <span>{spec}</span>
                           </li>
                         ))}
                       </ul>
-                    </div>
+                    </CardContent>
+                  </div>
 
-                    <footer className="mt-8 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center gap-1.5 text-xs text-slate-500 font-mono">
-                      <ShieldCheck
-                        aria-hidden="true"
-                        className="size-4 text-emerald-700"
-                      />
-                      <span>Impeccable Hygiene &amp; 24/7 Security</span>
-                    </footer>
-                  </SpotlightCard>
-                </motion.article>
+                  <CardFooter className="pt-4 border-t border-border flex items-center gap-2 text-xs text-muted-foreground">
+                    <ShieldCheck
+                      aria-hidden="true"
+                      className="size-4 text-emerald-600 dark:text-emerald-400"
+                    />
+                    <span>Standar Kebersihan &amp; Keamanan Terjaga</span>
+                  </CardFooter>
+                </Card>
               </li>
             );
           })}

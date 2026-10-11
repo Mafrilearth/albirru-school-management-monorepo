@@ -12,9 +12,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArticleShareWidget } from "@/components/common/ArticleShareWidget";
-import { BorderBeam } from "@/components/common/BorderBeam";
-import { SpotlightCard } from "@/components/common/SpotlightCard";
+import { Badge } from "@/components/ui/badge";
+import { buttonVariants } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { fallbackArticles, getArticleBySlug } from "@/lib/content";
+import { cn } from "@/lib/utils";
 
 interface PageProps {
   params: Promise<{
@@ -84,7 +86,7 @@ export default async function ArticleDetailPage({ params }: PageProps) {
     .slice(0, 3);
 
   const shareText = encodeURIComponent(
-    `${article.title} - Read more official news from SD Al-Birru Sukabumi:`,
+    `${article.title} - Baca berita resmi SD Al-Birru Sukabumi:`,
   );
 
   const articleStructuredData = {
@@ -140,7 +142,7 @@ export default async function ArticleDetailPage({ params }: PageProps) {
   };
 
   return (
-    <article className="py-16 md:py-28 lg:py-36 bg-white dark:bg-slate-900">
+    <article className="py-12 md:py-20 lg:py-28 bg-background">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -153,232 +155,206 @@ export default async function ArticleDetailPage({ params }: PageProps) {
           __html: JSON.stringify(breadcrumbStructuredData),
         }}
       />
-      {/* Editorial Top Container */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Breadcrumb Navigation */}
         <nav
-          aria-label="Breadcrumb Navigation"
-          className="mb-10 flex items-center gap-2 text-xs font-mono text-slate-500"
+          aria-label="Navigasi Breadcrumb"
+          className="mb-8 flex items-center gap-2 text-xs text-muted-foreground"
         >
           <Link
             href="/news"
-            className="group inline-flex items-center gap-1.5 font-bold text-slate-600 dark:text-slate-400 hover:text-amber-700 transition-colors"
+            className="group inline-flex items-center gap-1.5 font-medium hover:text-foreground transition-colors"
           >
             <ArrowLeft
               aria-hidden="true"
               className="size-3.5 group-hover:-translate-x-1 transition-transform"
             />
-            <span>BACK TO ALL NEWS</span>
+            <span>Kembali ke Berita</span>
           </Link>
-          <span className="text-slate-300">/</span>
-          <span className="text-slate-400 truncate max-w-xs">
+          <span className="text-muted-foreground/60">/</span>
+          <span className="text-foreground truncate max-w-xs font-medium">
             {article.categoryLabel}
           </span>
         </nav>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20 items-start">
-          {/* Main Article Content (lg:col-span-8) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          {/* Main Article Content */}
           <div className="lg:col-span-8">
-            {/* Meta Tags & Reading Estimator */}
-            <div className="flex flex-wrap items-center gap-3.5 mb-6">
-              <span className="px-3.5 py-1.5 rounded-none text-[11px] font-mono font-bold bg-amber-50 text-amber-800 border border-amber-200/60 uppercase">
-                {article.categoryLabel}
-              </span>
+            {/* Meta Tags */}
+            <div className="flex flex-wrap items-center gap-3 mb-6">
+              <Badge variant="secondary">{article.categoryLabel}</Badge>
 
-              <div className="flex items-center gap-1.5 text-xs text-slate-500 font-mono">
-                <Calendar
-                  aria-hidden="true"
-                  className="size-3.5 text-slate-400"
-                />
+              <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                <Calendar aria-hidden="true" className="size-3.5" />
                 <time dateTime={article.publishedDate}>
                   {article.formattedDate}
                 </time>
               </div>
 
-              <div className="flex items-center gap-1.5 text-xs text-slate-500 font-mono">
-                <Clock aria-hidden="true" className="size-3.5 text-slate-400" />
-                <span>3 MIN READ</span>
+              <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                <Clock aria-hidden="true" className="size-3.5" />
+                <span>3 Menit Baca</span>
               </div>
             </div>
 
-            {/* Title - Single Primary H1 */}
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-950 dark:text-slate-50 tracking-tight leading-[1.12]">
+            {/* Title */}
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-foreground leading-tight">
               {article.title}
             </h1>
 
             {/* Author Byline */}
-            <div className="mt-8 pb-8 border-b border-slate-200/80 dark:border-slate-700/80 flex items-center justify-between gap-4">
-              <div className="flex items-center gap-3.5">
+            <div className="mt-6 pb-6 border-b border-border flex items-center justify-between gap-4">
+              <div className="flex items-center gap-3">
                 <div
                   aria-hidden="true"
-                  className="size-11 rounded-none bg-slate-100 border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-700 dark:text-slate-300"
+                  className="size-10 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0"
                 >
                   <User className="size-5" />
                 </div>
                 <address className="not-italic">
-                  <p className="text-sm font-bold text-slate-900 dark:text-slate-50">
+                  <p className="text-sm font-semibold text-foreground">
                     {article.author}
                   </p>
-                  <p className="text-[11px] text-slate-400 font-mono">
-                    Public Relations &amp; Editorial Team SD Al-Birru
+                  <p className="text-xs text-muted-foreground">
+                    Tim Humas &amp; Publikasi SD Al-Birru
                   </p>
                 </address>
               </div>
 
-              <div className="hidden sm:flex items-center gap-1.5 text-[11px] text-emerald-700 font-mono bg-emerald-50 px-3 py-1.5 rounded-none border border-emerald-200/60">
+              <div className="hidden sm:flex items-center gap-1.5 text-xs text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-md">
                 <ShieldCheck aria-hidden="true" className="size-3.5" />
-                <span>OFFICIALLY VERIFIED</span>
+                <span className="font-medium">Terverifikasi Resmi</span>
               </div>
             </div>
 
-            {/* Lead Summary Callout as Semantic Blockquote */}
+            {/* Lead Summary Callout */}
             <blockquote
               cite={`https://sdalbirru.sch.id/news/${article.slug}`}
-              className="my-10 p-8 sm:p-10 rounded-none bg-[#FDFDFB] dark:bg-slate-950 border-l-4 border-amber-500 border-y border-r border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 text-base sm:text-lg font-medium leading-relaxed italic shadow-2xs"
+              className="my-8 p-6 rounded-lg bg-muted/40 border-l-4 border-primary text-foreground text-base sm:text-lg font-medium leading-relaxed italic"
             >
               <p>&quot;{article.summary}&quot;</p>
             </blockquote>
 
-            {/* Article Body Paragraphs with Generous Spacing */}
-            <div className="space-y-8 text-slate-700 dark:text-slate-300 text-base sm:text-lg leading-relaxed">
+            {/* Article Body Paragraphs */}
+            <div className="space-y-6 text-foreground/90 text-base leading-relaxed">
               {article.content.map((paragraph, idx) => (
-                <p
-                  key={idx}
-                  className={
-                    idx === 0
-                      ? "first-letter:text-5xl first-letter:font-black first-letter:text-slate-950 dark:text-slate-50 first-letter:mr-2"
-                      : ""
-                  }
-                >
-                  {paragraph}
-                </p>
+                <p key={idx}>{paragraph}</p>
               ))}
             </div>
 
             {/* Tags & Interactive Share Widget */}
-            <footer className="mt-16 pt-10 border-t border-slate-200 dark:border-slate-700 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
-              {/* Tags Semantic List */}
+            <footer className="mt-12 pt-8 border-t border-border flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+              {/* Tags List */}
               <div className="flex items-center gap-2">
                 <Tag
                   aria-hidden="true"
-                  className="size-4 text-slate-400 mr-1"
+                  className="size-4 text-muted-foreground mr-1"
                 />
                 <ul
-                  aria-label="Article related topics"
-                  className="flex flex-wrap items-center gap-2 list-none p-0"
+                  aria-label="Topik terkait artikel"
+                  className="flex flex-wrap items-center gap-1.5 list-none p-0"
                 >
                   {article.tags.map((tag, idx) => (
                     <li key={idx}>
-                      <span className="px-3.5 py-1.5 rounded-none bg-slate-100 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-xs font-mono font-medium block">
+                      <Badge variant="outline" className="text-xs">
                         #{tag}
-                      </span>
+                      </Badge>
                     </li>
                   ))}
                 </ul>
               </div>
 
-              {/* Client Component: Share to WhatsApp & Copy Link */}
+              {/* Share Widget */}
               <ArticleShareWidget title={article.title} shareText={shareText} />
             </footer>
           </div>
 
-          {/* Sidebar with Semantic Aside & H2 Landmark */}
+          {/* Sidebar */}
           <aside
-            aria-label="Supplementary Information &amp; Related News"
-            className="lg:col-span-4 space-y-10 sticky top-28"
+            aria-label="Informasi Tambahan &amp; Berita Terkait"
+            className="lg:col-span-4 space-y-8 sticky top-24"
           >
             {/* Admissions Action Widget */}
-            <SpotlightCard
-              spotlightColor="rgba(245, 158, 11, 0.14)"
-              borderColor="rgba(245, 158, 11, 0.3)"
-              className="p-8 sm:p-9 rounded-none bg-slate-950 text-white border border-slate-800 shadow-xl relative overflow-hidden"
-            >
-              <BorderBeam
-                size={220}
-                duration={12}
-                colorFrom="#f59e0b"
-                colorTo="#10b981"
-              />
+            <Card className="border-border bg-card shadow-sm p-6 sm:p-7">
+              <Badge variant="default" className="mb-3">
+                SPMB 2026/2027
+              </Badge>
 
-              <span className="font-mono text-[10px] font-bold text-amber-400 bg-amber-400/10 border border-amber-400/20 px-3 py-1 rounded-none uppercase tracking-wider">
-                Admissions 2026/2027
-              </span>
-
-              <h2 className="text-xl font-black mt-4 leading-snug tracking-tight">
-                New Student Admissions Are Now Open
+              <h2 className="text-lg font-bold text-foreground leading-snug">
+                Penerimaan Peserta Didik Baru Telah Dibuka
               </h2>
 
-              <p className="mt-4 text-xs sm:text-sm text-slate-300 leading-relaxed font-normal">
-                Educating a Qur&apos;anic generation of noble character with an
-                ideal 1:15 ratio. Wave I capacity is strictly limited to 2
-                classes.
+              <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
+                Membina generasi Qur&apos;ani berakhlak mulia dengan rasio ideal
+                1:15. Kuota Gelombang I dibatasi hanya untuk 2 rombel.
               </p>
 
-              <div className="mt-8 flex flex-col gap-3">
+              <div className="mt-6 flex flex-col gap-2.5">
                 <Link
                   href="/contact"
-                  className="flex items-center justify-center gap-2 w-full py-3.5 rounded-none bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-xs shadow-2xs transition-all hover:scale-[1.01]"
+                  className={cn(buttonVariants(), "w-full")}
                 >
-                  <Sparkles aria-hidden="true" className="size-4" />
-                  <span>Registration Form &amp; Inquiries</span>
+                  <Sparkles aria-hidden="true" className="size-4 mr-2" />
+                  <span>Formulir &amp; Konsultasi</span>
                 </Link>
 
                 <a
-                  href="https://wa.me/6281234567890?text=Assalamu'alaikum%20Admin%20SD%20Al-Birru,%20I%20am%20interested%20in%20admissions%20after%20reading%20the%20school%20article."
+                  href="https://wa.me/6281234567890?text=Assalamu'alaikum%20Admin%20SD%20Al-Birru,%20saya%20tertarik%20dengan%20informasi%20SPMB."
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 w-full py-3 rounded-none border border-slate-700 bg-slate-900 hover:bg-slate-800 text-slate-200 font-semibold text-xs transition-colors"
+                  className={cn(
+                    buttonVariants({ variant: "outline" }),
+                    "w-full",
+                  )}
                 >
-                  <span>Chat WhatsApp Admissions</span>
+                  <span>Hubungi WhatsApp SPMB</span>
                   <ArrowUpRight
                     aria-hidden="true"
-                    className="size-3.5 text-slate-400"
+                    className="size-3.5 ml-1.5 text-muted-foreground"
                   />
                 </a>
               </div>
-            </SpotlightCard>
+            </Card>
 
-            {/* Related Articles in SpotlightCard */}
-            <SpotlightCard
-              spotlightColor="rgba(245, 158, 11, 0.08)"
-              className="p-8 rounded-none bg-[#FDFDFB] dark:bg-slate-950 border border-slate-200 dark:border-slate-700 shadow-2xs"
-            >
-              <div className="flex items-center justify-between pb-3.5 border-b border-slate-200 dark:border-slate-700 mb-5">
-                <h2 className="text-sm font-bold text-slate-900 dark:text-slate-50 font-mono uppercase tracking-wider">
-                  MORE ARTICLES
-                </h2>
-                <span className="text-[10px] font-mono text-slate-400">
-                  ARCHIVE
-                </span>
-              </div>
+            {/* Related Articles */}
+            <Card className="border-border bg-card shadow-sm">
+              <CardHeader className="pb-3 border-b border-border">
+                <CardTitle className="text-sm font-semibold text-foreground">
+                  Berita Lainnya
+                </CardTitle>
+              </CardHeader>
 
-              <ul
-                aria-label="Other Related News"
-                className="space-y-5 list-none p-0"
-              >
-                {otherArticles.map((other) => (
-                  <li
-                    key={other.id}
-                    className="group border-b border-slate-100 dark:border-slate-800 last:border-0 pb-4 last:pb-0"
-                  >
-                    <article>
-                      <span className="text-[10px] font-mono font-bold text-amber-700 bg-amber-50 px-2.5 py-0.5 rounded border border-amber-200/50">
-                        {other.categoryLabel}
-                      </span>
-                      <h3 className="text-xs sm:text-sm font-bold text-slate-900 dark:text-slate-50 group-hover:text-amber-700 transition-colors line-clamp-2 mt-2">
-                        <Link href={`/news/${other.slug}`}>{other.title}</Link>
-                      </h3>
-                      <time
-                        dateTime={other.publishedDate}
-                        className="text-[10px] font-mono text-slate-400 mt-1.5 block"
-                      >
-                        {other.formattedDate}
-                      </time>
-                    </article>
-                  </li>
-                ))}
-              </ul>
-            </SpotlightCard>
+              <CardContent className="pt-4">
+                <ul
+                  aria-label="Berita Terkait Lainnya"
+                  className="space-y-4 list-none p-0"
+                >
+                  {otherArticles.map((other) => (
+                    <li
+                      key={other.id}
+                      className="border-b border-border last:border-0 pb-3 last:pb-0"
+                    >
+                      <article>
+                        <Badge variant="outline" className="text-[10px] mb-1">
+                          {other.categoryLabel}
+                        </Badge>
+                        <h3 className="text-xs sm:text-sm font-semibold text-foreground hover:text-primary transition-colors line-clamp-2">
+                          <Link href={`/news/${other.slug}`}>
+                            {other.title}
+                          </Link>
+                        </h3>
+                        <time
+                          dateTime={other.publishedDate}
+                          className="text-[11px] text-muted-foreground mt-1 block"
+                        >
+                          {other.formattedDate}
+                        </time>
+                      </article>
+                    </li>
+                  ))}
+                </ul>
+              </CardContent>
+            </Card>
           </aside>
         </div>
       </div>
