@@ -4,6 +4,18 @@ const nextConfig: NextConfig = {
   transpilePackages: ["@albirru/design-system", "@albirru/database"],
   poweredByHeader: false,
   compress: true,
+  experimental: {
+    optimizePackageImports: [
+      "lucide-react",
+      "date-fns",
+      "clsx",
+      "tailwind-merge",
+    ],
+  },
+  images: {
+    formats: ["image/avif", "image/webp"],
+    minimumCacheTTL: 2592000,
+  },
   async headers() {
     return [
       {

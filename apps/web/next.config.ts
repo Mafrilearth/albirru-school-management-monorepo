@@ -34,11 +34,20 @@ const nextConfig: NextConfig = {
   compress: true,
   transpilePackages: ["@albirru/design-system", "@albirru/database"],
   experimental: {
-    optimizePackageImports: ["lucide-react", "motion", "date-fns"],
+    optimizePackageImports: [
+      "lucide-react",
+      "motion",
+      "date-fns",
+      "recharts",
+      "@base-ui/react",
+      "clsx",
+      "tailwind-merge",
+      "nuqs",
+    ],
   },
   images: {
     formats: ["image/avif", "image/webp"],
-    minimumCacheTTL: 60,
+    minimumCacheTTL: 2592000,
   },
   logging: {
     fetches: {
