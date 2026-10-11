@@ -26,6 +26,7 @@ const DOCS_LIST = [
     num: "05",
     title: "Visual Design System Specification",
     desc: "8px spatial scale, Major Third typography ratio, and WCAG 2.1 AA tokens.",
+    href: "/design-system",
   },
   {
     num: "06",
@@ -84,26 +85,42 @@ export default function DocsHomePage() {
               borderRadius: "8px",
               padding: "20px",
               boxShadow: "0 1px 3px 0 rgb(0 0 0 / 0.05)",
+              display: "flex",
+              flexDirection: "column",
             }}
           >
-            <span
-              style={{
-                display: "inline-block",
-                padding: "2px 8px",
-                backgroundColor: "#e0f2fe",
-                color: "#0369a1",
-                borderRadius: "4px",
-                fontSize: "12px",
-                fontWeight: 700,
-                marginBottom: "8px",
-              }}
-            >
-              Document {doc.num}
-            </span>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "8px" }}>
+              <span
+                style={{
+                  display: "inline-block",
+                  padding: "2px 8px",
+                  backgroundColor: "#e0f2fe",
+                  color: "#0369a1",
+                  borderRadius: "4px",
+                  fontSize: "12px",
+                  fontWeight: 700,
+                }}
+              >
+                Document {doc.num}
+              </span>
+              {doc.href && (
+                <Link
+                  href={doc.href}
+                  style={{
+                    fontSize: "12px",
+                    fontWeight: 600,
+                    color: "#0284c7",
+                    textDecoration: "none",
+                  }}
+                >
+                  View Showcase &rarr;
+                </Link>
+              )}
+            </div>
             <h3 style={{ margin: "4px 0 8px", fontSize: "16px", color: "#0f172a" }}>
               {doc.title}
             </h3>
-            <p style={{ margin: 0, fontSize: "13px", color: "#64748b", lineHeight: 1.5 }}>
+            <p style={{ margin: 0, fontSize: "13px", color: "#64748b", lineHeight: 1.5, marginTop: "auto" }}>
               {doc.desc}
             </p>
           </div>
