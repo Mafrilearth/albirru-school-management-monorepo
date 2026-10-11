@@ -88,30 +88,26 @@ The repository is structured as a **Modern Modular Monolith** utilizing the stan
 │       ├── react-library.json        # Shared React library compiler options
 │       └── package.json
 │
-├── docs/                             # 11 Statutory In-Tree System Specifications
-│   ├── 01-product-requirements-specification.md
-│   ├── 02-software-architecture-and-technical-design.md
-│   ├── 03-relational-database-specification.md
-│   ├── 04-application-route-and-mutation-contract.md
-│   ├── 05-visual-design-system-specification.md
-│   ├── 06-application-layout-and-navigation-architecture.md
-│   ├── 07-user-interface-component-anatomy-specification.md
-│   ├── 08-landing-page-view-architecture.md
-│   ├── 09-architecture-decision-records.md
-│   ├── 10-quality-assurance-and-verification-plan.md
-│   └── 11-operational-runbook-and-incident-procedures.md
-│
-├── tasks/                            # Active development planning, tasks, and tracking
-├── .agents/skills/                   # 24 lifecycle agent skills (define, plan, build, verify, review, ship)
 ├── .github/                          # GitHub Actions CI/CD workflows and automated quality gates
 ├── .gitignore                        # Standard monorepo ignore rules
 ├── AGENTS.md                         # Autonomous agent operational constitution & hard invariants
+├── ARCHITECTURE.md                   # System Architecture Specification (HLD)
+├── AUTHORS.md                        # Institutional attribution & intellectual property credits
+├── DATABASE.md                       # Relational database architecture & Drizzle invariants
+├── DEPLOYMENT.md                     # Vercel & Cloudflare deployment runbook
+├── DESIGN.md                         # Technical Design Document & Design System (8px, Major Third)
+├── ENVIRONMENT.md                    # Environment variables specification & classification matrix
+├── GOVERNANCE.md                     # Institutional & engineering governance framework
+├── LICENSE                           # Official MIT License (OSI Approved)
+├── README.md                         # Project overview, credentials, and quick-start guide
+├── ROADMAP.md                        # Multi-phase strategic development roadmap (2026-2027)
+├── SECURITY.md                       # Vulnerability disclosure SLA & threat model
+├── SUPPORT.md                        # Official community & institutional support channels
+├── TESTING.md                        # Quality assurance & testing strategy (Vitest, Playwright)
 ├── biome.json                        # Biome linter and formatter configuration (tabs, 100 printWidth, LF)
 ├── pnpm-workspace.yaml               # pnpm workspaces definition
 ├── pnpm-lock.yaml                    # Deterministic pnpm lockfile
-├── turbo.json                        # Turborepo task pipeline configuration
-├── README.md                         # Governance dashboard and quick-start guide
-└── ARCHITECTURE.md                   # This document
+└── turbo.json                        # Turborepo task pipeline configuration
 ```
 
 ---

@@ -53,23 +53,28 @@ Business logic is strictly modularized under `src/modules/{domain}/` with enforc
 
 ---
 
-## 📚 In-Tree Statutory Specifications (Single Source of Truth)
+## 📚 Canonical Engineering Governance & Technical Specifications
 
-The repository maintains authoritative in-tree specifications under the `/docs/` directory:
+The repository maintains authoritative specifications and operational runbooks directly at the project root:
 
-| Specification Document | Scope & Responsibility | Lifecycle State |
+| Specification Document | Scope & Responsibility | Standard Compliance |
 | :--- | :--- | :--- |
-| **[01-product-requirements-specification.md](./docs/01-product-requirements-specification.md)** | Product scope, RBAC permission matrix, MVP modules, and latency budgets. | Approved |
-| **[02-software-architecture-and-technical-design.md](./docs/02-software-architecture-and-technical-design.md)** | Modular Monolith architecture, technology stack, and Server Action bounds. | Approved |
-| **[03-relational-database-specification.md](./docs/03-relational-database-specification.md)** | Drizzle ORM DDL schemas, UUIDv7 primary keys, foreign key indexes, and audit invariants. | Approved |
-| **[04-application-route-and-mutation-contract.md](./docs/04-application-route-and-mutation-contract.md)** | Standard `ActionResponse` envelope, Zod validation schemas, and Upstash limits. | Approved |
-| **[05-visual-design-system-specification.md](./docs/05-visual-design-system-specification.md)** | 8px spatial scale, Major Third typography ratio (1.250), and WCAG semantic tokens. | Approved |
-| **[06-application-layout-and-navigation-architecture.md](./docs/06-application-layout-and-navigation-architecture.md)** | Three viewport shells (Public, Auth, Portal) and layout navigation architecture. | Approved |
-| **[07-user-interface-component-anatomy-specification.md](./docs/07-user-interface-component-anatomy-specification.md)** | UI component anatomy, statutory microcopy, and interactive state machines. | Approved |
-| **[08-landing-page-view-architecture.md](./docs/08-landing-page-view-architecture.md)** | 6-section landing page deconstruction and NPSN/BAN-S/M legal microcopy. | Approved |
-| **[09-architecture-decision-records.md](./docs/09-architecture-decision-records.md)** | Chronological Architecture Decision Records (ADR-001 through ADR-008). | Approved |
-| **[10-quality-assurance-and-verification-plan.md](./docs/10-quality-assurance-and-verification-plan.md)** | Testing pyramid, boundary test scenarios, and automated CI quality gates. | Approved |
-| **[11-operational-runbook-and-incident-procedures.md](./docs/11-operational-runbook-and-incident-procedures.md)** | Git branching governance, disaster recovery runbooks, and agent constitution. | Approved |
+| **[`ARCHITECTURE.md`](ARCHITECTURE.md)** | Modern Modular Monolith topology, subdomain routing, C4 component diagrams, and domain boundaries. | IEEE 1016 / next-forge |
+| **[`DATABASE.md`](DATABASE.md)** | Relational schema, RFC 9562 UUIDv7 primary keys, soft-deletion, and Drizzle migration workflow. | RFC 9562 / ACID |
+| **[`DESIGN.md`](DESIGN.md)** | Mathematical 8px spatial grid, Major Third typography (1.250), semantic CSS tokens, and accessibility. | W3C WCAG 2.1 AA |
+| **[`DEPLOYMENT.md`](DEPLOYMENT.md)** | Vercel Edge Serverless runbook, Cloudflare WAF/DNS topology, CI quality gates, and instant rollback. | Production DevOps |
+| **[`ENVIRONMENT.md`](ENVIRONMENT.md)** | Classification matrix for public vs secret variables, format specifications, and rotation guidelines. | DevSecOps Standard |
+| **[`TESTING.md`](TESTING.md)** | Testing pyramid strategy: Vitest unit tests, Playwright browser E2E, and Storybook visual testing. | QA Best Practices |
+| **[`AGENTS.md`](AGENTS.md)** | Autonomous agent operational constitution, 24 agent skills matrix, and hard invariants enforcement. | AI SDLC Standard |
+| **[`SECURITY.md`](SECURITY.md)** | Vulnerability disclosure SLA, threat model, Cloudflare Turnstile bot deterrence, and Upstash rate limits. | ISO/IEC 29147 |
+| **[`GOVERNANCE.md`](GOVERNANCE.md)** | Institutional leadership roles (Yayasan, Lead Architect), decision-making models (Lazy Consensus, RFC/ADR). | CNCF Governance Model |
+| **[`ROADMAP.md`](ROADMAP.md)** | Multi-phase strategic roadmap (2026–2027): v0.1.0 baseline through v0.4.0 Dapodik/EMIS & offline sync. | Agile Milestones |
+| **[`CONTRIBUTING.md`](CONTRIBUTING.md)** | Git branch lifecycle (`dev` -> `staging` -> `main`), Conventional Commits 1.0.0, and Husky quality gates. | GitHub Standard |
+| **[`CHANGELOG.md`](CHANGELOG.md)** | Chronological version release log following Semantic Versioning 2.0.0 and Keep a Changelog. | Keep a Changelog 1.1.0 |
+| **[`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md)** | Community ethical standards, respectful collaboration guidelines, and incident reporting. | Contributor Covenant 2.1 |
+| **[`SUPPORT.md`](SUPPORT.md)** | Official support channels for PPDB inquiries, guardian academic desk, bug reports, and security. | GitHub Community Spec |
+| **[`AUTHORS.md`](AUTHORS.md)** | Intellectual property accreditation for Yayasan Pendidikan Al-Birru, Academic Board, and engineering. | GNU/Linux Standard |
+| **[`LICENSE`](LICENSE)** | Formal open-source legal rights and copyright conditions (MIT License). | OSI Approved License |
 
 ---
 
