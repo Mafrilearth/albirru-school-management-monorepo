@@ -72,12 +72,8 @@
           "name": "academic_terms_created_by_users_id_fk",
           "tableFrom": "academic_terms",
           "tableTo": "users",
-          "columnsFrom": [
-            "created_by"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["created_by"],
+          "columnsTo": ["id"],
           "onDelete": "set null",
           "onUpdate": "no action"
         }
@@ -87,9 +83,7 @@
         "academic_terms_term_code_unique": {
           "name": "academic_terms_term_code_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "term_code"
-          ]
+          "columns": ["term_code"]
         }
       },
       "policies": {},
@@ -189,12 +183,8 @@
           "name": "admission_applications_adjudicated_by_profiles_id_fk",
           "tableFrom": "admission_applications",
           "tableTo": "profiles",
-          "columnsFrom": [
-            "adjudicated_by"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["adjudicated_by"],
+          "columnsTo": ["id"],
           "onDelete": "set null",
           "onUpdate": "no action"
         },
@@ -202,12 +192,8 @@
           "name": "admission_applications_created_by_users_id_fk",
           "tableFrom": "admission_applications",
           "tableTo": "users",
-          "columnsFrom": [
-            "created_by"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["created_by"],
+          "columnsTo": ["id"],
           "onDelete": "set null",
           "onUpdate": "no action"
         }
@@ -217,9 +203,7 @@
         "admission_applications_registration_tracking_code_unique": {
           "name": "admission_applications_registration_tracking_code_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "registration_tracking_code"
-          ]
+          "columns": ["registration_tracking_code"]
         }
       },
       "policies": {},
@@ -315,12 +299,8 @@
           "name": "assessment_configurations_subject_id_subjects_id_fk",
           "tableFrom": "assessment_configurations",
           "tableTo": "subjects",
-          "columnsFrom": [
-            "subject_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["subject_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
@@ -328,12 +308,8 @@
           "name": "assessment_configurations_academic_term_id_academic_terms_id_fk",
           "tableFrom": "assessment_configurations",
           "tableTo": "academic_terms",
-          "columnsFrom": [
-            "academic_term_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["academic_term_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
@@ -341,12 +317,8 @@
           "name": "assessment_configurations_created_by_users_id_fk",
           "tableFrom": "assessment_configurations",
           "tableTo": "users",
-          "columnsFrom": [
-            "created_by"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["created_by"],
+          "columnsTo": ["id"],
           "onDelete": "set null",
           "onUpdate": "no action"
         }
@@ -441,12 +413,8 @@
           "name": "attendance_records_attendance_session_id_attendance_sessions_id_fk",
           "tableFrom": "attendance_records",
           "tableTo": "attendance_sessions",
-          "columnsFrom": [
-            "attendance_session_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["attendance_session_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
@@ -454,12 +422,8 @@
           "name": "attendance_records_student_profile_id_profiles_id_fk",
           "tableFrom": "attendance_records",
           "tableTo": "profiles",
-          "columnsFrom": [
-            "student_profile_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["student_profile_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
@@ -467,12 +431,8 @@
           "name": "attendance_records_created_by_users_id_fk",
           "tableFrom": "attendance_records",
           "tableTo": "users",
-          "columnsFrom": [
-            "created_by"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["created_by"],
+          "columnsTo": ["id"],
           "onDelete": "set null",
           "onUpdate": "no action"
         }
@@ -574,12 +534,8 @@
           "name": "attendance_sessions_classroom_cohort_id_classroom_cohorts_id_fk",
           "tableFrom": "attendance_sessions",
           "tableTo": "classroom_cohorts",
-          "columnsFrom": [
-            "classroom_cohort_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["classroom_cohort_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
@@ -587,12 +543,8 @@
           "name": "attendance_sessions_recording_instructor_id_profiles_id_fk",
           "tableFrom": "attendance_sessions",
           "tableTo": "profiles",
-          "columnsFrom": [
-            "recording_instructor_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["recording_instructor_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
@@ -600,12 +552,8 @@
           "name": "attendance_sessions_created_by_users_id_fk",
           "tableFrom": "attendance_sessions",
           "tableTo": "users",
-          "columnsFrom": [
-            "created_by"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["created_by"],
+          "columnsTo": ["id"],
           "onDelete": "set null",
           "onUpdate": "no action"
         }
@@ -691,12 +639,8 @@
           "name": "classroom_cohorts_academic_term_id_academic_terms_id_fk",
           "tableFrom": "classroom_cohorts",
           "tableTo": "academic_terms",
-          "columnsFrom": [
-            "academic_term_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["academic_term_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
@@ -704,12 +648,8 @@
           "name": "classroom_cohorts_lead_instructor_profile_id_profiles_id_fk",
           "tableFrom": "classroom_cohorts",
           "tableTo": "profiles",
-          "columnsFrom": [
-            "lead_instructor_profile_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["lead_instructor_profile_id"],
+          "columnsTo": ["id"],
           "onDelete": "set null",
           "onUpdate": "no action"
         },
@@ -717,12 +657,8 @@
           "name": "classroom_cohorts_created_by_users_id_fk",
           "tableFrom": "classroom_cohorts",
           "tableTo": "users",
-          "columnsFrom": [
-            "created_by"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["created_by"],
+          "columnsTo": ["id"],
           "onDelete": "set null",
           "onUpdate": "no action"
         }
@@ -811,12 +747,8 @@
           "name": "cohort_enrollments_student_profile_id_profiles_id_fk",
           "tableFrom": "cohort_enrollments",
           "tableTo": "profiles",
-          "columnsFrom": [
-            "student_profile_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["student_profile_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
@@ -824,12 +756,8 @@
           "name": "cohort_enrollments_classroom_cohort_id_classroom_cohorts_id_fk",
           "tableFrom": "cohort_enrollments",
           "tableTo": "classroom_cohorts",
-          "columnsFrom": [
-            "classroom_cohort_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["classroom_cohort_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
@@ -837,12 +765,8 @@
           "name": "cohort_enrollments_created_by_users_id_fk",
           "tableFrom": "cohort_enrollments",
           "tableTo": "users",
-          "columnsFrom": [
-            "created_by"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["created_by"],
+          "columnsTo": ["id"],
           "onDelete": "set null",
           "onUpdate": "no action"
         }
@@ -938,12 +862,8 @@
           "name": "guardian_student_relations_guardian_profile_id_profiles_id_fk",
           "tableFrom": "guardian_student_relations",
           "tableTo": "profiles",
-          "columnsFrom": [
-            "guardian_profile_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["guardian_profile_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
@@ -951,12 +871,8 @@
           "name": "guardian_student_relations_student_profile_id_profiles_id_fk",
           "tableFrom": "guardian_student_relations",
           "tableTo": "profiles",
-          "columnsFrom": [
-            "student_profile_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["student_profile_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
@@ -964,12 +880,8 @@
           "name": "guardian_student_relations_created_by_users_id_fk",
           "tableFrom": "guardian_student_relations",
           "tableTo": "users",
-          "columnsFrom": [
-            "created_by"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["created_by"],
+          "columnsTo": ["id"],
           "onDelete": "set null",
           "onUpdate": "no action"
         }
@@ -1060,12 +972,8 @@
           "name": "profiles_user_id_users_id_fk",
           "tableFrom": "profiles",
           "tableTo": "users",
-          "columnsFrom": [
-            "user_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["user_id"],
+          "columnsTo": ["id"],
           "onDelete": "set null",
           "onUpdate": "no action"
         },
@@ -1073,12 +981,8 @@
           "name": "profiles_created_by_users_id_fk",
           "tableFrom": "profiles",
           "tableTo": "users",
-          "columnsFrom": [
-            "created_by"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["created_by"],
+          "columnsTo": ["id"],
           "onDelete": "set null",
           "onUpdate": "no action"
         }
@@ -1088,16 +992,12 @@
         "profiles_user_id_unique": {
           "name": "profiles_user_id_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "user_id"
-          ]
+          "columns": ["user_id"]
         },
         "profiles_national_identity_number_unique": {
           "name": "profiles_national_identity_number_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "national_identity_number"
-          ]
+          "columns": ["national_identity_number"]
         }
       },
       "policies": {},
@@ -1201,12 +1101,8 @@
           "name": "report_cards_student_profile_id_profiles_id_fk",
           "tableFrom": "report_cards",
           "tableTo": "profiles",
-          "columnsFrom": [
-            "student_profile_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["student_profile_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
@@ -1214,12 +1110,8 @@
           "name": "report_cards_academic_term_id_academic_terms_id_fk",
           "tableFrom": "report_cards",
           "tableTo": "academic_terms",
-          "columnsFrom": [
-            "academic_term_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["academic_term_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
@@ -1227,12 +1119,8 @@
           "name": "report_cards_classroom_cohort_id_classroom_cohorts_id_fk",
           "tableFrom": "report_cards",
           "tableTo": "classroom_cohorts",
-          "columnsFrom": [
-            "classroom_cohort_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["classroom_cohort_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
@@ -1240,12 +1128,8 @@
           "name": "report_cards_created_by_users_id_fk",
           "tableFrom": "report_cards",
           "tableTo": "users",
-          "columnsFrom": [
-            "created_by"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["created_by"],
+          "columnsTo": ["id"],
           "onDelete": "set null",
           "onUpdate": "no action"
         }
@@ -1339,12 +1223,8 @@
           "name": "student_grades_assessment_config_id_assessment_configurations_id_fk",
           "tableFrom": "student_grades",
           "tableTo": "assessment_configurations",
-          "columnsFrom": [
-            "assessment_config_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["assessment_config_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
@@ -1352,12 +1232,8 @@
           "name": "student_grades_student_profile_id_profiles_id_fk",
           "tableFrom": "student_grades",
           "tableTo": "profiles",
-          "columnsFrom": [
-            "student_profile_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["student_profile_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
@@ -1365,12 +1241,8 @@
           "name": "student_grades_evaluator_profile_id_profiles_id_fk",
           "tableFrom": "student_grades",
           "tableTo": "profiles",
-          "columnsFrom": [
-            "evaluator_profile_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["evaluator_profile_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
@@ -1378,12 +1250,8 @@
           "name": "student_grades_created_by_users_id_fk",
           "tableFrom": "student_grades",
           "tableTo": "users",
-          "columnsFrom": [
-            "created_by"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["created_by"],
+          "columnsTo": ["id"],
           "onDelete": "set null",
           "onUpdate": "no action"
         }
@@ -1450,12 +1318,8 @@
           "name": "subjects_created_by_users_id_fk",
           "tableFrom": "subjects",
           "tableTo": "users",
-          "columnsFrom": [
-            "created_by"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["created_by"],
+          "columnsTo": ["id"],
           "onDelete": "set null",
           "onUpdate": "no action"
         }
@@ -1465,9 +1329,7 @@
         "subjects_code_unique": {
           "name": "subjects_code_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "code"
-          ]
+          "columns": ["code"]
         }
       },
       "policies": {},
@@ -1532,9 +1394,7 @@
         "users_email_unique": {
           "name": "users_email_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "email"
-          ]
+          "columns": ["email"]
         }
       },
       "policies": {},
@@ -1556,48 +1416,27 @@
     "public.attendance_status": {
       "name": "attendance_status",
       "schema": "public",
-      "values": [
-        "Present",
-        "Absent",
-        "Sick",
-        "Excused"
-      ]
+      "values": ["Present", "Absent", "Sick", "Excused"]
     },
     "public.enrollment_status": {
       "name": "enrollment_status",
       "schema": "public",
-      "values": [
-        "Active",
-        "Transferred",
-        "Withdrawn",
-        "Completed"
-      ]
+      "values": ["Active", "Transferred", "Withdrawn", "Completed"]
     },
     "public.gender": {
       "name": "gender",
       "schema": "public",
-      "values": [
-        "Male",
-        "Female"
-      ]
+      "values": ["Male", "Female"]
     },
     "public.guardian_relationship_type": {
       "name": "guardian_relationship_type",
       "schema": "public",
-      "values": [
-        "Father",
-        "Mother",
-        "Legal Guardian"
-      ]
+      "values": ["Father", "Mother", "Legal Guardian"]
     },
     "public.publication_status": {
       "name": "publication_status",
       "schema": "public",
-      "values": [
-        "Draft",
-        "Pending Verification",
-        "Published"
-      ]
+      "values": ["Draft", "Pending Verification", "Published"]
     },
     "public.role": {
       "name": "role",

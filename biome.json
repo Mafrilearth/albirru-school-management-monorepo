@@ -7,14 +7,17 @@
   },
   "files": {
     "includes": [
+      "*.json",
       "**/apps/**/*.ts",
       "**/apps/**/*.tsx",
       "**/apps/**/*.js",
       "**/apps/**/*.mjs",
+      "**/apps/**/*.json",
       "**/packages/**/*.ts",
       "**/packages/**/*.tsx",
       "**/packages/**/*.js",
       "**/packages/**/*.mjs",
+      "**/packages/**/*.json",
       "!**/node_modules",
       "!**/.next",
       "!**/dist",

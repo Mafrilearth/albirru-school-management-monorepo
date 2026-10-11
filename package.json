@@ -12,6 +12,7 @@
     "build": "turbo run build",
     "lint": "turbo run lint",
     "check": "biome check .",
+    "check:fix": "biome check --write .",
     "format": "biome format --write .",
     "check-types": "turbo run check-types",
     "test": "turbo run test",
@@ -22,6 +23,8 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^2.5.15",
+    "@commitlint/cli": "^21.2.3",
+    "@commitlint/config-conventional": "^21.2.3",
     "husky": "^9.1.7",
     "lint-staged": "^15.4.3",
     "turbo": "^2.4.4",

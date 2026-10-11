@@ -91,12 +91,8 @@
           "name": "admission_applications_adjudicated_by_profiles_id_fk",
           "tableFrom": "admission_applications",
           "tableTo": "profiles",
-          "columnsFrom": [
-            "adjudicated_by"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["adjudicated_by"],
+          "columnsTo": ["id"],
           "onDelete": "set null",
           "onUpdate": "no action"
         }
@@ -106,9 +102,7 @@
         "admission_applications_registration_tracking_code_unique": {
           "name": "admission_applications_registration_tracking_code_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "registration_tracking_code"
-          ]
+          "columns": ["registration_tracking_code"]
         }
       },
       "policies": {},
@@ -189,12 +183,8 @@
           "name": "profiles_user_id_users_id_fk",
           "tableFrom": "profiles",
           "tableTo": "users",
-          "columnsFrom": [
-            "user_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["user_id"],
+          "columnsTo": ["id"],
           "onDelete": "set null",
           "onUpdate": "no action"
         }
@@ -204,16 +194,12 @@
         "profiles_user_id_unique": {
           "name": "profiles_user_id_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "user_id"
-          ]
+          "columns": ["user_id"]
         },
         "profiles_national_identity_number_unique": {
           "name": "profiles_national_identity_number_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "national_identity_number"
-          ]
+          "columns": ["national_identity_number"]
         }
       },
       "policies": {},
@@ -272,9 +258,7 @@
         "users_email_unique": {
           "name": "users_email_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "email"
-          ]
+          "columns": ["email"]
         }
       },
       "policies": {},
@@ -296,10 +280,7 @@
     "public.gender": {
       "name": "gender",
       "schema": "public",
-      "values": [
-        "Male",
-        "Female"
-      ]
+      "values": ["Male", "Female"]
     },
     "public.role": {
       "name": "role",
