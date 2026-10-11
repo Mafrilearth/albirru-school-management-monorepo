@@ -23,6 +23,7 @@
     "@react-email/render": "^2.1.0",
     "@sentry/nextjs": "^11.4.0",
     "@shadcn/react": "^0.3.1",
+    "@tanstack/react-table": "^8.21.3",
     "@upstash/ratelimit": "^2.2.0",
     "@upstash/redis": "^1.39.0",
     "@vercel/analytics": "^2.0.1",

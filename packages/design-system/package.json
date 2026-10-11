@@ -8,16 +8,20 @@
     ".": "./src/index.ts",
     "./components/*": "./src/components/*",
     "./lib/*": "./src/lib/*",
-    "./hooks/*": "./src/hooks/*"
+    "./hooks/*": "./src/hooks/*",
+    "./styles.css": "./src/styles/globals.css",
+    "./typeset.css": "./src/styles/typeset.css"
   },
   "scripts": {
     "check-types": "tsc --noEmit"
   },
   "dependencies": {
     "@base-ui/react": "^1.8.0",
+    "@tanstack/react-table": "^8.21.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
+    "date-fns": "^4.4.0",
     "embla-carousel-react": "^8.6.0",
     "input-otp": "^1.5.0",
     "lucide-react": "^1.52.0",
