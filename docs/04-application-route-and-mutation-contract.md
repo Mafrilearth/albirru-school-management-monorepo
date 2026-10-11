@@ -161,7 +161,7 @@ Semua kontrak mutasi kritis menerima token idempotensi opsional guna mencegah ek
 	- `guardian_contact_name` (Varchar(255), Wajib)
 	- `guardian_contact_phone` (Varchar(32), Wajib)
 	- `guardian_contact_email` (Varchar(255), Wajib)
-	- `submitted_documents_url` (Text, Opsional, Tautan berkas Supabase Storage / Cloudflare R2)
+	- `submitted_documents_url` (Text, Opsional, Tautan berkas Cloudflare R2)
 	- `turnstile_token` (Text, Wajib, Token validasi Cloudflare Turnstile)
 - **Output Payload:**
 	- `registration_tracking_code` (Varchar, Format: `ADM-YYYYMMDD-XXXX`)

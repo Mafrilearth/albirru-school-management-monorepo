@@ -21,7 +21,7 @@
 
 ## Checkpoint: Core Features
 - [ ] Form bisa diisi dan menampilkan pesan sukses/gagal.
-- [ ] Data tersimpan di Supabase.
+- [ ] Data tersimpan di Neon PostgreSQL.
 
 - [ ] Task 5: Linting dan pengujian akhir.
   - Acceptance: `npx tsc --noEmit` lulus 100%.

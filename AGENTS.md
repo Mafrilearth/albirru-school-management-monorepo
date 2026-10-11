@@ -120,10 +120,9 @@ Fase 2: Spesifikasi & Penjadwalan (MCP: Notion & Linear)
 - Linear: Agen menggunakan linear-mcp-server untuk membuat Issue/Ticket baru yang merinci tugas, lalu mengubah statusnya menjadi "In Progress".
 - Agent Skill: Panggil skill spec-driven-development dan planning-and-task-breakdown secara asinkron untuk menyusun mental model sebelum mengoding.
 
-Fase 3: Pembaruan Basis Data & Mutasi Backend (MCP: Supabase)
-- Agen memvalidasi perubahan skema menggunakan skill supabase-postgres-best-practices.
-- Jika ada penambahan entitas data, agen wajib mengubah skema deklaratif Drizzle (src/db/schema.ts).
-- Jalankan eksekusi npx drizzle-kit generate untuk membuat berkas migrasi SQL statis.
+Fase 3: Pembaruan Basis Data & Mutasi Backend (Neon PostgreSQL & Drizzle ORM)
+- Jika ada penambahan entitas data, agen wajib mengubah skema deklaratif Drizzle (packages/database/src/schema/).
+- Jalankan eksekusi pnpm run db:generate untuk membuat berkas migrasi SQL statis.
 - Agen DILARANG mengeksekusi SQL mentah. Eksekusi WAJIB melalui migrasi terkontrol Drizzle.
 
 Fase 4: Penulisan Kode & Verifikasi Berulang (Skill: test-driven-development)
@@ -162,10 +161,9 @@ Fase 6: Pengiriman, Rilis, & Notifikasi (MCP: GitHub, Vercel, Linear, Slack)
 - Gunakan next/navigation (bukan next/router) untuk manipulasi rute sisi klien.
 <!-- END:nextjs-agent-rules -->
 
-### Supabase SSR & Autentikasi
-- Selalu inisialisasi client menggunakan pustaka @supabase/ssr sesuai konteks runtime (createServerClient untuk Server Component/Server Actions dan createBrowserClient untuk Client Components).
-- Asumsikan Row Level Security (RLS) selalu aktif pada PostgreSQL.
-- Verifikasi dan parsing sesi pengguna di server WAJIB menggunakan metode aman supabase.auth.getUser() (dilarang mengandalkan getSession() di lingkungan server).
+### Autentikasi & Akun (Clerk)
+- Verifikasi dan parsing sesi pengguna di server WAJIB menggunakan pustaka resmi `@clerk/nextjs` (misalnya `auth()` dari `@clerk/nextjs/server`).
+- Lindungi rute portal dan administrasi menggunakan Clerk Middleware dan integrasikan pemeriksaan peran RBAC secara terpusat.
 
 ### Drizzle ORM
 - Definisikan relasi referensial secara eksplisit menggunakan skema relations() Drizzle untuk mencegah anomali query N+1.

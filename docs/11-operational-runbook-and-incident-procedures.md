@@ -14,7 +14,7 @@ Infrastruktur sistem beroperasi sepenuhnya di atas platform awan terkelola (*man
 | Operational Tier Classification | Dedicated Management Platform | Operational Responsibility Scope | Management Access Location |
 |---|---|---|---|
 | **Application Hosting Tier** | Vercel Platform | Pipeline kompilasi build, perutean edge, SSL, dan log runtime | Dasbor Vercel Proyek |
-| **Relational Database Tier** | Supabase Managed PostgreSQL | Mesin PostgreSQL 16+, pooling koneksi, dan pencadangan terkelola | Konsol Supabase Proyek |
+| **Relational Database Tier** | Neon Serverless PostgreSQL | Mesin PostgreSQL 16+, pooling koneksi, dan pencadangan terkelola | Konsol Neon Proyek |
 | **Source and Continuous Delivery** | GitHub Actions | Repositori kode, perlindungan cabang, dan gerbang verifikasi otomatis | Repositori GitHub Proyek |
 | **Operational Telemetry** | Slack Integration | Notifikasi rilis produksi, kegagalan build, dan telemetri sistem | Saluran `#albirru-project-stream` |
 ---
@@ -156,8 +156,8 @@ Modifikasi skema basis data relasional wajib menerapkan pola migrasi progresif k
 - **Fase 2 (Penyebaran Kode Aplikasi):** Rilis kode aplikasi baru yang menulis ke struktur skema lama maupun skema baru secara paralel jika memproses transisi rekaman aktif.
 - **Fase 3 (Pembersihan Migrasi Subtraktif):** Setelah kode aplikasi berjalan stabil di produksi, jalankan migrasi pembersihan untuk menghentikan kolom usang atau batasan integritas yang didepresiasi.
 ### 4.2 Automated Database Backup and Snapshot Schedule
-- **Pencadangan Otomatis Harian:** Snapshot harian basis data berjalan otomatis pada tengah malam melalui infrastruktur terkelola Supabase.
-- **Pencadangan Manual Pra-Migrasi:** Sebelum mengeksekusi migrasi struktural besar, buat snapshot cadangan manual sesuai permintaan (*on-demand snapshot*) melalui konsol manajemen Supabase.
+- **Pencadangan Otomatis Harian:** Snapshot harian basis data berjalan otomatis pada tengah malam melalui infrastruktur terkelola Neon.
+- **Pencadangan Manual Pra-Migrasi:** Sebelum mengeksekusi migrasi struktural besar, buat snapshot cadangan manual sesuai permintaan (*on-demand snapshot*) melalui konsol manajemen Neon.
 ---
 ## 5. Emergency Incident Management and Disaster Recovery
 ### 5.1 Incident Severity Classification Framework
@@ -172,7 +172,7 @@ Modifikasi skema basis data relasional wajib menerapkan pola migrasi progresif k
 3. **Promosi Rilis Cepat:** Eksekusi aksi promosi (*instant rollback promotion*). Jaringan edge Vercel seketika mengalihkan lalu lintas global ke rilis stabil dalam hitungan detik.
 4. **Remediasi Kode Sumber:** Batalkan (*revert*) pull request penyebab galat pada repositori GitHub, selidiki akar masalah secara lokal, dan catat tindakan perbaikan di Linear.
 ### 5.3 Database Disaster Recovery Procedure
-1. **Akses Konsol Pencadangan:** Masuk ke panel direktori pencadangan basis data di konsol manajemen proyek Supabase.
+1. **Akses Konsol Pencadangan:** Masuk ke panel direktori pencadangan basis data di konsol manajemen proyek Neon.
 2. **Pemilihan Titik Pemulihan:** Pilih snapshot cadangan bersih terakhir yang tercatat sebelum anomali mutasi atau kerusakan integritas relasional terjadi.
 3. **Eksekusi Restorasi:** Jalankan prosedur pemulihan terkelola (*managed point-in-time restore*) ke basis data utama.
 4. **Verifikasi Integritas Data:** Lakukan audit validasi atas integritas data civitas, keterikatan rombongan belajar, lembar presensi, dan buku rapor yang telah disahkan.
@@ -188,15 +188,15 @@ Seluruh agen perangkat lunak otonom (*autonomous coding agents*) yang beroperasi
 ### 7.1 Database Storage Quota Thresholds and Escalation
 - **Ambang Batas Peringatan (80% Kapasitas):** Peringatan otomatis dipancarkan ke saluran Slack `#albirru-project-stream` jika ruang basis data mencapai 400 MB (dari batas kuota 500 MB).
 - **Ambang Batas Kritis (90% Kapasitas):** Tim pengelola wajib mengeksekusi salah satu dari tiga prosedur eskalasi dalam jangka waktu maksimal 7 hari kerja:
-	- **Jalur 1 (Optimasi & Pengarsipan In-Tree — Biaya Rp0):** Ekspor rekaman presensi yang telah melewati batas retensi 3 tahun ke berkas arsip terkompresi, lalu eksekusi pembersihan ruang fisik (*VACUUM FULL*) via Supabase Studio untuk mereklamasi ruang penyimpanan cakram.
-	- **Jalur 2 (Peningkatan Layanan Terkelola — Skala Resmi):** Tingkatkan status langganan ke Supabase Pro melalui anggaran Bantuan Operasional Sekolah (BOS). Kapasitas bertambah instan tanpa jeda padam (*zero downtime*) dan tanpa modifikasi kode.
+	- **Jalur 1 (Optimasi & Pengarsipan In-Tree — Biaya Rp0):** Ekspor rekaman presensi yang telah melewati batas retensi 3 tahun ke berkas arsip terkompresi, lalu eksekusi pembersihan ruang fisik (*VACUUM FULL*) via Neon SQL Editor untuk mereklamasi ruang penyimpanan cakram.
+	- **Jalur 2 (Peningkatan Layanan Terkelola — Skala Resmi):** Tingkatkan kapasitas komputasi Neon melalui anggaran Bantuan Operasional Sekolah (BOS). Kapasitas bertambah instan tanpa jeda padam (*zero downtime*) dan tanpa modifikasi kode.
 	- **Jalur 3 (Migrasi Mandiri Tanpa Keterikatan Vendor — Self-Hosted VPS):** Siapkan server VPS mandiri dengan kontainer PostgreSQL 16+, ekspor data via `pg_dump`, pulihkan via `pg_restore`, dan alihkan variabel lingkungan `DATABASE_URL` pada konsol Vercel tanpa perlu menulis ulang kode.
 ### 7.2 Connection Pool Starvation Mitigation
-- **Kanal Koneksi Terkelola:** Seluruh string koneksi basis data pada konfigurasi aplikasi wajib menggunakan Supavisor Transaction Pooler (Port 6543) guna mencegah kehabisan slot koneksi PostgreSQL langsung.
+- **Kanal Koneksi Terkelola:** Seluruh string koneksi basis data pada konfigurasi aplikasi wajib menggunakan Neon Connection Pooler guna mencegah kehabisan slot koneksi PostgreSQL langsung.
 - **Batas Waktu Eksekusi Transaksi:** Menetapkan batas waktu transaksi maksimal 3000 milidetik pada Drizzle ORM agar koneksi yang menggantung (*dangling connections*) diputus otomatis dan dikembalikan ke antrean pool.
 ### 7.3 Document Attachment Storage Quota Mitigation
 - **Kompresi Dokumen Sisi Klien:** Skema validasi Zod membatasi ukuran maksimal berkas unggahan pendaftaran hingga 2 MB per berkas serta mewajibkan format terkompresi (PDF/WebP) sebelum dikirimkan ke server.
-- **Pengalihan Penyimpanan Dingin (Cold Storage Offloading):** Jika penyimpanan berkas Supabase Storage mencapai 800 MB (dari kuota 1 GB), berkas lampiran admisi tahun ajaran lampau dipindahkan ke Cloudflare R2 (kuota gratis 10 GB per bulan tanpa biaya transfer data keluar).
+- **Pengalihan Penyimpanan Dingin (Cold Storage Offloading):** Berkas lampiran admisi tahun ajaran lampau dipindahkan ke Cloudflare R2 (kuota gratis 10 GB per bulan tanpa biaya transfer data keluar).
 ### 7.4 Public Ingress Protection and Rate Limiting
 - **Pembatasan Frekuensi Permintaan:** Menerapkan pembatasan frekuensi (*rate limiting*) pada rute `/admission` maksimal 5 pengiriman formulir per 15 menit per alamat protokol internet klien guna mencegah serangan spam formulir yang menghabiskan memori basis data.
 - **Verifikasi Otomasi Headless:** Mengintegrasikan widget Cloudflare Turnstile pada Client Island formulir pendaftaran publik guna memblokir bot pengisi data otomatis tanpa membebani biaya API.
@@ -204,5 +204,5 @@ Seluruh agen perangkat lunak otonom (*autonomous coding agents*) yang beroperasi
 - **Pemindahan Komputasi Agregat:** Kalkulasi rata-rata nilai semester dan rekonsiliasi presensi dieksekusi melalui kueri agregasi SQL langsung di basis data, bukan di-*looping* pada runtime serverless Next.js, guna menghemat kuota eksekusi bulanan Vercel.
 - **Pemrosesan Data Berkelompok (Chunk Processing):** Operasi massal seperti pembekuan rapor dijalankan bertahap per rombongan belajar (maksimal 30 siswa per eksekusi Server Action) untuk menghindari batas waktu henti paksa (*serverless timeout execution limit*).
 ### 7.6 Academic Holiday Inactivity Guard
-- **Pencegahan Suspensi Proyek:** Untuk mencegah suspensi otomatis instans PostgreSQL oleh Supabase akibat ketiadaan aktivitas saat libur panjang semester, sistem menggunakan alur kerja GitHub Actions terjadwal (*scheduled cron job*) setiap 48 jam.
+- **Pencegahan Suspensi Proyek:** Untuk mencegah suspensi otomatis instans serverless PostgreSQL akibat ketiadaan aktivitas saat libur panjang semester, sistem menggunakan alur kerja GitHub Actions terjadwal (*scheduled cron job*) setiap 48 jam.
 - **Kueri Denyut Sistem:** Alur kerja memanggil rute `/api/health` yang menjalankan kueri baca ringan (`SELECT 1`) guna menjaga status proyek tetap aktif secara terus-menerus tanpa intervensi manual.

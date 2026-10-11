@@ -24,7 +24,7 @@ Membangun fitur manajemen identitas master (Identity Provisioning) untuk menginp
 
 ### Checkpoint: Core Features
 - [ ] Form bisa diisi dan menampilkan pesan sukses/gagal.
-- [ ] Data tersimpan di Supabase.
+- [ ] Data tersimpan di Neon PostgreSQL.
 
 ### Phase 3: Polish
 - [ ] Task 5: Linting dan pengujian akhir kompilasi TypeScript.

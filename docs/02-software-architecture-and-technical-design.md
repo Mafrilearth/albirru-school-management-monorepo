@@ -31,11 +31,10 @@ Sistem dirancang sebagai **Modern Modular Monolith** yang dikemas ke dalam satu 
 | **High-Density Data Grid** | TanStack Table | Version 8.x | Pengurutan tabel, filter rombel, dan paginasi data | Manajemen state tabular tanpa memicu *re-render* kanvas induk |
 | **Client Form Manager** | React Hook Form | Version 7.x | Manajemen formulir tak terkontrol (*uncontrolled inputs*) | Efisiensi memori tinggi saat input nilai dan presensi massal |
 | **Schema Validation** | Zod | Version 3.x | Validasi form klien dan Server Action boundaries | Inferensi tipe statis dua arah dari skema validasi runtime |
-| **Notification Engine** | Sonner | Version 1.x | Umpan balik status mutasi data asinkron (*toast*) | Notifikasi aksesibel yang tidak memblokir antarmuka |
-| **Relational Database** | Supabase PostgreSQL | PostgreSQL 16+ | Persistensi data relasional, kunci asing, dan RLS | Integritas transaksi ACID dengan pencadangan terkelola |
-| **Connection Pooling** | Supavisor | Port 6543 (Transaction Mode) | Manajemen antrean koneksi basis data serverless | Pencegahan kehabisan slot koneksi saat akses presensi serentak |
+| **Relational Database** | Neon (Serverless PostgreSQL) | PostgreSQL 16+ | Persistensi data relasional, kunci asing, dan integritas ACID | Integritas transaksi ACID dengan pencadangan terkelola |
+| **Connection Pooling** | Neon Connection Pooler | Transaction Mode | Manajemen antrean koneksi basis data serverless | Pencegahan kehabisan slot koneksi saat akses presensi serentak |
 | **Database ORM** | Drizzle ORM | Version 0.45+ (`drizzle-kit 0.31+`) | *Query builder* tipe-aman dan migrasi SQL deklaratif | *Zero runtime overhead* tanpa penalti *serverless cold start* |
-| **Session Authentication** | Supabase Auth | Native Auth Engine | Sesi cookie aman dan integrasi klaim peran | Terintegrasi langsung dengan PostgreSQL Row Level Security |
+| **Session Authentication** | Clerk (`@clerk/nextjs`) | Managed Auth Engine | Sesi cookie aman dan integrasi klaim peran RBAC | Manajemen identitas dan sesi aman terpadu |
 | **Cold Document Archive** | Cloudflare R2 | S3-Compatible API | Penyimpanan arsip berkas lampiran admisi lampau | Penyimpanan objek terdistribusi tanpa biaya transfer data keluar |
 | **Ingress Rate Limiter** | Upstash Redis | REST Redis API | Pembatasan frekuensi pengiriman form publik `/admission` | Perlindungan memori basis data dari serangan pengisian massal |
 | **Bot Protection Shield** | Cloudflare Turnstile | Managed Challenge API | Verifikasi pengguna manusia pada formulir pendaftaran | Alternatif CAPTCHA modern yang menjaga privasi pengguna |
@@ -85,7 +84,7 @@ albirru-sis-web/
 │   │   └── api/health/route.ts            # Endpoint health check & keep-alive cron
 │   ├── components/                        # Primitif UI bersama (shadcn/ui, layout, tables)
 │   ├── db/                                # Skema deklaratif Drizzle dan berkas migrasi
-│   ├── lib/                               # Utilitas inti dan konfigurasi client adapter (Supabase, Upstash, S3)
+│   ├── lib/                               # Utilitas inti dan konfigurasi client adapter (Neon, Upstash, Clerk)
 │   └── modules/                           # Modul logika modular monolit terisolasi
 │       ├── attendance/                    # actions.ts, components/, service.ts, types.ts
 │       ├── grading/                       # actions.ts, components/, service.ts, types.ts

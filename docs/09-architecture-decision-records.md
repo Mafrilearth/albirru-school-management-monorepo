@@ -27,7 +27,7 @@ Setiap rekaman keputusan dievaluasi secara ketat berdasarkan empat kriteria utam
 |---|---|---|---|---|
 | **ADR-001** | Modular Monolith Deployment Topology | Accepted | 2026-10-08 | System Top-Level Architecture |
 | **ADR-002** | Next.js Server Actions Data Mutation | Accepted | 2026-10-08 | Presentation and Application Layer |
-| **ADR-003** | Supabase Managed Relational Engine | Accepted | 2026-10-08 | Relational Persistence Layer |
+| **ADR-003** | Neon Serverless Relational Engine | Accepted | 2026-10-08 | Relational Persistence Layer |
 | **ADR-004** | Drizzle ORM Type-Safe Query Interface | Accepted | 2026-10-08 | Data Access and Migration Layer |
 | **ADR-005** | Headless shadcn/ui Component Primitives | Accepted | 2026-10-08 | User Interface Design System |
 | **ADR-006** | Cloudflare Turnstile & Upstash Rate Limiting | Accepted | 2026-10-09 | Public Ingress and Security Layer |
@@ -44,11 +44,11 @@ Setiap rekaman keputusan dievaluasi secara ketat berdasarkan empat kriteria utam
 - **Context:** Pemeliharaan lapisan REST API terpisah menduplikasi skema tipe TypeScript dan menambah baris kode penanganan jaringan.
 - **Decision:** Menstandardisasi mutasi transaksional terautentikasi menggunakan Next.js Server Actions.
 - **Consequences:** Jaminan *end-to-end type safety*, eliminasi boilerplate serialisasi, namun mengikat mutasi pada ekosistem Next.js.
-### 4.3 Architecture Decision Record 003: Supabase Managed Relational Engine
+### 4.3 Architecture Decision Record 003: Neon Serverless Relational Engine
 - **Status:** Accepted (2026-10-08)
-- **Context:** Membutuhkan mesin relasional PostgreSQL murni dengan integritas kunci asing fisik dan Row-Level Security tanpa biaya pemeliharaan mandiri.
-- **Decision:** Memilih Supabase Managed PostgreSQL dengan pooling bawaan Supavisor.
-- **Consequences:** Mesin PostgreSQL 16+ asli dengan dukungan RLS terikat sesi otentikasi, namun mengharuskan disiplin pooling koneksi via port 6543.
+- **Context:** Membutuhkan mesin relasional PostgreSQL murni serverless dengan integritas kunci asing fisik dan auto-scaling tanpa biaya pemeliharaan server fisik.
+- **Decision:** Memilih Neon Serverless PostgreSQL dengan driver postgres (porsager/postgres) dan pooling koneksi bawaan.
+- **Consequences:** Mesin PostgreSQL 16+ serverless dengan latensi rendah dan auto-suspend efisien, serta kompatibilitas penuh Drizzle ORM.
 ### 4.4 Architecture Decision Record 004: Drizzle ORM Type-Safe Query Interface
 - **Status:** Accepted (2026-10-08)
 - **Context:** ORM berat konvensional memiliki runtime overhead besar dan penalti waktu *cold start* serverless.
@@ -68,7 +68,7 @@ Setiap rekaman keputusan dievaluasi secara ketat berdasarkan empat kriteria utam
 	- **Negatif:** Menambah dependensi variabel lingkungan eksternal untuk verifikasi token Turnstile dan kredensial Redis REST API.
 ### 4.7 Architecture Decision Record 007: Cloudflare R2 S3-Compatible Cold Archive
 - **Status:** Accepted (2026-10-09)
-- **Context:** Berkas lampiran persyaratan peserta didik (Akta Kelahiran, Kartu Keluarga) dapat menghabiskan kuota Supabase Storage jika dipertahankan tanpa batas waktu.
+- **Context:** Berkas lampiran persyaratan peserta didik (Akta Kelahiran, Kartu Keluarga) dapat menghabiskan kuota penyimpanan dokumen jika dipertahankan tanpa batas waktu.
 - **Decision:** Mengadopsi Cloudflare R2 sebagai repositori arsip dingin (*cold storage*) untuk berkas siswa tahun ajaran lampau menggunakan API yang kompatibel dengan protokol AWS S3.
 - **Consequences:**
 	- **Positif:** Eliminasi biaya transfer data keluar (*zero egress fees*) dan kapasitas penyimpanan dokumen yang elastis tanpa batas waktu.

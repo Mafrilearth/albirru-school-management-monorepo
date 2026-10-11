@@ -23,7 +23,7 @@ Sistem membatasi perangkat penjamin mutu pada satu platform standar per kategori
 |---|---|---|---|
 | **Unit & Integration Test Runner** | Vitest | Vite-Native TypeScript Runner | Eksekusi paralel multi-thread berkecepatan tinggi tanpa overhead kompilasi |
 | **Browser End-to-End Engine** | Playwright | Headless Chromium & WebKit | Otomasi tangguh lintas peramban dengan auto-waiting bawaan |
-| **Database Mocking and Seeding** | Supabase Local CLI | Local Dockerized PostgreSQL 16+ | Validasi transaksi SQL riil tanpa memakai kuota cloud terkelola |
+| **Database Mocking and Seeding** | PostgreSQL Test Container | Local Dockerized PostgreSQL 16+ | Validasi transaksi SQL riil tanpa memakai kuota cloud terkelola |
 | **Continuous Integration Automation** | GitHub Actions | Ubuntu Standard Runner | Eksekusi pipeline otomatis bebas biaya pada repositori institusi |
 | **Quality Gate Telemetry** | Slack Webhook | Webhook API Specification | Pengiriman laporan otomatis hasil build ke saluran `#albirru-project-stream` |
 ---

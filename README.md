@@ -5,7 +5,7 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4-38B2AC?style=flat-square&logo=tailwind-css)](https://tailwindcss.com/)
 [![Drizzle ORM](https://img.shields.io/badge/Drizzle_ORM-0.45+-C5F74F?style=flat-square&logo=drizzle)](https://orm.drizzle.team/)
-[![Supabase](https://img.shields.io/badge/Supabase-PostgreSQL_16+-3ECF8E?style=flat-square&logo=supabase)](https://supabase.com/)
+[![Neon](https://img.shields.io/badge/Neon-Serverless_PostgreSQL-00E599?style=flat-square&logo=postgresql)](https://neon.tech/)
 [![Vercel Deployment](https://img.shields.io/badge/Vercel-Production_Edge-black?style=flat-square&logo=vercel)](https://vercel.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 
@@ -83,7 +83,7 @@ Repositori ini diorganisasikan sebagai **Turborepo Multi-Package Monorepo** (ter
 
 ### Paket Bersama (*Shared Packages*)
 - **`packages/database` (`@albirru/database`):** Pustaka basis data bersama berisikan skema DDL Drizzle ORM, migrasi SQL statis terkelola, dan koneksi *connection pooler* PostgreSQL.
-- **`packages/design-system` (`@albirru/design-system`):** Pustaka UI design system terstandarisasi (primitif Base UI, tema Fine-Line Boxy Brutalism, utilitas Tailwind CSS, hooks, dan ThemeProvider).
+- **`packages/design-system` (`@albirru/design-system`):** Pustaka UI design system terstandarisasi (primitif Radix UI, tema Fine-Line Boxy Brutalism, utilitas Tailwind CSS, hooks, dan ThemeProvider).
 - **`packages/eslint-config` (`@albirru/eslint-config`):** Aturan linting terpusat lintas monorepo (`base.js` dan `nextjs.js`).
 - **`packages/typescript-config` (`@albirru/typescript-config`):** Konfigurasi kompilasi TypeScript modular (`base.json`, `nextjs.json`, `react-library.json`).
 
@@ -97,8 +97,8 @@ Repositori ini diorganisasikan sebagai **Turborepo Multi-Package Monorepo** (ter
 | **Framework Utama** | [Next.js 16](https://nextjs.org/) (App Router, RSC) |
 | **Library UI Core** | React 19 + React DOM |
 | **Platform Hosting & Serverless** | [Vercel](https://vercel.com/) |
-| **DNS & Proteksi Jaringan** | Cloudflare (Turnstile & DNS Protection) |
-| **Basis Data Relasional** | Neon (Serverless PostgreSQL) / Supabase |
+| **DNS & Proteksi Jaringan** | Cloudflare |
+| **Basis Data Relasional** | Neon (Serverless PostgreSQL) |
 | **Database Driver** | `postgres` (porsager/postgres) |
 | **ORM & Migrations** | Drizzle ORM + Drizzle Kit |
 | **Autentikasi & Akun** | Clerk (`@clerk/nextjs`) |
@@ -107,7 +107,7 @@ Repositori ini diorganisasikan sebagai **Turborepo Multi-Package Monorepo** (ter
 | **Validasi Skema** | Zod (`zod`) |
 | **Form Controller** | React Hook Form + `@hookform/resolvers` |
 | **CSS Framework** | Tailwind CSS v4 |
-| **Primitive Headless UI** | Radix UI / Base UI Primitives |
+| **Primitive Headless UI** | Radix UI |
 | **Sistem Komponen** | shadcn/ui |
 | **Class Merging Utility** | `clsx` + `tailwind-merge` |
 | **Variant Authority** | `class-variance-authority` |
@@ -143,8 +143,8 @@ Repositori ini diorganisasikan sebagai **Turborepo Multi-Package Monorepo** (ter
 
 ### 1. Prasyarat Sistem
 - **Node.js:** Versi `>= 20.18.0` (Direkomendasikan `v22.x LTS`)
-- **Package Manager:** `pnpm` versi `>= 9.x` (atau `v12.x`)
-- **PostgreSQL Database:** Instans aktif Serverless PostgreSQL (Neon / Supabase)
+- **Package Manager:** `pnpm` versi `12.x`
+- **PostgreSQL Database:** Instans aktif Serverless PostgreSQL (Neon)
 
 ### 2. Kloning Repositori & Instalasi Dependensi
 ```bash
