@@ -73,9 +73,15 @@ Repositori menerapkan dokumentasi spesifikasi in-tree pada direktori `/docs/` se
 
 ---
 
-## 🛠️ Tumpukan Teknologi Produksi (*Technology Stack*)
+## 🛠️ Tumpukan Teknologi & Arsitektur Monorepo (*Technology Stack & Monorepo Architecture*)
 
-- **Framework Inti:** [Next.js 16](https://nextjs.org/) (App Router, React Server Components & Server Actions)
+Repositori ini diorganisasikan sebagai **Turborepo Multi-Package Monorepo** dengan pembagian workspace:
+- **`apps/web` (`@albirru/web`):** Aplikasi web portal dan antarmuka publik Next.js 16 (App Router, React Server Components & Server Actions).
+- **`packages/database` (`@albirru/database`):** Pustaka basis data bersama berisikan skema DDL Drizzle ORM, migrasi SQL statis, dan klien PostgreSQL.
+
+### Tumpukan Teknologi Inti
+- **Orkestrasi Monorepo:** [Turborepo](https://turbo.build/repo) (Task caching, parallel execution, and workspace pipelines)
+- **Framework Aplikasi:** [Next.js 16](https://nextjs.org/) (Turbopack, RSC, Server Actions)
 - **Runtime & Bahasa:** [Node.js 22.x LTS](https://nodejs.org/) & [TypeScript 5](https://www.typescriptlang.org/) (Strict Mode)
 - **Mesin Styling:** [Tailwind CSS v4](https://tailwindcss.com/) & [shadcn/ui](https://ui.shadcn.com/) (Fine-Line Boxy Brutalism)
 - **Basis Data:** [Supabase](https://supabase.com/) Managed PostgreSQL 16+ via [Supavisor](https://github.com/supabase/supavisor) Pooler (Port 6543)
@@ -122,20 +128,30 @@ NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=sb_publishable_<key>
 DATABASE_URL=postgresql://postgres.<project-ref>:<password>@aws-0-<region>.pooler.supabase.com:6543/postgres
 ```
 
-### 4. Sinkronisasi Skema Basis Data
+### 4. Perintah Operasional Monorepo & Basis Data
 ```bash
-# Menghasilkan berkas migrasi SQL statis
-npx drizzle-kit generate
-
-# Mendorong skema ke database target
-npx drizzle-kit push
-```
-
-### 5. Menjalankan Server Pengembangan
-```bash
+# Menjalankan server pengembangan (Next.js via Turborepo)
 npm run dev
+
+# Menjalankan kompilasi produksi seluruh workspace
+npm run build
+
+# Menjalankan linting kode statis
+npm run lint
+
+# Memeriksa validasi tipe TypeScript di seluruh workspace
+npm run check-types
+
+# Menjalankan pengujian otomatis (Vitest)
+npm run test
+
+# Menghasilkan berkas migrasi SQL Drizzle
+npm run db:generate
+
+# Menjalankan Drizzle Studio untuk inspeksi visual basis data
+npm run db:studio
 ```
-Buka peramban pada alamat [http://localhost:3000](http://localhost:3000).
+Buka peramban pada alamat [http://localhost:3000](http://localhost:3000) untuk antarmuka web.
 
 ---
 

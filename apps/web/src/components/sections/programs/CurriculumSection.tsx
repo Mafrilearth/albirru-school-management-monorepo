@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React, { useState } from "react";
 import {
@@ -211,7 +211,7 @@ export function CurriculumSection() {
                       </div>
                       <div>
                         <span className="text-[11px] font-bold text-amber-700 uppercase tracking-wider font-mono">
-                          {selectedPillar.code} // {selectedPillar.badge}
+                          {`${selectedPillar.code} // ${selectedPillar.badge}`}
                         </span>
                         <h3
                           id={`pillar-title-${selectedPillar.id}`}

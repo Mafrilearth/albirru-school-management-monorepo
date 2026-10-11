@@ -43,7 +43,7 @@ export function PublicNavbar() {
             const isActive = pathname === link.href || pathname.startsWith(`${link.href}/`);
             const isLast = index === navLinks.length - 1;
             return (
-              <Link key={link.href} href={link.href as any} className={cn(
+              <Link key={link.href} href={link.href} className={cn(
                 "min-w-max flex items-center justify-center px-6 xl:px-8 h-full text-xs font-bold font-mono uppercase tracking-widest select-none rounded-none bg-transparent hover:bg-slate-50 dark:hover:bg-slate-900 hover:text-amber-500 outline-none focus:bg-slate-50 dark:focus:bg-slate-900 whitespace-nowrap",
                 isActive ? "bg-slate-50 dark:bg-slate-900 text-amber-500" : "text-slate-600 dark:text-slate-400",
                 isLast && "border-e border-slate-200 dark:border-slate-800"
@@ -78,7 +78,7 @@ export function PublicNavbar() {
                 </SheetHeader>
                 <div className="flex-1 overflow-y-auto flex flex-col py-4">
                   {navLinks.map((link) => (
-                    <Link key={link.href} href={link.href as any} className="px-6 py-4 text-sm font-bold font-mono uppercase tracking-widest border-b border-slate-100 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-900 hover:text-amber-500 text-slate-600 dark:text-slate-400">
+                    <Link key={link.href} href={link.href} className="px-6 py-4 text-sm font-bold font-mono uppercase tracking-widest border-b border-slate-100 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-900 hover:text-amber-500 text-slate-600 dark:text-slate-400">
                       {link.label}
                     </Link>
                   ))}
