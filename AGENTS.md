@@ -83,6 +83,25 @@ Any violation of the following invariants constitutes an automatic task failure:
 - Raw hexadecimal colors (e.g. `#0f172a`) in JSX/TSX component files are strictly forbidden. Use semantic CSS Variables tokens.
 - W3C WCAG 2.1 AA accessibility compliance (text contrast ratio >= 4.5:1). Status indicators for attendance or grading must include explicit text labels alongside color representations.
 
+### E. Git Automation & Hook Enforcements (Husky, lint-staged, Commitlint)
+- `pre-commit` Hook: Every commit triggers `npx lint-staged` running `biome check --write --no-errors-on-unmatched` on staged files (`*.{js,ts,jsx,tsx,json,mjs,cjs}`). Commits fail if syntax or invariant errors exist.
+- `commit-msg` Hook: Every commit message is validated by `@commitlint/cli` using Conventional Commits 1.0.0 (`commitlint.config.mjs`). Bypassing or non-compliant commit subjects (e.g. "update", "wip") are rejected.
+- `pre-push` Hook: Every `git push` triggers `pnpm run check-types` (`turbo run check-types`). Pushing broken types to remote `dev`, `staging`, or `main` is strictly prevented.
+- CI Validation: GitHub Actions `.github/workflows/ci.yml` validates all PR commit messages and runs full static quality gates (`check`, `check-types`, `test`, `build`).
+
+### F. Next.js Server & Header Hardening
+- Server Identification: All Next.js configurations (`next.config.ts`) MUST declare `poweredByHeader: false` to eliminate server fingerprinting.
+- Compression: Core web applications MUST declare `compress: true`.
+- Security Headers: Portal and Web applications MUST enforce HTTP security headers:
+  - `X-Frame-Options: SAMEORIGIN` (Clickjacking mitigation)
+  - `X-Content-Type-Options: nosniff` (MIME-sniffing prevention)
+  - `Referrer-Policy: strict-origin-when-cross-origin`
+  - `Permissions-Policy: camera=(), microphone=(), geolocation=()`
+
+### G. In-House CMS & School Management Topology
+- Institutional CMS (Articles, Announcements, Activity Gallery) and Administrative Workflows (Admissions Adjudication) are built 100% in-house in `apps/app` using Drizzle ORM (`@albirru/database`), Clerk Auth, and shadcn/ui.
+- Third-party external paid CMS SaaS (Sanity, Strapi, Contentful) or unintegrated school systems (Moodle, Jibas) are prohibited to maintain zero-cost serverless runtime, single-sign-on uniformity, and direct relational integrity.
+
 ## 5. Self-Healing Autonomous Loop
 When executing tasks autonomously:
 1. Decompose the task into small, isolated vertical slices.
@@ -103,11 +122,12 @@ When executing tasks autonomously:
 
 ## 7. Definition of Done
 A task is formally complete when:
-1. `pnpm run check-types` exits with code 0 (0 errors).
+1. `pnpm run check-types` exits with code 0 (0 errors across all 11 packages).
 2. All Vitest unit/integration tests pass 100% (`pnpm run test`).
-3. All new or modified files pass Biome verification (`pnpm run check`).
+3. All new or modified files pass Biome verification and LF formatting (`pnpm run check`).
 4. `pnpm run build` succeeds across all workspaces.
-5. A concise summary of modified files and verification logs is provided.
+5. Husky git hooks execute cleanly: pre-commit (lint-staged + Biome), commit-msg (Commitlint), and pre-push (check-types).
+6. A concise summary of modified files and verification logs is provided.
 
 ## 8. Full Autonomous SDLC Protocol
 When given high-level directives, the agent executes all 6 lifecycle phases sequentially and continuously:
@@ -165,3 +185,16 @@ Phase 6: Shipping, Deployment, & Reporting (MCP: GitHub, Vercel, Linear, Slack)
 ### TypeScript Strict Mode
 - Prohibit `any` types (both explicit and implicit).
 - Rely on static inference from Zod schemas (`z.infer<typeof schema>`) or Drizzle table inference (`typeof table.$inferSelect`).
+
+### Biome & lint-staged
+- Biome v2 is the unified toolchain for formatting and linting (replacing ESLint and Prettier).
+- Enforce `"preset": "recommended"`, LF line endings, and 2 spaces indentation.
+- Linter strictly prohibits `any` via `noExplicitAny: error`, warns on unused imports (`noUnusedImports: warn`), and warns on non-null assertions (`noNonNullAssertion: warn`).
+- CSS linting in Biome is intentionally disabled to delegate styling to Tailwind CSS v4 and PostCSS.
+- `lint-staged` processes only staged files (`*.{js,ts,jsx,tsx,json,mjs,cjs}`) to keep commit cycles under 200ms.
+- VS Code integration is enforced via `.vscode/settings.json` (format-on-save and auto organize imports).
+
+### Commitlint & Git Governance
+- All commit messages MUST strictly conform to Conventional Commits 1.0.0 (`type(scope): subject`).
+- Permitted types: `feat`, `fix`, `chore`, `docs`, `style`, `refactor`, `perf`, `test`, `build`, `ci`, `revert`.
+- Bypassing hooks (`--no-verify`) or committing non-compliant messages is strictly forbidden.
