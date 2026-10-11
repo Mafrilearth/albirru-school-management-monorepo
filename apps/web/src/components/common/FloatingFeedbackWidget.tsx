@@ -61,7 +61,7 @@ export function FloatingFeedbackWidget() {
   const [whatsappUrl, setWhatsappUrl] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  const tallyFormId = process.env.NEXT_PUBLIC_TALLY_FORM_ID;
+  const tallyFormId = process.env.NEXT_PUBLIC_TALLY_FORM_ID || "Zj4RDe";
 
   const handleOpenFeedback = () => {
     // If a Tally form ID is configured and Tally SDK is loaded, open modern Tally popup
