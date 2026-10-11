@@ -41,6 +41,6 @@
     "@albirru/typescript-config": "workspace:*",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "typescript": "^5"
+    "typescript": "^7"
   }
 }
