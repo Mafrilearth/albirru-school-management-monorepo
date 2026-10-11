@@ -1,0 +1,38 @@
+"workspace:web":
+  - changed-files:
+      - any-glob-to-any-file: "apps/web/**"
+
+"workspace:app":
+  - changed-files:
+      - any-glob-to-any-file: "apps/app/**"
+
+"workspace:api":
+  - changed-files:
+      - any-glob-to-any-file: "apps/api/**"
+
+"workspace:email":
+  - changed-files:
+      - any-glob-to-any-file: "apps/email/**"
+
+"workspace:database":
+  - changed-files:
+      - any-glob-to-any-file: "packages/database/**"
+
+"workspace:design-system":
+  - changed-files:
+      - any-glob-to-any-file: "packages/design-system/**"
+
+"area:documentation":
+  - changed-files:
+      - any-glob-to-any-file:
+          - "docs/**"
+          - "*.md"
+
+"area:ci-tooling":
+  - changed-files:
+      - any-glob-to-any-file:
+          - ".github/**"
+          - "turbo.json"
+          - "biome.json"
+          - "package.json"
+          - "pnpm-lock.yaml"
