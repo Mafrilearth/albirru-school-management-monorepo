@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start -p 3002",
     "check-types": "tsc --noEmit",
-    "lint": "eslint"
+    "lint": "biome check ."
   },
   "dependencies": {
     "@albirru/database": "workspace:*",

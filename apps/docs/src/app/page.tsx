@@ -1,4 +1,4 @@
-import { BookOpen, Code2, Database, Shield, Terminal } from "lucide-react";
+import { BookOpen } from "lucide-react";
 
 const DOCS_LIST = [
   {
@@ -61,19 +61,41 @@ const DOCS_LIST = [
 export default function DocsHomePage() {
   return (
     <div style={{ maxWidth: "1000px", margin: "0 auto", padding: "40px 20px" }}>
-      <header style={{ marginBottom: "40px", borderBottom: "1px solid #e2e8f0", paddingBottom: "24px" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "8px" }}>
-          <BookOpen style={{ width: "32px", height: "32px", color: "#0284c7" }} />
+      <header
+        style={{
+          marginBottom: "40px",
+          borderBottom: "1px solid #e2e8f0",
+          paddingBottom: "24px",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "12px",
+            marginBottom: "8px",
+          }}
+        >
+          <BookOpen
+            style={{ width: "32px", height: "32px", color: "#0284c7" }}
+          />
           <h1 style={{ margin: 0, fontSize: "28px", fontWeight: 800 }}>
             SD Al-Birru Documentation (/apps/docs)
           </h1>
         </div>
         <p style={{ margin: 0, color: "#64748b", fontSize: "16px" }}>
-          Official Technical Specifications, System Architecture, and Software Engineering Guidelines
+          Official Technical Specifications, System Architecture, and Software
+          Engineering Guidelines
         </p>
       </header>
 
-      <section style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "20px" }}>
+      <section
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+          gap: "20px",
+        }}
+      >
         {DOCS_LIST.map((doc) => (
           <div
             key={doc.num}
@@ -102,18 +124,40 @@ export default function DocsHomePage() {
             >
               Document {doc.num}
             </span>
-            <h3 style={{ margin: "4px 0 8px", fontSize: "16px", color: "#0f172a" }}>
+            <h3
+              style={{
+                margin: "4px 0 8px",
+                fontSize: "16px",
+                color: "#0f172a",
+              }}
+            >
               {doc.title}
             </h3>
-            <p style={{ margin: 0, fontSize: "13px", color: "#64748b", lineHeight: 1.5, marginTop: "auto" }}>
+            <p
+              style={{
+                margin: 0,
+                fontSize: "13px",
+                color: "#64748b",
+                lineHeight: 1.5,
+                marginTop: "auto",
+              }}
+            >
               {doc.desc}
             </p>
           </div>
         ))}
       </section>
 
-      <footer style={{ marginTop: "48px", textAlign: "center", fontSize: "14px", color: "#94a3b8" }}>
-        SD Al-Birru Tahfidzul Qur&apos;an &bull; NPSN 70010111 &bull; next-forge Enterprise Monorepo Architecture
+      <footer
+        style={{
+          marginTop: "48px",
+          textAlign: "center",
+          fontSize: "14px",
+          color: "#94a3b8",
+        }}
+      >
+        SD Al-Birru Tahfidzul Qur&apos;an &bull; NPSN 70010111 &bull; next-forge
+        Enterprise Monorepo Architecture
       </footer>
     </div>
   );

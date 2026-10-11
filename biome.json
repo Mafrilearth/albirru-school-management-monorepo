@@ -25,7 +25,7 @@
       "!**/dist",
       "!**/.turbo",
       "!**/.agents",
-      "!**/docs",
+      "!docs",
       "!**/storybook-static"
     ]
   },

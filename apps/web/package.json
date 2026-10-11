@@ -6,7 +6,7 @@
     "dev": "next dev -p 3001",
     "build": "next build",
     "start": "next start -p 3001",
-    "lint": "eslint",
+    "lint": "biome check .",
     "check-types": "tsc --noEmit",
     "test": "vitest --run",
     "storybook": "storybook dev -p 6006",

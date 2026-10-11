@@ -15,6 +15,12 @@
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
       "outputs": [".next/**", "!.next/cache/**"]
     },
+    "@albirru/storybook#build": {
+      "outputs": []
+    },
+    "@albirru/studio#build": {
+      "outputs": []
+    },
     "lint": {
       "dependsOn": ["^lint"]
     },
