@@ -1,0 +1,35 @@
+# ==============================================================================
+# GitHub Code Owners Configuration
+# SD Al-Birru School Information System (albirru-sis-web)
+# ==============================================================================
+
+# Global fallback maintainers for the entire repository
+* @Mafrilearth
+
+# CI/CD Workflows, Security Policies & Infrastructure
+/.github/workflows/         @Mafrilearth
+/SECURITY.md                @Mafrilearth
+/.gitleaks.toml             @Mafrilearth
+
+# Database Schema, Migrations & Connections
+/packages/database/         @Mafrilearth
+
+# Standardized Design System & Primitives
+/packages/design-system/    @Mafrilearth
+
+# Applications & Microservices
+/apps/app/                  @Mafrilearth
+/apps/web/                  @Mafrilearth
+/apps/api/                  @Mafrilearth
+/apps/email/                @Mafrilearth
+/apps/docs/                 @Mafrilearth
+/apps/studio/               @Mafrilearth
+/apps/storybook/            @Mafrilearth
+
+# Engineering Governance & Project Architecture
+/AGENTS.md                  @Mafrilearth
+/ARCHITECTURE.md            @Mafrilearth
+/DESIGN.md                  @Mafrilearth
+/GOVERNANCE.md              @Mafrilearth
+/ROADMAP.md                 @Mafrilearth
+/SUPPORT.md                 @Mafrilearth
