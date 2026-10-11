@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 📖 In-Tree System Documentation
+    url: https://github.com/Mafrilearth/albirru-school-management-monorepo/tree/main/docs
+    about: Read the 11 authoritative specifications before submitting questions or architectural changes.
+  - name: 🛡️ Security Vulnerability Reporting
+    url: https://github.com/Mafrilearth/albirru-school-management-monorepo/security
+    about: Report sensitive security vulnerabilities privately rather than creating a public issue.

@@ -1,0 +1,72 @@
+name: 🐛 Bug Report
+description: Report a reproducible bug or defect in the Albirru system.
+title: "fix: [Short description of bug]"
+labels: ["bug", "triage"]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for reporting an issue! Please provide detailed, reproducible steps so the team can triage and resolve it swiftly.
+
+  - type: dropdown
+    id: workspace
+    attributes:
+      label: Affected Workspace / Package
+      description: Select which component of the monorepo is experiencing the issue.
+      options:
+        - "apps/web (Public Website)"
+        - "apps/app (SIS Portal)"
+        - "apps/api (Edge API & Webhooks)"
+        - "apps/email (Transactional Email)"
+        - "apps/docs (Documentation)"
+        - "packages/database (Drizzle ORM & Postgres)"
+        - "packages/design-system (UI Primitives)"
+        - "Tooling / CI / Other"
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description of the Bug
+      description: A clear and concise description of what the bug is.
+      placeholder: Detailed summary of what went wrong...
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction-steps
+    attributes:
+      label: Steps to Reproduce
+      description: Numbered steps to reproduce the behavior.
+      placeholder: |
+        1. Navigate to '...'
+        2. Click on '....'
+        3. Fill in form '....'
+        4. See error '....'
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Expected Behavior
+      description: What did you expect to happen?
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual-behavior
+    attributes:
+      label: Actual Behavior / Error Logs
+      description: What actually happened? Paste any browser console errors or server action error descriptors.
+    validations:
+      required: true
+
+  - type: input
+    id: environment
+    attributes:
+      label: Environment Info
+      description: Browser, Operating System, Node.js version, etc.
+      placeholder: Chrome 130 on Windows 11 / Node 22 / pnpm 12

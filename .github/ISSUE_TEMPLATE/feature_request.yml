@@ -1,0 +1,50 @@
+name: 🚀 Feature Request
+description: Propose a new feature, domain capability, or institutional enhancement.
+title: "feat: [Short title of proposal]"
+labels: ["enhancement", "triage"]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        We welcome proposals that enhance school operations, accessibility, or developer ergonomics!
+
+  - type: dropdown
+    id: domain
+    attributes:
+      label: Target Domain / Module
+      description: Which domain does this feature belong to?
+      options:
+        - "Identity & RBAC Provisioning"
+        - "Online Admissions (PPDB)"
+        - "Daily Multi-Session Attendance"
+        - "Academic Grading & Report Cards"
+        - "Guardian Self-Service Portal"
+        - "Public Institutional Web & Landing Page"
+        - "UI Design System Primitives"
+        - "API & Webhook Integrations"
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem-statement
+    attributes:
+      label: Problem Statement
+      description: Is your feature request related to a problem? What is the user pain point?
+      placeholder: As an administrator, I find it cumbersome to...
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed-solution
+    attributes:
+      label: Proposed Solution & Functional Workflow
+      description: Describe the solution you'd like to see, including intended user experience and database requirements.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives-considered
+    attributes:
+      label: Alternatives Considered
+      description: A clear and concise description of any alternative solutions or features you've considered.
