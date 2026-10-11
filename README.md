@@ -88,9 +88,22 @@ The repository is structured as a **Turborepo Multi-Package Monorepo** (adhering
 
 ### Shared Packages (`packages/*`)
 - **`packages/database` (`@albirru/database`):** Central database package containing Drizzle ORM DDL schemas, managed static SQL migrations, and connection pooling.
-- **`packages/design-system` (`@albirru/design-system`):** Standardized design system library (Radix UI primitives, Fine-Line Boxy Brutalism tokens, Tailwind CSS utilities, and ThemeProvider).
-- **`packages/eslint-config` (`@albirru/eslint-config`):** Centralized ESLint configuration (`base.js` and `nextjs.js`).
+- **`packages/design-system` (`@albirru/design-system`):** Standardized design system library (Base UI & shadcn primitives, Tailwind CSS v4 variables, and ThemeProvider).
 - **`packages/typescript-config` (`@albirru/typescript-config`):** Modular TypeScript compiler configurations (`base.json`, `nextjs.json`, `react-library.json`).
+
+---
+
+## 🏛️ System Architecture, Design & Governance Standards
+
+The repository follows authoritative, open-source governance and engineering standards:
+
+- 🏗️ **[System Architecture Map (`ARCHITECTURE.md`)](ARCHITECTURE.md)**: Modern Modular Monolith topology, C4 container & component diagrams, domain isolation, and network routing.
+- 🎨 **[Technical Design Document & Design System (`DESIGN.md`)](DESIGN.md)**: 8px spatial grid, Major Third typography ratio, WCAG 2.1 AA semantic tokens, Base UI component anatomy, and Server Action contracts.
+- 🤖 **[Autonomous Agent Constitution (`AGENTS.md`)](AGENTS.md)**: 24 Agent Skills lifecycle matrix, hard engineering invariants, self-healing loop, and Definition of Done.
+- 🤝 **[Contribution Guidelines (`CONTRIBUTING.md`)](CONTRIBUTING.md)**: Branch governance (`dev` -> `staging` -> `main`), Conventional Commits 1.0.0, and Husky hook automation.
+- 🛡️ **[Security Policy (`SECURITY.md`)](SECURITY.md)**: Vulnerability disclosure SLA, threat model, Cloudflare Turnstile, Upstash rate limiting, and RBAC controls.
+- 📜 **[Changelog (`CHANGELOG.md`)](CHANGELOG.md)**: Keep a Changelog v1.1.0 and Semantic Versioning 2.0.0 release chronology.
+- 🤝 **[Code of Conduct (`CODE_OF_CONDUCT.md`)](CODE_OF_CONDUCT.md)**: Contributor Covenant v2.1 community standards.
 
 ### Curated Zero-Redundancy Technology Stack
 

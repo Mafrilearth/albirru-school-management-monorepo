@@ -6,7 +6,7 @@ This document serves as the authoritative, living architectural specification fo
 
 ## 1. Project Structure
 
-The repository is structured as a **Modern Modular Monolith** utilizing the standardized **next-forge** monorepo topology powered by Turborepo and pnpm workspaces. The architecture decouples the system into 7 dedicated applications (`apps/*`) and 4 shared foundation packages (`packages/*`).
+The repository is structured as a **Modern Modular Monolith** utilizing the standardized **next-forge** monorepo topology powered by Turborepo and pnpm workspaces. The architecture decouples the system into 7 dedicated applications (`apps/*`) and 3 shared foundation packages (`packages/*`).
 
 ```plain text
 [Project Root]/
@@ -81,11 +81,6 @@ The repository is structured as a **Modern Modular Monolith** utilizing the stan
 │   │   │   ├── providers/            # Theme, tooltip, and dialog providers
 │   │   │   └── index.ts              # Public library exports
 │   │   └── package.json              # Component primitives dependencies
-│   │
-│   ├── eslint-config/                # Centralized ESLint Configurations (@albirru/eslint-config)
-│   │   ├── base.js                   # Universal TypeScript and JavaScript linting rules
-│   │   ├── nextjs.js                 # Next.js App Router specific linting rules
-│   │   └── package.json
 │   │
 │   └── typescript-config/            # Modular TypeScript Configurations (@albirru/typescript-config)
 │       ├── base.json                 # Monorepo base compiler options

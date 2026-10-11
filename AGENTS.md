@@ -122,7 +122,7 @@ When executing tasks autonomously:
 
 ## 7. Definition of Done
 A task is formally complete when:
-1. `pnpm run check-types` exits with code 0 (0 errors across all 11 packages).
+1. `pnpm run check-types` exits with code 0 (0 errors across all 10 packages in scope).
 2. All Vitest unit/integration tests pass 100% (`pnpm run test`).
 3. All new or modified files pass Biome verification and LF formatting (`pnpm run check`).
 4. `pnpm run build` succeeds across all workspaces.
