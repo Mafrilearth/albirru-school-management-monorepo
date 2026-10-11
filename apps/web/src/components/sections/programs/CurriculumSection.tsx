@@ -1,21 +1,21 @@
 "use client";
 
-import React, { useState } from "react";
 import {
+  Award,
   BookMarked,
   BookOpen,
-  Heart,
-  Globe2,
   CheckCircle2,
-  Sparkles,
-  Award,
   Clock,
+  Globe2,
+  Heart,
+  Sparkles,
 } from "lucide-react";
-import { motion, AnimatePresence } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
+import type React from "react";
+import { useState } from "react";
+import { BorderBeam } from "@/components/common/BorderBeam";
 import { ScrollReveal } from "@/components/common/ScrollReveal";
 import { SpotlightCard } from "@/components/common/SpotlightCard";
-import { BorderBeam } from "@/components/common/BorderBeam";
-import { appleSpring, appleTapHaptic } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 
 interface CurriculumPillar {
@@ -39,7 +39,8 @@ const pillars: CurriculumPillar[] = [
     badge: "Keunggulan Khas",
     description:
       "Program hafalan Al-Qur'an intensif dengan metode Talaqqi dan Muroja'ah mandiri. Menekankan ketepatan makharijul huruf, tajwid bersanad, dan pemahaman makna ayat pilihan.",
-    target: "Target Lulusan: Minimal 3 Juz Mutqin (Juz 30, 29, 28) + 40 Hadits Pilihan",
+    target:
+      "Target Lulusan: Minimal 3 Juz Mutqin (Juz 30, 29, 28) + 40 Hadits Pilihan",
     schedule: "Senin – Jumat | 07.15 – 08.45 WIB (Halaqah Pagi)",
     highlights: [
       "Metode Talaqqi harian bersama asatidz pemegang sanad Al-Qur'an",
@@ -57,7 +58,8 @@ const pillars: CurriculumPillar[] = [
     badge: "Standar Kemdikdasmen",
     description:
       "Menerapkan struktur Curriculum Merdeka yang fleksibel dan berfokus pada materi esensial, pengembangan karakter Pancasila, serta kompetensi literasi dan numerasi siswa secara mendalam.",
-    target: "Target Capaian: Kemandirian Nalar Kritis & Penguasaan Konseptual Sains",
+    target:
+      "Target Capaian: Kemandirian Nalar Kritis & Penguasaan Konseptual Sains",
     schedule: "Senin – Kamis | 09.00 – 14.15 WIB (Pembelajaran Tematik)",
     highlights: [
       "Pembelajaran diferensiasi yang menghargai keunikan kecepatan belajar anak",
@@ -75,7 +77,8 @@ const pillars: CurriculumPillar[] = [
     badge: "Kultivasi Akhlak",
     description:
       "Pendidikan adab sebelum ilmu. Menanamkan 7 kebiasaan shalih harian agar nilai-nilai Islam mendarah daging dalam tingkah laku students sehari-hari baik di school maupun di rumah.",
-    target: "Target Capaian: Akhlakul Karimah, Mandiri, dan Berbakti kepada Orang Tua",
+    target:
+      "Target Capaian: Akhlakul Karimah, Mandiri, dan Berbakti kepada Orang Tua",
     schedule: "Sepanjang Hari Belajar (Budaya Hidup School)",
     highlights: [
       "Pelaksanaan Sholat Dhuha harian dan Sholat Dzuhur berjamaah tepat waktu",
@@ -117,7 +120,10 @@ export function CurriculumSection() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <ScrollReveal direction="up" className="max-w-3xl mb-16 md:mb-20 text-center sm:text-left">
+        <ScrollReveal
+          direction="up"
+          className="max-w-3xl mb-16 md:mb-20 text-center sm:text-left"
+        >
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-none bg-slate-100 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 text-[11px] font-mono font-bold uppercase tracking-wider mb-5">
             <span className="size-1.5 rounded-none bg-amber-500 animate-pulse" />
             <span>AKADEMIK // STRUKTUR SILABUS TERINTEGRASI</span>
@@ -129,8 +135,9 @@ export function CurriculumSection() {
             Sinergi Curriculum Merdeka &amp; Kepesantrenan
           </h2>
           <p className="mt-4 text-base sm:text-lg text-slate-600 dark:text-slate-400 leading-relaxed font-normal">
-            Dirancang secara holistik agar students tidak hanya kokoh dalam hafalan Al-Qur&apos;an,
-            namun juga unggul secara akademik dan lincah bernalar sains.
+            Dirancang secara holistik agar students tidak hanya kokoh dalam
+            hafalan Al-Qur&apos;an, namun juga unggul secara akademik dan lincah
+            bernalar sains.
           </p>
         </ScrollReveal>
 
@@ -154,7 +161,9 @@ export function CurriculumSection() {
                 onClick={() => setActiveTab(pillar.id)}
                 className={cn(
                   "relative flex items-center gap-2.5 px-5 py-3 rounded-none text-xs sm:text-sm font-bold transition-colors cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-amber-500",
-                  isActive ? "text-white" : "text-slate-600 dark:text-slate-400 hover:text-slate-950 dark:hover:text-slate-50"
+                  isActive
+                    ? "text-white"
+                    : "text-slate-600 dark:text-slate-400 hover:text-slate-950 dark:hover:text-slate-50",
                 )}
               >
                 {isActive && (
@@ -168,7 +177,7 @@ export function CurriculumSection() {
                   aria-hidden="true"
                   className={cn(
                     "size-4.5 relative z-10 transition-colors",
-                    isActive ? "text-amber-400" : "text-slate-400"
+                    isActive ? "text-amber-400" : "text-slate-400",
                   )}
                 />
                 <span className="relative z-10">{pillar.title}</span>
@@ -193,7 +202,12 @@ export function CurriculumSection() {
               spotlightColor="rgba(245, 158, 11, 0.08)"
               className="p-8 sm:p-12 lg:p-16 bg-[#FDFDFB] dark:bg-slate-950 shadow-2xs hover:shadow-xl transition-all relative rounded-none"
             >
-              <BorderBeam size={240} duration={12} colorFrom="#f59e0b" colorTo="#10b981" />
+              <BorderBeam
+                size={240}
+                duration={12}
+                colorFrom="#f59e0b"
+                colorTo="#10b981"
+              />
 
               <article
                 aria-labelledby={`pillar-title-${selectedPillar.id}`}
@@ -230,7 +244,10 @@ export function CurriculumSection() {
                   {/* Operational Rhythm Widget: Semantic Definition List */}
                   <dl className="mt-10 space-y-3.5">
                     <div className="p-5 rounded-none bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-700/80 shadow-2xs flex items-start gap-3.5">
-                      <Clock aria-hidden="true" className="size-5 text-amber-600 shrink-0 mt-0.5" />
+                      <Clock
+                        aria-hidden="true"
+                        className="size-5 text-amber-600 shrink-0 mt-0.5"
+                      />
                       <div>
                         <dt className="block text-[11px] font-bold text-slate-400 uppercase font-mono tracking-wider">
                           Waktu Operasional
@@ -242,7 +259,10 @@ export function CurriculumSection() {
                     </div>
 
                     <div className="p-5 rounded-none bg-amber-50/80 border border-amber-200/80 flex items-start gap-3.5">
-                      <Award aria-hidden="true" className="size-5 text-amber-700 shrink-0 mt-0.5" />
+                      <Award
+                        aria-hidden="true"
+                        className="size-5 text-amber-700 shrink-0 mt-0.5"
+                      />
                       <div>
                         <dt className="block text-[11px] font-bold text-amber-900 uppercase font-mono tracking-wider">
                           Standar Capaian
@@ -261,14 +281,16 @@ export function CurriculumSection() {
                     id={`strategy-heading-${selectedPillar.id}`}
                     className="text-sm font-bold text-slate-950 dark:text-slate-50 uppercase tracking-wider font-mono mb-5 flex items-center gap-2"
                   >
-                    <Sparkles aria-hidden="true" className="size-4.5 text-amber-500" />
+                    <Sparkles
+                      aria-hidden="true"
+                      className="size-4.5 text-amber-500"
+                    />
                     <span>STRATEGI &amp; AKTIVITAS PEMBELAJARAN:</span>
                   </h4>
 
                   <ul
                     aria-labelledby={`strategy-heading-${selectedPillar.id}`}
                     className="space-y-3.5 list-none p-0"
-                    role="list"
                   >
                     {selectedPillar.highlights.map((item, idx) => (
                       <li key={idx}>
@@ -296,4 +318,3 @@ export function CurriculumSection() {
     </section>
   );
 }
-

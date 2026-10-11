@@ -1,11 +1,17 @@
 ﻿"use client";
 
-import React from "react";
-import { Compass, Target, CheckCircle2, Star, Sparkles, ShieldCheck } from "lucide-react";
+import {
+  CheckCircle2,
+  Compass,
+  ShieldCheck,
+  Sparkles,
+  Star,
+  Target,
+} from "lucide-react";
 import { motion } from "motion/react";
+import { BorderBeam } from "@/components/common/BorderBeam";
 import { ScrollReveal } from "@/components/common/ScrollReveal";
 import { SpotlightCard } from "@/components/common/SpotlightCard";
-import { BorderBeam } from "@/components/common/BorderBeam";
 
 export function VisionMissionSection() {
   const missionPoints = [
@@ -75,7 +81,10 @@ export function VisionMissionSection() {
   ];
 
   return (
-    <section aria-labelledby="vision-mission-heading" className="py-28 md:py-36 lg:py-44 bg-white dark:bg-slate-900 border-b border-slate-200/80 dark:border-slate-700/80 relative overflow-hidden">
+    <section
+      aria-labelledby="vision-mission-heading"
+      className="py-28 md:py-36 lg:py-44 bg-white dark:bg-slate-900 border-b border-slate-200/80 dark:border-slate-700/80 relative overflow-hidden"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <ScrollReveal direction="up" className="max-w-3xl mb-16 md:mb-20">
@@ -83,12 +92,16 @@ export function VisionMissionSection() {
             <span className="size-1.5 rounded-none bg-amber-500 animate-pulse" />
             <span>HALUAN // VISI, MISI &amp; NILAI INTI</span>
           </div>
-          <h2 id="vision-mission-heading" className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-950 dark:text-slate-50 tracking-tight leading-[1.12]">
+          <h2
+            id="vision-mission-heading"
+            className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-950 dark:text-slate-50 tracking-tight leading-[1.12]"
+          >
             Arah Filosofis Pendidikan Terpadu
           </h2>
           <p className="mt-4 text-base sm:text-lg text-slate-600 dark:text-slate-400 leading-relaxed font-normal">
-            Pondasi konseptual yang melandasi seluruh denyut aktivitas belajar, pembiasaan fitrah anak,
-            dan perancangan kurikulum di SD Al-Birru Sukabumi.
+            Pondasi konseptual yang melandasi seluruh denyut aktivitas belajar,
+            pembiasaan fitrah anak, dan perancangan kurikulum di SD Al-Birru
+            Sukabumi.
           </p>
         </ScrollReveal>
 
@@ -102,13 +115,21 @@ export function VisionMissionSection() {
             transition={{ duration: 0.6 }}
             className="lg:col-span-5 flex"
           >
-            <article aria-labelledby="vision-card-title" className="flex-1 flex">
+            <article
+              aria-labelledby="vision-card-title"
+              className="flex-1 flex"
+            >
               <SpotlightCard
                 spotlightColor="rgba(245, 158, 11, 0.15)"
                 borderColor="rgba(245, 158, 11, 0.4)"
                 className="bg-slate-950 text-white p-8 sm:p-12 border-slate-800 shadow-md flex-1 flex flex-col justify-between relative overflow-hidden group rounded-none"
               >
-                <BorderBeam size={220} duration={12} colorFrom="#f59e0b" colorTo="#10b981" />
+                <BorderBeam
+                  size={220}
+                  duration={12}
+                  colorFrom="#f59e0b"
+                  colorTo="#10b981"
+                />
 
                 <div
                   aria-hidden="true"
@@ -125,13 +146,18 @@ export function VisionMissionSection() {
                     </span>
                   </div>
 
-                  <h3 id="vision-card-title" className="text-2xl sm:text-3xl font-black text-white leading-snug tracking-tight">
-                    Terwujudnya Generasi Qur&apos;ani yang Bertaqwa, Berakhlak Mulia, Cerdas, dan Berwawasan Global.
+                  <h3
+                    id="vision-card-title"
+                    className="text-2xl sm:text-3xl font-black text-white leading-snug tracking-tight"
+                  >
+                    Terwujudnya Generasi Qur&apos;ani yang Bertaqwa, Berakhlak
+                    Mulia, Cerdas, dan Berwawasan Global.
                   </h3>
 
                   <p className="mt-6 text-slate-300 text-sm sm:text-base leading-relaxed font-normal">
-                    Visi ini menjadi bintang penuntun kami dalam membentuk profil students yang
-                    kokoh spiritualnya, anggun akhlaknya, serta tanggap terhadap sains masa depan.
+                    Visi ini menjadi bintang penuntun kami dalam membentuk
+                    profil students yang kokoh spiritualnya, anggun akhlaknya,
+                    serta tanggap terhadap sains masa depan.
                   </p>
                 </div>
 
@@ -162,7 +188,10 @@ export function VisionMissionSection() {
                 <span className="text-emerald-700 text-[11px] font-bold uppercase tracking-wider font-mono">
                   MISI OPERASIONAL
                 </span>
-                <h3 id="misi-subheading" className="text-xl sm:text-2xl font-black text-slate-950 dark:text-slate-50 tracking-tight">
+                <h3
+                  id="misi-subheading"
+                  className="text-xl sm:text-2xl font-black text-slate-950 dark:text-slate-50 tracking-tight"
+                >
                   5 Langkah Strategis Pembinaan Fitrah Anak
                 </h3>
               </div>
@@ -176,7 +205,7 @@ export function VisionMissionSection() {
                   className="list-none"
                 >
                   <article className="flex items-start gap-4 p-5 rounded-none bg-[#FDFDFB] dark:bg-slate-950 border border-slate-200/80 dark:border-slate-700/80 hover:border-slate-300 dark:border-slate-600 hover:shadow-xs transition-all group">
- <span className="flex size-8 shrink-0 items-center justify-center rounded-none bg-slate-950 text-amber-400 font-mono font-bold text-xs group-hover:bg-amber-500 group-hover:text-slate-950 dark:hover:text-slate-50 transition-colors">
+                    <span className="flex size-8 shrink-0 items-center justify-center rounded-none bg-slate-950 text-amber-400 font-mono font-bold text-xs group-hover:bg-amber-500 group-hover:text-slate-950 dark:hover:text-slate-50 transition-colors">
                       {item.num}
                     </span>
                     <div>
@@ -194,17 +223,29 @@ export function VisionMissionSection() {
 
             <div className="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 text-xs text-slate-500 flex items-center gap-2 font-mono">
               <CheckCircle2 className="size-4 text-emerald-700 shrink-0" />
-              <span>Dievaluasi secara berkala untuk penjaminan mutu pendidikan berkelanjutan</span>
+              <span>
+                Dievaluasi secara berkala untuk penjaminan mutu pendidikan
+                berkelanjutan
+              </span>
             </div>
           </motion.div>
         </div>
 
         {/* Core Values "B-I-R-R-U" Out-of-the-Box Architectural Glyph Cards */}
-        <section aria-labelledby="core-values-heading" className="mt-20 pt-16 border-t border-slate-200/80 dark:border-slate-700/80">
-          <ScrollReveal direction="up" className="mb-10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <section
+          aria-labelledby="core-values-heading"
+          className="mt-20 pt-16 border-t border-slate-200/80 dark:border-slate-700/80"
+        >
+          <ScrollReveal
+            direction="up"
+            className="mb-10 flex flex-col sm:flex-row sm:items-center justify-between gap-4"
+          >
             <div className="flex items-center gap-3">
               <Sparkles className="size-6 text-amber-500" />
-              <h3 id="core-values-heading" className="text-2xl sm:text-3xl font-black text-slate-950 dark:text-slate-50 tracking-tight">
+              <h3
+                id="core-values-heading"
+                className="text-2xl sm:text-3xl font-black text-slate-950 dark:text-slate-50 tracking-tight"
+              >
                 Nilai Inti Budaya Karakter (B - I - R - R - U)
               </h3>
             </div>
@@ -228,7 +269,10 @@ export function VisionMissionSection() {
                 whileHover={{ y: -6, transition: { duration: 0.25 } }}
                 className="list-none flex"
               >
-                <article aria-labelledby={`val-title-${idx}`} className="flex-1 flex">
+                <article
+                  aria-labelledby={`val-title-${idx}`}
+                  className="flex-1 flex"
+                >
                   <SpotlightCard
                     spotlightColor={val.glow}
                     className="p-7 bg-[#FDFDFB] dark:bg-slate-950 hover:bg-white dark:hover:bg-slate-700 dark:bg-slate-900 shadow-2xs hover:shadow-md transition-all flex-1 relative flex flex-col justify-between rounded-none"
@@ -247,7 +291,10 @@ export function VisionMissionSection() {
                       >
                         {val.letter}
                       </div>
-                      <h4 id={`val-title-${idx}`} className="font-bold text-slate-950 dark:text-slate-50 text-sm leading-snug">
+                      <h4
+                        id={`val-title-${idx}`}
+                        className="font-bold text-slate-950 dark:text-slate-50 text-sm leading-snug"
+                      >
                         {val.title}
                       </h4>
                       <p className="mt-2.5 text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-normal">
@@ -268,4 +315,3 @@ export function VisionMissionSection() {
     </section>
   );
 }
-

@@ -1,8 +1,8 @@
 "use client";
 
-import React from "react";
 import { Quote } from "lucide-react";
 import { ScrollReveal } from "@/components/common/ScrollReveal";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   Carousel,
   CarouselContent,
@@ -10,7 +10,6 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const testimonials = [
   {
@@ -45,7 +44,8 @@ export function TestimonialsSection() {
             Apa Kata Mereka?
           </h2>
           <p className="mt-4 text-slate-600 dark:text-slate-400 text-lg max-w-2xl mx-auto">
-            Testimoni jujur dari orang tua students tentang pengalaman pendidikan di SD Al-Birru.
+            Testimoni jujur dari orang tua students tentang pengalaman
+            pendidikan di SD Al-Birru.
           </p>
         </ScrollReveal>
 
@@ -68,12 +68,22 @@ export function TestimonialsSection() {
                   </div>
                   <div className="mt-8 pt-6 border-t border-slate-100 dark:border-slate-800 flex items-center gap-4">
                     <Avatar className="size-12 rounded-none border border-slate-200 dark:border-slate-700">
-                      <AvatarImage src={t.avatar} alt={t.author} className="rounded-none" />
-                      <AvatarFallback className="bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-none font-mono font-bold text-lg">{t.author.charAt(0)}</AvatarFallback>
+                      <AvatarImage
+                        src={t.avatar}
+                        alt={t.author}
+                        className="rounded-none"
+                      />
+                      <AvatarFallback className="bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-none font-mono font-bold text-lg">
+                        {t.author.charAt(0)}
+                      </AvatarFallback>
                     </Avatar>
                     <div>
-                      <h4 className="font-bold text-slate-950 dark:text-slate-50 text-sm font-mono">{t.author}</h4>
-                      <p className="text-[10px] sm:text-xs text-slate-500 dark:text-slate-400 font-mono uppercase tracking-wide mt-0.5">{t.role}</p>
+                      <h4 className="font-bold text-slate-950 dark:text-slate-50 text-sm font-mono">
+                        {t.author}
+                      </h4>
+                      <p className="text-[10px] sm:text-xs text-slate-500 dark:text-slate-400 font-mono uppercase tracking-wide mt-0.5">
+                        {t.role}
+                      </p>
                     </div>
                   </div>
                 </div>

@@ -10,18 +10,16 @@
     "check-types": "tsc --noEmit"
   },
   "dependencies": {
-    "@albirru/database": "*",
-    "@albirru/design-system": "*",
-    "@base-ui/react": "^1.8.0",
+    "@albirru/database": "workspace:*",
+    "@albirru/design-system": "workspace:*",
+    "@clerk/nextjs": "^6.12.0",
     "@hookform/resolvers": "^5.9.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "cn": "^0.4.0",
     "date-fns": "^4.4.0",
     "dotenv": "^18.0.5",
     "lucide-react": "^1.52.0",
     "next": "16.3.8",
-    "next-auth": "^5.0.0-beta.32",
     "next-themes": "^0.4.6",
     "postgres": "^3.4.9",
     "react": "19.2.8",
@@ -33,8 +31,8 @@
     "zsa-react": "^0.2.3"
   },
   "devDependencies": {
-    "@albirru/eslint-config": "*",
-    "@albirru/typescript-config": "*",
+    "@albirru/eslint-config": "workspace:*",
+    "@albirru/typescript-config": "workspace:*",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",

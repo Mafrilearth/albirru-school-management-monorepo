@@ -1,15 +1,17 @@
 "use client";
 
-import { useState } from "react";
-import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { provisionMasterIdentityAction } from "@/modules/identity/actions";
-import { IdentityProvisioningSchema, type IdentityProvisioningPayload } from "@/lib/validations/identity";
-import { Loader2, CheckCircle2 } from "lucide-react";
-
-import { Input } from "@/components/ui/input";
+import { CheckCircle2, Loader2 } from "lucide-react";
+import { useState } from "react";
+import { Controller, useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
-import { Label } from "@/components/ui/label";
+import {
+  Field,
+  FieldContent,
+  FieldError,
+  FieldLabel,
+} from "@/components/ui/field";
+import { Input } from "@/components/ui/input";
 import {
   Select,
   SelectContent,
@@ -17,7 +19,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Field, FieldLabel, FieldError, FieldContent } from "@/components/ui/field";
+import {
+  type IdentityProvisioningPayload,
+  IdentityProvisioningSchema,
+} from "@/lib/validations/identity";
+import { provisionMasterIdentityAction } from "@/modules/identity/actions";
 
 export default function MasterIdentityProvisioningPage() {
   const [isPending, setIsPending] = useState(false);
@@ -29,7 +35,7 @@ export default function MasterIdentityProvisioningPage() {
     control,
     handleSubmit,
     formState: { errors },
-    reset
+    reset,
   } = useForm<IdentityProvisioningPayload>({
     resolver: zodResolver(IdentityProvisioningSchema),
     defaultValues: {
@@ -51,9 +57,11 @@ export default function MasterIdentityProvisioningPage() {
         setIsSuccess(true);
         reset();
       } else {
-        setErrorMessage(response.error_descriptor?.message || "Gagal menyimpan identitas.");
+        setErrorMessage(
+          response.error_descriptor?.message || "Gagal menyimpan identitas.",
+        );
       }
-    } catch (err) {
+    } catch (_err) {
       setErrorMessage("Terjadi kesalahan sistem.");
     } finally {
       setIsPending(false);
@@ -72,7 +80,8 @@ export default function MasterIdentityProvisioningPage() {
               Identitas Master Berhasil Ditambahkan
             </h3>
             <p className="text-sm text-slate-600 dark:text-slate-400 max-w-md mx-auto">
-              Akun pengguna baru telah berhasil dimasukkan ke dalam sistem dengan profil lengkap.
+              Akun pengguna baru telah berhasil dimasukkan ke dalam sistem
+              dengan profil lengkap.
             </p>
             <Button
               onClick={() => setIsSuccess(false)}
@@ -94,48 +103,67 @@ export default function MasterIdentityProvisioningPage() {
           Master Identity Provisioning
         </h1>
         <p className="text-slate-500 mt-2">
-          Tambahkan identitas baru untuk Siswa, Instruktur, atau Administrator sistem ke dalam basis data utama.
+          Tambahkan identitas baru untuk Siswa, Instruktur, atau Administrator
+          sistem ke dalam basis data utama.
         </p>
       </div>
 
       <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-none">
         <div className="p-6 sm:p-8">
-          <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="flex flex-col gap-6"
+          >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              
               {/* Email */}
               <Field orientation="vertical" data-invalid={!!errors.email}>
-                <FieldLabel htmlFor="email">Email Akun <span className="text-rose-500">*</span></FieldLabel>
+                <FieldLabel htmlFor="email">
+                  Email Akun <span className="text-rose-500">*</span>
+                </FieldLabel>
                 <FieldContent>
-                  <Input 
-                    id="email" 
+                  <Input
+                    id="email"
                     type="email"
-                    placeholder="email@contoh.com" 
+                    placeholder="email@contoh.com"
                     className="h-11 rounded-none shadow-none focus-visible:ring-1 focus-visible:ring-offset-0"
                     disabled={isPending}
-                    {...register("email")} 
+                    {...register("email")}
                   />
                 </FieldContent>
-                {errors.email && <FieldError>{errors.email.message}</FieldError>}
+                {errors.email && (
+                  <FieldError>{errors.email.message}</FieldError>
+                )}
               </Field>
 
               {/* Role */}
               <Field orientation="vertical" data-invalid={!!errors.role}>
-                <FieldLabel htmlFor="role">Peran Pengguna <span className="text-rose-500">*</span></FieldLabel>
+                <FieldLabel htmlFor="role">
+                  Peran Pengguna <span className="text-rose-500">*</span>
+                </FieldLabel>
                 <FieldContent>
                   <Controller
                     control={control}
                     name="role"
                     render={({ field }) => (
-                      <Select onValueChange={field.onChange} defaultValue={field.value} disabled={isPending}>
+                      <Select
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                        disabled={isPending}
+                      >
                         <SelectTrigger className="h-11 rounded-none shadow-none focus-visible:ring-1 focus-visible:ring-offset-0">
                           <SelectValue placeholder="Pilih Peran" />
                         </SelectTrigger>
                         <SelectContent className="rounded-none shadow-sm">
-                          <SelectItem value="System Administrator">System Administrator</SelectItem>
-                          <SelectItem value="Instructor">Instruktur (Guru)</SelectItem>
+                          <SelectItem value="System Administrator">
+                            System Administrator
+                          </SelectItem>
+                          <SelectItem value="Instructor">
+                            Instruktur (Guru)
+                          </SelectItem>
                           <SelectItem value="Guardian">Wali Murid</SelectItem>
-                          <SelectItem value="Public Guest">Public Guest</SelectItem>
+                          <SelectItem value="Public Guest">
+                            Public Guest
+                          </SelectItem>
                         </SelectContent>
                       </Select>
                     )}
@@ -146,46 +174,69 @@ export default function MasterIdentityProvisioningPage() {
 
               {/* Full Legal Name */}
               <div className="md:col-span-2">
-                <Field orientation="vertical" data-invalid={!!errors.fullLegalName}>
-                  <FieldLabel htmlFor="fullLegalName">Nama Lengkap Resmi <span className="text-rose-500">*</span></FieldLabel>
+                <Field
+                  orientation="vertical"
+                  data-invalid={!!errors.fullLegalName}
+                >
+                  <FieldLabel htmlFor="fullLegalName">
+                    Nama Lengkap Resmi <span className="text-rose-500">*</span>
+                  </FieldLabel>
                   <FieldContent>
-                    <Input 
-                      id="fullLegalName" 
-                      placeholder="Sesuai KTP / Akta Kelahiran" 
+                    <Input
+                      id="fullLegalName"
+                      placeholder="Sesuai KTP / Akta Kelahiran"
                       className="h-11 rounded-none shadow-none focus-visible:ring-1 focus-visible:ring-offset-0"
                       disabled={isPending}
-                      {...register("fullLegalName")} 
+                      {...register("fullLegalName")}
                     />
                   </FieldContent>
-                  {errors.fullLegalName && <FieldError>{errors.fullLegalName.message}</FieldError>}
+                  {errors.fullLegalName && (
+                    <FieldError>{errors.fullLegalName.message}</FieldError>
+                  )}
                 </Field>
               </div>
 
               {/* NIK */}
-              <Field orientation="vertical" data-invalid={!!errors.nationalIdentityNumber}>
-                <FieldLabel htmlFor="nationalIdentityNumber">Nomor Induk Kependudukan (NIK) <span className="text-rose-500">*</span></FieldLabel>
+              <Field
+                orientation="vertical"
+                data-invalid={!!errors.nationalIdentityNumber}
+              >
+                <FieldLabel htmlFor="nationalIdentityNumber">
+                  Nomor Induk Kependudukan (NIK){" "}
+                  <span className="text-rose-500">*</span>
+                </FieldLabel>
                 <FieldContent>
-                  <Input 
-                    id="nationalIdentityNumber" 
-                    placeholder="16 Digit NIK" 
-                    maxLength={16} 
+                  <Input
+                    id="nationalIdentityNumber"
+                    placeholder="16 Digit NIK"
+                    maxLength={16}
                     className="h-11 rounded-none shadow-none focus-visible:ring-1 focus-visible:ring-offset-0"
                     disabled={isPending}
-                    {...register("nationalIdentityNumber")} 
+                    {...register("nationalIdentityNumber")}
                   />
                 </FieldContent>
-                {errors.nationalIdentityNumber && <FieldError>{errors.nationalIdentityNumber.message}</FieldError>}
+                {errors.nationalIdentityNumber && (
+                  <FieldError>
+                    {errors.nationalIdentityNumber.message}
+                  </FieldError>
+                )}
               </Field>
 
               {/* Gender */}
               <Field orientation="vertical" data-invalid={!!errors.gender}>
-                <FieldLabel htmlFor="gender">Jenis Kelamin <span className="text-rose-500">*</span></FieldLabel>
+                <FieldLabel htmlFor="gender">
+                  Jenis Kelamin <span className="text-rose-500">*</span>
+                </FieldLabel>
                 <FieldContent>
                   <Controller
                     control={control}
                     name="gender"
                     render={({ field }) => (
-                      <Select onValueChange={field.onChange} defaultValue={field.value} disabled={isPending}>
+                      <Select
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                        disabled={isPending}
+                      >
                         <SelectTrigger className="h-11 rounded-none shadow-none focus-visible:ring-1 focus-visible:ring-offset-0">
                           <SelectValue placeholder="Pilih Jenis Kelamin" />
                         </SelectTrigger>
@@ -197,26 +248,31 @@ export default function MasterIdentityProvisioningPage() {
                     )}
                   />
                 </FieldContent>
-                {errors.gender && <FieldError>{errors.gender.message}</FieldError>}
+                {errors.gender && (
+                  <FieldError>{errors.gender.message}</FieldError>
+                )}
               </Field>
 
               {/* Birth Date */}
               <div className="md:col-span-2">
                 <Field orientation="vertical" data-invalid={!!errors.birthDate}>
-                  <FieldLabel htmlFor="birthDate">Tanggal Lahir <span className="text-rose-500">*</span></FieldLabel>
+                  <FieldLabel htmlFor="birthDate">
+                    Tanggal Lahir <span className="text-rose-500">*</span>
+                  </FieldLabel>
                   <FieldContent>
-                    <Input 
+                    <Input
                       type="date"
-                      id="birthDate" 
+                      id="birthDate"
                       className="h-11 rounded-none shadow-none focus-visible:ring-1 focus-visible:ring-offset-0"
                       disabled={isPending}
-                      {...register("birthDate")} 
+                      {...register("birthDate")}
                     />
                   </FieldContent>
-                  {errors.birthDate && <FieldError>{errors.birthDate.message}</FieldError>}
+                  {errors.birthDate && (
+                    <FieldError>{errors.birthDate.message}</FieldError>
+                  )}
                 </Field>
               </div>
-
             </div>
 
             {errorMessage && (
@@ -226,9 +282,9 @@ export default function MasterIdentityProvisioningPage() {
             )}
 
             <div className="pt-6">
-              <Button 
-                type="submit" 
-                disabled={isPending} 
+              <Button
+                type="submit"
+                disabled={isPending}
                 className="w-full md:w-auto min-w-[200px] h-[52px] bg-slate-900 hover:bg-slate-800 text-white rounded-none shadow-none font-bold text-base"
               >
                 {isPending ? (

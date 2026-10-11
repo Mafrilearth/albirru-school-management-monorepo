@@ -1,7 +1,6 @@
-import React from "react";
 import type { Metadata } from "next";
-import { PageHeader } from "@/components/layout/PageHeader";
 import { AdmissionsForm } from "@/components/forms/AdmissionsForm";
+import { PageHeader } from "@/components/layout/PageHeader";
 
 export const metadata: Metadata = {
   title: "Registration Admissions 2026",

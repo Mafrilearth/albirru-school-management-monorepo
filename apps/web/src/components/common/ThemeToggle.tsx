@@ -1,15 +1,15 @@
 "use client";
 
-import * as React from "react";
-import { Moon, Sun, Monitor } from "lucide-react";
+import { Monitor, Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
-import { cn } from "@/lib/utils";
+import * as React from "react";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { cn } from "@/lib/utils";
 
 export function ThemeToggle() {
   const { theme, setTheme } = useTheme();
@@ -29,7 +29,7 @@ export function ThemeToggle() {
       <DropdownMenuTrigger
         className={cn(
           "hidden sm:flex items-center justify-center w-16 h-full transition-colors select-none rounded-none outline-none focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:outline-none",
-          "bg-transparent hover:bg-slate-50 dark:hover:bg-slate-900/50 focus:bg-slate-50 dark:focus:bg-slate-900/50 text-slate-600 dark:text-slate-400"
+          "bg-transparent hover:bg-slate-50 dark:hover:bg-slate-900/50 focus:bg-slate-50 dark:focus:bg-slate-900/50 text-slate-600 dark:text-slate-400",
         )}
         aria-label="Toggle theme"
       >
@@ -37,35 +37,44 @@ export function ThemeToggle() {
         <Moon className="absolute size-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
         <span className="sr-only">Toggle theme</span>
       </DropdownMenuTrigger>
-      
-      <DropdownMenuContent align="end" className="w-[140px] rounded-none font-mono text-xs font-bold uppercase tracking-wider">
-        <DropdownMenuItem 
-          onClick={() => setTheme("light")} 
+
+      <DropdownMenuContent
+        align="end"
+        className="w-[140px] rounded-none font-mono text-xs font-bold uppercase tracking-wider"
+      >
+        <DropdownMenuItem
+          onClick={() => setTheme("light")}
           className={cn(
-            "rounded-none cursor-pointer py-3 justify-between", 
-            theme === 'light' ? 'bg-amber-500 text-slate-950 focus:bg-amber-500 focus:text-slate-950' : ''
+            "rounded-none cursor-pointer py-3 justify-between",
+            theme === "light"
+              ? "bg-amber-500 text-slate-950 focus:bg-amber-500 focus:text-slate-950"
+              : "",
           )}
         >
           <span>Light</span>
           <Sun className="size-3.5" />
         </DropdownMenuItem>
-        
-        <DropdownMenuItem 
-          onClick={() => setTheme("dark")} 
+
+        <DropdownMenuItem
+          onClick={() => setTheme("dark")}
           className={cn(
-            "rounded-none cursor-pointer py-3 justify-between", 
-            theme === 'dark' ? 'bg-amber-500 text-slate-950 focus:bg-amber-500 focus:text-slate-950' : ''
+            "rounded-none cursor-pointer py-3 justify-between",
+            theme === "dark"
+              ? "bg-amber-500 text-slate-950 focus:bg-amber-500 focus:text-slate-950"
+              : "",
           )}
         >
           <span>Dark</span>
           <Moon className="size-3.5" />
         </DropdownMenuItem>
-        
-        <DropdownMenuItem 
-          onClick={() => setTheme("system")} 
+
+        <DropdownMenuItem
+          onClick={() => setTheme("system")}
           className={cn(
-            "rounded-none cursor-pointer py-3 justify-between", 
-            theme === 'system' ? 'bg-amber-500 text-slate-950 focus:bg-amber-500 focus:text-slate-950' : ''
+            "rounded-none cursor-pointer py-3 justify-between",
+            theme === "system"
+              ? "bg-amber-500 text-slate-950 focus:bg-amber-500 focus:text-slate-950"
+              : "",
           )}
         >
           <span>System</span>

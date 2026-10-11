@@ -1,7 +1,12 @@
 "use client";
 
-import React from "react";
-import { BookOpen, Calendar, Milestone, ShieldCheck, HeartHandshake } from "lucide-react";
+import {
+  BookOpen,
+  Calendar,
+  HeartHandshake,
+  Milestone,
+  ShieldCheck,
+} from "lucide-react";
 import { motion } from "motion/react";
 import { ScrollReveal } from "@/components/common/ScrollReveal";
 import { SpotlightCard } from "@/components/common/SpotlightCard";
@@ -43,7 +48,10 @@ export function HistoryTimelineSection() {
   ];
 
   return (
-    <section aria-labelledby="history-heading" className="py-28 md:py-36 lg:py-44 bg-[#FDFDFB] dark:bg-slate-950 border-b border-slate-200/80 dark:border-slate-700/80">
+    <section
+      aria-labelledby="history-heading"
+      className="py-28 md:py-36 lg:py-44 bg-[#FDFDFB] dark:bg-slate-950 border-b border-slate-200/80 dark:border-slate-700/80"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20 items-start">
           {/* Left Column: Meaning of Al-Birru & Quranic Verse */}
@@ -54,14 +62,19 @@ export function HistoryTimelineSection() {
                 <span>FILOSOFI // ASAL-USUL NAMA</span>
               </div>
 
-              <h2 id="history-heading" className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-950 dark:text-slate-50 tracking-tight leading-[1.12]">
-                Mengapa Bernama <span className="text-amber-600">Al-Birru</span>?
+              <h2
+                id="history-heading"
+                className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-950 dark:text-slate-50 tracking-tight leading-[1.12]"
+              >
+                Mengapa Bernama <span className="text-amber-600">Al-Birru</span>
+                ?
               </h2>
 
               <p className="mt-5 text-base sm:text-lg text-slate-600 dark:text-slate-400 leading-relaxed font-normal">
-                Kata <strong>&quot;Al-Birr&quot; (الْبِرِّ)</strong> bersumber dari Al-Qur&apos;an
-                Surah Al-Baqarah ayat 177, yang melambangkan <em>kebajikan paripurna</em>: perpaduan
-                antara keimanan lurus, adab santun, kepekaan sosial, dan integritas moral.
+                Kata <strong>&quot;Al-Birr&quot; (الْبِرِّ)</strong> bersumber dari
+                Al-Qur&apos;an Surah Al-Baqarah ayat 177, yang melambangkan{" "}
+                <em>kebajikan paripurna</em>: perpaduan antara keimanan lurus,
+                adab santun, kepekaan sosial, dan integritas moral.
               </p>
 
               {/* Quranic Verse Showcase Card with Semantic Blockquote */}
@@ -77,20 +90,31 @@ export function HistoryTimelineSection() {
                   <cite className="text-[10px] font-mono font-bold text-amber-700 uppercase tracking-widest block mb-4 not-italic">
                     QS. AL-BAQARAH: 177
                   </cite>
-                  <p lang="ar" dir="rtl" className="text-right text-lg sm:text-xl font-serif text-slate-900 dark:text-slate-50 leading-loose">
-                    لَّيْسَ الْبِرَّ أَن تُوَلُّوا وُجُوهَكُمْ قِبَلَ الْمَشْرِقِ وَالْمَغْرِبِ وَلَٰكِنَّ الْبِرَّ مَنْ آمَنَ بِاللَّهِ...
+                  <p
+                    lang="ar"
+                    dir="rtl"
+                    className="text-right text-lg sm:text-xl font-serif text-slate-900 dark:text-slate-50 leading-loose"
+                  >
+                    لَّيْسَ الْبِرَّ أَن تُوَلُّوا وُجُوهَكُمْ قِبَلَ الْمَشْرِقِ وَالْمَغْرِبِ وَلَٰكِنَّ الْبِرَّ مَنْ آمَنَ
+                    بِاللَّهِ...
                   </p>
-                  <blockquote cite="https://quran.com/2/177" className="mt-6 text-xs sm:text-sm text-slate-600 dark:text-slate-400 font-medium italic leading-relaxed border-t border-slate-100 dark:border-slate-800 pt-4">
-                    &quot;Bukanlah menghadapkan wajahmu ke arah timur dan barat itu suatu kebajikan (al-birr),
-                    akan tetapi kebajikan itu ialah beriman kepada Allah, hari kemudian, malaikat-malaikat,
-                    kitab-kitab, dan nabi-nabi...&quot;
+                  <blockquote
+                    cite="https://quran.com/2/177"
+                    className="mt-6 text-xs sm:text-sm text-slate-600 dark:text-slate-400 font-medium italic leading-relaxed border-t border-slate-100 dark:border-slate-800 pt-4"
+                  >
+                    &quot;Bukanlah menghadapkan wajahmu ke arah timur dan barat
+                    itu suatu kebajikan (al-birr), akan tetapi kebajikan itu
+                    ialah beriman kepada Allah, hari kemudian,
+                    malaikat-malaikat, kitab-kitab, dan nabi-nabi...&quot;
                   </blockquote>
                 </SpotlightCard>
               </motion.div>
 
               <div className="mt-8 flex items-center gap-3 text-xs text-slate-500 font-mono">
                 <HeartHandshake className="size-4 text-amber-600 shrink-0" />
-                <span>Membimbing dengan cinta, mendidik dengan keteladanan</span>
+                <span>
+                  Membimbing dengan cinta, mendidik dengan keteladanan
+                </span>
               </div>
             </ScrollReveal>
           </div>
@@ -114,7 +138,7 @@ export function HistoryTimelineSection() {
                     className="relative group list-none"
                   >
                     {/* Glowing Node on Timeline Axis */}
- <div className="absolute -left-[35px] sm:-left-[51px] top-2 flex size-8 sm:size-9 items-center justify-center rounded-none bg-slate-950 text-amber-400 font-mono font-bold text-xs shadow-md border border-slate-800 group-hover:bg-amber-500 group-hover:text-slate-950 dark:hover:text-slate-50 group-hover:scale-110 transition-all">
+                    <div className="absolute -left-[35px] sm:-left-[51px] top-2 flex size-8 sm:size-9 items-center justify-center rounded-none bg-slate-950 text-amber-400 font-mono font-bold text-xs shadow-md border border-slate-800 group-hover:bg-amber-500 group-hover:text-slate-950 dark:hover:text-slate-50 group-hover:scale-110 transition-all">
                       <Icon className="size-4" />
                     </div>
 
@@ -125,7 +149,10 @@ export function HistoryTimelineSection() {
                         className="p-7 sm:p-8 bg-white dark:bg-slate-900 shadow-2xs hover:shadow-lg transition-all rounded-none"
                       >
                         <div className="flex flex-wrap items-center justify-between gap-2 mb-3.5">
-                          <time dateTime={item.year} className="text-xs font-mono font-bold text-amber-600 bg-amber-50 px-2.5 py-0.5 rounded-none border border-amber-200/60">
+                          <time
+                            dateTime={item.year}
+                            className="text-xs font-mono font-bold text-amber-600 bg-amber-50 px-2.5 py-0.5 rounded-none border border-amber-200/60"
+                          >
                             TAHUN {item.year}
                           </time>
                           <span className="text-[10px] font-mono text-slate-400 uppercase tracking-wider">
@@ -133,7 +160,10 @@ export function HistoryTimelineSection() {
                           </span>
                         </div>
 
-                        <h3 id={`milestone-title-${idx}`} className="text-lg sm:text-xl font-bold text-slate-950 dark:text-slate-50 group-hover:text-amber-800 transition-colors leading-snug">
+                        <h3
+                          id={`milestone-title-${idx}`}
+                          className="text-lg sm:text-xl font-bold text-slate-950 dark:text-slate-50 group-hover:text-amber-800 transition-colors leading-snug"
+                        >
                           {item.title}
                         </h3>
 

@@ -1,23 +1,27 @@
 ﻿"use client";
 
-import React, { useState } from "react";
 import {
-  Send,
-  CheckCircle2,
   AlertCircle,
+  CheckCircle2,
+  ExternalLink,
   Loader2,
   MessageCircle,
-  ExternalLink,
   RotateCcw,
+  Send,
   Tag,
 } from "lucide-react";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+import type React from "react";
+import { useState } from "react";
+import { BorderBeam } from "@/components/common/BorderBeam";
 import { ConfettiCelebration } from "@/components/common/ConfettiCelebration";
 import { SpotlightCard } from "@/components/common/SpotlightCard";
-import { BorderBeam } from "@/components/common/BorderBeam";
-import { contactFormSchema, ContactFormData } from "@/lib/validations/contact";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
+import {
+  type ContactFormData,
+  contactFormSchema,
+} from "@/lib/validations/contact";
 
 const QUICK_TOPICS = [
   "Registration Kelas 1 (Admissions 2026)",
@@ -68,7 +72,7 @@ export function ContactForm() {
   };
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -110,7 +114,7 @@ export function ContactForm() {
           setErrors(data.errors);
         } else {
           setGeneralError(
-            data.message || "Gagal mengirimkan pesan. Silakan coba kembali."
+            data.message || "Gagal mengirimkan pesan. Silakan coba kembali.",
           );
         }
         setIsSubmitting(false);
@@ -122,7 +126,7 @@ export function ContactForm() {
       setIsSubmitting(false);
     } catch {
       setGeneralError(
-        "Koneksi terputus. Pastikan jaringan internet Anda aktif."
+        "Koneksi terputus. Pastikan jaringan internet Anda aktif.",
       );
       setIsSubmitting(false);
     }
@@ -150,7 +154,12 @@ export function ContactForm() {
         borderColor="rgba(16, 185, 129, 0.4)"
         className="rounded-none bg-white dark:bg-slate-900 p-8 sm:p-12 shadow-lg text-slate-900 dark:text-slate-50 animate-in fade-in-0 duration-300 relative overflow-hidden"
       >
-        <BorderBeam size={220} duration={10} colorFrom="#10b981" colorTo="#f59e0b" />
+        <BorderBeam
+          size={220}
+          duration={10}
+          colorFrom="#10b981"
+          colorTo="#f59e0b"
+        />
         <ConfettiCelebration />
 
         <div
@@ -167,16 +176,20 @@ export function ContactForm() {
               <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-3 py-1 rounded-none border border-emerald-200/60">
                 STATUS // TERKIRIM
               </span>
-              <h3 id="submit-success-heading" className="text-xl sm:text-2xl font-black text-slate-950 dark:text-slate-50 mt-1.5">
+              <h3
+                id="submit-success-heading"
+                className="text-xl sm:text-2xl font-black text-slate-950 dark:text-slate-50 mt-1.5"
+              >
                 Alhamdulillah, Pesan Diterima!
               </h3>
             </div>
           </div>
 
           <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed">
-            Pertanyaan Anda telah kami catat dalam sistem administrasi SD Al-Birru.
-            Untuk respon instan dan penjadwalan survei lokasi langsung bersama panitia Admissions,
-            Anda dapat langsung terhubung ke WhatsApp resmi kami:
+            Pertanyaan Anda telah kami catat dalam sistem administrasi SD
+            Al-Birru. Untuk respon instan dan penjadwalan survei lokasi langsung
+            bersama panitia Admissions, Anda dapat langsung terhubung ke
+            WhatsApp resmi kami:
           </p>
 
           {/* WhatsApp Direct Action Button */}
@@ -211,7 +224,11 @@ export function ContactForm() {
       spotlightColor="rgba(245, 158, 11, 0.08)"
       className="rounded-none bg-white dark:bg-slate-900 p-8 sm:p-12 shadow-2xs border border-slate-200 dark:border-slate-700 relative overflow-hidden"
     >
-      <form onSubmit={handleSubmit} noValidate aria-labelledby="contact-form-title">
+      <form
+        onSubmit={handleSubmit}
+        noValidate
+        aria-labelledby="contact-form-title"
+      >
         <div className="mb-8">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-none bg-amber-50 border border-amber-200/60 text-amber-800 text-[11px] font-mono font-bold uppercase tracking-wider mb-4">
             <span className="size-1.5 rounded-none bg-amber-500 animate-pulse" />
@@ -224,7 +241,8 @@ export function ContactForm() {
             Konsultasi &amp; Pertanyaan Calon Students
           </h3>
           <p className="mt-2 text-sm text-slate-500 leading-relaxed font-normal">
-            Lengkapi data di bawah ini. Tim panitia Admissions akan merespon pertanyaan Anda secara personal.
+            Lengkapi data di bawah ini. Tim panitia Admissions akan merespon
+            pertanyaan Anda secara personal.
           </p>
         </div>
 
@@ -234,7 +252,11 @@ export function ContactForm() {
             <Tag aria-hidden="true" className="size-3.5 text-amber-600" />
             <span>Pilih Topik Konsultasi (Opsional)</span>
           </legend>
-          <div className="flex flex-wrap gap-2.5" role="group" aria-label="Pilihan Topik Konsultasi">
+          <div
+            className="flex flex-wrap gap-2.5"
+            role="group"
+            aria-label="Pilihan Topik Konsultasi"
+          >
             {QUICK_TOPICS.map((topic) => {
               const isSelected = selectedTopic === topic;
               return (
@@ -247,7 +269,7 @@ export function ContactForm() {
                     "text-xs px-3.5 py-2 rounded-none border font-medium transition-all cursor-pointer",
                     isSelected
                       ? "bg-slate-900 border-slate-900 text-white shadow-2xs"
-                      : "bg-[#FDFDFB] dark:bg-slate-950 border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 hover:border-slate-300 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-800 dark:bg-slate-800"
+                      : "bg-[#FDFDFB] dark:bg-slate-950 border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 hover:border-slate-300 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-800 dark:bg-slate-800",
                   )}
                 >
                   {topic}
@@ -258,7 +280,10 @@ export function ContactForm() {
         </fieldset>
 
         {generalError && (
-          <div role="alert" className="mb-6 p-4 rounded-none bg-rose-50 border border-rose-200 text-rose-700 text-xs flex items-center gap-2">
+          <div
+            role="alert"
+            className="mb-6 p-4 rounded-none bg-rose-50 border border-rose-200 text-rose-700 text-xs flex items-center gap-2"
+          >
             <AlertCircle aria-hidden="true" className="size-4 shrink-0" />
             <span>{generalError}</span>
           </div>
@@ -271,7 +296,10 @@ export function ContactForm() {
               htmlFor="fullName"
               className="block text-xs font-mono font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-2"
             >
-              Nama Lengkap Orang Tua / Wali <span className="text-rose-500" aria-hidden="true">*</span>
+              Nama Lengkap Orang Tua / Wali{" "}
+              <span className="text-rose-500" aria-hidden="true">
+                *
+              </span>
             </label>
             <Input
               id="fullName"
@@ -287,7 +315,11 @@ export function ContactForm() {
               className="h-12 rounded-none border-slate-200 dark:border-slate-700 text-sm focus-visible:ring-amber-500"
             />
             {errors.fullName && (
-              <p id="fullName-error" role="alert" className="mt-1.5 text-xs text-rose-600 font-medium">
+              <p
+                id="fullName-error"
+                role="alert"
+                className="mt-1.5 text-xs text-rose-600 font-medium"
+              >
                 {errors.fullName[0]}
               </p>
             )}
@@ -300,7 +332,10 @@ export function ContactForm() {
                 htmlFor="phone"
                 className="block text-xs font-mono font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-2"
               >
-                No. WhatsApp Aktif <span className="text-rose-500" aria-hidden="true">*</span>
+                No. WhatsApp Aktif{" "}
+                <span className="text-rose-500" aria-hidden="true">
+                  *
+                </span>
               </label>
               <Input
                 id="phone"
@@ -316,7 +351,11 @@ export function ContactForm() {
                 className="h-12 rounded-none border-slate-200 dark:border-slate-700 text-sm focus-visible:ring-amber-500 font-mono"
               />
               {errors.phone && (
-                <p id="phone-error" role="alert" className="mt-1.5 text-xs text-rose-600 font-medium">
+                <p
+                  id="phone-error"
+                  role="alert"
+                  className="mt-1.5 text-xs text-rose-600 font-medium"
+                >
                   {errors.phone[0]}
                 </p>
               )}
@@ -341,7 +380,11 @@ export function ContactForm() {
                 className="h-12 rounded-none border-slate-200 dark:border-slate-700 text-sm focus-visible:ring-amber-500"
               />
               {errors.email && (
-                <p id="email-error" role="alert" className="mt-1.5 text-xs text-rose-600 font-medium">
+                <p
+                  id="email-error"
+                  role="alert"
+                  className="mt-1.5 text-xs text-rose-600 font-medium"
+                >
                   {errors.email[0]}
                 </p>
               )}
@@ -361,14 +404,22 @@ export function ContactForm() {
               name="studentCandidateName"
               type="text"
               aria-invalid={!!errors.studentCandidateName}
-              aria-describedby={errors.studentCandidateName ? "studentCandidateName-error" : undefined}
+              aria-describedby={
+                errors.studentCandidateName
+                  ? "studentCandidateName-error"
+                  : undefined
+              }
               value={formData.studentCandidateName}
               onChange={handleChange}
               placeholder="Contoh: Muhammad Rayhan"
               className="h-12 rounded-none border-slate-200 dark:border-slate-700 text-sm focus-visible:ring-amber-500"
             />
             {errors.studentCandidateName && (
-              <p id="studentCandidateName-error" role="alert" className="mt-1.5 text-xs text-rose-600 font-medium">
+              <p
+                id="studentCandidateName-error"
+                role="alert"
+                className="mt-1.5 text-xs text-rose-600 font-medium"
+              >
                 {errors.studentCandidateName[0]}
               </p>
             )}
@@ -381,7 +432,10 @@ export function ContactForm() {
                 htmlFor="message"
                 className="block text-xs font-mono font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider"
               >
-                Pesan / Pertanyaan <span className="text-rose-500" aria-hidden="true">*</span>
+                Pesan / Pertanyaan{" "}
+                <span className="text-rose-500" aria-hidden="true">
+                  *
+                </span>
               </label>
               <span className="text-[10px] font-mono text-slate-400">
                 {formData.message.length} KARAKTER
@@ -401,7 +455,11 @@ export function ContactForm() {
               className="rounded-none border-slate-200 dark:border-slate-700 text-sm focus-visible:ring-amber-500 resize-none leading-relaxed p-4"
             />
             {errors.message && (
-              <p id="message-error" role="alert" className="mt-1.5 text-xs text-rose-600 font-medium">
+              <p
+                id="message-error"
+                role="alert"
+                className="mt-1.5 text-xs text-rose-600 font-medium"
+              >
                 {errors.message[0]}
               </p>
             )}
@@ -413,7 +471,7 @@ export function ContactForm() {
           <button
             type="submit"
             disabled={isSubmitting}
- className="w-full flex items-center justify-center gap-2 h-13 rounded-none bg-amber-500 hover:bg-amber-600 active:scale-[0.98] text-slate-950 font-bold text-sm shadow-md shadow-amber-500/20 transition-all cursor-pointer disabled:opacity-50 disabled:pointer-events-none"
+            className="w-full flex items-center justify-center gap-2 h-13 rounded-none bg-amber-500 hover:bg-amber-600 active:scale-[0.98] text-slate-950 font-bold text-sm shadow-md shadow-amber-500/20 transition-all cursor-pointer disabled:opacity-50 disabled:pointer-events-none"
           >
             {isSubmitting ? (
               <>
@@ -432,4 +490,3 @@ export function ContactForm() {
     </SpotlightCard>
   );
 }
-

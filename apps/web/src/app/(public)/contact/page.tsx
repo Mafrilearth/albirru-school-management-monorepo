@@ -1,19 +1,18 @@
-﻿import React from "react";
-import type { Metadata } from "next";
-import {
-  MapPin,
-  Phone,
-  Mail,
-  Clock,
-  MessageCircle,
-  ExternalLink,
-  ShieldCheck,
+﻿import {
   CalendarCheck,
+  Clock,
+  ExternalLink,
+  Mail,
+  MapPin,
+  MessageCircle,
+  Phone,
+  ShieldCheck,
 } from "lucide-react";
-import { PageHeader } from "@/components/layout/PageHeader";
-import { ContactForm } from "@/components/forms/ContactForm";
-import { SpotlightCard } from "@/components/common/SpotlightCard";
+import type { Metadata } from "next";
 import { ScrollReveal } from "@/components/common/ScrollReveal";
+import { SpotlightCard } from "@/components/common/SpotlightCard";
+import { ContactForm } from "@/components/forms/ContactForm";
+import { PageHeader } from "@/components/layout/PageHeader";
 
 export const metadata: Metadata = {
   title: "Kontak, Lokasi & Konsultasi Admissions",
@@ -125,10 +124,12 @@ export default function ContactPage() {
                         <MapPin className="size-5 text-amber-600" />
                       </div>
                       <div>
-                        <h4 className="font-bold text-slate-900 dark:text-slate-50">Alamat Kampus</h4>
+                        <h4 className="font-bold text-slate-900 dark:text-slate-50">
+                          Alamat Kampus
+                        </h4>
                         <p className="mt-1 leading-relaxed text-xs sm:text-sm">
-                          Jl. Selabintana Km. 5, Warnasari, Kec. Sukabumi, Kabupaten Sukabumi,
-                          Jawa Barat 43151, Indonesia
+                          Jl. Selabintana Km. 5, Warnasari, Kec. Sukabumi,
+                          Kabupaten Sukabumi, Jawa Barat 43151, Indonesia
                         </p>
                       </div>
                     </div>
@@ -141,8 +142,12 @@ export default function ContactPage() {
                         <Phone className="size-5" />
                       </div>
                       <div>
-                        <h4 className="font-bold text-slate-900 dark:text-slate-50">Telepon &amp; WhatsApp</h4>
-                        <p className="mt-1 text-xs sm:text-sm font-mono">Hotline TU: (0266) 123-456</p>
+                        <h4 className="font-bold text-slate-900 dark:text-slate-50">
+                          Telepon &amp; WhatsApp
+                        </h4>
+                        <p className="mt-1 text-xs sm:text-sm font-mono">
+                          Hotline TU: (0266) 123-456
+                        </p>
                         <p className="text-emerald-700 font-bold text-xs sm:text-sm font-mono mt-0.5">
                           WA Humas: 0812-3456-7890
                         </p>
@@ -157,9 +162,15 @@ export default function ContactPage() {
                         <Mail className="size-5" />
                       </div>
                       <div>
-                        <h4 className="font-bold text-slate-900 dark:text-slate-50">Email Resmi</h4>
-                        <p className="mt-1 text-xs sm:text-sm font-mono">info@sdalbirru.sch.id</p>
-                        <p className="text-slate-500 text-xs font-mono mt-0.5">ppdb@sdalbirru.sch.id</p>
+                        <h4 className="font-bold text-slate-900 dark:text-slate-50">
+                          Email Resmi
+                        </h4>
+                        <p className="mt-1 text-xs sm:text-sm font-mono">
+                          info@sdalbirru.sch.id
+                        </p>
+                        <p className="text-slate-500 text-xs font-mono mt-0.5">
+                          ppdb@sdalbirru.sch.id
+                        </p>
                       </div>
                     </div>
 
@@ -171,9 +182,15 @@ export default function ContactPage() {
                         <Clock className="size-5" />
                       </div>
                       <div>
-                        <h4 className="font-bold text-slate-900 dark:text-slate-50">Jam Layanan Admissions &amp; Tata Usaha</h4>
-                        <p className="mt-1 text-xs sm:text-sm font-mono">Senin – Jumat: 07.30 – 15.00 WIB</p>
-                        <p className="text-xs text-slate-500 font-mono mt-0.5">Sabtu: 08.00 – 12.00 WIB (Dengan Janji Temu)</p>
+                        <h4 className="font-bold text-slate-900 dark:text-slate-50">
+                          Jam Layanan Admissions &amp; Tata Usaha
+                        </h4>
+                        <p className="mt-1 text-xs sm:text-sm font-mono">
+                          Senin – Jumat: 07.30 – 15.00 WIB
+                        </p>
+                        <p className="text-xs text-slate-500 font-mono mt-0.5">
+                          Sabtu: 08.00 – 12.00 WIB (Dengan Janji Temu)
+                        </p>
                       </div>
                     </div>
                   </address>
@@ -188,7 +205,10 @@ export default function ContactPage() {
                     >
                       <MessageCircle aria-hidden="true" className="size-4.5" />
                       <span>Chat Cepat ke WhatsApp Committee</span>
-                      <ExternalLink aria-hidden="true" className="size-3.5 opacity-80" />
+                      <ExternalLink
+                        aria-hidden="true"
+                        className="size-3.5 opacity-80"
+                      />
                     </a>
                   </div>
                 </SpotlightCard>
@@ -199,7 +219,10 @@ export default function ContactPage() {
                 <div className="rounded-none bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 p-8 shadow-2xs">
                   <div className="flex items-center justify-between mb-5">
                     <div className="flex items-center gap-2">
-                      <CalendarCheck aria-hidden="true" className="size-4.5 text-amber-600" />
+                      <CalendarCheck
+                        aria-hidden="true"
+                        className="size-4.5 text-amber-600"
+                      />
                       <h3
                         id="visit-protocols-heading"
                         className="text-xs font-bold text-slate-900 dark:text-slate-50 uppercase tracking-wider font-mono"
@@ -207,13 +230,14 @@ export default function ContactPage() {
                         PANDUAN KUNJUNGAN KAMPUS
                       </h3>
                     </div>
-                    <span className="text-[10px] font-mono text-slate-400">SURVEI</span>
+                    <span className="text-[10px] font-mono text-slate-400">
+                      SURVEI
+                    </span>
                   </div>
 
                   <ol
                     aria-labelledby="visit-protocols-heading"
                     className="space-y-3.5 list-none p-0"
-                    role="list"
                   >
                     {visitProtocols.map((item, idx) => (
                       <li
@@ -224,7 +248,9 @@ export default function ContactPage() {
                           {item.step}
                         </span>
                         <div>
-                          <h4 className="text-xs sm:text-sm font-bold text-slate-900 dark:text-slate-50">{item.title}</h4>
+                          <h4 className="text-xs sm:text-sm font-bold text-slate-900 dark:text-slate-50">
+                            {item.title}
+                          </h4>
                           <p className="text-xs text-slate-500 mt-1 leading-relaxed">
                             {item.desc}
                           </p>
@@ -262,7 +288,10 @@ export default function ContactPage() {
                       aria-hidden="true"
                       className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#000_1px,transparent_1px)] [background-size:16px_16px]"
                     />
-                    <MapPin aria-hidden="true" className="size-8 text-amber-500 mb-2 relative z-10" />
+                    <MapPin
+                      aria-hidden="true"
+                      className="size-8 text-amber-500 mb-2 relative z-10"
+                    />
                     <p className="text-sm font-bold text-slate-900 dark:text-slate-50 relative z-10">
                       SD Al-Birru Tahfidzul Qur&apos;an Sukabumi
                     </p>
@@ -276,13 +305,22 @@ export default function ContactPage() {
                       className="mt-4 inline-flex items-center gap-2 px-4 py-2 rounded-none bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 dark:bg-slate-800 shadow-2xs transition-colors relative z-10"
                     >
                       <span>Buka di Google Maps</span>
-                      <ExternalLink aria-hidden="true" className="size-3.5 text-slate-400" />
+                      <ExternalLink
+                        aria-hidden="true"
+                        className="size-3.5 text-slate-400"
+                      />
                     </a>
                   </figure>
 
                   <div className="mt-4 flex items-center gap-2 text-xs text-slate-500 font-mono">
-                    <ShieldCheck aria-hidden="true" className="size-4 text-emerald-700 shrink-0" />
-                    <span>Area parkir tertata &amp; lingkungan belajar asri bebas polusi</span>
+                    <ShieldCheck
+                      aria-hidden="true"
+                      className="size-4 text-emerald-700 shrink-0"
+                    />
+                    <span>
+                      Area parkir tertata &amp; lingkungan belajar asri bebas
+                      polusi
+                    </span>
                   </div>
                 </SpotlightCard>
               </ScrollReveal>
@@ -300,4 +338,3 @@ export default function ContactPage() {
     </>
   );
 }
-

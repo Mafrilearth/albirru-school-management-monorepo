@@ -1,18 +1,25 @@
 "use client";
 
-import React, { useState } from "react";
-import { Send, CheckCircle2, Loader2 } from "lucide-react";
-import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { AdmissionsSubmissionSchema, type AdmissionsSubmissionPayload } from "@/lib/validations/admissions";
-
-import { Input } from "@/components/ui/input";
+import { CheckCircle2, Loader2, Send } from "lucide-react";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { ConfettiCelebration } from "@/components/common/ConfettiCelebration";
+import { SpotlightCard } from "@/components/common/SpotlightCard";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
+import {
+  Field,
+  FieldContent,
+  FieldError,
+  FieldLabel,
+} from "@/components/ui/field";
+import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Field, FieldLabel, FieldError, FieldContent } from "@/components/ui/field";
-import { SpotlightCard } from "@/components/common/SpotlightCard";
-import { ConfettiCelebration } from "@/components/common/ConfettiCelebration";
+import {
+  type AdmissionsSubmissionPayload,
+  AdmissionsSubmissionSchema,
+} from "@/lib/validations/admissions";
 
 // NOTE: Ensure this action exists and accepts AdmissionsFormValues
 import { submitAdmissionAction } from "@/modules/admissions/actions";
@@ -25,7 +32,7 @@ export function AdmissionsForm() {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-    reset
+    reset,
   } = useForm<AdmissionsSubmissionPayload>({
     resolver: zodResolver(AdmissionsSubmissionSchema),
     defaultValues: {
@@ -46,9 +53,11 @@ export function AdmissionsForm() {
         setIsSuccess(true);
         reset();
       } else {
-        setErrorMessage(response.error_descriptor?.message || "Gagal memproses pendaftaran.");
+        setErrorMessage(
+          response.error_descriptor?.message || "Gagal memproses pendaftaran.",
+        );
       }
-    } catch (error) {
+    } catch (_error) {
       setErrorMessage("Terjadi kesalahan sistem. Silakan coba lagi.");
     }
   };
@@ -68,8 +77,9 @@ export function AdmissionsForm() {
             Pendaftaran Diterima!
           </h3>
           <p className="text-sm text-slate-600 dark:text-slate-400 max-w-md mx-auto">
-            Alhamdulillah, data pendaftaran ananda telah masuk ke sistem kami. 
-            Panitia PPDB akan menghubungi Anda via Email/WhatsApp dalam 1x24 jam untuk tahapan selanjutnya.
+            Alhamdulillah, data pendaftaran ananda telah masuk ke sistem kami.
+            Panitia PPDB akan menghubungi Anda via Email/WhatsApp dalam 1x24 jam
+            untuk tahapan selanjutnya.
           </p>
           <Button
             onClick={() => setIsSuccess(false)}
@@ -93,14 +103,20 @@ export function AdmissionsForm() {
           Form Registration Admissions 2026
         </h3>
         <p className="mt-2 text-sm text-slate-500">
-          Mohon lengkapi data calon students dengan valid. Bidang bertanda <span className="text-rose-500">*</span> wajib diisi.
+          Mohon lengkapi data calon students dengan valid. Bidang bertanda{" "}
+          <span className="text-rose-500">*</span> wajib diisi.
         </p>
       </div>
 
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
         <div className="flex flex-col gap-4">
-          <Field orientation="vertical" data-invalid={!!errors.prospectiveStudentName}>
-            <FieldLabel htmlFor="prospectiveStudentName">Nama Lengkap Calon Siswa <span className="text-rose-500">*</span></FieldLabel>
+          <Field
+            orientation="vertical"
+            data-invalid={!!errors.prospectiveStudentName}
+          >
+            <FieldLabel htmlFor="prospectiveStudentName">
+              Nama Lengkap Calon Siswa <span className="text-rose-500">*</span>
+            </FieldLabel>
             <FieldContent>
               <Input
                 id="prospectiveStudentName"
@@ -110,11 +126,18 @@ export function AdmissionsForm() {
                 {...register("prospectiveStudentName")}
               />
             </FieldContent>
-            {errors.prospectiveStudentName && <FieldError>{errors.prospectiveStudentName.message}</FieldError>}
+            {errors.prospectiveStudentName && (
+              <FieldError>{errors.prospectiveStudentName.message}</FieldError>
+            )}
           </Field>
 
-          <Field orientation="vertical" data-invalid={!!errors.prospectiveStudentBirthDate}>
-            <FieldLabel htmlFor="prospectiveStudentBirthDate">Tanggal Lahir Calon Siswa <span className="text-rose-500">*</span></FieldLabel>
+          <Field
+            orientation="vertical"
+            data-invalid={!!errors.prospectiveStudentBirthDate}
+          >
+            <FieldLabel htmlFor="prospectiveStudentBirthDate">
+              Tanggal Lahir Calon Siswa <span className="text-rose-500">*</span>
+            </FieldLabel>
             <FieldContent>
               <Input
                 type="date"
@@ -124,11 +147,20 @@ export function AdmissionsForm() {
                 {...register("prospectiveStudentBirthDate")}
               />
             </FieldContent>
-            {errors.prospectiveStudentBirthDate && <FieldError>{errors.prospectiveStudentBirthDate.message}</FieldError>}
+            {errors.prospectiveStudentBirthDate && (
+              <FieldError>
+                {errors.prospectiveStudentBirthDate.message}
+              </FieldError>
+            )}
           </Field>
 
-          <Field orientation="vertical" data-invalid={!!errors.guardianContactName}>
-            <FieldLabel htmlFor="guardianContactName">Nama Lengkap Wali <span className="text-rose-500">*</span></FieldLabel>
+          <Field
+            orientation="vertical"
+            data-invalid={!!errors.guardianContactName}
+          >
+            <FieldLabel htmlFor="guardianContactName">
+              Nama Lengkap Wali <span className="text-rose-500">*</span>
+            </FieldLabel>
             <FieldContent>
               <Input
                 id="guardianContactName"
@@ -138,11 +170,18 @@ export function AdmissionsForm() {
                 {...register("guardianContactName")}
               />
             </FieldContent>
-            {errors.guardianContactName && <FieldError>{errors.guardianContactName.message}</FieldError>}
+            {errors.guardianContactName && (
+              <FieldError>{errors.guardianContactName.message}</FieldError>
+            )}
           </Field>
 
-          <Field orientation="vertical" data-invalid={!!errors.guardianContactPhone}>
-            <FieldLabel htmlFor="guardianContactPhone">Nomor Telepon Aktif <span className="text-rose-500">*</span></FieldLabel>
+          <Field
+            orientation="vertical"
+            data-invalid={!!errors.guardianContactPhone}
+          >
+            <FieldLabel htmlFor="guardianContactPhone">
+              Nomor Telepon Aktif <span className="text-rose-500">*</span>
+            </FieldLabel>
             <FieldContent>
               <Input
                 type="tel"
@@ -153,11 +192,18 @@ export function AdmissionsForm() {
                 {...register("guardianContactPhone")}
               />
             </FieldContent>
-            {errors.guardianContactPhone && <FieldError>{errors.guardianContactPhone.message}</FieldError>}
+            {errors.guardianContactPhone && (
+              <FieldError>{errors.guardianContactPhone.message}</FieldError>
+            )}
           </Field>
-          
-          <Field orientation="vertical" data-invalid={!!errors.guardianContactEmail}>
-            <FieldLabel htmlFor="guardianContactEmail">Email Aktif <span className="text-rose-500">*</span></FieldLabel>
+
+          <Field
+            orientation="vertical"
+            data-invalid={!!errors.guardianContactEmail}
+          >
+            <FieldLabel htmlFor="guardianContactEmail">
+              Email Aktif <span className="text-rose-500">*</span>
+            </FieldLabel>
             <FieldContent>
               <Input
                 type="email"
@@ -168,11 +214,18 @@ export function AdmissionsForm() {
                 {...register("guardianContactEmail")}
               />
             </FieldContent>
-            {errors.guardianContactEmail && <FieldError>{errors.guardianContactEmail.message}</FieldError>}
+            {errors.guardianContactEmail && (
+              <FieldError>{errors.guardianContactEmail.message}</FieldError>
+            )}
           </Field>
 
-          <Field orientation="vertical" data-invalid={!!errors.submittedDocumentsUrl}>
-            <FieldLabel htmlFor="submittedDocumentsUrl">Tautan Dokumen (Google Drive, dll)</FieldLabel>
+          <Field
+            orientation="vertical"
+            data-invalid={!!errors.submittedDocumentsUrl}
+          >
+            <FieldLabel htmlFor="submittedDocumentsUrl">
+              Tautan Dokumen (Google Drive, dll)
+            </FieldLabel>
             <FieldContent>
               <Input
                 type="url"
@@ -183,11 +236,17 @@ export function AdmissionsForm() {
                 {...register("submittedDocumentsUrl")}
               />
             </FieldContent>
-            {errors.submittedDocumentsUrl && <FieldError>{errors.submittedDocumentsUrl.message}</FieldError>}
+            {errors.submittedDocumentsUrl && (
+              <FieldError>{errors.submittedDocumentsUrl.message}</FieldError>
+            )}
           </Field>
 
           <div className="flex items-start space-x-3 pt-2">
-            <Checkbox id="terms" required className="mt-1 rounded-none shadow-none" />
+            <Checkbox
+              id="terms"
+              required
+              className="mt-1 rounded-none shadow-none"
+            />
             <div className="grid gap-1.5 leading-none">
               <Label
                 htmlFor="terms"
@@ -196,7 +255,8 @@ export function AdmissionsForm() {
                 Saya menyetujui syarat &amp; ketentuan pendaftaran
               </Label>
               <p className="text-xs text-slate-500">
-                Dengan ini saya menyatakan bahwa data kontak yang diisi adalah benar agar panitia dapat menghubungi saya.
+                Dengan ini saya menyatakan bahwa data kontak yang diisi adalah
+                benar agar panitia dapat menghubungi saya.
               </p>
             </div>
           </div>

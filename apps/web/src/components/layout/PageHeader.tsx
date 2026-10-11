@@ -1,21 +1,19 @@
 "use client";
 
-import React from "react";
-
 import {
-  ShieldCheck,
   BookOpen,
-  Users,
-  Trophy,
   Building2,
-  Newspaper,
   Calendar,
   Camera,
-  Sparkles,
+  Clock,
   HeartHandshake,
   MapPin,
-  Clock,
+  Newspaper,
   Phone,
+  ShieldCheck,
+  Sparkles,
+  Trophy,
+  Users,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -61,7 +59,7 @@ export function PageHeader({
     <section
       className={cn(
         "relative overflow-hidden pt-20 pb-24 md:pt-32 md:pb-36 bg-[#FDFDFB] dark:bg-slate-950 border-b border-slate-200/80 dark:border-slate-700/80",
-        className
+        className,
       )}
     >
       {/* Removed conflicting background dots to allow GlobalGrid to shine clearly */}
@@ -93,7 +91,9 @@ export function PageHeader({
                   key={idx}
                   className="inline-flex items-center gap-2 px-4 py-2 rounded-none bg-white dark:bg-slate-900 border border-slate-200/90 shadow-2xs font-medium hover:border-slate-300 dark:border-slate-600 transition-colors"
                 >
-                  {Icon && <Icon className="size-3.5 text-amber-600 shrink-0" />}
+                  {Icon && (
+                    <Icon className="size-3.5 text-amber-600 shrink-0" />
+                  )}
                   <span>{b.label}</span>
                 </div>
               );

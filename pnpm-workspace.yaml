@@ -1,0 +1,10 @@
+packages:
+  - "apps/*"
+  - "packages/*"
+
+allowBuilds:
+  '@biomejs/biome': true
+  '@clerk/shared': true
+  core-js: true
+  esbuild: true
+  unrs-resolver: true

@@ -87,17 +87,55 @@ Repositori ini diorganisasikan sebagai **Turborepo Multi-Package Monorepo** (ter
 - **`packages/eslint-config` (`@albirru/eslint-config`):** Aturan linting terpusat lintas monorepo (`base.js` dan `nextjs.js`).
 - **`packages/typescript-config` (`@albirru/typescript-config`):** Konfigurasi kompilasi TypeScript modular (`base.json`, `nextjs.json`, `react-library.json`).
 
-### Tumpukan Teknologi Inti
-- **Orkestrasi Monorepo:** [Turborepo](https://turbo.build/repo) (Task caching, parallel execution, and workspace pipelines)
-- **Framework Aplikasi:** [Next.js 16](https://nextjs.org/) (Turbopack, RSC, Server Actions)
-- **Runtime & Bahasa:** [Node.js 22.x LTS](https://nodejs.org/) & [TypeScript 5](https://www.typescriptlang.org/) (Strict Mode)
-- **Mesin Styling:** [Tailwind CSS v4](https://tailwindcss.com/) & [shadcn/ui](https://ui.shadcn.com/) (Fine-Line Boxy Brutalism)
-- **Basis Data:** [Supabase](https://supabase.com/) Managed PostgreSQL 16+ via [Supavisor](https://github.com/supabase/supavisor) Pooler (Port 6543)
-- **Object-Relational Mapping (ORM):** [Drizzle ORM](https://orm.drizzle.team/) & `drizzle-kit`
-- **Validasi Skema Runtime:** [Zod v3](https://zod.dev/) & [React Hook Form](https://react-hook-form.com/)
-- **Keamanan & Ingress Shield:** [Upstash Redis](https://upstash.com/) (Rate Limiting) & [Cloudflare Turnstile](https://www.cloudflare.com/products/turnstile/)
-- **Pengujian & QA:** [Vitest](https://vitest.dev/) (Unit/Integration) & [Playwright](https://playwright.dev/) (Browser E2E)
-- **Infrastruktur Hosting:** [Vercel](https://vercel.com/) Edge Serverless Network
+### Tumpukan Teknologi Resmi Terkurasi (*Zero Redundancy Stack*)
+
+| Lapisan / Fungsi | Teknologi Terpilih |
+| :--- | :--- |
+| **Bahasa Pemrograman** | TypeScript 5 (Strict Mode) |
+| **Package Manager** | [pnpm (Workspaces)](https://pnpm.io/) |
+| **Monorepo Engine** | [Turborepo](https://turbo.build/repo) |
+| **Framework Utama** | [Next.js 16](https://nextjs.org/) (App Router, RSC) |
+| **Library UI Core** | React 19 + React DOM |
+| **Platform Hosting & Serverless** | [Vercel](https://vercel.com/) |
+| **DNS & Proteksi Jaringan** | Cloudflare (Turnstile & DNS Protection) |
+| **Basis Data Relasional** | Neon (Serverless PostgreSQL) / Supabase |
+| **Database Driver** | `postgres` (porsager/postgres) |
+| **ORM & Migrations** | Drizzle ORM + Drizzle Kit |
+| **Autentikasi & Akun** | Clerk (`@clerk/nextjs`) |
+| **Cache & Rate Limiting** | Upstash (`@upstash/ratelimit`, `@upstash/redis`) |
+| **Server Actions Wrapper** | ZSA (`zsa`, `zsa-react`) |
+| **Validasi Skema** | Zod (`zod`) |
+| **Form Controller** | React Hook Form + `@hookform/resolvers` |
+| **CSS Framework** | Tailwind CSS v4 |
+| **Primitive Headless UI** | Radix UI / Base UI Primitives |
+| **Sistem Komponen** | shadcn/ui |
+| **Class Merging Utility** | `clsx` + `tailwind-merge` |
+| **Variant Authority** | `class-variance-authority` |
+| **Animasi** | Motion (`motion`) |
+| **Ikon** | Lucide React (`lucide-react`) |
+| **Komponen Layout** | `react-resizable-panels` |
+| **Komponen Carousel** | Embla Carousel (`embla-carousel-react`) |
+| **Komponen Input Khusus** | `input-otp` |
+| **Komponen Date Picker** | `react-day-picker` |
+| **Komponen Command Palette** | cmdk (`cmdk`) |
+| **Grafik & Visualisasi** | Recharts (`recharts`) |
+| **Dark/Light Mode Theme** | `next-themes` |
+| **Mesin Pencari In-Memory** | Orama (`@orama/orama`) |
+| **Unique ID Generator** | UUID v7 (`uuidv7`) |
+| **Manipulasi Tanggal** | date-fns (`date-fns`) |
+| **Layanan Kirim Email** | Resend (`resend`) |
+| **Komponen Desain Email** | React Email (`@react-email/components`) |
+| **Error & Crash Monitoring** | Sentry (`@sentry/nextjs`) |
+| **Product Analytics & Flags** | PostHog (`posthog-js`) |
+| **Web Vitals & Performance** | `@vercel/speed-insights` + `@vercel/analytics` |
+| **Secrets Management** | Doppler |
+| **Linter & Formatter** | Biome (`@biomejs/biome`) |
+| **Automasi Git Pre-commit** | Husky + Lint-Staged |
+| **Unit & Integration Test** | Vitest (`vitest`) |
+| **End-to-End Test** | Playwright (`playwright`) |
+| **Dokumentasi UI** | Storybook (`storybook`) |
+| **Visual Regression Platform**| Chromatic |
+| **Version Control & CI/CD** | GitHub + GitHub Actions |
 
 ---
 
@@ -105,8 +143,8 @@ Repositori ini diorganisasikan sebagai **Turborepo Multi-Package Monorepo** (ter
 
 ### 1. Prasyarat Sistem
 - **Node.js:** Versi `>= 20.18.0` (Direkomendasikan `v22.x LTS`)
-- **Package Manager:** `npm` versi `>= 10.x`
-- **PostgreSQL Database:** Instans aktif PostgreSQL 16+ (lokal atau Supabase)
+- **Package Manager:** `pnpm` versi `>= 9.x` (atau `v12.x`)
+- **PostgreSQL Database:** Instans aktif Serverless PostgreSQL (Neon / Supabase)
 
 ### 2. Kloning Repositori & Instalasi Dependensi
 ```bash
@@ -117,8 +155,8 @@ cd albirru-school-management-monorepo
 # Sinkronisasi ke cabang pengembangan dev
 git checkout dev
 
-# Instalasi paket dependensi
-npm install
+# Instalasi paket dependensi via pnpm
+pnpm install
 ```
 
 ### 3. Konfigurasi Variabel Lingkungan
@@ -130,34 +168,34 @@ cp .env.example .env.local
 Pastikan variabel-variabel kunci berikut terisi pada `.env.local`:
 ```ini
 NEXT_PUBLIC_SITE_URL=http://localhost:3000
-NEXT_PUBLIC_SUPABASE_URL=https://<project-ref>.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=sb_publishable_<key>
-NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=sb_publishable_<key>
-DATABASE_URL=postgresql://postgres.<project-ref>:<password>@aws-0-<region>.pooler.supabase.com:6543/postgres
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_...
+CLERK_SECRET_KEY=sk_test_...
+DATABASE_URL=postgresql://neondb_owner:<password>@ep-...neon.tech/neondb?sslmode=require
 ```
 
 ### 4. Perintah Operasional Monorepo & Basis Data
 ```bash
-# Menjalankan server pengembangan (Next.js via Turborepo)
-npm run dev
+# Menjalankan server pengembangan (Next.js via Turborepo & pnpm)
+pnpm run dev
 
 # Menjalankan kompilasi produksi seluruh workspace
-npm run build
+pnpm run build
 
-# Menjalankan linting kode statis
-npm run lint
+# Menjalankan linter & formatting via Biome
+pnpm run check
+pnpm run format
 
 # Memeriksa validasi tipe TypeScript di seluruh workspace
-npm run check-types
+pnpm run check-types
 
 # Menjalankan pengujian otomatis (Vitest)
-npm run test
+pnpm run test
 
 # Menghasilkan berkas migrasi SQL Drizzle
-npm run db:generate
+pnpm run db:generate
 
 # Menjalankan Drizzle Studio untuk inspeksi visual basis data
-npm run db:studio
+pnpm run db:studio
 ```
 Buka peramban pada alamat [http://localhost:3000](http://localhost:3000) untuk antarmuka web.
 

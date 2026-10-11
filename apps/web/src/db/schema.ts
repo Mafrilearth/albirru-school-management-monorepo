@@ -1,1 +1,1 @@
-export * from '@albirru/database/schema';
+export * from "@albirru/database/schema";

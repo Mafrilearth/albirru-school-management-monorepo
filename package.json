@@ -2,7 +2,7 @@
   "name": "albirru-school-management-monorepo",
   "version": "0.1.0",
   "private": true,
-  "packageManager": "npm@11.19.0",
+  "packageManager": "pnpm@12.11.2",
   "workspaces": [
     "apps/*",
     "packages/*"
@@ -11,14 +11,25 @@
     "dev": "turbo run dev",
     "build": "turbo run build",
     "lint": "turbo run lint",
+    "check": "biome check .",
+    "format": "biome format --write .",
     "check-types": "turbo run check-types",
     "test": "turbo run test",
+    "prepare": "husky",
     "db:generate": "turbo run db:generate --filter=@albirru/database",
     "db:migrate": "turbo run db:migrate --filter=@albirru/database",
     "db:studio": "turbo run db:studio --filter=@albirru/database"
   },
   "devDependencies": {
+    "@biomejs/biome": "^2.5.15",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.4.3",
     "turbo": "^2.4.4",
     "typescript": "^5"
+  },
+  "lint-staged": {
+    "*.{js,ts,jsx,tsx,json}": [
+      "biome check --write --no-errors-on-unmatched"
+    ]
   }
 }

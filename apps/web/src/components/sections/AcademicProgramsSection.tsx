@@ -1,8 +1,7 @@
 "use client";
 
-import React from "react";
+import { ArrowRight, Book, BookOpen, Target } from "lucide-react";
 import Link from "next/link";
-import { ArrowRight, BookOpen, Book, Target } from "lucide-react";
 import { ScrollReveal } from "@/components/common/ScrollReveal";
 
 const programs = [
@@ -31,9 +30,11 @@ const programs = [
 
 export function AcademicProgramsSection() {
   return (
-    <section aria-labelledby="programs-heading" className="py-20 md:py-28 bg-slate-50 dark:bg-slate-900/30 border-y border-slate-200/70">
+    <section
+      aria-labelledby="programs-heading"
+      className="py-20 md:py-28 bg-slate-50 dark:bg-slate-900/30 border-y border-slate-200/70"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
         {/* Section Header */}
         <ScrollReveal direction="up">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 lg:mb-16">
@@ -42,11 +43,15 @@ export function AcademicProgramsSection() {
                 <span className="size-1.5 rounded-none bg-emerald-500 animate-pulse" />
                 <span>KURIKULUM // AKADEMIK</span>
               </div>
-              <h2 id="programs-heading" className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-950 dark:text-slate-50 tracking-tight leading-tight">
-                Program Pendidikan <br className="hidden sm:block" /> Unggulan &amp; Holistik
+              <h2
+                id="programs-heading"
+                className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-950 dark:text-slate-50 tracking-tight leading-tight"
+              >
+                Program Pendidikan <br className="hidden sm:block" /> Unggulan
+                &amp; Holistik
               </h2>
             </div>
-            
+
             <div className="shrink-0">
               <Link
                 href="/programs"
@@ -79,8 +84,11 @@ export function AcademicProgramsSection() {
                         {prog.code}
                       </span>
                     </div>
-                    
-                    <h3 id={`prog-title-${idx}`} className="text-xl font-bold text-slate-950 dark:text-slate-50 leading-snug mb-4">
+
+                    <h3
+                      id={`prog-title-${idx}`}
+                      className="text-xl font-bold text-slate-950 dark:text-slate-50 leading-snug mb-4"
+                    >
                       {prog.title}
                     </h3>
                     <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
@@ -102,7 +110,6 @@ export function AcademicProgramsSection() {
             })}
           </div>
         </ScrollReveal>
-
       </div>
     </section>
   );

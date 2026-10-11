@@ -1,8 +1,7 @@
 "use client";
 
-import React from "react";
-import Link from "next/link";
 import { Megaphone } from "lucide-react";
+import Link from "next/link";
 
 export function AnnouncementBanner() {
   return (

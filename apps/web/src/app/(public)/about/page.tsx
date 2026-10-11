@@ -1,9 +1,8 @@
-import React from "react";
 import type { Metadata } from "next";
 import { PageHeader } from "@/components/layout/PageHeader";
-import { VisionMissionSection } from "@/components/sections/about/VisionMissionSection";
-import { HistoryTimelineSection } from "@/components/sections/about/HistoryTimelineSection";
 import { FacultyGridSection } from "@/components/sections/about/FacultyGridSection";
+import { HistoryTimelineSection } from "@/components/sections/about/HistoryTimelineSection";
+import { VisionMissionSection } from "@/components/sections/about/VisionMissionSection";
 import { CTASection } from "@/components/sections/CTASection";
 
 export const metadata: Metadata = {

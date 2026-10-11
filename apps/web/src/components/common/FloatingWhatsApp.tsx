@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
 import { MessageCircle, X } from "lucide-react";
 import { motion } from "motion/react";
+import { useState } from "react";
 import { appleSpringSnappy, appleTapHaptic } from "@/lib/motion";
 
 export function FloatingWhatsApp() {
@@ -63,4 +63,3 @@ export function FloatingWhatsApp() {
     </aside>
   );
 }
-

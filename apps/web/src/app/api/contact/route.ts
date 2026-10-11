@@ -12,11 +12,12 @@ export async function POST(request: Request) {
           success: false,
           errors: result.error.flatten().fieldErrors,
         },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
-    const { fullName, phone, email, studentCandidateName, message } = result.data;
+    const { fullName, phone, email, studentCandidateName, message } =
+      result.data;
 
     // TODO: Replace with custom Drizzle ORM implementation later
     console.log("Mock saving inquiry to DB", { fullName, phone, email });
@@ -47,7 +48,7 @@ Mohon informasi lebih lanjut mengenai registration dan jadwal survei school. Ter
         success: false,
         message: "Terjadi kesalahan server saat memproses pesan Anda.",
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

@@ -1,6 +1,5 @@
-import React from "react";
+import { LayoutDashboard, Users } from "lucide-react";
 import Link from "next/link";
-import { Users, LayoutDashboard, Settings } from "lucide-react";
 
 export default function AdminDashboardPage() {
   return (
@@ -20,20 +19,25 @@ export default function AdminDashboardPage() {
             <div className="size-12 bg-slate-100 group-hover:bg-emerald-100 flex items-center justify-center mb-4 border border-slate-200 group-hover:border-emerald-200">
               <Users className="size-6 text-slate-700 group-hover:text-emerald-700" />
             </div>
-            <h3 className="text-xl font-bold text-slate-900 mb-2">Master Identity Provisioning</h3>
+            <h3 className="text-xl font-bold text-slate-900 mb-2">
+              Master Identity Provisioning
+            </h3>
             <p className="text-slate-600 text-sm mt-auto">
-              Tambahkan dan kelola profil Guru, Siswa, dan Administrator baru ke dalam basis data utama.
+              Tambahkan dan kelola profil Guru, Siswa, dan Administrator baru ke
+              dalam basis data utama.
             </p>
           </div>
         </Link>
-        
+
         {/* Adjudication Link (Modul 4.5.3 Placeholder) */}
         <Link href="/admin/admissions" className="group block">
           <div className="bg-white border border-slate-200 rounded-none p-6 shadow-none hover:border-emerald-500 hover:bg-emerald-50 transition-colors h-full flex flex-col">
             <div className="size-12 bg-slate-100 group-hover:bg-emerald-100 flex items-center justify-center mb-4 border border-slate-200 group-hover:border-emerald-200">
               <LayoutDashboard className="size-6 text-slate-700 group-hover:text-emerald-700" />
             </div>
-            <h3 className="text-xl font-bold text-slate-900 mb-2">Admissions Adjudication</h3>
+            <h3 className="text-xl font-bold text-slate-900 mb-2">
+              Admissions Adjudication
+            </h3>
             <p className="text-slate-600 text-sm mt-auto">
               Tinjau dan setujui atau tolak aplikasi pendaftaran siswa baru.
             </p>

@@ -1,6 +1,8 @@
-import { ActionResponse } from "@/types/action";
+import type { ActionResponse } from "@/types/action";
 
-export async function configureAssessmentWeights(payload: Record<string, unknown>): Promise<ActionResponse<Record<string, unknown>>> {
+export async function configureAssessmentWeights(
+  payload: Record<string, unknown>,
+): Promise<ActionResponse<Record<string, unknown>>> {
   return {
     is_success: true,
     status_code: 200,
@@ -9,7 +11,9 @@ export async function configureAssessmentWeights(payload: Record<string, unknown
   };
 }
 
-export async function recordStudentGrade(payload: Record<string, unknown>): Promise<ActionResponse<Record<string, unknown>>> {
+export async function recordStudentGrade(
+  payload: Record<string, unknown>,
+): Promise<ActionResponse<Record<string, unknown>>> {
   return {
     is_success: true,
     status_code: 200,
@@ -18,7 +22,9 @@ export async function recordStudentGrade(payload: Record<string, unknown>): Prom
   };
 }
 
-export async function publishTermReportCard(payload: Record<string, unknown>): Promise<ActionResponse<Record<string, unknown>>> {
+export async function publishTermReportCard(
+  payload: Record<string, unknown>,
+): Promise<ActionResponse<Record<string, unknown>>> {
   return {
     is_success: true,
     status_code: 200,

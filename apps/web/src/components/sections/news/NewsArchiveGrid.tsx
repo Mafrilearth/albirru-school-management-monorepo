@@ -1,22 +1,21 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
-import Link from "next/link";
 import {
-  Calendar,
-  Search,
   ArrowRight,
-  User,
-  Tag,
   BookOpen,
-  Sparkles,
+  Calendar,
   ImageIcon,
+  Search,
+  Tag,
+  User,
 } from "lucide-react";
-import { motion, AnimatePresence } from "motion/react";
-import { Input } from "@/components/ui/input";
-import { SpotlightCard } from "@/components/common/SpotlightCard";
+import { motion } from "motion/react";
+import Link from "next/link";
+import { useMemo, useState } from "react";
 import { BorderBeam } from "@/components/common/BorderBeam";
-import { Article } from "@/lib/content";
+import { SpotlightCard } from "@/components/common/SpotlightCard";
+import { Input } from "@/components/ui/input";
+import type { Article } from "@/lib/content";
 import { cn } from "@/lib/utils";
 
 interface NewsArchiveGridProps {
@@ -44,7 +43,7 @@ export function NewsArchiveGrid({ articles }: NewsArchiveGridProps) {
         item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
         item.summary.toLowerCase().includes(searchQuery.toLowerCase()) ||
         item.tags.some((tag) =>
-          tag.toLowerCase().includes(searchQuery.toLowerCase())
+          tag.toLowerCase().includes(searchQuery.toLowerCase()),
         );
 
       return matchesCategory && matchesSearch;
@@ -56,7 +55,9 @@ export function NewsArchiveGrid({ articles }: NewsArchiveGridProps) {
 
   return (
     <div className="space-y-14 md:space-y-16">
-      <h2 id="news-archive-heading" className="sr-only">Arsip &amp; Indeks News School</h2>
+      <h2 id="news-archive-heading" className="sr-only">
+        Arsip &amp; Indeks News School
+      </h2>
 
       {/* Search & Category Filter Bar */}
       <div
@@ -79,7 +80,9 @@ export function NewsArchiveGrid({ articles }: NewsArchiveGridProps) {
                 onClick={() => setSelectedCategory(cat.id)}
                 className={cn(
                   "relative px-4 py-2.5 rounded-none text-xs font-bold transition-colors cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-amber-500 font-mono",
-                  isActive ? "text-white" : "text-slate-600 dark:text-slate-400 hover:text-slate-950 dark:hover:text-slate-50"
+                  isActive
+                    ? "text-white"
+                    : "text-slate-600 dark:text-slate-400 hover:text-slate-950 dark:hover:text-slate-50",
                 )}
               >
                 {isActive && (
@@ -97,7 +100,10 @@ export function NewsArchiveGrid({ articles }: NewsArchiveGridProps) {
 
         {/* Search Input Box */}
         <div className="relative w-full md:w-80">
-          <Search aria-hidden="true" className="absolute left-3.5 top-1/2 -translate-y-1/2 size-4 text-slate-400" />
+          <Search
+            aria-hidden="true"
+            className="absolute left-3.5 top-1/2 -translate-y-1/2 size-4 text-slate-400"
+          />
           <Input
             type="text"
             placeholder="Search kata kunci berita..."
@@ -123,13 +129,21 @@ export function NewsArchiveGrid({ articles }: NewsArchiveGridProps) {
                 spotlightColor="rgba(245, 158, 11, 0.1)"
                 className="p-8 sm:p-12 lg:p-14 bg-slate-950 text-white border-slate-800 shadow-md relative overflow-hidden group rounded-none"
               >
-                <BorderBeam size={240} duration={12} colorFrom="#f59e0b" colorTo="#10b981" />
+                <BorderBeam
+                  size={240}
+                  duration={12}
+                  colorFrom="#f59e0b"
+                  colorTo="#10b981"
+                />
 
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center relative z-10">
                   {/* Left Column: Image Placeholder */}
                   <div className="lg:col-span-5">
                     <figure className="aspect-[16/10] w-full rounded-none bg-slate-900 border border-slate-800 flex flex-col items-center justify-center text-slate-500 group-hover:bg-slate-850 transition-colors overflow-hidden">
-                      <ImageIcon aria-hidden="true" className="size-12 text-slate-700 dark:text-slate-300 group-hover:scale-110 transition-transform duration-300" />
+                      <ImageIcon
+                        aria-hidden="true"
+                        className="size-12 text-slate-700 dark:text-slate-300 group-hover:scale-110 transition-transform duration-300"
+                      />
                       <figcaption className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-2 font-mono">
                         Liputan Utama
                       </figcaption>
@@ -144,7 +158,10 @@ export function NewsArchiveGrid({ articles }: NewsArchiveGridProps) {
                           {featuredArticle.categoryLabel}
                         </span>
                         <div className="flex items-center gap-1.5 text-xs text-slate-400 font-mono">
-                          <Calendar aria-hidden="true" className="size-3.5 text-amber-500" />
+                          <Calendar
+                            aria-hidden="true"
+                            className="size-3.5 text-amber-500"
+                          />
                           <time dateTime={featuredArticle.publishedDate}>
                             {featuredArticle.formattedDate}
                           </time>
@@ -167,13 +184,16 @@ export function NewsArchiveGrid({ articles }: NewsArchiveGridProps) {
 
                     <footer className="mt-8 pt-6 border-t border-slate-800/80 flex items-center justify-between">
                       <address className="not-italic flex items-center gap-2 text-xs text-slate-400 font-mono">
-                        <User aria-hidden="true" className="size-3.5 text-slate-500" />
+                        <User
+                          aria-hidden="true"
+                          className="size-3.5 text-slate-500"
+                        />
                         <span>Oleh: {featuredArticle.author}</span>
                       </address>
 
                       <Link
                         href={`/news/${featuredArticle.slug}`}
- className="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold px-5 h-11 rounded-none text-xs transition-transform hover:scale-[1.02] active:scale-[0.98]"
+                        className="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold px-5 h-11 rounded-none text-xs transition-transform hover:scale-[1.02] active:scale-[0.98]"
                       >
                         <span>Baca News Lengkap</span>
                         <ArrowRight aria-hidden="true" className="size-3.5" />
@@ -189,7 +209,6 @@ export function NewsArchiveGrid({ articles }: NewsArchiveGridProps) {
           <ul
             aria-label="Register News School"
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 list-none p-0"
-            role="list"
           >
             {(searchQuery || selectedCategory !== "all"
               ? filteredArticles
@@ -215,7 +234,10 @@ export function NewsArchiveGrid({ articles }: NewsArchiveGridProps) {
                     <div>
                       {/* Image Placeholder */}
                       <figure className="relative aspect-[16/10] w-full rounded-none bg-slate-100 border border-slate-200/80 dark:border-slate-700/80 mb-6 flex flex-col items-center justify-center text-slate-400 group-hover:bg-slate-150 transition-colors overflow-hidden">
-                        <ImageIcon aria-hidden="true" className="size-8 text-slate-300 group-hover:scale-110 transition-transform duration-300" />
+                        <ImageIcon
+                          aria-hidden="true"
+                          className="size-8 text-slate-300 group-hover:scale-110 transition-transform duration-300"
+                        />
                         <figcaption className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-1 font-mono">
                           Foto News
                         </figcaption>
@@ -227,7 +249,10 @@ export function NewsArchiveGrid({ articles }: NewsArchiveGridProps) {
                           {article.categoryLabel}
                         </span>
                         <div className="flex items-center gap-1.5 text-xs text-slate-500 font-mono">
-                          <Calendar aria-hidden="true" className="size-3 text-slate-400" />
+                          <Calendar
+                            aria-hidden="true"
+                            className="size-3 text-slate-400"
+                          />
                           <time dateTime={article.publishedDate}>
                             {article.formattedDate}
                           </time>
@@ -239,7 +264,9 @@ export function NewsArchiveGrid({ articles }: NewsArchiveGridProps) {
                         id={`article-${article.id}-title`}
                         className="text-lg sm:text-xl font-bold text-slate-950 dark:text-slate-50 group-hover:text-amber-700 transition-colors line-clamp-2 leading-snug"
                       >
-                        <Link href={`/news/${article.slug}`}>{article.title}</Link>
+                        <Link href={`/news/${article.slug}`}>
+                          {article.title}
+                        </Link>
                       </h3>
 
                       {/* Excerpt */}
@@ -255,7 +282,10 @@ export function NewsArchiveGrid({ articles }: NewsArchiveGridProps) {
                         className="text-xs font-bold text-slate-900 dark:text-slate-50 group-hover:text-amber-700 transition-colors flex items-center gap-1.5 group/link"
                       >
                         <span>Baca Read More</span>
-                        <ArrowRight aria-hidden="true" className="size-3.5 text-amber-600 group-hover/link:translate-x-1 transition-transform" />
+                        <ArrowRight
+                          aria-hidden="true"
+                          className="size-3.5 text-amber-600 group-hover/link:translate-x-1 transition-transform"
+                        />
                       </Link>
 
                       <div className="flex items-center gap-1 text-[11px] text-slate-400 font-mono">
@@ -276,12 +306,16 @@ export function NewsArchiveGrid({ articles }: NewsArchiveGridProps) {
           animate={{ opacity: 1, scale: 1 }}
           className="p-20 text-center rounded-none bg-[#FDFDFB] dark:bg-slate-950 border border-slate-200 dark:border-slate-700"
         >
-          <BookOpen aria-hidden="true" className="size-14 text-slate-400 mx-auto mb-4" />
+          <BookOpen
+            aria-hidden="true"
+            className="size-14 text-slate-400 mx-auto mb-4"
+          />
           <h3 className="text-xl font-bold text-slate-900 dark:text-slate-50">
             Tidak ada warta yang sesuai pencarian
           </h3>
           <p className="text-xs sm:text-sm text-slate-500 mt-2 max-w-sm mx-auto leading-relaxed">
-            Silakan coba kata kunci pencarian lain atau pilih kategori warta yang berbeda.
+            Silakan coba kata kunci pencarian lain atau pilih kategori warta
+            yang berbeda.
           </p>
         </motion.div>
       )}

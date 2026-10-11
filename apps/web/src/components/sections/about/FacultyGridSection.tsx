@@ -1,7 +1,6 @@
 "use client";
 
-import React from "react";
-import { GraduationCap, Award, UserCheck } from "lucide-react";
+import { Award, GraduationCap, UserCheck } from "lucide-react";
 import { motion } from "motion/react";
 import { ScrollReveal } from "@/components/common/ScrollReveal";
 import { SpotlightCard } from "@/components/common/SpotlightCard";
@@ -68,7 +67,10 @@ const facultyMembers: FacultyMember[] = [
 
 export function FacultyGridSection() {
   return (
-    <section aria-labelledby="faculty-heading" className="py-28 md:py-36 lg:py-44 bg-white dark:bg-slate-900">
+    <section
+      aria-labelledby="faculty-heading"
+      className="py-28 md:py-36 lg:py-44 bg-white dark:bg-slate-900"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <ScrollReveal direction="up" className="max-w-3xl mb-16 md:mb-20">
@@ -76,12 +78,15 @@ export function FacultyGridSection() {
             <span className="size-1.5 rounded-none bg-amber-500 animate-pulse" />
             <span>PENDIDIK // DEWAN ASATIDZ</span>
           </div>
-          <h2 id="faculty-heading" className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-950 dark:text-slate-50 tracking-tight leading-[1.12]">
+          <h2
+            id="faculty-heading"
+            className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-950 dark:text-slate-50 tracking-tight leading-[1.12]"
+          >
             Dewan Asatidz &amp; Pengajar Berdedikasi
           </h2>
           <p className="mt-4 text-base sm:text-lg text-slate-600 dark:text-slate-400 leading-relaxed font-normal">
-            Teachers di SD Al-Birru adalah teladan hidup (qudwah hasanah) yang mendampingi
-            dengan keilmuan, kesabaran, dan ketulusan hati.
+            Teachers di SD Al-Birru adalah teladan hidup (qudwah hasanah) yang
+            mendampingi dengan keilmuan, kesabaran, dan ketulusan hati.
           </p>
         </ScrollReveal>
 
@@ -101,7 +106,10 @@ export function FacultyGridSection() {
               whileHover={{ y: -5, transition: { duration: 0.25 } }}
               className="list-none flex"
             >
-              <article aria-labelledby={`teacher-name-${idx}`} className="flex-1 flex">
+              <article
+                aria-labelledby={`teacher-name-${idx}`}
+                className="flex-1 flex"
+              >
                 <SpotlightCard
                   spotlightColor="rgba(245, 158, 11, 0.09)"
                   className="p-7 sm:p-8 bg-[#FDFDFB] dark:bg-slate-950 hover:bg-white dark:hover:bg-slate-700 dark:bg-slate-900 shadow-2xs hover:shadow-xl transition-all flex-1 flex flex-col justify-between rounded-none"
@@ -123,14 +131,19 @@ export function FacultyGridSection() {
                       {teacher.role}
                     </span>
 
-                    <h3 id={`teacher-name-${idx}`} className="text-lg sm:text-xl font-bold text-slate-950 dark:text-slate-50 mt-3 leading-snug">
+                    <h3
+                      id={`teacher-name-${idx}`}
+                      className="text-lg sm:text-xl font-bold text-slate-950 dark:text-slate-50 mt-3 leading-snug"
+                    >
                       {teacher.name}
                     </h3>
 
                     <div className="space-y-2 my-4 text-xs text-slate-600 dark:text-slate-400 border-y border-slate-200/60 py-3 font-mono">
                       <div className="flex items-center gap-2">
                         <GraduationCap className="size-4 text-slate-400 shrink-0" />
-                        <span className="font-medium text-slate-800 dark:text-slate-200">{teacher.degree}</span>
+                        <span className="font-medium text-slate-800 dark:text-slate-200">
+                          {teacher.degree}
+                        </span>
                       </div>
                       <div className="flex items-center gap-2">
                         <Award className="size-4 text-slate-400 shrink-0" />

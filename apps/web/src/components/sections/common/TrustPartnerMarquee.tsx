@@ -1,14 +1,14 @@
 "use client";
 
-import React from "react";
 import {
-  ShieldCheck,
-  BookOpen,
   Award,
+  BookOpen,
   CheckCircle2,
-  HeartHandshake,
   Compass,
+  HeartHandshake,
+  ShieldCheck,
 } from "lucide-react";
+import type React from "react";
 
 interface TrustItem {
   icon: React.ElementType;
@@ -17,12 +17,36 @@ interface TrustItem {
 }
 
 const trustItems: TrustItem[] = [
-  { icon: ShieldCheck, label: "KEMENDIKDASMEN RI", sub: "Curriculum Merdeka Resmi" },
-  { icon: Award, label: "KEMENAG SUKABUMI", sub: "Bimbingan Tahfidz Al-Qur'an" },
-  { icon: BookOpen, label: "JSIT INDONESIA", sub: "Jaringan School Islam Terpadu" },
-  { icon: Compass, label: "SANAD TAHFIDZ", sub: "Talaqqi Riwayat Hafs Bersanad" },
-  { icon: CheckCircle2, label: "BAN-S/M JABAR", sub: "Standar Mutu Terakreditasi" },
-  { icon: HeartHandshake, label: "PARENTING SAHABAT ANAK", sub: "Kemitraan Positif Rumah & School" },
+  {
+    icon: ShieldCheck,
+    label: "KEMENDIKDASMEN RI",
+    sub: "Curriculum Merdeka Resmi",
+  },
+  {
+    icon: Award,
+    label: "KEMENAG SUKABUMI",
+    sub: "Bimbingan Tahfidz Al-Qur'an",
+  },
+  {
+    icon: BookOpen,
+    label: "JSIT INDONESIA",
+    sub: "Jaringan School Islam Terpadu",
+  },
+  {
+    icon: Compass,
+    label: "SANAD TAHFIDZ",
+    sub: "Talaqqi Riwayat Hafs Bersanad",
+  },
+  {
+    icon: CheckCircle2,
+    label: "BAN-S/M JABAR",
+    sub: "Standar Mutu Terakreditasi",
+  },
+  {
+    icon: HeartHandshake,
+    label: "PARENTING SAHABAT ANAK",
+    sub: "Kemitraan Positif Rumah & School",
+  },
 ];
 
 export function TrustPartnerMarquee() {

@@ -26,7 +26,8 @@ export const fallbackArticles: Article[] = [
   {
     id: "1",
     slug: "gebyar-wisuda-tahfidz-angkatan-iv",
-    title: "Gebyar Wisuda Tahfidz Angkatan Ke-IV: 35 Students Tuntaskan Ujian Tasmi'",
+    title:
+      "Gebyar Wisuda Tahfidz Angkatan Ke-IV: 35 Students Tuntaskan Ujian Tasmi'",
     category: "tahfidz",
     categoryLabel: "Tahfidz & Keislaman",
     publishedDate: "2026-09-28",
@@ -45,7 +46,8 @@ export const fallbackArticles: Article[] = [
   {
     id: "2",
     slug: "kunjungan-edukasi-sains-dan-alam",
-    title: "Kunjungan Edukasi Sains & Alam: Students Kelas 3 & 4 Belajar Ekosistem Terapan",
+    title:
+      "Kunjungan Edukasi Sains & Alam: Students Kelas 3 & 4 Belajar Ekosistem Terapan",
     category: "kegiatan",
     categoryLabel: "News Kegiatan",
     publishedDate: "2026-09-15",
@@ -64,7 +66,8 @@ export const fallbackArticles: Article[] = [
   {
     id: "3",
     slug: "sosialisasi-ppdb-2026-2027-gelombang-1",
-    title: "Penerimaan Peserta Didik Baru (Admissions) 2026/2027 Phase I Resmi Dibuka",
+    title:
+      "Penerimaan Peserta Didik Baru (Admissions) 2026/2027 Phase I Resmi Dibuka",
     category: "pengumuman",
     categoryLabel: "Pengumuman Resmi",
     publishedDate: "2026-09-01",
@@ -83,7 +86,8 @@ export const fallbackArticles: Article[] = [
   {
     id: "4",
     slug: "students-al-birru-raih-juara-1-dai-cilik",
-    title: "Membanggakan: Students SD Al-Birru Raih Juara 1 Lomba Da'i Cilik se-Sukabumi",
+    title:
+      "Membanggakan: Students SD Al-Birru Raih Juara 1 Lomba Da'i Cilik se-Sukabumi",
     category: "prestasi",
     categoryLabel: "Prestasi Siswa",
     publishedDate: "2026-08-20",
@@ -102,7 +106,8 @@ export const fallbackArticles: Article[] = [
   {
     id: "5",
     slug: "pekan-literasi-dan-festival-dongeng-islam",
-    title: "Pekan Literasi School: Menumbuhkan Gemar Membaca Lewat Festival Dongeng",
+    title:
+      "Pekan Literasi School: Menumbuhkan Gemar Membaca Lewat Festival Dongeng",
     category: "kegiatan",
     categoryLabel: "News Kegiatan",
     publishedDate: "2026-08-10",
@@ -126,7 +131,8 @@ export const fallbackGallery: GalleryItem[] = [
     category: "tahfidz",
     categoryLabel: "Tahfidzul Qur'an",
     date: "Oktober 2026",
-    description: "Students khusyuk menyetorkan hafalan Al-Qur'an dengan metode talaqqi di hadapan asatidz bersanad.",
+    description:
+      "Students khusyuk menyetorkan hafalan Al-Qur'an dengan metode talaqqi di hadapan asatidz bersanad.",
     location: "Aula Masjid Al-Birru",
   },
   {
@@ -135,7 +141,8 @@ export const fallbackGallery: GalleryItem[] = [
     category: "kegiatan",
     categoryLabel: "Extracurriculars",
     date: "September 2026",
-    description: "Mengasah fokus, ketenangan mental, dan postur fisik students dalam ekstrakurikuler panahan.",
+    description:
+      "Mengasah fokus, ketenangan mental, dan postur fisik students dalam ekstrakurikuler panahan.",
     location: "Lapangan Olahraga Hijau",
   },
   {
@@ -144,7 +151,8 @@ export const fallbackGallery: GalleryItem[] = [
     category: "kegiatan",
     categoryLabel: "Akademik",
     date: "September 2026",
-    description: "Students mengamati siklus kehidupan serangga dan filtrasi air bersih di laboratorium alam terbuka.",
+    description:
+      "Students mengamati siklus kehidupan serangga dan filtrasi air bersih di laboratorium alam terbuka.",
     location: "Laboratorium Sains",
   },
   {
@@ -153,7 +161,8 @@ export const fallbackGallery: GalleryItem[] = [
     category: "prestasi",
     categoryLabel: "Wisuda & Prestasi",
     date: "September 2026",
-    description: "Momen khidmat penganugerahan mahkota dan selempang penghafal Qur'an kepada students berprestasi.",
+    description:
+      "Momen khidmat penganugerahan mahkota dan selempang penghafal Qur'an kepada students berprestasi.",
     location: "Graha Utama Al-Birru",
   },
   {
@@ -162,7 +171,8 @@ export const fallbackGallery: GalleryItem[] = [
     category: "tahfidz",
     categoryLabel: "Karakter & Adab",
     date: "Oktober 2026",
-    description: "Kultur sholat dhuha harian melatih kedisiplinan beribadah dan kebersihan hati sebelum belajar.",
+    description:
+      "Kultur sholat dhuha harian melatih kedisiplinan beribadah dan kebersihan hati sebelum belajar.",
     location: "Masjid School",
   },
   {
@@ -171,7 +181,8 @@ export const fallbackGallery: GalleryItem[] = [
     category: "fasilitas",
     categoryLabel: "Facilities Kampus",
     date: "Oktober 2026",
-    description: "Ruang kelas representatif dengan rasio students ideal 1:15 yang nyaman, sejuk, dan interaktif.",
+    description:
+      "Ruang kelas representatif dengan rasio students ideal 1:15 yang nyaman, sejuk, dan interaktif.",
     location: "Gedung Pembelajaran 1",
   },
 ];
@@ -188,7 +199,9 @@ export async function getArticleBySlug(slug: string): Promise<Article | null> {
   return found || null;
 }
 
-export async function getGalleryItems(category?: string): Promise<GalleryItem[]> {
+export async function getGalleryItems(
+  category?: string,
+): Promise<GalleryItem[]> {
   if (!category || category === "all") {
     return fallbackGallery;
   }

@@ -1,20 +1,21 @@
-import React from "react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-
 
 interface BrandLogoProps {
   className?: string;
   isDarkBackground?: boolean;
 }
 
-export function BrandLogo({ className, isDarkBackground = false }: BrandLogoProps) {
+export function BrandLogo({
+  className,
+  isDarkBackground = false,
+}: BrandLogoProps) {
   return (
     <Link
       href="/"
       className={cn(
         "flex h-full items-center justify-center gap-3 px-4 sm:px-6 xl:px-8 outline-none",
-        className
+        className,
       )}
       aria-label="Kembali ke Beranda SD Al-Birru"
     >
@@ -25,23 +26,23 @@ export function BrandLogo({ className, isDarkBackground = false }: BrandLogoProp
       >
         {/* Unified Outer Shield (Black Border) */}
         {/* We draw the path with a thick stroke to guarantee mathematically perfect uniform thickness everywhere. */}
-        <path 
-          d="M 50 18 L 82 34 L 82 74 A 32 34 0 0 1 18 74 L 18 34 Z" 
+        <path
+          d="M 50 18 L 82 34 L 82 74 A 32 34 0 0 1 18 74 L 18 34 Z"
           className="fill-slate-900 dark:fill-slate-100 stroke-slate-900 dark:stroke-slate-100"
           strokeWidth="24"
           strokeLinejoin="round"
         />
-        
+
         {/* Inner Shield (Amber/Yellow Base) */}
         {/* We draw the exact same path over it, filling it with yellow. This perfectly covers the inner half of the stroke. */}
-        <path 
-          d="M 50 18 L 82 34 L 82 74 A 32 34 0 0 1 18 74 L 18 34 Z" 
+        <path
+          d="M 50 18 L 82 34 L 82 74 A 32 34 0 0 1 18 74 L 18 34 Z"
           className="fill-amber-400"
         />
 
         {/* Central Emblem: 45-Degree Diamond with 16-Point Star Cutout */}
-        <path 
-          fillRule="evenodd" 
+        <path
+          fillRule="evenodd"
           clipRule="evenodd"
           d="M 50 43 L 70 63 L 50 83 L 30 63 Z
              M 50 41 L 50.9 58.6 L 53.4 54.7 L 52.5 59.3 L 59.2 53.8 L 53.7 60.5 L 58.3 59.6 L 54.4 62.1 

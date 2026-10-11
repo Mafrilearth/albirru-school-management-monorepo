@@ -1,11 +1,15 @@
 "use client";
 
-import React from "react";
-import Link from "next/link";
-import { Calendar, ArrowRight, ChevronRight, Newspaper, Sparkles } from "lucide-react";
+import {
+  ArrowRight,
+  Calendar,
+  ChevronRight,
+  Newspaper,
+  Sparkles,
+} from "lucide-react";
 import { motion } from "motion/react";
+import Link from "next/link";
 import { ScrollReveal } from "@/components/common/ScrollReveal";
-import { SpotlightCard } from "@/components/common/SpotlightCard";
 import { Badge } from "@/components/ui/badge";
 
 export interface ArticlePreview {
@@ -22,7 +26,8 @@ export interface ArticlePreview {
 export const fallbackArticles: ArticlePreview[] = [
   {
     id: "1",
-    title: "Gebyar Wisuda Tahfidz Angkatan Ke-IV: 35 Students Tuntaskan Ujian Tasmi'",
+    title:
+      "Gebyar Wisuda Tahfidz Angkatan Ke-IV: 35 Students Tuntaskan Ujian Tasmi'",
     slug: "gebyar-wisuda-tahfidz-angkatan-iv",
     category: "Prestasi",
     code: "WRT // 01",
@@ -44,7 +49,8 @@ export const fallbackArticles: ArticlePreview[] = [
   },
   {
     id: "3",
-    title: "Penerimaan Peserta Didik Baru (Admissions) 2026/2027 Phase I Dibuka",
+    title:
+      "Penerimaan Peserta Didik Baru (Admissions) 2026/2027 Phase I Dibuka",
     slug: "sosialisasi-ppdb-2026-2027-gelombang-1",
     category: "Pengumuman",
     code: "WRT // 03",
@@ -57,7 +63,10 @@ export const fallbackArticles: ArticlePreview[] = [
 
 export function LatestNewsPreview() {
   return (
-    <section aria-labelledby="latest-news-heading" className="py-28 md:py-36 lg:py-44 bg-transparent border-b border-slate-200/80 dark:border-slate-700/80">
+    <section
+      aria-labelledby="latest-news-heading"
+      className="py-28 md:py-36 lg:py-44 bg-transparent border-b border-slate-200/80 dark:border-slate-700/80"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header with ScrollReveal */}
         <ScrollReveal
@@ -69,11 +78,15 @@ export function LatestNewsPreview() {
               <span className="size-1.5 rounded-none bg-slate-400 dark:bg-slate-500 animate-pulse" />
               <span>WARTA // PUBLIKASI RESMI</span>
             </div>
-            <h2 id="latest-news-heading" className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-950 dark:text-slate-50 tracking-tight leading-[1.12]">
+            <h2
+              id="latest-news-heading"
+              className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-950 dark:text-slate-50 tracking-tight leading-[1.12]"
+            >
               Kabar &amp; Prestasi Terkini
             </h2>
             <p className="mt-4 text-base sm:text-lg text-slate-600 dark:text-slate-400 leading-relaxed font-normal">
-              Dokumentasi kegiatan students, prestasi hafalan Al-Qur&apos;an, dan pengumuman resmi SD Al-Birru.
+              Dokumentasi kegiatan students, prestasi hafalan Al-Qur&apos;an,
+              dan pengumuman resmi SD Al-Birru.
             </p>
           </div>
 
@@ -126,7 +139,10 @@ export function LatestNewsPreview() {
                       <span className="font-mono text-[10px] font-bold text-slate-400">
                         {article.code}
                       </span>
-                      <Badge variant="secondary" className="text-[10px] uppercase font-bold tracking-wider rounded-none">
+                      <Badge
+                        variant="secondary"
+                        className="text-[10px] uppercase font-bold tracking-wider rounded-none"
+                      >
                         {article.category}
                       </Badge>
                     </div>
@@ -137,7 +153,10 @@ export function LatestNewsPreview() {
                   </div>
 
                   {/* Title */}
-                  <h3 id={`article-preview-title-${article.id}`} className="text-lg sm:text-xl font-bold text-slate-950 dark:text-slate-50 group-hover:text-slate-700 dark:group-hover:text-slate-300 transition-colors line-clamp-2 leading-snug">
+                  <h3
+                    id={`article-preview-title-${article.id}`}
+                    className="text-lg sm:text-xl font-bold text-slate-950 dark:text-slate-50 group-hover:text-slate-700 dark:group-hover:text-slate-300 transition-colors line-clamp-2 leading-snug"
+                  >
                     <Link href={`/news/${article.slug}`}>{article.title}</Link>
                   </h3>
 

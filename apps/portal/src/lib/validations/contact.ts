@@ -9,8 +9,9 @@ export const contactFormSchema = z.object({
     .string()
     .min(9, { message: "Nomor WhatsApp minimal 9 digit angka." })
     .max(16, { message: "Nomor WhatsApp maksimal 16 digit angka." })
-    .regex(/^[0-9+\s\-]+$/, {
-      message: "Format nomor WhatsApp hanya boleh angka, spasi, atau tanda hubung.",
+    .regex(/^[0-9+\s-]+$/, {
+      message:
+        "Format nomor WhatsApp hanya boleh angka, spasi, atau tanda hubung.",
     }),
   email: z
     .string()

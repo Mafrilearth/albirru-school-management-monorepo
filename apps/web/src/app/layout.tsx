@@ -1,14 +1,14 @@
-import React from "react";
 import type { Metadata, Viewport } from "next";
 import { Inter, Roboto_Mono } from "next/font/google";
+import type React from "react";
 import "@/app/globals.css";
-import { PublicNavbar } from "@/components/layout/PublicNavbar";
+import { FloatingWhatsApp } from "@/components/common/FloatingWhatsApp";
+import { GlobalGrid } from "@/components/common/GlobalGrid";
+import { ScrollToTop } from "@/components/common/ScrollToTop";
 import { AnnouncementBanner } from "@/components/layout/AnnouncementBanner";
 import { PublicFooter } from "@/components/layout/PublicFooter";
+import { PublicNavbar } from "@/components/layout/PublicNavbar";
 import { ScrollProgressBar } from "@/components/layout/ScrollProgressBar";
-import { FloatingWhatsApp } from "@/components/common/FloatingWhatsApp";
-import { ScrollToTop } from "@/components/common/ScrollToTop";
-import { GlobalGrid } from "@/components/common/GlobalGrid";
 
 const inter = Inter({
   variable: "--font-sans",
@@ -146,11 +146,10 @@ const schoolStructuredData = {
   ],
 };
 
-import { ThemeProvider } from "@/components/providers/ThemeProvider";
-import { TooltipProvider } from "@/components/ui/tooltip";
-
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { ThemeProvider } from "@/components/providers/ThemeProvider";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 export default function PublicRootLayout({
   children,
@@ -168,7 +167,9 @@ export default function PublicRootLayout({
       <head>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(schoolStructuredData) }}
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(schoolStructuredData),
+          }}
         />
       </head>
       <body className="min-h-full flex flex-col bg-background text-foreground selection:bg-amber-500 selection:text-slate-950 font-sans relative overflow-x-hidden">
@@ -186,22 +187,26 @@ export default function PublicRootLayout({
             Menuju ke Konten Utama
           </a>
 
-            <TooltipProvider>
-              <ScrollProgressBar />
-              <GlobalGrid />
-              <AnnouncementBanner />
-              <PublicNavbar />
-              <main id="main-content" tabIndex={-1} className="flex-1 flex flex-col outline-none">
-                {children}
-              </main>
-              <PublicFooter />
-              <FloatingWhatsApp />
-              <ScrollToTop />
-              
-              {/* Vercel Observability Zero-Config */}
-              <Analytics />
-              <SpeedInsights />
-            </TooltipProvider>
+          <TooltipProvider>
+            <ScrollProgressBar />
+            <GlobalGrid />
+            <AnnouncementBanner />
+            <PublicNavbar />
+            <main
+              id="main-content"
+              tabIndex={-1}
+              className="flex-1 flex flex-col outline-none"
+            >
+              {children}
+            </main>
+            <PublicFooter />
+            <FloatingWhatsApp />
+            <ScrollToTop />
+
+            {/* Vercel Observability Zero-Config */}
+            <Analytics />
+            <SpeedInsights />
+          </TooltipProvider>
         </ThemeProvider>
       </body>
     </html>

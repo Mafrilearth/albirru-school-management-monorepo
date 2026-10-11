@@ -1,8 +1,7 @@
-import React from "react";
 import type { Metadata } from "next";
 import { PageHeader } from "@/components/layout/PageHeader";
-import { GalleryViewer } from "@/components/sections/gallery/GalleryViewer";
 import { CTASection } from "@/components/sections/CTASection";
+import { GalleryViewer } from "@/components/sections/gallery/GalleryViewer";
 import { getGalleryItems } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -59,7 +58,10 @@ export default async function GalleryPage() {
         ]}
       />
 
-      <section aria-labelledby="gallery-grid-heading" className="py-24 md:py-32 lg:py-40 bg-white dark:bg-slate-900">
+      <section
+        aria-labelledby="gallery-grid-heading"
+        className="py-24 md:py-32 lg:py-40 bg-white dark:bg-slate-900"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <GalleryViewer items={galleryItems} />
         </div>

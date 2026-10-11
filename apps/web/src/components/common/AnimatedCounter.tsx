@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
 import { useInView, useMotionValue, useSpring } from "motion/react";
+import { useEffect, useRef } from "react";
 
 export interface AnimatedCounterProps {
   value: number;

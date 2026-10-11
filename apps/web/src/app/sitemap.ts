@@ -2,7 +2,8 @@ import type { MetadataRoute } from "next";
 import { fallbackArticles } from "@/lib/content";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://sdalbirru.sch.id";
+  const baseUrl =
+    process.env.NEXT_PUBLIC_SITE_URL || "https://sdalbirru.sch.id";
   const currentDate = new Date().toISOString();
 
   // Static routes
@@ -46,12 +47,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
 
   // Dynamic news articles
-  const articleRoutes: MetadataRoute.Sitemap = fallbackArticles.map((article) => ({
-    url: `${baseUrl}/news/${article.slug}`,
-    lastModified: new Date(article.publishedDate).toISOString(),
-    changeFrequency: "monthly",
-    priority: 0.7,
-  }));
+  const articleRoutes: MetadataRoute.Sitemap = fallbackArticles.map(
+    (article) => ({
+      url: `${baseUrl}/news/${article.slug}`,
+      lastModified: new Date(article.publishedDate).toISOString(),
+      changeFrequency: "monthly",
+      priority: 0.7,
+    }),
+  );
 
   return [...staticRoutes, ...articleRoutes];
 }

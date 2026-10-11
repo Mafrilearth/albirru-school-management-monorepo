@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 interface Particle {
   id: number;
@@ -23,22 +23,28 @@ const BRAND_COLORS = [
   "#38BDF8", // Sky Accent
 ];
 
-export function ConfettiCelebration({ durationMs = 3500 }: { durationMs?: number }) {
+export function ConfettiCelebration({
+  durationMs = 3500,
+}: {
+  durationMs?: number;
+}) {
   const [particles, setParticles] = useState<Particle[]>([]);
 
   useEffect(() => {
     // Generate 60 dynamic confetti particles
-    const initialParticles: Particle[] = Array.from({ length: 60 }).map((_, i) => ({
-      id: i,
-      x: 50 + (Math.random() * 20 - 10), // spawn near center
-      y: 40,
-      size: Math.random() * 8 + 6,
-      color: BRAND_COLORS[Math.floor(Math.random() * BRAND_COLORS.length)],
-      rotation: Math.random() * 360,
-      vx: (Math.random() - 0.5) * 12,
-      vy: Math.random() * -12 - 4,
-      opacity: 1,
-    }));
+    const initialParticles: Particle[] = Array.from({ length: 60 }).map(
+      (_, i) => ({
+        id: i,
+        x: 50 + (Math.random() * 20 - 10), // spawn near center
+        y: 40,
+        size: Math.random() * 8 + 6,
+        color: BRAND_COLORS[Math.floor(Math.random() * BRAND_COLORS.length)],
+        rotation: Math.random() * 360,
+        vx: (Math.random() - 0.5) * 12,
+        vy: Math.random() * -12 - 4,
+        opacity: 1,
+      }),
+    );
 
     setParticles(initialParticles);
 
@@ -53,7 +59,7 @@ export function ConfettiCelebration({ durationMs = 3500 }: { durationMs?: number
             rotation: p.rotation + 8,
             opacity: Math.max(0, p.opacity - 0.015),
           }))
-          .filter((p) => p.opacity > 0 && p.y < 120)
+          .filter((p) => p.opacity > 0 && p.y < 120),
       );
     }, 25);
 

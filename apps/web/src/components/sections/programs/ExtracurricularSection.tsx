@@ -1,20 +1,20 @@
 "use client";
 
-import React from "react";
 import {
-  Target,
-  Shield,
+  Calendar,
   Compass,
   Cpu,
   Feather,
   Languages,
-  Calendar,
+  Shield,
   Sparkles,
+  Target,
 } from "lucide-react";
 import { motion } from "motion/react";
+import type React from "react";
+import { BorderBeam } from "@/components/common/BorderBeam";
 import { ScrollReveal } from "@/components/common/ScrollReveal";
 import { SpotlightCard } from "@/components/common/SpotlightCard";
-import { BorderBeam } from "@/components/common/BorderBeam";
 import { cn } from "@/lib/utils";
 
 interface ExtracurricularItem {
@@ -107,7 +107,10 @@ export function ExtracurricularSection() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <ScrollReveal direction="up" className="max-w-3xl mb-16 md:mb-20 text-center sm:text-left">
+        <ScrollReveal
+          direction="up"
+          className="max-w-3xl mb-16 md:mb-20 text-center sm:text-left"
+        >
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-none bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 shadow-2xs text-slate-800 dark:text-slate-200 text-[11px] font-mono font-bold uppercase tracking-wider mb-5">
             <span className="size-1.5 rounded-none bg-amber-500 animate-pulse" />
             <span>PENGEMBANGAN // BAKAT &amp; MINAT SANTRI</span>
@@ -119,8 +122,9 @@ export function ExtracurricularSection() {
             Extracurriculars Pilihan &amp; Olahraga Sunnah
           </h2>
           <p className="mt-4 text-base sm:text-lg text-slate-600 dark:text-slate-400 leading-relaxed font-normal">
-            Menumbuhkan ketangkasan fisik, ketajaman konsentrasi, serta kepemimpinan students
-            di bawah asuhan pelatih dan asatidz berpengalaman.
+            Menumbuhkan ketangkasan fisik, ketajaman konsentrasi, serta
+            kepemimpinan students di bawah asuhan pelatih dan asatidz
+            berpengalaman.
           </p>
         </ScrollReveal>
 
@@ -128,14 +132,16 @@ export function ExtracurricularSection() {
         <ul
           aria-labelledby="extracurricular-heading"
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-8 items-stretch list-none p-0"
-          role="list"
         >
           {extracurriculars.map((item, idx) => {
             const Icon = item.icon;
             return (
               <li
                 key={idx}
-                className={cn("flex", item.featured && "md:col-span-2 lg:col-span-2")}
+                className={cn(
+                  "flex",
+                  item.featured && "md:col-span-2 lg:col-span-2",
+                )}
               >
                 <motion.article
                   aria-labelledby={`ekskul-${idx}-title`}
@@ -156,7 +162,12 @@ export function ExtracurricularSection() {
                     className="p-8 sm:p-9 bg-white dark:bg-slate-900 shadow-2xs hover:shadow-xl transition-all flex-1 flex flex-col justify-between relative group rounded-none"
                   >
                     {item.featured && (
-                      <BorderBeam size={220} duration={12} colorFrom="#f59e0b" colorTo="#10b981" />
+                      <BorderBeam
+                        size={220}
+                        duration={12}
+                        colorFrom="#f59e0b"
+                        colorTo="#10b981"
+                      />
                     )}
 
                     <div>
@@ -171,7 +182,10 @@ export function ExtracurricularSection() {
                         </div>
 
                         <div className="flex items-center gap-1.5 text-xs text-slate-500 font-mono">
-                          <Calendar aria-hidden="true" className="size-3.5 text-slate-400" />
+                          <Calendar
+                            aria-hidden="true"
+                            className="size-3.5 text-slate-400"
+                          />
                           <span>{item.schedule}</span>
                         </div>
                       </div>
@@ -198,7 +212,10 @@ export function ExtracurricularSection() {
 
                     <footer className="mt-8 pt-5 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-[11px] text-slate-500 font-mono">
                       <div className="flex items-center gap-1.5 text-amber-700 font-semibold">
-                        <Sparkles aria-hidden="true" className="size-3.5 text-amber-500" />
+                        <Sparkles
+                          aria-hidden="true"
+                          className="size-3.5 text-amber-500"
+                        />
                         <span>Pelatih Bersertifikasi Resmi</span>
                       </div>
                       <span className="text-slate-400">KUOTA TERJADWAL</span>

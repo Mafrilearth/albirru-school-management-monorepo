@@ -1,10 +1,9 @@
-import React from "react";
 import type { Metadata } from "next";
 import { PageHeader } from "@/components/layout/PageHeader";
+import { CTASection } from "@/components/sections/CTASection";
 import { CurriculumSection } from "@/components/sections/programs/CurriculumSection";
 import { ExtracurricularSection } from "@/components/sections/programs/ExtracurricularSection";
 import { FacilitiesSection } from "@/components/sections/programs/FacilitiesSection";
-import { CTASection } from "@/components/sections/CTASection";
 
 export const metadata: Metadata = {
   title: "Program Curriculum & Facilities Kampus",

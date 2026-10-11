@@ -1,14 +1,17 @@
 ﻿"use client";
 
-import React, { useState } from "react";
-import { MessageCircle, Share2, Check, Copy } from "lucide-react";
+import { Check, Copy, MessageCircle } from "lucide-react";
+import { useState } from "react";
 
 interface ArticleShareWidgetProps {
   title: string;
   shareText: string;
 }
 
-export function ArticleShareWidget({ title, shareText }: ArticleShareWidgetProps) {
+export function ArticleShareWidget({
+  title,
+  shareText,
+}: ArticleShareWidgetProps) {
   const [copied, setCopied] = useState(false);
 
   const handleCopyLink = async () => {
@@ -59,4 +62,3 @@ export function ArticleShareWidget({ title, shareText }: ArticleShareWidgetProps
     </div>
   );
 }
-

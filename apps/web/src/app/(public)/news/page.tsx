@@ -1,8 +1,7 @@
-import React from "react";
 import type { Metadata } from "next";
 import { PageHeader } from "@/components/layout/PageHeader";
-import { NewsArchiveGrid } from "@/components/sections/news/NewsArchiveGrid";
 import { CTASection } from "@/components/sections/CTASection";
+import { NewsArchiveGrid } from "@/components/sections/news/NewsArchiveGrid";
 import { getArticles } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -59,7 +58,10 @@ export default async function NewsPage() {
         ]}
       />
 
-      <section aria-labelledby="news-archive-heading" className="py-24 md:py-32 lg:py-40 bg-white dark:bg-slate-900">
+      <section
+        aria-labelledby="news-archive-heading"
+        className="py-24 md:py-32 lg:py-40 bg-white dark:bg-slate-900"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <NewsArchiveGrid articles={articles} />
         </div>

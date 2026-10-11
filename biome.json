@@ -1,0 +1,67 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.5.15/schema.json",
+  "vcs": {
+    "enabled": true,
+    "clientKind": "git",
+    "useIgnoreFile": true
+  },
+  "files": {
+    "includes": [
+      "**/apps/**/*.ts",
+      "**/apps/**/*.tsx",
+      "**/apps/**/*.js",
+      "**/apps/**/*.mjs",
+      "**/packages/**/*.ts",
+      "**/packages/**/*.tsx",
+      "**/packages/**/*.js",
+      "**/packages/**/*.mjs",
+      "!**/node_modules",
+      "!**/.next",
+      "!**/dist",
+      "!**/.turbo",
+      "!**/.agents",
+      "!**/docs",
+      "!**/storybook-static"
+    ]
+  },
+  "formatter": {
+    "enabled": true,
+    "lineEnding": "crlf",
+    "indentStyle": "space",
+    "indentWidth": 2
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "preset": "recommended",
+      "a11y": {
+        "noSvgWithoutTitle": "off",
+        "useButtonType": "off",
+        "noStaticElementInteractions": "off",
+        "useSemanticElements": "off",
+        "useAriaActivedescendantWithTabindex": "off",
+        "noLabelWithoutControl": "off",
+        "useKeyWithMouseEvents": "off",
+        "useKeyWithClickEvents": "off",
+        "useFocusableInteractive": "off"
+      },
+      "security": {
+        "noDangerouslySetInnerHtml": "off"
+      },
+      "style": {
+        "noNonNullAssertion": "warn"
+      },
+      "correctness": {
+        "noUnusedFunctionParameters": "off",
+        "noUnusedImports": "warn"
+      },
+      "suspicious": {
+        "noExplicitAny": "error",
+        "noCommentText": "off",
+        "noGlobalIsNan": "warn",
+        "noArrayIndexKey": "off",
+        "noDocumentCookie": "warn"
+      }
+    }
+  }
+}

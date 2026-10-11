@@ -1,6 +1,8 @@
-import { ActionResponse } from "@/types/action";
+import type { ActionResponse } from "@/types/action";
 
-export async function initializeAttendanceSession(payload: Record<string, unknown>): Promise<ActionResponse<Record<string, unknown>>> {
+export async function initializeAttendanceSession(
+  payload: Record<string, unknown>,
+): Promise<ActionResponse<Record<string, unknown>>> {
   return {
     is_success: true,
     status_code: 200,
@@ -9,7 +11,9 @@ export async function initializeAttendanceSession(payload: Record<string, unknow
   };
 }
 
-export async function submitAttendanceRegister(payload: Record<string, unknown>): Promise<ActionResponse<Record<string, unknown>>> {
+export async function submitAttendanceRegister(
+  payload: Record<string, unknown>,
+): Promise<ActionResponse<Record<string, unknown>>> {
   return {
     is_success: true,
     status_code: 200,

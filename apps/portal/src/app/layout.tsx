@@ -3,7 +3,8 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Portal Sistem Informasi Sekolah | SD Al-Birru",
-  description: "Portal Manajemen dan Sistem Informasi Akademik Terpadu SD Islam Terpadu Al-Birru.",
+  description:
+    "Portal Manajemen dan Sistem Informasi Akademik Terpadu SD Islam Terpadu Al-Birru.",
 };
 
 export default function RootLayout({

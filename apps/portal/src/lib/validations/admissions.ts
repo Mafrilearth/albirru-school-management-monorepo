@@ -1,11 +1,19 @@
 import { z } from "zod";
 
 export const AdmissionsSubmissionSchema = z.object({
-  prospectiveStudentName: z.string().min(3, "Nama siswa terlalu pendek").max(255, "Nama siswa terlalu panjang"),
-  prospectiveStudentBirthDate: z.string().refine((date) => !isNaN(Date.parse(date)), {
-    message: "Format tanggal tidak valid",
-  }),
-  guardianContactName: z.string().min(3, "Nama wali terlalu pendek").max(255, "Nama wali terlalu panjang"),
+  prospectiveStudentName: z
+    .string()
+    .min(3, "Nama siswa terlalu pendek")
+    .max(255, "Nama siswa terlalu panjang"),
+  prospectiveStudentBirthDate: z
+    .string()
+    .refine((date) => !Number.isNaN(Date.parse(date)), {
+      message: "Format tanggal tidak valid",
+    }),
+  guardianContactName: z
+    .string()
+    .min(3, "Nama wali terlalu pendek")
+    .max(255, "Nama wali terlalu panjang"),
   guardianContactPhone: z
     .string()
     .min(10, "Nomor telepon tidak valid (minimal 10 digit)")
@@ -15,4 +23,6 @@ export const AdmissionsSubmissionSchema = z.object({
   submittedDocumentsUrl: z.string().url().optional(),
 });
 
-export type AdmissionsSubmissionPayload = z.infer<typeof AdmissionsSubmissionSchema>;
+export type AdmissionsSubmissionPayload = z.infer<
+  typeof AdmissionsSubmissionSchema
+>;

@@ -1,4 +1,4 @@
-import type { Transition, TargetAndTransition } from "motion/react";
+import type { TargetAndTransition, Transition } from "motion/react";
 
 /**
  * Official Apple Human Interface Guidelines (HIG) - Liquid Glass Spring Tokens (WWDC 2025)

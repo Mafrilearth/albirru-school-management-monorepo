@@ -1,12 +1,16 @@
 "use client";
 
-import React from "react";
+import {
+  ArrowRight,
+  Compass,
+  HeartHandshake,
+  ShieldCheck,
+  Sparkles,
+  UserCheck,
+} from "lucide-react";
 import Link from "next/link";
-import { ArrowRight, UserCheck, ShieldCheck, HeartHandshake, Sparkles, Compass } from "lucide-react";
-import { motion } from "motion/react";
-import { ScrollReveal } from "@/components/common/ScrollReveal";
-import { SpotlightCard } from "@/components/common/SpotlightCard";
 import { BorderBeam } from "@/components/common/BorderBeam";
+import { ScrollReveal } from "@/components/common/ScrollReveal";
 
 const fitrahPillars = [
   {
@@ -31,7 +35,10 @@ const fitrahPillars = [
 
 export function WelcomeSection() {
   return (
-    <section aria-labelledby="welcome-heading" className="py-28 md:py-36 lg:py-44 bg-slate-50 dark:bg-slate-900/30 border-b border-slate-200/70 relative overflow-hidden">
+    <section
+      aria-labelledby="welcome-heading"
+      className="py-28 md:py-36 lg:py-44 bg-slate-50 dark:bg-slate-900/30 border-b border-slate-200/70 relative overflow-hidden"
+    >
       {/* Removed conflicting background dots to allow GlobalGrid to shine clearly */}
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -50,7 +57,12 @@ export function WelcomeSection() {
                   aria-labelledby="headmaster-name"
                   className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-8 sm:p-10 h-full flex flex-col justify-between relative z-10 hover:bg-slate-50 dark:hover:bg-slate-900/80 transition-colors"
                 >
-                  <BorderBeam size={220} duration={14} colorFrom="#f59e0b" colorTo="#10b981" />
+                  <BorderBeam
+                    size={220}
+                    duration={14}
+                    colorFrom="#f59e0b"
+                    colorTo="#10b981"
+                  />
 
                   <div className="flex items-center justify-between mb-8">
                     <div className="size-20 bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-600 shadow-2xs">
@@ -61,7 +73,10 @@ export function WelcomeSection() {
                     </span>
                   </div>
 
-                  <h3 id="headmaster-name" className="text-2xl font-black text-slate-950 dark:text-slate-50 tracking-tight">
+                  <h3
+                    id="headmaster-name"
+                    className="text-2xl font-black text-slate-950 dark:text-slate-50 tracking-tight"
+                  >
                     Ustadz H. Ahmad Fauzi, M.Pd.
                   </h3>
                   <p className="text-xs font-bold text-amber-700 mt-1 uppercase tracking-wider font-mono">
@@ -71,9 +86,13 @@ export function WelcomeSection() {
                     Magister Manajemen Pendidikan Islam (UIN)
                   </p>
 
-                  <blockquote cite="Ustadz H. Ahmad Fauzi, M.Pd." className="mt-8 pt-6 border-t border-slate-200 dark:border-slate-800 text-sm text-slate-700 dark:text-slate-300 leading-relaxed italic bg-amber-50/40 p-5 border border-amber-100">
-                    &quot;Mendidik bukan sekadar mentransfer pengetahuan, melainkan menghidupkan fitrah,
-                    menjaga kemurnian hati, dan menanamkan akhlak mulia sebelum ilmu diajarkan.&quot;
+                  <blockquote
+                    cite="Ustadz H. Ahmad Fauzi, M.Pd."
+                    className="mt-8 pt-6 border-t border-slate-200 dark:border-slate-800 text-sm text-slate-700 dark:text-slate-300 leading-relaxed italic bg-amber-50/40 p-5 border border-amber-100"
+                  >
+                    &quot;Mendidik bukan sekadar mentransfer pengetahuan,
+                    melainkan menghidupkan fitrah, menjaga kemurnian hati, dan
+                    menanamkan akhlak mulia sebelum ilmu diajarkan.&quot;
                   </blockquote>
 
                   <div className="mt-6 flex items-center justify-between text-[11px] text-slate-500 font-mono">
@@ -96,13 +115,19 @@ export function WelcomeSection() {
                 <span>FILOSOFI // PENDIDIKAN FITRAH</span>
               </div>
 
-              <h2 id="welcome-heading" className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-950 dark:text-slate-50 tracking-tight leading-[1.12]">
-                Menjaga Fitrah Anak Melalui Keteladanan, Adab, &amp; Kasih Sayang
+              <h2
+                id="welcome-heading"
+                className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-950 dark:text-slate-50 tracking-tight leading-[1.12]"
+              >
+                Menjaga Fitrah Anak Melalui Keteladanan, Adab, &amp; Kasih
+                Sayang
               </h2>
 
               <p className="mt-6 text-base sm:text-lg text-slate-600 dark:text-slate-400 leading-relaxed font-normal">
-                Anak usia sekolah dasar belajar paling mendalam dari apa yang mereka saksikan dan rasakan.
-                Di SD Al-Birru, setiap sudut ruang belajar dirancang untuk menumbuhkan cinta ilmu dan keluhuran pekerti.
+                Anak usia sekolah dasar belajar paling mendalam dari apa yang
+                mereka saksikan dan rasakan. Di SD Al-Birru, setiap sudut ruang
+                belajar dirancang untuk menumbuhkan cinta ilmu dan keluhuran
+                pekerti.
               </p>
 
               {/* Semantic List of 3 Out-of-the-Box Fitrah Blueprint Cards */}
@@ -121,7 +146,10 @@ export function WelcomeSection() {
                             {item.code}
                           </span>
                         </div>
-                        <h3 id={`fitrah-title-${idx}`} className="text-sm sm:text-base font-bold text-slate-950 dark:text-slate-50 leading-snug">
+                        <h3
+                          id={`fitrah-title-${idx}`}
+                          className="text-sm sm:text-base font-bold text-slate-950 dark:text-slate-50 leading-snug"
+                        >
                           {item.title}
                         </h3>
                         <p className="mt-3 text-xs text-slate-500 leading-relaxed font-normal">
@@ -155,4 +183,3 @@ export function WelcomeSection() {
     </section>
   );
 }
-

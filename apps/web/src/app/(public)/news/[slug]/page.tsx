@@ -1,21 +1,20 @@
-import React from "react";
+import {
+  ArrowLeft,
+  ArrowUpRight,
+  Calendar,
+  Clock,
+  ShieldCheck,
+  Sparkles,
+  Tag,
+  User,
+} from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import {
-  Calendar,
-  User,
-  ArrowLeft,
-  Tag,
-  Sparkles,
-  Clock,
-  ShieldCheck,
-  ArrowUpRight,
-} from "lucide-react";
-import { getArticleBySlug, fallbackArticles } from "@/lib/content";
 import { ArticleShareWidget } from "@/components/common/ArticleShareWidget";
-import { SpotlightCard } from "@/components/common/SpotlightCard";
 import { BorderBeam } from "@/components/common/BorderBeam";
+import { SpotlightCard } from "@/components/common/SpotlightCard";
+import { fallbackArticles, getArticleBySlug } from "@/lib/content";
 
 interface PageProps {
   params: Promise<{
@@ -29,7 +28,9 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const article = await getArticleBySlug(slug);
 
@@ -83,7 +84,7 @@ export default async function ArticleDetailPage({ params }: PageProps) {
     .slice(0, 3);
 
   const shareText = encodeURIComponent(
-    `${article.title} - Baca selengkapnya warta resmi SD Al-Birru Sukabumi:`
+    `${article.title} - Baca selengkapnya warta resmi SD Al-Birru Sukabumi:`,
   );
 
   const articleStructuredData = {
@@ -142,11 +143,15 @@ export default async function ArticleDetailPage({ params }: PageProps) {
     <article className="py-16 md:py-28 lg:py-36 bg-white dark:bg-slate-900">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleStructuredData) }}
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(articleStructuredData),
+        }}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbStructuredData) }}
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbStructuredData),
+        }}
       />
       {/* Editorial Top Container */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -159,11 +164,16 @@ export default async function ArticleDetailPage({ params }: PageProps) {
             href="/news"
             className="group inline-flex items-center gap-1.5 font-bold text-slate-600 dark:text-slate-400 hover:text-amber-700 transition-colors"
           >
-            <ArrowLeft aria-hidden="true" className="size-3.5 group-hover:-translate-x-1 transition-transform" />
+            <ArrowLeft
+              aria-hidden="true"
+              className="size-3.5 group-hover:-translate-x-1 transition-transform"
+            />
             <span>KEMBALI KE SEMUA WARTA</span>
           </Link>
           <span className="text-slate-300">/</span>
-          <span className="text-slate-400 truncate max-w-xs">{article.categoryLabel}</span>
+          <span className="text-slate-400 truncate max-w-xs">
+            {article.categoryLabel}
+          </span>
         </nav>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20 items-start">
@@ -176,8 +186,13 @@ export default async function ArticleDetailPage({ params }: PageProps) {
               </span>
 
               <div className="flex items-center gap-1.5 text-xs text-slate-500 font-mono">
-                <Calendar aria-hidden="true" className="size-3.5 text-slate-400" />
-                <time dateTime={article.publishedDate}>{article.formattedDate}</time>
+                <Calendar
+                  aria-hidden="true"
+                  className="size-3.5 text-slate-400"
+                />
+                <time dateTime={article.publishedDate}>
+                  {article.formattedDate}
+                </time>
               </div>
 
               <div className="flex items-center gap-1.5 text-xs text-slate-500 font-mono">
@@ -201,7 +216,9 @@ export default async function ArticleDetailPage({ params }: PageProps) {
                   <User className="size-5" />
                 </div>
                 <address className="not-italic">
-                  <p className="text-sm font-bold text-slate-900 dark:text-slate-50">{article.author}</p>
+                  <p className="text-sm font-bold text-slate-900 dark:text-slate-50">
+                    {article.author}
+                  </p>
                   <p className="text-[11px] text-slate-400 font-mono">
                     Humas &amp; Tim Redaksi SD Al-Birru
                   </p>
@@ -227,7 +244,11 @@ export default async function ArticleDetailPage({ params }: PageProps) {
               {article.content.map((paragraph, idx) => (
                 <p
                   key={idx}
-                  className={idx === 0 ? "first-letter:text-5xl first-letter:font-black first-letter:text-slate-950 dark:text-slate-50 first-letter:mr-2" : ""}
+                  className={
+                    idx === 0
+                      ? "first-letter:text-5xl first-letter:font-black first-letter:text-slate-950 dark:text-slate-50 first-letter:mr-2"
+                      : ""
+                  }
                 >
                   {paragraph}
                 </p>
@@ -238,8 +259,14 @@ export default async function ArticleDetailPage({ params }: PageProps) {
             <footer className="mt-16 pt-10 border-t border-slate-200 dark:border-slate-700 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
               {/* Tags Semantic List */}
               <div className="flex items-center gap-2">
-                <Tag aria-hidden="true" className="size-4 text-slate-400 mr-1" />
-                <ul aria-label="Topik terkait warta" className="flex flex-wrap items-center gap-2 list-none p-0" role="list">
+                <Tag
+                  aria-hidden="true"
+                  className="size-4 text-slate-400 mr-1"
+                />
+                <ul
+                  aria-label="Topik terkait warta"
+                  className="flex flex-wrap items-center gap-2 list-none p-0"
+                >
                   {article.tags.map((tag, idx) => (
                     <li key={idx}>
                       <span className="px-3.5 py-1.5 rounded-none bg-slate-100 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-xs font-mono font-medium block">
@@ -266,7 +293,12 @@ export default async function ArticleDetailPage({ params }: PageProps) {
               borderColor="rgba(245, 158, 11, 0.3)"
               className="p-8 sm:p-9 rounded-none bg-slate-950 text-white border border-slate-800 shadow-xl relative overflow-hidden"
             >
-              <BorderBeam size={220} duration={12} colorFrom="#f59e0b" colorTo="#10b981" />
+              <BorderBeam
+                size={220}
+                duration={12}
+                colorFrom="#f59e0b"
+                colorTo="#10b981"
+              />
 
               <span className="font-mono text-[10px] font-bold text-amber-400 bg-amber-400/10 border border-amber-400/20 px-3 py-1 rounded-none uppercase tracking-wider">
                 Admissions 2026/2027
@@ -277,14 +309,14 @@ export default async function ArticleDetailPage({ params }: PageProps) {
               </h2>
 
               <p className="mt-4 text-xs sm:text-sm text-slate-300 leading-relaxed font-normal">
-                Mendidik generasi Qur&apos;ani berakhlak mulia dengan rasio ideal 1:15.
-                Kuota gelombang I dibatasi 2 kelas.
+                Mendidik generasi Qur&apos;ani berakhlak mulia dengan rasio
+                ideal 1:15. Kuota gelombang I dibatasi 2 kelas.
               </p>
 
               <div className="mt-8 flex flex-col gap-3">
                 <Link
                   href="/contact"
- className="flex items-center justify-center gap-2 w-full py-3.5 rounded-none bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-xs shadow-2xs transition-all hover:scale-[1.01]"
+                  className="flex items-center justify-center gap-2 w-full py-3.5 rounded-none bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-xs shadow-2xs transition-all hover:scale-[1.01]"
                 >
                   <Sparkles aria-hidden="true" className="size-4" />
                   <span>Form Registration &amp; Konsultasi</span>
@@ -297,7 +329,10 @@ export default async function ArticleDetailPage({ params }: PageProps) {
                   className="flex items-center justify-center gap-2 w-full py-3 rounded-none border border-slate-700 bg-slate-900 hover:bg-slate-800 text-slate-200 font-semibold text-xs transition-colors"
                 >
                   <span>Chat WhatsApp Committee</span>
-                  <ArrowUpRight aria-hidden="true" className="size-3.5 text-slate-400" />
+                  <ArrowUpRight
+                    aria-hidden="true"
+                    className="size-3.5 text-slate-400"
+                  />
                 </a>
               </div>
             </SpotlightCard>
@@ -311,12 +346,20 @@ export default async function ArticleDetailPage({ params }: PageProps) {
                 <h2 className="text-sm font-bold text-slate-900 dark:text-slate-50 font-mono uppercase tracking-wider">
                   WARTA LAINNYA
                 </h2>
-                <span className="text-[10px] font-mono text-slate-400">ARSIP</span>
+                <span className="text-[10px] font-mono text-slate-400">
+                  ARSIP
+                </span>
               </div>
 
-              <ul aria-label="News Terkait Lainnya" className="space-y-5 list-none p-0" role="list">
+              <ul
+                aria-label="News Terkait Lainnya"
+                className="space-y-5 list-none p-0"
+              >
                 {otherArticles.map((other) => (
-                  <li key={other.id} className="group border-b border-slate-100 dark:border-slate-800 last:border-0 pb-4 last:pb-0">
+                  <li
+                    key={other.id}
+                    className="group border-b border-slate-100 dark:border-slate-800 last:border-0 pb-4 last:pb-0"
+                  >
                     <article>
                       <span className="text-[10px] font-mono font-bold text-amber-700 bg-amber-50 px-2.5 py-0.5 rounded border border-amber-200/50">
                         {other.categoryLabel}

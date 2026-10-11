@@ -1,10 +1,11 @@
 "use client";
 
-import React from "react";
 import { motion, useMotionTemplate, useMotionValue } from "motion/react";
+import type React from "react";
 import { cn } from "@/lib/utils";
 
-export interface SpotlightCardProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface SpotlightCardProps
+  extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
   className?: string;
   spotlightColor?: string;
@@ -21,7 +22,11 @@ export function SpotlightCard({
   const mouseX = useMotionValue(-1000);
   const mouseY = useMotionValue(-1000);
 
-  function handleMouseMove({ currentTarget, clientX, clientY }: React.MouseEvent) {
+  function handleMouseMove({
+    currentTarget,
+    clientX,
+    clientY,
+  }: React.MouseEvent) {
     const { left, top } = currentTarget.getBoundingClientRect();
     mouseX.set(clientX - left);
     mouseY.set(clientY - top);
@@ -38,7 +43,7 @@ export function SpotlightCard({
       onMouseLeave={handleMouseLeave}
       className={cn(
         "group relative rounded-none border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 transition-all overflow-hidden",
-        className
+        className,
       )}
       {...props}
     >

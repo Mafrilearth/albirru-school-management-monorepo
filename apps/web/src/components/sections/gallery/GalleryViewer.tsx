@@ -1,22 +1,22 @@
 ﻿"use client";
 
-import React, { useState, useMemo } from "react";
 import {
-  Calendar,
-  MapPin,
-  Maximize2,
   BookMarked,
-  Trophy,
   Building2,
+  Calendar,
+  CheckCircle2,
   Compass,
   ImageIcon,
+  MapPin,
+  Maximize2,
+  Trophy,
   X,
-  CheckCircle2,
 } from "lucide-react";
-import { motion, AnimatePresence } from "motion/react";
-import { SpotlightCard } from "@/components/common/SpotlightCard";
+import { AnimatePresence, motion } from "motion/react";
+import { useMemo, useState } from "react";
 import { BorderBeam } from "@/components/common/BorderBeam";
-import { GalleryItem } from "@/lib/content";
+import { SpotlightCard } from "@/components/common/SpotlightCard";
+import type { GalleryItem } from "@/lib/content";
 import { cn } from "@/lib/utils";
 
 interface GalleryViewerProps {
@@ -74,7 +74,9 @@ export function GalleryViewer({ items }: GalleryViewerProps) {
               onClick={() => setSelectedCategory(cat.id)}
               className={cn(
                 "relative px-4 py-2.5 rounded-none text-xs font-bold transition-colors cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-amber-500 font-mono",
-                isActive ? "text-slate-950 dark:text-slate-50 font-bold" : "text-slate-600 dark:text-slate-400 hover:text-slate-950 dark:hover:text-slate-50"
+                isActive
+                  ? "text-slate-950 dark:text-slate-50 font-bold"
+                  : "text-slate-600 dark:text-slate-400 hover:text-slate-950 dark:hover:text-slate-50",
               )}
             >
               {isActive && (
@@ -144,7 +146,7 @@ export function GalleryViewer({ items }: GalleryViewerProps) {
 
                         <span
                           aria-hidden="true"
- className="absolute top-4 right-4 flex size-9 items-center justify-center rounded-none bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-500 group-hover:bg-amber-500 group-hover:text-slate-950 dark:hover:text-slate-50 transition-colors shadow-2xs"
+                          className="absolute top-4 right-4 flex size-9 items-center justify-center rounded-none bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-500 group-hover:bg-amber-500 group-hover:text-slate-950 dark:hover:text-slate-50 transition-colors shadow-2xs"
                         >
                           <Maximize2 className="size-4" />
                         </span>
@@ -157,7 +159,10 @@ export function GalleryViewer({ items }: GalleryViewerProps) {
                             {item.categoryLabel}
                           </span>
                           <div className="flex items-center gap-1.5 font-mono">
-                            <Calendar aria-hidden="true" className="size-3 text-slate-400" />
+                            <Calendar
+                              aria-hidden="true"
+                              className="size-3 text-slate-400"
+                            />
                             <time dateTime={item.date}>{item.date}</time>
                           </div>
                         </div>
@@ -176,8 +181,13 @@ export function GalleryViewer({ items }: GalleryViewerProps) {
                     </div>
 
                     <footer className="px-7 sm:px-8 pb-7 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center gap-2 text-xs text-slate-500 font-mono">
-                      <MapPin aria-hidden="true" className="size-3.5 text-slate-400 shrink-0" />
-                      <address className="not-italic truncate">{item.location}</address>
+                      <MapPin
+                        aria-hidden="true"
+                        className="size-3.5 text-slate-400 shrink-0"
+                      />
+                      <address className="not-italic truncate">
+                        {item.location}
+                      </address>
                     </footer>
                   </SpotlightCard>
                 </motion.article>
@@ -208,7 +218,12 @@ export function GalleryViewer({ items }: GalleryViewerProps) {
               transition={{ type: "spring", stiffness: 350, damping: 25 }}
               className="relative w-full max-w-lg rounded-none bg-white dark:bg-slate-900 p-8 sm:p-10 shadow-2xl border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-50 overflow-hidden"
             >
-              <BorderBeam size={220} duration={10} colorFrom="#f59e0b" colorTo="#10b981" />
+              <BorderBeam
+                size={220}
+                duration={10}
+                colorFrom="#f59e0b"
+                colorTo="#10b981"
+              />
 
               {/* Close Button */}
               <button
@@ -222,29 +237,43 @@ export function GalleryViewer({ items }: GalleryViewerProps) {
 
               {/* Modal Image Placeholder */}
               <figure className="aspect-[16/9] w-full rounded-none bg-slate-100 border border-slate-200 dark:border-slate-700 mb-6 flex flex-col items-center justify-center text-slate-400">
-                <ImageIcon aria-hidden="true" className="size-10 text-slate-300 mb-1" />
+                <ImageIcon
+                  aria-hidden="true"
+                  className="size-10 text-slate-300 mb-1"
+                />
                 <figcaption className="text-xs font-bold text-slate-400 uppercase tracking-widest font-mono">
                   Pratinjau Foto Dokumentasi
                 </figcaption>
               </figure>
 
               <div className="flex items-center gap-2 mb-2">
- <span className="px-3 py-1 rounded-none bg-amber-500 text-slate-950 font-mono font-bold text-xs">
+                <span className="px-3 py-1 rounded-none bg-amber-500 text-slate-950 font-mono font-bold text-xs">
                   {activeItem.categoryLabel}
                 </span>
                 <span className="text-xs text-slate-400">•</span>
-                <time dateTime={activeItem.date} className="text-xs text-slate-500 font-mono">
+                <time
+                  dateTime={activeItem.date}
+                  className="text-xs text-slate-500 font-mono"
+                >
                   {activeItem.date}
                 </time>
               </div>
 
-              <h2 id="modal-gallery-title" className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-slate-50 leading-tight">
+              <h2
+                id="modal-gallery-title"
+                className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-slate-50 leading-tight"
+              >
                 {activeItem.title}
               </h2>
 
               <div className="mt-4 flex items-center gap-2 text-xs text-slate-600 dark:text-slate-400 bg-slate-50 dark:bg-slate-800 p-3 rounded-none border border-slate-200 dark:border-slate-700 font-mono">
-                <MapPin aria-hidden="true" className="size-4 text-amber-600 shrink-0" />
-                <address className="not-italic">Lokasi: {activeItem.location}</address>
+                <MapPin
+                  aria-hidden="true"
+                  className="size-4 text-amber-600 shrink-0"
+                />
+                <address className="not-italic">
+                  Lokasi: {activeItem.location}
+                </address>
               </div>
 
               <p className="mt-5 text-sm text-slate-600 dark:text-slate-400 leading-relaxed font-normal">
@@ -252,7 +281,10 @@ export function GalleryViewer({ items }: GalleryViewerProps) {
               </p>
 
               <footer className="mt-8 pt-5 border-t border-slate-100 dark:border-slate-800 flex items-center gap-2 text-xs text-emerald-700 font-medium font-mono">
-                <CheckCircle2 aria-hidden="true" className="size-4 text-emerald-700 shrink-0" />
+                <CheckCircle2
+                  aria-hidden="true"
+                  className="size-4 text-emerald-700 shrink-0"
+                />
                 <span>Dokumentasi resmi pembelajaran students SD Al-Birru</span>
               </footer>
             </motion.div>
@@ -262,4 +294,3 @@ export function GalleryViewer({ items }: GalleryViewerProps) {
     </div>
   );
 }
-

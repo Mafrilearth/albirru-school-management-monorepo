@@ -1,7 +1,6 @@
-import React from "react";
-import Link from "next/link";
 import { Button } from "@albirru/design-system";
-import { ShieldCheck, ArrowRight, UserCheck } from "lucide-react";
+import { ArrowRight, ShieldCheck, UserCheck } from "lucide-react";
+import Link from "next/link";
 
 export default function PortalHomePage() {
   return (
@@ -22,7 +21,8 @@ export default function PortalHomePage() {
         </div>
 
         <p className="text-slate-400 text-sm mb-6 leading-relaxed">
-          Pusat kendali operasional akademik, presensi, evaluasi penilaian, dan manajemen identitas terpadu.
+          Pusat kendali operasional akademik, presensi, evaluasi penilaian, dan
+          manajemen identitas terpadu.
         </p>
 
         <div className="space-y-3">
