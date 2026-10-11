@@ -21,7 +21,7 @@
     "uuidv7": "^1.2.1"
   },
   "devDependencies": {
-    "@types/node": "^20",
+    "@types/node": "^26",
     "drizzle-kit": "^0.31.11",
     "typescript": "^5"
   }
