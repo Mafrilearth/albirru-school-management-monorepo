@@ -81,7 +81,7 @@ export function WelcomeSection() {
                 </div>
 
                 <div className="mt-6 pt-4 border-t border-border flex items-center justify-between text-xs text-muted-foreground font-medium">
-                  <div className="flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400">
+                  <div className="flex items-center gap-1.5 text-primary">
                     <ShieldCheck className="size-4" />
                     <span>Child-Friendly School</span>
                   </div>

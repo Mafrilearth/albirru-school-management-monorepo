@@ -58,16 +58,25 @@ export function PublicNavbar() {
         </nav>
 
         {/* Global Controls & CTA (Desktop & Mobile) */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 sm:gap-3">
           <ThemeToggle />
           <Button
             render={<Link href="/contact" />}
+            nativeButton={false}
+            variant="ghost"
+            size="sm"
+            className="hidden md:inline-flex"
+          >
+            <span>Contact</span>
+          </Button>
+          <Button
+            render={<Link href="/admissions" />}
             nativeButton={false}
             variant="default"
             size="sm"
             className="hidden sm:inline-flex"
           >
-            <span>Contact</span>
+            <span>Enroll Now</span>
           </Button>
 
           {/* Mobile/Tablet Menu Trigger */}

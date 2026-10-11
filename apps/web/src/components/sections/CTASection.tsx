@@ -19,8 +19,8 @@ export function CTASection({
   kicker = "New Student Admissions AY 2026/2027",
   title = "Lay the Strongest Foundation for Your Child's Future",
   description = "Enrollment is capped at 2 classes (40 students) to guarantee individual mentorship and optimal tahfidz guidance. Consult your child's readiness with our admissions team.",
-  primaryBtnText = "Admissions Consultation Form",
-  primaryBtnHref = "/contact",
+  primaryBtnText = "Open Admission Form",
+  primaryBtnHref = "/admissions",
 }: CTASectionProps) {
   return (
     <section
@@ -73,13 +73,13 @@ export function CTASection({
                   size="lg"
                   className="w-full sm:w-auto gap-2 font-medium"
                 >
-                  <MessageCircle className="size-4 text-emerald-600 dark:text-emerald-400" />
+                  <MessageCircle className="size-4 text-primary" />
                   <span>Chat on WhatsApp</span>
                 </Button>
               </div>
 
               <div className="mt-8 flex items-center justify-center gap-2 text-xs text-muted-foreground font-medium">
-                <ShieldCheck className="size-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
+                <ShieldCheck className="size-4 text-primary shrink-0" />
                 <span>
                   Child-friendly initial consultation and developmental
                   observation with zero hidden fees

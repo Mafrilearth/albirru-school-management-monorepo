@@ -30,22 +30,21 @@ export function HeroSection() {
               id="hero-title"
               className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-foreground tracking-tight leading-tight"
             >
-              Shaping Character, <br className="hidden sm:block" /> Cultivating
-              Knowledge, Building Integrity.
+              Nurturing Character, <br className="hidden sm:block" />{" "}
+              Cultivating Knowledge, Building Integrity.
             </h1>
 
             {/* Subheading */}
             <p className="mt-6 text-base md:text-lg text-muted-foreground leading-relaxed max-w-2xl">
-              SD Al-Birru delivers an integrated primary curriculum combining
-              national academic rigor with Islamic ethical foundations,
-              fostering disciplined conduct, analytical inquiry, and moral
-              excellence.
+              SD Al-Birru delivers an integrated primary curriculum grounded in
+              Islamic values in Bandung, fostering disciplined adab, analytical
+              reasoning, and noble moral excellence.
             </p>
 
             {/* Call to Actions */}
             <div className="mt-10 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto">
               <Button
-                render={<Link href="/admission" />}
+                render={<Link href="/admissions" />}
                 nativeButton={false}
                 size="lg"
                 className="gap-2 font-medium"
@@ -78,9 +77,9 @@ export function HeroSection() {
                   <Badge variant="secondary" className="gap-1.5 font-medium">
                     <span
                       aria-hidden="true"
-                      className="size-1.5 rounded-full bg-emerald-500"
+                      className="size-1.5 rounded-full bg-primary"
                     />
-                    Grade A (Excellence)
+                    Grade A (Superior)
                   </Badge>
                 </div>
 
@@ -99,7 +98,7 @@ export function HeroSection() {
 
               <CardFooter className="bg-muted/40 border-t border-border p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-xs text-muted-foreground font-medium">
                 <span>Daily Student Attendance Compliance</span>
-                <span className="text-emerald-600 dark:text-emerald-400 font-semibold">
+                <span className="text-foreground font-semibold">
                   98.4% On-Time Attendance
                 </span>
               </CardFooter>

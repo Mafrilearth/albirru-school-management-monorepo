@@ -31,6 +31,7 @@ const programs = [
 export function AcademicProgramsSection() {
   return (
     <section
+      id="academic-pillars"
       aria-labelledby="programs-heading"
       className="py-20 md:py-28 bg-background border-b border-border"
     >
