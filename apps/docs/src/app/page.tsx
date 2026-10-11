@@ -1,5 +1,4 @@
 import { BookOpen, Code2, Database, Shield, Terminal } from "lucide-react";
-import Link from "next/link";
 
 const DOCS_LIST = [
   {
@@ -26,7 +25,6 @@ const DOCS_LIST = [
     num: "05",
     title: "Visual Design System Specification",
     desc: "8px spatial scale, Major Third typography ratio, and WCAG 2.1 AA tokens.",
-    href: "/design-system",
   },
   {
     num: "06",
@@ -89,34 +87,21 @@ export default function DocsHomePage() {
               flexDirection: "column",
             }}
           >
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "8px" }}>
-              <span
-                style={{
-                  display: "inline-block",
-                  padding: "2px 8px",
-                  backgroundColor: "#e0f2fe",
-                  color: "#0369a1",
-                  borderRadius: "4px",
-                  fontSize: "12px",
-                  fontWeight: 700,
-                }}
-              >
-                Document {doc.num}
-              </span>
-              {doc.href && (
-                <Link
-                  href={doc.href}
-                  style={{
-                    fontSize: "12px",
-                    fontWeight: 600,
-                    color: "#0284c7",
-                    textDecoration: "none",
-                  }}
-                >
-                  View Showcase &rarr;
-                </Link>
-              )}
-            </div>
+            <span
+              style={{
+                display: "inline-block",
+                padding: "2px 8px",
+                backgroundColor: "#e0f2fe",
+                color: "#0369a1",
+                borderRadius: "4px",
+                fontSize: "12px",
+                fontWeight: 700,
+                marginBottom: "8px",
+                width: "fit-content",
+              }}
+            >
+              Document {doc.num}
+            </span>
             <h3 style={{ margin: "4px 0 8px", fontSize: "16px", color: "#0f172a" }}>
               {doc.title}
             </h3>
