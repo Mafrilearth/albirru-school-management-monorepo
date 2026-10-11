@@ -148,7 +148,10 @@ export function PublicFooter() {
                   aria-hidden="true"
                   className="size-4 text-muted-foreground mt-0.5 shrink-0"
                 />
-                <span>Jl. Selabintana Km. 5, Warnasari, Sukabumi</span>
+                <span className="leading-snug">
+                  Kp. Cisande RT 006/002, Desa Cijalingan, Kec. Cicantayan, Kab.
+                  Sukabumi, Jawa Barat
+                </span>
               </div>
 
               <div className="flex items-center justify-between gap-2 bg-muted/50 p-2.5 rounded-md border border-border">

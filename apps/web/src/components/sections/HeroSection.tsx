@@ -37,7 +37,7 @@ export function HeroSection() {
             {/* Subheading */}
             <p className="mt-6 text-base md:text-lg text-muted-foreground leading-relaxed max-w-2xl">
               SD Al-Birru delivers an integrated primary curriculum grounded in
-              Islamic values in Bandung, fostering disciplined adab, analytical
+              Islamic values in Sukabumi, fostering disciplined adab, analytical
               reasoning, and noble moral excellence.
             </p>
 

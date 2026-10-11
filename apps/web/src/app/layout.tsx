@@ -115,10 +115,10 @@ const schoolStructuredData = {
   email: "info@sdalbirru.sch.id",
   address: {
     "@type": "PostalAddress",
-    streetAddress: "Jl. Selabintana Km. 5, Warnasari, Sukabumi",
-    addressLocality: "Sukabumi",
+    streetAddress: "Kp. Cisande RT 006/002, Desa Cijalingan, Kec. Cicantayan",
+    addressLocality: "Kab. Sukabumi",
     addressRegion: "Jawa Barat",
-    postalCode: "43151",
+    postalCode: "43155",
     addressCountry: "ID",
   },
   geo: {
