@@ -4,6 +4,7 @@ import {
   ArrowRight,
   Compass,
   HeartHandshake,
+  Quote,
   ShieldCheck,
   Sparkles,
   UserCheck,
@@ -17,20 +18,20 @@ import { Card } from "@/components/ui/card";
 const fitrahPillars = [
   {
     title: "Qudwah Hasanah",
-    subtitle: "Living Role Model",
-    desc: "Every teacher and instructor serves as an active exemplar of noble character observed directly by students.",
+    subtitle: "Keteladanan Hidup",
+    desc: "Setiap dewan asatidz dan pendidik hadir sebagai teladan akhlak nyata yang disaksikan dan diteladani langsung oleh santri.",
     icon: Sparkles,
   },
   {
-    title: "Positive Discipline",
-    subtitle: "Dignified Guidance",
-    desc: "Cultivating independence and etiquette without verbal aggression or harmful physical punishments.",
+    title: "Disiplin Positif",
+    subtitle: "Bimbingan Penuh Martabat",
+    desc: "Membiasakan kemandirian dan tata krama tanpa agresi verbal maupun hukuman fisik, berorientasi pengasuhan ramah anak.",
     icon: Compass,
   },
   {
-    title: "Family Synergy",
-    subtitle: "School & Home Harmony",
-    desc: "Harmonizing integrated daily habits through structured mutaba'ah collaboration between educators and parents.",
+    title: "Sinergi Orang Tua",
+    subtitle: "Harmoni Rumah & Sekolah",
+    desc: "Penyelarasan pembiasaan ibadah dan adab harian melalui mutaba'ah terintegrasi antara asatidz dan ayah-bunda.",
     icon: HeartHandshake,
   },
 ];
@@ -39,21 +40,24 @@ export function WelcomeSection() {
   return (
     <section
       aria-labelledby="welcome-heading"
-      className="py-20 md:py-28 lg:py-36 bg-muted/30 border-b border-border relative overflow-hidden"
+      className="py-20 md:py-28 lg:py-32 bg-muted/30 border-b border-border relative overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           {/* Left Column: Headmaster Identity Card */}
           <div className="lg:col-span-5">
             <ScrollReveal direction="up" delay={0.1}>
-              <Card className="p-8 sm:p-10 h-full flex flex-col justify-between shadow-sm">
+              <Card className="p-8 sm:p-10 h-full flex flex-col justify-between rounded-3xl border border-primary/20 shadow-md bg-card/90 backdrop-blur-sm">
                 <div>
                   <div className="flex items-center justify-between mb-6">
-                    <div className="size-16 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                    <div className="size-16 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary shadow-xs">
                       <UserCheck className="size-8" />
                     </div>
-                    <Badge variant="secondary" className="font-medium">
-                      Leadership
+                    <Badge
+                      variant="secondary"
+                      className="font-semibold text-primary bg-primary/10 border border-primary/20"
+                    >
+                      Kepala Sekolah
                     </Badge>
                   </div>
 
@@ -63,29 +67,33 @@ export function WelcomeSection() {
                   >
                     Ustadz H. Ahmad Fauzi, M.Pd.
                   </h3>
-                  <p className="text-sm font-medium text-primary mt-1">
-                    Principal of SD Al-Birru
+                  <p className="text-sm font-semibold text-primary mt-1">
+                    Kepala Sekolah SD Al-Birru
                   </p>
                   <p className="text-xs text-muted-foreground mt-0.5">
-                    Master of Islamic Educational Management (UIN)
+                    Magister Manajemen Pendidikan Islam (UIN SGD)
                   </p>
 
                   <blockquote
                     cite="Ustadz H. Ahmad Fauzi, M.Pd."
-                    className="mt-6 p-4 rounded-lg bg-muted text-sm text-foreground/90 leading-relaxed italic border-l-2 border-primary"
+                    className="mt-6 p-5 rounded-2xl bg-muted/60 text-sm text-foreground leading-relaxed italic border-l-4 border-primary relative"
                   >
-                    &quot;Education is not merely transferring knowledge, but
-                    awakening fitrah, guarding purity of heart, and cultivating
-                    noble morals before formal scholarship is taught.&quot;
+                    <Quote className="size-5 text-primary/30 absolute top-3 right-3" />
+                    &ldquo;Pendidikan bukan sekadar transfer ilmu pengetahuan,
+                    melainkan ikhtiar membangunkan fitrah tauhid, menjaga
+                    kesucian kalbu, dan menyemai adab mulia sebelum ilmu formal
+                    diajarkan.&rdquo;
                   </blockquote>
                 </div>
 
-                <div className="mt-6 pt-4 border-t border-border flex items-center justify-between text-xs text-muted-foreground font-medium">
-                  <div className="flex items-center gap-1.5 text-primary">
+                <div className="mt-8 pt-5 border-t border-border flex items-center justify-between text-xs text-muted-foreground font-medium">
+                  <div className="flex items-center gap-1.5 text-primary font-semibold">
                     <ShieldCheck className="size-4" />
-                    <span>Child-Friendly School</span>
+                    <span>Sekolah Ramah Anak</span>
                   </div>
-                  <span>JSIT STANDARD</span>
+                  <span className="font-semibold uppercase tracking-wider text-foreground">
+                    STANDAR JSIT TERPADU
+                  </span>
                 </div>
               </Card>
             </ScrollReveal>
@@ -96,24 +104,25 @@ export function WelcomeSection() {
             <ScrollReveal direction="up" delay={0.2}>
               <Badge
                 variant="outline"
-                className="gap-1.5 px-3.5 py-1 mb-5 text-xs font-medium rounded-full"
+                className="gap-1.5 px-3.5 py-1 mb-5 text-xs font-semibold rounded-full border-primary/30 text-primary bg-primary/5"
               >
-                <span>NATURE-BASED EDUCATION</span>
+                <span>FILOSOFI PENDIDIKAN BERBASIS FITRAH</span>
               </Badge>
 
               <h2
                 id="welcome-heading"
-                className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground tracking-tight leading-tight"
+                className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-foreground tracking-tight leading-tight"
               >
-                Nurturing Children&apos;s Fitrah Through Role Modeling,
-                Character, &amp; Compassion
+                Menumbuhkan Fitrah Ananda Melalui Keteladanan, Adab, &amp; Kasih
+                Sayang
               </h2>
 
               <p className="mt-6 text-base sm:text-lg text-muted-foreground leading-relaxed">
-                Primary school students learn most profoundly from what they
-                witness and experience firsthand. At SD Al-Birru, every
-                classroom corner is crafted to foster love of knowledge and
-                moral excellence.
+                Santri usia sekolah dasar belajar paling mendalam dari apa yang
+                mereka saksikan dan rasakan langsung dalam keseharian. Di SD
+                Al-Birru, setiap ruang kelas, masjid sekolah, dan laboratorium
+                alam dirancang untuk menumbuhkan kecintaan terhadap ilmu dan
+                keluhuran akhlak.
               </p>
 
               {/* 3 Pillar Cards */}
@@ -121,14 +130,20 @@ export function WelcomeSection() {
                 {fitrahPillars.map((item, idx) => {
                   const Icon = item.icon;
                   return (
-                    <Card key={idx} className="p-5 flex flex-col justify-start">
-                      <div className="size-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary mb-3">
+                    <Card
+                      key={idx}
+                      className="p-5 flex flex-col justify-start rounded-2xl border border-border hover:border-primary/40 transition-colors shadow-xs"
+                    >
+                      <div className="size-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-3">
                         <Icon className="size-5" />
                       </div>
-                      <h3 className="text-sm font-semibold text-foreground">
+                      <h3 className="text-sm font-bold text-foreground">
                         {item.title}
                       </h3>
-                      <p className="text-xs text-muted-foreground mt-1 leading-relaxed">
+                      <span className="text-[11px] font-semibold text-primary mt-0.5">
+                        {item.subtitle}
+                      </span>
+                      <p className="text-xs text-muted-foreground mt-2 leading-relaxed">
                         {item.desc}
                       </p>
                     </Card>
@@ -142,10 +157,10 @@ export function WelcomeSection() {
                   render={<Link href="/about" />}
                   nativeButton={false}
                   size="lg"
-                  className="gap-2 font-medium"
+                  className="gap-2 font-semibold shadow-md shadow-primary/20"
                 >
-                  <span>Learn About SD Al-Birru</span>
-                  <ArrowRight className="size-4" />
+                  <span>Mengenal Lebih Dekat SD Al-Birru</span>
+                  <ArrowRight data-icon="inline-end" />
                 </Button>
 
                 <Button
@@ -155,7 +170,7 @@ export function WelcomeSection() {
                   size="lg"
                   className="font-medium"
                 >
-                  <span>Explore Curriculum</span>
+                  <span>Pelajari Kurikulum Unggulan</span>
                 </Button>
               </div>
             </ScrollReveal>

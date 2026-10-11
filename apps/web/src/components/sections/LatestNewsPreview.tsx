@@ -27,33 +27,33 @@ export const fallbackArticles: ArticlePreview[] = [
   {
     id: "1",
     title:
-      "Grand Tahfidz Graduation Cohort IV: 35 Students Complete Tasmi' Examination",
+      "Wisuda Akbar Tahfidz Angkatan IV: 35 Santri Tuntaskan Ujian Tasmi' Sekali Duduk",
     slug: "grand-tahfidz-graduation-cohort-iv",
-    category: "Achievements",
+    category: "Prestasi",
     excerpt:
-      "A total of 35 students successfully completed their Qur'anic memorization exams with top honors, witnessed by parents and the academic council.",
-    date: "September 28, 2026",
+      "Sebanyak 35 santri berhasil menuntaskan hafalan Al-Qur'an mutqin dengan predikat memuaskan, disaksikan langsung oleh orang tua dan dewan asatidz.",
+    date: "28 September 2026",
     isoDate: "2026-09-28",
   },
   {
     id: "2",
     title:
-      "Science & Nature Educational Visit: Students Explore Applied Ecosystems",
+      "Eksplorasi Sains & Laboratorium Alam: Santri Meneliti Ekosistem Terbuka",
     slug: "science-and-nature-educational-visit",
-    category: "Activities",
+    category: "Kegiatan",
     excerpt:
-      "Integrated environmental learning. Students directly explored flora and fauna biodiversity in natural open-air habitats.",
-    date: "September 15, 2026",
+      "Pembelajaran tematik terpadu luar ruangan. Santri mengamati langsung keanekaragaman flora dan fauna serta mempraktikkan metode ilmiah dasar.",
+    date: "15 September 2026",
     isoDate: "2026-09-15",
   },
   {
     id: "3",
-    title: "New Student Admissions (PPDB) 2026/2027 Phase I Officially Open",
+    title: "PPDB SD Al-Birru TA 2026/2027 Gelombang I Resmi Dibuka",
     slug: "admissions-2026-2027-phase-1-open",
-    category: "Announcements",
+    category: "Pengumuman",
     excerpt:
-      "New student enrollment is now open with strict quota limits of 2 classrooms to preserve an ideal 1:15 mentorship ratio.",
-    date: "September 01, 2026",
+      "Penerimaan santri baru dibuka dengan batas kuota ketat 2 rombel (maksimal 40 santri) guna mempertahankan rasio pendampingan ideal 1:15.",
+    date: "01 September 2026",
     isoDate: "2026-09-01",
   },
 ];
@@ -62,7 +62,7 @@ export function LatestNewsPreview() {
   return (
     <section
       aria-labelledby="latest-news-heading"
-      className="py-20 md:py-28 lg:py-36 bg-background border-b border-border"
+      className="py-20 md:py-28 lg:py-32 bg-background border-b border-border"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
@@ -73,19 +73,19 @@ export function LatestNewsPreview() {
           <div className="max-w-xl">
             <Badge
               variant="outline"
-              className="gap-2 px-3.5 py-1 mb-5 text-xs font-medium rounded-full"
+              className="gap-2 px-3.5 py-1 mb-5 text-xs font-semibold rounded-full border-primary/30 text-primary bg-primary/5"
             >
-              <span>OFFICIAL PUBLICATIONS</span>
+              <span>PUBLIKASI RESMI</span>
             </Badge>
             <h2
               id="latest-news-heading"
-              className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground tracking-tight leading-tight"
+              className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-foreground tracking-tight leading-tight"
             >
-              Latest News &amp; Achievements
+              Warta Terkini &amp; Prestasi
             </h2>
             <p className="mt-4 text-base sm:text-lg text-muted-foreground leading-relaxed">
-              Documentation of student activities, Qur&apos;an memorization
-              milestones, and official school announcements from SD Al-Birru.
+              Dokumentasi aktivitas santri, agenda tahfidz Al-Qur&apos;an, dan
+              pengumuman kelembagaan resmi SD Al-Birru Sukabumi.
             </p>
           </div>
 
@@ -93,10 +93,10 @@ export function LatestNewsPreview() {
             render={<Link href="/news" />}
             nativeButton={false}
             variant="outline"
-            className="gap-2 font-medium self-start md:self-auto"
+            className="gap-2 font-semibold self-start md:self-auto"
           >
-            <span>All News &amp; Events</span>
-            <ChevronRight className="size-4" />
+            <span>Seluruh Berita &amp; Artikel</span>
+            <ChevronRight data-icon="inline-end" />
           </Button>
         </ScrollReveal>
 
@@ -105,22 +105,29 @@ export function LatestNewsPreview() {
           {fallbackArticles.map((article) => (
             <Card
               key={article.id}
-              className="p-6 sm:p-7 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow group overflow-hidden"
+              className="p-6 sm:p-7 flex flex-col justify-between rounded-3xl border border-border hover:border-primary/40 transition-all hover:shadow-lg group overflow-hidden bg-card/90 shadow-xs"
             >
               <div>
                 {/* Image Placeholder */}
-                <div className="relative aspect-[16/10] w-full rounded-lg bg-muted border border-border mb-6 flex flex-col items-center justify-center text-muted-foreground overflow-hidden">
-                  <Newspaper className="size-8 mb-2 opacity-60" />
-                  <span className="text-xs font-medium">Documentation</span>
+                <div className="relative aspect-[16/10] w-full rounded-2xl bg-muted/60 border border-border/80 mb-6 flex flex-col items-center justify-center text-muted-foreground overflow-hidden group-hover:border-primary/30 transition-colors">
+                  <div className="size-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-2">
+                    <Newspaper className="size-6" />
+                  </div>
+                  <span className="text-xs font-medium text-muted-foreground">
+                    Dokumentasi SD Al-Birru
+                  </span>
                 </div>
 
                 {/* Category & Date */}
                 <div className="flex items-center justify-between gap-2 mb-3">
-                  <Badge variant="secondary" className="font-normal text-xs">
+                  <Badge
+                    variant="secondary"
+                    className="font-semibold text-xs text-primary bg-primary/10 border border-primary/20"
+                  >
                     {article.category}
                   </Badge>
                   <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
-                    <Calendar className="size-3" />
+                    <Calendar className="size-3 text-primary" />
                     <time dateTime={article.isoDate}>{article.date}</time>
                   </div>
                 </div>
@@ -140,18 +147,18 @@ export function LatestNewsPreview() {
               </div>
 
               {/* Read Action */}
-              <div className="mt-6 pt-4 border-t border-border flex items-center justify-between text-xs">
+              <div className="mt-6 pt-5 border-t border-border flex items-center justify-between text-xs">
                 <Link
                   href={`/news/${article.slug}`}
-                  className="font-medium text-primary hover:underline flex items-center gap-1"
+                  className="font-semibold text-primary hover:underline flex items-center gap-1.5"
                 >
-                  <span>Read Article</span>
+                  <span>Baca Selengkapnya</span>
                   <ArrowRight className="size-3.5" />
                 </Link>
 
                 <span className="text-muted-foreground flex items-center gap-1 text-[11px]">
-                  <Sparkles className="size-3" />
-                  <span>3 MIN</span>
+                  <Sparkles className="size-3 text-primary" />
+                  <span>3 MENIT</span>
                 </span>
               </div>
             </Card>

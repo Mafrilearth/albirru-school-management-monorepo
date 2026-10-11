@@ -20,15 +20,16 @@ export function PublicNavbar() {
   const pathname = usePathname();
 
   const navLinks = [
-    { href: "/", label: "Home" },
-    { href: "/about", label: "About" },
-    { href: "/programs", label: "Programs" },
-    { href: "/news", label: "News" },
-    { href: "/gallery", label: "Gallery" },
+    { href: "/", label: "Beranda" },
+    { href: "/about", label: "Tentang Kami" },
+    { href: "/programs", label: "Program & Kurikulum" },
+    { href: "/news", label: "Berita" },
+    { href: "/gallery", label: "Galeri" },
+    { href: "/contact", label: "Kontak" },
   ];
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-border bg-background/95 backdrop-blur-sm supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-40 w-full border-b border-border bg-background/95 backdrop-blur-md supports-[backdrop-filter]:bg-background/80 shadow-xs">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex h-16 items-center justify-between">
         {/* Brand Area */}
         <div className="flex items-center gap-6">
@@ -39,15 +40,16 @@ export function PublicNavbar() {
         <nav className="hidden xl:flex items-center gap-1">
           {navLinks.map((link) => {
             const isActive =
-              pathname === link.href || pathname.startsWith(`${link.href}/`);
+              pathname === link.href ||
+              (link.href !== "/" && pathname.startsWith(`${link.href}/`));
             return (
               <Link
                 key={link.href}
                 href={link.href}
                 className={cn(
-                  "px-3.5 py-2 text-sm font-medium rounded-md transition-colors select-none",
+                  "px-3.5 py-2 text-sm font-medium rounded-lg transition-colors select-none",
                   isActive
-                    ? "bg-muted text-foreground font-semibold"
+                    ? "bg-primary/10 text-primary font-semibold"
                     : "text-muted-foreground hover:text-foreground hover:bg-muted/60",
                 )}
               >
@@ -65,25 +67,25 @@ export function PublicNavbar() {
             nativeButton={false}
             variant="ghost"
             size="sm"
-            className="hidden md:inline-flex"
+            className="hidden md:inline-flex font-medium"
           >
-            <span>Contact</span>
+            <span>Hubungi Kami</span>
           </Button>
           <Button
             render={<Link href="/admissions" />}
             nativeButton={false}
             variant="default"
             size="sm"
-            className="hidden sm:inline-flex"
+            className="hidden sm:inline-flex font-semibold shadow-sm shadow-primary/20"
           >
-            <span>Enroll Now</span>
+            <span>Daftar PPDB</span>
           </Button>
 
           {/* Mobile/Tablet Menu Trigger */}
           <Sheet>
-            <SheetTrigger className="xl:hidden inline-flex items-center justify-center size-9 rounded-md border border-input bg-background hover:bg-accent hover:text-accent-foreground transition-colors">
+            <SheetTrigger className="xl:hidden inline-flex items-center justify-center size-9 rounded-lg border border-input bg-background hover:bg-accent hover:text-accent-foreground transition-colors">
               <Menu className="size-4" />
-              <span className="sr-only">Open Menu</span>
+              <span className="sr-only">Buka Menu Navigasi</span>
             </SheetTrigger>
             <SheetContent
               side="right"
@@ -91,8 +93,8 @@ export function PublicNavbar() {
             >
               <div>
                 <SheetHeader className="pb-4 border-b border-border text-start">
-                  <SheetTitle className="text-base font-semibold text-foreground">
-                    Menu
+                  <SheetTitle className="text-base font-bold text-foreground">
+                    Menu Navigasi
                   </SheetTitle>
                 </SheetHeader>
                 <div className="flex flex-col gap-1 py-4">
@@ -100,26 +102,25 @@ export function PublicNavbar() {
                     <Link
                       key={link.href}
                       href={link.href}
-                      className="px-3 py-2 text-sm font-medium rounded-md hover:bg-muted text-muted-foreground hover:text-foreground transition-colors"
+                      className={cn(
+                        "px-3 py-2 text-sm font-medium rounded-lg transition-colors",
+                        pathname === link.href
+                          ? "bg-primary/10 text-primary font-semibold"
+                          : "text-muted-foreground hover:bg-muted hover:text-foreground",
+                      )}
                     >
                       {link.label}
                     </Link>
                   ))}
-                  <Link
-                    href="/contact"
-                    className="px-3 py-2 text-sm font-medium rounded-md hover:bg-muted text-muted-foreground hover:text-foreground transition-colors"
-                  >
-                    Contact
-                  </Link>
                 </div>
               </div>
-              <div className="pt-4 border-t border-border">
+              <div className="pt-4 border-t border-border flex flex-col gap-2">
                 <Button
                   render={<Link href="/admissions" />}
                   nativeButton={false}
-                  className="w-full"
+                  className="w-full font-semibold shadow-sm"
                 >
-                  Admissions
+                  Daftar PPDB Online
                 </Button>
               </div>
             </SheetContent>

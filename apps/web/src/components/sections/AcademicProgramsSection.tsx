@@ -9,20 +9,23 @@ import { Card } from "@/components/ui/card";
 
 const programs = [
   {
-    title: "Integrated National Curriculum",
-    desc: "Harmonizing national educational standards with Islamic values. Emphasizing critical scientific reasoning, student character projects, and early moral excellence.",
+    title: "Kurikulum Nasional & Standar JSIT",
+    badge: "Akademik Terpadu",
+    desc: "Harmonisasi Kurikulum Merdeka nasional dengan nilai-nilai Islam mendalam. Menekankan nalar kritis sains, adab harian, dan pembentukan profil pelajar berkarakter mulia.",
     icon: BookOpen,
     link: "/programs#curriculum",
   },
   {
-    title: "Mutqin Tahfidzul Qur'an",
-    desc: "Targeting certified memorization of at least 3 Mutqin Juz (Juz 30, 29, 28) over 6 primary school years using standard tajweed rules and enjoyable daily muroja'ah routines.",
+    title: "Tahfidzul Qur'an Mutqin Bersanad",
+    badge: "Target 3 Juz Mutqin",
+    desc: "Pembelajaran intensif tahfidz dengan sanad talaqqi Hafs 'an 'Ashim. Menargetkan kelulusan minimal 3 Juz (30, 29, 28) tuntas dengan ujian tasmi' sekali duduk dihadapan orang tua.",
     icon: Book,
     link: "/programs#tahfidz",
   },
   {
-    title: "Talent & Passion Development",
-    desc: "Comprehensive extracurricular offerings ranging from Coding & Robotics, Archery, Martial Arts (Pencak Silat), to English Club to equip students for global readiness.",
+    title: "Pengembangan Minat, Bakat, & Sains",
+    badge: "Holistic Talent",
+    desc: "Ekstrakurikuler komprehensif mulai dari Junior Coding & Robotika, Panahan Sunnah, Tapak Suci, English & Arabic Club, hingga Laboratorium Eksplorasi Alam.",
     icon: Target,
     link: "/programs#extracurricular",
   },
@@ -33,7 +36,7 @@ export function AcademicProgramsSection() {
     <section
       id="academic-pillars"
       aria-labelledby="programs-heading"
-      className="py-20 md:py-28 bg-background border-b border-border"
+      className="py-20 md:py-28 bg-background border-b border-border relative overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -42,16 +45,16 @@ export function AcademicProgramsSection() {
             <div className="max-w-2xl">
               <Badge
                 variant="outline"
-                className="gap-1.5 px-3.5 py-1 mb-5 text-xs font-medium rounded-full"
+                className="gap-1.5 px-3.5 py-1 mb-5 text-xs font-semibold rounded-full border-primary/30 text-primary bg-primary/5"
               >
-                <span>CURRICULUM &amp; ACADEMICS</span>
+                <span>KURIKULUM &amp; PROGRAM UNGGULAN</span>
               </Badge>
               <h2
                 id="programs-heading"
-                className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground tracking-tight leading-tight"
+                className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-foreground tracking-tight leading-tight"
               >
-                Flagship &amp; Holistic <br className="hidden sm:block" />{" "}
-                Academic Programs
+                Program Akademik <br className="hidden sm:block" /> Holistik
+                &amp; Berkelanjutan
               </h2>
             </div>
 
@@ -60,10 +63,10 @@ export function AcademicProgramsSection() {
                 render={<Link href="/programs" />}
                 nativeButton={false}
                 variant="outline"
-                className="gap-2 font-medium"
+                className="gap-2 font-semibold"
               >
-                <span>View All Programs</span>
-                <ArrowRight className="size-4" />
+                <span>Lihat Seluruh Program</span>
+                <ArrowRight data-icon="inline-end" />
               </Button>
             </div>
           </div>
@@ -77,11 +80,19 @@ export function AcademicProgramsSection() {
               return (
                 <Card
                   key={idx}
-                  className="p-8 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow"
+                  className="p-8 flex flex-col justify-between rounded-3xl border border-border hover:border-primary/40 transition-all hover:shadow-lg bg-card/90 shadow-xs"
                 >
                   <div>
-                    <div className="size-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-6">
-                      <Icon className="size-6" />
+                    <div className="flex items-center justify-between mb-6">
+                      <div className="size-12 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary shadow-xs">
+                        <Icon className="size-6" />
+                      </div>
+                      <Badge
+                        variant="secondary"
+                        className="text-xs font-medium bg-muted text-muted-foreground"
+                      >
+                        {prog.badge}
+                      </Badge>
                     </div>
 
                     <h3 className="text-xl font-bold text-foreground leading-snug mb-3">
@@ -92,16 +103,16 @@ export function AcademicProgramsSection() {
                     </p>
                   </div>
 
-                  <div className="mt-8 pt-4 border-t border-border">
+                  <div className="mt-8 pt-5 border-t border-border">
                     <Button
                       render={<Link href={prog.link} />}
                       nativeButton={false}
                       variant="ghost"
                       size="sm"
-                      className="gap-2 p-0 h-auto font-medium text-primary hover:bg-transparent hover:underline"
+                      className="gap-2 p-0 h-auto font-semibold text-primary hover:bg-transparent hover:underline"
                     >
-                      <span>Explore Syllabus</span>
-                      <ArrowRight className="size-4" />
+                      <span>Lihat Silabus Lengkap</span>
+                      <ArrowRight data-icon="inline-end" />
                     </Button>
                   </div>
                 </Card>
