@@ -1,3 +1,4 @@
+import { DirectionProvider } from "@albirru/design-system";
 import type { Metadata } from "next";
 import "./globals.css";
 
@@ -13,9 +14,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className="antialiased bg-slate-50 text-slate-900 font-sans min-h-screen">
-        {children}
+    <html lang="en" dir="ltr" suppressHydrationWarning>
+      <body className="antialiased bg-background text-foreground font-sans min-h-screen">
+        <DirectionProvider direction="ltr">{children}</DirectionProvider>
       </body>
     </html>
   );
