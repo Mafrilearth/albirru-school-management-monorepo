@@ -1,6 +1,9 @@
 # Strategic Product & Engineering Roadmap
 
-This document outlines the strategic development milestones and engineering roadmap for the **Al-Birru School Information System (`albirru-sis`)**.
+**Document Status:** Approved & Authoritative  
+**Standard Compliance:** Agile Engineering Milestones Standard (2026–2027)  
+**System Scope:** Multi-Phase Architecture Roadmap (v0.1.0 through v1.0.0)  
+**Enforcement Level:** Non-Negotiable Institutional Milestones  
 
 ---
 

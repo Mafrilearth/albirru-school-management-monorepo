@@ -1,5 +1,10 @@
 # Environment Variables & Configuration Matrix
 
+**Document Status:** Approved & Authoritative  
+**Standard Compliance:** The Twelve-Factor App (Config), DevSecOps Standard  
+**System Scope:** Node.js Runtime, Vercel Edge Serverless, Client-Side JavaScript  
+**Enforcement Level:** Non-Negotiable Hard Invariant (Zero Leaks)  
+
 This document provides the authoritative specification for all environment variables used across the **Al-Birru School Information System (`albirru-sis`)**.
 
 ---
@@ -32,6 +37,13 @@ Variables are categorized into two strict visibility classes:
 | `NEXT_PUBLIC_SENTRY_DSN` | 🟢 Public | Sentry | Data Source Name URL for crash and exception tracking. | [Sentry Settings](https://sentry.io) -> Client Keys (DSN). |
 | `NEXT_PUBLIC_POSTHOG_KEY` | 🟢 Public | PostHog | Project API key for telemetry and conversion tracking. | [PostHog Dashboard](https://us.posthog.com) -> Project Settings. |
 | `NEXT_PUBLIC_POSTHOG_HOST` | 🟢 Public | PostHog | Ingestion host URL (`https://us.i.posthog.com`). | [PostHog Docs](https://posthog.com/docs). |
+| `NOTION_TOKEN` | 🔴 Secret | Notion | Integration token for Notion Model Context Protocol server. | [Notion Integrations](https://www.notion.so/my-integrations). |
+| `CONTEXT7_API_KEY` | 🔴 Secret | Context7 | API secret key for Context7 technical documentation lookup. | [Context7 Console](https://context7.com). |
+| `GITHUB_TOKEN` | 🔴 Secret | GitHub | Personal access token with repo scope for GitHub Model Context Protocol. | [GitHub Settings](https://github.com/settings/tokens). |
+| `GITHUB_PERSONAL_ACCESS_TOKEN` | 🔴 Secret | GitHub | Alias token for GitHub Model Context Protocol tooling. | [GitHub Settings](https://github.com/settings/tokens). |
+| `CLOUDFLARE_API_TOKEN` | 🔴 Secret | Cloudflare | API token with DNS and zone edit permissions for Cloudflare MCP. | [Cloudflare Dashboard](https://dash.cloudflare.com/profile/api-tokens). |
+
+> **Model Context Protocol (MCP) Reference**: See the full architectural specification and 90-day key rotation policy in [MCP.md](MCP.md).
 
 ---
 

@@ -1,5 +1,10 @@
 # Quality Assurance & Testing Engineering
 
+**Document Status:** Approved & Authoritative  
+**Standard Compliance:** ISTQB Test Engineering Standard, W3C WCAG 2.1 AA Audit  
+**System Scope:** Unit, Integration, Component Isolation, and End-to-End Tests  
+**Enforcement Level:** Non-Negotiable Hard Invariant (100% Pass Required)  
+
 This document outlines the testing strategy, tools, and quality gates for the **Al-Birru School Information System (`albirru-sis`)**.
 
 ---

@@ -1,6 +1,9 @@
 # Security Policy
 
-The security of student, guardian, educator, and institutional data within the **Al-Birru School Information System (`albirru-sis`)** is of paramount importance. This document outlines our vulnerability disclosure process, threat mitigations, and compliance standards.
+**Document Status:** Approved & Authoritative  
+**Standard Compliance:** ISO/IEC 29147 (Vulnerability Disclosure Handling), DevSecOps Standard  
+**System Scope:** Vulnerability Triage, Ingress Protection, and Student Data Security  
+**Enforcement Level:** Non-Negotiable Security Invariant (Zero Vulnerability Permitted)  
 
 ---
 

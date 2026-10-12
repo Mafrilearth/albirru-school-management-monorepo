@@ -1,5 +1,10 @@
 # Relational Database Architecture & Invariants
 
+**Document Status:** Approved & Authoritative  
+**Standard Compliance:** RFC 9562 (UUIDv7), PostgreSQL 16+, Drizzle ORM Standard  
+**System Scope:** `@albirru/database` and all persistent data models  
+**Enforcement Level:** Non-Negotiable Hard Invariant (Zero Shortcuts)  
+
 This document outlines the data model, relational architecture, and engineering invariants governing the **Al-Birru School Information System (`@albirru/database`)**.
 
 ---

@@ -1,6 +1,11 @@
 # Architecture Overview
 
-This document serves as the authoritative, living architectural specification for the **Al-Birru School Information System (`albirru-sis`)**. It equips engineers and autonomous agents with a clear understanding of the codebase's architecture, directory topology, domain boundaries, network routing, and quality invariants. Update this document as the system evolves.
+**Document Status:** Approved & Authoritative  
+**Standard Compliance:** IEEE 1016, ISO/IEC/IEEE 42010, Modern Modular Monolith Standard  
+**System Scope:** All applications (`apps/*`) and foundation packages (`packages/*`)  
+**Enforcement Level:** Non-Negotiable Hard Invariant (Zero Shortcuts)  
+
+This document serves as the authoritative, living architectural specification for the **Al-Birru School Information System (`albirru-sis`)**. It equips engineers and autonomous agents with a clear understanding of the codebase's architecture, directory topology, domain boundaries, network routing, and quality invariants.
 
 ---
 
@@ -53,7 +58,7 @@ The repository is structured as a **Modern Modular Monolith** utilizing the stan
 │   │   └── package.json              # React Email + Resend SDK
 │   │
 │   ├── docs/                         # Technical & Statutory Docs Portal (@albirru/docs) - Port 3004
-│   │   ├── src/app/                  # Markdown specification reader (01-PRD through 11-Runbook)
+│   │   ├── src/app/                  # Canonical specification reader (SPECIFICATION, ARCHITECTURE, DATABASE, etc.)
 │   │   └── package.json              # Next.js 16 Documentation Portal
 │   │
 │   ├── studio/                       # Visual Database Console (@albirru/studio) - Port 3005
@@ -185,7 +190,7 @@ Each application in `apps/` corresponds to a distinct network endpoint, port all
 | **Public Web** | `@albirru/web` | `sd-albirru.sch.id` | `:3001` | Public landing page, school profile, accreditation credentials, and admissions registration |
 | **API & Webhooks** | `@albirru/api` | `api.sd-albirru.sch.id` | `:3002` | Health monitoring probes and incoming statutory webhooks (Clerk, Resend) |
 | **Email Studio** | `@albirru/email` | `email.sd-albirru.sch.id` | `:3003` | React Email template development and local visual preview workbench |
-| **Documentation** | `@albirru/docs` | `docs.sd-albirru.sch.id` | `:3004` | Statutory specifications explorer (PRD 01-11, ADRs, and operational runbooks) |
+| **Documentation** | `@albirru/docs` | `docs.sd-albirru.sch.id` | `:3004` | Statutory specifications explorer (SPECIFICATION, ARCHITECTURE, DECISIONS, and operational runbooks) |
 | **Database Studio** | `@albirru/studio` | Local | `:3005` | Drizzle Studio visual schema inspector and data browser |
 | **Storybook** | `@albirru/storybook` | `storybook.sd-albirru.sch.id` | `:6006` | Isolated UI component development and design system documentation workbench |
 
@@ -221,7 +226,7 @@ Each application in `apps/` corresponds to a distinct network endpoint, port all
 #### 3.1.5. In-Tree Documentation Explorer (`apps/docs`) — Port 3004
 - **Name:** Al-Birru In-Tree Documentation Portal (`@albirru/docs`)
 - **Subdomain:** `docs.sd-albirru.sch.id`
-- **Description:** Technical documentation website rendering all 11 statutory specifications, architecture decision records (ADRs), and operational runbooks directly from in-tree markdown sources.
+- **Description:** Technical documentation website rendering all 15 canonical repository specifications, architecture decision records, and operational runbooks directly from in-tree markdown sources.
 - **Technologies:** Next.js 16 (App Router, RSC), TypeScript, Tailwind CSS v4, shadcn/ui.
 - **Deployment:** Vercel Edge Serverless.
 

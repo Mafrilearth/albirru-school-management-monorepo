@@ -1,5 +1,5 @@
-import { rmSync, existsSync } from "node:fs";
-import { resolve, join } from "node:path";
+import { existsSync, rmSync } from "node:fs";
+import { resolve } from "node:path";
 
 const root = process.cwd();
 
@@ -9,8 +9,17 @@ const pathsToClean = [
   resolve(root, "apps/web/.turbo"),
   resolve(root, "apps/app/.next"),
   resolve(root, "apps/app/.turbo"),
+  resolve(root, "apps/api/.next"),
+  resolve(root, "apps/api/.turbo"),
+  resolve(root, "apps/docs/.next"),
+  resolve(root, "apps/docs/.turbo"),
+  resolve(root, "apps/email/.next"),
+  resolve(root, "apps/email/.turbo"),
+  resolve(root, "apps/storybook/.turbo"),
+  resolve(root, "apps/studio/.turbo"),
   resolve(root, "packages/database/.turbo"),
   resolve(root, "packages/design-system/.turbo"),
+  resolve(root, "packages/typescript-config/.turbo"),
 ];
 
 console.log("🧹 Cleaning ephemeral caches (.turbo, .next)...");

@@ -1,5 +1,10 @@
 # Engineering & Institutional Governance
 
+**Document Status:** Approved & Authoritative  
+**Standard Compliance:** CNCF Open Governance Model, Architecture Decision Records (Nygard)  
+**System Scope:** Decision-Making, Maintainer Triage, Institutional Stewardship  
+**Enforcement Level:** Non-Negotiable Institutional Framework  
+
 This document outlines the governance model, decision-making framework, and maintenance standards for the **Al-Birru School Information System (`albirru-sis`)**.
 
 ---

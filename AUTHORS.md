@@ -1,6 +1,9 @@
 # Institutional Authorship & Project Attribution
 
-The **Al-Birru School Information System (`albirru-sis`)** is engineered and governed under the institutional stewardship of **Yayasan Amal Cahaya Indonesia**.
+**Document Status:** Approved & Authoritative  
+**Standard Compliance:** GNU/Linux Project Authorship & Attribution Standard  
+**System Scope:** Institutional Intellectual Property & Governance Stewardship  
+**Enforcement Level:** Non-Negotiable Institutional Attribution  
 
 ---
 

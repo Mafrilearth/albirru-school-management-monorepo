@@ -1,8 +1,9 @@
 # Contributing to Al-Birru School Information System
 
-Thank you for your interest in contributing to the **Al-Birru School Information System (`albirru-sis`)**. This project operates under rigorous engineering standards to ensure high reliability, accessibility, and relational integrity.
-
-Please review this document thoroughly before opening an issue or submitting a pull request.
+**Document Status:** Approved & Authoritative  
+**Standard Compliance:** GitHub Standard Open Source Contribution Governance  
+**System Scope:** Git Workflow, Conventional Commits 1.0.0, Quality Gates  
+**Enforcement Level:** Non-Negotiable Engineering Workflow  
 
 ---
 

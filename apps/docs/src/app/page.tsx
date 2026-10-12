@@ -1,66 +1,145 @@
-import { BookOpen } from "lucide-react";
+import { BookOpen, FileText } from "lucide-react";
 
-const DOCS_LIST = [
+interface CanonicalDocument {
+  number: string;
+  filename: string;
+  title: string;
+  standard: string;
+  description: string;
+}
+
+const CANONICAL_DOCUMENTS: CanonicalDocument[] = [
   {
-    num: "01",
+    number: "01",
+    filename: "SPECIFICATION.md",
     title: "Product Requirements Specification",
-    desc: "Institutional domain, RBAC permissions matrix, and functional bounds.",
+    standard: "ISO/IEC/IEEE 29148",
+    description:
+      "Institutional functional domains, role-based access control permission matrix, admissions, and guardian self-service bounds.",
   },
   {
-    num: "02",
+    number: "02",
+    filename: "ARCHITECTURE.md",
     title: "Software Architecture & Technical Design",
-    desc: "Modern Modular Monolith architecture, folder structure, and runtime constraints.",
+    standard: "IEEE 1016",
+    description:
+      "Modern Modular Monolith topology, subdomain routing, C4 component diagrams, and strict cross-domain service boundaries.",
   },
   {
-    num: "03",
+    number: "03",
+    filename: "DATABASE.md",
     title: "Relational Database Specification",
-    desc: "Neon PostgreSQL DDL schemas, UUIDv7 keys, indexes, and audit invariants.",
+    standard: "RFC 9562",
+    description:
+      "Neon PostgreSQL declarative schemas, monotonic UUIDv7 primary keys, soft-deletion invariants, and Drizzle migrations.",
   },
   {
-    num: "04",
-    title: "Application Route & Mutation Contract",
-    desc: "ActionResponse envelopes, Zod validation schemas, and Upstash rate limits.",
-  },
-  {
-    num: "05",
+    number: "04",
+    filename: "DESIGN.md",
     title: "Visual Design System Specification",
-    desc: "8px spatial scale, Major Third typography ratio, and WCAG 2.1 AA tokens.",
+    standard: "W3C WCAG 2.1 AA",
+    description:
+      "Swiss Modernist Bento Grid, zero border radius, zero box-shadows, 8px geometric grid, and semantic color variable tokens.",
   },
   {
-    num: "06",
-    title: "Application Layout & Navigation Architecture",
-    desc: "Three viewport shells (Public, Auth, Portal) and navigation spatial layout.",
+    number: "05",
+    filename: "CONSTRAINTS.md",
+    title: "Quantitative Engineering Quality Contract",
+    standard: "Constraint-Driven Development",
+    description:
+      "Quantitative engineering thresholds: zero type suppressions, zero explicit any, p95 latency budget, and static verification gates.",
   },
   {
-    num: "07",
-    title: "UI Component Anatomy Specification",
-    desc: "Modular UI component anatomy, statutory microcopy, and state machines.",
-  },
-  {
-    num: "08",
-    title: "Landing Page View Architecture",
-    desc: "Public landing page section deconstruction and statutory institutional credentials.",
-  },
-  {
-    num: "09",
+    number: "06",
+    filename: "DECISIONS.md",
     title: "Architecture Decision Records",
-    desc: "ADR-001 through ADR-008 chronologies, next-forge monorepo, and tradeoff evaluations.",
+    standard: "Michael Nygard Architecture Decision Record Specification",
+    description:
+      "Historical architectural precedents (ADR-001 through ADR-008), next-forge monorepo pattern, and structural tradeoff evaluations.",
   },
   {
-    num: "10",
+    number: "07",
+    filename: "DEPLOYMENT.md",
+    title: "Edge Serverless Deployment & Runbook",
+    standard: "Site Reliability Engineering Runbook",
+    description:
+      "Vercel Edge Serverless runbook, Cloudflare WAF and DNS topology, continuous integration quality gates, and automated disaster recovery.",
+  },
+  {
+    number: "08",
+    filename: "ENVIRONMENT.md",
+    title: "Environment Variables Audit Matrix",
+    standard: "DevSecOps Standard",
+    description:
+      "Comprehensive environment variables audit matrix: classification (Public and Secret), format validation, and dashboard origin.",
+  },
+  {
+    number: "09",
+    filename: "TESTING.md",
     title: "Quality Assurance & Verification Plan",
-    desc: "Testing pyramid, boundary test scenarios, and p95 latency budget.",
+    standard: "ISTQB / Testing Pyramid",
+    description:
+      "Comprehensive testing pyramid strategy: Vitest unit testing, Playwright cross-browser verification, and Storybook visual workshops.",
   },
   {
-    num: "11",
-    title: "Operational Runbook & Incident Procedures",
-    desc: "Branching governance, automated disaster recovery, and agent constitution.",
+    number: "10",
+    filename: "AGENTS.md",
+    title: "Autonomous Agent Operational Constitution",
+    standard: "AI Software Development Life Cycle",
+    description:
+      "Autonomous agent operational constitution, 24 agent skills lifecycle matrix, and non-negotiable architectural hard invariants.",
+  },
+  {
+    number: "11",
+    filename: "SECURITY.md",
+    title: "Security Policy & Threat Modeling",
+    standard: "ISO/IEC 29147",
+    description:
+      "Vulnerability disclosure service-level agreements, threat modeling, Cloudflare Turnstile bot deterrence, and Upstash rate limiting.",
+  },
+  {
+    number: "12",
+    filename: "GOVERNANCE.md",
+    title: "Institutional Governance & Leadership",
+    standard: "CNCF Governance Model",
+    description:
+      "Institutional leadership hierarchy (Foundation Board, Lead Architect) and consensus decision-making governance models.",
+  },
+  {
+    number: "13",
+    filename: "ROADMAP.md",
+    title: "Strategic Multi-Phase Roadmap",
+    standard: "Agile Milestones",
+    description:
+      "Multi-phase strategic roadmap (2026–2027): v0.1.0 baseline through v0.4.0 national student registry synchronization.",
+  },
+  {
+    number: "14",
+    filename: "CHANGELOG.md",
+    title: "Chronological Release Log",
+    standard: "Keep a Changelog 1.1.0",
+    description:
+      "Chronological release history adhering to Semantic Versioning 2.0.0 and Keep a Changelog documentation standards.",
+  },
+  {
+    number: "15",
+    filename: "AUTHORS.md",
+    title: "Intellectual Property & Accreditation",
+    standard: "GNU/Linux Standard",
+    description:
+      "Official institutional attribution for Yayasan Amal Cahaya Indonesia, Academic Board, and software engineering contributors.",
   },
 ];
 
 export default function DocsHomePage() {
   return (
-    <div style={{ maxWidth: "1000px", margin: "0 auto", padding: "40px 20px" }}>
+    <div
+      style={{
+        maxWidth: "1200px",
+        margin: "0 auto",
+        padding: "48px 24px",
+      }}
+    >
       <header
         style={{
           marginBottom: "40px",
@@ -79,85 +158,145 @@ export default function DocsHomePage() {
           <BookOpen
             style={{ width: "32px", height: "32px", color: "#0284c7" }}
           />
-          <h1 style={{ margin: 0, fontSize: "28px", fontWeight: 800 }}>
-            SD Al-Birru Documentation (/apps/docs)
+          <h1
+            style={{
+              margin: 0,
+              fontSize: "28px",
+              fontWeight: 800,
+              letterSpacing: "-0.025em",
+            }}
+          >
+            SD Al-Birru Technical Documentation (/apps/docs)
           </h1>
         </div>
-        <p style={{ margin: 0, color: "#64748b", fontSize: "16px" }}>
-          Official Technical Specifications, System Architecture, and Software
-          Engineering Guidelines
+        <p
+          style={{
+            margin: 0,
+            color: "#64748b",
+            fontSize: "15px",
+            lineHeight: 1.6,
+          }}
+        >
+          Canonical Technical Specifications, System Architecture, Relational
+          Database Schemas, and Software Engineering Invariants
         </p>
       </header>
 
       <section
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-          gap: "20px",
+          gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))",
+          gap: "16px",
         }}
       >
-        {DOCS_LIST.map((doc) => (
-          <div
-            key={doc.num}
+        {CANONICAL_DOCUMENTS.map((doc) => (
+          <article
+            key={doc.number}
             style={{
               backgroundColor: "#ffffff",
               border: "1px solid #e2e8f0",
-              borderRadius: "8px",
-              padding: "20px",
-              boxShadow: "0 1px 3px 0 rgb(0 0 0 / 0.05)",
+              borderRadius: "0px",
+              padding: "24px",
+              boxShadow: "none",
               display: "flex",
               flexDirection: "column",
+              gap: "12px",
             }}
           >
-            <span
+            <div
               style={{
-                display: "inline-block",
-                padding: "2px 8px",
-                backgroundColor: "#e0f2fe",
-                color: "#0369a1",
-                borderRadius: "4px",
-                fontSize: "12px",
-                fontWeight: 700,
-                marginBottom: "8px",
-                width: "fit-content",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                gap: "8px",
               }}
             >
-              Document {doc.num}
-            </span>
-            <h3
-              style={{
-                margin: "4px 0 8px",
-                fontSize: "16px",
-                color: "#0f172a",
-              }}
-            >
-              {doc.title}
-            </h3>
+              <span
+                style={{
+                  display: "inline-block",
+                  padding: "2px 8px",
+                  backgroundColor: "#f1f5f9",
+                  color: "#0369a1",
+                  borderRadius: "0px",
+                  fontSize: "12px",
+                  fontWeight: 700,
+                  letterSpacing: "0.05em",
+                }}
+              >
+                DOCUMENT {doc.number}
+              </span>
+              <span
+                style={{
+                  display: "inline-block",
+                  padding: "2px 8px",
+                  backgroundColor: "#f8fafc",
+                  border: "1px solid #e2e8f0",
+                  color: "#64748b",
+                  borderRadius: "0px",
+                  fontSize: "11px",
+                  fontWeight: 600,
+                }}
+              >
+                {doc.standard}
+              </span>
+            </div>
+
+            <div>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "6px",
+                  marginBottom: "4px",
+                  color: "#0284c7",
+                  fontSize: "12px",
+                  fontWeight: 600,
+                  fontFamily: "monospace",
+                }}
+              >
+                <FileText style={{ width: "14px", height: "14px" }} />
+                <span>{doc.filename}</span>
+              </div>
+              <h2
+                style={{
+                  margin: 0,
+                  fontSize: "16px",
+                  fontWeight: 700,
+                  color: "#0f172a",
+                  lineHeight: 1.4,
+                }}
+              >
+                {doc.title}
+              </h2>
+            </div>
+
             <p
               style={{
                 margin: 0,
                 fontSize: "13px",
                 color: "#64748b",
-                lineHeight: 1.5,
+                lineHeight: 1.6,
                 marginTop: "auto",
               }}
             >
-              {doc.desc}
+              {doc.description}
             </p>
-          </div>
+          </article>
         ))}
       </section>
 
       <footer
         style={{
           marginTop: "48px",
+          paddingTop: "24px",
+          borderTop: "1px solid #e2e8f0",
           textAlign: "center",
-          fontSize: "14px",
+          fontSize: "13px",
           color: "#94a3b8",
         }}
       >
-        Al-Birru Primary School &bull; School ID 70010111 &bull; next-forge
-        Enterprise Monorepo Architecture
+        Al-Birru Primary School &bull; School Identification Number: 70010111
+        &bull; next-forge Enterprise Monorepo Architecture
       </footer>
     </div>
   );

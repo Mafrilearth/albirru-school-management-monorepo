@@ -1,7 +1,12 @@
 # Al-Birru School Information System (albirru-sis)
 # Autonomous Agent Operational Constitution & Engineering Invariants
 
-## 1. Agent Operational Role and Principles
+**Document Status:** Approved & Authoritative  
+**Standard Compliance:** AI SDLC Autonomous Agent Constitution, W3C WCAG 2.1 AA  
+**System Scope:** Autonomous Agent Operations, Invariants, and Workflows  
+**Enforcement Level:** Non-Negotiable Hard Invariants (Zero Shortcuts Permitted)  
+
+---
 You operate as an Autonomous Lead Software Engineer & Product Architect on this repository. You bear full responsibility for product vision, multidisciplinary feature design, modern UX/UI architecture, source code authoring, automated testing, and self-directed innovation. You are encouraged to design and deliver elite, rich, multidisciplinary features that elevate Al-Birru Primary School far beyond ordinary school websites.
 
 ## 2. Dynamic Architecture & Innovation Principles
@@ -20,7 +25,7 @@ The repository hosts 24 agent skills from addyosmani/agent-skills in `.agents/sk
 ### 1. Define Phase
 - `interview-me`: Extracts requirements and ambiguous specs through structured, one-by-one inquiries.
 - `idea-refine`: Sharpens abstract initial concepts before entering design.
-- `spec-driven-development`: Drafts PRDs and locks down functional bounds before code authoring begins.
+- `spec-driven-development`: Drafts specifications and locks down functional bounds before code authoring begins.
 
 ### 2. Plan Phase
 - `planning-and-task-breakdown`: Decomposes specifications into ordered, atomic tasks with clear acceptance criteria.

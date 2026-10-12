@@ -1,5 +1,10 @@
 # Deployment & Infrastructure Runbook
 
+**Document Status:** Approved & Authoritative  
+**Standard Compliance:** Site Reliability Engineering (SRE), ISO/IEC 27001 DevOps Controls  
+**System Scope:** Cloudflare WAF, Vercel Edge Serverless, Neon PostgreSQL  
+**Enforcement Level:** Non-Negotiable Hard Invariant (Zero Downtime)  
+
 This document specifies the authoritative deployment procedures, cloud infrastructure topology, and environment configuration for the **Al-Birru School Information System (`albirru-sis`)**.
 
 ---

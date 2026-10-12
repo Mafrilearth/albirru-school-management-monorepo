@@ -1,6 +1,9 @@
 # Support Channels & Assistance Guidelines
 
-Thank you for engaging with the **Al-Birru School Information System (`albirru-sis`)**. To ensure rapid resolution of your inquiry, please review the designated support channels outlined below.
+**Document Status:** Approved & Authoritative  
+**Standard Compliance:** GitHub Community Support Specification  
+**System Scope:** Institutional Admissions, Technical Escalations, Guardian Assistance  
+**Enforcement Level:** Non-Negotiable Operational Support Standards  
 
 ---
 
