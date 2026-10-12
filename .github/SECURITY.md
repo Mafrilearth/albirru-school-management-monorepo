@@ -8,12 +8,12 @@ The security of student, guardian, educator, and institutional data within the *
 
 Only the latest active versions deployed to the production environment receive security patches:
 
-| Version / Branch | Supported | Maintenance Status |
+| Branch | Supported | Maintenance Status |
 | :--- | :---: | :--- |
 | `main` (Latest Production) | Yes | Actively patched |
 | `staging` (Pre-production) | Yes | Staging security validation |
 | `dev` (Development) | Yes | Active vulnerability screening |
-| `< 0.1.0` (Legacy / Forks) | No | Unsupported |
+| `< 0.1.0` (Legacy Releases) | No | Unsupported |
 
 ---
 
@@ -40,7 +40,7 @@ flowchart LR
 
 - **Initial Acknowledgment**: Within 24 hours.
 - **Triage & Impact Assessment**: Within 48 hours.
-- **Remediation & Patch Deployment**: Critical severity within 72 hours; High/Medium within 7 business days.
+- **Remediation & Patch Deployment**: Critical severity within 72 hours; High or Medium within 7 business days.
 
 ---
 
@@ -48,7 +48,7 @@ flowchart LR
 
 ### 3.1 Authentication & Session Integrity
 - **Clerk Authentication**: Managed enterprise identity provider handling secure session cookie tokens, TLS termination, multi-factor authentication, and JWT signing key rotation.
-- **Role-Based Access Control (RBAC)**: Centralized authorization matrix enforcing least-privilege access across Administrator, Teacher, Staff, and Guardian personas.
+- **Role-Based Access Control (RBAC)**: Centralized authorization matrix enforcing least-privilege access across Administrator, Instructor, Guardian, and Student personas.
 - **Server Component Verification**: Route authorization is enforced server-side before any UI markup or payload is streamed to the browser.
 
 ### 3.2 Public Mutation Hardening & Anti-Abuse
@@ -56,8 +56,8 @@ flowchart LR
 ```mermaid
 flowchart LR
     Client["Client Submission<br/>(Admissions Form)"] --> Turnstile{"Cloudflare Turnstile<br/>Valid Token?"}
-    Turnstile -->|No / Bot| Reject["403 Forbidden<br/>Bot Deterred"]
-    Turnstile -->|Yes| RateLimit{"Upstash Redis<br/>Limit <= 5 / 15m?"}
+    Turnstile -->|Bot Detected| Reject["403 Forbidden<br/>Bot Deterred"]
+    Turnstile -->|Valid Token| RateLimit{"Upstash Redis<br/>Limit <= 5 per 15 minutes"}
     RateLimit -->|Exceeded| Throttle["429 Too Many Requests<br/>ERR_RATE_LIMITED"]
     RateLimit -->|Allowed| Action["Next.js Server Action<br/>Zod Validation & Neon DB"]
 ```

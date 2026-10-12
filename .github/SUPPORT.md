@@ -17,7 +17,7 @@ For inquiries regarding prospective student registration, curriculum, school tou
 
 ## 2. Academic Community & Guardian Support
 
-For active students, parents/guardians, educators, and school administration:
+For active students, guardians, educators, and school administration:
 
 - **Guardian Self-Service Portal**: [app.sd-albirru.sch.id/guardian](https://app.sd-albirru.sch.id/guardian)
 - **Academic Administration Office**: `admin@albirru.sch.id`
@@ -38,7 +38,7 @@ If you are a developer, administrator, or contributor encountering technical ano
 
 ### 3.2 Requesting New Features
 - Propose architectural enhancements or feature extensions via [GitHub Discussions](https://github.com/Mafrilearth/albirru-school-management-monorepo/discussions) or by opening a Feature Request issue.
-- Please detail the educational rationale, target user persona (Admin, Teacher, Guardian, Student), and anticipated system impact.
+- Please detail the educational rationale, target user persona (Administrator, Instructor, Guardian, Student), and anticipated system impact.
 
 ---
 
