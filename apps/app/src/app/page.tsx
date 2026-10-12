@@ -25,7 +25,7 @@ export default function PortalHomePage() {
           evaluations, and unified identity management.
         </p>
 
-        <div className="space-y-3">
+        <div className="flex flex-col gap-3">
           <Button
             render={<Link href="/admin" />}
             nativeButton={false}

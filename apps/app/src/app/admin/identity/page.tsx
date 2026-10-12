@@ -73,7 +73,7 @@ export default function MasterIdentityProvisioningPage() {
     return (
       <div className="max-w-3xl mx-auto py-10 px-4 sm:px-6 lg:px-8">
         <div className="bg-white dark:bg-slate-900 p-8 sm:p-12 border border-emerald-200 dark:border-emerald-900 shadow-none text-center relative">
-          <div className="flex flex-col items-center justify-center space-y-4 relative z-10">
+          <div className="flex flex-col items-center justify-center gap-4 relative z-10">
             <div className="size-16 rounded-none bg-emerald-50 dark:bg-emerald-950 border border-emerald-200 dark:border-emerald-800 flex items-center justify-center">
               <CheckCircle2 className="size-8 text-emerald-600 dark:text-emerald-400" />
             </div>
