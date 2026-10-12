@@ -88,11 +88,18 @@ The repository is structured as a **Modern Modular Monolith** utilizing the stan
 │       ├── react-library.json        # Shared React library compiler options
 │       └── package.json
 │
-├── .github/                          # GitHub Actions CI/CD workflows and automated quality gates
+├── .github/                          # GitHub Actions CI/CD workflows, CODEOWNERS, & community health files
+│   ├── CODEOWNERS                    # Automatic code review ownership routing
+│   ├── CODE_OF_CONDUCT.md            # Contributor Covenant 2.1 community standards
+│   ├── CONTRIBUTING.md               # Git branch governance, conventional commits, and quality gates
+│   ├── SECURITY.md                   # Vulnerability disclosure SLA & threat model
+│   ├── SUPPORT.md                    # Official community & institutional support channels
+│   └── workflows/ci.yml              # GitHub Actions CI quality gates
 ├── .gitignore                        # Standard monorepo ignore rules
 ├── AGENTS.md                         # Autonomous agent operational constitution & hard invariants
 ├── ARCHITECTURE.md                   # System Architecture Specification (HLD)
 ├── AUTHORS.md                        # Institutional attribution & intellectual property credits
+├── CHANGELOG.md                      # Semantic Versioning release history
 ├── DATABASE.md                       # Relational database architecture & Drizzle invariants
 ├── DEPLOYMENT.md                     # Vercel & Cloudflare deployment runbook
 ├── DESIGN.md                         # Technical Design Document & Design System (8px, Major Third)
@@ -101,8 +108,6 @@ The repository is structured as a **Modern Modular Monolith** utilizing the stan
 ├── LICENSE                           # Official MIT License (OSI Approved)
 ├── README.md                         # Project overview, credentials, and quick-start guide
 ├── ROADMAP.md                        # Multi-phase strategic development roadmap (2026-2027)
-├── SECURITY.md                       # Vulnerability disclosure SLA & threat model
-├── SUPPORT.md                        # Official community & institutional support channels
 ├── TESTING.md                        # Quality assurance & testing strategy (Vitest, Playwright)
 ├── biome.json                        # Biome linter and formatter configuration (tabs, 100 printWidth, LF)
 ├── pnpm-workspace.yaml               # pnpm workspaces definition

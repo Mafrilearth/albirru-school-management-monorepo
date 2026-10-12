@@ -110,13 +110,13 @@ Each operational aspect is governed by dedicated, non-overlapping canonical spec
 | **[`ENVIRONMENT.md`](ENVIRONMENT.md)** | Environment variables audit matrix: classification (Public vs Secret), format, and dashboard origin. | DevSecOps Standard |
 | **[`TESTING.md`](TESTING.md)** | Testing pyramid strategy: Vitest unit tests, Playwright browser E2E, and Storybook visual testing. | QA Best Practices |
 | **[`AGENTS.md`](AGENTS.md)** | Autonomous agent operational constitution, 24 agent skills matrix, and hard invariants enforcement. | AI SDLC Standard |
-| **[`SECURITY.md`](SECURITY.md)** | Vulnerability disclosure SLA, threat model, Cloudflare Turnstile bot deterrence, and Upstash rate limits. | ISO/IEC 29147 |
+| **[`SECURITY.md`](.github/SECURITY.md)** | Vulnerability disclosure SLA, threat model, Cloudflare Turnstile bot deterrence, and Upstash rate limits. | ISO/IEC 29147 |
 | **[`GOVERNANCE.md`](GOVERNANCE.md)** | Institutional leadership roles (Yayasan, Lead Architect), decision-making models (Lazy Consensus, RFC/ADR). | CNCF Governance Model |
 | **[`ROADMAP.md`](ROADMAP.md)** | Multi-phase strategic roadmap (2026–2027): v0.1.0 baseline through v0.4.0 Dapodik/EMIS and offline sync. | Agile Milestones |
-| **[`CONTRIBUTING.md`](CONTRIBUTING.md)** | Git branch lifecycle (`dev` -> `staging` -> `main`), Conventional Commits 1.0.0, and Husky quality gates. | GitHub Standard |
+| **[`CONTRIBUTING.md`](.github/CONTRIBUTING.md)** | Git branch lifecycle (`dev` -> `staging` -> `main`), Conventional Commits 1.0.0, and Husky quality gates. | GitHub Standard |
 | **[`CHANGELOG.md`](CHANGELOG.md)** | Chronological version release log following Semantic Versioning 2.0.0 and Keep a Changelog. | Keep a Changelog 1.1.0 |
-| **[`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md)** | Community ethical standards, respectful collaboration guidelines, and incident reporting. | Contributor Covenant 2.1 |
-| **[`SUPPORT.md`](SUPPORT.md)** | Official support channels for admissions inquiries, guardian academic desk, bug reports, and security. | GitHub Community Spec |
+| **[`CODE_OF_CONDUCT.md`](.github/CODE_OF_CONDUCT.md)** | Community ethical standards, respectful collaboration guidelines, and incident reporting. | Contributor Covenant 2.1 |
+| **[`SUPPORT.md`](.github/SUPPORT.md)** | Official support channels for admissions inquiries, guardian academic desk, bug reports, and security. | GitHub Community Spec |
 | **[`AUTHORS.md`](AUTHORS.md)** | Intellectual property accreditation for Yayasan Amal Cahaya Indonesia, Academic Board, and engineering. | GNU/Linux Standard |
 | **[`LICENSE`](LICENSE)** | Formal open-source legal rights and copyright conditions (MIT License). | OSI Approved License |
 | **[`.github/CODEOWNERS`](.github/CODEOWNERS)** | Automatic reviewer assignment mapping per directory module and security configuration. | GitHub Branch Protection |
