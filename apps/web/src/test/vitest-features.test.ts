@@ -178,7 +178,7 @@ describe("Vitest Recipes: vi.waitFor & Schema Assertions", () => {
     });
 
     const candidate = {
-      id: "a0000000-0000-0000-0000-000000000000",
+      id: uuidv7(),
       email: "student@albirru.sch.id",
     };
 
