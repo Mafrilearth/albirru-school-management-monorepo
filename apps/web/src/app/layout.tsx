@@ -152,6 +152,7 @@ const schoolStructuredData = {
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
+import { DirectionProvider } from "@/components/ui/direction";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
 
@@ -165,6 +166,7 @@ export default function PublicRootLayout({
   return (
     <html
       lang={locale}
+      dir="ltr"
       className={cn(
         "h-full",
         "antialiased",
@@ -197,29 +199,31 @@ export default function PublicRootLayout({
             Skip to Main Content
           </a>
 
-          <TooltipProvider>
-            <NuqsAdapter>
-              <ScrollProgressBar />
-              <GlobalGrid />
-              <AnnouncementBanner />
-              <PublicNavbar />
-              <main
-                id="main-content"
-                tabIndex={-1}
-                className="flex-1 flex flex-col outline-none"
-              >
-                {children}
-              </main>
-              <PublicFooter />
-              <FloatingWhatsApp />
-              <FloatingFeedbackWidget />
-              <ScrollToTop />
+          <DirectionProvider direction="ltr">
+            <TooltipProvider>
+              <NuqsAdapter>
+                <ScrollProgressBar />
+                <GlobalGrid />
+                <AnnouncementBanner />
+                <PublicNavbar />
+                <main
+                  id="main-content"
+                  tabIndex={-1}
+                  className="flex-1 flex flex-col outline-none"
+                >
+                  {children}
+                </main>
+                <PublicFooter />
+                <FloatingWhatsApp />
+                <FloatingFeedbackWidget />
+                <ScrollToTop />
 
-              {/* Vercel Observability Zero-Config */}
-              <Analytics />
-              <SpeedInsights />
-            </NuqsAdapter>
-          </TooltipProvider>
+                {/* Vercel Observability Zero-Config */}
+                <Analytics />
+                <SpeedInsights />
+              </NuqsAdapter>
+            </TooltipProvider>
+          </DirectionProvider>
         </ThemeProvider>
       </body>
     </html>
