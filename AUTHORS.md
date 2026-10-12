@@ -16,7 +16,7 @@ The **Al-Birru School Information System (`albirru-sis`)** is engineered and gov
 
 ## 🛠️ Engineering & Architecture Team
 
-- **Product Vision & Architecture**: Mafrilearth and Engineering Team
+- **Product Vision & Architecture**: Muhammad Fauzul Hanif (@MaFrileartHXVI) and Mafrilearth (@Mafrilearth)
 - **Autonomous Lead AI Engineer**: Antigravity (Google DeepMind Agentic Pair Programmer)
 - **Design System & UI/UX Craft**: Albirru Design System Contributors
 - **Pedagogical Advisors**: Al-Birru Primary School Academic Council & Curricular Board
