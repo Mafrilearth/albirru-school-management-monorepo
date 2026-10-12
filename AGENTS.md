@@ -73,6 +73,11 @@ Any violation of the following invariants constitutes an automatic task failure:
 
 ### D. User Interface & Accessibility
 - All visual interfaces are composed from shadcn/ui primitives under `packages/design-system` and Tailwind CSS utilities.
+- Swiss Modernist Bento Grid Invariants:
+  - Pure Flat Topology: Zero gradients and zero box-shadows (`box-shadow: none`, `--shadow-*: none`).
+  - Orthogonal Rectilinear Geometry: Zero border radius (`--radius: 0`, sharp 90° right angles across all containers and interactive elements).
+  - 1px Hairline Structural Delineation: Section and module boundaries strictly enforced via 1px border strokes (`border-border`).
+  - Mathematical 8px Spacing: Generous negative space without high-density clutter.
 - Raw hexadecimal colors such as `#0f172a` in JSX/TSX component files are strictly forbidden. Use semantic CSS Variables tokens.
 - W3C WCAG 2.1 AA accessibility compliance (text contrast ratio >= 4.5:1). Status indicators for attendance or grading must include explicit text labels alongside color representations.
 

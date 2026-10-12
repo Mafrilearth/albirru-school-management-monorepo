@@ -105,7 +105,7 @@ Each operational aspect is governed by dedicated, non-overlapping canonical spec
 | :--- | :--- | :--- |
 | **[`ARCHITECTURE.md`](ARCHITECTURE.md)** | Modular Monolith topology, subdomain routing, C4 component diagrams, and domain boundaries. | IEEE 1016 |
 | **[`DATABASE.md`](DATABASE.md)** | PostgreSQL relational schema, RFC 9562 UUIDv7 primary keys, soft-deletion, and Drizzle migrations. | RFC 9562 |
-| **[`DESIGN.md`](DESIGN.md)** | Mathematical 8px spatial grid, Major Third typography (1.250), semantic CSS tokens, and accessibility. | W3C WCAG 2.1 AA |
+| **[`DESIGN.md`](DESIGN.md)** | Swiss Modernist Bento Grid, zero radius (--radius: 0), zero shadows, 8px grid, and WCAG 2.1 AA. | W3C WCAG 2.1 AA |
 | **[`DEPLOYMENT.md`](DEPLOYMENT.md)** | Vercel Edge Serverless runbook, Cloudflare WAF and DNS topology, CI quality gates, and instant rollback. | Production DevOps |
 | **[`ENVIRONMENT.md`](ENVIRONMENT.md)** | Environment variables audit matrix: classification (Public and Secret), format, and dashboard origin. | DevSecOps Standard |
 | **[`TESTING.md`](TESTING.md)** | Testing pyramid strategy: Vitest unit tests, Playwright browser E2E, and Storybook visual testing. | QA Best Practices |
