@@ -12,7 +12,8 @@
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
     "db:studio": "drizzle-kit studio",
-    "check-types": "tsc --noEmit"
+    "check-types": "tsc --noEmit",
+    "test": "vitest --run"
   },
   "dependencies": {
     "dotenv": "^18.0.5",
@@ -23,6 +24,7 @@
   "devDependencies": {
     "@types/node": "^20",
     "drizzle-kit": "^0.31.11",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vitest": "^4"
   }
 }
