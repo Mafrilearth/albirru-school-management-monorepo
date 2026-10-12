@@ -81,6 +81,7 @@ Hardcoded hexadecimal colors such as `#0f172a` in JSX/TSX are strictly prohibite
   --border: oklch(0.922 0 0);
   --input: oklch(0.922 0 0);
   --ring: oklch(0.708 0 0);
+  --radius: 0;
 }
 
 .dark {
@@ -102,8 +103,14 @@ Hardcoded hexadecimal colors such as `#0f172a` in JSX/TSX are strictly prohibite
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
   --ring: oklch(0.556 0 0);
+  --radius: 0;
 }
 ```
+
+### 2.4 Orthogonal Geometry & Pure Flat Depth (Swiss Modernist Grid)
+- **Zero Border Radius (`--radius: 0`)**: All layout containers, buttons, cards, dialogs, badges, and form inputs strictly enforce sharp 90-degree rectilinear right angles. Rounded corners and pill geometries are strictly prohibited.
+- **Zero Box-Shadows (`box-shadow: none`)**: All blur elevations, drop shadows, and ambient glows are completely eliminated (`--shadow-*: none`). Spatial containment is established exclusively through 1px hairline border strokes (`border-border`).
+- **Modular Bento Grid**: Layout sections adhere to modular, asymmetrically balanced bento grids with generous whitespace snapping to the 8px geometric spatial scale.
 
 ---
 
