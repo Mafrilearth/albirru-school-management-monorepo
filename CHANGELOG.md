@@ -32,7 +32,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
   - Server-side session verification in React Server Components and middleware.
 - **Edge Security & Anti-Abuse**:
   - Cloudflare Turnstile CAPTCHA bot protection for public admissions (`/admissions`).
-  - Upstash Redis distributed sliding window rate limiting (5 submissions / 15 minutes).
+  - Upstash Redis distributed sliding window rate limiting (5 submissions per 15 minutes).
 - **Accessible UI Design System**:
   - Headless UI component primitives built with `@base-ui/react` and `@shadcn/react`.
   - Tailwind CSS v4 design token integration with semantic CSS variables and 8px spatial grid.

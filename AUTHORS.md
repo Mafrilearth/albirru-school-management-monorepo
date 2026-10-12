@@ -16,7 +16,7 @@ The **Al-Birru School Information System (`albirru-sis`)** is engineered and gov
 
 ## 🛠️ Engineering & Architecture Team
 
-- **Product Vision & Architecture**: Mafrilearth / Engineering Team
+- **Product Vision & Architecture**: Mafrilearth and Engineering Team
 - **Autonomous Lead AI Engineer**: Antigravity (Google DeepMind Agentic Pair Programmer)
 - **Design System & UI/UX Craft**: Albirru Design System Contributors
 - **Pedagogical Advisors**: Al-Birru Primary School Academic Council & Curricular Board
@@ -25,5 +25,5 @@ The **Al-Birru School Information System (`albirru-sis`)** is engineered and gov
 
 ## 📜 Intellectual Property & Copyright
 
-Copyright (c) 2026 Yayasan Amal Cahaya Indonesia / Al-Birru Primary School. All rights reserved.  
+Copyright (c) 2026 Yayasan Amal Cahaya Indonesia and Al-Birru Primary School. All rights reserved.  
 Open-source software components licensed under the [MIT License](LICENSE).

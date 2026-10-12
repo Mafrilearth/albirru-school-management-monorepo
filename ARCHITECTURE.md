@@ -75,7 +75,7 @@ The repository is structured as a **Modern Modular Monolith** utilizing the stan
 │   │
 │   ├── design-system/                # Standardized UI Design System Library (@albirru/design-system)
 │   │   ├── src/
-│   │   │   ├── components/           # shadcn/ui & Radix UI primitives (Button, Dialog, Sheet, Table, etc.)
+│   │   │   ├── components/           # shadcn/ui and Radix UI component primitives
 │   │   │   ├── lib/                  # Styling utilities (cn, clsx, tailwind-merge)
 │   │   │   ├── hooks/                # Reusable UI hooks
 │   │   │   ├── providers/            # Theme, tooltip, and dialog providers
@@ -123,9 +123,9 @@ The architecture implements a **Subdomain Routing Topology** where external traf
 
 ```mermaid
 flowchart TD
-    subgraph Clients ["Ingress & Actors"]
-        PublicUser["Public Visitors / Parents<br/>sd-albirru.sch.id"]
-        AuthUser["Civitas Academica (Staff / Teachers / Guardians)<br/>app.sd-albirru.sch.id"]
+    subgraph Clients ["Ingress and Actors"]
+        PublicUser["Public Visitors<br/>sd-albirru.sch.id"]
+        AuthUser["Authenticated Users<br/>app.sd-albirru.sch.id"]
     end
 
     PublicUser --> CF["Cloudflare Edge (Turnstile & WAF)"]
@@ -137,7 +137,7 @@ flowchart TD
         direction TB
         Web["apps/web (Port 3001)<br/>• Marketing & News<br/>• Accreditation Badges<br/>• Public Admissions Form"]
         App["apps/app (Port 3000)<br/>• Admin Portal (/admin)<br/>• Identity Management<br/>• Attendance & Grading"]
-        Api["apps/api (Port 3002)<br/>• Edge Route Handlers<br/>• /health Probe<br/>• Webhook Ingress (Clerk / Resend)"]
+        Api["apps/api (Port 3002)<br/>• Edge Route Handlers<br/>• /health Probe<br/>• Webhook Ingress (Clerk and Resend)"]
     end
 
     Vercel --> Web
@@ -153,7 +153,7 @@ flowchart TD
 
     subgraph SecurityStorage ["Security & Storage Infrastructure"]
         Clerk["Clerk IAM<br/>• Wildcard Session Cookie<br/>• RBAC Claim Verification"]
-        Upstash[("Upstash Redis<br/>• Sliding Window Rate Limiting<br/>• 5 req / 15 min")]
+        Upstash[("Upstash Redis<br/>• Sliding Window Rate Limiting<br/>• 5 requests per 15 minutes")]
         R2[("Cloudflare R2<br/>• Student Files & Documents<br/>• Zero Egress Fees")]
     end
 
@@ -181,12 +181,12 @@ Each application in `apps/` corresponds to a distinct network endpoint, port all
 
 | Application | Monorepo Package | Canonical Subdomain | Dev Port | Primary Responsibility |
 |---|---|---|---|---|
-| **Portal / SIS** | `@albirru/app` | `app.sd-albirru.sch.id` | `:3000` | Authenticated school management (Admin, Teachers, Guardians, Students) |
+| **Portal** | `@albirru/app` | `app.sd-albirru.sch.id` | `:3000` | Authenticated school management (Admin, Teachers, Guardians, Students) |
 | **Public Web** | `@albirru/web` | `sd-albirru.sch.id` | `:3001` | Public landing page, school profile, accreditation credentials, and admissions registration |
 | **API & Webhooks** | `@albirru/api` | `api.sd-albirru.sch.id` | `:3002` | Health monitoring probes and incoming statutory webhooks (Clerk, Resend) |
 | **Email Studio** | `@albirru/email` | `email.sd-albirru.sch.id` | `:3003` | React Email template development and local visual preview workbench |
 | **Documentation** | `@albirru/docs` | `docs.sd-albirru.sch.id` | `:3004` | Statutory specifications explorer (PRD 01-11, ADRs, and operational runbooks) |
-| **Database Studio** | `@albirru/studio` | Local / Dedicated | `:3005` | Drizzle Studio visual schema inspector and data browser |
+| **Database Studio** | `@albirru/studio` | Local | `:3005` | Drizzle Studio visual schema inspector and data browser |
 | **Storybook** | `@albirru/storybook` | `storybook.sd-albirru.sch.id` | `:6006` | Isolated UI component development and design system documentation workbench |
 
 #### 3.1.1. Authenticated SIS Application (`apps/app`) — Port 3000
@@ -214,9 +214,9 @@ Each application in `apps/` corresponds to a distinct network endpoint, port all
 #### 3.1.4. React Email Templates & Preview Workshop (`apps/email`) — Port 3003
 - **Name:** Al-Birru Transactional Email Studio (`@albirru/email`)
 - **Subdomain:** `email.sd-albirru.sch.id` (Local Preview: `localhost:3003`)
-- **Description:** React-based email template development and preview workbench. Hosts standardized transactional email components (e.g., `AdmissionConfirmation.tsx`) rendered with `@react-email/components` and dispatched via the Resend API.
+- **Description:** React-based email template development and preview workbench. Hosts standardized transactional email components, such as `AdmissionConfirmation.tsx`, rendered with `@react-email/components` and dispatched via the Resend API.
 - **Technologies:** React Email (`@react-email/components`), Resend (`resend`), TypeScript, Tailwind CSS.
-- **Deployment:** Vercel Serverless / Local Preview Studio.
+- **Deployment:** Vercel Serverless.
 
 #### 3.1.5. In-Tree Documentation Explorer (`apps/docs`) — Port 3004
 - **Name:** Al-Birru In-Tree Documentation Portal (`@albirru/docs`)
@@ -236,7 +236,7 @@ Each application in `apps/` corresponds to a distinct network endpoint, port all
 - **Subdomain:** `storybook.sd-albirru.sch.id` (Local Workbench: `localhost:6006`)
 - **Description:** Isolated UI component workshop for developing, previewing, and testing design system primitives, widgets, and layout components in isolation before integration. Serves as the central design system catalog for the monorepo.
 - **Technologies:** Storybook 10, Vite, React 19, TypeScript, Tailwind CSS v4, Radix UI.
-- **Deployment:** Chromatic / Local Workbench.
+- **Deployment:** Chromatic.
 
 ---
 
@@ -247,14 +247,14 @@ Each application in `apps/` corresponds to a distinct network endpoint, port all
 - **Location:** `packages/database/src/`
 - **Components:**
   - `schema.ts`: Comprehensive Drizzle ORM declarative schemas encompassing all entities: `users`, `profiles`, `roles`, `user_roles`, `academic_years`, `classrooms`, `students`, `admission_applications`, `attendance_sessions`, `attendance_records`, `grade_components`, `student_grades`, and `report_cards`. Enforces UUIDv7 primary keys, referential relationships with Drizzle `relations()`, supporting B-tree indexes, and statutory audit columns.
-  - `index.ts`: PostgreSQL connection pool client (`postgres` / `porsager/postgres`), Drizzle instance export (`db = drizzle(client, { schema })`), and full re-exports of `drizzle-orm` operators.
+  - `index.ts`: PostgreSQL connection pool client (`postgres` driver), Drizzle instance export (`db = drizzle(client, { schema })`), and full re-exports of `drizzle-orm` operators.
   - `drizzle/`: Deterministic SQL static migration scripts generated via `pnpm run db:generate`.
 
 #### 3.2.2. Standardized Design System (`packages/design-system`)
 - **Package Name:** `@albirru/design-system`
 - **Location:** `packages/design-system/src/`
 - **Components:**
-  - `components/`: Headless and styled shadcn/ui primitives built upon `@base-ui/react` and Radix UI (Button, Dialog, Sheet, Dropdown, Table, Input, Card, Badge, etc.).
+  - `components/`: Headless and styled shadcn/ui primitives built upon `@base-ui/react` and Radix UI (Button, Dialog, Sheet, Dropdown, Table, Input, Card, Badge).
   - `lib/`: CSS class combining utility (`cn`) powered by `clsx` and `tailwind-merge`.
   - `hooks/`: Accessible UI hooks (toast, media-query, mobile-navigation).
   - `providers/`: Theme provider (`next-themes`), tooltip provider, and root UI context wrappers.
@@ -307,7 +307,7 @@ The business logic follows a **Modern Modular Monolith** pattern. Domain modules
 
 ---
 
-## 5. External Integrations / APIs
+## 5. External Integrations
 
 - **Clerk (`@clerk/nextjs`)**:
   - **Purpose:** User authentication, session issuance, role assignment, and multi-subdomain single sign-on (SSO) via wildcard cookie configuration (`.sd-albirru.sch.id`).
@@ -388,7 +388,7 @@ flowchart LR
 - **Zero Physical Deletion:** Hard invariant prohibiting SQL `DELETE`. Records are deactivated logically via `is_active = false` to guarantee statutory audit integrity.
 - **UUIDv7 Primary Keys:** All operational database tables utilize monotonically ordered UUIDv7 (`uuidv7()`), preventing sequence enumeration attacks while maintaining optimal B-tree indexing performance.
 - **Strict Runtime Validation:** Every Server Action mutation parses inputs through Zod schemas before database interaction.
-- **Anti-Bot & Ingress Throttling:** Cloudflare Turnstile token validation and Upstash Redis rate limiting (5 submissions / 15 minutes) protect public forms against automated attacks.
+- **Anti-Bot & Ingress Throttling:** Cloudflare Turnstile token validation and Upstash Redis rate limiting (5 submissions per 15 minutes) protect public forms against automated attacks.
 - **Data Encryption:** TLS 1.3 in transit across all endpoints and database connections (`sslmode=require`); AES-256 encryption at rest on Neon PostgreSQL and Cloudflare R2.
 
 ---
@@ -434,7 +434,7 @@ flowchart LR
 
 ### 8.3. Quality Gate Commands
 
-| Verification Step | Command | Standard / Tool |
+| Verification Step | Command | Tool |
 |---|---|---|
 | Linter & Format Verification | `pnpm run check` | Biome (`biome check .`) |
 | Code Auto-Formatting | `pnpm run format` | Biome (`biome format --write .`) |
@@ -445,7 +445,7 @@ flowchart LR
 
 ---
 
-## 9. Future Considerations / Roadmap
+## 9. Roadmap
 
 - **Offline-First PWA Synchronization:** Progressive web app service workers with background sync capabilities for rural attendance recording under unstable network connectivity.
 - **Statutory National Education Registry Adapters:** Automated synchronization adapters for national education databases and institutional registries.
@@ -465,7 +465,7 @@ flowchart LR
 
 ---
 
-## 11. Glossary / Acronyms
+## 11. Acronyms
 
 - **API:** Application Programming Interface
 - **CDN:** Content Delivery Network

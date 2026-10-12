@@ -201,11 +201,11 @@ export function HeroSection() {
                     <div className="flex items-center gap-2">
                       <Users className="size-4 text-primary" />
                       <span className="text-xs font-bold uppercase tracking-wider text-foreground">
-                        Kapasitas Angkatan Terfokus
+                        Admission Seat Capacity
                       </span>
                     </div>
                     <span className="text-xs font-semibold text-foreground">
-                      26 / 40 Santri Terisi
+                      26 of 40 Seats Filled
                     </span>
                   </div>
 
@@ -214,9 +214,9 @@ export function HeroSection() {
                   </div>
 
                   <div className="flex items-center justify-between text-xs text-muted-foreground">
-                    <span>2 Rombel Eksklusif (Maks 20/Kelas)</span>
+                    <span>2 Cohorts (Maximum 20 per Class)</span>
                     <span className="font-semibold text-primary">
-                      Rasio Guru 1:15
+                      Teacher Ratio 1:15
                     </span>
                   </div>
                 </div>

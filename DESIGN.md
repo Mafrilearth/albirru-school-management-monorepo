@@ -10,7 +10,7 @@
 ## 1. Executive Summary & Problem Statement
 
 ### 1.1 Context
-Primary Islamic education institutions require integrated operational management spanning student admissions, daily multi-session attendance, weighted academic grading, guardian reporting, and institutional branding. Traditional school software is fragmented across paid external CMSs (Sanity/Strapi), rigid monolithic legacy systems (Jibas/Moodle), or disjointed spreadsheets.
+Primary Islamic education institutions require integrated operational management spanning student admissions, daily multi-session attendance, weighted academic grading, guardian reporting, and institutional branding. Traditional school software is fragmented across paid external CMS platforms, rigid legacy monoliths, or disjointed spreadsheets.
 
 ### 1.2 Goals
 1. **Unified Modular Monolith**: Consolidate institutional public web and administrative SIS operations under a unified Next.js 16 monorepo with zero external paid CMS runtime dependencies.
@@ -59,7 +59,7 @@ Typography utilizes the Major Third modular scale to maintain hierarchy without 
 | `Caption`   | 0.640rem (10.2px) | 1.3 | `+0.02em` | Legal disclosures, statutory badges |
 
 ### 2.3 Semantic Color Tokens (WCAG 2.1 AA Compliant)
-Hardcoded hexadecimal colors (e.g., `#0f172a`) in JSX/TSX are strictly prohibited. Styling must solely reference CSS custom properties:
+Hardcoded hexadecimal colors such as `#0f172a` in JSX/TSX are strictly prohibited. Styling must solely reference CSS custom properties:
 
 ```css
 :root {
@@ -213,8 +213,8 @@ Executing SQL `DELETE` is strictly forbidden across all production operational t
 
 | Decision | Selected Option | Rejected Alternative | Rationale |
 | :--- | :--- | :--- | :--- |
-| **ORM** | Drizzle ORM | Prisma ORM | Drizzle has 0MB engine overhead, near-native query execution speed, and instant cold-starts on Serverless/Edge runtimes. |
-| **Primary Keys** | UUIDv7 | Auto-increment ID / UUIDv4 | Time-sortable B-tree locality index without sequential enumeration risks. |
-| **Linter / Formatter** | Biome v2 | ESLint + Prettier | Unified Rust toolchain executing under 150ms across 270+ files without plugin dependency sprawl. |
+| **ORM** | Drizzle ORM | Prisma ORM | Drizzle has 0MB engine overhead, near-native query execution speed, and instant cold-starts on Serverless Edge runtimes. |
+| **Primary Keys** | UUIDv7 | Legacy Sequential ID | Time-sortable B-tree locality index without sequential enumeration risks. |
+| **Code Quality Tool** | Biome v2 | ESLint + Prettier | Unified Rust toolchain executing under 150ms across 270+ files without plugin dependency sprawl. |
 | **UI Primitives** | Base UI + shadcn/ui | Custom HTML Divs | 100% accessible keyboard navigation, ARIA tagging, and design token consistency out of the box. |
-| **CMS Platform** | In-House CMS (`apps/app`) | Sanity / Strapi / Contentful | Eliminates SaaS subscription costs, provides single sign-on with Clerk, and ensures direct relational database foreign keys. |
+| **CMS Platform** | In-House CMS (`apps/app`) | Third-Party Headless CMS | Eliminates SaaS subscription costs, provides single sign-on with Clerk, and ensures direct relational database foreign keys. |

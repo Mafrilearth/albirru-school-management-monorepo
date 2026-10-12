@@ -52,10 +52,10 @@ Every commit message is validated by `@commitlint/cli` and must strictly adhere 
 - `revert`: Reverting a previous commit.
 
 ### 3.2 Commit Subject Rules
-- Must be written in lowercase imperative mood (e.g. `feat(admissions): implement turnstile bot verification`).
+- Must be written in lowercase imperative mood, such as `feat(admissions): implement turnstile bot verification`.
 - No trailing periods.
 - Subject must not exceed 72 characters.
-- Non-compliant subjects (e.g. `wip`, `update`, `fixed issue`) are automatically rejected by the `commit-msg` hook.
+- Non-compliant subjects, such as `wip` or `update`, are automatically rejected by the `commit-msg` hook.
 
 ---
 

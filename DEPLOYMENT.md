@@ -10,7 +10,7 @@ The platform operates on a zero-maintenance, serverless edge architecture:
 
 ```mermaid
 flowchart TD
-    Client["Public / Client Ingress"] -->|"HTTPS / Port 443"| CF["Cloudflare DNS & WAF<br/>• Turnstile Bot Protection<br/>• TLS 1.3 Termination & DDoS Shield"]
+    Client["Public Ingress"] -->|"HTTPS Port 443"| CF["Cloudflare DNS & WAF<br/>• Turnstile Bot Protection<br/>• TLS 1.3 Termination & DDoS Shield"]
     CF --> Vercel["Vercel Edge Network"]
 
     subgraph Apps ["Monorepo Applications"]
@@ -31,7 +31,7 @@ flowchart TD
     subgraph Services ["Serverless Cloud Backend"]
         direction LR
         Neon[("Neon Postgres<br/>• Transaction Pooling<br/>• Primary Relational DB")]
-        Upstash[("Upstash Redis<br/>• Rate Limiting REST<br/>• 5 req / 15 min")]
+        Upstash[("Upstash Redis<br/>• Rate Limiting REST<br/>• 5 requests per 15 minutes")]
         R2[("Cloudflare R2<br/>• Document Storage<br/>• Zero Egress Fees")]
     end
 
@@ -50,9 +50,9 @@ flowchart TD
 
 | Environment | Git Branch | Canonical URL | Automated Trigger |
 | :--- | :--- | :--- | :--- |
-| **Production** | `main` | `https://sd-albirru.sch.id` | Push / PR Merge to `main` |
-| **Staging** | `staging` | `https://staging.albirru.mafrilearth.com` | Push / PR Merge to `staging` |
-| **Development** | `dev` | `https://dev.albirru.mafrilearth.com` | Push / PR Merge to `dev` |
+| **Production** | `main` | `https://sd-albirru.sch.id` | Pull Request Merge to `main` |
+| **Staging** | `staging` | `https://staging.albirru.mafrilearth.com` | Pull Request Merge to `staging` |
+| **Development** | `dev` | `https://dev.albirru.mafrilearth.com` | Pull Request Merge to `dev` |
 
 ```mermaid
 flowchart LR

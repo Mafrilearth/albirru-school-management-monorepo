@@ -14,7 +14,7 @@ The system is built without artificial feature ceilings. When creating, modifyin
 ## 3. Complete 24 Agent Skills Lifecycle Matrix
 The repository hosts 24 agent skills from addyosmani/agent-skills in `.agents/skills/`. Invoke relevant skills based on the task lifecycle phase:
 
-### Meta / Router
+### Skill Router
 - `using-agent-skills`: Determines proper skill routing and enforces shared operational rules.
 
 ### 1. Define Phase
@@ -69,16 +69,16 @@ Any violation of the following invariants constitutes an automatic task failure:
 ### C. Data Mutation Contract (Server Actions)
 - All authenticated data mutations must use Server Actions validated by Zod runtime parsers.
 - Every Server Action must import and use the `ActionResponse` type from `src/types/action.ts` (requiring fields `is_success`, `status_code`, `response_payload`, and `error_descriptor` per Document 04).
-- Public mutations on admissions forms (`/admissions`) must validate Cloudflare Turnstile tokens and be protected by Upstash Redis rate limiting (5 submissions / 15 minutes).
+- Public mutations on admissions forms (`/admissions`) must validate Cloudflare Turnstile tokens and be protected by Upstash Redis rate limiting (5 submissions per 15 minutes).
 
 ### D. User Interface & Accessibility
 - All visual interfaces are composed from shadcn/ui primitives under `packages/design-system` and Tailwind CSS utilities.
-- Raw hexadecimal colors (e.g. `#0f172a`) in JSX/TSX component files are strictly forbidden. Use semantic CSS Variables tokens.
+- Raw hexadecimal colors such as `#0f172a` in JSX/TSX component files are strictly forbidden. Use semantic CSS Variables tokens.
 - W3C WCAG 2.1 AA accessibility compliance (text contrast ratio >= 4.5:1). Status indicators for attendance or grading must include explicit text labels alongside color representations.
 
 ### E. Git Automation & Hook Enforcements (Husky, lint-staged, Commitlint)
 - `pre-commit` Hook: Every commit triggers `npx lint-staged` running `biome check --write --no-errors-on-unmatched` on staged files (`*.{js,ts,jsx,tsx,json,mjs,cjs}`). Commits fail if syntax or invariant errors exist.
-- `commit-msg` Hook: Every commit message is validated by `@commitlint/cli` using Conventional Commits 1.0.0 (`commitlint.config.mjs`). Bypassing or non-compliant commit subjects (e.g. "update", "wip") are rejected.
+- `commit-msg` Hook: Every commit message is validated by `@commitlint/cli` using Conventional Commits 1.0.0 (`commitlint.config.mjs`). Bypassing or non-compliant commit subjects, such as "update" or "wip", are rejected.
 - `pre-push` Hook: Every `git push` triggers `pnpm run check-types` (`turbo run check-types`). Pushing broken types to remote `dev`, `staging`, or `main` is strictly prevented.
 - CI Validation: GitHub Actions `.github/workflows/ci.yml` validates all PR commit messages and runs full static quality gates (`check`, `check-types`, `test`, `build`).
 
@@ -102,9 +102,9 @@ flowchart TD
     Slice["1. Slice Task Vertically<br/>Thin, verifiable units"] --> Red["2. Write Failing Test (Red)<br/>Vitest assertions"]
     Red --> Green["3. Minimal Implementation (Green)<br/>Pass unit assertions"]
     Green --> Verify["4. Verification Gates<br/>check-types + check + test"]
-    Verify -->|"Failure / Errors"| Healing["5. Self-Healing Error Recovery<br/>debugging-and-error-recovery<br/>Systematic root-cause resolution"]
+    Verify -->|"Verification Failure"| Healing["5. Self-Healing Error Recovery<br/>debugging-and-error-recovery<br/>Systematic root-cause resolution"]
     Healing --> Verify
-    Verify -->|"0 Errors (All Green)"| Done(["Proceed to Next Slice / Ship"])
+    Verify -->|"Zero Errors"| Done(["Proceed to Next Slice"])
 ```
 
 When executing tasks autonomously:
@@ -193,10 +193,10 @@ Phase 6: Shipping, Deployment, & Reporting (MCP: GitHub, Vercel, Linear, Slack)
 - All schema changes MUST use `pnpm run db:generate` to generate static SQL migration files. Never execute raw SQL DDL directly against production databases.
 
 ### UI/UX & Design System (shadcn/ui & Base UI Architecture)
-- **Component Primacy**: Do not construct primitive HTML components or custom styled `div`s from scratch when equivalents exist in `packages/design-system` or shadcn/ui (63 primitives available: `Card`, `Dialog`, `Sheet`, `Drawer`, `Table`, `Badge`, `Empty`, `Separator`, etc.).
+- **Component Primacy**: Do not construct primitive HTML components or custom styled `div`s from scratch when equivalents exist in `packages/design-system` or shadcn/ui (63 primitives available: `Card`, `Dialog`, `Sheet`, `Drawer`, `Table`, `Badge`, `Empty`, `Separator`).
 - **Tailwind v4 Styling Standards**:
   - Prohibit `space-x-*` and `space-y-*`. Always use `flex` with `gap-*` (or `flex flex-col gap-*`).
-  - Use `size-*` instead of `w-* h-*` when dimensions are equal (e.g., `size-10`).
+  - Use `size-*` instead of `w-* h-*` when dimensions are equal, such as `size-10`.
   - Use `truncate` shorthand instead of `overflow-hidden text-ellipsis whitespace-nowrap`.
   - Prohibit manual `z-index` hacks on overlay components (`Dialog`, `Sheet`, `Popover`, `Tooltip` handle their own stacking contexts).
   - Prohibit manual `dark:` overrides in JSX; rely strictly on semantic tokens (`bg-background`, `text-muted-foreground`, `bg-primary`).
@@ -210,9 +210,9 @@ Phase 6: Shipping, Deployment, & Reporting (MCP: GitHub, Vercel, Linear, Slack)
 - **Component Anatomy & Accessibility Invariants**:
   - `Card`: Compose fully using `CardHeader`, `CardTitle`, `CardDescription`, `CardContent`, and `CardFooter`.
   - `Dialog`, `Sheet`, and `Drawer`: MUST provide an accessible title (`DialogTitle`, `SheetTitle`, `DrawerTitle`). If visually hidden, apply `className="sr-only"`.
-  - `Button`: Does not have `isLoading`/`isPending` props. Compose with `<Spinner />` + `data-icon` + `disabled`.
+  - `Button`: Does not have `isLoading` or `isPending` props. Compose with `<Spinner />` + `data-icon` + `disabled`.
   - `Avatar`: MUST always provide `<AvatarFallback />` for image load failures.
-  - Icons: Use `lucide-react`. Position icons in buttons with `data-icon="inline-start"` or `data-icon="inline-end"`. Prohibit hardcoded icon sizes (`size-4` / `w-4 h-4`) inside component slots where CSS handles sizing.
+  - Icons: Use `lucide-react`. Position icons in buttons with `data-icon="inline-start"` or `data-icon="inline-end"`. Prohibit hardcoded icon sizes (`size-4` or `w-4 h-4`) inside component slots where CSS handles sizing.
 
 ### TypeScript Strict Mode
 - Prohibit `any` types (both explicit and implicit).

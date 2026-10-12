@@ -67,6 +67,6 @@ body:
   - type: input
     id: environment
     attributes:
-      label: Environment Info
-      description: Browser, Operating System, Node.js version, etc.
+      label: Environment Details
+      description: Browser, Operating System, and runtime versions.
       placeholder: Chrome 130 on Windows 11 / Node 22 / pnpm 12

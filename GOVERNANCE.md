@@ -21,7 +21,7 @@ The engineering and operational governance of the platform adheres to three core
 | **Institutional Foundation Board** | Strategic oversight, budget approval, compliance with national education regulations. | Final approval for institutional policies and major data disclosures. |
 | **Lead Software Architect** | Technical vision, system architecture, invariants enforcement, and release gating. | Authoritative approval on pull requests, database migrations, and ADRs. |
 | **Security & Privacy Officer** | Vulnerability triage, access audits, cryptographic oversight, and student data protection. | Veto power on any feature violating student privacy (statutory data privacy and GDPR principles). |
-| **Maintainers / Engineers** | Feature implementation, unit test authoring, dependency upgrades, and code reviews. | Code contributions across `apps/*` and `packages/*`. |
+| **Engineers** | Feature implementation, unit test authoring, dependency upgrades, and code reviews. | Code contributions across `apps/*` and `packages/*`. |
 
 ---
 
@@ -32,9 +32,9 @@ For routine improvements, bug fixes, UI styling, and dependency patches:
 - Proposed changes are submitted via Pull Request to the `dev` branch.
 - If at least one maintainer approves and no objections are raised within 24 hours, the PR may be merged.
 
-### 3.2 Formal RFC / ADR for Architectural Modifications
-Significant changes require an **Architecture Decision Record (ADR)** or formal Request for Comments (RFC):
-- Alterations to database schema (e.g., adding/modifying tables in `packages/database`).
+### 3.2 Architecture Decision Records for Architectural Modifications
+Significant changes require an **Architecture Decision Record (ADR)**:
+- Alterations to database schema, such as adding or modifying tables in `packages/database`.
 - Introduction of new shared packages or external third-party SaaS services.
 - Changes to authentication topologies, security headers, or API mutation contracts.
 - Approval requires unanimous consent from the Lead Software Architect and Security Officer.

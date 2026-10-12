@@ -103,15 +103,15 @@ Each operational aspect is governed by dedicated, non-overlapping canonical spec
 
 | Specification Document | Focus Area & Responsibility | Standard Compliance |
 | :--- | :--- | :--- |
-| **[`ARCHITECTURE.md`](ARCHITECTURE.md)** | Modular Monolith topology, subdomain routing, C4 component diagrams, and domain boundaries. | IEEE 1016 / next-forge |
-| **[`DATABASE.md`](DATABASE.md)** | PostgreSQL relational schema, RFC 9562 UUIDv7 primary keys, soft-deletion, and Drizzle migrations. | RFC 9562 / ACID |
+| **[`ARCHITECTURE.md`](ARCHITECTURE.md)** | Modular Monolith topology, subdomain routing, C4 component diagrams, and domain boundaries. | IEEE 1016 |
+| **[`DATABASE.md`](DATABASE.md)** | PostgreSQL relational schema, RFC 9562 UUIDv7 primary keys, soft-deletion, and Drizzle migrations. | RFC 9562 |
 | **[`DESIGN.md`](DESIGN.md)** | Mathematical 8px spatial grid, Major Third typography (1.250), semantic CSS tokens, and accessibility. | W3C WCAG 2.1 AA |
-| **[`DEPLOYMENT.md`](DEPLOYMENT.md)** | Vercel Edge Serverless runbook, Cloudflare WAF/DNS topology, CI quality gates, and instant rollback. | Production DevOps |
-| **[`ENVIRONMENT.md`](ENVIRONMENT.md)** | Environment variables audit matrix: classification (Public vs Secret), format, and dashboard origin. | DevSecOps Standard |
+| **[`DEPLOYMENT.md`](DEPLOYMENT.md)** | Vercel Edge Serverless runbook, Cloudflare WAF and DNS topology, CI quality gates, and instant rollback. | Production DevOps |
+| **[`ENVIRONMENT.md`](ENVIRONMENT.md)** | Environment variables audit matrix: classification (Public and Secret), format, and dashboard origin. | DevSecOps Standard |
 | **[`TESTING.md`](TESTING.md)** | Testing pyramid strategy: Vitest unit tests, Playwright browser E2E, and Storybook visual testing. | QA Best Practices |
 | **[`AGENTS.md`](AGENTS.md)** | Autonomous agent operational constitution, 24 agent skills matrix, and hard invariants enforcement. | AI SDLC Standard |
 | **[`SECURITY.md`](.github/SECURITY.md)** | Vulnerability disclosure SLA, threat model, Cloudflare Turnstile bot deterrence, and Upstash rate limits. | ISO/IEC 29147 |
-| **[`GOVERNANCE.md`](GOVERNANCE.md)** | Institutional leadership roles (Foundation Board, Lead Architect), decision-making models (Lazy Consensus, RFC/ADR). | CNCF Governance Model |
+| **[`GOVERNANCE.md`](GOVERNANCE.md)** | Institutional leadership roles (Foundation Board, Lead Architect), decision-making models (Lazy Consensus and ADR). | CNCF Governance Model |
 | **[`ROADMAP.md`](ROADMAP.md)** | Multi-phase strategic roadmap (2026–2027): v0.1.0 baseline through v0.4.0 national registry and offline sync. | Agile Milestones |
 | **[`CONTRIBUTING.md`](.github/CONTRIBUTING.md)** | Git branch lifecycle (`dev` -> `staging` -> `main`), Conventional Commits 1.0.0, and Husky quality gates. | GitHub Standard |
 | **[`CHANGELOG.md`](CHANGELOG.md)** | Chronological version release log following Semantic Versioning 2.0.0 and Keep a Changelog. | Keep a Changelog 1.1.0 |
@@ -131,19 +131,19 @@ Each operational aspect is governed by dedicated, non-overlapping canonical spec
 | **Package Manager** | pnpm | `12.11.2` | Workspace dependency isolation |
 | **Build Engine** | Turborepo | `^2.4.4` | Build orchestration and task caching |
 | **Framework** | Next.js | `16.3.8` | App Router, React Server Components, Server Actions |
-| **UI Library** | React / React DOM | `19.2.8` | Component model and modern actions |
+| **UI Library** | React | `19.2.8` | Component model and modern actions |
 | **Styling** | Tailwind CSS | `v4.x` | CSS-first configuration and semantic CSS variables |
-| **Headless UI** | Base UI / shadcn | `^1.8.0` / `^0.3.1` | Accessible component primitives (WCAG 2.1 AA) |
+| **Headless UI** | Base UI | `^1.8.0` | Accessible component primitives (WCAG 2.1 AA) |
 | **Database** | Neon PostgreSQL | `16+` | Serverless relational data store |
-| **ORM & Migrations** | Drizzle ORM / Drizzle Kit | `^0.45.3` / `^0.31.11` | Type-safe query builder and SQL migration generator |
+| **ORM & Migrations** | Drizzle ORM | `^0.45.3` | Type-safe query builder and SQL migration generator |
 | **Authentication** | Clerk | `^6.12.0` | Multi-subdomain single sign-on and role-based access control |
-| **Rate Limiter** | Upstash Redis | `^2.2.0` / `^1.39.0` | Sliding window rate limiting over serverless REST |
+| **Rate Limiter** | Upstash Redis | `^2.2.0` | Sliding window rate limiting over serverless REST |
 | **Bot Deterrence** | Cloudflare Turnstile | Cloud API | Non-intrusive CAPTCHA challenge |
-| **Form Validation** | Zod / React Hook Form | `^3.25.76` / `^7.54.2` | Runtime schema parsing and form controller |
-| **Email Delivery** | Resend / React Email | `^6.32.0` / `^1.0.12` | Transactional email dispatch and React templates |
-| **Test Runner** | Vitest / Playwright | `^4.x` / `^1.64.0` | Fast unit tests and cross-browser end-to-end testing |
+| **Form Validation** | Zod | `^3.25.76` | Runtime schema parsing and form controller |
+| **Email Delivery** | Resend | `^6.32.0` | Transactional email dispatch and React templates |
+| **Test Runner** | Vitest | `^4.x` | Fast unit tests and cross-browser end-to-end testing |
 | **Linter & Formatter** | Biome | `^2.5.15` | Sub-200ms unified code verification |
-| **Git Automation** | Husky / Commitlint | `^9.1.7` / `^21.2.3` | Pre-commit Biome checks and Conventional Commits enforcement |
+| **Git Automation** | Husky | `^9.1.7` | Pre-commit Biome checks and Conventional Commits enforcement |
 
 ---
 
@@ -199,4 +199,4 @@ pnpm run db:studio
 ## 📜 License & Copyright
 
 Distributed under the official [MIT License](LICENSE).  
-Copyright © 2026 **Yayasan Amal Cahaya Indonesia** / **Al-Birru Primary School**. All rights reserved.
+Copyright © 2026 **Yayasan Amal Cahaya Indonesia** and **Al-Birru Primary School**. All rights reserved.

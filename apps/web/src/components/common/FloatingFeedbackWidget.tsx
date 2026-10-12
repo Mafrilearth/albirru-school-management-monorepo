@@ -42,16 +42,16 @@ declare global {
 }
 
 const FEEDBACK_CATEGORIES = [
-  { id: "fitur", label: "💡 Ide Fitur Baru" },
-  { id: "akademik", label: "📖 Program & Tahfidz" },
-  { id: "desain", label: "🎨 Tampilan & Desain" },
-  { id: "kendala", label: "🛠️ Laporkan Kendala" },
-  { id: "lainnya", label: "💬 Saran Umum" },
+  { id: "feature", label: "💡 Feature Proposal" },
+  { id: "academic", label: "📖 Academic Program" },
+  { id: "design", label: "🎨 UI & Design" },
+  { id: "issue", label: "🛠️ Report Issue" },
+  { id: "general", label: "💬 General Feedback" },
 ];
 
 export function FloatingFeedbackWidget() {
   const [isOpen, setIsOpen] = useState(false);
-  const [category, setCategory] = useState("fitur");
+  const [category, setCategory] = useState("feature");
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [contactName, setContactName] = useState("");
@@ -92,7 +92,7 @@ export function FloatingFeedbackWidget() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (content.trim().length < 5) {
-      setErrorMessage("Silakan tulis masukan minimal 5 karakter.");
+      setErrorMessage("Please enter at least 5 characters of feedback.");
       return;
     }
 
@@ -124,11 +124,11 @@ export function FloatingFeedbackWidget() {
         }
       } else {
         setErrorMessage(
-          data.message || "Gagal mengirim masukan. Silakan coba lagi.",
+          data.message || "Failed to submit feedback. Please try again.",
         );
       }
     } catch {
-      setErrorMessage("Koneksi gagal. Silakan periksa jaringan Anda.");
+      setErrorMessage("Connection error. Please verify your network.");
     } finally {
       setIsSubmitting(false);
     }
@@ -141,7 +141,7 @@ export function FloatingFeedbackWidget() {
 
       {/* Floating Trigger Button (Bottom Left) */}
       <aside
-        aria-label="Kotak Saran dan Usul Fitur Instan"
+        aria-label="Instant Feature Proposal and Feedback Box"
         className="fixed bottom-6 left-4 sm:left-6 z-40 flex items-center"
       >
         <motion.div
@@ -162,7 +162,7 @@ export function FloatingFeedbackWidget() {
           >
             <span className="flex size-2 rounded-full bg-primary animate-ping" />
             <Lightbulb className="size-4 text-primary transition-transform group-hover:rotate-12" />
-            <span>Usul Fitur &amp; Saran</span>
+            <span>Propose Feature</span>
           </Button>
         </motion.div>
       </aside>
@@ -177,15 +177,15 @@ export function FloatingFeedbackWidget() {
                 className="gap-1 text-xs font-semibold text-primary bg-primary/10 border border-primary/20"
               >
                 <Sparkles className="size-3" />
-                <span>Kotak Suara Pengunjung</span>
+                <span>Visitor Feedback</span>
               </Badge>
             </div>
             <DialogTitle className="text-xl font-bold text-foreground">
-              Usul Fitur &amp; Masukan
+              Propose Feature &amp; Feedback
             </DialogTitle>
             <DialogDescription className="text-xs text-muted-foreground leading-relaxed">
-              Punya ide fitur baru, usulan program, atau saran tampilan untuk SD
-              Al-Birru? Tuliskan di sini—tanpa perlu login/tiket.
+              Have a feature idea or program suggestion for Al-Birru Primary
+              School? Share it here without logging in.
             </DialogDescription>
           </DialogHeader>
 
@@ -197,12 +197,10 @@ export function FloatingFeedbackWidget() {
               </div>
 
               <div>
-                <h3 className="text-lg font-bold text-foreground">
-                  Jazakumullahu Khairan!
-                </h3>
+                <h3 className="text-lg font-bold text-foreground">Thank You</h3>
                 <p className="text-xs text-muted-foreground mt-1 max-w-xs mx-auto leading-relaxed">
-                  Masukan Anda telah berhasil dicatat. Ide dari Anda sangat
-                  berharga untuk kemajuan civitas SD Al-Birru.
+                  Your feedback has been recorded successfully. Your suggestions
+                  help us improve Al-Birru Primary School.
                 </p>
               </div>
 
@@ -220,7 +218,7 @@ export function FloatingFeedbackWidget() {
                     className="w-full gap-2 font-semibold shadow-md shadow-primary/20"
                   >
                     <MessageCircle className="size-4" />
-                    <span>Teruskan Langsung ke WhatsApp Panitia</span>
+                    <span>Forward to Admissions WhatsApp</span>
                   </Button>
                 )}
 
@@ -231,7 +229,7 @@ export function FloatingFeedbackWidget() {
                   className="w-full gap-2 text-xs"
                 >
                   <RotateCcw className="size-3.5" />
-                  <span>Kirim Masukan Lainnya</span>
+                  <span>Submit Another Response</span>
                 </Button>
               </div>
             </div>
@@ -241,7 +239,7 @@ export function FloatingFeedbackWidget() {
               {/* Category Pills */}
               <div className="flex flex-col gap-1.5">
                 <label className="text-xs font-semibold text-foreground">
-                  Pilih Kategori Masukan:
+                  Select Feedback Category:
                 </label>
                 <div className="flex flex-wrap gap-1.5">
                   {FEEDBACK_CATEGORIES.map((cat) => (
@@ -264,12 +262,12 @@ export function FloatingFeedbackWidget() {
               {/* Title (Optional) */}
               <div className="flex flex-col gap-1">
                 <label className="text-xs font-semibold text-foreground">
-                  Judul Ide / Fitur (Opsional):
+                  Proposal Title (Optional):
                 </label>
                 <Input
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
-                  placeholder="Misal: Fitur Buku Penghubung Online"
+                  placeholder="Example: Student digital diary"
                   className="text-xs rounded-xl"
                   maxLength={100}
                 />
@@ -278,12 +276,12 @@ export function FloatingFeedbackWidget() {
               {/* Content Field */}
               <div className="flex flex-col gap-1">
                 <label className="text-xs font-semibold text-foreground">
-                  Isi Saran / Deskripsi Fitur: *
+                  Feedback Description: *
                 </label>
                 <Textarea
                   value={content}
                   onChange={(e) => setContent(e.target.value)}
-                  placeholder="Ceritakan detail fitur yang Anda harapkan atau perbaikan yang menurut Anda perlu dilakukan..."
+                  placeholder="Describe the feature or enhancement you would like to see..."
                   rows={4}
                   required
                   className="text-xs rounded-xl resize-none"
@@ -295,23 +293,23 @@ export function FloatingFeedbackWidget() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 <div className="flex flex-col gap-1">
                   <label className="text-[11px] font-medium text-muted-foreground">
-                    Nama Anda (Opsional):
+                    Your Name (Optional):
                   </label>
                   <Input
                     value={contactName}
                     onChange={(e) => setContactName(e.target.value)}
-                    placeholder="Wali Santri / Tamu"
+                    placeholder="Guardian or Guest"
                     className="text-xs rounded-xl"
                   />
                 </div>
                 <div className="flex flex-col gap-1">
                   <label className="text-[11px] font-medium text-muted-foreground">
-                    No. WhatsApp (Opsional):
+                    WhatsApp Number (Optional):
                   </label>
                   <Input
                     value={contactInfo}
                     onChange={(e) => setContactInfo(e.target.value)}
-                    placeholder="0812xxxx"
+                    placeholder="081234567890"
                     className="text-xs rounded-xl"
                   />
                 </div>
@@ -332,7 +330,7 @@ export function FloatingFeedbackWidget() {
                   onClick={() => setIsOpen(false)}
                   className="text-xs"
                 >
-                  Batal
+                  Cancel
                 </Button>
 
                 <Button
@@ -344,12 +342,12 @@ export function FloatingFeedbackWidget() {
                   {isSubmitting ? (
                     <>
                       <Loader2 className="size-3.5 animate-spin" />
-                      <span>Menyimpan...</span>
+                      <span>Saving...</span>
                     </>
                   ) : (
                     <>
                       <Send className="size-3.5" />
-                      <span>Kirim Masukan Instan</span>
+                      <span>Submit Feedback</span>
                     </>
                   )}
                 </Button>

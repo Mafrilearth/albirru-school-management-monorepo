@@ -2,9 +2,9 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 
 const feedbackSchema = z.object({
-  category: z.string().min(1, "Kategori harus dipilih"),
+  category: z.string().min(1, "Category is required"),
   title: z.string().optional(),
-  content: z.string().min(5, "Masukan minimal 5 karakter"),
+  content: z.string().min(5, "Feedback must be at least 5 characters"),
   contactName: z.string().optional(),
   contactInfo: z.string().optional(),
 });
@@ -30,22 +30,20 @@ export async function POST(request: Request) {
     console.info("[USER_FEATURE_FEEDBACK]", {
       timestamp: new Date().toISOString(),
       category,
-      title: title || "Tanpa Judul",
+      title: title || "Untitled",
       content,
-      contactName: contactName || "Anonim",
+      contactName: contactName || "Anonymous",
       contactInfo: contactInfo || "-",
     });
 
     // Build instant WhatsApp link for direct forwarding
     const waPhone = "6281234567890";
-    const waMessage = `Assalamu'alaikum Admin SD Al-Birru,
-Saya ingin mengusulkan ide/masukan fitur:
+    const waMessage = `Feedback submission for Al-Birru Primary School:
 
-Kategori: ${category}
-${title ? `Judul: ${title}\n` : ""}Masukan/Ide:
+Category: ${category}
+${title ? `Title: ${title}\n` : ""}Content:
 "${content}"
-${contactName ? `Pengusul: ${contactName}` : ""}
-${contactInfo ? `Kontak: ${contactInfo}` : ""}`;
+${contactName ? `Contributor: ${contactName}\n` : ""}${contactInfo ? `Contact: ${contactInfo}` : ""}`;
 
     const whatsappUrl = `https://wa.me/${waPhone}?text=${encodeURIComponent(
       waMessage,
@@ -53,7 +51,7 @@ ${contactInfo ? `Kontak: ${contactInfo}` : ""}`;
 
     return NextResponse.json({
       success: true,
-      message: "Jazakumullahu khairan! Masukan Anda telah berhasil kami catat.",
+      message: "Feedback submitted successfully.",
       whatsappUrl,
     });
   } catch (error) {
@@ -61,7 +59,7 @@ ${contactInfo ? `Kontak: ${contactInfo}` : ""}`;
     return NextResponse.json(
       {
         success: false,
-        message: "Terjadi kesalahan sistem saat menyimpan masukan.",
+        message: "Internal server error while recording feedback.",
       },
       { status: 500 },
     );

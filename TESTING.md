@@ -24,7 +24,7 @@ flowchart TB
 
 ## 2. Testing Frameworks & Tooling
 
-| Test Type | Framework / Runner | Scope & Purpose |
+| Test Type | Framework | Purpose |
 | :--- | :--- | :--- |
 | **Unit & Integration** | **Vitest (`vitest`)** | Fast, native ESM unit test execution for validation schemas, utilities, and Server Actions. |
 | **End-to-End (E2E)** | **Playwright (`playwright`)** | Cross-browser emulation (Chromium, Firefox, WebKit) for end-to-end user workflows. |

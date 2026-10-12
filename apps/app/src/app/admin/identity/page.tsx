@@ -158,12 +158,8 @@ export default function MasterIdentityProvisioningPage() {
                           <SelectItem value="System Administrator">
                             System Administrator
                           </SelectItem>
-                          <SelectItem value="Instructor">
-                            Instructor (Teacher)
-                          </SelectItem>
-                          <SelectItem value="Guardian">
-                            Parent / Guardian
-                          </SelectItem>
+                          <SelectItem value="Instructor">Instructor</SelectItem>
+                          <SelectItem value="Guardian">Guardian</SelectItem>
                           <SelectItem value="Public Guest">
                             Public Guest
                           </SelectItem>

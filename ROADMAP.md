@@ -23,7 +23,7 @@ flowchart LR
 - [x] **Relational Schema & Drizzle ORM**: Implemented RFC 9562 UUIDv7 keys, audit columns, and strict soft-delete invariants.
 - [x] **Public Web Portal (`apps/web`)**: Institutional profile, accreditation credentials (National School Identification Number: `70010111`, National Accreditation Board — Grade A), news, curriculum showcase, and feedback collector.
 - [x] **Online Student Admissions**: Registration flow protected by Cloudflare Turnstile bot deterrence and Upstash Redis rate limiting.
-- [x] **Zero-Overhead Toolchain**: Biome v2 unified linter/formatter, Husky git automation, Commitlint, and Vitest test suite.
+- [x] **Zero-Overhead Toolchain**: Biome v2 unified code verification tool, Husky git automation, Commitlint, and Vitest test suite.
 
 ---
 
@@ -31,7 +31,7 @@ flowchart LR
 *Target: Q4 2026*
 
 - [ ] **Master Identity & RBAC Provisioning**:
-  - Full synchronization between Clerk user directory and PostgreSQL `users` / `profiles` tables.
+  - Full synchronization between Clerk user directory and PostgreSQL `users` and `profiles` tables.
   - Role-based access control for Administrator, Instructor, Guardian, and Student personas.
 - [ ] **Daily Sequential Attendance Tracking**:
   - Roster initialization for classroom cohorts.

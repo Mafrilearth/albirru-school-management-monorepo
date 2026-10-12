@@ -8,7 +8,7 @@ export interface AdmissionConfirmationEmailProps {
 export function AdmissionConfirmationEmail({
   studentName = "John Doe",
   trackingCode = "ADM-20261011-0001",
-  guardianName = "Parent / Guardian",
+  guardianName = "Guardian",
   registrationDate = "October 11, 2026",
 }: AdmissionConfirmationEmailProps) {
   return (

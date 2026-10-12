@@ -291,7 +291,7 @@ export function ContactForm() {
               htmlFor="fullName"
               className="block text-xs font-medium text-foreground mb-1.5"
             >
-              Parent / Guardian Legal Name{" "}
+              Guardian Legal Name{" "}
               <span className="text-destructive" aria-hidden="true">
                 *
               </span>
@@ -407,7 +407,7 @@ export function ContactForm() {
               htmlFor="message"
               className="block text-xs font-medium text-foreground mb-1.5"
             >
-              Inquiry / Consultation Message{" "}
+              Inquiry Message{" "}
               <span className="text-destructive" aria-hidden="true">
                 *
               </span>

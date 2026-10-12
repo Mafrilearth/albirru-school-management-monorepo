@@ -160,7 +160,7 @@ export function AdmissionsForm() {
             <FieldContent>
               <Input
                 id="guardianContactName"
-                placeholder="Parent / Guardian Name"
+                placeholder="Guardian Full Name"
                 disabled={isSubmitting}
                 {...register("guardianContactName")}
               />
@@ -217,13 +217,13 @@ export function AdmissionsForm() {
             data-invalid={!!errors.submittedDocumentsUrl}
           >
             <FieldLabel htmlFor="submittedDocumentsUrl">
-              Document Link (Google Drive, etc.)
+              Document Storage Link
             </FieldLabel>
             <FieldContent>
               <Input
                 type="url"
                 id="submittedDocumentsUrl"
-                placeholder="Folder link containing Family Card & Birth Certificate (Optional)"
+                placeholder="Folder link containing Family Card and Birth Certificate (Optional)"
                 disabled={isSubmitting}
                 {...register("submittedDocumentsUrl")}
               />
