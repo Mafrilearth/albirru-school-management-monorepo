@@ -1,5 +1,6 @@
 import { DirectionProvider } from "@albirru/design-system";
 import type { Metadata } from "next";
+import { NuqsAdapter } from "nuqs/adapters/next/app";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -16,7 +17,9 @@ export default function RootLayout({
   return (
     <html lang="en" dir="ltr" suppressHydrationWarning>
       <body className="antialiased bg-background text-foreground font-sans min-h-screen">
-        <DirectionProvider direction="ltr">{children}</DirectionProvider>
+        <DirectionProvider direction="ltr">
+          <NuqsAdapter>{children}</NuqsAdapter>
+        </DirectionProvider>
       </body>
     </html>
   );
