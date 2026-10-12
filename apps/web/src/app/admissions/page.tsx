@@ -25,11 +25,11 @@ export default function AdmissionsPage() {
       />
 
       <section
-        aria-labelledby="ppdb-form-section"
+        aria-labelledby="admissions-form-section"
         className="py-20 md:py-28 lg:py-32 bg-background relative"
       >
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 id="ppdb-form-section" className="sr-only">
+          <h2 id="admissions-form-section" className="sr-only">
             Registration Form
           </h2>
           <AdmissionsForm />

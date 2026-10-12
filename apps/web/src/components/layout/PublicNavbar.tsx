@@ -78,7 +78,7 @@ export function PublicNavbar() {
             size="sm"
             className="hidden sm:inline-flex font-semibold shadow-sm shadow-primary/20"
           >
-            <span>Daftar PPDB</span>
+            <span>Daftar Online</span>
           </Button>
 
           {/* Mobile/Tablet Menu Trigger */}
@@ -120,7 +120,7 @@ export function PublicNavbar() {
                   nativeButton={false}
                   className="w-full font-semibold shadow-sm"
                 >
-                  Daftar PPDB Online
+                  Daftar Online
                 </Button>
               </div>
             </SheetContent>

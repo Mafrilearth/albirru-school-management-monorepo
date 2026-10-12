@@ -48,7 +48,8 @@ export const fallbackArticles: ArticlePreview[] = [
   },
   {
     id: "3",
-    title: "PPDB SD Al-Birru TA 2026/2027 Gelombang I Resmi Dibuka",
+    title:
+      "Penerimaan Siswa Baru SD Al-Birru TA 2026/2027 Gelombang I Resmi Dibuka",
     slug: "admissions-2026-2027-phase-1-open",
     category: "Pengumuman",
     excerpt:

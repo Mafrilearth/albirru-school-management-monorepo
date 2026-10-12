@@ -50,7 +50,7 @@ export default function PortalHomePage() {
         </div>
 
         <div className="mt-8 pt-6 border-t border-slate-900 flex items-center justify-between text-xs text-slate-500 font-mono">
-          <span>NPSN: 70010111</span>
+          <span>School ID: 70010111</span>
           <span>SIS v1.0</span>
         </div>
       </div>

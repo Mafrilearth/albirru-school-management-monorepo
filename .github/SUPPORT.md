@@ -4,18 +4,18 @@ Thank you for engaging with the **Al-Birru School Information System (`albirru-s
 
 ---
 
-## 1. Prospective Parents & Admissions (PPDB)
+## 1. Prospective Parents & Admissions
 
 For inquiries regarding prospective student registration, curriculum, school tours, or admissions status:
 
 - **Admissions Portal**: [sd-albirru.sch.id/admissions](https://sd-albirru.sch.id/admissions)
-- **WhatsApp Admissions Desk**: `+62 812-3456-7890` (Active Mon–Fri, 08:00–15:00 WIB)
-- **Email Inquiries**: `ppdb@albirru.sch.id`
-- **Campus Address**: Jl. Sukabumi - Bogor, Cicantayan, Kabupaten Sukabumi, Jawa Barat 43155
+- **WhatsApp Admissions Desk**: `+62 812-3456-7890` (Active Mon–Fri, 08:00–15:00 UTC+7)
+- **Email Inquiries**: `admissions@albirru.sch.id`
+- **Campus Address**: Jl. Sukabumi - Bogor, Cicantayan, Sukabumi, West Java 43155, Indonesia
 
 ---
 
-## 2. Civitas Academica & Guardian Support
+## 2. Academic Community & Guardian Support
 
 For active students, parents/guardians, educators, and school administration:
 

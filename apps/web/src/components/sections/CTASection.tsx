@@ -16,7 +16,7 @@ export interface CTASectionProps {
 }
 
 export function CTASection({
-  kicker = "Penerimaan Peserta Didik Baru (PPDB) TA 2026/2027",
+  kicker = "Penerimaan Siswa Baru TA 2026/2027",
   title = "Fondasi Terbaik Menemani Tumbuh Kembang & Fitrah Ananda",
   description = "Kuota dibatasi ketat hanya 2 rombel (maksimal 40 santri per angkatan) guna memastikan pendampingan adab personal dan bimbingan tahfidz intensif. Konsultasikan kesiapan ananda bersama tim penerimaan kami.",
   primaryBtnText = "Daftar Siswa Baru Sekarang",
@@ -70,7 +70,7 @@ export function CTASection({
                 <Button
                   render={
                     <a
-                      href="https://wa.me/6281234567890?text=Assalamu'alaikum%20Tim%20PPDB%20SD%20Al-Birru,%20saya%20ingin%20berkonsultasi%20mengenai%20penerimaan%20santri%20baru%20TA%202026/2027."
+                      href="https://wa.me/6281234567890?text=Assalamu'alaikum%20Tim%20Penerimaan%20SD%20Al-Birru,%20saya%20ingin%20berkonsultasi%20mengenai%20penerimaan%20santri%20baru%20TA%202026/2027."
                       target="_blank"
                       rel="noopener noreferrer"
                     />

@@ -8,9 +8,9 @@ The **Al-Birru School Information System (`albirru-sis`)** is engineered and gov
 
 - **Foundation**: Yayasan Amal Cahaya Indonesia
 - **School**: Al-Birru Primary School
-- **National School Identification (NPSN)**: `70010111`
-- **Accreditation**: National Accreditation Board for Schools/Madrasahs (BAN-S/M) — Grade A
-- **Location**: Cicantayan, Kabupaten Sukabumi, Jawa Barat, Indonesia
+- **National School Identification Number**: `70010111`
+- **Accreditation**: National Accreditation Board — Grade A
+- **Location**: Cicantayan, Sukabumi, West Java, Indonesia
 
 ---
 

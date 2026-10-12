@@ -8,7 +8,7 @@ You operate as an Autonomous Lead Software Engineer & Product Architect on this 
 The system is built without artificial feature ceilings. When creating, modifying, or expanding features:
 - **Multidisciplinary Excellence:** Synthesize pedagogy (Islamic values, fitrah development, STEM), behavioral psychology, conversion rate optimization (CRO), and modern aesthetic craft.
 - **Rich Interactive Experiences:** Build multi-layered showcases, live progress meters, ambient lighting, and high-converting workflows instead of flat wireframe placeholders.
-- **Institutional Identity:** Uphold Al-Birru Primary School's core identity (NPSN: 70010111, Akreditasi Grade A BAN-S/M, Cicantayan Kab. Sukabumi, JSIT curriculum, 1:15 ratio, 3 Juz mutqin tahfidz).
+- **Institutional Identity:** Uphold Al-Birru Primary School's core identity (National School Identification Number: 70010111, National Accreditation Board — Grade A, Cicantayan, Sukabumi, West Java, Indonesia, integrated Islamic curriculum, 1:15 ratio, 3 Juz tahfidz mastery).
 - **Hard Technical Standards:** Maintain robust engineering invariants (UUIDv7, soft deletion, type safety, WCAG 2.1 AA, semantic CSS tokens, and clean git history).
 
 ## 3. Complete 24 Agent Skills Lifecycle Matrix

@@ -51,7 +51,7 @@ export default function AboutPage() {
         title="Discover SD Al-Birru"
         description="Exploring our noble aspirations, institutional philosophy, and dedicated educators committed to nurturing a Qur'anic generation with noble character and future-ready horizons."
         badges={[
-          { iconName: "shield", label: "Officially Registered NPSN" },
+          { iconName: "shield", label: "Officially Registered School" },
           {
             iconName: "book",
             label: "Merdeka Curriculum + Signature Al-Birru",

@@ -17,11 +17,11 @@
 ## 🏛️ Institutional Credentials
 
 - **Institution**: Al-Birru Primary School
-- **National School Identification Number (NPSN)**: `70010111`
-- **Accreditation Authority**: National Accreditation Board (BAN-S/M) — Grade A
+- **National School Identification Number**: `70010111`
+- **Accreditation Authority**: National Accreditation Board — Grade A
 - **Governing Foundation**: Yayasan Amal Cahaya Indonesia
-- **Medium of Instruction**: Indonesian and Formal English Immersion
-- **Campus Location**: Cicantayan, Kabupaten Sukabumi, Jawa Barat, Indonesia
+- **Medium of Instruction**: English Immersion and Bilingual Education
+- **Campus Location**: Cicantayan, Sukabumi, West Java, Indonesia
 
 ---
 
@@ -43,7 +43,7 @@ Built on Turborepo and pnpm workspaces following the enterprise **next-forge** p
 flowchart TD
     subgraph Apps ["Applications (apps/*)"]
         direction TB
-        Web["@albirru/web (:3001)<br/>Public Web & PPDB"]
+        Web["@albirru/web (:3001)<br/>Public Web & Admissions"]
         App["@albirru/app (:3000)<br/>Authenticated SIS Portal"]
         Api["@albirru/api (:3002)<br/>Edge Webhooks & Health"]
         Email["@albirru/email (:3003)<br/>Email Preview Studio"]
@@ -111,8 +111,8 @@ Each operational aspect is governed by dedicated, non-overlapping canonical spec
 | **[`TESTING.md`](TESTING.md)** | Testing pyramid strategy: Vitest unit tests, Playwright browser E2E, and Storybook visual testing. | QA Best Practices |
 | **[`AGENTS.md`](AGENTS.md)** | Autonomous agent operational constitution, 24 agent skills matrix, and hard invariants enforcement. | AI SDLC Standard |
 | **[`SECURITY.md`](.github/SECURITY.md)** | Vulnerability disclosure SLA, threat model, Cloudflare Turnstile bot deterrence, and Upstash rate limits. | ISO/IEC 29147 |
-| **[`GOVERNANCE.md`](GOVERNANCE.md)** | Institutional leadership roles (Yayasan, Lead Architect), decision-making models (Lazy Consensus, RFC/ADR). | CNCF Governance Model |
-| **[`ROADMAP.md`](ROADMAP.md)** | Multi-phase strategic roadmap (2026–2027): v0.1.0 baseline through v0.4.0 Dapodik/EMIS and offline sync. | Agile Milestones |
+| **[`GOVERNANCE.md`](GOVERNANCE.md)** | Institutional leadership roles (Foundation Board, Lead Architect), decision-making models (Lazy Consensus, RFC/ADR). | CNCF Governance Model |
+| **[`ROADMAP.md`](ROADMAP.md)** | Multi-phase strategic roadmap (2026–2027): v0.1.0 baseline through v0.4.0 national registry and offline sync. | Agile Milestones |
 | **[`CONTRIBUTING.md`](.github/CONTRIBUTING.md)** | Git branch lifecycle (`dev` -> `staging` -> `main`), Conventional Commits 1.0.0, and Husky quality gates. | GitHub Standard |
 | **[`CHANGELOG.md`](CHANGELOG.md)** | Chronological version release log following Semantic Versioning 2.0.0 and Keep a Changelog. | Keep a Changelog 1.1.0 |
 | **[`CODE_OF_CONDUCT.md`](.github/CODE_OF_CONDUCT.md)** | Community ethical standards, respectful collaboration guidelines, and incident reporting. | Contributor Covenant 2.1 |

@@ -44,7 +44,8 @@ export function HeroSection() {
                 <span className="relative inline-flex rounded-full size-2 bg-primary" />
               </span>
               <span className="text-xs font-semibold text-primary tracking-wide">
-                PPDB TA 2026/2027 Dibuka • Gelombang I (Sisa 14 Kursi)
+                Penerimaan Siswa TA 2026/2027 Dibuka • Gelombang I (Sisa 14
+                Kursi)
               </span>
             </div>
 
@@ -62,10 +63,10 @@ export function HeroSection() {
 
             {/* Evidence-Based Subheading */}
             <p className="mt-6 text-base sm:text-lg text-muted-foreground leading-relaxed max-w-2xl">
-              Sekolah Dasar Islam Terpadu berstandar JSIT di Sukabumi dengan
-              rasio terfokus 1:15 (maksimal 40 santri per angkatan).
-              Mengintegrasikan kurikulum nasional, program tahfidz 3 juz mutqin
-              bersanad, dan pembentukan adab qudwah hasanah sejak dini.
+              Sekolah Dasar Islam Terpadu unggulan di Sukabumi dengan rasio
+              terfokus 1:15 (maksimal 40 santri per angkatan). Mengintegrasikan
+              kurikulum nasional, program tahfidz 3 juz mutqin bersanad, dan
+              pembentukan adab qudwah hasanah sejak dini.
             </p>
 
             {/* Call to Actions & Conversion Gateway */}
@@ -96,15 +97,15 @@ export function HeroSection() {
             <div className="mt-8 pt-6 border-t border-border/80 flex flex-wrap items-center gap-y-2 gap-x-6 text-xs text-muted-foreground">
               <div className="flex items-center gap-1.5 font-medium text-foreground">
                 <CheckCircle2 className="size-4 text-primary shrink-0" />
-                <span>Akreditasi A BAN-S/M</span>
+                <span>Akreditasi Grade A</span>
               </div>
               <div className="flex items-center gap-1.5">
                 <ShieldCheck className="size-4 text-primary shrink-0" />
-                <span>NPSN Resmi: 70010111</span>
+                <span>Identifikasi Resmi: 70010111</span>
               </div>
               <div className="flex items-center gap-1.5">
                 <Award className="size-4 text-primary shrink-0" />
-                <span>Kurikulum Terpadu JSIT Indonesia</span>
+                <span>Kurikulum Terpadu Islam</span>
               </div>
             </div>
           </div>
@@ -298,11 +299,11 @@ export function HeroSection() {
               </div>
             </div>
             <p className="text-sm font-bold text-foreground">
-              Akreditasi BAN-S/M
+              Akreditasi Nasional
             </p>
             <p className="text-xs text-muted-foreground mt-1 leading-relaxed">
               Predikat Unggul standar nasional dengan integrasi penuh standar
-              mutu JSIT Indonesia.
+              mutu pendidikan terpadu.
             </p>
           </Card>
 

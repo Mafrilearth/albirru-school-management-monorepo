@@ -118,9 +118,9 @@ const schoolStructuredData = {
   email: "info@sdalbirru.sch.id",
   address: {
     "@type": "PostalAddress",
-    streetAddress: "Kp. Cisande RT 006/002, Desa Cijalingan, Kec. Cicantayan",
-    addressLocality: "Kab. Sukabumi",
-    addressRegion: "Jawa Barat",
+    streetAddress: "Kp. Cisande RT 006/002, Cijalingan, Cicantayan",
+    addressLocality: "Sukabumi",
+    addressRegion: "West Java",
     postalCode: "43155",
     addressCountry: "ID",
   },

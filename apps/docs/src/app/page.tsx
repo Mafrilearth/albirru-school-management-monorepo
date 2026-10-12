@@ -39,7 +39,7 @@ const DOCS_LIST = [
   {
     num: "08",
     title: "Landing Page View Architecture",
-    desc: "Public landing page section deconstruction and statutory NPSN credentials.",
+    desc: "Public landing page section deconstruction and statutory institutional credentials.",
   },
   {
     num: "09",
@@ -156,7 +156,7 @@ export default function DocsHomePage() {
           color: "#94a3b8",
         }}
       >
-        SD Al-Birru Tahfidzul Qur&apos;an &bull; NPSN 70010111 &bull; next-forge
+        Al-Birru Primary School &bull; School ID 70010111 &bull; next-forge
         Enterprise Monorepo Architecture
       </footer>
     </div>

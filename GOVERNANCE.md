@@ -18,9 +18,9 @@ The engineering and operational governance of the platform adheres to three core
 
 | Role | Responsibility | Authority Scope |
 | :--- | :--- | :--- |
-| **Institutional Board (Yayasan)** | Strategic oversight, budget approval, compliance with national education regulations. | Final approval for institutional policies and major data disclosures. |
+| **Institutional Foundation Board** | Strategic oversight, budget approval, compliance with national education regulations. | Final approval for institutional policies and major data disclosures. |
 | **Lead Software Architect** | Technical vision, system architecture, invariants enforcement, and release gating. | Authoritative approval on pull requests, database migrations, and ADRs. |
-| **Security & Privacy Officer** | Vulnerability triage, access audits, cryptographic oversight, and student data protection. | Veto power on any feature violating student privacy (UU PDP / GDPR principles). |
+| **Security & Privacy Officer** | Vulnerability triage, access audits, cryptographic oversight, and student data protection. | Veto power on any feature violating student privacy (statutory data privacy and GDPR principles). |
 | **Maintainers / Engineers** | Feature implementation, unit test authoring, dependency upgrades, and code reviews. | Code contributions across `apps/*` and `packages/*`. |
 
 ---

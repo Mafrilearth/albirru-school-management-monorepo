@@ -10,17 +10,17 @@ interface StatutoryItem {
 
 const statutoryData: readonly StatutoryItem[] = [
   {
-    id: "npsn",
-    label: "NPSN Kemendikdasmen",
+    id: "registry",
+    label: "Identifikasi Resmi Sekolah",
     value: "70010111",
-    subValue: "Terdaftar Resmi Data Pokok Pendidikan",
+    subValue: "Terdaftar Resmi Basis Data Nasional",
     icon: ShieldCheck,
   },
   {
     id: "accreditation",
     label: "Status Akreditasi Sekolah",
     value: "Grade A (Unggul)",
-    subValue: "Sertifikasi BAN-S/M Jawa Barat",
+    subValue: "Badan Akreditasi Nasional",
     icon: Award,
   },
   {
@@ -33,8 +33,8 @@ const statutoryData: readonly StatutoryItem[] = [
   {
     id: "network",
     label: "Jejaring Mutu Pendidikan",
-    value: "Standar JSIT Indonesia",
-    subValue: "Jaringan Sekolah Islam Terpadu",
+    value: "Kurikulum Islam Terpadu",
+    subValue: "Standar Pembelajaran Karakter Terpadu",
     icon: CheckCircle2,
   },
 ];

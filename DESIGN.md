@@ -10,7 +10,7 @@
 ## 1. Executive Summary & Problem Statement
 
 ### 1.1 Context
-Primary Islamic education institutions require integrated operational management spanning student admissions (PPDB), daily multi-session attendance, weighted academic grading, guardian reporting, and institutional branding. Traditional school software is fragmented across paid external CMSs (Sanity/Strapi), rigid monolithic legacy systems (Jibas/Moodle), or disjointed spreadsheets.
+Primary Islamic education institutions require integrated operational management spanning student admissions, daily multi-session attendance, weighted academic grading, guardian reporting, and institutional branding. Traditional school software is fragmented across paid external CMSs (Sanity/Strapi), rigid monolithic legacy systems (Jibas/Moodle), or disjointed spreadsheets.
 
 ### 1.2 Goals
 1. **Unified Modular Monolith**: Consolidate institutional public web and administrative SIS operations under a unified Next.js 16 monorepo with zero external paid CMS runtime dependencies.
@@ -94,7 +94,7 @@ The design system is constructed upon `@albirru/design-system` using `@base-ui/r
 - **Overlays**: Modals, sheets, and drawers must use `Dialog`, `Sheet`, or `Drawer` primitives with accessible `DialogTitle` (use `className="sr-only"` if visually hidden). Manual `z-index` stacking hacks are prohibited.
 - **Card Composition**: Must compose hierarchically using `CardHeader` -> `CardTitle` -> `CardDescription` -> `CardContent` -> `CardFooter`.
 - **Button Micro-states**: Buttons do not carry bespoke `isLoading` props. Compose with `<Spinner />` and `disabled` attributes.
-- **Avatars**: Every `Avatar` must render an accessible `<AvatarFallback>` displaying civitas initials.
+- **Avatars**: Every `Avatar` must render an accessible `<AvatarFallback>` displaying user initials.
 - **Icon Placement**: Icons from `lucide-react` must specify positioning using `data-icon="inline-start"` or `data-icon="inline-end"`.
 
 ### 3.2 Accessible Form Architecture
@@ -104,7 +104,7 @@ All form workflows must utilize React Hook Form with `@hookform/resolvers/zod`:
 <form onSubmit={handleSubmit(onSubmit)}>
   <FieldGroup className="flex flex-col gap-4">
     <Field data-invalid={Boolean(errors.guardianPhone)}>
-      <FieldLabel htmlFor="guardianPhone">Nomor WhatsApp Wali</FieldLabel>
+      <FieldLabel htmlFor="guardianPhone">Guardian Phone Number</FieldLabel>
       <InputGroup>
         <InputGroupAddon>+62</InputGroupAddon>
         <InputGroupInput
@@ -147,12 +147,12 @@ export interface ActionResponse<T = unknown> {
 ### 4.2 Error Descriptor Taxonomy
 | HTTP Status | Error Code | Description | User Message |
 | :---: | :--- | :--- | :--- |
-| `400` | `ERR_VALIDATION_FAILED` | Payload rejected by Zod schema | "Mohon periksa kembali isian formulir Anda." |
-| `401` | `ERR_UNAUTHORIZED` | Invalid or absent Clerk session | "Sesi telah berakhir. Silakan login kembali." |
-| `403` | `ERR_FORBIDDEN` | RBAC role authorization denied | "Anda tidak memiliki wewenang untuk aksi ini." |
-| `404` | `ERR_NOT_FOUND` | Target record does not exist or inactive | "Data yang dicari tidak ditemukan." |
-| `429` | `ERR_RATE_LIMITED` | Rate limiter threshold exceeded | "Terlalu banyak permintaan. Mohon tunggu beberapa saat." |
-| `500` | `ERR_INTERNAL_SERVER` | Unhandled exception | "Terjadi kendala pada sistem. Silakan coba kembali." |
+| `400` | `ERR_VALIDATION_FAILED` | Payload rejected by Zod schema | "Please review and correct your form inputs." |
+| `401` | `ERR_UNAUTHORIZED` | Invalid or absent Clerk session | "Session expired. Please sign in again." |
+| `403` | `ERR_FORBIDDEN` | RBAC role authorization denied | "You do not have permission to perform this action." |
+| `404` | `ERR_NOT_FOUND` | Target record does not exist or inactive | "The requested record could not be found." |
+| `429` | `ERR_RATE_LIMITED` | Rate limiter threshold exceeded | "Too many requests. Please wait a few moments." |
+| `500` | `ERR_INTERNAL_SERVER` | Unhandled exception | "An unexpected system error occurred. Please try again." |
 
 ---
 

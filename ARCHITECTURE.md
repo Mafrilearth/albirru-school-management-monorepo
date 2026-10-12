@@ -29,13 +29,13 @@ The repository is structured as a **Modern Modular Monolith** utilizing the stan
 │   │   │   ├── app/                  # Flattened public marketing routes:
 │   │   │   │   ├── page.tsx          # Institutional landing page (Hero, Badges, Programs, CTA)
 │   │   │   │   ├── about/            # History, vision, mission, and accreditation credentials
-│   │   │   │   ├── admissions/       # Public PPDB registration form island
+│   │   │   │   ├── admissions/       # Public admissions registration form island
 │   │   │   │   ├── programs/         # Tahfidz, bilingual, and extracurricular curriculum
 │   │   │   │   ├── news/             # Institutional news and press releases
 │   │   │   │   ├── gallery/          # Visual activity photo and video gallery
 │   │   │   │   └── contact/          # Physical campus location, Google Maps, and contact form
 │   │   │   ├── modules/
-│   │   │   │   └── admissions/       # Public PPDB submission Server Action (Turnstile + Rate Limiter)
+│   │   │   │   └── admissions/       # Public admissions submission Server Action (Turnstile + Rate Limiter)
 │   │   │   ├── components/           # Public UI sections (Hero, Credentials, Values, Stats, Navbar, Footer)
 │   │   │   └── lib/                  # Client-side analytics and Turnstile helpers
 │   │   └── package.json              # Next.js 16 + Turnstile + Upstash Rate Limiter + SEO
@@ -135,7 +135,7 @@ flowchart TD
 
     subgraph Applications ["Monorepo Applications"]
         direction TB
-        Web["apps/web (Port 3001)<br/>• Marketing & News<br/>• Accreditation Badges<br/>• Public PPDB Form"]
+        Web["apps/web (Port 3001)<br/>• Marketing & News<br/>• Accreditation Badges<br/>• Public Admissions Form"]
         App["apps/app (Port 3000)<br/>• Admin Portal (/admin)<br/>• Identity Management<br/>• Attendance & Grading"]
         Api["apps/api (Port 3002)<br/>• Edge Route Handlers<br/>• /health Probe<br/>• Webhook Ingress (Clerk / Resend)"]
     end
@@ -182,7 +182,7 @@ Each application in `apps/` corresponds to a distinct network endpoint, port all
 | Application | Monorepo Package | Canonical Subdomain | Dev Port | Primary Responsibility |
 |---|---|---|---|---|
 | **Portal / SIS** | `@albirru/app` | `app.sd-albirru.sch.id` | `:3000` | Authenticated school management (Admin, Teachers, Guardians, Students) |
-| **Public Web** | `@albirru/web` | `sd-albirru.sch.id` | `:3001` | Public landing page, school profile, accreditation credentials, and PPDB registration |
+| **Public Web** | `@albirru/web` | `sd-albirru.sch.id` | `:3001` | Public landing page, school profile, accreditation credentials, and admissions registration |
 | **API & Webhooks** | `@albirru/api` | `api.sd-albirru.sch.id` | `:3002` | Health monitoring probes and incoming statutory webhooks (Clerk, Resend) |
 | **Email Studio** | `@albirru/email` | `email.sd-albirru.sch.id` | `:3003` | React Email template development and local visual preview workbench |
 | **Documentation** | `@albirru/docs` | `docs.sd-albirru.sch.id` | `:3004` | Statutory specifications explorer (PRD 01-11, ADRs, and operational runbooks) |
@@ -199,7 +199,7 @@ Each application in `apps/` corresponds to a distinct network endpoint, port all
 #### 3.1.2. Public Web Application (`apps/web`) — Port 3001
 - **Name:** Al-Birru Public Web Application (`@albirru/web`)
 - **Subdomain:** `sd-albirru.sch.id` (Apex root; Preview: `albirru.mafrilearth.com`)
-- **Description:** The primary public-facing portal for Al-Birru Primary School. Houses the high-performance institutional profile, statutory accreditation badges (NPSN `70010111` & BAN-S/M), school curriculum programs, news and gallery archives, and the online student registration (PPDB) form. Interacts with Cloudflare Turnstile for bot deterrence and Upstash Redis for submission throttling.
+- **Description:** The primary public-facing portal for Al-Birru Primary School. Houses the high-performance institutional profile, statutory accreditation credentials (National School Identification Number: `70010111`, National Accreditation Board — Grade A), school curriculum programs, news and gallery archives, and the online student admissions form. Interacts with Cloudflare Turnstile for bot deterrence and Upstash Redis for submission throttling.
 - **Architectural Boundary:** Strictly contains public web pages (`/`, `/about`, `/admissions`, `/programs`, `/news`, `/gallery`, `/contact`). All authenticated portal features and domain management tools are isolated in `apps/app`. Ad-hoc in-app design-system pages are prohibited; Storybook (`apps/storybook`) serves as the official component workshop.
 - **Technologies:** Next.js 16 (App Router, RSC), React 19, TypeScript, Tailwind CSS v4, shadcn/ui, Radix UI, Motion, Lucide React, React Hook Form, Zod, ZSA.
 - **Deployment:** Vercel (Edge & Serverless Compute).
@@ -267,11 +267,11 @@ Each application in `apps/` corresponds to a distinct network endpoint, port all
 
 ### 3.3. Backend Services & Domain Modules
 
-The business logic follows a **Modern Modular Monolith** pattern. Domain modules are encapsulated in `apps/app/src/modules/` (plus public PPDB ingress in `apps/web/src/modules/admissions/`), backed by `@albirru/database`:
+The business logic follows a **Modern Modular Monolith** pattern. Domain modules are encapsulated in `apps/app/src/modules/` (plus public admissions ingress in `apps/web/src/modules/admissions/`), backed by `@albirru/database`:
 
 1. **Master Identity & RBAC Service (`apps/app/src/modules/identity/`):**
-   - Central authority for authenticating civitas academica and provisioning user accounts across four statutory roles: Administrator, Instruktur/Guru, Wali Murid, and Siswa.
-   - Enforces unique identity attributes (NIK, NISN, NIP), user profiles, and session security verification.
+   - Central authority for authenticating academic users and provisioning user accounts across four statutory roles: Administrator, Instructor, Guardian, and Student.
+   - Enforces unique identity attributes (national identification numbers, student registry IDs, employee IDs), user profiles, and session security verification.
 
 2. **Daily Attendance Tracking Service (`apps/app/src/modules/attendance/`):**
    - Manages classroom attendance sessions. Initializes baseline attendance rosters, records individual student attendance status (`Present`, `Sick`, `Excused`, `Absent`), calculates daily attendance statistics, and enforces post-finalization immutability locking.
@@ -282,7 +282,7 @@ The business logic follows a **Modern Modular Monolith** pattern. Domain modules
 4. **Guardian Portal Service (`apps/app/src/modules/guardian/`):**
    - Read-only data aggregation service providing guardians with real-time visibility into dependent attendance records, gradebook summaries, and downloadable PDF report card archives.
 
-5. **PPDB Public Admission Ingress Service (`apps/web/src/modules/admissions/`):**
+5. **Public Admissions Ingress Service (`apps/web/src/modules/admissions/`):**
    - Public-facing ingress service managing prospective student applications. Validates Cloudflare Turnstile tokens, enforces IP-based rate limiting via Upstash Redis (5 submissions per 15 minutes), parses payloads with Zod, generates sequential tracking codes (`ADM-YYYYMMDD-XXXX`), and persists records with referential audit integrity.
 
 ---
@@ -384,7 +384,7 @@ flowchart LR
 ## 7. Security Considerations
 
 - **Single Sign-On (SSO) with Wildcard Cookies:** Clerk manages secure HTTP-only session cookies scoped to `.sd-albirru.sch.id`, enabling authenticated transitions between the public marketing site and the portal without re-authentication.
-- **Granular Role-Based Access Control (RBAC):** Four statutory roles (Administrator, Instruktur/Guru, Wali Murid, Siswa) enforced at Next.js Server Action boundaries and centralized Clerk Middleware.
+- **Granular Role-Based Access Control (RBAC):** Four statutory roles (Administrator, Instructor, Guardian, Student) enforced at Next.js Server Action boundaries and centralized Clerk Middleware.
 - **Zero Physical Deletion:** Hard invariant prohibiting SQL `DELETE`. Records are deactivated logically via `is_active = false` to guarantee statutory audit integrity.
 - **UUIDv7 Primary Keys:** All operational database tables utilize monotonically ordered UUIDv7 (`uuidv7()`), preventing sequence enumeration attacks while maintaining optimal B-tree indexing performance.
 - **Strict Runtime Validation:** Every Server Action mutation parses inputs through Zod schemas before database interaction.
@@ -448,7 +448,7 @@ flowchart LR
 ## 9. Future Considerations / Roadmap
 
 - **Offline-First PWA Synchronization:** Progressive web app service workers with background sync capabilities for rural attendance recording under unstable network connectivity.
-- **Statutory Dapodik / EMIS Adapters:** Automated synchronization adapters for the Indonesian Ministry of Education (Kemendikbudristek) Dapodik and Ministry of Religious Affairs (Kemenag) EMIS APIs.
+- **Statutory National Education Registry Adapters:** Automated synchronization adapters for national education databases and institutional registries.
 - **Multi-Branch Campus Architecture:** Schema extensions to support prospective regional branch campuses under Yayasan Amal Cahaya Indonesia without database fragmentation.
 
 ---
@@ -457,8 +457,8 @@ flowchart LR
 
 - **Project Name:** Al-Birru School Information System (`albirru-sis`)
 - **Institution:** Al-Birru Primary School
-- **National School Identification (NPSN):** `70010111`
-- **Accreditation Authority:** Badan Akreditasi Nasional Sekolah/Madrasah (BAN-S/M)
+- **National School Identification Number:** `70010111`
+- **Accreditation Authority:** National Accreditation Board — Grade A
 - **Repository URL:** `https://github.com/Mafrilearth/albirru-school-management-monorepo`
 - **Primary Architecture Standard:** next-forge Monorepo Pattern
 - **Date of Last Architectural Update:** 2026-10-11
@@ -467,14 +467,17 @@ flowchart LR
 
 ## 11. Glossary / Acronyms
 
-- **BAN-S/M:** Badan Akreditasi Nasional Sekolah/Madrasah (National Accreditation Board for Schools/Madrasahs)
-- **Dapodik:** Data Pokok Pendidikan (Ministry of Education Core School Database)
-- **EMIS:** Education Management Information System (Ministry of Religious Affairs School Database)
-- **NPSN:** Nomor Pokok Sekolah Nasional (Statutory National School Identification Number: `70010111`)
-- **PPDB:** Penerimaan Peserta Didik Baru (Statutory Student Admission & Enrollment Portal)
+- **API:** Application Programming Interface
+- **CDN:** Content Delivery Network
+- **CI/CD:** Continuous Integration and Continuous Deployment
+- **CRUD:** Create, Read, Update, Delete
+- **DOM:** Document Object Model
+- **IAM:** Identity and Access Management
+- **ORM:** Object-Relational Mapping
 - **RBAC:** Role-Based Access Control
-- **RSC:** React Server Components (Next.js App Router native server execution)
+- **RSC:** React Server Components (Next.js server-side execution model)
 - **SIS:** School Information System (Integrated institutional management platform)
 - **SSO:** Single Sign-On (Shared authentication sessions across subdomains via wildcard cookies)
 - **UUIDv7:** Universally Unique Identifier Version 7 (Monotonically time-ordered 128-bit unique identifier)
+- **WAF:** Web Application Firewall
 - **ZSA:** Zero-overhead Server Actions Wrapper (Type-safe Server Action wrapper with Zod validation)

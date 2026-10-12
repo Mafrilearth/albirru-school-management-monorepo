@@ -57,7 +57,7 @@ export function BrandLogo({
           SD Al-Birru
         </span>
         <span className="font-mono text-[9px] xl:text-[10px] font-bold text-primary uppercase tracking-widest mt-1">
-          NPSN: 70010111
+          School ID: 70010111
         </span>
       </div>
     </Link>

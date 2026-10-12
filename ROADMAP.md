@@ -8,9 +8,9 @@ This document outlines the strategic development milestones and engineering road
 
 ```mermaid
 flowchart LR
-    M0["v0.1.0 (Q3 2026)<br/>• Baseline Infra<br/>• Public Web & PPDB<br/>• Status: Stable"] --> M1["v0.2.0 (Q4 2026)<br/>• Authenticated SIS<br/>• Attendance & Grading<br/>• Target: Q4 2026"]
+    M0["v0.1.0 (Q3 2026)<br/>• Baseline Infra<br/>• Public Web & Admissions<br/>• Status: Stable"] --> M1["v0.2.0 (Q4 2026)<br/>• Authenticated SIS<br/>• Attendance & Grading<br/>• Target: Q4 2026"]
     M1 --> M2["v0.3.0 (Q1 2027)<br/>• Guardian Portal<br/>• Digital Report Cards<br/>• Target: Q1 2027"]
-    M2 --> M3["v0.4.0 (Q2 2027)<br/>• Dapodik & EMIS<br/>• Offline PWA Sync<br/>• Target: Q2 2027"]
+    M2 --> M3["v0.4.0 (Q2 2027)<br/>• National Registry Sync<br/>• Offline PWA Sync<br/>• Target: Q2 2027"]
     M3 --> M4["v1.0.0 (Q3 2027)<br/>• Multi-Campus Scale<br/>• Biometric Webhooks<br/>• Target: Q3 2027"]
 ```
 
@@ -21,8 +21,8 @@ flowchart LR
 
 - [x] **Turborepo Modular Monolith**: Deployed 7 Next.js 16 applications and 3 shared packages.
 - [x] **Relational Schema & Drizzle ORM**: Implemented RFC 9562 UUIDv7 keys, audit columns, and strict soft-delete invariants.
-- [x] **Public Web Portal (`apps/web`)**: Institutional profile, accreditation credentials (NPSN: `70010111`, BAN-S/M), news, curriculum showcase, and feedback collector.
-- [x] **PPDB Online Admissions**: Registration flow protected by Cloudflare Turnstile bot deterrence and Upstash Redis rate limiting.
+- [x] **Public Web Portal (`apps/web`)**: Institutional profile, accreditation credentials (National School Identification Number: `70010111`, National Accreditation Board — Grade A), news, curriculum showcase, and feedback collector.
+- [x] **Online Student Admissions**: Registration flow protected by Cloudflare Turnstile bot deterrence and Upstash Redis rate limiting.
 - [x] **Zero-Overhead Toolchain**: Biome v2 unified linter/formatter, Husky git automation, Commitlint, and Vitest test suite.
 
 ---
@@ -32,7 +32,7 @@ flowchart LR
 
 - [ ] **Master Identity & RBAC Provisioning**:
   - Full synchronization between Clerk user directory and PostgreSQL `users` / `profiles` tables.
-  - Multi-tenant role access for Administrator, Guru/Instructor, and Wali Murid.
+  - Role-based access control for Administrator, Instructor, Guardian, and Student personas.
 - [ ] **Daily Sequential Attendance Tracking**:
   - Roster initialization for classroom cohorts.
   - Quick-action attendance markers (`Present`, `Sick`, `Excused`, `Absent`).
@@ -59,9 +59,9 @@ flowchart LR
 ## 🌐 Milestone 3: v0.4.0 — Statutory Integrations & Offline Resilience
 *Target: Q2 2027*
 
-- [ ] **Dapodik & EMIS Synchronization Adapters**:
-  - Data interchange bridges for Indonesian Ministry of Education (Kemendikbudristek Dapodik) and Ministry of Religious Affairs (Kemenag EMIS).
-  - Validation rules conforming to statutory national student format (NISN, NIK, NPSN).
+- [ ] **National Education Registry Synchronization Adapters**:
+  - Data interchange bridges for national education databases and institutional registries.
+  - Validation rules conforming to statutory national student and institution identifier formats.
 - [ ] **Offline-First PWA for Field Operations**:
   - Service Worker caching with background sync for rural campus environments.
   - Local attendance queue persistence with optimistic UI updates.

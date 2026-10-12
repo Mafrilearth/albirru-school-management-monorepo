@@ -78,9 +78,9 @@ export default function ContactPage() {
       <PageHeader
         kicker="SECRETARIAT &amp; ADMISSIONS"
         title="Contact the Committee &amp; Visit Our Campus"
-        description="We warmly welcome you and are ready to assist you in discussing the future of your child's education at SD Al-Birru Sukabumi."
+        description="We warmly welcome you and are ready to assist you in discussing the future of your child's education at Al-Birru Primary School."
         badges={[
-          { iconName: "map-pin", label: "Cicantayan, Kab. Sukabumi" },
+          { iconName: "map-pin", label: "Cicantayan, Sukabumi" },
           { iconName: "clock", label: "Monday–Friday: 07:30 AM – 03:00 PM" },
           { iconName: "phone", label: "Fast-Response Admissions Team" },
         ]}
@@ -122,9 +122,8 @@ export default function ContactPage() {
                           Campus Address
                         </h4>
                         <p className="mt-0.5 leading-relaxed text-xs sm:text-sm">
-                          Kp. Cisande RT 006/002, Desa Cijalingan, Kec.
-                          Cicantayan, Kabupaten Sukabumi, Jawa Barat 43155,
-                          Indonesia
+                          Kp. Cisande RT 006/002, Cijalingan, Cicantayan,
+                          Sukabumi, West Java 43155, Indonesia
                         </p>
                       </div>
                     </div>
@@ -286,11 +285,10 @@ export default function ContactPage() {
                       className="size-8 text-primary mb-2 relative z-10"
                     />
                     <p className="text-sm font-semibold text-foreground relative z-10">
-                      SD Al-Birru Tahfidzul Qur&apos;an Sukabumi
+                      Al-Birru Primary School
                     </p>
                     <p className="text-xs text-muted-foreground mt-0.5 relative z-10">
-                      Kp. Cisande RT 006/002, Desa Cijalingan, Kec. Cicantayan,
-                      Kab. Sukabumi
+                      Kp. Cisande RT 006/002, Cijalingan, Cicantayan, Sukabumi
                     </p>
                     <Button
                       render={

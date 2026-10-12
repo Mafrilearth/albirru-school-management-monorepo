@@ -55,7 +55,7 @@ flowchart LR
 
 ```mermaid
 flowchart LR
-    Client["Client Submission<br/>(PPDB Form)"] --> Turnstile{"Cloudflare Turnstile<br/>Valid Token?"}
+    Client["Client Submission<br/>(Admissions Form)"] --> Turnstile{"Cloudflare Turnstile<br/>Valid Token?"}
     Turnstile -->|No / Bot| Reject["403 Forbidden<br/>Bot Deterred"]
     Turnstile -->|Yes| RateLimit{"Upstash Redis<br/>Limit <= 5 / 15m?"}
     RateLimit -->|Exceeded| Throttle["429 Too Many Requests<br/>ERR_RATE_LIMITED"]

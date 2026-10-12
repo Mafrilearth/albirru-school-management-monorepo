@@ -16,7 +16,7 @@ body:
       description: Which domain does this feature belong to?
       options:
         - "Identity & RBAC Provisioning"
-        - "Online Admissions (PPDB)"
+        - "Online Student Admissions"
         - "Daily Multi-Session Attendance"
         - "Academic Grading & Report Cards"
         - "Guardian Self-Service Portal"

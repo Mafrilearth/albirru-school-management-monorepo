@@ -19,17 +19,17 @@ interface TrustItem {
 const trustItems: TrustItem[] = [
   {
     icon: ShieldCheck,
-    label: "KEMENDIKDASMEN RI",
+    label: "KEMENTERIAN PENDIDIKAN",
     sub: "Curriculum Merdeka Resmi",
   },
   {
     icon: Award,
-    label: "KEMENAG SUKABUMI",
+    label: "KEMENTERIAN AGAMA",
     sub: "Bimbingan Tahfidz Al-Qur'an",
   },
   {
     icon: BookOpen,
-    label: "JSIT INDONESIA",
+    label: "JARINGAN SEKOLAH ISLAM",
     sub: "Jaringan Sekolah Islam Terpadu",
   },
   {
@@ -39,7 +39,7 @@ const trustItems: TrustItem[] = [
   },
   {
     icon: CheckCircle2,
-    label: "BAN-S/M JABAR",
+    label: "AKREDITASI NASIONAL",
     sub: "Standar Mutu Terakreditasi",
   },
   {

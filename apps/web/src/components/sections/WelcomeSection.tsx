@@ -92,7 +92,7 @@ export function WelcomeSection() {
                     <span>Sekolah Ramah Anak</span>
                   </div>
                   <span className="font-semibold uppercase tracking-wider text-foreground">
-                    STANDAR JSIT TERPADU
+                    STANDAR PENDIDIKAN TERPADU
                   </span>
                 </div>
               </Card>

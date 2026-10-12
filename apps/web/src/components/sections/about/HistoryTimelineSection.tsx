@@ -26,7 +26,7 @@ export function HistoryTimelineSection() {
       badge: "PHASE 02 // LEGALITY & INAUGURATION",
       title: "Operational Permit & Inaugural Cohort",
       description:
-        "SD Al-Birru officially received its operational permit from the Education and Culture Office alongside an official NPSN. Classes began for the first cohort with modern facilities and an ideal 1:15 student-teacher ratio.",
+        "Al-Birru Primary School officially received its operational permit from the Education and Culture Office alongside official statutory registration. Classes began for the first cohort with modern facilities and an ideal 1:15 student-teacher ratio.",
       icon: Calendar,
     },
     {

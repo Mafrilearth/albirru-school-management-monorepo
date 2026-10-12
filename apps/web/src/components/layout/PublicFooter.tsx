@@ -55,7 +55,7 @@ export function PublicFooter() {
                   aria-hidden="true"
                   className="size-3.5 text-primary"
                 />
-                <span>NPSN Registered</span>
+                <span>Officially Registered</span>
               </Badge>
               <Badge variant="outline" className="gap-1.5 font-normal">
                 <Award aria-hidden="true" className="size-3.5 text-primary" />
@@ -149,8 +149,8 @@ export function PublicFooter() {
                   className="size-4 text-muted-foreground mt-0.5 shrink-0"
                 />
                 <span className="leading-snug">
-                  Kp. Cisande RT 006/002, Desa Cijalingan, Kec. Cicantayan, Kab.
-                  Sukabumi, Jawa Barat
+                  Kp. Cisande RT 006/002, Cijalingan, Cicantayan, Sukabumi, West
+                  Java, Indonesia
                 </span>
               </div>
 
@@ -234,7 +234,7 @@ export function PublicFooter() {
       {/* Bottom Legal & Copyright Bar */}
       <div className="border-t border-border bg-muted/30 py-6 relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-muted-foreground">
-          <p>© {currentYear} SD Al-Birru Sukabumi. All rights reserved.</p>
+          <p>© {currentYear} Al-Birru Primary School. All rights reserved.</p>
           <div className="flex items-center gap-6">
             <Link
               href="/about"

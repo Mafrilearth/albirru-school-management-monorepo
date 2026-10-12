@@ -41,7 +41,7 @@ export function AdmissionConfirmationEmail({
             Al-Birru Primary School
           </h1>
           <p style={{ fontSize: "14px", color: "#64748b", margin: "4px 0 0" }}>
-            NPSN: 70010111 | BAN-S/M Accreditation
+            School ID: 70010111 | National Accreditation Grade A
           </p>
         </div>
 

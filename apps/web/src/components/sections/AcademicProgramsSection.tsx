@@ -9,7 +9,7 @@ import { Card } from "@/components/ui/card";
 
 const programs = [
   {
-    title: "Kurikulum Nasional & Standar JSIT",
+    title: "Kurikulum Nasional & Standar Terpadu",
     badge: "Akademik Terpadu",
     desc: "Harmonisasi Kurikulum Merdeka nasional dengan nilai-nilai Islam mendalam. Menekankan nalar kritis sains, adab harian, dan pembentukan profil pelajar berkarakter mulia.",
     icon: BookOpen,

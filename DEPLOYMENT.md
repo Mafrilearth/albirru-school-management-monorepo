@@ -15,7 +15,7 @@ flowchart TD
 
     subgraph Apps ["Monorepo Applications"]
         direction TB
-        Web["apps/web (Port 3001)<br/>sd-albirru.sch.id (Public Web & PPDB)"]
+        Web["apps/web (Port 3001)<br/>sd-albirru.sch.id (Public Web & Admissions)"]
         App["apps/app (Port 3000)<br/>app.sd-albirru.sch.id (Authenticated SIS)"]
         Api["apps/api (Port 3002)<br/>api.sd-albirru.sch.id (Edge Webhooks & Health)"]
         Docs["apps/docs (Port 3004)<br/>docs.sd-albirru.sch.id (Documentation)"]
