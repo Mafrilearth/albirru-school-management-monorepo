@@ -96,3 +96,19 @@ export const InteractiveClick: Story = {
     await userEvent.click(button);
   },
 };
+
+export const ChromaticVisualModes: Story = {
+  args: {
+    variant: "default",
+    children: "Multi-Mode Snapshot",
+  },
+  parameters: {
+    chromatic: {
+      modes: {
+        mobile: { viewport: "small" },
+        desktop: { viewport: 1280 },
+      },
+      delay: 200,
+    },
+  },
+};

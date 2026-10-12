@@ -1,6 +1,7 @@
 import { DirectionProvider } from "@radix-ui/react-direction";
 import type { Preview } from "@storybook/nextjs-vite";
 import "../src/app/globals.css";
+import { allModes } from "./modes";
 
 const preview: Preview = {
   parameters: {
@@ -23,6 +24,14 @@ const preview: Preview = {
         { name: "light", value: "#ffffff" },
         { name: "dark", value: "#09090b" },
       ],
+    },
+    chromatic: {
+      modes: {
+        desktop: allModes.desktop,
+        mobile: allModes.mobile,
+        "dark desktop": allModes["dark desktop"],
+      },
+      pauseAnimationAtEnd: true,
     },
   },
   decorators: [

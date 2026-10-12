@@ -12,7 +12,9 @@
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "chromatic": "chromatic",
+    "test:visual": "chromatic --exit-zero-on-changes"
   },
   "dependencies": {
     "@albirru/database": "workspace:*",
@@ -57,6 +59,7 @@
   "devDependencies": {
     "@albirru/typescript-config": "workspace:*",
     "@chromatic-com/storybook": "^5.4.0",
+    "chromatic": "^18.11.0",
     "@next/bundle-analyzer": "^16.4.0",
     "@playwright/test": "^1.64.0",
     "@storybook/addon-a11y": "^10.6.1",

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://www.chromatic.com/config-file.schema.json",
+  "projectId": "Project:albirru-web",
+  "storybookBaseDir": "apps/web",
+  "storybookConfigDir": ".storybook",
+  "buildScriptName": "build-storybook",
+  "onlyChanged": true,
+  "zip": true,
+  "autoAcceptChanges": false,
+  "exitZeroOnChanges": true
+}

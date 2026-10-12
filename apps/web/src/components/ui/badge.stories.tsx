@@ -57,3 +57,20 @@ export const Outline: Story = {
     children: "Academic Term 2026/2027",
   },
 };
+
+export const DarkModeSnapshot: Story = {
+  args: {
+    variant: "default",
+    children: "Tahfidz Juz 30 Passed",
+  },
+  parameters: {
+    chromatic: {
+      modes: {
+        "dark desktop": {
+          viewport: 1280,
+          theme: "dark",
+        },
+      },
+    },
+  },
+};
