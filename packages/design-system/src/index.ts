@@ -67,5 +67,6 @@ export * from "./components/ui/tooltip";
 export * from "./components/ui/typography";
 // Hooks & Utilities
 export * from "./hooks/use-mobile";
+export * from "./lib/motion";
 export * from "./lib/utils";
 export * from "./providers/ThemeProvider";
