@@ -16,6 +16,14 @@ export default defineConfig({
       ),
     },
   },
+  server: {
+    fs: {
+      allow: [".."],
+    },
+  },
+  optimizeDeps: {
+    include: ["clsx", "tailwind-merge", "uuidv7", "zod"],
+  },
   test: {
     include: ["src/**/*.test.ts", "src/**/*.test.tsx"],
     environment: "node",
