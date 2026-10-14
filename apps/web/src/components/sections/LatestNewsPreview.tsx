@@ -146,8 +146,8 @@ export function LatestNewsPreview() {
         </div>
 
         {/* Dynamic Articles Grid with AnimatePresence */}
-        <motion.div layout className="grid grid-cols-1 md:grid-cols-3 gap-7">
-          <AnimatePresence mode="popLayout">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-7">
+          <AnimatePresence mode="popLayout" initial={false}>
             {filteredArticles.map((article) => (
               <motion.div
                 key={article.id}
@@ -213,7 +213,7 @@ export function LatestNewsPreview() {
               </motion.div>
             ))}
           </AnimatePresence>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

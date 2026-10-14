@@ -1,10 +1,6 @@
-"use client";
-
 import {
   Award,
-  Check,
   Clock,
-  Copy,
   ExternalLink,
   Mail,
   MapPin,
@@ -13,22 +9,19 @@ import {
   ShieldCheck,
 } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
 import { BrandLogo } from "@/components/common/BrandLogo";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { CopyPhoneButton } from "./CopyPhoneButton";
 
+/**
+ * PublicFooter — rendered as a React Server Component to eliminate
+ * the CLS 0.291 layout shift that occurred when the footer hydrated
+ * late on the client side. The only interactive piece (copy phone)
+ * is extracted into a tiny client island `CopyPhoneButton`.
+ */
 export function PublicFooter() {
   const currentYear = new Date().getFullYear();
-  const [copiedPhone, setCopiedPhone] = useState(false);
-
-  const handleCopyPhone = () => {
-    if (typeof window !== "undefined") {
-      navigator.clipboard.writeText("081234567890");
-      setCopiedPhone(true);
-      setTimeout(() => setCopiedPhone(false), 2000);
-    }
-  };
 
   return (
     <footer className="border-t border-border bg-background text-muted-foreground relative overflow-hidden">
@@ -164,29 +157,7 @@ export function PublicFooter() {
                     0812-3456-7890
                   </span>
                 </div>
-                <button
-                  type="button"
-                  onClick={handleCopyPhone}
-                  className="inline-flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
-                  title="Copy Phone Number"
-                >
-                  {copiedPhone ? (
-                    <>
-                      <Check
-                        aria-hidden="true"
-                        className="size-3 text-emerald-500"
-                      />
-                      <span className="text-emerald-500 font-medium">
-                        Copied
-                      </span>
-                    </>
-                  ) : (
-                    <>
-                      <Copy aria-hidden="true" className="size-3" />
-                      <span>Copy</span>
-                    </>
-                  )}
-                </button>
+                <CopyPhoneButton />
               </div>
 
               <div className="flex items-center gap-2">

@@ -16,9 +16,16 @@ export function CookieConsent() {
     try {
       const consent = localStorage.getItem(CONSENT_STORAGE_KEY);
       if (!consent) {
-        // Show banner after brief delay to prevent layout thrash
-        const timer = setTimeout(() => setIsVisible(true), 800);
-        return () => clearTimeout(timer);
+        const onScroll = () => {
+          setIsVisible(true);
+          window.removeEventListener("scroll", onScroll);
+        };
+        window.addEventListener("scroll", onScroll, { passive: true });
+        const timer = setTimeout(() => setIsVisible(true), 4000);
+        return () => {
+          clearTimeout(timer);
+          window.removeEventListener("scroll", onScroll);
+        };
       }
     } catch {
       // Storage unavailable
@@ -40,7 +47,7 @@ export function CookieConsent() {
     <aside
       aria-label="Pemberitahuan Privasi dan Cookie"
       role="region"
-      className="fixed bottom-0 inset-x-0 z-50 border-t border-border bg-background/95 backdrop-blur-md p-4 sm:px-8 py-4 transition-transform duration-300 animate-in slide-in-from-bottom"
+      className="fixed bottom-0 inset-x-0 z-50 border-t border-border bg-background/95 backdrop-blur-sm p-4 sm:px-8 py-4 will-change-transform animate-slide-up-cookie"
     >
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <div className="flex items-start gap-3">

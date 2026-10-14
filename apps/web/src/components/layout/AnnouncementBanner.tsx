@@ -1,8 +1,12 @@
-"use client";
-
 import { Megaphone } from "lucide-react";
 import Link from "next/link";
 
+/**
+ * AnnouncementBanner — now rendered as a React Server Component.
+ * No client-side state or event handlers are needed, so removing
+ * "use client" reduces the initial JS bundle and prevents any
+ * layout shift from late hydration.
+ */
 export function AnnouncementBanner() {
   return (
     <div className="w-full bg-muted/60 text-foreground border-b border-border relative z-50 transition-colors">

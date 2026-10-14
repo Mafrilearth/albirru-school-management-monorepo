@@ -227,3 +227,58 @@
     animation: none;
   }
 }
+
+/* ==========================================================================
+   GPU-Composited Animations (transform/opacity only — no layout shifts)
+   ========================================================================== */
+
+@keyframes slide-up-cookie {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-slide-up-cookie {
+  animation: slide-up-cookie 300ms cubic-bezier(0.23, 1, 0.32, 1) both;
+}
+
+@keyframes float-slow {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes float-slow-reverse {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(6px);
+  }
+}
+
+.animate-float-slow {
+  animation: float-slow 4s ease-in-out infinite;
+  will-change: transform;
+}
+
+.animate-float-slow-reverse {
+  animation: float-slow-reverse 4.5s ease-in-out infinite;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-slide-up-cookie,
+  .animate-float-slow,
+  .animate-float-slow-reverse {
+    animation: none;
+  }
+}

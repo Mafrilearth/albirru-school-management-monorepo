@@ -187,7 +187,7 @@ export function BentoValuesSection() {
                 </div>
 
                 {/* Active Juz Showcase Panel with Crossfade */}
-                <AnimatePresence mode="wait">
+                <AnimatePresence mode="wait" initial={false}>
                   <motion.div
                     key={activeJuz.juz}
                     initial={{ opacity: 0, y: 6 }}
@@ -392,7 +392,7 @@ export function BentoValuesSection() {
 
                 {/* Dynamic STEM Info Display with Crossfade */}
                 <div className="mt-3.5 p-4 rounded-2xl border border-border/80 bg-muted/30 min-h-[96px]">
-                  <AnimatePresence mode="wait">
+                  <AnimatePresence mode="wait" initial={false}>
                     <motion.div
                       key={activeStemTab}
                       initial={{ opacity: 0, y: 4 }}

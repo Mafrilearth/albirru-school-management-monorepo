@@ -208,7 +208,7 @@ export function DayAtAlbirruSection() {
 
         {/* Detailed Showcase Card with AnimatePresence & Dynamic Dial */}
         <Card className="rounded-3xl border border-border/80 bg-card/90 backdrop-blur-xl p-7 sm:p-10 shadow-xl min-h-[300px]">
-          <AnimatePresence mode="wait">
+          <AnimatePresence mode="wait" initial={false}>
             <motion.div
               key={activeItem.id}
               initial={{ opacity: 0, y: 10 }}
