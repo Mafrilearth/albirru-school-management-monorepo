@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import dynamic from "next/dynamic";
+
 import { Inter, Roboto_Mono } from "next/font/google";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 import type React from "react";
@@ -149,38 +149,7 @@ const schoolStructuredData = {
 
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-
-const AIChatWidget = dynamic(
-  () =>
-    import("@/components/common/AIChatWidget").then((mod) => mod.AIChatWidget),
-  { ssr: false },
-);
-const FloatingWhatsApp = dynamic(
-  () =>
-    import("@/components/common/FloatingWhatsApp").then(
-      (mod) => mod.FloatingWhatsApp,
-    ),
-  { ssr: false },
-);
-const FloatingFeedbackWidget = dynamic(
-  () =>
-    import("@/components/common/FloatingFeedbackWidget").then(
-      (mod) => mod.FloatingFeedbackWidget,
-    ),
-  { ssr: false },
-);
-const CookieConsent = dynamic(
-  () =>
-    import("@/components/common/CookieConsent").then(
-      (mod) => mod.CookieConsent,
-    ),
-  { ssr: false },
-);
-const ScrollToTop = dynamic(
-  () =>
-    import("@/components/common/ScrollToTop").then((mod) => mod.ScrollToTop),
-  { ssr: false },
-);
+import { ClientWidgets } from "@/components/common/ClientWidgets";
 
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { DirectionProvider } from "@/components/ui/direction";
@@ -247,11 +216,7 @@ export default function PublicRootLayout({
                     {children}
                   </main>
                   <PublicFooter />
-                  <AIChatWidget />
-                  <FloatingWhatsApp />
-                  <FloatingFeedbackWidget />
-                  <CookieConsent />
-                  <ScrollToTop />
+                  <ClientWidgets />
 
                   {/* Vercel Observability Zero-Config */}
                   <Analytics />
