@@ -101,20 +101,23 @@ The repository is structured as a **Modern Modular Monolith** utilizing the stan
 │   ├── SUPPORT.md                    # Official community & institutional support channels
 │   └── workflows/ci.yml              # GitHub Actions CI quality gates
 ├── .gitignore                        # Standard monorepo ignore rules
+├── .mcp.json                         # Model Context Protocol configuration
 ├── AGENTS.md                         # Autonomous agent operational constitution & hard invariants
-├── ARCHITECTURE.md                   # System Architecture Specification (HLD)
-├── AUTHORS.md                        # Institutional attribution & intellectual property credits
 ├── CHANGELOG.md                      # Semantic Versioning release history
-├── DATABASE.md                       # Relational database architecture & Drizzle invariants
-├── DEPLOYMENT.md                     # Vercel & Cloudflare deployment runbook
-├── DESIGN.md                         # Technical Design Document & Design System (8px, Major Third)
-├── ENVIRONMENT.md                    # Environment variables specification & classification matrix
-├── GOVERNANCE.md                     # Institutional & engineering governance framework
 ├── LICENSE                           # Official MIT License (OSI Approved)
 ├── README.md                         # Project overview, credentials, and quick-start guide
-├── ROADMAP.md                        # Multi-phase strategic development roadmap (2026-2027)
-├── TESTING.md                        # Quality assurance & testing strategy (Vitest, Playwright)
-├── biome.json                        # Biome linter and formatter configuration (tabs, 100 printWidth, LF)
+├── docs/                             # Canonical Technical Documentation
+│   ├── architecture.md               # System Architecture Specification (HLD)
+│   ├── constraints.md                # Quantitative engineering quality contract
+│   ├── database.md                   # Relational database architecture & Drizzle invariants
+│   ├── decisions.md                  # Historic Architecture Decision Records (ADR)
+│   ├── deployment.md                 # Vercel & Cloudflare deployment runbook
+│   ├── design.md                     # Technical Design Document & Design System
+│   ├── environment.md                # Environment variables audit matrix
+│   ├── glossary.md                   # DDD Ubiquitous Language & taxonomy
+│   ├── specification.md              # Product Requirements Document (PRD)
+│   └── testing.md                    # Quality assurance & testing strategy
+├── biome.json                        # Biome unified linter and formatter configuration
 ├── pnpm-workspace.yaml               # pnpm workspaces definition
 ├── pnpm-lock.yaml                    # Deterministic pnpm lockfile
 └── turbo.json                        # Turborepo task pipeline configuration

@@ -80,4 +80,20 @@
 | **Zero Hardcoded Secrets Invariant** | Plaintext secret tokens in Git-tracked files (`.mcp.json`, `.agents/mcp_config.json`) are strictly prohibited. Environment interpolation `${VARIABLE_NAME}` is mandatory. | Pre-commit Biome check + Gitleaks CI |
 | **Mandatory 90-Day Lifetime Boundary** | All Personal Access Tokens and API keys must declare a strict `<= 90 days` expiration window. "No Expiration" is strictly prohibited under ISO/IEC 27001 Control A.8.24. | Quarterly credential audit |
 | **Dual Quarantine Topology** | Secrets are quarantined exclusively in untracked `.env.local` (workspace) and `HKCU\Environment` (host operating system). | `.gitignore` invariant verification |
-| **Single Canonical Auth Option** | Every MCP server must operate under exactly one vetted authentication mechanism (Stdio PAT, Remote OAuth 2.0 RFC 6749, or Bearer RFC 6750) with zero ambiguous fallbacks. | `MCP.md` specification contract |
+| **Single Canonical Auth Option** | Every MCP server must operate under exactly one vetted authentication mechanism (Stdio PAT, Remote OAuth 2.0 RFC 6749, or Bearer RFC 6750) with zero ambiguous fallbacks. | `.mcp.json` specification contract |
+
+---
+
+## 8. Next-Forge Non-Tech-Stack Architecture & Engineering Invariants
+
+| Constraint | Enforcement Rule | Gating Mechanism |
+| :--- | :--- | :--- |
+| **Type-Safe Environment Variables** | Every deployable application (`apps/web`, `apps/app`, `apps/api`) must declare and validate an `env.ts` Zod schema at startup. Direct access to unvalidated `process.env` in domain logic is prohibited. | `src/env.ts` static validation & Vitest suite |
+| **Standardized Healthcheck Endpoint** | Every deployable app must expose `/api/health` returning `{ status: "ok", timestamp, service, checks }` for synthetic uptime monitoring. | Next.js route verification |
+| **Distributed Rate Limiting with Fallback** | Public mutations (admissions, contact) must throttle requests via Upstash Redis sliding window with memory fallback. | Server Action rate limiter guard |
+| **Presigned Direct-to-Cloud Uploads** | Large binary assets (PDFs, images) must upload directly to cloud storage via presigned URLs. Buffering files in server memory is prohibited. | Storage API design audit |
+| **Cryptographic Webhook Ingress Verification** | Inbound webhooks must verify `svix-signature` before parsing or executing mutations. | Webhook route handler guard |
+| **URL Query State as Single Source of Truth** | Filter, sort, and pagination state must be synchronized to URL search parameters via `nuqs`. Isolated client-only `useState` for page state is prohibited. | Frontend UI engineering audit |
+| **Package Exports Map Invariant** | Internal packages under `packages/*` must strictly restrict imports via `exports` in `package.json`. Direct subpath imports into private `src/*` are prohibited. | TypeScript compiler & packaging audit |
+| **Typographic Orphan Prevention** | Primary headings (`h1`, `h2`) must be wrapped in `<Balancer>` to maintain visually balanced text lines across responsive screens. | Visual regression & code review |
+

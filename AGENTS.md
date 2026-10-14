@@ -105,6 +105,16 @@ Any violation of the following invariants constitutes an automatic task failure:
 - Institutional CMS (Articles, Announcements, Activity Gallery) and Administrative Workflows (Admissions Adjudication) are built 100% in-house in `apps/app` using Drizzle ORM (`@albirru/database`), Clerk Auth, and shadcn/ui.
 - Third-party external paid CMS SaaS (Sanity, Strapi, Contentful) or unintegrated school systems (Moodle, Jibas) are prohibited to maintain zero-cost serverless runtime, single-sign-on uniformity, and direct relational integrity.
 
+### H. Next-Forge Non-Tech-Stack Architecture & Engineering Invariants
+- **Type-Safe Environment Variables (`src/env.ts`)**: Every deployable application MUST validate its environment variables via an `env.ts` Zod schema at build and startup time. Direct, unvalidated `process.env.*` access in domain code is prohibited.
+- **Universal Healthcheck Endpoint (`/api/health`)**: Every deployable application (`apps/web`, `apps/app`, `apps/api`) MUST maintain an active `/api/health` endpoint returning a standardized JSON object (`{ status: "ok", timestamp, service, checks }`) for synthetic uptime monitoring.
+- **Distributed Rate Limiting with Memory Fallback**: Public mutations (such as `/admissions`) MUST use `@upstash/ratelimit` with an in-memory fallback to guarantee uninterrupted local testing and strict production DDoS protection.
+- **Presigned Direct-to-Cloud Uploads**: Document and media uploads MUST utilize presigned cloud URLs (Cloudflare R2 / Vercel Blob). Buffering large binary files in server memory or disk is strictly prohibited.
+- **Cryptographic Inbound Webhook Verification**: All external webhook ingress routes (Clerk, payment gateways) MUST cryptographically verify request signatures (`svix-signature`) before deserializing payloads.
+- **URL Query State as Single Source of Truth (`nuqs`)**: Interactive table filters, tab selections, and pagination MUST be bound to URL query parameters via `nuqs` rather than isolated client-only `useState`.
+- **Package Exports Map Invariant**: Internal packages under `packages/*` MUST declare strict `exports` in their `package.json`. Cross-workspace consumers are strictly prohibited from importing internal private paths (e.g., must import `@albirru/database/schema`, not `@albirru/database/src/schema.ts`).
+- **Typographic Balance**: Primary heading titles (`h1`, `h2`) MUST be wrapped with `<Balancer>` to eliminate orphan words across all responsive mobile and desktop viewports.
+
 ## 5. Self-Healing Autonomous Loop
 
 ```mermaid

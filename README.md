@@ -12,6 +12,11 @@
 > Official Institutional Governance Platform of **Al-Birru Primary School**.  
 > Engineered with a Modern Modular Monolith architecture, Fine-Line Boxy Brutalism design system, end-to-end static type safety, and serverless edge cloud infrastructure.
 
+**Document Status:** Approved & Authoritative  
+**Standard Compliance:** Modern Monorepo & Open Source Documentation Standard  
+**System Scope:** Complete Monorepo Ecosystem & Engineering Entrypoint  
+**Enforcement Level:** Authoritative Root Governance Entrypoint  
+
 ---
 
 ## 🏛️ Institutional Credentials
@@ -99,30 +104,34 @@ Business logic is encapsulated under `src/modules/{domain}/` with strict public 
 
 ## 📚 Canonical Governance & Technical Specifications
 
-Each operational aspect is governed by dedicated, non-overlapping canonical specifications at the repository root:
+The engineering ecosystem is governed by dedicated, non-overlapping canonical specifications organized between root governance files and the [`docs/`](docs/) directory:
+
+### Technical Specifications (`docs/`)
 
 | Specification Document | Focus Area & Responsibility | Standard Compliance |
 | :--- | :--- | :--- |
-| **[`SPECIFICATION.md`](SPECIFICATION.md)** | Functional domains, RBAC permission matrix, admissions, and guardian self-service. | ISO/IEC/IEEE 29148 |
-| **[`ARCHITECTURE.md`](ARCHITECTURE.md)** | Modular Monolith topology, subdomain routing, C4 component diagrams, and domain boundaries. | IEEE 1016 |
-| **[`DATABASE.md`](DATABASE.md)** | PostgreSQL relational schema, RFC 9562 UUIDv7 primary keys, soft-deletion, and Drizzle migrations. | RFC 9562 |
-| **[`DESIGN.md`](DESIGN.md)** | Swiss Modernist Bento Grid, zero radius (--radius: 0), zero shadows, 8px grid, and WCAG 2.1 AA. | W3C WCAG 2.1 AA |
-| **[`CONSTRAINTS.md`](CONSTRAINTS.md)** | Quantitative engineering quality contract: zero `@ts-ignore`, zero any, p95 latency budget. | CDD Standard |
-| **[`MCP.md`](MCP.md)** | Model Context Protocol specification, 11 configured servers, 90-day key lifetime, and zero-leak quarantine. | ISO/IEC 27001 & RFC 6749 |
-| **[`DECISIONS.md`](DECISIONS.md)** | Historical Architecture Decision Records (ADR-001 through ADR-008) and tradeoff evaluations. | Nygard ADR Spec |
-| **[`DEPLOYMENT.md`](DEPLOYMENT.md)** | Vercel Edge Serverless runbook, Cloudflare WAF and DNS topology, CI quality gates, and instant rollback. | Production DevOps |
-| **[`ENVIRONMENT.md`](ENVIRONMENT.md)** | Environment variables audit matrix: classification (Public and Secret), format, and dashboard origin. | DevSecOps Standard |
-| **[`TESTING.md`](TESTING.md)** | Testing pyramid strategy: Vitest unit tests, Playwright browser E2E, and Storybook visual testing. | QA Best Practices |
+| **[`docs/specification.md`](docs/specification.md)** | Functional domains, RBAC permission matrix, admissions, and guardian self-service. | ISO/IEC/IEEE 29148 |
+| **[`docs/architecture.md`](docs/architecture.md)** | Modular Monolith topology, subdomain routing, C4 component diagrams, and domain boundaries. | IEEE 1016 |
+| **[`docs/database.md`](docs/database.md)** | PostgreSQL relational schema, RFC 9562 UUIDv7 primary keys, soft-deletion, and Drizzle migrations. | RFC 9562 |
+| **[`docs/design.md`](docs/design.md)** | Swiss Modernist Bento Grid, zero radius (--radius: 0), zero shadows, 8px grid, and WCAG 2.1 AA. | W3C WCAG 2.1 AA |
+| **[`docs/constraints.md`](docs/constraints.md)** | Quantitative engineering quality contract: zero `@ts-ignore`, zero any, p95 latency budget. | CDD Standard |
+| **[`docs/decisions.md`](docs/decisions.md)** | Historical Architecture Decision Records (ADR-001 through ADR-008) and tradeoff evaluations. | Nygard ADR Spec |
+| **[`docs/deployment.md`](docs/deployment.md)** | Vercel Edge Serverless runbook, Cloudflare WAF and DNS topology, CI quality gates, and instant rollback. | Production DevOps |
+| **[`docs/environment.md`](docs/environment.md)** | Environment variables audit matrix: classification (Public and Secret), format, and dashboard origin. | DevSecOps Standard |
+| **[`docs/testing.md`](docs/testing.md)** | Testing pyramid strategy: Vitest unit tests, Playwright browser E2E, and Storybook visual testing. | QA Best Practices |
+| **[`docs/glossary.md`](docs/glossary.md)** | Domain-Driven Design (DDD) Ubiquitous Language for Islamic pedagogy, institutional credentials, and engineering. | ISO/IEC/IEEE 29148 |
+
+### Repository Governance
+
+| Document | Focus Area & Responsibility | Standard Compliance |
+| :--- | :--- | :--- |
 | **[`AGENTS.md`](AGENTS.md)** | Autonomous agent operational constitution, 24 agent skills matrix, and hard invariants enforcement. | AI SDLC Standard |
-| **[`SECURITY.md`](.github/SECURITY.md)** | Vulnerability disclosure SLA, threat model, Cloudflare Turnstile bot deterrence, and Upstash rate limits. | ISO/IEC 29147 |
-| **[`GOVERNANCE.md`](GOVERNANCE.md)** | Institutional leadership roles (Foundation Board, Lead Architect), decision-making models (Lazy Consensus and ADR). | CNCF Governance Model |
-| **[`ROADMAP.md`](ROADMAP.md)** | Multi-phase strategic roadmap (2026–2027): v0.1.0 baseline through v0.4.0 national registry and offline sync. | Agile Milestones |
-| **[`CONTRIBUTING.md`](.github/CONTRIBUTING.md)** | Git branch lifecycle (`dev` -> `staging` -> `main`), Conventional Commits 1.0.0, and Husky quality gates. | GitHub Standard |
 | **[`CHANGELOG.md`](CHANGELOG.md)** | Chronological version release log following Semantic Versioning 2.0.0 and Keep a Changelog. | Keep a Changelog 1.1.0 |
+| **[`LICENSE`](LICENSE)** | Formal open-source legal rights and copyright conditions (MIT License). | OSI Approved License |
+| **[`CONTRIBUTING.md`](.github/CONTRIBUTING.md)** | Git branch lifecycle (`dev` -> `staging` -> `main`), Conventional Commits 1.0.0, and Husky quality gates. | GitHub Standard |
+| **[`SECURITY.md`](.github/SECURITY.md)** | Vulnerability disclosure SLA, threat model, Cloudflare Turnstile bot deterrence, and Upstash rate limits. | ISO/IEC 29147 |
 | **[`CODE_OF_CONDUCT.md`](.github/CODE_OF_CONDUCT.md)** | Community ethical standards, respectful collaboration guidelines, and incident reporting. | Contributor Covenant 2.1 |
 | **[`SUPPORT.md`](.github/SUPPORT.md)** | Official support channels for admissions inquiries, guardian academic desk, bug reports, and security. | GitHub Community Spec |
-| **[`AUTHORS.md`](AUTHORS.md)** | Intellectual property accreditation for Yayasan Amal Cahaya Indonesia, Academic Board, and engineering. | GNU/Linux Standard |
-| **[`LICENSE`](LICENSE)** | Formal open-source legal rights and copyright conditions (MIT License). | OSI Approved License |
 | **[`.github/CODEOWNERS`](.github/CODEOWNERS)** | Automatic reviewer assignment mapping per directory module and security configuration. | GitHub Branch Protection |
 
 ---

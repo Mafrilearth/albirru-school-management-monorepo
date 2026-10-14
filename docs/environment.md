@@ -43,7 +43,7 @@ Variables are categorized into two strict visibility classes:
 | `GITHUB_PERSONAL_ACCESS_TOKEN` | 🔴 Secret | GitHub | Alias token for GitHub Model Context Protocol tooling. | [GitHub Settings](https://github.com/settings/tokens). |
 | `CLOUDFLARE_API_TOKEN` | 🔴 Secret | Cloudflare | API token with DNS and zone edit permissions for Cloudflare MCP. | [Cloudflare Dashboard](https://dash.cloudflare.com/profile/api-tokens). |
 
-> **Model Context Protocol (MCP) Reference**: See the full architectural specification and 90-day key rotation policy in [MCP.md](MCP.md).
+> **Model Context Protocol (MCP) Reference**: Configured in [`.mcp.json`](../.mcp.json) and governed by [`AGENTS.md`](../AGENTS.md).
 
 ---
 
