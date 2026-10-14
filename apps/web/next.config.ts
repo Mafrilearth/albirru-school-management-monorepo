@@ -7,6 +7,14 @@ const securityHeaders = [
     value: "on",
   },
   {
+    key: "Strict-Transport-Security",
+    value: "max-age=63072000; includeSubDomains; preload",
+  },
+  {
+    key: "Cross-Origin-Opener-Policy",
+    value: "same-origin",
+  },
+  {
     key: "X-XSS-Protection",
     value: "1; mode=block",
   },

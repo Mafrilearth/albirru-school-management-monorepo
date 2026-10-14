@@ -197,10 +197,12 @@ export function LatestNewsPreview() {
                   <div className="mt-6 pt-4 border-t border-border flex items-center justify-between text-xs">
                     <Link
                       href={`/news/${article.slug}`}
+                      aria-label={`Baca selengkapnya tentang ${article.title}`}
                       className="font-semibold text-primary hover:underline flex items-center gap-1.5 active:translate-x-0.5 transition-transform"
                     >
                       <span>Baca Selengkapnya</span>
-                      <ArrowRight className="size-3.5" />
+                      <span className="sr-only">: {article.title}</span>
+                      <ArrowRight className="size-3.5" aria-hidden="true" />
                     </Link>
 
                     <span className="text-muted-foreground text-[11px]">

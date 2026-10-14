@@ -1,12 +1,10 @@
 import type { Metadata, Viewport } from "next";
+import dynamic from "next/dynamic";
 import { Inter, Roboto_Mono } from "next/font/google";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 import type React from "react";
 import "@/app/globals.css";
-import { FloatingFeedbackWidget } from "@/components/common/FloatingFeedbackWidget";
-import { FloatingWhatsApp } from "@/components/common/FloatingWhatsApp";
 import { GlobalGrid } from "@/components/common/GlobalGrid";
-import { ScrollToTop } from "@/components/common/ScrollToTop";
 import { AnnouncementBanner } from "@/components/layout/AnnouncementBanner";
 import { PublicFooter } from "@/components/layout/PublicFooter";
 import { PublicNavbar } from "@/components/layout/PublicNavbar";
@@ -151,8 +149,39 @@ const schoolStructuredData = {
 
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { AIChatWidget } from "@/components/common/AIChatWidget";
-import { CookieConsent } from "@/components/common/CookieConsent";
+
+const AIChatWidget = dynamic(
+  () =>
+    import("@/components/common/AIChatWidget").then((mod) => mod.AIChatWidget),
+  { ssr: false },
+);
+const FloatingWhatsApp = dynamic(
+  () =>
+    import("@/components/common/FloatingWhatsApp").then(
+      (mod) => mod.FloatingWhatsApp,
+    ),
+  { ssr: false },
+);
+const FloatingFeedbackWidget = dynamic(
+  () =>
+    import("@/components/common/FloatingFeedbackWidget").then(
+      (mod) => mod.FloatingFeedbackWidget,
+    ),
+  { ssr: false },
+);
+const CookieConsent = dynamic(
+  () =>
+    import("@/components/common/CookieConsent").then(
+      (mod) => mod.CookieConsent,
+    ),
+  { ssr: false },
+);
+const ScrollToTop = dynamic(
+  () =>
+    import("@/components/common/ScrollToTop").then((mod) => mod.ScrollToTop),
+  { ssr: false },
+);
+
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { DirectionProvider } from "@/components/ui/direction";
 import { TooltipProvider } from "@/components/ui/tooltip";

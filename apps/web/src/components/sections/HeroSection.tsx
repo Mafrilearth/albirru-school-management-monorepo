@@ -183,12 +183,7 @@ export function HeroSection() {
             className="lg:col-span-7 flex flex-col items-start text-start"
           >
             {/* Live Admission Status Badge with Frosted Capsule */}
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.35, ease: [0.23, 1, 0.32, 1] }}
-              className="inline-flex items-center gap-2.5 px-3.5 py-1.5 mb-6 rounded-full border border-primary/25 bg-primary/10 backdrop-blur-md text-xs font-medium text-foreground shadow-xs"
-            >
+            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 mb-6 rounded-full border border-primary/25 bg-primary/10 backdrop-blur-md text-xs font-medium text-foreground shadow-xs">
               <span className="relative flex size-2">
                 <span className="animate-ping absolute inline-flex size-full rounded-full bg-primary opacity-75" />
                 <span className="relative inline-flex rounded-full size-2 bg-primary" />
@@ -198,18 +193,11 @@ export function HeroSection() {
               <span className="text-muted-foreground">
                 Gelombang I Terbuka (Sisa 14 Kursi)
               </span>
-            </motion.div>
+            </div>
 
-            {/* High-Impact Headline with Kinetic Reveal */}
-            <motion.h1
+            {/* High-Impact Headline with Instant LCP Paint */}
+            <h1
               id="hero-title"
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 0.45,
-                delay: 0.05,
-                ease: [0.23, 1, 0.32, 1],
-              }}
               className="text-4xl sm:text-5xl lg:text-[3.5rem] font-black text-foreground tracking-[-0.035em] leading-[1.1]"
             >
               <Balancer>
@@ -219,7 +207,7 @@ export function HeroSection() {
                 </span>
                 , Meraih Keunggulan Sains.
               </Balancer>
-            </motion.h1>
+            </h1>
 
             {/* Subheading */}
             <motion.p
@@ -399,9 +387,9 @@ export function HeroSection() {
                     </div>
 
                     <div>
-                      <h3 className="text-xl font-bold text-foreground tracking-tight">
+                      <h2 className="text-xl font-bold text-foreground tracking-tight">
                         {activeProgram.title}
-                      </h3>
+                      </h2>
                       <p className="mt-1 text-xs font-semibold text-primary">
                         {activeProgram.subtitle}
                       </p>

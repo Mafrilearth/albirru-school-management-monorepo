@@ -186,7 +186,7 @@ export function DayAtAlbirruSection() {
                     className={cn(
                       "text-[10px] font-mono",
                       isSelected
-                        ? "text-primary-foreground/90 font-bold"
+                        ? "text-primary-foreground font-bold"
                         : "text-muted-foreground",
                     )}
                   >
@@ -194,7 +194,7 @@ export function DayAtAlbirruSection() {
                   </span>
                 </div>
                 <div className="relative z-10">
-                  <span className="block font-mono text-[11px] opacity-90">
+                  <span className="block font-mono text-[11px] font-medium">
                     {item.time}
                   </span>
                   <span className="block text-xs font-bold truncate mt-0.5">

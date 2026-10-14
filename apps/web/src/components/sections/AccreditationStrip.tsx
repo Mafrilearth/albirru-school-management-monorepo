@@ -46,11 +46,11 @@ export function AccreditationStrip() {
       className="border-b border-border bg-muted/20 backdrop-blur-md py-10 relative z-20"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <dl className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 list-none p-0 m-0">
           {statutoryData.map((item) => {
             const Icon = item.icon;
             return (
-              <div
+              <li
                 key={item.id}
                 className="flex items-center gap-4 border border-border/80 bg-card/90 rounded-2xl p-4.5 transition-all duration-200 hover:border-primary/40 hover:shadow-md group shadow-xs"
               >
@@ -58,22 +58,22 @@ export function AccreditationStrip() {
                   <Icon className="size-5" aria-hidden="true" />
                 </div>
                 <div className="min-w-0 flex-1">
-                  <dt className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground truncate">
+                  <p className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground truncate">
                     {item.label}
-                  </dt>
-                  <dd className="mt-0.5 text-sm sm:text-base font-bold text-foreground tracking-tight truncate">
+                  </p>
+                  <p className="mt-0.5 text-sm sm:text-base font-bold text-foreground tracking-tight truncate">
                     {item.value}
-                  </dd>
+                  </p>
                   {item.subValue ? (
                     <span className="block text-[11px] text-muted-foreground truncate mt-0.5">
                       {item.subValue}
                     </span>
                   ) : null}
                 </div>
-              </div>
+              </li>
             );
           })}
-        </dl>
+        </ul>
       </div>
     </section>
   );

@@ -10,7 +10,6 @@ import {
   Sparkles,
 } from "lucide-react";
 import { motion } from "motion/react";
-import Script from "next/script";
 import { useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -74,6 +73,17 @@ export function FloatingFeedbackWidget() {
       });
       return;
     }
+    // Lazy-load Tally script on user interaction
+    if (
+      typeof window !== "undefined" &&
+      !document.getElementById("tally-embed-js")
+    ) {
+      const script = document.createElement("script");
+      script.id = "tally-embed-js";
+      script.src = "https://tally.so/widgets/embed.js";
+      script.async = true;
+      document.body.appendChild(script);
+    }
     // Otherwise open instant native dialog
     resetForm();
     setIsOpen(true);
@@ -136,9 +146,6 @@ export function FloatingFeedbackWidget() {
 
   return (
     <>
-      {/* Tally.so Modern Embed Runtime */}
-      <Script src="https://tally.so/widgets/embed.js" strategy="lazyOnload" />
-
       {/* Floating Trigger Button (Bottom Left) */}
       <aside
         aria-label="Instant Feature Proposal and Feedback Box"

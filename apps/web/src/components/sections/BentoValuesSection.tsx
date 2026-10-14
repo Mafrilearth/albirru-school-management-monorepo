@@ -178,7 +178,7 @@ export function BentoValuesSection() {
                         <span className="block text-xs font-bold relative z-10">
                           {item.juz}
                         </span>
-                        <span className="block text-[10px] opacity-85 mt-0.5 relative z-10">
+                        <span className="block text-[10px] font-medium mt-0.5 relative z-10">
                           {item.targetYear}
                         </span>
                       </button>
