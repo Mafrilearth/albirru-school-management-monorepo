@@ -43,7 +43,7 @@ export function AccreditationStrip() {
   return (
     <section
       aria-label="Identitas Kelembagaan dan Legalitas"
-      className="border-b border-border bg-card/60 backdrop-blur-xs py-8 relative z-20"
+      className="border-b border-border bg-muted/20 backdrop-blur-md py-10 relative z-20"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <dl className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
@@ -52,20 +52,20 @@ export function AccreditationStrip() {
             return (
               <div
                 key={item.id}
-                className="flex items-center gap-4 rounded-2xl border border-border/80 bg-background/80 p-4.5 transition-all hover:border-primary/40 hover:bg-muted/30 shadow-xs"
+                className="flex items-center gap-4 border border-border/80 bg-card/90 rounded-2xl p-4.5 transition-all duration-200 hover:border-primary/40 hover:shadow-md group shadow-xs"
               >
-                <div className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary border border-primary/20">
-                  <Icon className="size-5.5" aria-hidden="true" />
+                <div className="flex size-11 shrink-0 items-center justify-center bg-primary/10 text-primary border border-primary/20 rounded-xl group-hover:scale-105 transition-transform duration-200">
+                  <Icon className="size-5" aria-hidden="true" />
                 </div>
                 <div className="min-w-0 flex-1">
-                  <dt className="text-xs font-medium text-muted-foreground truncate">
+                  <dt className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground truncate">
                     {item.label}
                   </dt>
-                  <dd className="mt-0.5 text-sm font-bold text-foreground tracking-tight truncate">
+                  <dd className="mt-0.5 text-sm sm:text-base font-bold text-foreground tracking-tight truncate">
                     {item.value}
                   </dd>
                   {item.subValue ? (
-                    <span className="block text-[11px] text-muted-foreground/80 truncate mt-0.5">
+                    <span className="block text-[11px] text-muted-foreground truncate mt-0.5">
                       {item.subValue}
                     </span>
                   ) : null}

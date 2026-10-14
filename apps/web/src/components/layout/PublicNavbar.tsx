@@ -5,6 +5,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 import { BrandLogo } from "@/components/common/BrandLogo";
+import { LanguageSwitcher } from "@/components/common/LanguageSwitcher";
+import { NotificationBell } from "@/components/common/NotificationBell";
 import { ThemeToggle } from "@/components/common/ThemeToggle";
 import { Button } from "@/components/ui/button";
 import {
@@ -14,18 +16,20 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { useLanguage } from "@/lib/i18n/context";
 import { cn } from "@/lib/utils";
 
 export function PublicNavbar() {
   const pathname = usePathname();
+  const { t } = useLanguage();
 
   const navLinks = [
-    { href: "/", label: "Beranda" },
-    { href: "/about", label: "Tentang Kami" },
-    { href: "/programs", label: "Program & Kurikulum" },
-    { href: "/news", label: "Berita" },
-    { href: "/gallery", label: "Galeri" },
-    { href: "/contact", label: "Kontak" },
+    { href: "/", label: t.nav.home },
+    { href: "/about", label: t.nav.about },
+    { href: "/programs", label: t.nav.programs },
+    { href: "/news", label: t.nav.news },
+    { href: "/gallery", label: t.nav.gallery },
+    { href: "/contact", label: t.nav.contact },
   ];
 
   return (
@@ -60,32 +64,36 @@ export function PublicNavbar() {
         </nav>
 
         {/* Global Controls & CTA (Desktop & Mobile) */}
-        <div className="flex items-center gap-2 sm:gap-3">
+        <div className="flex items-center gap-2 sm:gap-2.5">
+          <NotificationBell />
+          <LanguageSwitcher />
           <ThemeToggle />
+
           <Button
             render={<Link href="/contact" />}
             nativeButton={false}
             variant="ghost"
             size="sm"
-            className="hidden md:inline-flex font-medium"
+            className="hidden md:inline-flex font-medium rounded-full px-4 active:scale-[0.98] transition-all"
           >
-            <span>Hubungi Kami</span>
+            <span>{t.nav.contactUs}</span>
           </Button>
+
           <Button
             render={<Link href="/admissions" />}
             nativeButton={false}
             variant="default"
             size="sm"
-            className="hidden sm:inline-flex font-semibold shadow-sm shadow-primary/20"
+            className="hidden sm:inline-flex font-semibold shadow-sm shadow-primary/20 rounded-full px-5 active:scale-[0.98] transition-all"
           >
-            <span>Daftar Online</span>
+            <span>{t.nav.applyOnline}</span>
           </Button>
 
           {/* Mobile/Tablet Menu Trigger */}
           <Sheet>
             <SheetTrigger className="xl:hidden inline-flex items-center justify-center size-9 rounded-lg border border-input bg-background hover:bg-accent hover:text-accent-foreground transition-colors">
               <Menu className="size-4" />
-              <span className="sr-only">Buka Menu Navigasi</span>
+              <span className="sr-only">{t.nav.openMenu}</span>
             </SheetTrigger>
             <SheetContent
               side="right"
@@ -94,7 +102,7 @@ export function PublicNavbar() {
               <div>
                 <SheetHeader className="pb-4 border-b border-border text-start">
                   <SheetTitle className="text-base font-bold text-foreground">
-                    Menu Navigasi
+                    {t.nav.menuTitle}
                   </SheetTitle>
                 </SheetHeader>
                 <div className="flex flex-col gap-1 py-4">
@@ -120,7 +128,7 @@ export function PublicNavbar() {
                   nativeButton={false}
                   className="w-full font-semibold shadow-sm"
                 >
-                  Daftar Online
+                  {t.nav.applyOnline}
                 </Button>
               </div>
             </SheetContent>

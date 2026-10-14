@@ -151,9 +151,12 @@ const schoolStructuredData = {
 
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { AIChatWidget } from "@/components/common/AIChatWidget";
+import { CookieConsent } from "@/components/common/CookieConsent";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { DirectionProvider } from "@/components/ui/direction";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { LanguageProvider } from "@/lib/i18n/context";
 import { cn } from "@/lib/utils";
 
 export default function PublicRootLayout({
@@ -161,7 +164,7 @@ export default function PublicRootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const locale = "en";
+  const locale = "id";
 
   return (
     <html
@@ -187,7 +190,7 @@ export default function PublicRootLayout({
       <body className="min-h-full flex flex-col bg-background text-foreground font-sans relative overflow-x-hidden">
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
+          defaultTheme="light"
           enableSystem={true}
           disableTransitionOnChange
         >
@@ -199,31 +202,35 @@ export default function PublicRootLayout({
             Skip to Main Content
           </a>
 
-          <DirectionProvider direction="ltr">
-            <TooltipProvider>
-              <NuqsAdapter>
-                <ScrollProgressBar />
-                <GlobalGrid />
-                <AnnouncementBanner />
-                <PublicNavbar />
-                <main
-                  id="main-content"
-                  tabIndex={-1}
-                  className="flex-1 flex flex-col outline-none"
-                >
-                  {children}
-                </main>
-                <PublicFooter />
-                <FloatingWhatsApp />
-                <FloatingFeedbackWidget />
-                <ScrollToTop />
+          <LanguageProvider defaultLocale="id">
+            <DirectionProvider direction="ltr">
+              <TooltipProvider>
+                <NuqsAdapter>
+                  <ScrollProgressBar />
+                  <GlobalGrid />
+                  <AnnouncementBanner />
+                  <PublicNavbar />
+                  <main
+                    id="main-content"
+                    tabIndex={-1}
+                    className="flex-1 flex flex-col outline-none"
+                  >
+                    {children}
+                  </main>
+                  <PublicFooter />
+                  <AIChatWidget />
+                  <FloatingWhatsApp />
+                  <FloatingFeedbackWidget />
+                  <CookieConsent />
+                  <ScrollToTop />
 
-                {/* Vercel Observability Zero-Config */}
-                <Analytics />
-                <SpeedInsights />
-              </NuqsAdapter>
-            </TooltipProvider>
-          </DirectionProvider>
+                  {/* Vercel Observability Zero-Config */}
+                  <Analytics />
+                  <SpeedInsights />
+                </NuqsAdapter>
+              </TooltipProvider>
+            </DirectionProvider>
+          </LanguageProvider>
         </ThemeProvider>
       </body>
     </html>

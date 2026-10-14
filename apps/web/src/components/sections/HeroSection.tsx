@@ -5,343 +5,471 @@ import {
   Award,
   BookOpen,
   CheckCircle2,
-  FileText,
-  GraduationCap,
-  HeartHandshake,
-  Languages,
+  Cpu,
+  Heart,
+  MessageCircle,
   ShieldCheck,
   Sparkles,
   Users,
 } from "lucide-react";
+import { AnimatePresence, motion, useScroll, useTransform } from "motion/react";
 import Link from "next/link";
-import { Badge } from "@/components/ui/badge";
+import { useRef, useState } from "react";
+import Balancer from "react-wrap-balancer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
+
+type ProgramKey = "tahfidz" | "adab" | "sains" | "rasio";
+
+interface ProgramDetail {
+  id: ProgramKey;
+  label: string;
+  badge: string;
+  icon: typeof BookOpen;
+  title: string;
+  subtitle: string;
+  description: string;
+  metrics: { name: string; status: string; percent: number }[];
+  tags: string[];
+  linkHref: string;
+}
+
+const programsData: Record<ProgramKey, ProgramDetail> = {
+  tahfidz: {
+    id: "tahfidz",
+    label: "Tahfidz",
+    badge: "PROGRAM UNGGULAN",
+    icon: BookOpen,
+    title: "Tahfidzul Qur'an 3 Juz Mutqin",
+    subtitle: "Talaqqi Bersanad & Tasmi' Sekali Duduk",
+    description:
+      "Bimbingan halaqah pagi terfokus dengan sanad riwayat Hafs 'an 'Ashim. Santri menuntaskan tasmi' juz 30, 29, dan 28 secara mutqin di hadapan dewan asatidz dan orang tua.",
+    metrics: [
+      {
+        name: "JUZ 30 (AN-NABA - AN-NAS)",
+        status: "100% TASMI'",
+        percent: 100,
+      },
+      {
+        name: "JUZ 29 (AL-MULK - AL-MURSALAT)",
+        status: "TALAQQI AKTIF",
+        percent: 75,
+      },
+      {
+        name: "JUZ 28 (AL-MUJADILAH - AT-TAHRIM)",
+        status: "TAHAP PERSIAPAN",
+        percent: 45,
+      },
+    ],
+    tags: ["Sanad Bersambung", "Halaqah Pagi 45 Mnt", "Mutaba'ah Harian"],
+    linkHref: "/programs#tahfidz",
+  },
+  adab: {
+    id: "adab",
+    label: "Adab",
+    badge: "FONDASI FITRAH",
+    icon: Heart,
+    title: "Adab Sebelum Ilmu & 7 Kebiasaan Mulia",
+    subtitle: "Internalisasi Karakter Islami Sejak Dini",
+    description:
+      "Penanaman tata krama harian melalui shalat dhuha dan dzuhur berjamaah tepat waktu, budaya 5S (Senyum, Salam, Sapa, Sopan, Santun), serta proyek bakti birrul walidain.",
+    metrics: [
+      {
+        name: "KEDISIPLINAN SHALAT TEPAT WAKTU",
+        status: "98.8% KONSISTEN",
+        percent: 99,
+      },
+      {
+        name: "PRAKTIK BUDAYA 5S BERADAB",
+        status: "PEMBIASAAN HARIAN",
+        percent: 95,
+      },
+      {
+        name: "PROYEK BIRRUL WALIDAIN",
+        status: "PEKAN BAKTI ORANG TUA",
+        percent: 90,
+      },
+    ],
+    tags: ["5S Beradab", "Shalat Berjamaah", "Bakti Orang Tua"],
+    linkHref: "/programs#adab",
+  },
+  sains: {
+    id: "sains",
+    label: "Sains",
+    badge: "STEM & NALAR KRITIS",
+    icon: Cpu,
+    title: "Inkuiri Sains Alam & Junior Coding",
+    subtitle: "Kurikulum Merdeka + Eksplorasi Sains Terbuka",
+    description:
+      "Pembelajaran tematik berbasis rasa ingin tahu alami santri. Mengintegrasikan observasi sains alam terbuka, logika algoritma komputasi awal, dan penalaran kritis aplikatif.",
+    metrics: [
+      { name: "PRAKTIKUM SAINS LAB ALAM", status: "2X / PEKAN", percent: 85 },
+      {
+        name: "COMPUTATIONAL THINKING & LOGIKA",
+        status: "JUNIOR SCRATCH",
+        percent: 80,
+      },
+      {
+        name: "PORTOFOLIO PROYEK INKUIRI",
+        status: "PAMERAN KARYA",
+        percent: 90,
+      },
+    ],
+    tags: ["Lab Terbuka", "Junior Coding", "Nalar Kritis"],
+    linkHref: "/programs#sains",
+  },
+  rasio: {
+    id: "rasio",
+    label: "Rasio",
+    badge: "EKOSISTEM PERSONAL",
+    icon: Users,
+    title: "Rasio Personal 1:15 & Kampus Ramah Fitrah",
+    subtitle: "Maksimal 20 Santri per Rombel (2 Rombel)",
+    description:
+      "Pembatasan ketat kuota angkatan menjamin kedekatan batin guru dan santri. Dilengkapi ruang kelas nyaman ber-AC, masjid luas, lingkungan hijau, dan iklim sekolah bebas perundungan.",
+    metrics: [
+      {
+        name: "KAPASITAS ANGKATAN 2026/2027",
+        status: "26 / 40 KURSI (65%)",
+        percent: 65,
+      },
+      { name: "RASIO GURU : MURID", status: "1 : 15 TERFOKUS", percent: 100 },
+      {
+        name: "LINGKUNGAN RAMAH & BEBAS BULLYING",
+        status: "KOMITMEN 100%",
+        percent: 100,
+      },
+    ],
+    tags: ["Maks 20 / Kelas", "Perhatian Personal Penuh", "Ruang Ber-AC"],
+    linkHref: "/programs#fasilitas",
+  },
+};
 
 export function HeroSection() {
+  const [activeTab, setActiveTab] = useState<ProgramKey>("tahfidz");
+  const activeProgram = programsData[activeTab];
+  const ActiveIcon = activeProgram.icon;
+
+  const heroRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
+
+  // Out of the Box Parallax transforms
+  const yBgGlow = useTransform(scrollYProgress, [0, 1], [0, 120]);
+  const yContent = useTransform(scrollYProgress, [0, 1], [0, -30]);
+  const yFloatingBadge1 = useTransform(scrollYProgress, [0, 1], [0, -60]);
+  const yFloatingBadge2 = useTransform(scrollYProgress, [0, 1], [0, -90]);
+
   return (
     <section
+      ref={heroRef}
       aria-labelledby="hero-title"
-      className="relative overflow-hidden py-16 md:py-24 lg:py-28 bg-background border-b border-border"
+      className="relative overflow-hidden py-16 sm:py-24 lg:py-32 bg-background border-b border-border"
     >
-      {/* Ambient Lighting & Grid Background */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-10 flex items-center justify-center overflow-hidden"
-      >
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[550px] bg-[radial-gradient(ellipse_80%_60%_at_50%_0%,oklch(0.38_0.12_165/0.14),transparent_75%)] dark:bg-[radial-gradient(ellipse_80%_60%_at_50%_0%,oklch(0.72_0.15_165/0.12),transparent_75%)]" />
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,oklch(0.38_0.12_165/0.03)_1px,transparent_1px),linear-gradient(to_bottom,oklch(0.38_0.12_165/0.03)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_20%,#000_70%,transparent_100%)]" />
-      </div>
+      {/* Parallax Ambient Glow Backdrop */}
+      <motion.div
+        style={{ y: yBgGlow }}
+        className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 w-[700px] h-[500px] sm:w-[900px] sm:h-[600px] bg-gradient-to-tr from-primary/15 via-emerald-400/10 to-teal-400/5 blur-3xl rounded-full -z-10"
+      />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          {/* Left Column: Value Proposition & Conversion Gateway */}
-          <div className="lg:col-span-7 flex flex-col items-start text-start">
-            {/* Live Operational Status Pill Badge */}
-            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 mb-6 rounded-full border border-primary/25 bg-primary/10 backdrop-blur-sm">
+          {/* Left Column: Kinetic Typography & Main Conversion */}
+          <motion.div
+            style={{ y: yContent }}
+            className="lg:col-span-7 flex flex-col items-start text-start"
+          >
+            {/* Live Admission Status Badge with Frosted Capsule */}
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.35, ease: [0.23, 1, 0.32, 1] }}
+              className="inline-flex items-center gap-2.5 px-3.5 py-1.5 mb-6 rounded-full border border-primary/25 bg-primary/10 backdrop-blur-md text-xs font-medium text-foreground shadow-xs"
+            >
               <span className="relative flex size-2">
                 <span className="animate-ping absolute inline-flex size-full rounded-full bg-primary opacity-75" />
                 <span className="relative inline-flex rounded-full size-2 bg-primary" />
               </span>
-              <span className="text-xs font-semibold text-primary tracking-wide">
-                Penerimaan Siswa TA 2026/2027 Dibuka • Gelombang I (Sisa 14
-                Kursi)
+              <span className="font-semibold text-primary">PPDB 2026/2027</span>
+              <span className="text-border">|</span>
+              <span className="text-muted-foreground">
+                Gelombang I Terbuka (Sisa 14 Kursi)
               </span>
-            </div>
+            </motion.div>
 
-            {/* High-Impact Institutional Headline */}
-            <h1
+            {/* High-Impact Headline with Kinetic Reveal */}
+            <motion.h1
               id="hero-title"
-              className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-foreground tracking-tight leading-[1.12]"
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.45,
+                delay: 0.05,
+                ease: [0.23, 1, 0.32, 1],
+              }}
+              className="text-4xl sm:text-5xl lg:text-[3.5rem] font-black text-foreground tracking-[-0.035em] leading-[1.1]"
             >
-              Membina Fitrah Beradab,{" "}
-              <span className="bg-gradient-to-r from-primary via-emerald-600 to-teal-500 bg-clip-text text-transparent dark:from-primary dark:via-emerald-400 dark:to-teal-300">
-                Menghafal Al-Qur&apos;an
-              </span>
-              , Meraih Keunggulan Sains.
-            </h1>
+              <Balancer>
+                Membina Fitrah Beradab,{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-emerald-600 to-teal-600 dark:from-emerald-400 dark:to-teal-300">
+                  Menghafal Al-Qur&apos;an
+                </span>
+                , Meraih Keunggulan Sains.
+              </Balancer>
+            </motion.h1>
 
-            {/* Evidence-Based Subheading */}
-            <p className="mt-6 text-base sm:text-lg text-muted-foreground leading-relaxed max-w-2xl">
-              Sekolah Dasar Islam Terpadu unggulan di Sukabumi dengan rasio
-              terfokus 1:15 (maksimal 40 santri per angkatan). Mengintegrasikan
-              kurikulum nasional, program tahfidz 3 juz mutqin bersanad, dan
-              pembentukan adab qudwah hasanah sejak dini.
-            </p>
+            {/* Subheading */}
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.45,
+                delay: 0.1,
+                ease: [0.23, 1, 0.32, 1],
+              }}
+              className="mt-6 text-base sm:text-lg text-muted-foreground leading-relaxed max-w-xl"
+            >
+              Sekolah Dasar Islam Terpadu unggulan di Sukabumi. Rasio terfokus
+              1:15, bimbingan tahfidz 3 juz mutqin bersanad, dan pembiasaan adab
+              islami harian sejak dini.
+            </motion.p>
 
-            {/* Call to Actions & Conversion Gateway */}
-            <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto">
+            {/* Action Buttons with Spring Micro-interaction */}
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.45,
+                delay: 0.15,
+                ease: [0.23, 1, 0.32, 1],
+              }}
+              className="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 w-full sm:w-auto"
+            >
               <Button
                 render={<Link href="/admissions" />}
                 nativeButton={false}
                 size="lg"
-                className="gap-2 font-semibold shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-shadow"
+                className="gap-2 font-semibold bg-primary text-primary-foreground hover:bg-primary/90 text-sm tracking-wide rounded-full px-6 shadow-md shadow-primary/20 active:scale-[0.98] transition-all duration-150 ease-out"
               >
-                <span>Daftar Siswa Baru Sekarang</span>
+                <span>Daftar Siswa Baru</span>
                 <ArrowRight data-icon="inline-end" />
               </Button>
 
               <Button
-                render={<Link href="/programs" />}
+                render={
+                  <a
+                    href="https://wa.me/6281234567890?text=Assalamu'alaikum%20Tim%20Penerimaan%20SD%20Al-Birru,%20saya%20ingin%20berkonsultasi%20mengenai%20penerimaan%20santri%20baru%20TA%202026/2027."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  />
+                }
                 nativeButton={false}
                 variant="outline"
                 size="lg"
-                className="gap-2 font-medium bg-background/80 backdrop-blur-sm hover:bg-muted/50"
+                className="gap-2 font-medium border-border hover:bg-muted/80 text-sm text-foreground rounded-full px-6 active:scale-[0.98] transition-all duration-150 ease-out"
               >
-                <FileText data-icon="inline-start" />
-                <span>Unduh Brosur Informasi</span>
+                <MessageCircle
+                  data-icon="inline-start"
+                  className="size-4 text-primary"
+                />
+                <span>Konsultasi WhatsApp</span>
               </Button>
-            </div>
+            </motion.div>
 
-            {/* Trust & Statutory Verification Micro-Row */}
-            <div className="mt-8 pt-6 border-t border-border/80 flex flex-wrap items-center gap-y-2 gap-x-6 text-xs text-muted-foreground">
-              <div className="flex items-center gap-1.5 font-medium text-foreground">
+            {/* Proof Markers */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{
+                duration: 0.5,
+                delay: 0.25,
+                ease: [0.23, 1, 0.32, 1],
+              }}
+              className="mt-10 pt-6 border-t border-border flex flex-wrap items-center gap-y-2 gap-x-6 text-xs text-muted-foreground"
+            >
+              <div className="flex items-center gap-1.5 text-foreground font-semibold">
                 <CheckCircle2 className="size-4 text-primary shrink-0" />
-                <span>Akreditasi Grade A</span>
+                <span>BAN-SM: Akreditasi A</span>
               </div>
               <div className="flex items-center gap-1.5">
                 <ShieldCheck className="size-4 text-primary shrink-0" />
-                <span>Identifikasi Resmi: 70010111</span>
+                <span>NPSN: 70010111</span>
               </div>
               <div className="flex items-center gap-1.5">
                 <Award className="size-4 text-primary shrink-0" />
-                <span>Kurikulum Terpadu Islam</span>
+                <span>Cicantayan, Sukabumi</span>
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
-          {/* Right Column: Multi-Layer Institutional Showcase Dashboard */}
+          {/* Right Column: Out-of-the-Box Floating Cockpit Showcase */}
           <div className="lg:col-span-5 relative mt-8 lg:mt-0">
-            {/* Background Glow Accent */}
-            <div
-              aria-hidden="true"
-              className="absolute -inset-1.5 rounded-3xl bg-gradient-to-tr from-primary/25 to-teal-500/10 blur-xl opacity-75 -z-10"
-            />
+            {/* Satellite 1: Floating Accreditation Pill */}
+            <motion.div
+              style={{ y: yFloatingBadge1 }}
+              animate={{ y: [0, -6, 0] }}
+              transition={{
+                repeat: Number.POSITIVE_INFINITY,
+                duration: 4,
+                ease: "easeInOut",
+              }}
+              className="absolute -top-5 -left-4 z-20 hidden sm:flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-primary/30 bg-card/90 backdrop-blur-xl shadow-lg text-xs font-semibold text-foreground"
+            >
+              <div className="size-2 rounded-full bg-primary animate-pulse" />
+              <span>Grade A • Terakreditasi Unggul</span>
+            </motion.div>
 
-            {/* Showcase Main Container */}
-            <Card className="rounded-2xl border border-primary/20 bg-card/95 backdrop-blur-md shadow-2xl overflow-hidden">
-              {/* Card Header: School Emblem & Legal Status */}
-              <div className="p-5 sm:p-6 border-b border-border/80 flex items-center justify-between bg-muted/30">
-                <div className="flex items-center gap-3">
-                  <div className="size-11 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary font-bold shadow-xs">
-                    <GraduationCap className="size-6" />
-                  </div>
-                  <div className="flex flex-col">
-                    <span className="text-sm font-bold text-foreground tracking-tight">
-                      SD AL-BIRRU
-                    </span>
-                    <span className="text-xs text-muted-foreground">
-                      Islamic Primary School • Sukabumi
-                    </span>
-                  </div>
-                </div>
+            {/* Satellite 2: Floating 1:15 Personal Mentoring Badge */}
+            <motion.div
+              style={{ y: yFloatingBadge2 }}
+              animate={{ y: [0, 6, 0] }}
+              transition={{
+                repeat: Number.POSITIVE_INFINITY,
+                duration: 4.5,
+                ease: "easeInOut",
+              }}
+              className="absolute -bottom-5 -right-4 z-20 hidden sm:flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-border bg-card/90 backdrop-blur-xl shadow-lg text-xs font-semibold text-primary"
+            >
+              <Users className="size-3.5 text-primary" />
+              <span>Rasio Terfokus 1:15 Santri</span>
+            </motion.div>
 
-                <Badge
-                  variant="secondary"
-                  className="gap-1.5 px-2.5 py-1 text-xs font-semibold bg-primary/10 text-primary border border-primary/20"
-                >
-                  <Sparkles className="size-3" />
-                  <span>Grade A (Unggul)</span>
-                </Badge>
+            {/* Main Interactive Showcase Card with Glassmorphism */}
+            <Card className="rounded-3xl border border-border/80 bg-card/85 backdrop-blur-xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300">
+              {/* Program Switcher Tabs */}
+              <div className="p-2 border-b border-border/80 bg-muted/40 grid grid-cols-2 sm:grid-cols-4 gap-1.5 relative">
+                {(["tahfidz", "adab", "sains", "rasio"] as const).map((key) => {
+                  const item = programsData[key];
+                  const Icon = item.icon;
+                  const isActive = activeTab === key;
+                  return (
+                    <button
+                      key={key}
+                      type="button"
+                      onClick={() => setActiveTab(key)}
+                      className={cn(
+                        "relative flex items-center justify-center gap-1.5 px-2.5 py-2 text-xs font-medium cursor-pointer select-none rounded-xl transition-colors active:scale-[0.96]",
+                        isActive
+                          ? "text-primary-foreground font-semibold"
+                          : "text-muted-foreground hover:text-foreground hover:bg-muted/80",
+                      )}
+                    >
+                      {isActive && (
+                        <motion.span
+                          layoutId="heroTabActiveBg"
+                          className="absolute inset-0 bg-primary rounded-xl z-0 shadow-xs"
+                          transition={{
+                            type: "spring",
+                            stiffness: 450,
+                            damping: 30,
+                          }}
+                        />
+                      )}
+                      <Icon className="size-3.5 shrink-0 relative z-10" />
+                      <span className="truncate relative z-10">
+                        {item.label}
+                      </span>
+                    </button>
+                  );
+                })}
               </div>
 
-              <CardContent className="p-5 sm:p-6 flex flex-col gap-5">
-                {/* Showcase Item 1: Tahfidz Al-Qur'an Mutqin Tracker */}
-                <div className="rounded-xl border border-border bg-background/80 p-4 flex flex-col gap-3">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <BookOpen className="size-4 text-primary" />
-                      <span className="text-xs font-bold uppercase tracking-wider text-foreground">
-                        Target Tahfidz Mutqin Bersanad
-                      </span>
-                    </div>
-                    <span className="text-xs font-semibold text-primary">
-                      3 Juz (28, 29, 30)
-                    </span>
-                  </div>
-
-                  {/* Progress Milestone Bars */}
-                  <div className="flex flex-col gap-2">
-                    <div className="flex items-center justify-between text-xs">
-                      <span className="text-muted-foreground">
-                        Juz 30 (An-Naba – An-Nas)
-                      </span>
-                      <span className="font-semibold text-foreground">
-                        100% Tasmi&apos; Terbuka
-                      </span>
-                    </div>
-                    <div className="h-2 w-full rounded-full bg-muted overflow-hidden">
-                      <div className="h-full bg-primary rounded-full w-full" />
+              {/* Dynamic Content Panel with Smooth Spring Crossfade */}
+              <CardContent className="p-6 sm:p-7 min-h-[360px] flex flex-col justify-between">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={activeTab}
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -8 }}
+                    transition={{ duration: 0.22, ease: [0.23, 1, 0.32, 1] }}
+                    className="flex flex-col gap-4"
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-primary/20 bg-primary/10 text-primary text-[11px] font-semibold tracking-wide">
+                        <Sparkles className="size-3" />
+                        <span>{activeProgram.badge}</span>
+                      </div>
+                      <div className="size-9 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary shadow-xs">
+                        <ActiveIcon className="size-4.5" />
+                      </div>
                     </div>
 
-                    <div className="flex items-center justify-between text-xs mt-1">
-                      <span className="text-muted-foreground">
-                        Juz 29 (Al-Mulk – Al-Mursalat)
-                      </span>
-                      <span className="font-semibold text-primary">
-                        Bimbingan Talaqqi Aktif
-                      </span>
+                    <div>
+                      <h3 className="text-xl font-bold text-foreground tracking-tight">
+                        {activeProgram.title}
+                      </h3>
+                      <p className="mt-1 text-xs font-semibold text-primary">
+                        {activeProgram.subtitle}
+                      </p>
+                      <p className="mt-2 text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                        {activeProgram.description}
+                      </p>
                     </div>
-                    <div className="h-2 w-full rounded-full bg-muted overflow-hidden">
-                      <div className="h-full bg-primary/75 rounded-full w-3/4" />
+
+                    {/* Metric Indicators with Spring Animated Progress */}
+                    <div className="rounded-2xl border border-border/70 bg-muted/30 p-3.5 flex flex-col gap-2.5">
+                      {activeProgram.metrics.map((metric) => (
+                        <div
+                          key={metric.name}
+                          className="flex flex-col gap-1 text-[11px]"
+                        >
+                          <div className="flex items-center justify-between">
+                            <span className="text-muted-foreground font-medium">
+                              {metric.name}
+                            </span>
+                            <span className="font-semibold text-foreground">
+                              {metric.status}
+                            </span>
+                          </div>
+                          <div className="h-1.5 w-full bg-muted rounded-full overflow-hidden">
+                            <motion.div
+                              className="h-full bg-primary rounded-full"
+                              initial={{ width: 0 }}
+                              animate={{ width: `${metric.percent}%` }}
+                              transition={{
+                                duration: 0.45,
+                                ease: [0.23, 1, 0.32, 1],
+                              }}
+                            />
+                          </div>
+                        </div>
+                      ))}
                     </div>
-                  </div>
 
-                  <div className="pt-2 border-t border-border/60 flex items-center justify-between text-[11px] text-muted-foreground">
-                    <span>Metode: Talaqqi Sanad Hafs &apos;an &apos;Ashim</span>
-                    <span className="font-medium text-foreground">
-                      Ujian Sekali Duduk
-                    </span>
-                  </div>
-                </div>
-
-                {/* Showcase Item 2: Real-time Quota Gauge */}
-                <div className="rounded-xl border border-border bg-background/80 p-4 flex flex-col gap-3">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <Users className="size-4 text-primary" />
-                      <span className="text-xs font-bold uppercase tracking-wider text-foreground">
-                        Admission Seat Capacity
-                      </span>
+                    {/* Program Tags */}
+                    <div className="flex flex-wrap gap-1.5">
+                      {activeProgram.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="px-2.5 py-1 rounded-lg border border-border bg-background text-[11px] text-muted-foreground font-medium"
+                        >
+                          {tag}
+                        </span>
+                      ))}
                     </div>
-                    <span className="text-xs font-semibold text-foreground">
-                      26 of 40 Seats Filled
-                    </span>
-                  </div>
+                  </motion.div>
+                </AnimatePresence>
 
-                  <div className="h-2.5 w-full rounded-full bg-muted overflow-hidden">
-                    <div className="h-full bg-gradient-to-r from-primary to-emerald-500 rounded-full w-[65%]" />
-                  </div>
-
-                  <div className="flex items-center justify-between text-xs text-muted-foreground">
-                    <span>2 Cohorts (Maximum 20 per Class)</span>
-                    <span className="font-semibold text-primary">
-                      Teacher Ratio 1:15
-                    </span>
-                  </div>
-                </div>
-
-                {/* Showcase Item 3: 4 Core Character Habit Chips */}
-                <div className="flex flex-col gap-2">
-                  <span className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">
-                    Karakteristik Pembiasaan Harian:
+                {/* Footer Action */}
+                <div className="pt-4 border-t border-border flex items-center justify-between text-xs mt-3">
+                  <span className="text-muted-foreground text-[11px]">
+                    Kurikulum Unggulan Al-Birru
                   </span>
-                  <div className="grid grid-cols-2 gap-2 text-xs">
-                    <div className="p-2.5 rounded-lg border border-border bg-muted/40 flex items-center gap-2">
-                      <HeartHandshake className="size-3.5 text-primary shrink-0" />
-                      <span className="font-medium text-foreground">
-                        Budaya 5S Beradab
-                      </span>
-                    </div>
-                    <div className="p-2.5 rounded-lg border border-border bg-muted/40 flex items-center gap-2">
-                      <Sparkles className="size-3.5 text-primary shrink-0" />
-                      <span className="font-medium text-foreground">
-                        Shalat Dhuha & Dzuhur
-                      </span>
-                    </div>
-                    <div className="p-2.5 rounded-lg border border-border bg-muted/40 flex items-center gap-2">
-                      <Languages className="size-3.5 text-primary shrink-0" />
-                      <span className="font-medium text-foreground">
-                        Bilingual Immersion
-                      </span>
-                    </div>
-                    <div className="p-2.5 rounded-lg border border-border bg-muted/40 flex items-center gap-2">
-                      <CheckCircle2 className="size-3.5 text-primary shrink-0" />
-                      <span className="font-medium text-foreground">
-                        STEM & Nature Lab
-                      </span>
-                    </div>
-                  </div>
+                  <Link
+                    href={activeProgram.linkHref}
+                    className="font-semibold text-primary hover:underline flex items-center gap-1 active:translate-x-0.5 transition-transform"
+                  >
+                    <span>Pelajari Rincian</span>
+                    <ArrowRight className="size-3" />
+                  </Link>
                 </div>
               </CardContent>
-
-              {/* Card Footer: Realtime Adab & Attendance Compliance */}
-              <div className="p-4 bg-primary/5 border-t border-border flex items-center justify-between text-xs">
-                <div className="flex items-center gap-2 text-muted-foreground font-medium">
-                  <span className="size-2 rounded-full bg-emerald-500 inline-block" />
-                  <span>Kepatuhan Kehadiran & Shalat:</span>
-                </div>
-                <span className="font-bold text-foreground">
-                  98.4% Tepat Waktu
-                </span>
-              </div>
             </Card>
           </div>
-        </div>
-
-        {/* High-Impact Stat Metrics Grid (4 Cards) */}
-        <div className="mt-16 md:mt-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-          <Card className="p-6 rounded-2xl border border-border hover:border-primary/40 transition-colors shadow-xs">
-            <div className="flex items-center justify-between mb-3">
-              <span className="text-3xl sm:text-4xl font-extrabold text-foreground tracking-tight">
-                1 : 15
-              </span>
-              <div className="size-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
-                <Users className="size-5" />
-              </div>
-            </div>
-            <p className="text-sm font-bold text-foreground">
-              Rasio Terfokus Guru-Siswa
-            </p>
-            <p className="text-xs text-muted-foreground mt-1 leading-relaxed">
-              Maksimal 20 siswa per kelas untuk pendampingan fitrah dan
-              perhatian personal intensif.
-            </p>
-          </Card>
-
-          <Card className="p-6 rounded-2xl border border-border hover:border-primary/40 transition-colors shadow-xs">
-            <div className="flex items-center justify-between mb-3">
-              <span className="text-3xl sm:text-4xl font-extrabold text-foreground tracking-tight">
-                Grade A
-              </span>
-              <div className="size-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
-                <Award className="size-5" />
-              </div>
-            </div>
-            <p className="text-sm font-bold text-foreground">
-              Akreditasi Nasional
-            </p>
-            <p className="text-xs text-muted-foreground mt-1 leading-relaxed">
-              Predikat Unggul standar nasional dengan integrasi penuh standar
-              mutu pendidikan terpadu.
-            </p>
-          </Card>
-
-          <Card className="p-6 rounded-2xl border border-border hover:border-primary/40 transition-colors shadow-xs">
-            <div className="flex items-center justify-between mb-3">
-              <span className="text-3xl sm:text-4xl font-extrabold text-foreground tracking-tight">
-                3 Juz
-              </span>
-              <div className="size-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
-                <BookOpen className="size-5" />
-              </div>
-            </div>
-            <p className="text-sm font-bold text-foreground">
-              Tahfidz Mutqin Bersanad
-            </p>
-            <p className="text-xs text-muted-foreground mt-1 leading-relaxed">
-              Bimbingan talaqqi makharijul huruf bersanad dan sertifikasi
-              tasmi&apos; sekali duduk.
-            </p>
-          </Card>
-
-          <Card className="p-6 rounded-2xl border border-border hover:border-primary/40 transition-colors shadow-xs">
-            <div className="flex items-center justify-between mb-3">
-              <span className="text-3xl sm:text-4xl font-extrabold text-foreground tracking-tight">
-                Bilingual
-              </span>
-              <div className="size-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
-                <Languages className="size-5" />
-              </div>
-            </div>
-            <p className="text-sm font-bold text-foreground">
-              English &amp; Arabic Immersion
-            </p>
-            <p className="text-xs text-muted-foreground mt-1 leading-relaxed">
-              Pembiasaan percakapan harian dua bahasa guna mempersiapkan santri
-              berwawasan global.
-            </p>
-          </Card>
         </div>
       </div>
     </section>

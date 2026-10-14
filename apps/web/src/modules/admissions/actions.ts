@@ -1,28 +1,23 @@
 "use server";
 
 import { admissionApplications, db } from "@albirru/database";
+import { logger } from "@/lib/logger";
+import { checkRateLimit } from "@/lib/rate-limit";
 import {
   type AdmissionsSubmissionPayload,
   AdmissionsSubmissionSchema,
 } from "@/lib/validations/admissions";
 import type { ActionResponse } from "@/types/action";
 
-// Pseudo rate limit
-let requestCount = 0;
-let lastRequestTime = Date.now();
-
 export async function submitAdmissionAction(
   data: AdmissionsSubmissionPayload,
 ): Promise<ActionResponse<{ registration_tracking_code: string }>> {
   try {
-    // 1. Rate Limiting Placeholder
-    const now = Date.now();
-    if (now - lastRequestTime > 15 * 60 * 1000) {
-      requestCount = 0;
-      lastRequestTime = now;
-    }
-    requestCount++;
-    if (requestCount > 5) {
+    // 1. Rate Limiting via Upstash Redis (5 submissions per 15 min per contact phone/email)
+    const rateLimitIdentifier = `admissions:${data.guardianContactPhone || "anon"}`;
+    const rateCheck = await checkRateLimit(rateLimitIdentifier, 5);
+
+    if (!rateCheck.success) {
       return {
         is_success: false,
         status_code: 429,
@@ -62,7 +57,11 @@ export async function submitAdmissionAction(
       error_descriptor: null,
     };
   } catch (error: unknown) {
-    console.error("[Admissions Submission Error]:", error);
+    logger.error(
+      error instanceof Error ? error.message : "Admissions submission failed",
+      "admissions",
+      { error },
+    );
 
     return {
       is_success: false,

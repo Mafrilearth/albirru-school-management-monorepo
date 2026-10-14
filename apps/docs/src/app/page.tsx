@@ -11,7 +11,7 @@ interface CanonicalDocument {
 const CANONICAL_DOCUMENTS: CanonicalDocument[] = [
   {
     number: "01",
-    filename: "SPECIFICATION.md",
+    filename: "docs/specification.md",
     title: "Product Requirements Specification",
     standard: "ISO/IEC/IEEE 29148",
     description:
@@ -19,7 +19,7 @@ const CANONICAL_DOCUMENTS: CanonicalDocument[] = [
   },
   {
     number: "02",
-    filename: "ARCHITECTURE.md",
+    filename: "docs/architecture.md",
     title: "Software Architecture & Technical Design",
     standard: "IEEE 1016",
     description:
@@ -27,7 +27,7 @@ const CANONICAL_DOCUMENTS: CanonicalDocument[] = [
   },
   {
     number: "03",
-    filename: "DATABASE.md",
+    filename: "docs/database.md",
     title: "Relational Database Specification",
     standard: "RFC 9562",
     description:
@@ -35,7 +35,7 @@ const CANONICAL_DOCUMENTS: CanonicalDocument[] = [
   },
   {
     number: "04",
-    filename: "DESIGN.md",
+    filename: "docs/design.md",
     title: "Visual Design System Specification",
     standard: "W3C WCAG 2.1 AA",
     description:
@@ -43,7 +43,7 @@ const CANONICAL_DOCUMENTS: CanonicalDocument[] = [
   },
   {
     number: "05",
-    filename: "CONSTRAINTS.md",
+    filename: "docs/constraints.md",
     title: "Quantitative Engineering Quality Contract",
     standard: "Constraint-Driven Development",
     description:
@@ -51,7 +51,7 @@ const CANONICAL_DOCUMENTS: CanonicalDocument[] = [
   },
   {
     number: "06",
-    filename: "DECISIONS.md",
+    filename: "docs/decisions.md",
     title: "Architecture Decision Records",
     standard: "Michael Nygard Architecture Decision Record Specification",
     description:
@@ -59,7 +59,7 @@ const CANONICAL_DOCUMENTS: CanonicalDocument[] = [
   },
   {
     number: "07",
-    filename: "DEPLOYMENT.md",
+    filename: "docs/deployment.md",
     title: "Edge Serverless Deployment & Runbook",
     standard: "Site Reliability Engineering Runbook",
     description:
@@ -67,7 +67,7 @@ const CANONICAL_DOCUMENTS: CanonicalDocument[] = [
   },
   {
     number: "08",
-    filename: "ENVIRONMENT.md",
+    filename: "docs/environment.md",
     title: "Environment Variables Audit Matrix",
     standard: "DevSecOps Standard",
     description:
@@ -75,7 +75,7 @@ const CANONICAL_DOCUMENTS: CanonicalDocument[] = [
   },
   {
     number: "09",
-    filename: "TESTING.md",
+    filename: "docs/testing.md",
     title: "Quality Assurance & Verification Plan",
     standard: "ISTQB / Testing Pyramid",
     description:
@@ -83,6 +83,14 @@ const CANONICAL_DOCUMENTS: CanonicalDocument[] = [
   },
   {
     number: "10",
+    filename: "docs/glossary.md",
+    title: "Ubiquitous Language & Domain Glossary",
+    standard: "Domain-Driven Design (DDD)",
+    description:
+      "Ubiquitous language for Islamic pedagogy, institutional credentials, school legality, and software engineering taxonomy.",
+  },
+  {
+    number: "11",
     filename: "AGENTS.md",
     title: "Autonomous Agent Operational Constitution",
     standard: "AI Software Development Life Cycle",
@@ -90,44 +98,20 @@ const CANONICAL_DOCUMENTS: CanonicalDocument[] = [
       "Autonomous agent operational constitution, 24 agent skills lifecycle matrix, and non-negotiable architectural hard invariants.",
   },
   {
-    number: "11",
-    filename: "SECURITY.md",
+    number: "12",
+    filename: ".github/SECURITY.md",
     title: "Security Policy & Threat Modeling",
     standard: "ISO/IEC 29147",
     description:
       "Vulnerability disclosure service-level agreements, threat modeling, Cloudflare Turnstile bot deterrence, and Upstash rate limiting.",
   },
   {
-    number: "12",
-    filename: "GOVERNANCE.md",
-    title: "Institutional Governance & Leadership",
-    standard: "CNCF Governance Model",
-    description:
-      "Institutional leadership hierarchy (Foundation Board, Lead Architect) and consensus decision-making governance models.",
-  },
-  {
     number: "13",
-    filename: "ROADMAP.md",
-    title: "Strategic Multi-Phase Roadmap",
-    standard: "Agile Milestones",
-    description:
-      "Multi-phase strategic roadmap (2026–2027): v0.1.0 baseline through v0.4.0 national student registry synchronization.",
-  },
-  {
-    number: "14",
     filename: "CHANGELOG.md",
     title: "Chronological Release Log",
     standard: "Keep a Changelog 1.1.0",
     description:
       "Chronological release history adhering to Semantic Versioning 2.0.0 and Keep a Changelog documentation standards.",
-  },
-  {
-    number: "15",
-    filename: "AUTHORS.md",
-    title: "Intellectual Property & Accreditation",
-    standard: "GNU/Linux Standard",
-    description:
-      "Official institutional attribution for Yayasan Amal Cahaya Indonesia, Academic Board, and software engineering contributors.",
   },
 ];
 
