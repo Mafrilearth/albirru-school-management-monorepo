@@ -1,231 +1,182 @@
-import {
-  Award,
-  Clock,
-  ExternalLink,
-  Mail,
-  MapPin,
-  MessageCircle,
-  Phone,
-  ShieldCheck,
-} from "lucide-react";
-import Link from "next/link";
+"use client";
+
+import { Award, Clock, Mail, MapPin, Phone, ShieldCheck } from "lucide-react";
 import { BrandLogo } from "@/components/common/BrandLogo";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { Link } from "@/i18n/navigation";
+import { useLanguage } from "@/lib/i18n/context";
 import { CopyPhoneButton } from "./CopyPhoneButton";
 
-/**
- * PublicFooter — rendered as a React Server Component to eliminate
- * the CLS 0.291 layout shift that occurred when the footer hydrated
- * late on the client side. The only interactive piece (copy phone)
- * is extracted into a tiny client island `CopyPhoneButton`.
- */
 export function PublicFooter() {
   const currentYear = new Date().getFullYear();
+  const { t } = useLanguage();
 
   return (
-    <footer className="border-t border-border bg-background text-muted-foreground relative overflow-hidden">
-      {/* Upper Footer - School Credibility & Value Proposition */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20 relative z-10">
-        <h2 className="sr-only">
-          Footer Navigation &amp; School Contact Information
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12">
-          {/* Column 1: School Identity & Mission (lg:col-span-4) */}
-          <div className="lg:col-span-4 flex flex-col gap-4">
+    <footer className="w-full bg-background text-muted-foreground relative overflow-hidden">
+      {/* Upper Footer Columns — Flush in Grid with 1px Shared Borders */}
+      <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 divide-y md:divide-y-0 lg:divide-x divide-border border-b border-border bg-card">
+        {/* Column 1: School Identity & Mission (lg:col-span-4) */}
+        <div className="lg:col-span-4 p-6 sm:p-8 lg:p-10 flex flex-col justify-between gap-6">
+          <div className="flex flex-col gap-4">
             <BrandLogo />
             <p className="text-sm leading-relaxed text-muted-foreground">
-              Integrated Islamic Primary School Tahfidzul Qur&apos;an
-              integrating noble character (adab), minimum 3 mutqin juz
-              Al-Qur&apos;an memorization with sanad, alongside science and
-              future technology literacy in Sukabumi.
+              Sekolah Dasar Islam Terpadu yang mengintegrasikan adab mulia,
+              bimbingan tahfidzul Qur&apos;an, dan kurikulum sains modern di
+              Sukabumi.
             </p>
+          </div>
 
-            {/* Accreditation & Quality Badges */}
-            <div className="flex flex-wrap gap-2 mt-2">
-              <Badge variant="outline" className="gap-1.5 font-normal">
-                <ShieldCheck
-                  aria-hidden="true"
-                  className="size-3.5 text-primary"
-                />
-                <span>Officially Registered</span>
-              </Badge>
-              <Badge variant="outline" className="gap-1.5 font-normal">
-                <Award aria-hidden="true" className="size-3.5 text-primary" />
-                <span>Merdeka Curriculum</span>
-              </Badge>
+          <div className="flex flex-wrap gap-2">
+            <Badge
+              variant="outline"
+              className="gap-1.5 font-mono text-[11px] uppercase tracking-wider rounded-none border-border"
+            >
+              <ShieldCheck
+                aria-hidden="true"
+                className="size-3.5 text-emerald-600"
+              />
+              <span>Terdaftar Resmi</span>
+            </Badge>
+            <Badge
+              variant="outline"
+              className="gap-1.5 font-mono text-[11px] uppercase tracking-wider rounded-none border-border"
+            >
+              <Award aria-hidden="true" className="size-3.5 text-emerald-600" />
+              <span>Kurikulum Terpadu</span>
+            </Badge>
+          </div>
+        </div>
+
+        {/* Column 2: Navigation Links (lg:col-span-2) */}
+        <nav
+          aria-label="Footer Navigation"
+          className="lg:col-span-2 p-6 sm:p-8 flex flex-col gap-4"
+        >
+          <span className="text-foreground text-xs font-mono uppercase tracking-wider font-semibold">
+            Navigasi
+          </span>
+          <ul className="flex flex-col gap-2.5 text-sm list-none p-0 m-0">
+            {[
+              { label: t.nav.home, href: "/" },
+              { label: t.nav.profile, href: "/profile" },
+              { label: t.nav.academics, href: "/academics" },
+              { label: t.nav.students, href: "/students" },
+              { label: t.nav.news, href: "/news" },
+              { label: t.nav.services, href: "/services" },
+            ].map((item) => (
+              <li key={item.href}>
+                <Link
+                  href={item.href}
+                  className="hover:text-foreground transition-colors inline-flex items-center gap-2"
+                >
+                  <span className="size-1 bg-muted-foreground/40" />
+                  <span>{item.label}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        {/* Column 3: Program Utama (lg:col-span-3) */}
+        <div className="lg:col-span-3 p-6 sm:p-8 flex flex-col gap-4">
+          <span className="text-foreground text-xs font-mono uppercase tracking-wider font-semibold">
+            Program Utama
+          </span>
+          <ul className="flex flex-col gap-2.5 text-sm list-none p-0 m-0">
+            <li className="flex items-start gap-2">
+              <span className="size-1.5 rounded-none bg-muted-foreground/60 mt-2 shrink-0" />
+              <span>Tahfidzul Qur&apos;an Talaqqi Bersanad</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="size-1.5 rounded-none bg-muted-foreground/60 mt-2 shrink-0" />
+              <span>Pendidikan Adab &amp; Karakter Islami</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="size-1.5 rounded-none bg-muted-foreground/60 mt-2 shrink-0" />
+              <span>Shalat Berjamaah Tepat Waktu</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="size-1.5 rounded-none bg-muted-foreground/60 mt-2 shrink-0" />
+              <span>Inkuiri Sains &amp; Logika Komputasi</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="size-1.5 rounded-none bg-muted-foreground/60 mt-2 shrink-0" />
+              <span>Komunikasi Bahasa Arab &amp; Inggris</span>
+            </li>
+          </ul>
+        </div>
+
+        {/* Column 4: Kontak & Informasi (lg:col-span-3) */}
+        <div className="lg:col-span-3 p-6 sm:p-8 flex flex-col gap-4">
+          <span className="text-foreground text-xs font-mono uppercase tracking-wider font-semibold">
+            Kontak &amp; Layanan
+          </span>
+          <address className="not-italic flex flex-col gap-3 text-sm">
+            <div className="flex items-start gap-2">
+              <MapPin className="size-4 text-muted-foreground mt-0.5 shrink-0" />
+              <span className="leading-snug">
+                Kp. Cisande, Cijalingan, Cicantayan, Sukabumi, Jawa Barat
+              </span>
             </div>
-          </div>
 
-          {/* Column 2: Navigation Links (lg:col-span-2) */}
-          <nav
-            aria-label="Footer Navigation"
-            className="lg:col-span-2 flex flex-col gap-3"
-          >
-            <h3 className="text-foreground text-sm font-semibold">
-              Navigation
-            </h3>
-            <ul className="flex flex-col gap-2.5 text-sm list-none p-0">
-              {[
-                { label: "Home", href: "/" },
-                { label: "About & History", href: "/about" },
-                { label: "Programs & Facilities", href: "/programs" },
-                { label: "News & Articles", href: "/news" },
-                { label: "Photo Gallery", href: "/gallery" },
-                { label: "Contact & Location", href: "/contact" },
-              ].map((item) => (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    className="hover:text-foreground transition-colors"
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-
-          {/* Column 3: Program Unggulan (lg:col-span-3) */}
-          <div className="lg:col-span-3 flex flex-col gap-3">
-            <h3 className="text-foreground text-sm font-semibold">
-              Signature Programs
-            </h3>
-            <ul className="flex flex-col gap-2.5 text-sm list-none p-0">
-              <li className="flex items-start gap-2">
-                <span
-                  aria-hidden="true"
-                  className="size-1.5 rounded-full bg-primary mt-2 shrink-0"
-                />
-                <span>Tahfidzul Qur&apos;an 3 Mutqin Juz with Sanad</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span
-                  aria-hidden="true"
-                  className="size-1.5 rounded-full bg-primary mt-2 shrink-0"
-                />
-                <span>Daily Congregational Prayers &amp; Practical Adab</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span
-                  aria-hidden="true"
-                  className="size-1.5 rounded-full bg-primary mt-2 shrink-0"
-                />
-                <span>Bilingual Communication (Arabic &amp; English)</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span
-                  aria-hidden="true"
-                  className="size-1.5 rounded-full bg-primary mt-2 shrink-0"
-                />
-                <span>Applied Science &amp; Computational Logic</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span
-                  aria-hidden="true"
-                  className="size-1.5 rounded-full bg-primary mt-2 shrink-0"
-                />
-                <span>Sunnah Archery &amp; Student Martial Arts</span>
-              </li>
-            </ul>
-          </div>
-
-          {/* Column 4: Contact & Office Hours (lg:col-span-3) */}
-          <div className="lg:col-span-3 flex flex-col gap-3">
-            <h3 className="text-foreground text-sm font-semibold">
-              Contact &amp; Support
-            </h3>
-            <address className="not-italic flex flex-col gap-3 text-sm">
-              <div className="flex items-start gap-2">
-                <MapPin
-                  aria-hidden="true"
-                  className="size-4 text-muted-foreground mt-0.5 shrink-0"
-                />
-                <span className="leading-snug">
-                  Kp. Cisande RT 006/002, Cijalingan, Cicantayan, Sukabumi, West
-                  Java, Indonesia
+            <div className="flex items-center justify-between gap-2 bg-muted/30 p-2.5 rounded-none border border-border">
+              <div className="flex items-center gap-2">
+                <Phone className="size-3.5 text-foreground shrink-0" />
+                <span className="text-foreground font-mono font-medium text-xs">
+                  0812-3456-7890
                 </span>
               </div>
+              <CopyPhoneButton />
+            </div>
 
-              <div className="flex items-center justify-between gap-2 bg-muted/50 p-2.5 rounded-md border border-border">
-                <div className="flex items-center gap-2">
-                  <Phone
-                    aria-hidden="true"
-                    className="size-4 text-primary shrink-0"
-                  />
-                  <span className="text-foreground font-medium text-xs">
-                    0812-3456-7890
-                  </span>
-                </div>
-                <CopyPhoneButton />
-              </div>
-
-              <div className="flex items-center gap-2">
-                <Mail className="size-4 text-muted-foreground shrink-0" />
-                <a
-                  href="mailto:info@sdalbirru.sch.id"
-                  className="hover:text-foreground transition-colors text-xs"
-                >
-                  info@sdalbirru.sch.id
-                </a>
-              </div>
-
-              <div className="flex items-start gap-2 text-xs">
-                <Clock className="size-4 text-muted-foreground mt-0.5 shrink-0" />
-                <div>
-                  <p>Monday – Friday: 07:30 AM – 03:00 PM</p>
-                  <p className="text-muted-foreground/80 mt-0.5">
-                    Saturday: By Appointment
-                  </p>
-                </div>
-              </div>
-
-              {/* Direct WhatsApp Consultation */}
-              <Button
-                render={
-                  <a
-                    href="https://wa.me/6281234567890?text=Hello%20Al-Birru%20Admin,%20I%20would%20like%20to%20inquire%20about%20school%20admissions."
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  />
-                }
-                nativeButton={false}
-                size="sm"
-                className="w-full mt-2 gap-2"
+            <div className="flex items-center gap-2">
+              <Mail className="size-4 text-muted-foreground shrink-0" />
+              <a
+                href="mailto:info@sdalbirru.sch.id"
+                className="hover:text-foreground transition-colors text-xs font-mono"
               >
-                <MessageCircle className="size-4" />
-                <span>Quick WhatsApp Consultation</span>
-                <ExternalLink className="size-3 opacity-70" />
-              </Button>
-            </address>
-          </div>
+                info@sdalbirru.sch.id
+              </a>
+            </div>
+
+            <div className="flex items-start gap-2 text-xs">
+              <Clock className="size-4 text-muted-foreground mt-0.5 shrink-0" />
+              <div>
+                <p>Senin – Jumat: 07:30 – 15:00 WIB</p>
+                <p className="text-muted-foreground/80 mt-0.5">
+                  Sabtu: Dengan Janji Temu
+                </p>
+              </div>
+            </div>
+          </address>
         </div>
       </div>
 
-      {/* Bottom Legal & Copyright Bar */}
-      <div className="border-t border-border bg-muted/30 py-6 relative z-10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-muted-foreground">
-          <p>© {currentYear} Al-Birru Primary School. All rights reserved.</p>
-          <div className="flex items-center gap-6">
-            <Link
-              href="/about"
-              className="hover:text-foreground transition-colors"
-            >
-              About School
-            </Link>
-            <Link
-              href="/contact"
-              className="hover:text-foreground transition-colors"
-            >
-              Location Map
-            </Link>
-            <Link
-              href="/admin"
-              className="hover:text-foreground transition-colors"
-            >
-              Portal Login
-            </Link>
-          </div>
+      {/* Bottom Legal & Copyright Bar — Flush in Grid */}
+      <div className="w-full p-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-muted-foreground bg-muted/10">
+        <p>
+          © {currentYear} Sekolah Dasar Islam Al-Birru. Seluruh hak cipta
+          dilindungi.
+        </p>
+        <div className="flex items-center gap-6">
+          <Link
+            href="/profile"
+            className="hover:text-foreground transition-colors uppercase tracking-wider"
+          >
+            {t.nav.profile}
+          </Link>
+          <Link
+            href="/services"
+            className="hover:text-foreground transition-colors uppercase tracking-wider"
+          >
+            {t.nav.services}
+          </Link>
+          <Link
+            href="/admin"
+            className="hover:text-foreground transition-colors uppercase tracking-wider"
+          >
+            Portal Masuk
+          </Link>
         </div>
       </div>
     </footer>

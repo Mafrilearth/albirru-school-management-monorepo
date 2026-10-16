@@ -10,13 +10,13 @@ export const metadata: Metadata = {
   description:
     "Explore our 3 mutqin juz tahfidzul qur'an curriculum, national Merdeka curriculum, 6 signature extracurriculars (archery, robotics, martial arts), and modern campus facilities at SD Al-Birru Sukabumi.",
   alternates: {
-    canonical: "/programs",
+    canonical: "/academics",
   },
   openGraph: {
     title: "Academic Curriculum & Campus Facilities | SD Al-Birru Sukabumi",
     description:
       "Harmonizing the Merdeka Curriculum, 3 Mutqin Juz Tahfidz, Sunnah Archery Extracurriculars, and State-of-the-Art Campus Facilities in Sukabumi.",
-    url: "/programs",
+    url: "/academics",
   },
 };
 
@@ -33,13 +33,13 @@ const breadcrumbSchema = {
     {
       "@type": "ListItem",
       position: 2,
-      name: "Programs & Facilities",
-      item: "https://sdalbirru.sch.id/programs",
+      name: "Academics",
+      item: "https://sdalbirru.sch.id/academics",
     },
   ],
 };
 
-export default function ProgramsPage() {
+export default function AcademicsPage() {
   return (
     <>
       <script
@@ -48,7 +48,7 @@ export default function ProgramsPage() {
       />
       <PageHeader
         kicker="ACADEMICS // CURRICULUM STRUCTURE & FACILITIES"
-        title="Harmonizing Merdeka Curriculum &amp; Certified Tahfidz"
+        title="Harmonizing Merdeka Curriculum & Certified Tahfidz"
         description="Fostering deep Al-Qur'an memorization with verified sanad without compromising critical scientific reasoning, supported by 6 signature extracurriculars and state-of-the-art facilities."
         badges={[
           { iconName: "book", label: "Target 3 Mutqin Juz & Tajweed" },
@@ -60,16 +60,18 @@ export default function ProgramsPage() {
         ]}
       />
 
-      <CurriculumSection />
-      <ExtracurricularSection />
-      <FacilitiesSection />
-      <CTASection
-        kicker="CONSULTATION // STUDENT CURRICULUM READINESS"
-        title="Discuss Your Child's Unique Interests &amp; Potential"
-        description="Our curriculum team and educators are ready to help map your child's learning style and developmental readiness for primary school."
-        primaryBtnText="Consult Curriculum Today"
-        primaryBtnHref="/contact"
-      />
+      <div className="w-full max-w-7xl mx-auto border-x border-border">
+        <CurriculumSection />
+        <ExtracurricularSection />
+        <FacilitiesSection />
+        <CTASection
+          kicker="CONSULTATION // STUDENT CURRICULUM READINESS"
+          title="Discuss Your Child's Unique Interests & Potential"
+          description="Our curriculum team and educators are ready to help map your child's learning style and developmental readiness for primary school."
+          primaryBtnText="Consult Curriculum Today"
+          primaryBtnHref="/services"
+        />
+      </div>
     </>
   );
 }

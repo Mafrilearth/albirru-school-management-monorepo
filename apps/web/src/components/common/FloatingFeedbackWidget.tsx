@@ -152,8 +152,8 @@ export function FloatingFeedbackWidget() {
         className="fixed bottom-6 left-4 sm:left-6 z-40 flex items-center"
       >
         <motion.div
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
+          whileHover={{ scale: 1.04 }}
+          whileTap={{ scale: 0.96 }}
           className="relative"
         >
           <Button
@@ -165,9 +165,9 @@ export function FloatingFeedbackWidget() {
             data-tally-emoji-animation="wave"
             data-tally-auto-close="2000"
             variant="outline"
-            className="rounded-full shadow-lg border-primary/30 bg-card/95 backdrop-blur-md hover:bg-card px-4 py-2.5 h-auto text-xs font-semibold gap-2 text-foreground group"
+            className="rounded-none shadow-none border-primary/40 bg-card/95 hover:bg-card px-4 py-2.5 h-auto text-xs font-mono uppercase tracking-wider font-semibold gap-2 text-foreground group"
           >
-            <span className="flex size-2 rounded-full bg-primary animate-ping" />
+            <span className="flex size-2 rounded-none bg-primary animate-ping" />
             <Lightbulb className="size-4 text-primary transition-transform group-hover:rotate-12" />
             <span>Propose Feature</span>
           </Button>
@@ -176,30 +176,30 @@ export function FloatingFeedbackWidget() {
 
       {/* Modal Dialog */}
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
-        <DialogContent className="sm:max-w-md p-6 rounded-3xl border border-primary/20 bg-card/95 backdrop-blur-md shadow-2xl">
+        <DialogContent className="sm:max-w-md p-6 rounded-none border border-border bg-card/98 shadow-none">
           <DialogHeader className="text-start">
             <div className="flex items-center gap-2 mb-1">
               <Badge
                 variant="secondary"
-                className="gap-1 text-xs font-semibold text-primary bg-primary/10 border border-primary/20"
+                className="gap-1 text-[11px] font-mono uppercase tracking-wider text-primary bg-primary/10 border border-primary/20 rounded-none"
               >
                 <Sparkles className="size-3" />
                 <span>Visitor Feedback</span>
               </Badge>
             </div>
-            <DialogTitle className="text-xl font-bold text-foreground">
+            <DialogTitle className="text-xl font-bold tracking-tight text-foreground">
               Propose Feature &amp; Feedback
             </DialogTitle>
-            <DialogDescription className="text-xs text-muted-foreground leading-relaxed">
-              Have a feature idea or program suggestion for Al-Birru Primary
-              School? Share it here without logging in.
+            <DialogDescription className="text-xs text-muted-foreground leading-relaxed font-mono">
+              // Direct feedback mechanism for parents and guests. No login
+              required.
             </DialogDescription>
           </DialogHeader>
 
           {submitSuccess ? (
             /* Success State */
             <div className="py-6 flex flex-col items-center text-center gap-4">
-              <div className="size-16 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center text-primary shadow-xs">
+              <div className="size-16 rounded-none bg-primary/10 border border-primary/20 flex items-center justify-center text-primary shadow-none">
                 <CheckCircle2 className="size-8" />
               </div>
 
@@ -222,7 +222,7 @@ export function FloatingFeedbackWidget() {
                       />
                     }
                     nativeButton={false}
-                    className="w-full gap-2 font-semibold shadow-md shadow-primary/20"
+                    className="w-full gap-2 font-mono uppercase tracking-wider text-xs rounded-none shadow-none"
                   >
                     <MessageCircle className="size-4" />
                     <span>Forward to Admissions WhatsApp</span>
@@ -233,7 +233,7 @@ export function FloatingFeedbackWidget() {
                   onClick={resetForm}
                   variant="outline"
                   size="sm"
-                  className="w-full gap-2 text-xs"
+                  className="w-full gap-2 text-xs font-mono uppercase tracking-wider rounded-none shadow-none"
                 >
                   <RotateCcw className="size-3.5" />
                   <span>Submit Another Response</span>
@@ -245,8 +245,8 @@ export function FloatingFeedbackWidget() {
             <form onSubmit={handleSubmit} className="flex flex-col gap-4 mt-2">
               {/* Category Pills */}
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-semibold text-foreground">
-                  Select Feedback Category:
+                <label className="text-xs font-mono uppercase tracking-wider font-semibold text-foreground">
+                  // Select Feedback Category:
                 </label>
                 <div className="flex flex-wrap gap-1.5">
                   {FEEDBACK_CATEGORIES.map((cat) => (
@@ -254,10 +254,10 @@ export function FloatingFeedbackWidget() {
                       key={cat.id}
                       type="button"
                       onClick={() => setCategory(cat.id)}
-                      className={`text-[11px] font-medium px-2.5 py-1 rounded-lg border transition-all ${
+                      className={`text-[11px] font-mono px-2.5 py-1 rounded-none border transition-all cursor-pointer ${
                         category === cat.id
-                          ? "bg-primary text-primary-foreground border-primary font-semibold shadow-xs"
-                          : "bg-muted/50 border-border text-muted-foreground hover:bg-muted hover:text-foreground"
+                          ? "bg-primary text-primary-foreground border-primary font-semibold shadow-none"
+                          : "bg-muted/40 border-border text-muted-foreground hover:bg-muted hover:text-foreground"
                       }`}
                     >
                       {cat.label}
@@ -268,21 +268,21 @@ export function FloatingFeedbackWidget() {
 
               {/* Title (Optional) */}
               <div className="flex flex-col gap-1">
-                <label className="text-xs font-semibold text-foreground">
+                <label className="text-xs font-mono uppercase tracking-wider font-semibold text-foreground">
                   Proposal Title (Optional):
                 </label>
                 <Input
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                   placeholder="Example: Student digital diary"
-                  className="text-xs rounded-xl"
+                  className="text-xs rounded-none border-border"
                   maxLength={100}
                 />
               </div>
 
               {/* Content Field */}
               <div className="flex flex-col gap-1">
-                <label className="text-xs font-semibold text-foreground">
+                <label className="text-xs font-mono uppercase tracking-wider font-semibold text-foreground">
                   Feedback Description: *
                 </label>
                 <Textarea
@@ -291,7 +291,7 @@ export function FloatingFeedbackWidget() {
                   placeholder="Describe the feature or enhancement you would like to see..."
                   rows={4}
                   required
-                  className="text-xs rounded-xl resize-none"
+                  className="text-xs rounded-none border-border resize-none"
                   maxLength={1000}
                 />
               </div>
@@ -299,31 +299,31 @@ export function FloatingFeedbackWidget() {
               {/* Contact Info (Optional) */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 <div className="flex flex-col gap-1">
-                  <label className="text-[11px] font-medium text-muted-foreground">
+                  <label className="text-[11px] font-mono text-muted-foreground">
                     Your Name (Optional):
                   </label>
                   <Input
                     value={contactName}
                     onChange={(e) => setContactName(e.target.value)}
                     placeholder="Guardian or Guest"
-                    className="text-xs rounded-xl"
+                    className="text-xs rounded-none border-border"
                   />
                 </div>
                 <div className="flex flex-col gap-1">
-                  <label className="text-[11px] font-medium text-muted-foreground">
+                  <label className="text-[11px] font-mono text-muted-foreground">
                     WhatsApp Number (Optional):
                   </label>
                   <Input
                     value={contactInfo}
                     onChange={(e) => setContactInfo(e.target.value)}
                     placeholder="081234567890"
-                    className="text-xs rounded-xl"
+                    className="text-xs rounded-none border-border"
                   />
                 </div>
               </div>
 
               {errorMessage && (
-                <p className="text-xs text-destructive font-medium">
+                <p className="text-xs text-destructive font-mono font-medium">
                   {errorMessage}
                 </p>
               )}
@@ -335,7 +335,7 @@ export function FloatingFeedbackWidget() {
                   variant="ghost"
                   size="sm"
                   onClick={() => setIsOpen(false)}
-                  className="text-xs"
+                  className="text-xs font-mono uppercase tracking-wider rounded-none"
                 >
                   Cancel
                 </Button>
@@ -344,7 +344,7 @@ export function FloatingFeedbackWidget() {
                   type="submit"
                   size="sm"
                   disabled={isSubmitting || content.trim().length < 5}
-                  className="gap-2 font-semibold shadow-sm shadow-primary/20 text-xs"
+                  className="gap-2 font-mono uppercase tracking-wider font-semibold shadow-none text-xs rounded-none"
                 >
                   {isSubmitting ? (
                     <>

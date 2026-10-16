@@ -35,7 +35,7 @@ export function ScrollToTop() {
           whileTap={appleTapHaptic}
           transition={appleSpring}
           onClick={scrollToTop}
-          className="fixed bottom-22 lg:bottom-6 left-4 sm:left-6 z-40 flex size-10 items-center justify-center rounded-full bg-background border border-border text-foreground shadow-md hover:bg-muted transition-colors cursor-pointer"
+          className="fixed bottom-22 lg:bottom-6 left-4 sm:left-6 z-40 flex size-10 items-center justify-center rounded-none bg-background border border-border text-foreground shadow-none hover:bg-foreground hover:text-background transition-colors cursor-pointer"
         >
           <ArrowUp className="size-4.5" />
         </motion.button>

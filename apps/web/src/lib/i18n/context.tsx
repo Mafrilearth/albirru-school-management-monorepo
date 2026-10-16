@@ -34,9 +34,24 @@ export function LanguageProvider({
 }) {
   const [locale, setLocaleState] = useState<Locale>(defaultLocale);
 
-  // Sync from storage on mount
+  // Sync from URL pathname or storage on mount
   useEffect(() => {
     try {
+      if (typeof window !== "undefined") {
+        const path = window.location.pathname;
+        if (path === "/en" || path.startsWith("/en/")) {
+          setLocaleState("en");
+          document.documentElement.lang = "en";
+          document.documentElement.dir = "ltr";
+          return;
+        }
+        if (path === "/ar" || path.startsWith("/ar/")) {
+          setLocaleState("ar");
+          document.documentElement.lang = "ar";
+          document.documentElement.dir = "rtl";
+          return;
+        }
+      }
       const stored = localStorage.getItem(STORAGE_KEY) as Locale | null;
       if (stored && (stored === "id" || stored === "ar" || stored === "en")) {
         setLocaleState(stored);

@@ -1,18 +1,10 @@
 "use client";
 
-import {
-  ArrowRight,
-  ChevronDown,
-  HelpCircle,
-  MessageCircle,
-  ShieldCheck,
-  Sparkles,
-} from "lucide-react";
-import { AnimatePresence, motion, useScroll, useTransform } from "motion/react";
-import Link from "next/link";
-import { useRef, useState } from "react";
+import { ArrowRight, ChevronDown, Mail, ShieldCheck } from "lucide-react";
+import { AnimatePresence, motion } from "motion/react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
+import { Link } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
 
 interface FAQItem {
@@ -22,31 +14,32 @@ interface FAQItem {
 
 const faqs: FAQItem[] = [
   {
-    question: "Berapa batas kuota santri per angkatan di SD Al-Birru?",
+    question: "Bagaimana sistem pembelajaran dan pendampingan di SD Al-Birru?",
     answer:
-      "SD Al-Birru membatasi secara ketat maksimal 40 santri per angkatan yang dibagi ke dalam 2 rombongan belajar (maksimal 20 santri per kelas). Kebijakan ini diberlakukan demi menjamin rasio pendampingan guru 1:15 dan kedekatan emosional personal bagi setiap anak.",
+      "SD Al-Birru menerapkan pendampingan terfokus dengan kapasitas kelas yang kondusif demi menjamin kedekatan batin guru dan santri serta efektivitas bimbingan personal bagi setiap anak.",
   },
   {
     question:
-      "Apakah ada tes calistung (baca, tulis, hitung) saat observasi seleksi masuk?",
+      "Apakah ada tes calistung (baca, tulis, hitung) saat seleksi masuk?",
     answer:
-      "Tidak ada tes calistung yang membebani anak. Seleksi masuk dilakukan melalui observasi kesiapan belajar ramah anak, pemetaan fitrah motorik/sosial-emosional, serta dialog keselarasan visi pengasuhan antara sekolah dan orang tua.",
+      "Tidak ada tes calistung yang membebani anak. Seleksi masuk dilakukan melalui observasi kesiapan belajar ramah anak, pemetaan motorik serta sosial-emosional, dan dialog keselarasan visi pengasuhan bersama orang tua.",
   },
   {
     question:
       "Bagaimana jika ananda belum lancar mengaji sebelum masuk kelas 1?",
     answer:
-      "Tidak diwajibkan sudah lancar membaca Al-Qur'an. Pembelajaran tahfidz di SD Al-Birru dimulai dari pembiasaan makharijul huruf dasar, talaqqi bertahap dengan asatidz bersanad, dan metode belajar yang menggembirakan sejak awal tahun ajaran.",
+      "Tidak diwajibkan sudah lancar membaca Al-Qur'an. Pembelajaran tahfidz di SD Al-Birru dimulai dari pembiasaan makharijul huruf dasar, bimbingan talaqqi bertahap dengan asatidz, dan metode yang menggembirakan sejak awal tahun ajaran.",
   },
   {
-    question: "Apakah sains alam dan coding sudah diajarkan sejak kelas bawah?",
+    question:
+      "Apakah sains alam dan pengenalan logika sudah diajarkan sejak dini?",
     answer:
-      "Ya. Eksplorasi sains alam dilakukan langsung di kebun terbuka sekolah melalui pendekatan inkuiri tematik, sementara logika komputasi awal dikenalkan secara bertahap lewat Scratch Junior yang melatih pola pikir runut tanpa paparan layar berlebih.",
+      "Ya. Eksplorasi sains dilakukan langsung di kebun sekolah melalui pendekatan inkuiri tematik, sementara logika komputasi awal dikenalkan secara bertahap lewat media visual yang melatih pola pikir terstruktur tanpa paparan layar berlebih.",
   },
   {
     question: "Bagaimana transparansi pembiayaan pendidikan di SD Al-Birru?",
     answer:
-      "Pembiayaan disampaikan 100% transparan sejak awal pendaftaran tanpa biaya tersembunyi. Rincian mencakup dana pengembangan sarana, seragam, buku ajar, dan SPP bulanan yang sudah terintegrasi dengan seluruh kegiatan intrakurikuler.",
+      "Pembiayaan disampaikan transparan sejak awal pendaftaran tanpa biaya tersembunyi. Rincian mencakup dana pengembangan sarana, seragam, buku ajar, dan biaya bulanan yang telah mencakup seluruh kegiatan intrakurikuler.",
   },
 ];
 
@@ -60,10 +53,10 @@ export interface CTASectionProps {
 }
 
 export function CTASection({
-  kicker = "PENERIMAAN SISWA BARU TA 2026/2027",
-  title = "Siapkan Fondasi Adab & Masa Depan Buah Hati Anda.",
-  description = "Kuota dibatasi ketat hanya 40 santri per angkatan (tersisa 14 kursi di Gelombang I). Dapatkan pendampingan personal dan konsultasikan kesiapan ananda bersama tim penerimaan Al-Birru.",
-  primaryBtnText = "Daftar Siswa Baru Sekarang",
+  kicker = "Penerimaan Siswa Baru TA 2026/2027",
+  title = "Siapkan Fondasi Adab & Masa Depan Buah Hati Anda",
+  description = "Konsultasikan kesiapan belajar ananda dan dapatkan informasi lengkap mengenai kurikulum terpadu serta tata cara pendaftaran di SD Al-Birru Sukabumi.",
+  primaryBtnText = "Daftar Siswa Baru",
   primaryBtnHref = "/admissions",
   showFaq = true,
 }: CTASectionProps = {}) {
@@ -73,159 +66,136 @@ export function CTASection({
     setOpenIndex(openIndex === idx ? null : idx);
   };
 
-  const sectionRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"],
-  });
-
-  const yGlowParallax = useTransform(scrollYProgress, [0, 1], [-40, 40]);
-
   return (
     <section
-      ref={sectionRef}
       aria-labelledby="faq-and-cta-heading"
-      className="py-20 sm:py-28 bg-background relative overflow-hidden"
+      className="w-full bg-background border-b border-border relative overflow-hidden"
     >
-      {/* Background ambient halo */}
-      <motion.div
-        style={{ y: yGlowParallax }}
-        className="pointer-events-none absolute bottom-10 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-gradient-to-t from-primary/10 via-emerald-400/5 to-transparent blur-3xl rounded-full -z-10"
-      />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Part 1: Interactive FAQ Accordion */}
-        {showFaq && (
-          <div className="max-w-3xl mx-auto mb-18 sm:mb-24">
-            <div className="text-center mb-12">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 mb-4 rounded-full border border-primary/20 bg-primary/5 text-xs font-semibold text-primary">
-                <HelpCircle className="size-3.5" />
-                <span>PERTANYAAN SERING DIAJUKAN (FAQ)</span>
-              </div>
-              <h2
-                id="faq-and-cta-heading"
-                className="text-3xl sm:text-4xl lg:text-5xl font-black text-foreground tracking-tight"
-              >
-                Informasi Penting Bagi Orang Tua
-              </h2>
-              <p className="mt-3.5 text-base text-muted-foreground">
-                Jawaban transparan seputar kuota kelas, metode tahfidz, dan
-                proses penerimaan santri baru di SD Al-Birru Sukabumi.
-              </p>
-            </div>
-
-            {/* Interactive Accordion Items with Height Springs */}
-            <div className="flex flex-col gap-3.5">
-              {faqs.map((faq, idx) => {
-                const isOpen = openIndex === idx;
-                return (
-                  <div
-                    key={faq.question}
-                    className="border border-border/80 bg-card/90 rounded-2xl shadow-xs transition-colors overflow-hidden"
-                  >
-                    <button
-                      type="button"
-                      onClick={() => toggleAccordion(idx)}
-                      className="w-full p-4.5 sm:p-5.5 text-start flex items-center justify-between gap-4 cursor-pointer hover:bg-muted/30 select-none active:scale-[0.99] transition-transform"
-                    >
-                      <span className="text-sm sm:text-base font-bold text-foreground">
-                        {faq.question}
-                      </span>
-                      <ChevronDown
-                        className={cn(
-                          "size-4 shrink-0 text-primary transition-transform duration-250 ease-out",
-                          isOpen && "rotate-180",
-                        )}
-                      />
-                    </button>
-                    <AnimatePresence initial={false}>
-                      {isOpen && (
-                        <motion.div
-                          key="accordionContent"
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: "auto", opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{
-                            duration: 0.22,
-                            ease: [0.23, 1, 0.32, 1],
-                          }}
-                          className="overflow-hidden border-t border-border/60 bg-muted/20"
-                        >
-                          <p className="p-4.5 sm:p-5.5 pt-3.5 text-xs sm:text-sm text-muted-foreground leading-relaxed">
-                            {faq.answer}
-                          </p>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        )}
-
-        {/* Part 2: High-Converting Command Center CTA Card with Floating Halo */}
-        <Card className="rounded-3xl p-8 sm:p-14 md:p-18 text-center flex flex-col items-center border border-border/80 bg-card/90 backdrop-blur-xl shadow-2xl relative overflow-hidden">
-          <div className="max-w-3xl mx-auto flex flex-col items-center relative z-10">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 mb-6 rounded-full border border-primary/25 bg-primary/10 text-xs font-semibold text-primary">
-              <Sparkles className="size-3.5" />
-              <span>{kicker}</span>
-            </div>
-
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-foreground tracking-tight leading-tight">
-              {title}
+      {/* Part 1: Interactive FAQ Accordion — Flush in Grid */}
+      {showFaq && (
+        <div className="w-full">
+          {/* FAQ Header Cell */}
+          <div className="w-full p-6 sm:p-10 lg:p-12 border-b border-border text-center bg-background">
+            <span className="font-mono text-xs font-bold uppercase tracking-widest text-muted-foreground block mb-2">
+              Tanya Jawab
+            </span>
+            <h2
+              id="faq-and-cta-heading"
+              className="text-3xl sm:text-4xl lg:text-5xl font-black text-foreground tracking-tight leading-tight text-balance"
+              style={{ textWrap: "balance" }}
+            >
+              Pertanyaan yang Sering Diajukan
             </h2>
-
-            <p className="mt-5 text-base sm:text-lg text-muted-foreground leading-relaxed max-w-2xl">
-              {description}
+            <p className="mt-4 text-base text-muted-foreground leading-relaxed max-w-xl mx-auto">
+              Informasi seputar kurikulum, bimbingan tahfidzul Qur&apos;an, dan
+              prosedur penerimaan santri baru di SD Al-Birru.
             </p>
-
-            {/* Conversion Action Buttons */}
-            <div className="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3.5 w-full sm:w-auto">
-              <Button
-                render={<Link href={primaryBtnHref} />}
-                nativeButton={false}
-                size="lg"
-                className="w-full sm:w-auto gap-2 font-semibold bg-primary text-primary-foreground hover:bg-primary/90 text-sm tracking-wide rounded-full px-8 shadow-md shadow-primary/20 active:scale-[0.98] transition-all duration-150 ease-out"
-              >
-                <span>{primaryBtnText}</span>
-                <ArrowRight data-icon="inline-end" />
-              </Button>
-
-              <Button
-                render={
-                  <a
-                    href="https://wa.me/6281234567890?text=Assalamu'alaikum%20Tim%20Penerimaan%20SD%20Al-Birru,%20saya%20ingin%20berkonsultasi%20mengenai%20penerimaan%20santri%20baru%20TA%202026/2027."
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  />
-                }
-                nativeButton={false}
-                variant="outline"
-                size="lg"
-                className="w-full sm:w-auto gap-2 font-medium border-border hover:bg-muted text-sm text-foreground rounded-full px-8 active:scale-[0.98] transition-all duration-150 ease-out"
-              >
-                <MessageCircle
-                  data-icon="inline-start"
-                  className="size-4 text-primary"
-                />
-                <span>Konsultasi Langsung via WhatsApp</span>
-              </Button>
-            </div>
-
-            {/* Proof Assurance */}
-            <div className="mt-10 pt-6 border-t border-border flex flex-wrap items-center justify-center gap-4 text-xs text-muted-foreground">
-              <div className="flex items-center gap-1.5 font-semibold text-foreground">
-                <ShieldCheck className="size-4 text-primary shrink-0" />
-                <span>Observasi Belajar Ramah Anak</span>
-              </div>
-              <span className="text-border hidden sm:inline">•</span>
-              <span>Bebas Tes Calistung Membebani</span>
-              <span className="text-border hidden sm:inline">•</span>
-              <span>Transparansi Biaya 100%</span>
-            </div>
           </div>
-        </Card>
+
+          {/* Accordion List — Flush in Grid with 1px Shared Dividing Lines */}
+          <div className="w-full border-b border-border bg-card divide-y divide-border">
+            {faqs.map((faq, idx) => {
+              const isOpen = openIndex === idx;
+              return (
+                <div key={faq.question} className="overflow-hidden">
+                  <button
+                    type="button"
+                    onClick={() => toggleAccordion(idx)}
+                    className="w-full p-5 sm:p-6 text-start flex items-center justify-between gap-4 cursor-pointer hover:bg-muted/30 select-none transition-colors"
+                  >
+                    <span className="text-sm sm:text-base font-bold text-foreground">
+                      {faq.question}
+                    </span>
+                    <ChevronDown
+                      className={cn(
+                        "size-4 shrink-0 text-muted-foreground transition-transform duration-200 ease-out",
+                        isOpen && "rotate-180 text-foreground",
+                      )}
+                    />
+                  </button>
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div
+                        key="accordionContent"
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{
+                          duration: 0.18,
+                          ease: [0.16, 1, 0.3, 1],
+                        }}
+                        className="overflow-hidden border-t border-border bg-muted/10"
+                      >
+                        <p className="p-5 sm:p-6 pt-4 text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                          {faq.answer}
+                        </p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
+      {/* Part 2: Final Command Center CTA — Flush in Grid */}
+      <div className="w-full p-8 sm:p-14 lg:p-16 text-center flex flex-col items-center bg-card">
+        <div className="max-w-2xl mx-auto flex flex-col items-center">
+          <div className="inline-flex items-center gap-2 px-3 py-1 mb-6 rounded-none border border-border bg-muted/40 font-mono text-[11px] font-bold uppercase tracking-widest text-foreground">
+            <span>{kicker}</span>
+          </div>
+
+          <h2
+            className="text-3xl sm:text-4xl md:text-5xl font-black text-foreground tracking-tight leading-tight text-balance"
+            style={{ textWrap: "balance" }}
+          >
+            {title}
+          </h2>
+
+          <p className="mt-4 text-base sm:text-lg text-muted-foreground leading-relaxed">
+            {description}
+          </p>
+
+          {/* Action Buttons — Single Primary Action & Clean Secondary Route */}
+          <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 w-full sm:w-auto font-mono">
+            <Button
+              render={<Link href={primaryBtnHref} />}
+              nativeButton={false}
+              size="lg"
+              className="w-full sm:w-auto gap-2 font-mono text-xs uppercase tracking-wider font-bold bg-primary text-primary-foreground hover:bg-foreground hover:text-background rounded-none border border-transparent px-8 py-3.5 shadow-none active:scale-[0.98] transition-all"
+            >
+              <span>{primaryBtnText}</span>
+              <ArrowRight data-icon="inline-end" className="size-4" />
+            </Button>
+
+            <Button
+              render={<Link href="/services" />}
+              nativeButton={false}
+              variant="outline"
+              size="lg"
+              className="w-full sm:w-auto gap-2 font-mono text-xs uppercase tracking-wider font-bold border-border hover:border-foreground bg-transparent text-foreground hover:bg-muted rounded-none px-8 py-3.5 shadow-none active:scale-[0.98] transition-all"
+            >
+              <Mail
+                data-icon="inline-start"
+                className="size-4 text-muted-foreground"
+              />
+              <span>Hubungi Kami</span>
+            </Button>
+          </div>
+
+          {/* Assurances */}
+          <div className="mt-10 pt-6 border-t border-border flex flex-wrap items-center justify-center gap-6 font-mono text-[11px] uppercase tracking-wider text-muted-foreground">
+            <div className="flex items-center gap-1.5 font-bold text-foreground">
+              <ShieldCheck className="size-3.5 text-emerald-600 shrink-0" />
+              <span>Observasi Ramah Anak</span>
+            </div>
+            <span className="text-border hidden sm:inline">•</span>
+            <span>Bebas Tes Calistung</span>
+            <span className="text-border hidden sm:inline">•</span>
+            <span>Transparansi Biaya 100%</span>
+          </div>
+        </div>
       </div>
     </section>
   );

@@ -3,8 +3,6 @@
 import { Quote } from "lucide-react";
 import { ScrollReveal } from "@/components/common/ScrollReveal";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Badge } from "@/components/ui/badge";
-import { Card } from "@/components/ui/card";
 import {
   Carousel,
   CarouselContent,
@@ -39,19 +37,19 @@ const testimonials = [
 
 export function TestimonialsSection() {
   return (
-    <section className="py-20 md:py-28 lg:py-32 bg-muted/30 border-b border-border overflow-hidden relative">
+    <section className="py-24 sm:py-32 lg:py-36 bg-muted/20 border-b border-border overflow-hidden relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <ScrollReveal direction="up" className="text-center mb-12 md:mb-16">
-          <Badge
-            variant="outline"
-            className="gap-2 px-3.5 py-1 mb-5 text-xs font-semibold rounded-full border-primary/30 text-primary bg-primary/5"
-          >
-            <span>TESTIMONI AYAH &amp; BUNDA</span>
-          </Badge>
-          <h2 className="text-3xl md:text-5xl font-extrabold text-foreground tracking-tight">
+        <ScrollReveal direction="up" className="text-center mb-14 md:mb-18">
+          <div className="inline-flex items-center gap-2 px-3 py-1 mb-6 border border-border bg-background text-foreground mx-auto">
+            <span className="size-1.5 bg-primary" />
+            <span className="font-mono text-[11px] font-semibold uppercase tracking-widest text-muted-foreground">
+              TESTIMONI ORANG TUA SANTRI
+            </span>
+          </div>
+          <h2 className="text-3xl md:text-5xl font-extrabold text-foreground tracking-tight leading-[1.15]">
             Kisah Nyata Perjalanan Fitrah Santri
           </h2>
-          <p className="mt-4 text-muted-foreground text-base sm:text-lg max-w-2xl mx-auto">
+          <p className="mt-5 text-muted-foreground text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
             Refleksi jujur dari para orang tua murid mengenai perkembangan adab,
             kemandirian ibadah, dan kelancaran tahfidz ananda di SD Al-Birru.
           </p>
@@ -67,36 +65,40 @@ export function TestimonialsSection() {
           <CarouselContent className="-ml-4">
             {testimonials.map((t, i) => (
               <CarouselItem key={i} className="pl-4 md:basis-1/2">
-                <Card className="p-8 h-full flex flex-col justify-between rounded-3xl border border-border hover:border-primary/40 transition-all shadow-xs bg-card/90">
+                <div className="p-8 h-full flex flex-col justify-between rounded-none border border-border hover:border-foreground/30 transition-colors bg-card/60 relative group shadow-none">
                   <div>
-                    <Quote className="size-8 text-primary/30 mb-4" />
+                    <Quote className="size-8 text-primary/40 mb-4" />
                     <p className="text-foreground/90 font-medium leading-relaxed italic text-sm sm:text-base">
                       &ldquo;{t.quote}&rdquo;
                     </p>
                   </div>
                   <div className="mt-6 pt-5 border-t border-border flex items-center gap-3">
-                    <Avatar className="size-11 border border-primary/20">
-                      <AvatarImage src={t.avatar} alt={t.author} />
-                      <AvatarFallback className="font-bold text-sm bg-primary/10 text-primary">
+                    <Avatar className="size-11 rounded-none border border-border">
+                      <AvatarImage
+                        src={t.avatar}
+                        alt={t.author}
+                        className="rounded-none object-cover"
+                      />
+                      <AvatarFallback className="font-mono font-bold text-sm bg-primary/10 text-primary rounded-none">
                         {t.author.charAt(0)}
                       </AvatarFallback>
                     </Avatar>
                     <div>
-                      <h4 className="font-bold text-foreground text-sm">
+                      <h4 className="font-bold text-foreground text-sm tracking-tight">
                         {t.author}
                       </h4>
-                      <p className="text-xs text-muted-foreground mt-0.5">
+                      <p className="text-xs font-mono text-muted-foreground mt-0.5">
                         {t.role}
                       </p>
                     </div>
                   </div>
-                </Card>
+                </div>
               </CarouselItem>
             ))}
           </CarouselContent>
           <div className="hidden md:block">
-            <CarouselPrevious className="-left-4" />
-            <CarouselNext className="-right-4" />
+            <CarouselPrevious className="-left-4 rounded-none border-border" />
+            <CarouselNext className="-right-4 rounded-none border-border" />
           </div>
         </Carousel>
       </div>

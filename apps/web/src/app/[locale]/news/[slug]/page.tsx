@@ -14,7 +14,6 @@ import { notFound } from "next/navigation";
 import { ArticleShareWidget } from "@/components/common/ArticleShareWidget";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { fallbackArticles, getArticleBySlug } from "@/lib/content";
 import { cn } from "@/lib/utils";
 
@@ -207,7 +206,7 @@ export default async function ArticleDetailPage({ params }: PageProps) {
               <div className="flex items-center gap-3">
                 <div
                   aria-hidden="true"
-                  className="size-10 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0"
+                  className="size-10 rounded-none bg-muted/40 border border-border text-foreground flex items-center justify-center shrink-0"
                 >
                   <User className="size-5" />
                 </div>
@@ -215,14 +214,17 @@ export default async function ArticleDetailPage({ params }: PageProps) {
                   <p className="text-sm font-semibold text-foreground">
                     {article.author}
                   </p>
-                  <p className="text-xs text-muted-foreground">
+                  <p className="text-xs text-muted-foreground font-mono">
                     Tim Humas &amp; Publikasi SD Al-Birru
                   </p>
                 </address>
               </div>
 
-              <div className="hidden sm:flex items-center gap-1.5 text-xs text-primary bg-primary/10 px-2.5 py-1 rounded-md">
-                <ShieldCheck aria-hidden="true" className="size-3.5" />
+              <div className="hidden sm:flex items-center gap-1.5 text-xs text-foreground bg-muted/40 border border-border px-2.5 py-1 rounded-none font-mono uppercase tracking-wider">
+                <ShieldCheck
+                  aria-hidden="true"
+                  className="size-3.5 text-emerald-600"
+                />
                 <span className="font-medium">Terverifikasi Resmi</span>
               </div>
             </div>
@@ -230,7 +232,7 @@ export default async function ArticleDetailPage({ params }: PageProps) {
             {/* Lead Summary Callout */}
             <blockquote
               cite={`https://sdalbirru.sch.id/news/${article.slug}`}
-              className="my-8 p-6 rounded-lg bg-muted/40 border-l-4 border-primary text-foreground text-base sm:text-lg font-medium leading-relaxed italic"
+              className="my-8 p-6 rounded-none bg-muted/40 border-l border-foreground text-foreground text-base sm:text-lg font-medium leading-relaxed italic"
             >
               <p>&quot;{article.summary}&quot;</p>
             </blockquote>
@@ -275,10 +277,43 @@ export default async function ArticleDetailPage({ params }: PageProps) {
             className="lg:col-span-4 flex flex-col gap-8 sticky top-24"
           >
             {/* Admissions Action Widget */}
-            <Card className="border-border bg-card shadow-sm p-6 sm:p-7">
-              <Badge variant="default" className="mb-3">
-                SPMB 2026/2027
-              </Badge>
+            <div className="border border-border bg-card/60 rounded-none shadow-none p-6 sm:p-7 relative group overflow-hidden">
+              <div
+                aria-hidden="true"
+                className="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 font-mono text-[11px] text-muted-foreground/40 select-none pointer-events-none"
+              >
+                +
+              </div>
+              <div
+                aria-hidden="true"
+                className="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 font-mono text-[11px] text-muted-foreground/40 select-none pointer-events-none"
+              >
+                +
+              </div>
+              <div
+                aria-hidden="true"
+                className="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 font-mono text-[11px] text-muted-foreground/40 select-none pointer-events-none"
+              >
+                +
+              </div>
+              <div
+                aria-hidden="true"
+                className="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 font-mono text-[11px] text-muted-foreground/40 select-none pointer-events-none"
+              >
+                +
+              </div>
+
+              <div className="flex items-center justify-between border-b border-border pb-3 mb-4">
+                <span className="font-mono text-xs uppercase tracking-widest text-primary">
+                  // ADM.02 — SPMB 2026/2027
+                </span>
+                <Badge
+                  variant="outline"
+                  className="rounded-none font-mono text-[10px] uppercase"
+                >
+                  WAVE 1
+                </Badge>
+              </div>
 
               <h2 className="text-lg font-bold text-foreground leading-snug">
                 Penerimaan Peserta Didik Baru Telah Dibuka
@@ -292,7 +327,10 @@ export default async function ArticleDetailPage({ params }: PageProps) {
               <div className="mt-6 flex flex-col gap-2.5">
                 <Link
                   href="/admissions"
-                  className={cn(buttonVariants(), "w-full gap-2")}
+                  className={cn(
+                    buttonVariants(),
+                    "w-full gap-2 font-mono uppercase tracking-wider text-xs font-bold py-5 rounded-none bg-primary text-primary-foreground hover:bg-foreground hover:text-background transition-colors duration-150 shadow-none",
+                  )}
                 >
                   <Sparkles aria-hidden="true" className="size-4" />
                   <span>Daftar Sekarang (Online)</span>
@@ -304,7 +342,7 @@ export default async function ArticleDetailPage({ params }: PageProps) {
                   rel="noopener noreferrer"
                   className={cn(
                     buttonVariants({ variant: "outline" }),
-                    "w-full",
+                    "w-full font-mono uppercase tracking-wider text-xs rounded-none border-border hover:bg-muted",
                   )}
                 >
                   <span>Hubungi WhatsApp SPMB</span>
@@ -314,17 +352,45 @@ export default async function ArticleDetailPage({ params }: PageProps) {
                   />
                 </a>
               </div>
-            </Card>
+            </div>
 
             {/* Related Articles */}
-            <Card className="border-border bg-card shadow-sm">
-              <CardHeader className="pb-3 border-b border-border">
-                <CardTitle className="text-sm font-semibold text-foreground">
-                  Berita Lainnya
-                </CardTitle>
-              </CardHeader>
+            <div className="border border-border bg-card/60 rounded-none shadow-none relative group overflow-hidden">
+              <div
+                aria-hidden="true"
+                className="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 font-mono text-[11px] text-muted-foreground/40 select-none pointer-events-none"
+              >
+                +
+              </div>
+              <div
+                aria-hidden="true"
+                className="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 font-mono text-[11px] text-muted-foreground/40 select-none pointer-events-none"
+              >
+                +
+              </div>
+              <div
+                aria-hidden="true"
+                className="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 font-mono text-[11px] text-muted-foreground/40 select-none pointer-events-none"
+              >
+                +
+              </div>
+              <div
+                aria-hidden="true"
+                className="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 font-mono text-[11px] text-muted-foreground/40 select-none pointer-events-none"
+              >
+                +
+              </div>
 
-              <CardContent className="pt-4">
+              <div className="p-4 border-b border-border flex items-center justify-between">
+                <span className="font-mono text-xs uppercase tracking-widest text-primary">
+                  // REL.01 — RELATED OFFICIAL BULLETINS
+                </span>
+                <span className="font-mono text-[10px] uppercase text-muted-foreground">
+                  NEWS FEED
+                </span>
+              </div>
+
+              <div className="p-5">
                 <ul
                   aria-label="Berita Terkait Lainnya"
                   className="flex flex-col gap-4 list-none p-0"
@@ -335,7 +401,10 @@ export default async function ArticleDetailPage({ params }: PageProps) {
                       className="border-b border-border last:border-0 pb-3 last:pb-0"
                     >
                       <article>
-                        <Badge variant="outline" className="text-[10px] mb-1">
+                        <Badge
+                          variant="outline"
+                          className="text-[10px] font-mono uppercase rounded-none mb-1"
+                        >
                           {other.categoryLabel}
                         </Badge>
                         <h3 className="text-xs sm:text-sm font-semibold text-foreground hover:text-primary transition-colors line-clamp-2">
@@ -345,7 +414,7 @@ export default async function ArticleDetailPage({ params }: PageProps) {
                         </h3>
                         <time
                           dateTime={other.publishedDate}
-                          className="text-[11px] text-muted-foreground mt-1 block"
+                          className="text-[11px] font-mono text-muted-foreground mt-1 block"
                         >
                           {other.formattedDate}
                         </time>
@@ -353,8 +422,8 @@ export default async function ArticleDetailPage({ params }: PageProps) {
                     </li>
                   ))}
                 </ul>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
           </aside>
         </div>
       </div>

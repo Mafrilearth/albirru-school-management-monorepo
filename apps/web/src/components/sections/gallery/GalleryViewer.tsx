@@ -13,9 +13,6 @@ import {
 } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useMemo, useState } from "react";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import {
   Dialog,
   DialogContent,
@@ -24,6 +21,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import type { GalleryItem } from "@/lib/content";
+import { cn } from "@/lib/utils";
 
 interface GalleryViewerProps {
   items: GalleryItem[];
@@ -74,16 +72,19 @@ export function GalleryViewer({ items }: GalleryViewerProps) {
         {categories.map((cat) => {
           const isActive = selectedCategory === cat.id;
           return (
-            <Button
+            <button
               key={cat.id}
               type="button"
-              variant={isActive ? "default" : "outline"}
-              size="sm"
               onClick={() => setSelectedCategory(cat.id)}
-              className="text-xs font-medium"
+              className={cn(
+                "px-4 py-2 font-mono text-xs uppercase tracking-wider rounded-none border transition-colors cursor-pointer",
+                isActive
+                  ? "bg-foreground text-background border-foreground font-bold"
+                  : "bg-background border-border text-muted-foreground hover:text-foreground hover:bg-muted/50",
+              )}
             >
               {cat.label}
-            </Button>
+            </button>
           );
         })}
       </div>
@@ -103,10 +104,10 @@ export function GalleryViewer({ items }: GalleryViewerProps) {
                 <motion.article
                   layout
                   aria-labelledby={`gallery-${item.id}-title`}
-                  initial={{ opacity: 0, scale: 0.96 }}
+                  initial={{ opacity: 0, scale: 0.98 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.96 }}
-                  transition={{ duration: 0.3, delay: idx * 0.04 }}
+                  exit={{ opacity: 0, scale: 0.98 }}
+                  transition={{ duration: 0.2, delay: idx * 0.03 }}
                   onClick={() => setActiveItem(item)}
                   tabIndex={0}
                   role="button"
@@ -116,65 +117,68 @@ export function GalleryViewer({ items }: GalleryViewerProps) {
                       setActiveItem(item);
                     }
                   }}
-                  className="cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-xl flex-1 flex"
+                  className="cursor-pointer outline-none rounded-none flex-1 flex"
                 >
-                  <Card className="flex-1 flex flex-col justify-between border-border bg-card shadow-sm hover:shadow-md transition-all overflow-hidden group">
+                  <div className="flex-1 flex flex-col justify-between border border-border bg-card/60 rounded-none hover:border-foreground/30 transition-colors relative group">
                     <div>
                       {/* Image Placeholder */}
-                      <figure className="relative aspect-[16/10] bg-muted border-b border-border p-6 flex flex-col items-center justify-center text-center group-hover:bg-muted/80 transition-colors">
+                      <figure className="relative aspect-[16/10] bg-muted/40 border-b border-border p-6 flex flex-col items-center justify-center text-center group-hover:bg-muted/70 transition-colors">
                         <div
                           aria-hidden="true"
-                          className="size-14 rounded-xl bg-background border border-border shadow-xs flex items-center justify-center text-primary group-hover:scale-105 transition-transform mb-2"
+                          className="size-14 rounded-none bg-background border border-border flex items-center justify-center text-foreground group-hover:scale-105 transition-transform mb-2 shadow-none"
                         >
                           <ItemIcon className="size-7" />
                         </div>
-                        <figcaption className="text-xs font-medium text-muted-foreground">
-                          Dokumentasi Foto
+                        <figcaption className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground font-semibold">
+                          Dokumentasi Galeri
                         </figcaption>
 
                         <span
                           aria-hidden="true"
-                          className="absolute top-3 right-3 flex size-8 items-center justify-center rounded-lg bg-background/80 backdrop-blur-xs border border-border text-foreground shadow-xs group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
+                          className="absolute top-3 right-3 flex size-8 items-center justify-center rounded-none bg-background border border-border text-foreground hover:bg-muted transition-colors shadow-none"
                         >
                           <Maximize2 className="size-3.5" />
                         </span>
                       </figure>
 
                       {/* Content */}
-                      <CardContent className="p-5 sm:p-6">
-                        <div className="flex items-center justify-between text-xs text-muted-foreground mb-2.5">
-                          <Badge variant="outline" className="text-xs">
+                      <div className="p-5 sm:p-6">
+                        <div className="flex items-center justify-between text-xs text-muted-foreground mb-3 font-mono">
+                          <span className="inline-flex px-2 py-0.5 text-[10px] uppercase tracking-wider bg-muted/40 border border-border text-foreground font-bold">
                             {item.categoryLabel}
-                          </Badge>
-                          <div className="flex items-center gap-1.5">
-                            <Calendar aria-hidden="true" className="size-3" />
+                          </span>
+                          <div className="flex items-center gap-1.5 text-[11px]">
+                            <Calendar
+                              aria-hidden="true"
+                              className="size-3 text-primary"
+                            />
                             <time dateTime={item.date}>{item.date}</time>
                           </div>
                         </div>
 
                         <h3
                           id={`gallery-${item.id}-title`}
-                          className="text-base sm:text-lg font-bold text-foreground group-hover:text-primary transition-colors leading-snug"
+                          className="text-base sm:text-lg font-bold text-foreground group-hover:text-primary transition-colors leading-snug tracking-tight"
                         >
                           {item.title}
                         </h3>
 
-                        <p className="mt-2 text-xs sm:text-sm text-muted-foreground line-clamp-2 leading-relaxed">
+                        <p className="mt-2.5 text-xs sm:text-sm text-muted-foreground line-clamp-2 leading-relaxed">
                           {item.description}
                         </p>
-                      </CardContent>
+                      </div>
                     </div>
 
-                    <CardFooter className="px-5 sm:px-6 py-4 border-t border-border flex items-center gap-2 text-xs text-muted-foreground">
+                    <div className="px-5 sm:px-6 py-4 border-t border-border flex items-center gap-2 text-xs text-muted-foreground font-mono">
                       <MapPin
                         aria-hidden="true"
                         className="size-3.5 shrink-0 text-primary"
                       />
-                      <address className="not-italic truncate">
+                      <address className="not-italic truncate text-[11px]">
                         {item.location}
                       </address>
-                    </CardFooter>
-                  </Card>
+                    </div>
+                  </div>
                 </motion.article>
               </li>
             );
@@ -190,10 +194,12 @@ export function GalleryViewer({ items }: GalleryViewerProps) {
         }}
       >
         {activeItem && (
-          <DialogContent className="sm:max-w-lg">
+          <DialogContent className="sm:max-w-lg rounded-none border border-border bg-card shadow-none p-6">
             <DialogHeader>
-              <div className="flex items-center gap-2 mb-2">
-                <Badge variant="secondary">{activeItem.categoryLabel}</Badge>
+              <div className="flex items-center gap-2 mb-2 font-mono">
+                <span className="inline-flex px-2 py-0.5 text-[10px] uppercase tracking-wider bg-muted/40 border border-border text-foreground font-bold">
+                  {activeItem.categoryLabel}
+                </span>
                 <span className="text-xs text-muted-foreground">•</span>
                 <time
                   dateTime={activeItem.date}
@@ -202,7 +208,7 @@ export function GalleryViewer({ items }: GalleryViewerProps) {
                   {activeItem.date}
                 </time>
               </div>
-              <DialogTitle className="text-xl font-bold leading-tight">
+              <DialogTitle className="text-xl font-bold leading-tight tracking-tight text-foreground">
                 {activeItem.title}
               </DialogTitle>
               <DialogDescription className="sr-only">
@@ -211,22 +217,22 @@ export function GalleryViewer({ items }: GalleryViewerProps) {
             </DialogHeader>
 
             {/* Modal Image Placeholder */}
-            <figure className="aspect-[16/9] w-full rounded-lg bg-muted border border-border flex flex-col items-center justify-center text-muted-foreground">
+            <figure className="aspect-[16/9] w-full rounded-none bg-muted/40 border border-border flex flex-col items-center justify-center text-muted-foreground">
               <ImageIcon
                 aria-hidden="true"
                 className="size-10 text-muted-foreground/50 mb-1"
               />
-              <figcaption className="text-xs font-medium text-muted-foreground">
-                Pratinjau Dokumentasi Kegiatan
+              <figcaption className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground font-semibold">
+                // PRATINJAU DOKUMENTASI KEGIATAN
               </figcaption>
             </figure>
 
-            <div className="flex items-center gap-2 text-xs text-muted-foreground bg-muted/50 p-3 rounded-lg border border-border">
+            <div className="flex items-center gap-2 text-xs text-muted-foreground bg-muted/40 p-3 rounded-none border border-border font-mono">
               <MapPin
                 aria-hidden="true"
                 className="size-4 text-primary shrink-0"
               />
-              <address className="not-italic">
+              <address className="not-italic text-[11px]">
                 Lokasi: {activeItem.location}
               </address>
             </div>
@@ -235,10 +241,10 @@ export function GalleryViewer({ items }: GalleryViewerProps) {
               {activeItem.description}
             </p>
 
-            <div className="pt-3 border-t border-border flex items-center gap-2 text-xs text-primary font-medium">
+            <div className="pt-3 border-t border-border flex items-center gap-2 text-xs text-primary font-mono font-medium">
               <CheckCircle2 aria-hidden="true" className="size-4 shrink-0" />
               <span>
-                Dokumentasi resmi pembelajaran dan kehidupan kampus SD Al-Birru
+                // Dokumentasi resmi kehidupan kampus SD Al-Birru Sukabumi
               </span>
             </div>
           </DialogContent>

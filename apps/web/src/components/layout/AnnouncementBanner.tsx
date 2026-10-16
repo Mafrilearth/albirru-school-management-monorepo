@@ -1,31 +1,35 @@
-import { Megaphone } from "lucide-react";
-import Link from "next/link";
+"use client";
 
-/**
- * AnnouncementBanner — now rendered as a React Server Component.
- * No client-side state or event handlers are needed, so removing
- * "use client" reduces the initial JS bundle and prevents any
- * layout shift from late hydration.
- */
+import { ArrowRight } from "lucide-react";
+import { Link } from "@/i18n/navigation";
+import { useLanguage } from "@/lib/i18n/context";
+
 export function AnnouncementBanner() {
+  const { t } = useLanguage();
+
   return (
-    <div className="w-full bg-muted/60 text-foreground border-b border-border relative z-50 transition-colors">
-      <Link
-        href="/admissions"
-        className="block py-2 hover:bg-muted/80 focus:outline-none focus:ring-1 focus:ring-ring group"
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-center gap-2 md:gap-4 text-center md:text-start">
-          <div className="flex flex-wrap items-center justify-center md:justify-start gap-2 text-xs font-medium leading-tight text-muted-foreground group-hover:text-foreground transition-colors">
-            <Megaphone className="size-3.5 shrink-0 text-primary" />
-            <span>
-              New Student Admissions Academic Year 2026/2027 Are Now Open
-            </span>
-          </div>
-          <div className="inline-flex items-center justify-center text-xs font-medium bg-primary text-primary-foreground group-hover:bg-primary/90 px-2.5 py-0.5 shrink-0 whitespace-nowrap rounded-full shadow-xs transition-colors">
-            <span>Apply Now</span>
-          </div>
+    <aside
+      aria-label={t.badges.admissionsOpen}
+      className="w-full bg-muted/40 text-foreground border-b border-border relative z-50 transition-colors"
+    >
+      <div className="w-full px-4 sm:px-6 lg:px-8 py-2.5 sm:py-3 flex items-center justify-center text-center">
+        <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1.5 text-xs sm:text-sm font-medium text-foreground">
+          <span className="size-1.5 bg-primary shrink-0" aria-hidden="true" />
+          <span className="font-semibold text-foreground tracking-tight">
+            {t.badges.admissionsOpen}
+          </span>
+          <span className="text-border hidden sm:inline" aria-hidden="true">
+            |
+          </span>
+          <Link
+            href="/admissions"
+            className="inline-flex items-center gap-1 font-bold text-primary hover:text-foreground underline underline-offset-4 decoration-primary/40 hover:decoration-foreground transition-colors group shrink-0"
+          >
+            <span>{t.actions.apply}</span>
+            <ArrowRight className="size-3 transition-transform group-hover:translate-x-0.5" />
+          </Link>
         </div>
-      </Link>
-    </div>
+      </div>
+    </aside>
   );
 }

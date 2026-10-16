@@ -8,8 +8,6 @@ import {
   ShieldCheck,
 } from "lucide-react";
 import { ScrollReveal } from "@/components/common/ScrollReveal";
-import { Badge } from "@/components/ui/badge";
-import { Card } from "@/components/ui/card";
 
 export function HistoryTimelineSection() {
   const milestones = [
@@ -50,28 +48,28 @@ export function HistoryTimelineSection() {
   return (
     <section
       aria-labelledby="history-heading"
-      className="py-20 md:py-28 lg:py-36 bg-background border-b border-border"
+      className="py-24 sm:py-32 lg:py-36 bg-background border-b border-border relative overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           {/* Left Column: Meaning of Al-Birru & Quranic Verse */}
-          <div className="lg:col-span-5 lg:sticky lg:top-24">
+          <div className="lg:col-span-5 lg:sticky lg:top-28">
             <ScrollReveal direction="up">
-              <Badge
-                variant="outline"
-                className="gap-2 px-3.5 py-1 mb-5 text-xs font-medium rounded-full"
-              >
-                <span>ORIGIN OF THE NAME</span>
-              </Badge>
+              <div className="inline-flex items-center gap-2 px-3 py-1 mb-6 border border-border bg-muted/40 text-foreground">
+                <span className="size-1.5 bg-primary" />
+                <span className="font-mono text-[11px] font-semibold uppercase tracking-widest text-muted-foreground">
+                  ASAL USUL &amp; FILOSOFI
+                </span>
+              </div>
 
               <h2
                 id="history-heading"
-                className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground tracking-tight leading-tight"
+                className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-foreground tracking-tight leading-[1.15]"
               >
                 Why the Name <span className="text-primary">Al-Birru</span>?
               </h2>
 
-              <p className="mt-4 text-base sm:text-lg text-muted-foreground leading-relaxed">
+              <p className="mt-5 text-base sm:text-lg text-muted-foreground leading-relaxed">
                 The term <strong>&quot;Al-Birr&quot; (الْبِرِّ)</strong> originates
                 from the Holy Qur&apos;an Surah Al-Baqarah verse 177,
                 symbolizing <em>comprehensive virtue</em>: the harmonious
@@ -80,9 +78,9 @@ export function HistoryTimelineSection() {
               </p>
 
               {/* Quranic Verse Card */}
-              <Card className="mt-8 p-6 shadow-sm">
-                <span className="text-xs font-semibold text-primary block mb-3">
-                  QS. AL-BAQARAH: 177
+              <div className="mt-8 p-6 sm:p-7 rounded-none border border-border bg-card/60 relative group">
+                <span className="font-mono text-[11px] font-bold text-primary block mb-3 uppercase tracking-wider">
+                  // QS. AL-BAQARAH: 177
                 </span>
                 <p
                   lang="ar"
@@ -102,12 +100,12 @@ export function HistoryTimelineSection() {
                   believes in Allah, the Last Day, the angels, the Book, and the
                   prophets...&quot;
                 </blockquote>
-              </Card>
+              </div>
 
-              <div className="mt-6 flex items-center gap-2.5 text-xs text-muted-foreground">
+              <div className="mt-6 flex items-center gap-2.5 text-xs text-muted-foreground font-mono">
                 <HeartHandshake className="size-4 text-primary shrink-0" />
                 <span>
-                  Guiding with compassion, educating through living example
+                  // Guiding with compassion, educating through living example
                 </span>
               </div>
             </ScrollReveal>
@@ -115,33 +113,30 @@ export function HistoryTimelineSection() {
 
           {/* Right Column: Timeline */}
           <div className="lg:col-span-7">
-            <ol className="relative pl-6 sm:pl-8 border-l-2 border-border flex flex-col gap-8 sm:gap-10">
+            <ol className="relative pl-6 sm:pl-8 border-l border-border flex flex-col gap-8 sm:gap-10">
               {milestones.map((item, idx) => {
                 const Icon = item.icon;
                 return (
                   <li key={idx} className="relative group list-none">
                     {/* Node on Timeline */}
-                    <div className="absolute -left-[35px] sm:-left-[43px] top-1.5 flex size-8 items-center justify-center rounded-full bg-background border-2 border-primary text-primary shadow-xs">
-                      <Icon className="size-4" />
+                    <div className="absolute -left-[31px] sm:-left-[39px] top-2 flex size-6 items-center justify-center rounded-none bg-background border border-border text-foreground shadow-none">
+                      <Icon className="size-3" />
                     </div>
 
                     {/* Milestone Card */}
-                    <Card className="p-6 sm:p-7 shadow-sm">
-                      <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
-                        <Badge
-                          variant="default"
-                          className="text-xs font-semibold"
-                        >
+                    <div className="p-6 sm:p-7 rounded-none border border-border bg-card/60 hover:border-foreground/30 transition-colors relative">
+                      <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
+                        <span className="font-mono text-xs font-bold px-2 py-0.5 bg-primary text-primary-foreground">
                           {item.year}
-                        </Badge>
-                        <span className="text-xs text-muted-foreground">
+                        </span>
+                        <span className="font-mono text-[11px] text-muted-foreground uppercase tracking-wider">
                           {item.badge}
                         </span>
                       </div>
 
                       <h3
                         id={`milestone-title-${idx}`}
-                        className="text-lg font-bold text-foreground leading-snug"
+                        className="text-lg font-bold text-foreground leading-snug tracking-tight"
                       >
                         {item.title}
                       </h3>
@@ -149,7 +144,7 @@ export function HistoryTimelineSection() {
                       <p className="mt-2 text-xs sm:text-sm text-muted-foreground leading-relaxed">
                         {item.description}
                       </p>
-                    </Card>
+                    </div>
                   </li>
                 );
               })}

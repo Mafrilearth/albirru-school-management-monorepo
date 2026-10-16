@@ -27,6 +27,16 @@ interface ProgramDetail {
   metrics: { name: string; status: string; percent: number }[];
   tags: string[];
   linkHref: string;
+  theme: {
+    accentText: string;
+    borderAccent: string;
+    badgeClass: string;
+    iconBoxClass: string;
+    progressBar: string;
+    linkClass: string;
+    activeTabBg: string;
+    activeTabHover: string;
+  };
 }
 
 const programsData: Record<ProgramKey, ProgramDetail> = {
@@ -35,29 +45,39 @@ const programsData: Record<ProgramKey, ProgramDetail> = {
     label: "Tahfidz",
     badge: "PROGRAM UNGGULAN",
     icon: BookOpen,
-    title: "Tahfidzul Qur'an 3 Juz Mutqin",
-    subtitle: "Talaqqi Bersanad & Tasmi' Sekali Duduk",
+    title: "Program Tahfidzul Qur'an",
+    subtitle: "Bimbingan Tahfidz & Talaqqi Berjenjang",
     description:
-      "Bimbingan halaqah pagi terfokus dengan sanad riwayat Hafs 'an 'Ashim. Santri menuntaskan tasmi' juz 30, 29, dan 28 secara mutqin di hadapan dewan asatidz dan orang tua.",
+      "Bimbingan halaqah Al-Qur'an dengan metode talaqqi bertahap. Santri dibimbing secara intensif untuk menumbuhkan kecintaan membaca, menghafal, dan memahami Al-Qur'an sejak usia dini.",
     metrics: [
       {
-        name: "JUZ 30 (AN-NABA - AN-NAS)",
-        status: "100% TASMI'",
-        percent: 100,
+        name: "TAHSIN & MAKHARIJUL HURUF",
+        status: "BIMBINGAN AKTIF",
+        percent: 90,
       },
       {
-        name: "JUZ 29 (AL-MULK - AL-MURSALAT)",
-        status: "TALAQQI AKTIF",
-        percent: 75,
+        name: "HAFALAN AL-QUR'AN BERJENJANG",
+        status: "PEMBIASAAN HARIAN",
+        percent: 80,
       },
       {
-        name: "JUZ 28 (AL-MUJADILAH - AT-TAHRIM)",
-        status: "TAHAP PERSIAPAN",
-        percent: 45,
+        name: "MUTABA'AH & EVALUASI BERKALA",
+        status: "TERPANTAU RUTIN",
+        percent: 85,
       },
     ],
-    tags: ["Sanad Bersambung", "Halaqah Pagi 45 Mnt", "Mutaba'ah Harian"],
+    tags: ["Talaqqi Intensif", "Bimbingan Asatidz", "Mutaba'ah Harian"],
     linkHref: "/programs#tahfidz",
+    theme: {
+      accentText: "text-foreground",
+      borderAccent: "",
+      badgeClass: "border-border bg-muted/40 text-foreground",
+      iconBoxClass: "bg-muted/40 border-border text-foreground",
+      progressBar: "bg-emerald-600",
+      linkClass: "text-foreground hover:underline",
+      activeTabBg: "bg-foreground text-background",
+      activeTabHover: "hover:text-foreground",
+    },
   },
   adab: {
     id: "adab",
@@ -87,6 +107,16 @@ const programsData: Record<ProgramKey, ProgramDetail> = {
     ],
     tags: ["5S Beradab", "Shalat Berjamaah", "Bakti Orang Tua"],
     linkHref: "/programs#adab",
+    theme: {
+      accentText: "text-foreground",
+      borderAccent: "",
+      badgeClass: "border-border bg-muted/40 text-foreground",
+      iconBoxClass: "bg-muted/40 border-border text-foreground",
+      progressBar: "bg-emerald-600",
+      linkClass: "text-foreground hover:underline",
+      activeTabBg: "bg-foreground text-background",
+      activeTabHover: "hover:text-foreground",
+    },
   },
   sains: {
     id: "sains",
@@ -112,31 +142,51 @@ const programsData: Record<ProgramKey, ProgramDetail> = {
     ],
     tags: ["Lab Terbuka", "Junior Coding", "Nalar Kritis"],
     linkHref: "/programs#sains",
+    theme: {
+      accentText: "text-foreground",
+      borderAccent: "",
+      badgeClass: "border-border bg-muted/40 text-foreground",
+      iconBoxClass: "bg-muted/40 border-border text-foreground",
+      progressBar: "bg-emerald-600",
+      linkClass: "text-foreground hover:underline",
+      activeTabBg: "bg-foreground text-background",
+      activeTabHover: "hover:text-foreground",
+    },
   },
   rasio: {
     id: "rasio",
     label: "Rasio",
     badge: "EKOSISTEM PERSONAL",
     icon: Users,
-    title: "Rasio Personal 1:15 & Kampus Ramah Fitrah",
-    subtitle: "Maksimal 20 Santri per Rombel (2 Rombel)",
+    title: "Lingkungan Belajar Ramah Anak",
+    subtitle: "Pendampingan Intensif & Kelas Kondusif",
     description:
-      "Pembatasan ketat kuota angkatan menjamin kedekatan batin guru dan santri. Dilengkapi ruang kelas nyaman ber-AC, masjid luas, lingkungan hijau, dan iklim sekolah bebas perundungan.",
+      "Pembelajaran yang berpusat pada perkembangan santri dengan bimbingan terarah oleh guru. Didukung suasana belajar yang aman, sarana ibadah memadai, dan iklim interaksi yang positif.",
     metrics: [
       {
-        name: "KAPASITAS ANGKATAN 2026/2027",
-        status: "26 / 40 KURSI (65%)",
-        percent: 65,
+        name: "PENDAMPINGAN GURU",
+        status: "OPTIMAL & INTENSIF",
+        percent: 95,
       },
-      { name: "RASIO GURU : MURID", status: "1 : 15 TERFOKUS", percent: 100 },
+      { name: "SUASANA KELAS KONDUSIF", status: "RAMAH ANAK", percent: 90 },
       {
-        name: "LINGKUNGAN RAMAH & BEBAS BULLYING",
-        status: "KOMITMEN 100%",
-        percent: 100,
+        name: "SARANA PENDIDIKAN",
+        status: "TERPADU & AMAN",
+        percent: 85,
       },
     ],
-    tags: ["Maks 20 / Kelas", "Perhatian Personal Penuh", "Ruang Ber-AC"],
+    tags: ["Kelas Kondusif", "Pendampingan Personal", "Ramah Anak"],
     linkHref: "/programs#fasilitas",
+    theme: {
+      accentText: "text-foreground",
+      borderAccent: "",
+      badgeClass: "border-border bg-muted/40 text-foreground",
+      iconBoxClass: "bg-muted/40 border-border text-foreground",
+      progressBar: "bg-emerald-600",
+      linkClass: "text-foreground hover:underline",
+      activeTabBg: "bg-foreground text-background",
+      activeTabHover: "hover:text-foreground",
+    },
   },
 };
 
@@ -153,22 +203,10 @@ export function HeroProgramShowcase() {
 
   return (
     <div className="lg:col-span-5 relative mt-8 lg:mt-0">
-      {/* Satellite 1: Floating Accreditation Pill */}
-      <div className="absolute -top-5 -left-4 z-20 hidden sm:flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-primary/30 bg-card/90 backdrop-blur-xl shadow-lg text-xs font-semibold text-foreground animate-float-slow">
-        <div className="size-2 rounded-full bg-primary animate-pulse" />
-        <span>Grade A • Terakreditasi Unggul</span>
-      </div>
-
-      {/* Satellite 2: Floating 1:15 Personal Mentoring Badge */}
-      <div className="absolute -bottom-5 -right-4 z-20 hidden sm:flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-border bg-card/90 backdrop-blur-xl shadow-lg text-xs font-semibold text-primary animate-float-slow-reverse">
-        <Users className="size-3.5 text-primary" />
-        <span>Rasio Terfokus 1:15 Santri</span>
-      </div>
-
-      {/* Main Interactive Showcase Card with Glassmorphism */}
-      <Card className="rounded-3xl border border-border/80 bg-card/85 backdrop-blur-xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300">
+      {/* Main Interactive Showcase Card with Pure Flat Swiss Bento Architecture */}
+      <Card className="rounded-none border border-border bg-card shadow-none overflow-hidden relative">
         {/* Program Switcher Tabs */}
-        <div className="p-2 border-b border-border/80 bg-muted/40 grid grid-cols-2 sm:grid-cols-4 gap-1.5 relative">
+        <div className="p-1 border-b border-border bg-muted/30 grid grid-cols-2 sm:grid-cols-4 gap-1 relative font-mono">
           {(["tahfidz", "adab", "sains", "rasio"] as const).map((key) => {
             const item = programsData[key];
             const Icon = item.icon;
@@ -179,16 +217,22 @@ export function HeroProgramShowcase() {
                 type="button"
                 onClick={() => setActiveTab(key)}
                 className={cn(
-                  "relative flex items-center justify-center gap-1.5 px-2.5 py-2 text-xs font-medium cursor-pointer select-none rounded-xl transition-colors active:scale-[0.96]",
+                  "relative flex items-center justify-center gap-1.5 px-2.5 py-2 text-xs font-mono uppercase tracking-wider cursor-pointer select-none rounded-none transition-colors active:scale-[0.98]",
                   isActive
-                    ? "text-primary-foreground font-semibold"
-                    : "text-muted-foreground hover:text-foreground hover:bg-muted/80",
+                    ? "text-white font-bold"
+                    : cn(
+                        "text-muted-foreground hover:text-foreground hover:bg-muted/80",
+                        item.theme.activeTabHover,
+                      ),
                 )}
               >
                 {isActive && (
                   <motion.span
                     layoutId="heroTabActiveBg"
-                    className="absolute inset-0 bg-primary rounded-xl z-0 shadow-xs"
+                    className={cn(
+                      "absolute inset-0 rounded-none z-0",
+                      item.theme.activeTabBg,
+                    )}
                     transition={{
                       type: "spring",
                       stiffness: 450,
@@ -211,16 +255,26 @@ export function HeroProgramShowcase() {
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}
-              transition={{ duration: 0.22, ease: [0.23, 1, 0.32, 1] }}
+              transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
               className="flex flex-col gap-4"
             >
               <div className="flex items-center justify-between">
-                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-primary/20 bg-primary/10 text-primary text-[11px] font-semibold tracking-wide">
+                <div
+                  className={cn(
+                    "inline-flex items-center gap-1.5 px-2.5 py-1 rounded-none font-mono text-[10px] font-bold uppercase tracking-widest border",
+                    activeProgram.theme.badgeClass,
+                  )}
+                >
                   <Sparkles className="size-3" />
                   <span>{activeProgram.badge}</span>
                 </div>
-                <div className="size-9 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary shadow-xs">
-                  <ActiveIcon className="size-4.5" />
+                <div
+                  className={cn(
+                    "size-8 rounded-none border flex items-center justify-center shadow-none",
+                    activeProgram.theme.iconBoxClass,
+                  )}
+                >
+                  <ActiveIcon className="size-4" />
                 </div>
               </div>
 
@@ -228,7 +282,12 @@ export function HeroProgramShowcase() {
                 <h2 className="text-xl font-bold text-foreground tracking-tight">
                   {activeProgram.title}
                 </h2>
-                <p className="mt-1 text-xs font-semibold text-primary">
+                <p
+                  className={cn(
+                    "mt-1 font-mono text-xs uppercase tracking-wider font-bold",
+                    activeProgram.theme.accentText,
+                  )}
+                >
                   {activeProgram.subtitle}
                 </p>
                 <p className="mt-2 text-xs sm:text-sm text-muted-foreground leading-relaxed">
@@ -236,29 +295,32 @@ export function HeroProgramShowcase() {
                 </p>
               </div>
 
-              {/* Metric Indicators with Spring Animated Progress */}
-              <div className="rounded-2xl border border-border/70 bg-muted/30 p-3.5 flex flex-col gap-2.5">
+              {/* Metric Indicators with Crisp Mathematical Gauges */}
+              <div className="rounded-none border border-border bg-muted/20 p-3.5 flex flex-col gap-2.5">
                 {activeProgram.metrics.map((metric) => (
                   <div
                     key={metric.name}
                     className="flex flex-col gap-1 text-[11px]"
                   >
-                    <div className="flex items-center justify-between">
-                      <span className="text-muted-foreground font-medium">
+                    <div className="flex items-center justify-between font-mono">
+                      <span className="text-muted-foreground text-[10px] uppercase tracking-wider">
                         {metric.name}
                       </span>
-                      <span className="font-semibold text-foreground">
+                      <span className="font-bold text-foreground text-[10px]">
                         {metric.status}
                       </span>
                     </div>
-                    <div className="h-1.5 w-full bg-muted rounded-full overflow-hidden">
+                    <div className="h-1.5 w-full bg-muted rounded-none overflow-hidden">
                       <motion.div
-                        className="h-full bg-primary rounded-full"
+                        className={cn(
+                          "h-full rounded-none",
+                          activeProgram.theme.progressBar,
+                        )}
                         initial={{ width: 0 }}
                         animate={{ width: `${metric.percent}%` }}
                         transition={{
                           duration: 0.45,
-                          ease: [0.23, 1, 0.32, 1],
+                          ease: [0.16, 1, 0.3, 1],
                         }}
                       />
                     </div>
@@ -267,11 +329,11 @@ export function HeroProgramShowcase() {
               </div>
 
               {/* Program Tags */}
-              <div className="flex flex-wrap gap-1.5">
+              <div className="flex flex-wrap gap-1.5 font-mono">
                 {activeProgram.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="px-2.5 py-1 rounded-lg border border-border bg-background text-[11px] text-muted-foreground font-medium"
+                    className="px-2 py-0.5 rounded-none border border-border bg-background text-[10px] text-muted-foreground uppercase tracking-wider"
                   >
                     {tag}
                   </span>
@@ -281,13 +343,16 @@ export function HeroProgramShowcase() {
           </AnimatePresence>
 
           {/* Footer Action */}
-          <div className="pt-4 border-t border-border flex items-center justify-between text-xs mt-3">
-            <span className="text-muted-foreground text-[11px]">
-              Kurikulum Unggulan Al-Birru
+          <div className="pt-4 border-t border-border flex items-center justify-between text-xs mt-3 font-mono">
+            <span className="text-muted-foreground text-[10px] uppercase tracking-wider">
+              Program Unggulan
             </span>
             <Link
               href={activeProgram.linkHref}
-              className="font-semibold text-primary hover:underline flex items-center gap-1 active:translate-x-0.5 transition-transform"
+              className={cn(
+                "font-bold flex items-center gap-1 uppercase tracking-wider text-[11px] active:translate-x-0.5 transition-all",
+                activeProgram.theme.linkClass,
+              )}
             >
               <span>Pelajari Rincian</span>
               <ArrowRight className="size-3" />

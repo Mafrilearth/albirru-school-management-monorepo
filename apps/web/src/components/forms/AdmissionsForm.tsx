@@ -6,7 +6,6 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { ConfettiCelebration } from "@/components/common/ConfettiCelebration";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
   Field,
@@ -65,16 +64,31 @@ export function AdmissionsForm() {
 
   if (isSuccess) {
     return (
-      <Card className="p-8 sm:p-12 text-center relative overflow-hidden shadow-sm">
+      <div className="border border-border bg-card/60 p-8 sm:p-12 text-center relative overflow-hidden shadow-none rounded-none group">
+        <div
+          aria-hidden="true"
+          className="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 font-mono text-[11px] text-muted-foreground/40 select-none pointer-events-none"
+        >
+          +
+        </div>
+        <div
+          aria-hidden="true"
+          className="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 font-mono text-[11px] text-muted-foreground/40 select-none pointer-events-none"
+        >
+          +
+        </div>
         <ConfettiCelebration />
         <div className="flex flex-col items-center justify-center gap-4 relative z-10">
-          <div className="size-16 rounded-full bg-emerald-500/10 flex items-center justify-center text-primary">
-            <CheckCircle2 className="size-8" />
+          <div className="size-16 rounded-none bg-muted/40 border border-border flex items-center justify-center text-foreground">
+            <CheckCircle2 className="size-8 text-emerald-600" />
+          </div>
+          <div className="font-mono text-xs uppercase tracking-widest text-foreground font-semibold">
+            Pendaftaran Berhasil Diterima
           </div>
           <h3 className="text-2xl font-bold text-foreground tracking-tight">
             Registration Received!
           </h3>
-          <p className="text-sm text-muted-foreground max-w-md mx-auto">
+          <p className="text-sm text-muted-foreground max-w-md mx-auto leading-relaxed">
             Alhamdulillah, your student registration data has been received. Our
             admissions committee will contact you via Email/WhatsApp within 24
             hours for next steps.
@@ -82,17 +96,51 @@ export function AdmissionsForm() {
           <Button
             onClick={() => setIsSuccess(false)}
             variant="outline"
-            className="mt-4"
+            className="mt-4 font-mono uppercase tracking-wider text-xs rounded-none border-border hover:bg-muted"
           >
             Register Another Student
           </Button>
         </div>
-      </Card>
+      </div>
     );
   }
 
   return (
-    <Card className="p-8 sm:p-10 shadow-sm">
+    <div className="border border-border bg-card/60 p-8 sm:p-12 shadow-none rounded-none relative group">
+      <div
+        aria-hidden="true"
+        className="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 font-mono text-[11px] text-muted-foreground/40 select-none pointer-events-none"
+      >
+        +
+      </div>
+      <div
+        aria-hidden="true"
+        className="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 font-mono text-[11px] text-muted-foreground/40 select-none pointer-events-none"
+      >
+        +
+      </div>
+      <div
+        aria-hidden="true"
+        className="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 font-mono text-[11px] text-muted-foreground/40 select-none pointer-events-none"
+      >
+        +
+      </div>
+      <div
+        aria-hidden="true"
+        className="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 font-mono text-[11px] text-muted-foreground/40 select-none pointer-events-none"
+      >
+        +
+      </div>
+
+      <div className="flex items-center justify-between border-b border-border pb-4 mb-8">
+        <span className="font-mono text-xs uppercase tracking-widest text-primary">
+          // ADM.01 — APPLICANT SUBMISSION PROTOCOL
+        </span>
+        <span className="font-mono text-[11px] text-muted-foreground uppercase hidden sm:inline-block">
+          WAVE 1 // AY 2026/2027
+        </span>
+      </div>
+
       <div className="mb-8">
         <h3 className="text-2xl font-bold text-foreground tracking-tight">
           Admissions Registration Form 2026
@@ -251,7 +299,7 @@ export function AdmissionsForm() {
         </div>
 
         {errorMessage && (
-          <div className="mt-6 p-3 bg-destructive/10 border border-destructive/20 text-destructive text-sm rounded-md">
+          <div className="mt-6 p-4 bg-destructive/10 border border-destructive/20 text-destructive text-xs font-mono rounded-none">
             {errorMessage}
           </div>
         )}
@@ -260,7 +308,7 @@ export function AdmissionsForm() {
           type="submit"
           disabled={isSubmitting}
           size="lg"
-          className="mt-8 w-full font-medium"
+          className="mt-8 w-full font-mono uppercase tracking-wider text-xs font-bold py-6 rounded-none bg-primary text-primary-foreground hover:bg-foreground hover:text-background transition-colors duration-150 shadow-none cursor-pointer"
         >
           {isSubmitting ? (
             <>
@@ -278,6 +326,6 @@ export function AdmissionsForm() {
           )}
         </Button>
       </form>
-    </Card>
+    </div>
   );
 }

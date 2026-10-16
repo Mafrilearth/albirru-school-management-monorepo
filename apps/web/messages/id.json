@@ -1,0 +1,61 @@
+{
+  "nav": {
+    "home": "Beranda",
+    "profile": "Profil",
+    "about": "Profil",
+    "academics": "Akademik",
+    "programs": "Akademik",
+    "students": "Kesiswaan",
+    "kesiswaan": "Kesiswaan",
+    "news": "Warta",
+    "gallery": "Warta",
+    "services": "Layanan",
+    "contact": "Layanan",
+    "contactUs": "Hubungi Kami",
+    "applyOnline": "Daftar Online",
+    "portal": "Portal Guru & Ortu",
+    "openMenu": "Buka Menu Navigasi",
+    "menuTitle": "Menu Navigasi"
+  },
+  "badges": {
+    "admissionsOpen": "Penerimaan Siswa Baru 2026/2027 Dibuka",
+    "quotaRemaining": "Sisa 14 Kursi",
+    "islamicIntegrated": "Sekolah Dasar Terpadu",
+    "tahfidzFocus": "Tahfidz 3 Juz Mutqin Bersanad",
+    "accreditationA": "Akreditasi A Unggul"
+  },
+  "actions": {
+    "readMore": "Baca Selengkapnya",
+    "submit": "Kirim",
+    "downloadBrochure": "Unduh Brosur",
+    "learnMore": "Pelajari Lebih Lanjut",
+    "apply": "Daftar",
+    "back": "Kembali",
+    "close": "Tutup"
+  },
+  "notifications": {
+    "title": "Pemberitahuan Sekolah",
+    "markAllAsRead": "Tandai Semua Dibaca",
+    "empty": "Belum ada pemberitahuan baru",
+    "newBadge": "Baru"
+  },
+  "chat": {
+    "title": "Asisten AI SD Al-Birru",
+    "subtitle": "Layanan Tanya Jawab PPDB & Kurikulum",
+    "placeholder": "Tanyakan syarat PPDB, SPP, tahfidz, atau fasilitas...",
+    "send": "Kirim",
+    "askPPDB": "Tanya AI PPDB",
+    "thinking": "Asisten sedang merumuskan jawaban...",
+    "quickFees": "Biaya & SPP",
+    "quickRequirements": "Syarat PPDB 2026",
+    "quickTahfidz": "Program Tahfidz 3 Juz",
+    "quickLocation": "Lokasi & Fasilitas"
+  },
+  "cookie": {
+    "title": "Privasi & Preferensi Cookie",
+    "description": "SD Al-Birru menggunakan cookie esensial dan analitik lokal untuk memastikan website berjalan optimal dan meningkatkan mutu layanan pendidikan kami sesuai UU Perlindungan Data Pribadi.",
+    "acceptAll": "Setuju Semua",
+    "essentialOnly": "Hanya Esensial",
+    "privacyPolicy": "Kebijakan Privasi"
+  }
+}

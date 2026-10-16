@@ -14,8 +14,6 @@ import { AnimatePresence, motion } from "motion/react";
 import type React from "react";
 import { useState } from "react";
 import { ScrollReveal } from "@/components/common/ScrollReveal";
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 
 interface CurriculumPillar {
@@ -33,7 +31,7 @@ interface CurriculumPillar {
 const pillars: CurriculumPillar[] = [
   {
     id: "tahfidz",
-    code: "CUR // 01",
+    code: "CUR-01",
     title: "Tahfidzul Qur'an Curriculum",
     icon: BookMarked,
     badge: "Signature Excellence",
@@ -52,7 +50,7 @@ const pillars: CurriculumPillar[] = [
   },
   {
     id: "merdeka",
-    code: "KUR // 02",
+    code: "KUR-02",
     title: "National Merdeka Curriculum",
     icon: BookOpen,
     badge: "Ministry Standard",
@@ -71,7 +69,7 @@ const pillars: CurriculumPillar[] = [
   },
   {
     id: "adab",
-    code: "KUR // 03",
+    code: "KUR-03",
     title: "Adab & Character Cultivation",
     icon: Heart,
     badge: "Moral Cultivation",
@@ -90,7 +88,7 @@ const pillars: CurriculumPillar[] = [
   },
   {
     id: "bahasa",
-    code: "KUR // 04",
+    code: "KUR-04",
     title: "Languages & Digital Literacy",
     icon: Globe2,
     badge: "Global Perspective",
@@ -117,24 +115,27 @@ export function CurriculumSection() {
   return (
     <section
       aria-labelledby="curriculum-heading"
-      className="py-20 md:py-28 lg:py-32 bg-background border-b border-border"
+      className="py-24 sm:py-32 lg:py-36 bg-background border-b border-border relative overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <ScrollReveal
           direction="up"
-          className="max-w-3xl mb-12 md:mb-16 text-center sm:text-left"
+          className="max-w-3xl mb-14 md:mb-18 text-start"
         >
-          <Badge variant="secondary" className="mb-4">
-            Kurikulum &amp; Pembelajaran
-          </Badge>
+          <div className="inline-flex items-center gap-2 px-3 py-1 mb-6 border border-border bg-muted/40 text-foreground">
+            <span className="size-1.5 bg-primary" />
+            <span className="font-mono text-[11px] font-semibold uppercase tracking-widest text-muted-foreground">
+              ARSITEKTUR KURIKULUM TERPADU
+            </span>
+          </div>
           <h2
             id="curriculum-heading"
-            className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-foreground"
+            className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-foreground leading-[1.15]"
           >
             Sinergi Kurikulum Merdeka &amp; Pendidikan Islam
           </h2>
-          <p className="mt-4 text-base sm:text-lg text-muted-foreground leading-relaxed">
+          <p className="mt-5 text-base sm:text-lg text-muted-foreground leading-relaxed">
             Dirancang secara holistik agar peserta didik tidak hanya kokoh dalam
             hafalan Al-Qur&apos;an, tetapi juga unggul secara akademik dengan
             nalar kritis dan sains yang adaptif.
@@ -145,7 +146,7 @@ export function CurriculumSection() {
         <div
           role="tablist"
           aria-label="Pilihan Pilar Kurikulum"
-          className="flex flex-wrap items-center gap-2 p-1.5 rounded-lg bg-muted border border-border max-w-4xl mb-10"
+          className="flex flex-wrap items-center gap-2 p-1.5 rounded-none bg-muted/40 border border-border max-w-4xl mb-10"
         >
           {pillars.map((pillar) => {
             const PillarIcon = pillar.icon;
@@ -161,10 +162,10 @@ export function CurriculumSection() {
                 tabIndex={isActive ? 0 : -1}
                 onClick={() => setActiveTab(pillar.id)}
                 className={cn(
-                  "relative flex items-center gap-2 px-4 py-2.5 rounded-md text-xs sm:text-sm font-medium transition-all cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                  "relative flex items-center gap-2 px-4 py-2.5 rounded-none text-xs sm:text-sm font-mono uppercase tracking-wider transition-all cursor-pointer outline-none border",
                   isActive
-                    ? "bg-background text-foreground shadow-xs font-semibold"
-                    : "text-muted-foreground hover:text-foreground",
+                    ? "bg-foreground text-background border-foreground font-bold shadow-none"
+                    : "border-transparent text-muted-foreground hover:text-foreground hover:bg-muted/60",
                 )}
               >
                 <PillarIcon
@@ -190,110 +191,108 @@ export function CurriculumSection() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
-            transition={{ duration: 0.25 }}
+            transition={{ duration: 0.2 }}
           >
-            <Card className="border-border bg-card shadow-sm">
-              <CardContent className="p-6 sm:p-10 lg:p-12">
-                <article
-                  aria-labelledby={`pillar-title-${selectedPillar.id}`}
-                  className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start"
-                >
-                  {/* Left Column */}
-                  <div className="lg:col-span-5 flex flex-col justify-between">
-                    <div>
-                      <div className="flex items-center gap-4 mb-6">
-                        <div
-                          aria-hidden="true"
-                          className="size-14 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0"
-                        >
-                          <Icon className="size-7" />
-                        </div>
-                        <div>
-                          <Badge variant="outline" className="mb-1 text-xs">
-                            {selectedPillar.badge}
-                          </Badge>
-                          <h3
-                            id={`pillar-title-${selectedPillar.id}`}
-                            className="text-xl sm:text-2xl font-bold tracking-tight text-foreground"
-                          >
-                            {selectedPillar.title}
-                          </h3>
-                        </div>
+            <div className="border border-border bg-card/60 p-6 sm:p-10 lg:p-12 rounded-none relative group">
+              <article
+                aria-labelledby={`pillar-title-${selectedPillar.id}`}
+                className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start"
+              >
+                {/* Left Column */}
+                <div className="lg:col-span-5 flex flex-col justify-between">
+                  <div>
+                    <div className="flex items-center gap-4 mb-6">
+                      <div
+                        aria-hidden="true"
+                        className="size-14 rounded-none bg-muted/40 border border-border text-foreground flex items-center justify-center shrink-0"
+                      >
+                        <Icon className="size-7" />
                       </div>
-
-                      <p className="text-muted-foreground text-sm sm:text-base leading-relaxed">
-                        {selectedPillar.description}
-                      </p>
+                      <div>
+                        <div className="inline-flex px-2 py-0.5 mb-1.5 font-mono text-[10px] uppercase tracking-wider bg-muted/40 border border-border text-foreground">
+                          {selectedPillar.badge}
+                        </div>
+                        <h3
+                          id={`pillar-title-${selectedPillar.id}`}
+                          className="text-xl sm:text-2xl font-bold tracking-tight text-foreground"
+                        >
+                          {selectedPillar.title}
+                        </h3>
+                      </div>
                     </div>
 
-                    <dl className="mt-8 flex flex-col gap-3">
-                      <div className="p-4 rounded-lg bg-muted/50 border border-border flex items-start gap-3">
-                        <Clock
-                          aria-hidden="true"
-                          className="size-5 text-primary shrink-0 mt-0.5"
-                        />
-                        <div>
-                          <dt className="text-xs font-semibold text-muted-foreground">
-                            Jadwal Pembelajaran
-                          </dt>
-                          <dd className="text-xs sm:text-sm font-medium text-foreground mt-0.5">
-                            {selectedPillar.schedule}
-                          </dd>
-                        </div>
-                      </div>
-
-                      <div className="p-4 rounded-lg bg-primary/5 border border-primary/20 flex items-start gap-3">
-                        <Award
-                          aria-hidden="true"
-                          className="size-5 text-primary shrink-0 mt-0.5"
-                        />
-                        <div>
-                          <dt className="text-xs font-semibold text-primary">
-                            Target Capaian
-                          </dt>
-                          <dd className="text-xs sm:text-sm font-semibold text-foreground mt-0.5">
-                            {selectedPillar.target}
-                          </dd>
-                        </div>
-                      </div>
-                    </dl>
+                    <p className="text-muted-foreground text-sm sm:text-base leading-relaxed">
+                      {selectedPillar.description}
+                    </p>
                   </div>
 
-                  {/* Right Column: Highlights */}
-                  <div className="lg:col-span-7">
-                    <h4
-                      id={`strategy-heading-${selectedPillar.id}`}
-                      className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2"
-                    >
-                      <Sparkles
+                  <dl className="mt-8 flex flex-col gap-3">
+                    <div className="p-4 rounded-none bg-muted/40 border border-border flex items-start gap-3">
+                      <Clock
                         aria-hidden="true"
-                        className="size-4 text-primary"
+                        className="size-5 text-muted-foreground shrink-0 mt-0.5"
                       />
-                      <span>Strategi &amp; Aktivitas Pembelajaran:</span>
-                    </h4>
+                      <div>
+                        <dt className="text-xs font-mono uppercase tracking-wider font-semibold text-muted-foreground">
+                          Jadwal Pembelajaran
+                        </dt>
+                        <dd className="text-xs sm:text-sm font-medium text-foreground mt-0.5">
+                          {selectedPillar.schedule}
+                        </dd>
+                      </div>
+                    </div>
 
-                    <ul
-                      aria-labelledby={`strategy-heading-${selectedPillar.id}`}
-                      className="flex flex-col gap-3 list-none p-0"
-                    >
-                      {selectedPillar.highlights.map((item, idx) => (
-                        <li key={idx}>
-                          <div className="flex items-start gap-3.5 p-4 rounded-lg bg-muted/40 border border-border/70 hover:border-border transition-colors">
-                            <CheckCircle2
-                              aria-hidden="true"
-                              className="size-5 text-primary shrink-0 mt-0.5"
-                            />
-                            <p className="text-xs sm:text-sm text-foreground/90 leading-relaxed font-medium">
-                              {item}
-                            </p>
-                          </div>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </article>
-              </CardContent>
-            </Card>
+                    <div className="p-4 rounded-none bg-muted/30 border border-border flex items-start gap-3">
+                      <Award
+                        aria-hidden="true"
+                        className="size-5 text-muted-foreground shrink-0 mt-0.5"
+                      />
+                      <div>
+                        <dt className="text-xs font-mono uppercase tracking-wider font-semibold text-foreground">
+                          Target Capaian
+                        </dt>
+                        <dd className="text-xs sm:text-sm font-semibold text-foreground mt-0.5">
+                          {selectedPillar.target}
+                        </dd>
+                      </div>
+                    </div>
+                  </dl>
+                </div>
+
+                {/* Right Column: Highlights */}
+                <div className="lg:col-span-7">
+                  <h4
+                    id={`strategy-heading-${selectedPillar.id}`}
+                    className="text-xs font-mono uppercase tracking-wider font-bold text-foreground mb-4 flex items-center gap-2"
+                  >
+                    <Sparkles
+                      aria-hidden="true"
+                      className="size-4 text-primary"
+                    />
+                    <span>// Strategi &amp; Aktivitas Pembelajaran:</span>
+                  </h4>
+
+                  <ul
+                    aria-labelledby={`strategy-heading-${selectedPillar.id}`}
+                    className="flex flex-col gap-3 list-none p-0"
+                  >
+                    {selectedPillar.highlights.map((item, idx) => (
+                      <li key={idx}>
+                        <div className="flex items-start gap-3.5 p-4 rounded-none bg-muted/40 border border-border hover:border-foreground/30 transition-colors">
+                          <CheckCircle2
+                            aria-hidden="true"
+                            className="size-4 text-primary shrink-0 mt-0.5"
+                          />
+                          <p className="text-xs sm:text-sm text-foreground/90 leading-relaxed font-medium">
+                            {item}
+                          </p>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </article>
+            </div>
           </motion.div>
         </AnimatePresence>
       </div>

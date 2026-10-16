@@ -13,16 +13,16 @@ describe("Shortlink Registry & Resolver", () => {
     expect(ppdb?.isExternal).toBe(false);
 
     const brosur = resolveShortlink("brosur");
-    expect(brosur?.destination).toBe("/programs");
+    expect(brosur?.destination).toBe("/academics");
 
     const tahfidz = resolveShortlink("tahfidz");
-    expect(tahfidz?.destination).toBe("/programs#tahfidz");
+    expect(tahfidz?.destination).toBe("/academics#tahfidz");
   });
 
   it("handles case insensitivity and leading/trailing slashes", () => {
     expect(resolveShortlink("PPDB")?.destination).toBe("/admissions");
     expect(resolveShortlink("/ppdb/")?.destination).toBe("/admissions");
-    expect(resolveShortlink("  KOnTaK  ")?.destination).toBe("/contact");
+    expect(resolveShortlink("  KOnTaK  ")?.destination).toBe("/services");
   });
 
   it("resolves external redirects (WhatsApp & Maps)", () => {

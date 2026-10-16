@@ -8,9 +8,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
 
 interface FaqItem {
   id: string;
@@ -79,7 +77,7 @@ export function FaqSection() {
   return (
     <section
       aria-labelledby="faq-section-heading"
-      className="py-20 md:py-28 lg:py-36 bg-background border-b border-border relative"
+      className="py-24 sm:py-32 lg:py-36 bg-background border-b border-border relative overflow-hidden"
     >
       <script
         type="application/ld+json"
@@ -88,18 +86,18 @@ export function FaqSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           {/* Left Column */}
-          <div className="lg:col-span-5 lg:sticky lg:top-24">
+          <div className="lg:col-span-5 lg:sticky lg:top-28">
             <ScrollReveal direction="up" delay={0.1}>
-              <Badge
-                variant="outline"
-                className="gap-2 px-3.5 py-1 mb-5 text-xs font-medium rounded-full"
-              >
-                <span>OPERATIONAL INFORMATION</span>
-              </Badge>
+              <div className="inline-flex items-center gap-2 px-3 py-1 mb-6 border border-border bg-muted/40 text-foreground">
+                <span className="size-1.5 bg-primary" />
+                <span className="font-mono text-[11px] font-semibold uppercase tracking-widest text-muted-foreground">
+                  PERTANYAAN UMUM &amp; KEGIATAN SANTRI
+                </span>
+              </div>
 
               <h2
                 id="faq-section-heading"
-                className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground tracking-tight leading-tight"
+                className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-foreground tracking-tight leading-[1.15]"
               >
                 Frequently Asked Questions &amp; Daily Student Life
               </h2>
@@ -109,11 +107,11 @@ export function FaqSection() {
                 routes, and academic matriculation at SD Al-Birru.
               </p>
 
-              {/* Consultation Card */}
-              <Card className="mt-8 p-6 shadow-sm">
-                <div className="flex items-center gap-2 text-primary font-semibold text-sm mb-2">
+              {/* Consultation Monolith Card */}
+              <div className="mt-8 p-6 sm:p-7 rounded-none border border-border bg-card/60 relative group">
+                <div className="flex items-center gap-2 text-primary font-mono font-semibold text-xs mb-2 uppercase tracking-wider">
                   <Sparkles className="size-4" />
-                  <span>Have Specific Questions?</span>
+                  <span>// Direct Consultation Liaison</span>
                 </div>
                 <p className="text-xs text-muted-foreground leading-relaxed mb-6">
                   Our admissions consultation team is ready to answer specific
@@ -121,7 +119,7 @@ export function FaqSection() {
                   readiness.
                 </p>
 
-                <div className="flex flex-col gap-3">
+                <div className="flex flex-col gap-3 font-mono text-xs">
                   <Button
                     render={
                       <a
@@ -131,7 +129,7 @@ export function FaqSection() {
                       />
                     }
                     nativeButton={false}
-                    className="w-full gap-2 font-medium"
+                    className="w-full gap-2 font-mono text-xs uppercase tracking-wider rounded-none shadow-none"
                   >
                     <MessageCircle className="size-4" />
                     <span>WhatsApp Admissions Team</span>
@@ -141,13 +139,13 @@ export function FaqSection() {
                     render={<a href="tel:+6281234567890" />}
                     nativeButton={false}
                     variant="outline"
-                    className="w-full gap-2 font-medium"
+                    className="w-full gap-2 font-mono text-xs uppercase tracking-wider rounded-none shadow-none border-border"
                   >
                     <Phone className="size-4 text-muted-foreground" />
                     <span>Hotline: (0266) 123-456</span>
                   </Button>
                 </div>
-              </Card>
+              </div>
             </ScrollReveal>
           </div>
 
@@ -161,13 +159,18 @@ export function FaqSection() {
                 <AccordionItem
                   key={faq.id}
                   value={faq.id}
-                  className="border border-border rounded-lg px-6 bg-card shadow-xs overflow-hidden"
+                  className="border border-border rounded-none px-6 bg-card/60 shadow-none overflow-hidden hover:border-foreground/30 transition-colors"
                 >
-                  <AccordionTrigger className="hover:no-underline py-5 text-left font-semibold text-foreground text-base sm:text-lg">
-                    <span>{faq.question}</span>
+                  <AccordionTrigger className="hover:no-underline py-5 text-left font-bold text-foreground text-base sm:text-lg tracking-tight">
+                    <span className="flex items-center gap-3">
+                      <span className="font-mono text-xs text-foreground font-bold px-1.5 py-0.5 border border-border bg-muted/40">
+                        {faq.num}
+                      </span>
+                      <span>{faq.question}</span>
+                    </span>
                   </AccordionTrigger>
 
-                  <AccordionContent className="pb-5 pt-1 text-muted-foreground text-sm sm:text-base leading-relaxed">
+                  <AccordionContent className="pb-5 pt-1 text-muted-foreground text-sm sm:text-base leading-relaxed border-t border-border/40 mt-1">
                     <p>{faq.answer}</p>
                   </AccordionContent>
                 </AccordionItem>

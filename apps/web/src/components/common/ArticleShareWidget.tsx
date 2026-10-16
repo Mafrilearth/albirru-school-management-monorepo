@@ -37,7 +37,7 @@ export function ArticleShareWidget({
         rel="noopener noreferrer"
         className={cn(
           buttonVariants({ size: "sm" }),
-          "bg-emerald-600 hover:bg-emerald-700 text-white",
+          "rounded-none font-mono uppercase tracking-wider text-xs font-bold bg-primary text-primary-foreground hover:bg-foreground hover:text-background transition-colors duration-150 shadow-none border border-transparent",
         )}
         aria-label="Bagikan artikel ini ke WhatsApp"
       >
@@ -51,12 +51,13 @@ export function ArticleShareWidget({
         type="button"
         variant="outline"
         size="sm"
+        className="rounded-none font-mono uppercase tracking-wider text-xs border-border hover:bg-muted shadow-none"
         aria-label="Salin tautan artikel"
       >
         {copied ? (
           <>
             <Check className="size-4 mr-1.5 text-primary" />
-            <span className="text-primary">Tautan Tersalin!</span>
+            <span className="text-primary font-bold">Tautan Tersalin!</span>
           </>
         ) : (
           <>

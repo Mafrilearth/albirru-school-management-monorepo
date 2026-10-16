@@ -12,14 +12,6 @@ import {
 } from "lucide-react";
 import type React from "react";
 import { ScrollReveal } from "@/components/common/ScrollReveal";
-import { Badge } from "@/components/ui/badge";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 
 interface ExtracurricularItem {
@@ -34,7 +26,7 @@ interface ExtracurricularItem {
 
 const extracurriculars: ExtracurricularItem[] = [
   {
-    code: "EKS // 01",
+    code: "EKS-01",
     title: "Traditional Archery (Panahan Sunnah)",
     category: "Olahraga Sunnah",
     schedule: "Setiap Sabtu Pagi",
@@ -44,7 +36,7 @@ const extracurriculars: ExtracurricularItem[] = [
     featured: true,
   },
   {
-    code: "EKS // 02",
+    code: "EKS-02",
     title: "Seni Bela Diri Pencak Silat",
     category: "Bela Diri & Karakter",
     schedule: "Setiap Kamis Sore",
@@ -53,7 +45,7 @@ const extracurriculars: ExtracurricularItem[] = [
     icon: Shield,
   },
   {
-    code: "EKS // 03",
+    code: "EKS-03",
     title: "Junior Science & Basic Robotics",
     category: "Teknologi & Kreativitas",
     schedule: "Setiap Selasa Sore",
@@ -62,7 +54,7 @@ const extracurriculars: ExtracurricularItem[] = [
     icon: Cpu,
   },
   {
-    code: "EKS // 04",
+    code: "EKS-04",
     title: "Pramuka Islam Terpadu",
     category: "Kepemimpinan & Alam",
     schedule: "Setiap Jumat Siang",
@@ -71,7 +63,7 @@ const extracurriculars: ExtracurricularItem[] = [
     icon: Compass,
   },
   {
-    code: "EKS // 05",
+    code: "EKS-05",
     title: "Seni Kaligrafi & Tilawah",
     category: "Seni & Estetika Islam",
     schedule: "Setiap Rabu Sore",
@@ -80,7 +72,7 @@ const extracurriculars: ExtracurricularItem[] = [
     icon: Feather,
   },
   {
-    code: "EKS // 06",
+    code: "EKS-06",
     title: "Bilingual Public Speaking Club",
     category: "Bahasa & Komunikasi",
     schedule: "Setiap Senin Sore",
@@ -94,24 +86,27 @@ export function ExtracurricularSection() {
   return (
     <section
       aria-labelledby="extracurricular-heading"
-      className="py-20 md:py-28 lg:py-32 bg-muted/30 border-b border-border"
+      className="py-24 sm:py-32 lg:py-36 bg-muted/20 border-b border-border relative overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <ScrollReveal
           direction="up"
-          className="max-w-3xl mb-12 md:mb-16 text-center sm:text-left"
+          className="max-w-3xl mb-14 md:mb-18 text-start"
         >
-          <Badge variant="secondary" className="mb-4">
-            Pengembangan Bakat &amp; Minat
-          </Badge>
+          <div className="inline-flex items-center gap-2 px-3 py-1 mb-6 border border-border bg-background text-foreground">
+            <span className="size-1.5 bg-primary" />
+            <span className="font-mono text-[11px] font-semibold uppercase tracking-widest text-muted-foreground">
+              PENGEMBANGAN MINAT &amp; OLAHRAGA SUNNAH
+            </span>
+          </div>
           <h2
             id="extracurricular-heading"
-            className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-foreground"
+            className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-foreground leading-[1.15]"
           >
             Program Ekstrakurikuler &amp; Olahraga Sunnah
           </h2>
-          <p className="mt-4 text-base sm:text-lg text-muted-foreground leading-relaxed">
+          <p className="mt-5 text-base sm:text-lg text-muted-foreground leading-relaxed">
             Menumbuhkan ketangkasan fisik, ketajaman fokus, dan jiwa
             kepemimpinan santri di bawah bimbingan pelatih bersertifikasi dan
             instruktur berpengalaman.
@@ -133,50 +128,56 @@ export function ExtracurricularSection() {
                   item.featured && "md:col-span-2 lg:col-span-2",
                 )}
               >
-                <Card className="flex-1 flex flex-col justify-between border-border bg-card shadow-sm hover:shadow-md transition-shadow">
+                <div className="flex-1 flex flex-col justify-between border border-border bg-card/60 p-6 sm:p-8 rounded-none hover:border-foreground/30 transition-colors relative group">
                   <div>
-                    <CardHeader className="pb-4">
-                      <div className="flex items-center justify-between gap-2 mb-3">
-                        <Badge variant="outline" className="text-xs">
-                          {item.category}
-                        </Badge>
-                        <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
-                          <Calendar aria-hidden="true" className="size-3.5" />
-                          <span>{item.schedule}</span>
-                        </div>
+                    <div className="flex items-center justify-between gap-2 mb-4">
+                      <div className="inline-flex px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider bg-muted/40 border border-border text-foreground">
+                        {item.category}
                       </div>
-
-                      <div className="flex items-center gap-4">
-                        <div
+                      <div className="flex items-center gap-1.5 font-mono text-[11px] text-muted-foreground">
+                        <Calendar
                           aria-hidden="true"
-                          className="size-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0"
-                        >
-                          <Icon className="size-6" />
-                        </div>
-                        <CardTitle
+                          className="size-3 text-muted-foreground"
+                        />
+                        <span>{item.schedule}</span>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center gap-4 mb-4">
+                      <div
+                        aria-hidden="true"
+                        className="size-12 rounded-none bg-muted/40 border border-border text-foreground flex items-center justify-center shrink-0"
+                      >
+                        <Icon className="size-6" />
+                      </div>
+                      <div>
+                        <span className="font-mono text-[10px] text-muted-foreground uppercase tracking-widest block">
+                          {item.code}
+                        </span>
+                        <h3
                           id={`ekskul-${idx}-title`}
-                          className="text-lg sm:text-xl font-bold text-foreground"
+                          className="text-lg sm:text-xl font-bold text-foreground tracking-tight"
                         >
                           {item.title}
-                        </CardTitle>
+                        </h3>
                       </div>
-                    </CardHeader>
+                    </div>
 
-                    <CardContent>
-                      <p className="text-sm text-muted-foreground leading-relaxed">
-                        {item.description}
-                      </p>
-                    </CardContent>
+                    <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                      {item.description}
+                    </p>
                   </div>
 
-                  <CardFooter className="pt-4 border-t border-border flex items-center justify-between text-xs text-muted-foreground">
+                  <div className="mt-6 pt-4 border-t border-border flex items-center justify-between text-xs text-muted-foreground font-mono">
                     <div className="flex items-center gap-1.5 text-primary font-medium">
                       <Sparkles aria-hidden="true" className="size-3.5" />
-                      <span>Pelatih Bersertifikat Resmi</span>
+                      <span>PELATIH BERSERTIFIKAT</span>
                     </div>
-                    <span>Kuota Terjadwal</span>
-                  </CardFooter>
-                </Card>
+                    <span className="uppercase text-[10px] text-muted-foreground/70">
+                      KUOTA TERJADWAL
+                    </span>
+                  </div>
+                </div>
               </li>
             );
           })}

@@ -1,6 +1,7 @@
 "use client";
 
-import { Globe } from "lucide-react";
+import { Check, Globe } from "lucide-react";
+import { usePathname, useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -29,18 +30,28 @@ const LANGUAGE_OPTIONS: {
 
 export function LanguageSwitcher() {
   const { locale, setLocale } = useLanguage();
+  const router = useRouter();
+  const pathname = usePathname() || "/";
   const current =
     LANGUAGE_OPTIONS.find((opt) => opt.code === locale) || LANGUAGE_OPTIONS[0];
+
+  const handleSelectLanguage = (newLocale: Locale) => {
+    setLocale(newLocale);
+    // Strip existing locale prefix from pathname if present
+    const cleanPath = pathname.replace(/^\/(?:id|ar|en)(?=\/|$)/, "") || "/";
+    const targetUrl = `/${newLocale}${cleanPath === "/" ? "" : cleanPath}`;
+    router.push(targetUrl);
+  };
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger
         render={
           <Button
-            variant="outline"
+            variant="ghost"
             size="sm"
             aria-label="Pilih Bahasa / Change Language"
-            className="h-9 px-2.5 gap-1.5 rounded-none border-border font-mono text-xs uppercase tracking-wider hover:bg-muted"
+            className="h-full px-3 gap-1.5 rounded-none border-0 font-mono text-xs uppercase tracking-wider hover:bg-muted/40 shadow-none bg-transparent"
           />
         }
       >
@@ -50,14 +61,14 @@ export function LanguageSwitcher() {
       <DropdownMenuContent
         align="end"
         sideOffset={6}
-        className="w-44 rounded-none border border-border bg-popover p-1 shadow-none"
+        className="min-w-[11rem] w-auto rounded-none border border-border bg-popover p-1 shadow-none"
       >
         {LANGUAGE_OPTIONS.map((opt) => {
           const isSelected = opt.code === locale;
           return (
             <DropdownMenuItem
               key={opt.code}
-              onClick={() => setLocale(opt.code)}
+              onClick={() => handleSelectLanguage(opt.code)}
               className="flex items-center justify-between px-3 py-2 text-xs rounded-none cursor-pointer hover:bg-muted data-[highlighted]:bg-muted transition-colors"
             >
               <div className="flex items-center gap-2">
@@ -70,9 +81,12 @@ export function LanguageSwitcher() {
                   {opt.nativeLabel}
                 </span>
               </div>
-              <span className="text-[10px] font-mono text-muted-foreground uppercase">
-                {opt.code}
-              </span>
+              <div className="flex items-center gap-1.5">
+                <span className="text-[10px] font-mono text-muted-foreground uppercase">
+                  {opt.code}
+                </span>
+                {isSelected && <Check className="size-3 text-primary" />}
+              </div>
             </DropdownMenuItem>
           );
         })}

@@ -71,14 +71,14 @@ export function TrustPartnerMarquee() {
               key={`track-1-${idx}`}
               className="flex items-center gap-3 shrink-0 text-muted-foreground hover:text-foreground transition-colors cursor-default"
             >
-              <div className="size-9 rounded-lg bg-muted border border-border flex items-center justify-center text-primary shrink-0">
-                <Icon className="size-4.5" />
+              <div className="size-9 rounded-none bg-muted/40 border border-border flex items-center justify-center text-foreground shrink-0">
+                <Icon className="size-4" />
               </div>
-              <div className="text-left">
-                <span className="block text-xs font-semibold text-foreground tracking-wide">
+              <div className="text-left font-mono">
+                <span className="block text-xs font-bold uppercase tracking-wider text-foreground">
                   {item.label}
                 </span>
-                <span className="block text-[11px] text-muted-foreground">
+                <span className="block text-[10px] text-muted-foreground">
                   {item.sub}
                 </span>
               </div>
@@ -94,14 +94,14 @@ export function TrustPartnerMarquee() {
               key={`track-2-${idx}`}
               className="flex items-center gap-3 shrink-0 text-muted-foreground hover:text-foreground transition-colors cursor-default"
             >
-              <div className="size-9 rounded-lg bg-muted border border-border flex items-center justify-center text-primary shrink-0">
-                <Icon className="size-4.5" />
+              <div className="size-9 rounded-none bg-muted/40 border border-border flex items-center justify-center text-foreground shrink-0">
+                <Icon className="size-4" />
               </div>
-              <div className="text-left">
-                <span className="block text-xs font-semibold text-foreground tracking-wide">
+              <div className="text-left font-mono">
+                <span className="block text-xs font-bold uppercase tracking-wider text-foreground">
                   {item.label}
                 </span>
-                <span className="block text-[11px] text-muted-foreground">
+                <span className="block text-[10px] text-muted-foreground">
                   {item.sub}
                 </span>
               </div>

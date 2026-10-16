@@ -15,7 +15,6 @@ import {
   Trophy,
   Users,
 } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 
 const ICON_MAP = {
@@ -59,43 +58,42 @@ export function PageHeader({
   return (
     <section
       className={cn(
-        "relative overflow-hidden pt-16 pb-20 md:pt-24 md:pb-28 bg-muted/30 border-b border-border",
+        "relative overflow-hidden pt-20 pb-24 md:pt-28 md:pb-32 bg-muted/20 border-b border-border",
         className,
       )}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-        {/* Kicker Pill */}
-        <Badge
-          variant="outline"
-          className="gap-2 px-3.5 py-1 mb-5 text-xs font-medium rounded-full"
-        >
-          <span>{kicker}</span>
-        </Badge>
+        {/* Monospace Architectural Kicker */}
+        <div className="inline-flex items-center gap-2 px-3 py-1 mb-6 border border-border bg-background/90 text-foreground">
+          <span className="size-1.5 bg-primary" />
+          <span className="font-mono text-[11px] font-semibold uppercase tracking-widest text-muted-foreground">
+            // {kicker}
+          </span>
+        </div>
 
         {/* High-Contrast Editorial Title */}
-        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-foreground tracking-tight leading-[1.15] max-w-4xl mx-auto">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-foreground tracking-tight leading-[1.12] max-w-4xl mx-auto">
           {title}
         </h1>
 
         {/* Subtitle */}
-        <p className="mt-5 text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+        <p className="mt-6 text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
           {description}
         </p>
 
-        {/* Quick Badges */}
+        {/* Quick Monospace Badges */}
         {badges && badges.length > 0 && (
-          <div className="mt-8 flex flex-wrap justify-center gap-2.5 sm:gap-3 text-xs">
+          <div className="mt-8 flex flex-wrap justify-center gap-2 text-xs">
             {badges.map((b, idx) => {
               const Icon = b.iconName ? ICON_MAP[b.iconName] : null;
               return (
-                <Badge
+                <div
                   key={idx}
-                  variant="secondary"
-                  className="gap-1.5 px-3 py-1.5 font-normal text-xs"
+                  className="inline-flex items-center gap-2 px-3 py-1.5 font-mono text-[11px] uppercase tracking-wider bg-background border border-border text-foreground"
                 >
-                  {Icon && <Icon className="size-3.5 text-primary shrink-0" />}
+                  {Icon && <Icon className="size-3 text-primary shrink-0" />}
                   <span>{b.label}</span>
-                </Badge>
+                </div>
               );
             })}
           </div>

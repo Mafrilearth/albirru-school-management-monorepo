@@ -29,7 +29,7 @@ const DEFAULT_NOTIFICATIONS: SchoolNotification[] = [
     id: "notif-ppdb-1",
     title: "PPDB 2026/2027 Gelombang I Telah Dibuka",
     summary:
-      "Pendaftaran calon santri baru dibuka dengan kuota terbatas (tersisa 14 kursi). Rasio santri 1:15.",
+      "Pendaftaran calon santri baru SD Al-Birru dibuka dengan kapasitas kelas terfokus dan pendampingan intensif.",
     category: "PPDB",
     date: "Hari ini",
     href: "/admissions",
@@ -42,7 +42,7 @@ const DEFAULT_NOTIFICATIONS: SchoolNotification[] = [
       "Pelaksanaan ujian tasmi' santri kelas 6 talaqqi bersanad riwayat Hafs 'an 'Ashim dijadwalkan akhir bulan.",
     category: "Tahfidz",
     date: "Kemarin",
-    href: "/programs",
+    href: "/academics",
     read: false,
   },
   {
@@ -202,7 +202,7 @@ export function NotificationBell() {
                     <span
                       role="status"
                       aria-label="Belum dibaca"
-                      className="size-1.5 rounded-full bg-primary shrink-0 mt-1"
+                      className="size-1.5 rounded-none bg-primary shrink-0 mt-1"
                     />
                   )}
                 </div>

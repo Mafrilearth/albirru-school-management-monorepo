@@ -2,8 +2,6 @@
 
 import { Award, GraduationCap, UserCheck } from "lucide-react";
 import { ScrollReveal } from "@/components/common/ScrollReveal";
-import { Badge } from "@/components/ui/badge";
-import { Card } from "@/components/ui/card";
 
 interface FacultyMember {
   name: string;
@@ -62,24 +60,24 @@ export function FacultyGridSection() {
   return (
     <section
       aria-labelledby="faculty-heading"
-      className="py-20 md:py-28 lg:py-36 bg-background border-b border-border"
+      className="py-24 sm:py-32 lg:py-36 bg-background border-b border-border relative overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <ScrollReveal direction="up" className="max-w-3xl mb-12 md:mb-16">
-          <Badge
-            variant="outline"
-            className="gap-2 px-3.5 py-1 mb-5 text-xs font-medium rounded-full"
-          >
-            <span>FACULTY COUNCIL</span>
-          </Badge>
+        <ScrollReveal direction="up" className="max-w-3xl mb-14 md:mb-18">
+          <div className="inline-flex items-center gap-2 px-3 py-1 mb-6 border border-border bg-muted/40 text-foreground">
+            <span className="size-1.5 bg-primary" />
+            <span className="font-mono text-[11px] font-semibold uppercase tracking-widest text-muted-foreground">
+              DEWAN ASATIDZ &amp; PENDIDIK
+            </span>
+          </div>
           <h2
             id="faculty-heading"
-            className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground tracking-tight leading-tight"
+            className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-foreground tracking-tight leading-[1.15]"
           >
             Faculty Council &amp; Dedicated Instructors
           </h2>
-          <p className="mt-4 text-base sm:text-lg text-muted-foreground leading-relaxed">
+          <p className="mt-5 text-base sm:text-lg text-muted-foreground leading-relaxed">
             Teachers at SD Al-Birru are living role models (qudwah hasanah)
             guiding students with scholarship, patience, and sincere devotion.
           </p>
@@ -88,33 +86,33 @@ export function FacultyGridSection() {
         {/* Faculty Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {facultyMembers.map((teacher, idx) => (
-            <Card
+            <div
               key={idx}
-              className="p-6 sm:p-7 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow"
+              className="p-6 sm:p-8 flex flex-col justify-between rounded-none border border-border bg-card/60 hover:border-foreground/30 transition-colors relative group"
             >
               <div>
                 {/* Photo Placeholder Area */}
-                <div className="aspect-[4/3] w-full rounded-lg bg-muted border border-border mb-6 flex flex-col items-center justify-center text-center p-4 overflow-hidden">
-                  <div className="size-16 rounded-full bg-background border border-border flex items-center justify-center text-primary mb-2 shadow-xs">
+                <div className="aspect-[4/3] w-full rounded-none bg-muted/50 border border-border mb-6 flex flex-col items-center justify-center text-center p-4 overflow-hidden relative">
+                  <div className="size-16 rounded-none bg-background border border-border flex items-center justify-center text-primary mb-2 shadow-none">
                     <UserCheck className="size-8" />
                   </div>
-                  <span className="text-xs text-muted-foreground font-medium">
-                    Faculty Photo
+                  <span className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground font-semibold">
+                    // Profile 0{idx + 1}
                   </span>
                 </div>
 
-                <Badge variant="secondary" className="mb-2">
+                <div className="inline-flex px-2 py-0.5 mb-3 font-mono text-[11px] uppercase tracking-wider bg-muted/40 border border-border text-foreground">
                   {teacher.role}
-                </Badge>
+                </div>
 
                 <h3
                   id={`teacher-name-${idx}`}
-                  className="text-lg font-bold text-foreground leading-snug"
+                  className="text-lg font-bold text-foreground leading-snug tracking-tight"
                 >
                   {teacher.name}
                 </h3>
 
-                <div className="flex flex-col gap-1.5 my-3 text-xs text-muted-foreground border-y border-border py-3">
+                <div className="flex flex-col gap-2 my-4 text-xs text-muted-foreground border-y border-border py-3">
                   <div className="flex items-center gap-2">
                     <GraduationCap className="size-4 shrink-0 text-primary" />
                     <span>{teacher.degree}</span>
@@ -129,7 +127,7 @@ export function FacultyGridSection() {
                   {teacher.bio}
                 </p>
               </div>
-            </Card>
+            </div>
           ))}
         </div>
       </div>

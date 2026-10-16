@@ -15,7 +15,6 @@ import { useState } from "react";
 import { ConfettiCelebration } from "@/components/common/ConfettiCelebration";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
@@ -147,7 +146,32 @@ export function ContactForm() {
 
   if (submitSuccess) {
     return (
-      <Card className="p-8 sm:p-12 text-foreground animate-in fade-in-0 duration-300 relative overflow-hidden shadow-sm">
+      <div className="border border-border bg-card/60 p-8 sm:p-12 text-foreground relative overflow-hidden shadow-none rounded-none group">
+        <div
+          aria-hidden="true"
+          className="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 font-mono text-[11px] text-muted-foreground/40 select-none pointer-events-none"
+        >
+          +
+        </div>
+        <div
+          aria-hidden="true"
+          className="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 font-mono text-[11px] text-muted-foreground/40 select-none pointer-events-none"
+        >
+          +
+        </div>
+        <div
+          aria-hidden="true"
+          className="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 font-mono text-[11px] text-muted-foreground/40 select-none pointer-events-none"
+        >
+          +
+        </div>
+        <div
+          aria-hidden="true"
+          className="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 font-mono text-[11px] text-muted-foreground/40 select-none pointer-events-none"
+        >
+          +
+        </div>
+
         <ConfettiCelebration />
 
         <div
@@ -157,15 +181,15 @@ export function ContactForm() {
           className="relative z-10"
         >
           <div className="flex items-center gap-4 text-emerald-600 mb-6">
-            <div className="flex size-14 items-center justify-center rounded-full bg-emerald-500/10">
+            <div className="flex size-14 items-center justify-center rounded-none bg-emerald-500/10 border border-emerald-500/20 text-emerald-600">
               <CheckCircle2 aria-hidden="true" className="size-7" />
             </div>
             <div>
               <Badge
                 variant="outline"
-                className="text-emerald-600 border-emerald-200"
+                className="text-emerald-600 border-emerald-500/30 rounded-none font-mono text-[10px] uppercase"
               >
-                SENT
+                // DISPATCH: 200 OK — SENT
               </Badge>
               <h3
                 id="submit-success-heading"
@@ -193,7 +217,7 @@ export function ContactForm() {
               }
               nativeButton={false}
               size="lg"
-              className="flex-1 gap-2 font-medium"
+              className="flex-1 gap-2 font-mono uppercase tracking-wider text-xs font-bold py-5 rounded-none bg-primary text-primary-foreground hover:bg-foreground hover:text-background transition-colors duration-150 shadow-none cursor-pointer"
             >
               <MessageCircle aria-hidden="true" className="size-5" />
               <span>Open Admissions WhatsApp Chat</span>
@@ -204,31 +228,59 @@ export function ContactForm() {
               onClick={handleReset}
               variant="outline"
               size="lg"
-              className="gap-2 font-medium"
+              className="gap-2 font-mono uppercase tracking-wider text-xs rounded-none border-border hover:bg-muted"
             >
               <RotateCcw aria-hidden="true" className="size-4" />
               <span>Submit Another Message</span>
             </Button>
           </div>
         </div>
-      </Card>
+      </div>
     );
   }
 
   return (
-    <Card className="p-8 sm:p-12 shadow-sm relative overflow-hidden">
+    <div className="border border-border bg-card/60 p-8 sm:p-12 shadow-none rounded-none relative group overflow-hidden">
+      <div
+        aria-hidden="true"
+        className="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 font-mono text-[11px] text-muted-foreground/40 select-none pointer-events-none"
+      >
+        +
+      </div>
+      <div
+        aria-hidden="true"
+        className="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 font-mono text-[11px] text-muted-foreground/40 select-none pointer-events-none"
+      >
+        +
+      </div>
+      <div
+        aria-hidden="true"
+        className="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 font-mono text-[11px] text-muted-foreground/40 select-none pointer-events-none"
+      >
+        +
+      </div>
+      <div
+        aria-hidden="true"
+        className="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 font-mono text-[11px] text-muted-foreground/40 select-none pointer-events-none"
+      >
+        +
+      </div>
+
       <form
         onSubmit={handleSubmit}
         noValidate
         aria-labelledby="contact-form-title"
       >
+        <div className="flex items-center justify-between border-b border-border pb-3 mb-6">
+          <span className="font-mono text-xs uppercase tracking-widest text-primary">
+            // INQ.01 — INQUIRY &amp; CONSULTATION DISPATCH
+          </span>
+          <span className="font-mono text-[10px] uppercase text-muted-foreground hidden sm:inline-block">
+            SEC // FRONT_OFFICE
+          </span>
+        </div>
+
         <div className="mb-8">
-          <Badge
-            variant="outline"
-            className="gap-2 px-3.5 py-1 mb-4 text-xs font-medium rounded-full"
-          >
-            <span>OFFICIAL INQUIRY</span>
-          </Badge>
           <h3
             id="contact-form-title"
             className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight"
@@ -261,10 +313,10 @@ export function ContactForm() {
                   onClick={() => handleSelectTopic(topic)}
                   aria-pressed={isSelected}
                   className={cn(
-                    "text-xs px-3 py-1.5 rounded-full border font-medium transition-colors cursor-pointer",
+                    "text-xs px-3 py-1.5 rounded-none border font-mono uppercase tracking-wider transition-colors cursor-pointer",
                     isSelected
-                      ? "bg-primary border-primary text-primary-foreground"
-                      : "bg-background border-input text-muted-foreground hover:bg-muted hover:text-foreground",
+                      ? "bg-foreground border-foreground text-background font-bold"
+                      : "bg-background border-border text-muted-foreground hover:bg-muted hover:text-foreground",
                   )}
                 >
                   {topic}
@@ -277,7 +329,7 @@ export function ContactForm() {
         {generalError && (
           <div
             role="alert"
-            className="mb-6 p-4 rounded-md bg-destructive/10 border border-destructive/20 text-destructive text-sm flex items-center gap-2"
+            className="mb-6 p-4 rounded-none bg-destructive/10 border border-destructive/20 text-destructive text-xs font-mono flex items-center gap-2"
           >
             <AlertCircle aria-hidden="true" className="size-4 shrink-0" />
             <span>{generalError}</span>
@@ -443,7 +495,7 @@ export function ContactForm() {
             type="submit"
             disabled={isSubmitting}
             size="lg"
-            className="w-full gap-2 font-medium"
+            className="w-full gap-2 font-mono uppercase tracking-wider text-xs font-bold py-6 rounded-none bg-primary text-primary-foreground hover:bg-foreground hover:text-background transition-colors duration-150 shadow-none cursor-pointer"
           >
             {isSubmitting ? (
               <>
@@ -459,6 +511,6 @@ export function ContactForm() {
           </Button>
         </div>
       </form>
-    </Card>
+    </div>
   );
 }

@@ -44,11 +44,13 @@ export default function PublicLandingPage() {
   return (
     <>
       <HeroSection />
-      <AccreditationStrip />
-      <BentoValuesSection />
-      <DayAtAlbirruSection />
-      <LatestNewsPreview />
-      <CTASection />
+      <div className="w-full max-w-7xl mx-auto border-x border-border">
+        <AccreditationStrip />
+        <BentoValuesSection />
+        <DayAtAlbirruSection />
+        <LatestNewsPreview />
+        <CTASection />
+      </div>
     </>
   );
 }

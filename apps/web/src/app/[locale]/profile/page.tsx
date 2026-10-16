@@ -6,17 +6,17 @@ import { VisionMissionSection } from "@/components/sections/about/VisionMissionS
 import { CTASection } from "@/components/sections/CTASection";
 
 export const metadata: Metadata = {
-  title: "About & School History",
+  title: "Profile & School Identity",
   description:
     "Discover the vision, mission, BIRRU core values, distinguished faculty, and history of Al-Birru Primary School Sukabumi.",
   alternates: {
-    canonical: "/about",
+    canonical: "/profile",
   },
   openGraph: {
-    title: "About & School History | Al-Birru Primary School",
+    title: "Profile & School Identity | Al-Birru Primary School",
     description:
       "Discover the vision, mission, BIRRU core values, distinguished faculty, and history of Al-Birru Primary School Sukabumi.",
-    url: "/about",
+    url: "/profile",
   },
 };
 
@@ -33,13 +33,13 @@ const breadcrumbSchema = {
     {
       "@type": "ListItem",
       position: 2,
-      name: "About School",
-      item: "https://sdalbirru.sch.id/about",
+      name: "Profile",
+      item: "https://sdalbirru.sch.id/profile",
     },
   ],
 };
 
-export default function AboutPage() {
+export default function ProfilePage() {
   return (
     <>
       <script
@@ -60,16 +60,18 @@ export default function AboutPage() {
         ]}
       />
 
-      <VisionMissionSection />
-      <HistoryTimelineSection />
-      <FacultyGridSection />
-      <CTASection
-        kicker="CONSULTATION // ACADEMICS & TAHFIDZ"
-        title="Would You Like to Experience Our Campus Directly?"
-        description="Schedule a campus visit to SD Al-Birru to experience morning tahfidz halaqahs, classroom dynamics, and our school facilities firsthand."
-        primaryBtnText="Schedule a Campus Tour"
-        primaryBtnHref="/contact"
-      />
+      <div className="w-full max-w-7xl mx-auto border-x border-border">
+        <VisionMissionSection />
+        <HistoryTimelineSection />
+        <FacultyGridSection />
+        <CTASection
+          kicker="CONSULTATION // ACADEMICS & TAHFIDZ"
+          title="Would You Like to Experience Our Campus Directly?"
+          description="Schedule a campus visit to SD Al-Birru to experience morning tahfidz halaqahs, classroom dynamics, and our school facilities firsthand."
+          primaryBtnText="Schedule a Campus Tour"
+          primaryBtnHref="/services"
+        />
+      </div>
     </>
   );
 }

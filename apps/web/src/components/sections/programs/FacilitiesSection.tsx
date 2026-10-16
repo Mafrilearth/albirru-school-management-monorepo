@@ -12,14 +12,6 @@ import {
 } from "lucide-react";
 import type React from "react";
 import { ScrollReveal } from "@/components/common/ScrollReveal";
-import { Badge } from "@/components/ui/badge";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 
 interface FacilityItem {
   code: string;
@@ -32,7 +24,7 @@ interface FacilityItem {
 
 const facilities: FacilityItem[] = [
   {
-    code: "FAS // 01",
+    code: "FAS-01",
     title: "Ruang Kelas Ber-AC & Ergonomis",
     category: "Ruang Belajar",
     description:
@@ -45,7 +37,7 @@ const facilities: FacilityItem[] = [
     ],
   },
   {
-    code: "FAS // 02",
+    code: "FAS-02",
     title: "Masjid & Hall Shalat Berjamaah",
     category: "Pusat Ibadah",
     description:
@@ -58,7 +50,7 @@ const facilities: FacilityItem[] = [
     ],
   },
   {
-    code: "FAS // 03",
+    code: "FAS-03",
     title: "Perpustakaan & Pojok Literasi Anak",
     category: "Literasi",
     description:
@@ -71,7 +63,7 @@ const facilities: FacilityItem[] = [
     ],
   },
   {
-    code: "FAS // 04",
+    code: "FAS-04",
     title: "Laboratorium Sains & Komputer",
     category: "Teknologi",
     description:
@@ -84,7 +76,7 @@ const facilities: FacilityItem[] = [
     ],
   },
   {
-    code: "FAS // 05",
+    code: "FAS-05",
     title: "Lapangan Olahraga & Area Panahan",
     category: "Kebugaran Fisik",
     description:
@@ -97,7 +89,7 @@ const facilities: FacilityItem[] = [
     ],
   },
   {
-    code: "FAS // 06",
+    code: "FAS-06",
     title: "UKS & Ruang Konseling Ramah Anak",
     category: "Kesehatan & Tumbuh Kembang",
     description:
@@ -115,24 +107,27 @@ export function FacilitiesSection() {
   return (
     <section
       aria-labelledby="facilities-heading"
-      className="py-20 md:py-28 lg:py-32 bg-background border-b border-border"
+      className="py-24 sm:py-32 lg:py-36 bg-background border-b border-border relative overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <ScrollReveal
           direction="up"
-          className="max-w-3xl mb-12 md:mb-16 text-center sm:text-left"
+          className="max-w-3xl mb-14 md:mb-18 text-start"
         >
-          <Badge variant="secondary" className="mb-4">
-            Sarana &amp; Prasarana
-          </Badge>
+          <div className="inline-flex items-center gap-2 px-3 py-1 mb-6 border border-border bg-muted/40 text-foreground">
+            <span className="size-1.5 bg-primary" />
+            <span className="font-mono text-[11px] font-semibold uppercase tracking-widest text-muted-foreground">
+              SARANA &amp; PRASARANA KAMPUS
+            </span>
+          </div>
           <h2
             id="facilities-heading"
-            className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-foreground"
+            className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-foreground leading-[1.15]"
           >
             Fasilitas Kampus yang Nyaman, Asri &amp; Aman
           </h2>
-          <p className="mt-4 text-base sm:text-lg text-muted-foreground leading-relaxed">
+          <p className="mt-5 text-base sm:text-lg text-muted-foreground leading-relaxed">
             SD Al-Birru menyediakan fasilitas lengkap untuk menunjang kenyamanan
             belajar, ibadah, dan aktivitas fisik peserta didik setiap hari.
           </p>
@@ -147,69 +142,69 @@ export function FacilitiesSection() {
             const Icon = fac.icon;
             return (
               <li key={idx} className="flex">
-                <Card className="flex-1 flex flex-col justify-between border-border bg-card shadow-sm hover:shadow-md transition-shadow">
+                <div className="flex-1 flex flex-col justify-between border border-border bg-card/60 rounded-none hover:border-foreground/30 transition-colors relative group">
                   <div>
                     {/* Visual Placeholder */}
-                    <div className="aspect-[16/10] w-full rounded-t-lg bg-muted flex flex-col items-center justify-center text-center p-4 border-b border-border">
+                    <div className="aspect-[16/10] w-full bg-muted/40 flex flex-col items-center justify-center text-center p-4 border-b border-border relative">
                       <div
                         aria-hidden="true"
-                        className="size-12 rounded-xl bg-background border border-border flex items-center justify-center text-primary mb-2 shadow-xs"
+                        className="size-12 rounded-none bg-background border border-border flex items-center justify-center text-foreground mb-2 shadow-none"
                       >
                         <Icon className="size-6" />
                       </div>
-                      <span className="text-xs font-medium text-muted-foreground">
-                        Dokumentasi {fac.title}
+                      <span className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground font-semibold">
+                        {fac.code}
                       </span>
                     </div>
 
-                    <CardHeader className="pb-3">
-                      <div className="flex items-center justify-between gap-2 mb-2">
-                        <Badge variant="outline" className="text-xs">
+                    <div className="p-6">
+                      <div className="flex items-center justify-between gap-2 mb-3">
+                        <div className="inline-flex px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider bg-muted/40 border border-border text-foreground">
                           {fac.category}
-                        </Badge>
+                        </div>
                       </div>
 
-                      <CardTitle
+                      <h3
                         id={`facility-${idx}-title`}
-                        className="text-lg sm:text-xl font-bold text-foreground"
+                        className="text-lg sm:text-xl font-bold text-foreground tracking-tight"
                       >
                         {fac.title}
-                      </CardTitle>
-                    </CardHeader>
+                      </h3>
 
-                    <CardContent className="flex flex-col gap-4">
-                      <p className="text-sm text-muted-foreground leading-relaxed">
+                      <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed mt-2.5">
                         {fac.description}
                       </p>
 
                       <ul
                         aria-label={`Spesifikasi untuk ${fac.title}`}
-                        className="flex flex-col gap-2 border-t border-border pt-4 list-none p-0"
+                        className="flex flex-col gap-2 border-t border-border pt-4 mt-4 list-none p-0"
                       >
                         {fac.specs.map((spec, sIdx) => (
                           <li
                             key={sIdx}
-                            className="flex items-center gap-2.5 text-xs text-foreground/90"
+                            className="flex items-center gap-2.5 text-xs text-foreground/90 font-mono"
                           >
                             <Check
                               aria-hidden="true"
-                              className="size-4 text-primary shrink-0"
+                              className="size-3.5 text-primary shrink-0"
                             />
                             <span>{spec}</span>
                           </li>
                         ))}
                       </ul>
-                    </CardContent>
+                    </div>
                   </div>
 
-                  <CardFooter className="pt-4 border-t border-border flex items-center gap-2 text-xs text-muted-foreground">
+                  <div className="p-4 sm:px-6 border-t border-border flex items-center gap-2 text-xs text-muted-foreground font-mono">
                     <ShieldCheck
                       aria-hidden="true"
-                      className="size-4 text-primary"
+                      className="size-3.5 text-primary"
                     />
-                    <span>Standar Kebersihan &amp; Keamanan Terjaga</span>
-                  </CardFooter>
-                </Card>
+                    <span className="uppercase text-[10px] tracking-wider">
+                      KEBERSIHAN &amp; KEAMANAN TERSTANDISASI
+                    </span>
+                  </div>
+                </div>
               </li>
             );
           })}

@@ -58,22 +58,24 @@ export default async function NewsPage() {
         ]}
       />
 
-      <section
-        aria-labelledby="news-archive-heading"
-        className="py-16 md:py-24 lg:py-32 bg-background"
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <NewsArchiveGrid articles={articles} />
-        </div>
-      </section>
+      <div className="w-full max-w-7xl mx-auto border-x border-border">
+        <section
+          aria-labelledby="news-archive-heading"
+          className="py-16 md:py-24 lg:py-32 bg-background border-b border-border"
+        >
+          <div className="w-full px-4 sm:px-6 lg:px-8">
+            <NewsArchiveGrid articles={articles} />
+          </div>
+        </section>
 
-      <CTASection
-        kicker="ADMISSIONS // MERIT & REGULAR TRACKS"
-        title="Support Your Child's Talents with SD Al-Birru"
-        description="Special recognition tracks available for children with Al-Qur'an memorization or talent achievements. Inquire about remaining class cohort capacity."
-        primaryBtnText="Consult Admissions Tracks"
-        primaryBtnHref="/contact"
-      />
+        <CTASection
+          kicker="ADMISSIONS // MERIT & REGULAR TRACKS"
+          title="Support Your Child's Talents with SD Al-Birru"
+          description="Special recognition tracks available for children with Al-Qur'an memorization or talent achievements. Inquire about remaining class cohort capacity."
+          primaryBtnText="Consult Admissions Tracks"
+          primaryBtnHref="/services"
+        />
+      </div>
     </>
   );
 }

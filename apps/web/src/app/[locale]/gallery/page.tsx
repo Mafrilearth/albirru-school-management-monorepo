@@ -72,7 +72,7 @@ export default async function GalleryPage() {
         title="Experience Our Learning Atmosphere Firsthand"
         description="Parents are warmly invited to visit our campus to observe our daily Al-Qur'an halaqahs and modern school facilities."
         primaryBtnText="Book a Campus Visit"
-        primaryBtnHref="/contact"
+        primaryBtnHref="/services"
       />
     </>
   );

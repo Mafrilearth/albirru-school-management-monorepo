@@ -1,14 +1,16 @@
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
 
 interface BrandLogoProps {
   className?: string;
   isDarkBackground?: boolean;
+  ariaLabel?: string;
 }
 
 export function BrandLogo({
   className,
   isDarkBackground = false,
+  ariaLabel = "Al-Birru - Sekolah Dasar Islam",
 }: BrandLogoProps) {
   return (
     <Link
@@ -17,7 +19,7 @@ export function BrandLogo({
         "flex h-full items-center justify-center gap-3 px-4 sm:px-6 xl:px-8 outline-none",
         className,
       )}
-      aria-label="Kembali ke Beranda SD Al-Birru"
+      aria-label={ariaLabel}
     >
       <svg
         viewBox="0 0 100 135"
@@ -54,10 +56,10 @@ export function BrandLogo({
       </svg>
       <div className="flex flex-col justify-center text-start">
         <span className="font-sans font-black text-lg xl:text-xl leading-none text-foreground tracking-tight">
-          SD Al-Birru
+          Al-Birru
         </span>
-        <span className="font-mono text-[9px] xl:text-[10px] font-bold text-primary uppercase tracking-widest mt-1">
-          School ID: 70010111
+        <span className="font-mono text-[9px] xl:text-[10px] font-bold text-muted-foreground uppercase tracking-widest mt-1">
+          Sekolah Dasar Islam
         </span>
       </div>
     </Link>

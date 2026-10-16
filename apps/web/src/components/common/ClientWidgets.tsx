@@ -2,24 +2,10 @@
 
 import dynamic from "next/dynamic";
 
-const AIChatWidget = dynamic(
-  () =>
-    import("@/components/common/AIChatWidget").then((mod) => mod.AIChatWidget),
-  { ssr: false },
-);
-
 const FloatingWhatsApp = dynamic(
   () =>
     import("@/components/common/FloatingWhatsApp").then(
       (mod) => mod.FloatingWhatsApp,
-    ),
-  { ssr: false },
-);
-
-const FloatingFeedbackWidget = dynamic(
-  () =>
-    import("@/components/common/FloatingFeedbackWidget").then(
-      (mod) => mod.FloatingFeedbackWidget,
     ),
   { ssr: false },
 );
@@ -41,9 +27,7 @@ const ScrollToTop = dynamic(
 export function ClientWidgets() {
   return (
     <>
-      <AIChatWidget />
       <FloatingWhatsApp />
-      <FloatingFeedbackWidget />
       <CookieConsent />
       <ScrollToTop />
     </>

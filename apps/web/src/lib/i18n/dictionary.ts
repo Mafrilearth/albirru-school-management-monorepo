@@ -3,10 +3,15 @@ export type Locale = "id" | "ar" | "en";
 export interface Translations {
   nav: {
     home: string;
+    profile: string;
     about: string;
+    academics: string;
     programs: string;
+    students: string;
+    kesiswaan: string;
     news: string;
     gallery: string;
+    services: string;
     contact: string;
     contactUs: string;
     applyOnline: string;
@@ -26,6 +31,7 @@ export interface Translations {
     submit: string;
     downloadBrochure: string;
     learnMore: string;
+    apply: string;
     back: string;
     close: string;
   };
@@ -54,17 +60,28 @@ export interface Translations {
     essentialOnly: string;
     privacyPolicy: string;
   };
+  theme: {
+    toggle: string;
+    light: string;
+    dark: string;
+    system: string;
+  };
 }
 
 export const DICTIONARY: Record<Locale, Translations> = {
   id: {
     nav: {
       home: "Beranda",
-      about: "Tentang Kami",
-      programs: "Program & Kurikulum",
-      news: "Berita",
-      gallery: "Galeri",
-      contact: "Kontak",
+      profile: "Profil",
+      about: "Profil",
+      academics: "Akademik",
+      programs: "Akademik",
+      students: "Kesiswaan",
+      kesiswaan: "Kesiswaan",
+      news: "Warta",
+      gallery: "Warta",
+      services: "Layanan",
+      contact: "Layanan",
       contactUs: "Hubungi Kami",
       applyOnline: "Daftar Online",
       portal: "Portal Guru & Ortu",
@@ -72,7 +89,7 @@ export const DICTIONARY: Record<Locale, Translations> = {
       menuTitle: "Menu Navigasi",
     },
     badges: {
-      admissionsOpen: "PPDB 2026/2027 Dibuka",
+      admissionsOpen: "Penerimaan Siswa Baru 2026/2027 Dibuka",
       quotaRemaining: "Sisa 14 Kursi",
       islamicIntegrated: "Sekolah Dasar Terpadu",
       tahfidzFocus: "Tahfidz 3 Juz Mutqin Bersanad",
@@ -83,6 +100,7 @@ export const DICTIONARY: Record<Locale, Translations> = {
       submit: "Kirim",
       downloadBrochure: "Unduh Brosur",
       learnMore: "Pelajari Lebih Lanjut",
+      apply: "Daftar",
       back: "Kembali",
       close: "Tutup",
     },
@@ -112,15 +130,26 @@ export const DICTIONARY: Record<Locale, Translations> = {
       essentialOnly: "Hanya Esensial",
       privacyPolicy: "Kebijakan Privasi",
     },
+    theme: {
+      toggle: "Ubah Tema",
+      light: "Terang",
+      dark: "Gelap",
+      system: "Sistem",
+    },
   },
   ar: {
     nav: {
       home: "الرئيسية",
-      about: "من نحن",
-      programs: "البرامج والمناهج",
+      profile: "التعريف",
+      about: "التعريف",
+      academics: "الأكاديميا",
+      programs: "الأكاديميا",
+      students: "الطلاب",
+      kesiswaan: "الطلاب",
       news: "الأخبار",
-      gallery: "معرض الصور",
-      contact: "اتصل بنا",
+      gallery: "الأخبار",
+      services: "الخدمات",
+      contact: "الخدمات",
       contactUs: "تواصل معنا",
       applyOnline: "التسجيل الإلكتروني",
       portal: "بوابة أولياء الأمور",
@@ -128,7 +157,7 @@ export const DICTIONARY: Record<Locale, Translations> = {
       menuTitle: "قائمة التنقل",
     },
     badges: {
-      admissionsOpen: "التسجيل مفتوح ٢٠٢٦/٢٠٢٧",
+      admissionsOpen: "التسجيل للعام 2026/2027 مفتوح",
       quotaRemaining: "باقي ١٤ مقعداً فقط",
       islamicIntegrated: "مدرسة ابتدائية إسلامية متكاملة",
       tahfidzFocus: "تحفيظ ٣ أجزاء متقنة بالسند",
@@ -139,6 +168,7 @@ export const DICTIONARY: Record<Locale, Translations> = {
       submit: "إرسال",
       downloadBrochure: "تحميل الدليل التعريفي",
       learnMore: "اعرف المزيد",
+      apply: "التسجيل",
       back: "رجوع",
       close: "إغلاق",
     },
@@ -168,15 +198,26 @@ export const DICTIONARY: Record<Locale, Translations> = {
       essentialOnly: "الأساسية فقط",
       privacyPolicy: "سياسة الخصوصية",
     },
+    theme: {
+      toggle: "تغيير المظهر",
+      light: "فاتح",
+      dark: "داكن",
+      system: "النظام",
+    },
   },
   en: {
     nav: {
       home: "Home",
-      about: "About Us",
-      programs: "Programs & Curriculum",
-      news: "News & Articles",
+      profile: "Profile",
+      about: "Profile",
+      academics: "Academics",
+      programs: "Academics",
+      students: "Students",
+      kesiswaan: "Students",
+      news: "News",
       gallery: "Gallery",
-      contact: "Contact",
+      services: "Services",
+      contact: "Services",
       contactUs: "Contact Us",
       applyOnline: "Apply Online",
       portal: "Parent Portal",
@@ -195,6 +236,7 @@ export const DICTIONARY: Record<Locale, Translations> = {
       submit: "Submit",
       downloadBrochure: "Download Brochure",
       learnMore: "Learn More",
+      apply: "Apply",
       back: "Back",
       close: "Close",
     },
@@ -223,6 +265,12 @@ export const DICTIONARY: Record<Locale, Translations> = {
       acceptAll: "Accept All",
       essentialOnly: "Essential Only",
       privacyPolicy: "Privacy Policy",
+    },
+    theme: {
+      toggle: "Toggle Theme",
+      light: "Light",
+      dark: "Dark",
+      system: "System",
     },
   },
 };

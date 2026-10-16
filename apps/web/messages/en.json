@@ -1,0 +1,61 @@
+{
+  "nav": {
+    "home": "Home",
+    "profile": "Profile",
+    "about": "Profile",
+    "academics": "Academics",
+    "programs": "Academics",
+    "students": "Students",
+    "kesiswaan": "Students",
+    "news": "News",
+    "gallery": "Gallery",
+    "services": "Services",
+    "contact": "Services",
+    "contactUs": "Contact Us",
+    "applyOnline": "Apply Online",
+    "portal": "Parent Portal",
+    "openMenu": "Open Navigation Menu",
+    "menuTitle": "Navigation Menu"
+  },
+  "badges": {
+    "admissionsOpen": "Admissions 2026/2027 Open · 14 Seats Left",
+    "quotaRemaining": "14 Seats Remaining",
+    "islamicIntegrated": "Integrated Islamic Elementary School",
+    "tahfidzFocus": "3 Juz Mutqin Tahfidz with Sanad",
+    "accreditationA": "Grade A National Accreditation"
+  },
+  "actions": {
+    "readMore": "Read More",
+    "submit": "Submit",
+    "downloadBrochure": "Download Brochure",
+    "learnMore": "Learn More",
+    "apply": "Apply",
+    "back": "Back",
+    "close": "Close"
+  },
+  "notifications": {
+    "title": "School Announcements",
+    "markAllAsRead": "Mark All as Read",
+    "empty": "No new announcements",
+    "newBadge": "New"
+  },
+  "chat": {
+    "title": "Al-Birru AI Assistant",
+    "subtitle": "Admissions & Curriculum Inquiries",
+    "placeholder": "Ask about admissions, tuition fees, tahfidz, or campus...",
+    "send": "Send",
+    "askPPDB": "Ask AI PPDB",
+    "thinking": "Assistant is formulating response...",
+    "quickFees": "Fees & Tuition",
+    "quickRequirements": "Admissions Requirements",
+    "quickTahfidz": "Tahfidz 3 Juz Program",
+    "quickLocation": "Campus & Location"
+  },
+  "cookie": {
+    "title": "Privacy & Cookie Preferences",
+    "description": "Al-Birru Primary School uses essential and local analytics cookies to ensure the website operates smoothly and enhances educational services under Personal Data Protection standards.",
+    "acceptAll": "Accept All",
+    "essentialOnly": "Essential Only",
+    "privacyPolicy": "Privacy Policy"
+  }
+}

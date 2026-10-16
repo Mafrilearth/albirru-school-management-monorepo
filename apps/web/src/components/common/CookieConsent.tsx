@@ -51,7 +51,7 @@ export function CookieConsent() {
     >
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <div className="flex items-start gap-3">
-          <div className="flex size-8 shrink-0 items-center justify-center bg-primary/10 text-primary border border-primary/20">
+          <div className="flex size-8 shrink-0 items-center justify-center bg-muted/40 text-foreground border border-border">
             <ShieldCheck className="size-4" />
           </div>
           <div className="space-y-1">
@@ -61,7 +61,7 @@ export function CookieConsent() {
             <p className="text-xs text-muted-foreground leading-relaxed max-w-3xl">
               {t.cookie.description}{" "}
               <Link
-                href="/about"
+                href="/profile"
                 className="text-primary underline underline-offset-2 hover:text-primary/80 font-medium"
               >
                 {t.cookie.privacyPolicy}
