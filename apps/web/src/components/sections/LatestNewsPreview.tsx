@@ -69,8 +69,8 @@ export function LatestNewsPreview() {
       className="w-full bg-background border-b border-border"
     >
       {/* Header Cell — Full Width in Grid */}
-      <div className="w-full p-6 sm:p-10 lg:p-12 border-b border-border flex flex-col md:flex-row md:items-end justify-between gap-6">
-        <div className="max-w-xl">
+      <div className="w-full p-6 sm:p-10 lg:p-12 border-b border-border flex flex-col xl:flex-row xl:items-end justify-between gap-6 min-w-0">
+        <div className="max-w-xl min-w-0">
           <span className="font-mono text-xs font-bold uppercase tracking-widest text-muted-foreground block mb-2">
             Warta &amp; Informasi
           </span>
@@ -87,9 +87,9 @@ export function LatestNewsPreview() {
           </p>
         </div>
 
-        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 font-mono">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 font-mono max-w-full min-w-0">
           {/* Category Filter Pills */}
-          <div className="flex items-center gap-1 p-1 bg-muted/30 rounded-none border border-border">
+          <div className="flex items-center gap-1 p-1 bg-muted/30 rounded-none border border-border max-w-full overflow-x-auto scrollbar-none">
             {categories.map((cat) => {
               const isCatActive = activeCategory === cat;
               return (
@@ -98,7 +98,7 @@ export function LatestNewsPreview() {
                   type="button"
                   onClick={() => setActiveCategory(cat)}
                   className={cn(
-                    "px-3 py-1.5 text-xs font-bold uppercase tracking-wider cursor-pointer rounded-none transition-colors select-none",
+                    "px-2.5 sm:px-3 py-1.5 text-[11px] sm:text-xs font-bold uppercase tracking-wider cursor-pointer rounded-none transition-colors select-none shrink-0 whitespace-nowrap",
                     isCatActive
                       ? "bg-foreground text-background"
                       : "text-muted-foreground hover:text-foreground",
@@ -115,7 +115,7 @@ export function LatestNewsPreview() {
             nativeButton={false}
             variant="outline"
             size="sm"
-            className="gap-1.5 text-xs font-mono font-bold uppercase tracking-wider rounded-none border-border hover:border-foreground bg-transparent active:scale-[0.98] transition-all px-4 py-2 shadow-none"
+            className="gap-1.5 text-xs font-mono font-bold uppercase tracking-wider rounded-none border-border hover:border-foreground bg-transparent active:scale-[0.98] transition-all px-4 py-2 shadow-none shrink-0"
           >
             <span>Semua Berita</span>
             <ChevronRight data-icon="inline-end" className="size-3.5" />
