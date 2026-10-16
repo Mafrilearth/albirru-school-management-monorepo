@@ -1,365 +1,614 @@
 "use client";
 
 import {
-  ArrowRight,
+  ArrowUpRight,
   BookOpen,
-  Cpu,
-  Heart,
+  Building2,
+  Globe,
   Sparkles,
-  Users,
+  TrendingUp,
 } from "lucide-react";
-import { AnimatePresence, motion } from "motion/react";
-import Link from "next/link";
+import { motion } from "motion/react";
 import { useState } from "react";
-import { Card, CardContent } from "@/components/ui/card";
+import { Link } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
 
-type ProgramKey = "tahfidz" | "adab" | "sains" | "rasio";
+/**
+ * SantriIllustration — High-craft vector line-art illustration of an Al-Birru student.
+ * Features an Islamic peci, round glasses, cheerful smile, and school uniform collar.
+ * Includes micro-animations: periodic natural eye-blinking and subtle gentle breathing.
+ */
+function SantriIllustration({ isHovered }: { isHovered?: boolean }) {
+  return (
+    <svg
+      viewBox="0 0 120 130"
+      className="w-24 h-28 sm:w-28 sm:h-32 shrink-0 select-none overflow-visible"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      {/* Gentle Floating & Breathing Group */}
+      <motion.g
+        animate={{
+          y: isHovered ? -3 : [0, -2, 0],
+          rotate: isHovered ? 1.5 : [-0.5, 0.5, -0.5],
+        }}
+        transition={{
+          duration: 3.6,
+          repeat: Number.POSITIVE_INFINITY,
+          ease: "easeInOut",
+        }}
+        style={{ transformOrigin: "60px 100px" }}
+      >
+        {/* Peci / Islamic Songkok */}
+        <path
+          d="M 36 38 C 36 24, 84 24, 84 38 L 86 44 L 34 44 Z"
+          className="fill-foreground"
+        />
+        <path d="M 34 44 L 86 44" className="stroke-card" strokeWidth="1.5" />
 
-interface ProgramDetail {
-  id: ProgramKey;
-  label: string;
-  badge: string;
-  icon: typeof BookOpen;
-  title: string;
-  subtitle: string;
-  description: string;
-  metrics: { name: string; status: string; percent: number }[];
-  tags: string[];
-  linkHref: string;
-  theme: {
-    accentText: string;
-    borderAccent: string;
-    badgeClass: string;
-    iconBoxClass: string;
-    progressBar: string;
-    linkClass: string;
-    activeTabBg: string;
-    activeTabHover: string;
-  };
+        {/* Hair Tuft Peeking */}
+        <path
+          d="M 34 44 Q 28 54 34 60 Q 37 50 42 46"
+          className="fill-foreground"
+        />
+        <path
+          d="M 86 44 Q 92 54 86 60 Q 83 50 78 46"
+          className="fill-foreground"
+        />
+
+        {/* Head Contour */}
+        <path
+          d="M 36 44 C 34 72, 40 88, 60 88 C 80 88, 86 72, 84 44"
+          className="fill-card stroke-foreground"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+        />
+
+        {/* Ears */}
+        <path
+          d="M 36 56 C 30 56, 30 68, 36 68"
+          className="fill-card stroke-foreground"
+          strokeWidth="2"
+          strokeLinecap="round"
+        />
+        <path
+          d="M 84 56 C 90 56, 90 68, 84 68"
+          className="fill-card stroke-foreground"
+          strokeWidth="2"
+          strokeLinecap="round"
+        />
+
+        {/* Round Glasses Frame (Screenshot Style) */}
+        <circle
+          cx="47"
+          cy="58"
+          r="9.5"
+          className="stroke-foreground fill-card/50"
+          strokeWidth="2.5"
+        />
+        <circle
+          cx="73"
+          cy="58"
+          r="9.5"
+          className="stroke-foreground fill-card/50"
+          strokeWidth="2.5"
+        />
+        {/* Glasses Bridge */}
+        <path
+          d="M 56.5 58 L 63.5 58"
+          className="stroke-foreground"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+        />
+        {/* Glasses Temples / Side Arms */}
+        <path
+          d="M 37.5 57 L 33 55"
+          className="stroke-foreground"
+          strokeWidth="2"
+          strokeLinecap="round"
+        />
+        <path
+          d="M 82.5 57 L 87 55"
+          className="stroke-foreground"
+          strokeWidth="2"
+          strokeLinecap="round"
+        />
+
+        {/* Blinking Eyes (Natural Human Cadence) */}
+        <motion.g
+          animate={{
+            scaleY: [1, 1, 0.1, 1, 1],
+          }}
+          transition={{
+            duration: 3.8,
+            repeat: Number.POSITIVE_INFINITY,
+            times: [0, 0.88, 0.92, 0.96, 1],
+          }}
+          style={{ transformOrigin: "60px 58px" }}
+        >
+          <circle cx="47" cy="58" r="2.8" className="fill-foreground" />
+          <circle cx="73" cy="58" r="2.8" className="fill-foreground" />
+          {/* Eye catchlight highlights */}
+          <circle cx="48" cy="57" r="0.9" className="fill-card" />
+          <circle cx="74" cy="57" r="0.9" className="fill-card" />
+        </motion.g>
+
+        {/* Cheeks / Warm Fitrah Glow */}
+        <circle cx="41" cy="68" r="3" className="fill-emerald-500/30" />
+        <circle cx="79" cy="68" r="3" className="fill-emerald-500/30" />
+
+        {/* Cheerful Smile */}
+        <path
+          d="M 53 73 Q 60 80 67 73"
+          className="stroke-foreground"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          fill="none"
+        />
+
+        {/* Neck */}
+        <path
+          d="M 52 88 L 52 98 L 68 98 L 68 88"
+          className="fill-card stroke-foreground"
+          strokeWidth="2"
+        />
+
+        {/* Uniform Shoulders */}
+        <path
+          d="M 28 126 C 30 106, 46 98, 52 98 L 68 98 C 74 98, 90 106, 92 126 Z"
+          className="fill-card stroke-foreground"
+          strokeWidth="2.5"
+        />
+
+        {/* Uniform Collar */}
+        <path
+          d="M 52 98 L 60 110 L 68 98"
+          className="stroke-foreground fill-none"
+          strokeWidth="2"
+          strokeLinejoin="round"
+        />
+
+        {/* Tie / Al-Birru Green Placket */}
+        <path
+          d="M 59 110 L 61 110 L 62 124 L 58 124 Z"
+          className="fill-emerald-600"
+        />
+      </motion.g>
+    </svg>
+  );
 }
 
-const programsData: Record<ProgramKey, ProgramDetail> = {
-  tahfidz: {
-    id: "tahfidz",
-    label: "Tahfidz",
-    badge: "PROGRAM UNGGULAN",
-    icon: BookOpen,
-    title: "Program Tahfidzul Qur'an",
-    subtitle: "Bimbingan Tahfidz & Talaqqi Berjenjang",
-    description:
-      "Bimbingan halaqah Al-Qur'an dengan metode talaqqi bertahap. Santri dibimbing secara intensif untuk menumbuhkan kecintaan membaca, menghafal, dan memahami Al-Qur'an sejak usia dini.",
-    metrics: [
-      {
-        name: "TAHSIN & MAKHARIJUL HURUF",
-        status: "BIMBINGAN AKTIF",
-        percent: 90,
-      },
-      {
-        name: "HAFALAN AL-QUR'AN BERJENJANG",
-        status: "PEMBIASAAN HARIAN",
-        percent: 80,
-      },
-      {
-        name: "MUTABA'AH & EVALUASI BERKALA",
-        status: "TERPANTAU RUTIN",
-        percent: 85,
-      },
-    ],
-    tags: ["Talaqqi Intensif", "Bimbingan Asatidz", "Mutaba'ah Harian"],
-    linkHref: "/programs#tahfidz",
-    theme: {
-      accentText: "text-foreground",
-      borderAccent: "",
-      badgeClass: "border-border bg-muted/40 text-foreground",
-      iconBoxClass: "bg-muted/40 border-border text-foreground",
-      progressBar: "bg-emerald-600",
-      linkClass: "text-foreground hover:underline",
-      activeTabBg: "bg-foreground text-background",
-      activeTabHover: "hover:text-foreground",
-    },
-  },
-  adab: {
-    id: "adab",
-    label: "Adab",
-    badge: "FONDASI FITRAH",
-    icon: Heart,
-    title: "Adab Sebelum Ilmu & 7 Kebiasaan Mulia",
-    subtitle: "Internalisasi Karakter Islami Sejak Dini",
-    description:
-      "Penanaman tata krama harian melalui shalat dhuha dan dzuhur berjamaah tepat waktu, budaya 5S (Senyum, Salam, Sapa, Sopan, Santun), serta proyek bakti birrul walidain.",
-    metrics: [
-      {
-        name: "KEDISIPLINAN SHALAT TEPAT WAKTU",
-        status: "98.8% KONSISTEN",
-        percent: 99,
-      },
-      {
-        name: "PRAKTIK BUDAYA 5S BERADAB",
-        status: "PEMBIASAAN HARIAN",
-        percent: 95,
-      },
-      {
-        name: "PROYEK BIRRUL WALIDAIN",
-        status: "PEKAN BAKTI ORANG TUA",
-        percent: 90,
-      },
-    ],
-    tags: ["5S Beradab", "Shalat Berjamaah", "Bakti Orang Tua"],
-    linkHref: "/programs#adab",
-    theme: {
-      accentText: "text-foreground",
-      borderAccent: "",
-      badgeClass: "border-border bg-muted/40 text-foreground",
-      iconBoxClass: "bg-muted/40 border-border text-foreground",
-      progressBar: "bg-emerald-600",
-      linkClass: "text-foreground hover:underline",
-      activeTabBg: "bg-foreground text-background",
-      activeTabHover: "hover:text-foreground",
-    },
-  },
-  sains: {
-    id: "sains",
-    label: "Sains",
-    badge: "STEM & NALAR KRITIS",
-    icon: Cpu,
-    title: "Inkuiri Sains Alam & Junior Coding",
-    subtitle: "Kurikulum Merdeka + Eksplorasi Sains Terbuka",
-    description:
-      "Pembelajaran tematik berbasis rasa ingin tahu alami santri. Mengintegrasikan observasi sains alam terbuka, logika algoritma komputasi awal, dan penalaran kritis aplikatif.",
-    metrics: [
-      { name: "PRAKTIKUM SAINS LAB ALAM", status: "2X / PEKAN", percent: 85 },
-      {
-        name: "COMPUTATIONAL THINKING & LOGIKA",
-        status: "JUNIOR SCRATCH",
-        percent: 80,
-      },
-      {
-        name: "PORTOFOLIO PROYEK INKUIRI",
-        status: "PAMERAN KARYA",
-        percent: 90,
-      },
-    ],
-    tags: ["Lab Terbuka", "Junior Coding", "Nalar Kritis"],
-    linkHref: "/programs#sains",
-    theme: {
-      accentText: "text-foreground",
-      borderAccent: "",
-      badgeClass: "border-border bg-muted/40 text-foreground",
-      iconBoxClass: "bg-muted/40 border-border text-foreground",
-      progressBar: "bg-emerald-600",
-      linkClass: "text-foreground hover:underline",
-      activeTabBg: "bg-foreground text-background",
-      activeTabHover: "hover:text-foreground",
-    },
-  },
-  rasio: {
-    id: "rasio",
-    label: "Rasio",
-    badge: "EKOSISTEM PERSONAL",
-    icon: Users,
-    title: "Lingkungan Belajar Ramah Anak",
-    subtitle: "Pendampingan Intensif & Kelas Kondusif",
-    description:
-      "Pembelajaran yang berpusat pada perkembangan santri dengan bimbingan terarah oleh guru. Didukung suasana belajar yang aman, sarana ibadah memadai, dan iklim interaksi yang positif.",
-    metrics: [
-      {
-        name: "PENDAMPINGAN GURU",
-        status: "OPTIMAL & INTENSIF",
-        percent: 95,
-      },
-      { name: "SUASANA KELAS KONDUSIF", status: "RAMAH ANAK", percent: 90 },
-      {
-        name: "SARANA PENDIDIKAN",
-        status: "TERPADU & AMAN",
-        percent: 85,
-      },
-    ],
-    tags: ["Kelas Kondusif", "Pendampingan Personal", "Ramah Anak"],
-    linkHref: "/programs#fasilitas",
-    theme: {
-      accentText: "text-foreground",
-      borderAccent: "",
-      badgeClass: "border-border bg-muted/40 text-foreground",
-      iconBoxClass: "bg-muted/40 border-border text-foreground",
-      progressBar: "bg-emerald-600",
-      linkClass: "text-foreground hover:underline",
-      activeTabBg: "bg-foreground text-background",
-      activeTabHover: "hover:text-foreground",
-    },
-  },
-};
+/**
+ * TreeCircuitConnector — SVG Branching Circuit Tree.
+ * Connects the two top cards into the bottom card with native SVG <animateMotion>
+ * data pulses flowing continuously like a living hardware/software architecture.
+ */
+function TreeCircuitConnector() {
+  return (
+    <div className="w-full h-9 sm:h-11 relative pointer-events-none select-none">
+      <svg
+        viewBox="0 0 100 44"
+        preserveAspectRatio="none"
+        className="w-full h-full overflow-visible"
+        aria-hidden="true"
+      >
+        {/* Branch Lines: Left and Right meet at center junction and flow down */}
+        <path
+          d="M 25 0 V 22 H 50"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          className="text-border"
+        />
+        <path
+          d="M 75 0 V 22 H 50"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          className="text-border"
+        />
+        <path
+          d="M 50 22 V 44"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          className="text-border"
+        />
+
+        {/* Center Junction Node */}
+        <circle
+          cx="50"
+          cy="22"
+          r="3"
+          className="fill-card stroke-border"
+          strokeWidth="1.5"
+        />
+        <circle cx="50" cy="22" r="1.5" className="fill-emerald-500" />
+
+        {/* Pulsing Light Packet from Top Left */}
+        <circle r="2.5" className="fill-emerald-500">
+          <animateMotion
+            path="M 25 0 V 22 H 50 V 44"
+            dur="2.8s"
+            repeatCount="indefinite"
+          />
+        </circle>
+
+        {/* Pulsing Light Packet from Top Right */}
+        <circle r="2.5" className="fill-emerald-500">
+          <animateMotion
+            path="M 75 0 V 22 H 50 V 44"
+            dur="2.8s"
+            begin="1.4s"
+            repeatCount="indefinite"
+          />
+        </circle>
+      </svg>
+    </div>
+  );
+}
+
+const barChartData = [
+  { label: "07:30", height: 35, topic: "Shalat Dhuha & Doa" },
+  { label: "08:15", height: 48, topic: "Tahsin Talaqqi" },
+  { label: "09:00", height: 68, topic: "Halaqah Tahfidz" },
+  { label: "09:45", height: 62, topic: "Adab Makan & Istirahat" },
+  { label: "10:30", height: 50, topic: "Inkuiri Sains Alam" },
+  { label: "11:15", height: 42, topic: "Matematika Nalaria" },
+  { label: "12:00", height: 38, topic: "Shalat Dzuhur Berjamaah" },
+  { label: "12:45", height: 66, topic: "Bahasa Arab Dasar" },
+  { label: "13:30", height: 78, topic: "Junior Scratch Logic" },
+  { label: "14:15", height: 96, topic: "Mutaba'ah & Evaluasi Mutqin" },
+  { label: "15:00", height: 92, topic: "Penjemputan & Doa Kepulangan" },
+];
 
 /**
- * HeroProgramShowcase — the interactive program switcher card.
- * Kept as a client component because it uses useState/motion.
- * Separated from the hero headline so the LCP text renders instantly
- * in the server-rendered HTML without waiting for JS hydration.
+ * HeroProgramShowcase — Living Interactive Architectural Bento Graphic.
+ * Renders an animated, code-driven graphic matching the blueprint diagram:
+ * - Outer Blueprint Enclosure with crosshair target markers and center ticks.
+ * - Top-Left: Tahfidz Milestone statistics (+38%, 3 Juz target, Talaqqi badge).
+ * - Top-Right: Fitrah Community (1:15 ratio, +9.2% Adab, animated Santri avatar).
+ * - Tree Circuit Connector: SVG branching lines with live pulsing data packets.
+ * - Bottom Card: PPDB Admission live status, breakdown rows, animated bar columns,
+ *   and smooth wave trend line with live beacon point.
  */
 export function HeroProgramShowcase() {
-  const [activeTab, setActiveTab] = useState<ProgramKey>("tahfidz");
-  const activeProgram = programsData[activeTab];
-  const ActiveIcon = activeProgram.icon;
+  const [hoveredCard, setHoveredCard] = useState<string | null>(null);
+  const [activeBarIndex, setActiveBarIndex] = useState<number>(9);
 
   return (
-    <div className="lg:col-span-5 relative mt-8 lg:mt-0">
-      {/* Main Interactive Showcase Card with Pure Flat Swiss Bento Architecture */}
-      <Card className="rounded-none border border-border bg-card shadow-none overflow-hidden relative">
-        {/* Program Switcher Tabs */}
-        <div className="p-1 border-b border-border bg-muted/30 grid grid-cols-2 sm:grid-cols-4 gap-1 relative font-mono">
-          {(["tahfidz", "adab", "sains", "rasio"] as const).map((key) => {
-            const item = programsData[key];
-            const Icon = item.icon;
-            const isActive = activeTab === key;
-            return (
-              <button
-                key={key}
-                type="button"
-                onClick={() => setActiveTab(key)}
-                className={cn(
-                  "relative flex items-center justify-center gap-1.5 px-2.5 py-2 text-xs font-mono uppercase tracking-wider cursor-pointer select-none rounded-none transition-colors active:scale-[0.98]",
-                  isActive
-                    ? "text-white font-bold"
-                    : cn(
-                        "text-muted-foreground hover:text-foreground hover:bg-muted/80",
-                        item.theme.activeTabHover,
-                      ),
-                )}
-              >
-                {isActive && (
-                  <motion.span
-                    layoutId="heroTabActiveBg"
-                    className={cn(
-                      "absolute inset-0 rounded-none z-0",
-                      item.theme.activeTabBg,
-                    )}
-                    transition={{
-                      type: "spring",
-                      stiffness: 450,
-                      damping: 30,
-                    }}
-                  />
-                )}
-                <Icon className="size-3.5 shrink-0 relative z-10" />
-                <span className="truncate relative z-10">{item.label}</span>
-              </button>
-            );
-          })}
-        </div>
+    <div className="lg:col-span-5 relative mt-8 lg:mt-0 w-full select-none">
+      {/* Outer Blueprint Canvas Enclosure */}
+      <div className="relative p-4 sm:p-5 lg:p-6 border border-border bg-card/40 backdrop-blur-xs rounded-none">
+        {/* Architectural Crosshair Target Corner Marks */}
+        <span
+          aria-hidden="true"
+          className="absolute -top-2.5 -left-2.5 text-muted-foreground/60 font-mono text-xs select-none pointer-events-none"
+        >
+          +
+        </span>
+        <span
+          aria-hidden="true"
+          className="absolute -top-2.5 -right-2.5 text-muted-foreground/60 font-mono text-xs select-none pointer-events-none"
+        >
+          +
+        </span>
+        <span
+          aria-hidden="true"
+          className="absolute -bottom-2.5 -left-2.5 text-muted-foreground/60 font-mono text-xs select-none pointer-events-none"
+        >
+          +
+        </span>
+        <span
+          aria-hidden="true"
+          className="absolute -bottom-2.5 -right-2.5 text-muted-foreground/60 font-mono text-xs select-none pointer-events-none"
+        >
+          +
+        </span>
 
-        {/* Dynamic Content Panel with Smooth Spring Crossfade */}
-        <CardContent className="p-6 sm:p-7 min-h-[360px] flex flex-col justify-between">
-          <AnimatePresence mode="wait" initial={false}>
-            <motion.div
-              key={activeTab}
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
-              transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
-              className="flex flex-col gap-4"
+        {/* Center Boundary Notch Ticks */}
+        <div
+          aria-hidden="true"
+          className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-1 bg-border rounded-none pointer-events-none"
+        />
+        <div
+          aria-hidden="true"
+          className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-8 h-1 bg-border rounded-none pointer-events-none"
+        />
+        <div
+          aria-hidden="true"
+          className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 w-1 h-6 bg-border rounded-none pointer-events-none"
+        />
+        <div
+          aria-hidden="true"
+          className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-1 h-6 bg-border rounded-none pointer-events-none"
+        />
+
+        {/* =========================================================================
+            TOP ROW: 2 BENTO CARDS (Tahfidz Stat & Santri Ratio with Avatar)
+           ========================================================================= */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 relative z-10">
+          {/* Card 1: Tahfidz Growth & Target */}
+          <motion.div
+            animate={{ y: [0, -3, 0] }}
+            transition={{
+              duration: 4.5,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+            }}
+            whileHover={{ y: -4 }}
+            onHoverStart={() => setHoveredCard("tahfidz")}
+            onHoverEnd={() => setHoveredCard(null)}
+            className="group"
+          >
+            <Link
+              href="/academics"
+              className="block h-full border border-border bg-card p-4 rounded-none transition-colors hover:border-foreground/30 focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-ring"
             >
+              {/* Header: Icon & Trend Percentage */}
               <div className="flex items-center justify-between">
-                <div
-                  className={cn(
-                    "inline-flex items-center gap-1.5 px-2.5 py-1 rounded-none font-mono text-[10px] font-bold uppercase tracking-widest border",
-                    activeProgram.theme.badgeClass,
-                  )}
-                >
-                  <Sparkles className="size-3" />
-                  <span>{activeProgram.badge}</span>
+                <div className="size-8 rounded-none border border-border bg-muted/40 flex items-center justify-center text-foreground group-hover:bg-muted transition-colors">
+                  <BookOpen className="size-4 text-emerald-600 dark:text-emerald-400" />
                 </div>
-                <div
-                  className={cn(
-                    "size-8 rounded-none border flex items-center justify-center shadow-none",
-                    activeProgram.theme.iconBoxClass,
-                  )}
-                >
-                  <ActiveIcon className="size-4" />
+                <div className="inline-flex items-center gap-1 text-[11px] font-mono font-bold text-emerald-600 dark:text-emerald-400">
+                  <span>+38%</span>
+                  <ArrowUpRight className="size-3" />
                 </div>
               </div>
 
-              <div>
-                <h2 className="text-xl font-bold text-foreground tracking-tight">
-                  {activeProgram.title}
-                </h2>
-                <p
-                  className={cn(
-                    "mt-1 font-mono text-xs uppercase tracking-wider font-bold",
-                    activeProgram.theme.accentText,
-                  )}
-                >
-                  {activeProgram.subtitle}
-                </p>
-                <p className="mt-2 text-xs sm:text-sm text-muted-foreground leading-relaxed">
-                  {activeProgram.description}
-                </p>
+              {/* Big Metric Display */}
+              <div className="mt-3.5">
+                <div className="text-2xl sm:text-3xl font-black font-mono text-foreground tracking-tight">
+                  3 Juz
+                </div>
+                <div className="text-[11px] font-mono text-muted-foreground uppercase tracking-wider mt-0.5">
+                  Target Mutqin
+                </div>
               </div>
 
-              {/* Metric Indicators with Crisp Mathematical Gauges */}
-              <div className="rounded-none border border-border bg-muted/20 p-3.5 flex flex-col gap-2.5">
-                {activeProgram.metrics.map((metric) => (
-                  <div
-                    key={metric.name}
-                    className="flex flex-col gap-1 text-[11px]"
-                  >
-                    <div className="flex items-center justify-between font-mono">
-                      <span className="text-muted-foreground text-[10px] uppercase tracking-wider">
-                        {metric.name}
-                      </span>
-                      <span className="font-bold text-foreground text-[10px]">
-                        {metric.status}
-                      </span>
+              {/* Bottom Badge */}
+              <div className="mt-3.5 pt-2.5 border-t border-border/60 flex items-center justify-between">
+                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-none font-mono text-[10px] uppercase tracking-wider border border-border bg-muted/30 text-muted-foreground">
+                  <Sparkles className="size-2.5 text-emerald-600" />
+                  Metode Talaqqi
+                </span>
+                <span className="font-mono text-[10px] text-muted-foreground">
+                  Al-Qur&apos;an
+                </span>
+              </div>
+            </Link>
+          </motion.div>
+
+          {/* Card 2: Santri Fitrah & Ratio with Illustrated Character */}
+          <motion.div
+            animate={{ y: [-2, 2, -2] }}
+            transition={{
+              duration: 5,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+              delay: 0.4,
+            }}
+            whileHover={{ y: -4 }}
+            onHoverStart={() => setHoveredCard("santri")}
+            onHoverEnd={() => setHoveredCard(null)}
+            className="group"
+          >
+            <Link
+              href="/programs"
+              className="block h-full border border-border bg-card p-4 rounded-none transition-colors hover:border-foreground/30 focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-ring relative overflow-hidden"
+            >
+              <div className="flex justify-between items-start gap-2">
+                {/* Left side: Metrics */}
+                <div className="flex flex-col justify-between h-full z-10">
+                  <div>
+                    <div className="text-sm font-bold text-foreground tracking-tight">
+                      Rasio Santri
                     </div>
-                    <div className="h-1.5 w-full bg-muted rounded-none overflow-hidden">
-                      <motion.div
-                        className={cn(
-                          "h-full rounded-none",
-                          activeProgram.theme.progressBar,
-                        )}
-                        initial={{ width: 0 }}
-                        animate={{ width: `${metric.percent}%` }}
-                        transition={{
-                          duration: 0.45,
-                          ease: [0.16, 1, 0.3, 1],
-                        }}
-                      />
+                    <div className="mt-1">
+                      <span className="inline-block px-2 py-0.5 text-[10px] font-mono uppercase tracking-wider border border-border bg-muted/30 text-muted-foreground">
+                        Kelas Personal
+                      </span>
                     </div>
                   </div>
-                ))}
-              </div>
 
-              {/* Program Tags */}
-              <div className="flex flex-wrap gap-1.5 font-mono">
-                {activeProgram.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="px-2 py-0.5 rounded-none border border-border bg-background text-[10px] text-muted-foreground uppercase tracking-wider"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </motion.div>
-          </AnimatePresence>
+                  <div className="mt-4">
+                    <div className="text-2xl sm:text-3xl font-black font-mono text-foreground tracking-tight">
+                      1:15
+                    </div>
+                    <div className="text-[11px] font-mono text-emerald-600 dark:text-emerald-400 font-bold mt-0.5">
+                      +9.2% Adab
+                    </div>
+                  </div>
+                </div>
 
-          {/* Footer Action */}
-          <div className="pt-4 border-t border-border flex items-center justify-between text-xs mt-3 font-mono">
-            <span className="text-muted-foreground text-[10px] uppercase tracking-wider">
-              Program Unggulan
-            </span>
+                {/* Right side: Illustrated Santri Character */}
+                <div className="relative -mr-2 -mb-2 shrink-0">
+                  <SantriIllustration isHovered={hoveredCard === "santri"} />
+                </div>
+              </div>
+            </Link>
+          </motion.div>
+        </div>
+
+        {/* =========================================================================
+            TREE CIRCUIT CONNECTOR: SVG Branching Tree with Data Pulses
+           ========================================================================= */}
+        <TreeCircuitConnector />
+
+        {/* =========================================================================
+            BOTTOM CARD: PPDB 2026/2027 & Dynamic School Progress
+           ========================================================================= */}
+        <motion.div
+          animate={{ y: [0, -1.5, 0] }}
+          transition={{
+            duration: 4.2,
+            repeat: Number.POSITIVE_INFINITY,
+            ease: "easeInOut",
+            delay: 0.8,
+          }}
+          className="border border-border bg-card p-4 sm:p-5 rounded-none relative z-10 transition-colors hover:border-foreground/30"
+        >
+          {/* Top Header: PPDB Title & Live Status Button */}
+          <div className="flex items-center justify-between gap-3">
+            <div className="flex items-center gap-2.5">
+              <div className="size-8 rounded-none border border-emerald-500/30 bg-emerald-500/10 flex items-center justify-center text-emerald-600 dark:text-emerald-400 shrink-0">
+                <TrendingUp className="size-4" />
+              </div>
+              <div>
+                <div className="text-sm font-bold text-foreground tracking-tight">
+                  PPDB 2026/2027
+                </div>
+                <div className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider">
+                  Status Penerimaan
+                </div>
+              </div>
+            </div>
+
             <Link
-              href={activeProgram.linkHref}
-              className={cn(
-                "font-bold flex items-center gap-1 uppercase tracking-wider text-[11px] active:translate-x-0.5 transition-all",
-                activeProgram.theme.linkClass,
-              )}
+              href="/admissions"
+              className="inline-flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-mono uppercase tracking-wider border border-border bg-muted/40 hover:bg-muted text-foreground transition-colors font-semibold"
             >
-              <span>Pelajari Rincian</span>
-              <ArrowRight className="size-3" />
+              <span className="relative flex size-2">
+                <span className="animate-ping absolute inline-flex size-full bg-emerald-500 opacity-75" />
+                <span className="relative inline-flex size-2 bg-emerald-500" />
+              </span>
+              <span>Rincian</span>
+              <ArrowUpRight className="size-3 text-muted-foreground" />
             </Link>
           </div>
-        </CardContent>
-      </Card>
+
+          {/* Main Figure Display */}
+          <div className="mt-3.5 flex items-baseline gap-2.5 flex-wrap">
+            <span className="text-2xl sm:text-3xl font-black font-mono text-foreground tracking-tight">
+              16 / 30 Kursi
+            </span>
+            <span className="inline-flex items-center px-1.5 py-0.5 text-[10px] font-mono font-bold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30">
+              +52% Terisi
+            </span>
+          </div>
+
+          {/* Breakdown Rows */}
+          <div className="mt-3.5 pt-3 border-t border-border/60 flex flex-col gap-2 font-mono text-xs">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2 text-muted-foreground">
+                <Globe className="size-3.5 shrink-0" />
+                <span className="text-[11px]">Pendaftaran Online</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="font-bold text-foreground text-[11px]">
+                  18 Berkas
+                </span>
+                <span className="text-[10px] font-semibold text-emerald-600 dark:text-emerald-400">
+                  +12.6%
+                </span>
+              </div>
+            </div>
+
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2 text-muted-foreground">
+                <Building2 className="size-3.5 shrink-0" />
+                <span className="text-[11px]">Observasi Fitrah</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="font-bold text-foreground text-[11px]">
+                  12 Santri
+                </span>
+                <span className="text-[10px] font-semibold text-sky-600 dark:text-sky-400">
+                  Tahap 1
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* =========================================================================
+              MINI ANIMATED BAR & WAVE TREND LINE CHART
+             ========================================================================= */}
+          <div className="mt-4 pt-3 border-t border-border/40 relative">
+            {/* Active Milestone Banner on Hover */}
+            <div className="mb-2 flex items-center justify-between text-[10px] font-mono text-muted-foreground">
+              <span className="uppercase tracking-wider">
+                Aktivitas Harian:{" "}
+                <span className="text-foreground font-bold">
+                  {barChartData[activeBarIndex]?.topic}
+                </span>
+              </span>
+              <span className="font-bold text-emerald-600 dark:text-emerald-400">
+                {barChartData[activeBarIndex]?.label}
+              </span>
+            </div>
+
+            {/* Bars Container with SVG Line Chart Overlay */}
+            <div className="relative h-24 sm:h-26 w-full flex items-end justify-between px-1">
+              {/* Vertical Columns (Bars) */}
+              {barChartData.map((item, idx) => {
+                const isActive = activeBarIndex === idx;
+                return (
+                  <button
+                    type="button"
+                    key={item.label}
+                    onMouseEnter={() => setActiveBarIndex(idx)}
+                    onFocus={() => setActiveBarIndex(idx)}
+                    className="relative h-full w-[6.5%] flex items-end justify-center cursor-pointer select-none group"
+                    aria-label={`${item.label}: ${item.topic}`}
+                  >
+                    <div
+                      style={{ height: `${item.height}%` }}
+                      className={cn(
+                        "w-full rounded-none transition-all duration-200 border-t",
+                        isActive
+                          ? "bg-emerald-500/35 border-emerald-500"
+                          : "bg-emerald-500/15 border-emerald-500/30 group-hover:bg-emerald-500/25",
+                      )}
+                    />
+                  </button>
+                );
+              })}
+
+              {/* Continuous Wave Polyline tracing across the bars */}
+              <svg
+                viewBox="0 0 100 100"
+                preserveAspectRatio="none"
+                className="absolute inset-0 size-full pointer-events-none overflow-visible"
+                aria-hidden="true"
+              >
+                {/* Emerald Trend Line */}
+                <path
+                  d="M 5 65 L 14 52 L 23 32 L 32 38 L 41 50 L 50 58 L 59 62 L 68 34 L 77 22 L 86 4 L 95 8"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="text-emerald-600 dark:text-emerald-400"
+                />
+              </svg>
+
+              {/* Pulsing Beacon Dot at Peak (over bar #9 / 86% x, 4% y) */}
+              <div
+                style={{ left: "86.3%", top: "4%" }}
+                className="absolute -translate-x-1/2 -translate-y-1/2 pointer-events-none flex items-center justify-center"
+              >
+                <span className="relative flex size-3">
+                  <span className="animate-ping absolute inline-flex size-full bg-emerald-500 opacity-75" />
+                  <span className="relative inline-flex size-3 bg-emerald-500 border border-card" />
+                </span>
+                <span className="absolute -top-4 right-0 font-mono text-[9px] font-bold px-1 py-0.2 bg-foreground text-background whitespace-nowrap">
+                  Puncak
+                </span>
+              </div>
+            </div>
+
+            {/* X-Axis Time / Stage Labels */}
+            <div className="flex justify-between items-center text-[10px] font-mono text-muted-foreground uppercase tracking-wider mt-2.5 px-1 border-t border-border/40 pt-1.5">
+              <span>07:30</span>
+              <span>10:30</span>
+              <span>12:45</span>
+              <span>15:00</span>
+            </div>
+          </div>
+        </motion.div>
+      </div>
     </div>
   );
 }
