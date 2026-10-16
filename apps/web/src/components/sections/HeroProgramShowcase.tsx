@@ -6,7 +6,7 @@ import type React from "react";
 import { Link } from "@/i18n/navigation";
 
 /**
- * AnimatedBorderBeam — Renders a moving border glow around the card.
+ * AnimatedBorderBeam — Renders a smooth moving border light glow around the card.
  */
 function BorderBeam({ delay = 0 }: { delay?: number }) {
   return (
@@ -36,7 +36,7 @@ function BorderBeam({ delay = 0 }: { delay?: number }) {
           }
           animate={{ offsetDistance: ["0%", "100%"] }}
           transition={{
-            duration: 7,
+            duration: 6,
             repeat: Number.POSITIVE_INFINITY,
             ease: "linear",
             delay,
@@ -48,11 +48,11 @@ function BorderBeam({ delay = 0 }: { delay?: number }) {
 }
 
 /**
- * CharacterIllustration — Vector line art illustration from the reference template.
+ * CharacterIllustration — Vector line-art illustration matching reference character.
  */
 function CharacterIllustration() {
   return (
-    <div className="absolute right-0.5 bottom-0 pointer-events-none select-none">
+    <div className="absolute right-0 bottom-0 pointer-events-none select-none">
       <svg
         width="126"
         height="136"
@@ -197,1015 +197,444 @@ function CharacterIllustration() {
 }
 
 /**
- * AnimatedConnectingBeams — SVG connecting paths with animated travelling beams.
+ * ResponsiveTreeConnector — Relative SVG branching lines that dynamically connect
+ * Card 1 (left: 25%) and Card 2 (right: 75%) into the bottom card (center: 50%).
+ * Guarantees zero clipping or overshooting into the bottom card on any screen size.
  */
-function AnimatedConnectingBeams() {
+function ResponsiveTreeConnector() {
   return (
-    <svg
-      fill="none"
-      width="592"
-      height="752"
-      xmlns="http://www.w3.org/2000/svg"
-      className="pointer-events-none absolute top-0 left-0 transform-gpu -z-1 max-md:hidden w-full h-full overflow-visible"
-      viewBox="0 0 592 752"
-      aria-hidden="true"
-    >
-      {/* Path 1: Left card down */}
-      <path
-        d="M 158 232 Q 158 232 158 262"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeOpacity="0.25"
-        strokeLinecap="round"
-        className="text-border"
-      />
-      <motion.path
-        d="M 158 232 Q 158 232 158 262"
-        stroke="var(--primary)"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeDasharray="20 40"
-        animate={{ strokeDashoffset: [60, 0] }}
-        transition={{
-          duration: 2.2,
-          repeat: Number.POSITIVE_INFINITY,
-          ease: "linear",
-        }}
-      />
+    <div className="w-full h-11 relative my-1 pointer-events-none select-none max-md:hidden">
+      <svg
+        viewBox="0 0 100 44"
+        preserveAspectRatio="none"
+        className="w-full h-full overflow-visible"
+        aria-hidden="true"
+      >
+        {/* Background circuit lines */}
+        <path
+          d="M 25 0 V 22 H 50 V 44"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          className="text-border"
+        />
+        <path
+          d="M 75 0 V 22 H 50 V 44"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          className="text-border"
+        />
 
-      {/* Path 2: Right card down */}
-      <path
-        d="M 434 232 Q 434 232 434 262"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeOpacity="0.25"
-        strokeLinecap="round"
-        className="text-border"
-      />
-      <motion.path
-        d="M 434 232 Q 434 232 434 262"
-        stroke="var(--primary)"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeDasharray="20 40"
-        animate={{ strokeDashoffset: [60, 0] }}
-        transition={{
-          duration: 2.2,
-          repeat: Number.POSITIVE_INFINITY,
-          ease: "linear",
-          delay: 0.6,
-        }}
-      />
+        {/* Center Junction Node */}
+        <circle
+          cx="50"
+          cy="22"
+          r="3"
+          className="fill-background stroke-border"
+          strokeWidth="1.5"
+        />
+        <circle cx="50" cy="22" r="1.5" className="fill-primary" />
 
-      {/* Path 3: Left to center */}
-      <path
-        d="M 158 262 Q 227 262 296 262"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeOpacity="0.25"
-        strokeLinecap="round"
-        className="text-border"
-      />
-      <motion.path
-        d="M 158 262 Q 227 262 296 262"
-        stroke="var(--primary)"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeDasharray="40 100"
-        animate={{ strokeDashoffset: [140, 0] }}
-        transition={{
-          duration: 2.8,
-          repeat: Number.POSITIVE_INFINITY,
-          ease: "linear",
-        }}
-      />
-
-      {/* Path 4: Right to center */}
-      <path
-        d="M 434 262 Q 365 262 296 262"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeOpacity="0.25"
-        strokeLinecap="round"
-        className="text-border"
-      />
-      <motion.path
-        d="M 434 262 Q 365 262 296 262"
-        stroke="var(--primary)"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeDasharray="40 100"
-        animate={{ strokeDashoffset: [140, 0] }}
-        transition={{
-          duration: 2.8,
-          repeat: Number.POSITIVE_INFINITY,
-          ease: "linear",
-          delay: 0.6,
-        }}
-      />
-
-      {/* Path 5: Center down to bottom card */}
-      <path
-        d="M 296 262 Q 296 262 296 500"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeOpacity="0.25"
-        strokeLinecap="round"
-        className="text-border"
-      />
-      <motion.path
-        d="M 296 262 Q 296 262 296 500"
-        stroke="var(--primary)"
-        strokeWidth="2.5"
-        strokeLinecap="round"
-        strokeDasharray="50 190"
-        animate={{ strokeDashoffset: [240, 0] }}
-        transition={{
-          duration: 3.2,
-          repeat: Number.POSITIVE_INFINITY,
-          ease: "linear",
-        }}
-      />
-    </svg>
+        {/* Animated travelling laser pulses */}
+        <motion.path
+          d="M 25 0 V 22 H 50 V 44"
+          fill="none"
+          stroke="var(--primary)"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeDasharray="14 36"
+          animate={{ strokeDashoffset: [50, 0] }}
+          transition={{
+            duration: 2.2,
+            repeat: Number.POSITIVE_INFINITY,
+            ease: "linear",
+          }}
+        />
+        <motion.path
+          d="M 75 0 V 22 H 50 V 44"
+          fill="none"
+          stroke="var(--primary)"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeDasharray="14 36"
+          animate={{ strokeDashoffset: [50, 0] }}
+          transition={{
+            duration: 2.2,
+            repeat: Number.POSITIVE_INFINITY,
+            ease: "linear",
+            delay: 0.55,
+          }}
+        />
+      </svg>
+    </div>
   );
 }
 
 /**
- * HeroProgramShowcase — Faithful implementation of the requested blueprint bento graphic.
+ * BlueprintFrame — Outer architectural drawing border with diamond corner nodes
+ * and pill capsules that wrap the cards cleanly and responsively.
+ */
+function BlueprintFrame({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="relative p-5 sm:p-7 w-full max-w-[560px] mx-auto">
+      {/* Top Border with Diamond Nodes and Center Pill */}
+      <div className="absolute top-2 left-2 right-2 flex items-center justify-between pointer-events-none select-none max-md:hidden">
+        {/* Left Diamond */}
+        <div className="size-3.5 rotate-45 border border-border bg-background shrink-0 -translate-x-1" />
+        <div className="h-0.5 bg-border flex-1 mx-2 rounded-full" />
+        {/* Center Capsule */}
+        <div className="w-14 h-2 rounded-full border border-border bg-background shrink-0" />
+        <div className="h-0.5 bg-border flex-1 mx-2 rounded-full" />
+        {/* Right Diamond */}
+        <div className="size-3.5 rotate-45 border border-border bg-background shrink-0 translate-x-1" />
+      </div>
+
+      {/* Left Vertical Line with Center Capsule */}
+      <div className="absolute top-2 bottom-2 left-2 flex flex-col items-center justify-between pointer-events-none select-none max-md:hidden">
+        <div className="size-1" />
+        <div className="w-0.5 bg-border flex-1 my-2 rounded-full" />
+        <div className="h-14 w-2 rounded-full border border-border bg-background shrink-0" />
+        <div className="w-0.5 bg-border flex-1 my-2 rounded-full" />
+        <div className="size-1" />
+      </div>
+
+      {/* Right Vertical Line with Center Capsule */}
+      <div className="absolute top-2 bottom-2 right-2 flex flex-col items-center justify-between pointer-events-none select-none max-md:hidden">
+        <div className="size-1" />
+        <div className="w-0.5 bg-border flex-1 my-2 rounded-full" />
+        <div className="h-14 w-2 rounded-full border border-border bg-background shrink-0" />
+        <div className="w-0.5 bg-border flex-1 my-2 rounded-full" />
+        <div className="size-1" />
+      </div>
+
+      {/* Bottom Border with Diamond Nodes and Center Pill */}
+      <div className="absolute bottom-2 left-2 right-2 flex items-center justify-between pointer-events-none select-none max-md:hidden">
+        {/* Left Diamond */}
+        <div className="size-3.5 rotate-45 border border-border bg-background shrink-0 -translate-x-1" />
+        <div className="h-0.5 bg-border flex-1 mx-2 rounded-full" />
+        {/* Center Capsule */}
+        <div className="w-14 h-2 rounded-full border border-border bg-background shrink-0" />
+        <div className="h-0.5 bg-border flex-1 mx-2 rounded-full" />
+        {/* Right Diamond */}
+        <div className="size-3.5 rotate-45 border border-border bg-background shrink-0 translate-x-1" />
+      </div>
+
+      {/* Content */}
+      <div className="relative z-10">{children}</div>
+    </div>
+  );
+}
+
+/**
+ * HeroProgramShowcase — Pixel-perfect, responsive animated bento graphic.
  */
 export function HeroProgramShowcase() {
   return (
-    <div className="relative flex flex-col items-center justify-center px-4 sm:px-8 w-full max-w-[640px] mx-auto select-none">
-      {/* Background Blueprint Frame SVG */}
-      <svg
-        width="640"
-        height="761"
-        viewBox="0 0 640 761"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        className="absolute -inset-y-9 -z-1 max-md:hidden xl:inset-y-0 w-full h-full pointer-events-none"
-        preserveAspectRatio="xMidYMid meet"
-        aria-hidden="true"
-      >
-        <line
-          x1="41"
-          y1="24"
-          x2="283"
-          y2="24"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          className="text-border"
-        />
-        <line
-          x1="357"
-          y1="24"
-          x2="599"
-          y2="24"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          className="text-border"
-        />
-        <line
-          x1="633"
-          y1="24"
-          x2="639"
-          y2="24"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          className="text-border"
-        />
-        <line
-          x1="1"
-          y1="24"
-          x2="7"
-          y2="24"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          className="text-border"
-        />
-        <g filter="url(#filter0_dd_24685_54091)">
-          <path
-            d="M30.9395 24L24 30.9395L17.0605 24L24 17.0605L30.9395 24Z"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            shapeRendering="crispEdges"
-            className="text-border fill-background"
-          />
-        </g>
-        <g filter="url(#filter1_dd_24685_54091)">
-          <path
-            d="M293 21.5H347C348.381 21.5 349.5 22.6193 349.5 24C349.5 25.3807 348.381 26.5 347 26.5H293C291.619 26.5 290.5 25.3807 290.5 24C290.5 22.6193 291.619 21.5 293 21.5Z"
-            stroke="currentColor"
-            shapeRendering="crispEdges"
-            className="text-border fill-background"
-          />
-        </g>
-        <g filter="url(#filter2_dd_24685_54091)">
-          <path
-            d="M622.939 24L616 30.9395L609.061 24L616 17.0605L622.939 24Z"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            shapeRendering="crispEdges"
-            className="text-border fill-background"
-          />
-        </g>
-        <path
-          d="M26.5 352.5V406.5C26.5 407.881 25.3807 409 24 409C22.6193 409 21.5 407.881 21.5 406.5V352.5C21.5 351.119 22.6193 350 24 350C25.3807 350 26.5 351.119 26.5 352.5Z"
-          stroke="currentColor"
-          className="text-border fill-background"
-        />
-        <path
-          d="M618.5 352.5V406.5C618.5 407.881 617.381 409 616 409C614.619 409 613.5 407.881 613.5 406.5V352.5C613.5 351.119 614.619 350 616 350C617.381 350 618.5 351.119 618.5 352.5Z"
-          stroke="currentColor"
-          className="text-border fill-background"
-        />
-        <line
-          x1="41"
-          y1="736.5"
-          x2="283"
-          y2="736.5"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          className="text-border"
-        />
-        <line
-          x1="357"
-          y1="736.5"
-          x2="599"
-          y2="736.5"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          className="text-border"
-        />
-        <line
-          x1="633"
-          y1="736.5"
-          x2="639"
-          y2="736.5"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          className="text-border"
-        />
-        <line
-          x1="1"
-          y1="736.5"
-          x2="7"
-          y2="736.5"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          className="text-border"
-        />
-        <g filter="url(#filter3_dd_24685_54091)">
-          <path
-            d="M30.9395 736.5L24 743.439L17.0605 736.5L24 729.561L30.9395 736.5Z"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            shapeRendering="crispEdges"
-            className="text-border fill-background"
-          />
-        </g>
-        <g filter="url(#filter4_dd_24685_54091)">
-          <path
-            d="M293 734H347C348.381 734 349.5 735.119 349.5 736.5C349.5 737.881 348.381 739 347 739H293C291.619 739 290.5 737.881 290.5 736.5C290.5 735.119 291.619 734 293 734Z"
-            stroke="currentColor"
-            shapeRendering="crispEdges"
-            className="text-border fill-background"
-          />
-        </g>
-        <g filter="url(#filter5_dd_24685_54091)">
-          <path
-            d="M622.939 736.5L616 743.439L609.061 736.5L616 729.561L622.939 736.5Z"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            shapeRendering="crispEdges"
-            className="text-border fill-background"
-          />
-        </g>
-        <path
-          d="M616 1L616 7"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          className="text-border"
-        />
-        <path
-          d="M616 753.5L616 759.5"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          className="text-border"
-        />
-        <path
-          d="M24 753.5L24 759.5"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          className="text-border"
-        />
-        <path
-          d="M24 1L24 7"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          className="text-border"
-        />
-        <path
-          d="M616 40L616 343.5"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          className="text-border"
-        />
-        <path
-          d="M24 40L24 343.5"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          className="text-border"
-        />
-        <path
-          d="M616 415.5L615.966 720.5"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          className="text-border"
-        />
-        <path
-          d="M24.0342 415.5L23.9999 720.5"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          className="text-border"
-        />
-        <defs>
-          <filter
-            id="filter0_dd_24685_54091"
-            x="13"
-            y="14"
-            width="22"
-            height="22"
-            filterUnits="userSpaceOnUse"
-            colorInterpolationFilters="sRGB"
-          >
-            <feFlood floodOpacity="0" result="BackgroundImageFix" />
-            <feColorMatrix
-              in="SourceAlpha"
-              type="matrix"
-              values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-              result="hardAlpha"
-            />
-            <feMorphology
-              radius="1"
-              operator="erode"
-              in="SourceAlpha"
-              result="effect1_dropShadow_24685_54091"
-            />
-            <feOffset dy="1" />
-            <feGaussianBlur stdDeviation="1" />
-            <feComposite in2="hardAlpha" operator="out" />
-            <feColorMatrix
-              type="matrix"
-              values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"
-            />
-            <feBlend
-              mode="normal"
-              in2="BackgroundImageFix"
-              result="effect1_dropShadow_24685_54091"
-            />
-            <feColorMatrix
-              in="SourceAlpha"
-              type="matrix"
-              values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-              result="hardAlpha"
-            />
-            <feOffset dy="1" />
-            <feGaussianBlur stdDeviation="1.5" />
-            <feComposite in2="hardAlpha" operator="out" />
-            <feColorMatrix
-              type="matrix"
-              values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"
-            />
-            <feBlend
-              mode="normal"
-              in2="effect1_dropShadow_24685_54091"
-              result="effect2_dropShadow_24685_54091"
-            />
-            <feBlend
-              mode="normal"
-              in="SourceGraphic"
-              in2="effect2_dropShadow_24685_54091"
-              result="shape"
-            />
-          </filter>
-          <filter
-            id="filter1_dd_24685_54091"
-            x="287"
-            y="19"
-            width="66"
-            height="12"
-            filterUnits="userSpaceOnUse"
-            colorInterpolationFilters="sRGB"
-          >
-            <feFlood floodOpacity="0" result="BackgroundImageFix" />
-            <feColorMatrix
-              in="SourceAlpha"
-              type="matrix"
-              values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-              result="hardAlpha"
-            />
-            <feMorphology
-              radius="1"
-              operator="erode"
-              in="SourceAlpha"
-              result="effect1_dropShadow_24685_54091"
-            />
-            <feOffset dy="1" />
-            <feGaussianBlur stdDeviation="1" />
-            <feComposite in2="hardAlpha" operator="out" />
-            <feColorMatrix
-              type="matrix"
-              values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"
-            />
-            <feBlend
-              mode="normal"
-              in2="BackgroundImageFix"
-              result="effect1_dropShadow_24685_54091"
-            />
-            <feColorMatrix
-              in="SourceAlpha"
-              type="matrix"
-              values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-              result="hardAlpha"
-            />
-            <feOffset dy="1" />
-            <feGaussianBlur stdDeviation="1.5" />
-            <feComposite in2="hardAlpha" operator="out" />
-            <feColorMatrix
-              type="matrix"
-              values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"
-            />
-            <feBlend
-              mode="normal"
-              in2="effect1_dropShadow_24685_54091"
-              result="effect2_dropShadow_24685_54091"
-            />
-            <feBlend
-              mode="normal"
-              in="SourceGraphic"
-              in2="effect2_dropShadow_24685_54091"
-              result="shape"
-            />
-          </filter>
-          <filter
-            id="filter2_dd_24685_54091"
-            x="605"
-            y="14"
-            width="22"
-            height="22"
-            filterUnits="userSpaceOnUse"
-            colorInterpolationFilters="sRGB"
-          >
-            <feFlood floodOpacity="0" result="BackgroundImageFix" />
-            <feColorMatrix
-              in="SourceAlpha"
-              type="matrix"
-              values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-              result="hardAlpha"
-            />
-            <feMorphology
-              radius="1"
-              operator="erode"
-              in="SourceAlpha"
-              result="effect1_dropShadow_24685_54091"
-            />
-            <feOffset dy="1" />
-            <feGaussianBlur stdDeviation="1" />
-            <feComposite in2="hardAlpha" operator="out" />
-            <feColorMatrix
-              type="matrix"
-              values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"
-            />
-            <feBlend
-              mode="normal"
-              in2="BackgroundImageFix"
-              result="effect1_dropShadow_24685_54091"
-            />
-            <feColorMatrix
-              in="SourceAlpha"
-              type="matrix"
-              values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-              result="hardAlpha"
-            />
-            <feOffset dy="1" />
-            <feGaussianBlur stdDeviation="1.5" />
-            <feComposite in2="hardAlpha" operator="out" />
-            <feColorMatrix
-              type="matrix"
-              values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"
-            />
-            <feBlend
-              mode="normal"
-              in2="effect1_dropShadow_24685_54091"
-              result="effect2_dropShadow_24685_54091"
-            />
-            <feBlend
-              mode="normal"
-              in="SourceGraphic"
-              in2="effect2_dropShadow_24685_54091"
-              result="shape"
-            />
-          </filter>
-          <filter
-            id="filter3_dd_24685_54091"
-            x="13"
-            y="726.5"
-            width="22"
-            height="22"
-            filterUnits="userSpaceOnUse"
-            colorInterpolationFilters="sRGB"
-          >
-            <feFlood floodOpacity="0" result="BackgroundImageFix" />
-            <feColorMatrix
-              in="SourceAlpha"
-              type="matrix"
-              values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-              result="hardAlpha"
-            />
-            <feMorphology
-              radius="1"
-              operator="erode"
-              in="SourceAlpha"
-              result="effect1_dropShadow_24685_54091"
-            />
-            <feOffset dy="1" />
-            <feGaussianBlur stdDeviation="1" />
-            <feComposite in2="hardAlpha" operator="out" />
-            <feColorMatrix
-              type="matrix"
-              values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"
-            />
-            <feBlend
-              mode="normal"
-              in2="BackgroundImageFix"
-              result="effect1_dropShadow_24685_54091"
-            />
-            <feColorMatrix
-              in="SourceAlpha"
-              type="matrix"
-              values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-              result="hardAlpha"
-            />
-            <feOffset dy="1" />
-            <feGaussianBlur stdDeviation="1.5" />
-            <feComposite in2="hardAlpha" operator="out" />
-            <feColorMatrix
-              type="matrix"
-              values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"
-            />
-            <feBlend
-              mode="normal"
-              in2="effect1_dropShadow_24685_54091"
-              result="effect2_dropShadow_24685_54091"
-            />
-            <feBlend
-              mode="normal"
-              in="SourceGraphic"
-              in2="effect2_dropShadow_24685_54091"
-              result="shape"
-            />
-          </filter>
-          <filter
-            id="filter4_dd_24685_54091"
-            x="287"
-            y="731.5"
-            width="66"
-            height="12"
-            filterUnits="userSpaceOnUse"
-            colorInterpolationFilters="sRGB"
-          >
-            <feFlood floodOpacity="0" result="BackgroundImageFix" />
-            <feColorMatrix
-              in="SourceAlpha"
-              type="matrix"
-              values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-              result="hardAlpha"
-            />
-            <feMorphology
-              radius="1"
-              operator="erode"
-              in="SourceAlpha"
-              result="effect1_dropShadow_24685_54091"
-            />
-            <feOffset dy="1" />
-            <feGaussianBlur stdDeviation="1" />
-            <feComposite in2="hardAlpha" operator="out" />
-            <feColorMatrix
-              type="matrix"
-              values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"
-            />
-            <feBlend
-              mode="normal"
-              in2="BackgroundImageFix"
-              result="effect1_dropShadow_24685_54091"
-            />
-            <feColorMatrix
-              in="SourceAlpha"
-              type="matrix"
-              values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-              result="hardAlpha"
-            />
-            <feOffset dy="1" />
-            <feGaussianBlur stdDeviation="1.5" />
-            <feComposite in2="hardAlpha" operator="out" />
-            <feColorMatrix
-              type="matrix"
-              values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"
-            />
-            <feBlend
-              mode="normal"
-              in2="effect1_dropShadow_24685_54091"
-              result="effect2_dropShadow_24685_54091"
-            />
-            <feBlend
-              mode="normal"
-              in="SourceGraphic"
-              in2="effect2_dropShadow_24685_54091"
-              result="shape"
-            />
-          </filter>
-          <filter
-            id="filter5_dd_24685_54091"
-            x="605"
-            y="726.5"
-            width="22"
-            height="22"
-            filterUnits="userSpaceOnUse"
-            colorInterpolationFilters="sRGB"
-          >
-            <feFlood floodOpacity="0" result="BackgroundImageFix" />
-            <feColorMatrix
-              in="SourceAlpha"
-              type="matrix"
-              values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-              result="hardAlpha"
-            />
-            <feMorphology
-              radius="1"
-              operator="erode"
-              in="SourceAlpha"
-              result="effect1_dropShadow_24685_54091"
-            />
-            <feOffset dy="1" />
-            <feGaussianBlur stdDeviation="1" />
-            <feComposite in2="hardAlpha" operator="out" />
-            <feColorMatrix
-              type="matrix"
-              values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"
-            />
-            <feBlend
-              mode="normal"
-              in2="BackgroundImageFix"
-              result="effect1_dropShadow_24685_54091"
-            />
-            <feColorMatrix
-              in="SourceAlpha"
-              type="matrix"
-              values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-              result="hardAlpha"
-            />
-            <feOffset dy="1" />
-            <feGaussianBlur stdDeviation="1.5" />
-            <feComposite in2="hardAlpha" operator="out" />
-            <feColorMatrix
-              type="matrix"
-              values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"
-            />
-            <feBlend
-              mode="normal"
-              in2="effect1_dropShadow_24685_54091"
-              result="effect2_dropShadow_24685_54091"
-            />
-            <feBlend
-              mode="normal"
-              in="SourceGraphic"
-              in2="effect2_dropShadow_24685_54091"
-              result="shape"
-            />
-          </filter>
-        </defs>
-      </svg>
-
-      {/* TOP ROW: 2 CARDS */}
-      <div className="mb-14 grid w-full grid-cols-1 gap-10 px-2 pt-2 max-xl:max-w-140 md:mb-7 md:grid-cols-2 relative z-10">
-        {/* Card 1: Statistics */}
-        <div className="relative">
-          <div className="cn-card group/card flex flex-col h-full gap-2 p-5 bg-card border border-border rounded-xl">
-            <div className="flex items-center justify-between">
-              <span className="relative flex shrink-0 size-9 rounded-sm bg-primary/10 text-primary items-center justify-center">
-                <TicketCheck className="size-5" />
-              </span>
-              <p className="flex items-center gap-1 text-base font-semibold text-foreground">
-                +38% <ChevronUp className="size-4 text-emerald-600" />
-              </p>
-            </div>
-            <div className="flex flex-1 flex-col justify-between gap-4 mt-2">
-              <p className="flex flex-col gap-0.5">
-                <span className="text-xl font-bold font-mono text-foreground">
+    <div className="w-full flex justify-center items-center py-2 select-none">
+      <BlueprintFrame>
+        {/* TOP ROW: 2 CARDS */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 w-full relative z-10">
+          {/* Card 1: Statistics */}
+          <div className="relative">
+            <div className="flex flex-col h-full justify-between p-4 sm:p-5 bg-card border border-border rounded-xl shadow-xs min-h-[160px]">
+              <div className="flex items-center justify-between">
+                <span className="size-9 rounded-md bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                  <TicketCheck className="size-5" />
+                </span>
+                <p className="flex items-center gap-1 text-sm font-semibold text-foreground font-mono">
+                  +38% <ChevronUp className="size-4 text-emerald-600" />
+                </p>
+              </div>
+              <div className="mt-3">
+                <span className="text-2xl font-bold font-mono text-foreground tracking-tight">
                   $13.4k
                 </span>
-                <span className="text-muted-foreground text-sm">
+                <p className="text-muted-foreground text-xs mt-0.5 font-mono">
                   Statistics
+                </p>
+              </div>
+              <div className="mt-2.5">
+                <span className="inline-flex items-center px-2.5 py-0.5 text-[11px] font-medium rounded-full bg-primary/10 text-primary">
+                  Last 6 months
                 </span>
-              </p>
-              <span className="inline-flex w-fit items-center justify-center px-2.5 py-1 text-xs font-semibold rounded-md bg-primary/10 text-primary">
-                Last 6 months
-              </span>
+              </div>
             </div>
+            <BorderBeam delay={0} />
           </div>
-          <BorderBeam delay={0} />
+
+          {/* Card 2: Customers */}
+          <div className="relative">
+            <div className="flex flex-col relative justify-between h-full p-4 sm:p-5 bg-card border border-border rounded-xl shadow-xs overflow-hidden min-h-[160px]">
+              <div className="flex flex-col gap-1 items-start z-10">
+                <span className="text-sm font-semibold text-foreground">
+                  Customers
+                </span>
+                <span className="inline-flex items-center px-2 py-0.5 text-[11px] font-medium rounded-full bg-primary/10 text-primary">
+                  Daily customers
+                </span>
+              </div>
+              <div className="flex items-baseline gap-2 mt-4 z-10">
+                <span className="text-2xl font-bold font-mono text-foreground tracking-tight">
+                  42.4k
+                </span>
+                <span className="text-xs font-semibold text-emerald-600 dark:text-emerald-400 font-mono">
+                  +9.2%
+                </span>
+              </div>
+              <CharacterIllustration />
+            </div>
+            <BorderBeam delay={1.5} />
+          </div>
         </div>
 
-        {/* Card 2: Customers */}
-        <div className="relative">
-          <div className="cn-card group/card flex flex-col relative justify-between h-full p-5 bg-card border border-border rounded-xl overflow-hidden min-h-[160px]">
-            <div className="flex flex-col gap-2 items-start z-10">
-              <span className="text-base font-medium text-foreground">
-                Customers
-              </span>
-              <span className="inline-flex w-fit items-center justify-center px-2.5 py-1 text-xs font-semibold rounded-md bg-primary/10 text-primary">
-                Daily customers
-              </span>
-            </div>
-            <div className="flex items-center gap-2 mt-4 z-10">
-              <span className="text-2xl font-bold font-mono text-foreground">
-                42.4k
-              </span>
-              <span className="text-sm font-semibold text-emerald-600 dark:text-emerald-400">
-                +9.2%
-              </span>
-            </div>
-            <CharacterIllustration />
-          </div>
-          <BorderBeam delay={1.5} />
-        </div>
-      </div>
+        {/* TREE CONNECTOR: Clean, Responsive Branching Lines */}
+        <ResponsiveTreeConnector />
 
-      {/* Spacing & Connecting Junction Nodes */}
-      <div className="mb-7 flex items-center gap-36 max-md:hidden xl:gap-34">
-        <span className="size-0.5" />
-        <span className="size-0.5" />
-        <span className="size-0.5" />
-      </div>
+        {/* BOTTOM CARD: Total Sales & Chart */}
+        <div className="w-full flex justify-center relative z-10 mt-2 sm:mt-0">
+          <div className="relative w-full max-w-[420px]">
+            {/* Junction badge node on top */}
+            <span
+              aria-hidden="true"
+              className="bg-background absolute -top-1 left-1/2 size-2 -translate-x-1/2 border border-border z-20 max-md:hidden"
+            />
 
-      {/* BOTTOM CARD: Total Sales & Chart */}
-      <div className="flex w-full items-center justify-center px-2 relative z-10">
-        <div className="relative w-full max-w-105">
-          <div className="cn-card group/card flex flex-col justify-between gap-4 p-5 sm:p-6 bg-card border border-border rounded-xl">
-            {/* Header */}
-            <div className="flex flex-col gap-2">
-              <div className="flex w-full items-center justify-between gap-2">
-                <div className="flex items-center gap-2.5 text-base font-semibold text-foreground">
-                  <span className="flex size-8 items-center justify-center bg-primary/10 text-primary rounded-sm">
-                    <TrendingUp className="size-4" />
+            <div className="flex flex-col gap-3.5 p-4 sm:p-5 bg-card border border-border rounded-xl shadow-xs">
+              {/* Header */}
+              <div className="flex flex-col gap-1.5">
+                <div className="flex w-full items-center justify-between gap-2">
+                  <div className="flex items-center gap-2 text-sm font-semibold text-foreground">
+                    <span className="flex size-7 items-center justify-center bg-primary/10 text-primary rounded-md shrink-0">
+                      <TrendingUp className="size-4" />
+                    </span>
+                    <span>Total sales</span>
+                  </div>
+                  <Link
+                    href="/admissions"
+                    className="inline-flex shrink-0 items-center justify-center px-2.5 py-1 text-xs font-medium rounded-md border border-border bg-background hover:bg-muted text-foreground transition-colors"
+                  >
+                    Details
+                  </Link>
+                </div>
+                <div className="flex items-baseline gap-2 mt-0.5">
+                  <span className="text-2xl font-bold font-mono text-foreground tracking-tight">
+                    $2,150.00
                   </span>
-                  <span>Total sales</span>
-                </div>
-                <Link
-                  href="/admissions"
-                  className="inline-flex shrink-0 items-center justify-center px-2.5 py-1 text-xs font-medium rounded-md border border-border bg-background hover:bg-muted text-foreground transition-colors"
-                >
-                  Details
-                </Link>
-              </div>
-              <div className="flex items-center gap-2 mt-1">
-                <span className="text-2xl font-bold font-mono text-foreground">
-                  $2,150.00
-                </span>
-                <span className="inline-flex w-fit items-center justify-center px-1.5 py-0.5 text-xs font-semibold rounded-sm bg-primary/10 text-primary">
-                  +5%
-                </span>
-              </div>
-            </div>
-
-            {/* Separator */}
-            <div className="bg-border h-px w-full" />
-
-            {/* Breakdown Rows */}
-            <div className="space-y-1">
-              <div className="flex items-center justify-between gap-2 py-1.5">
-                <div className="text-muted-foreground flex items-center gap-2 text-sm">
-                  <Globe className="size-4 shrink-0" />
-                  <span>Online Store</span>
-                </div>
-                <div className="flex items-center gap-2 text-sm">
-                  <span className="text-muted-foreground font-mono">$20k</span>
-                  <span className="font-semibold text-emerald-600 dark:text-emerald-400">
-                    +12.6%
+                  <span className="inline-flex items-center px-1.5 py-0.5 text-[10px] font-semibold rounded-sm bg-primary/10 text-primary font-mono">
+                    +5%
                   </span>
                 </div>
               </div>
-              <div className="flex items-center justify-between gap-2 py-1.5">
-                <div className="text-muted-foreground flex items-center gap-2 text-sm">
-                  <Store className="size-4 shrink-0" />
-                  <span>Offline Store</span>
+
+              {/* Separator */}
+              <div className="bg-border h-px w-full" />
+
+              {/* Breakdown Rows */}
+              <div className="space-y-1.5 text-xs sm:text-sm">
+                <div className="flex items-center justify-between py-0.5">
+                  <div className="text-muted-foreground flex items-center gap-2">
+                    <Globe className="size-4 shrink-0" />
+                    <span>Online Store</span>
+                  </div>
+                  <div className="flex items-center gap-2 font-mono">
+                    <span className="text-muted-foreground">$20k</span>
+                    <span className="font-semibold text-emerald-600 dark:text-emerald-400">
+                      +12.6%
+                    </span>
+                  </div>
                 </div>
-                <div className="flex items-center gap-2 text-sm">
-                  <span className="text-muted-foreground font-mono">$20k</span>
-                  <span className="font-semibold text-rose-500">-4.2%</span>
+                <div className="flex items-center justify-between py-0.5">
+                  <div className="text-muted-foreground flex items-center gap-2">
+                    <Store className="size-4 shrink-0" />
+                    <span>Offline Store</span>
+                  </div>
+                  <div className="flex items-center gap-2 font-mono">
+                    <span className="text-muted-foreground">$20k</span>
+                    <span className="font-semibold text-rose-500">-4.2%</span>
+                  </div>
                 </div>
+              </div>
+
+              {/* Separator */}
+              <div className="bg-border h-px w-full" />
+
+              {/* Chart: 12 Columns and Polyline */}
+              <div className="h-36 sm:h-40 w-full flex items-end justify-center pt-2">
+                <svg
+                  width="284"
+                  height="160"
+                  viewBox="0 0 284 160"
+                  className="w-full h-auto overflow-visible select-none"
+                  aria-hidden="true"
+                >
+                  {/* 12 Bar Columns */}
+                  <rect
+                    x="3"
+                    y="74.56"
+                    width="16"
+                    height="55.44"
+                    rx="2"
+                    className="fill-primary/15 hover:fill-primary/30 transition-colors"
+                  />
+                  <rect
+                    x="26.17"
+                    y="74.56"
+                    width="16"
+                    height="55.44"
+                    rx="2"
+                    className="fill-primary/15 hover:fill-primary/30 transition-colors"
+                  />
+                  <rect
+                    x="49.33"
+                    y="39.28"
+                    width="16"
+                    height="90.72"
+                    rx="2"
+                    className="fill-primary/15 hover:fill-primary/30 transition-colors"
+                  />
+                  <rect
+                    x="72.5"
+                    y="39.28"
+                    width="16"
+                    height="90.72"
+                    rx="2"
+                    className="fill-primary/15 hover:fill-primary/30 transition-colors"
+                  />
+                  <rect
+                    x="95.67"
+                    y="61.33"
+                    width="16"
+                    height="68.67"
+                    rx="2"
+                    className="fill-primary/15 hover:fill-primary/30 transition-colors"
+                  />
+                  <rect
+                    x="118.83"
+                    y="65.74"
+                    width="16"
+                    height="64.26"
+                    rx="2"
+                    className="fill-primary/15 hover:fill-primary/30 transition-colors"
+                  />
+                  <rect
+                    x="142"
+                    y="90.94"
+                    width="16"
+                    height="39.06"
+                    rx="2"
+                    className="fill-primary/15 hover:fill-primary/30 transition-colors"
+                  />
+                  <rect
+                    x="165.17"
+                    y="90.94"
+                    width="16"
+                    height="39.06"
+                    rx="2"
+                    className="fill-primary/15 hover:fill-primary/30 transition-colors"
+                  />
+                  <rect
+                    x="188.33"
+                    y="49.36"
+                    width="16"
+                    height="80.64"
+                    rx="2"
+                    className="fill-primary/15 hover:fill-primary/30 transition-colors"
+                  />
+                  <rect
+                    x="211.5"
+                    y="39.28"
+                    width="16"
+                    height="90.72"
+                    rx="2"
+                    className="fill-primary/15 hover:fill-primary/30 transition-colors"
+                  />
+                  <rect
+                    x="234.67"
+                    y="14.71"
+                    width="16"
+                    height="115.29"
+                    rx="2"
+                    className="fill-primary/15 hover:fill-primary/30 transition-colors"
+                  />
+                  <rect
+                    x="257.83"
+                    y="4"
+                    width="16"
+                    height="126"
+                    rx="2"
+                    className="fill-primary/15 hover:fill-primary/30 transition-colors"
+                  />
+
+                  {/* Line Curve from Reference */}
+                  <motion.path
+                    d="M11.583,74.56L34.75,74.56L57.917,39.28L81.083,39.28L104.25,61.33L127.417,61.33L150.583,90.94L173.75,90.94L196.917,39.28L220.083,39.28L243.25,4L266.417,4"
+                    fill="none"
+                    stroke="var(--primary)"
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="text-primary"
+                  />
+
+                  {/* Pulsing Beacon at Peak */}
+                  <g transform="translate(266.4, 4)">
+                    <circle
+                      r="4"
+                      className="fill-primary stroke-card"
+                      strokeWidth="1.5"
+                    />
+                    <circle
+                      r="8"
+                      className="stroke-primary fill-none opacity-75 animate-ping"
+                    />
+                  </g>
+
+                  {/* X-Axis Labels */}
+                  <text
+                    x="57.92"
+                    y="152"
+                    fontSize="12"
+                    textAnchor="middle"
+                    className="fill-muted-foreground font-mono"
+                  >
+                    11:00
+                  </text>
+                  <text
+                    x="127.42"
+                    y="152"
+                    fontSize="12"
+                    textAnchor="middle"
+                    className="fill-muted-foreground font-mono"
+                  >
+                    14:00
+                  </text>
+                  <text
+                    x="196.92"
+                    y="152"
+                    fontSize="12"
+                    textAnchor="middle"
+                    className="fill-muted-foreground font-mono"
+                  >
+                    17:00
+                  </text>
+                  <text
+                    x="263.59"
+                    y="152"
+                    fontSize="12"
+                    textAnchor="middle"
+                    className="fill-muted-foreground font-mono"
+                  >
+                    20:00
+                  </text>
+                </svg>
               </div>
             </div>
 
-            {/* Separator */}
-            <div className="bg-border h-px w-full" />
-
-            {/* Chart: 12 Columns and Polyline */}
-            <div className="h-40 w-full flex items-end justify-center pt-2">
-              <svg
-                width="284"
-                height="160"
-                viewBox="0 0 284 160"
-                className="w-full h-auto overflow-visible select-none"
-                aria-hidden="true"
-              >
-                {/* 12 Bar Columns */}
-                <rect
-                  x="3"
-                  y="74.56"
-                  width="16"
-                  height="55.44"
-                  rx="2"
-                  className="fill-primary/15 hover:fill-primary/30 transition-colors"
-                />
-                <rect
-                  x="26.17"
-                  y="74.56"
-                  width="16"
-                  height="55.44"
-                  rx="2"
-                  className="fill-primary/15 hover:fill-primary/30 transition-colors"
-                />
-                <rect
-                  x="49.33"
-                  y="39.28"
-                  width="16"
-                  height="90.72"
-                  rx="2"
-                  className="fill-primary/15 hover:fill-primary/30 transition-colors"
-                />
-                <rect
-                  x="72.5"
-                  y="39.28"
-                  width="16"
-                  height="90.72"
-                  rx="2"
-                  className="fill-primary/15 hover:fill-primary/30 transition-colors"
-                />
-                <rect
-                  x="95.67"
-                  y="61.33"
-                  width="16"
-                  height="68.67"
-                  rx="2"
-                  className="fill-primary/15 hover:fill-primary/30 transition-colors"
-                />
-                <rect
-                  x="118.83"
-                  y="65.74"
-                  width="16"
-                  height="64.26"
-                  rx="2"
-                  className="fill-primary/15 hover:fill-primary/30 transition-colors"
-                />
-                <rect
-                  x="142"
-                  y="90.94"
-                  width="16"
-                  height="39.06"
-                  rx="2"
-                  className="fill-primary/15 hover:fill-primary/30 transition-colors"
-                />
-                <rect
-                  x="165.17"
-                  y="90.94"
-                  width="16"
-                  height="39.06"
-                  rx="2"
-                  className="fill-primary/15 hover:fill-primary/30 transition-colors"
-                />
-                <rect
-                  x="188.33"
-                  y="49.36"
-                  width="16"
-                  height="80.64"
-                  rx="2"
-                  className="fill-primary/15 hover:fill-primary/30 transition-colors"
-                />
-                <rect
-                  x="211.5"
-                  y="39.28"
-                  width="16"
-                  height="90.72"
-                  rx="2"
-                  className="fill-primary/15 hover:fill-primary/30 transition-colors"
-                />
-                <rect
-                  x="234.67"
-                  y="14.71"
-                  width="16"
-                  height="115.29"
-                  rx="2"
-                  className="fill-primary/15 hover:fill-primary/30 transition-colors"
-                />
-                <rect
-                  x="257.83"
-                  y="4"
-                  width="16"
-                  height="126"
-                  rx="2"
-                  className="fill-primary/15 hover:fill-primary/30 transition-colors"
-                />
-
-                {/* Line Curve from Reference */}
-                <motion.path
-                  d="M11.583,74.56L34.75,74.56L57.917,39.28L81.083,39.28L104.25,61.33L127.417,61.33L150.583,90.94L173.75,90.94L196.917,39.28L220.083,39.28L243.25,4L266.417,4"
-                  fill="none"
-                  stroke="var(--primary)"
-                  strokeWidth="3"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="text-primary"
-                />
-
-                {/* Pulsing Beacon at Peak */}
-                <g transform="translate(266.4, 4)">
-                  <circle
-                    r="4"
-                    className="fill-primary stroke-card"
-                    strokeWidth="1.5"
-                  />
-                  <circle
-                    r="8"
-                    className="stroke-primary fill-none opacity-75 animate-ping"
-                  />
-                </g>
-
-                {/* X-Axis Labels */}
-                <text
-                  x="57.92"
-                  y="152"
-                  fontSize="12"
-                  textAnchor="middle"
-                  className="fill-muted-foreground font-mono"
-                >
-                  11:00
-                </text>
-                <text
-                  x="127.42"
-                  y="152"
-                  fontSize="12"
-                  textAnchor="middle"
-                  className="fill-muted-foreground font-mono"
-                >
-                  14:00
-                </text>
-                <text
-                  x="196.92"
-                  y="152"
-                  fontSize="12"
-                  textAnchor="middle"
-                  className="fill-muted-foreground font-mono"
-                >
-                  17:00
-                </text>
-                <text
-                  x="263.59"
-                  y="152"
-                  fontSize="12"
-                  textAnchor="middle"
-                  className="fill-muted-foreground font-mono"
-                >
-                  20:00
-                </text>
-              </svg>
-            </div>
+            <BorderBeam delay={3} />
           </div>
-
-          <BorderBeam delay={3} />
-          <span className="bg-background absolute -top-1.5 left-1/2 size-1.5 -translate-x-1/2" />
         </div>
-      </div>
-
-      {/* Animated Connecting Beams */}
-      <AnimatedConnectingBeams />
+      </BlueprintFrame>
     </div>
   );
 }
