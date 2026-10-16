@@ -41,7 +41,7 @@ export function HeroSection() {
       <div className="w-full px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           {/* Left Column: LCP-Critical Headline — Server Rendered */}
-          <div className="lg:col-span-7 flex flex-col items-start text-start">
+          <div className="lg:col-span-6 flex flex-col items-start text-start">
             {/* Live Admission Status Badge */}
             <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 mb-6 rounded-none border border-border bg-card/80 text-[11px] font-mono uppercase tracking-wider text-foreground">
               <span className="relative flex size-2">
@@ -58,7 +58,7 @@ export function HeroSection() {
             {/* High-Impact Headline — Pure Crisp Neutral Typography */}
             <h1
               id="hero-title"
-              className="text-4xl sm:text-5xl lg:text-[3.5rem] font-black text-foreground tracking-[-0.035em] leading-[1.1] text-balance"
+              className="text-4xl sm:text-5xl lg:text-[3.25rem] font-black text-foreground tracking-[-0.035em] leading-[1.1] text-balance"
               style={{ textWrap: "balance" }}
             >
               Membina Fitrah Beradab, Menghafal Al-Qur&apos;an, Meraih
@@ -117,7 +117,9 @@ export function HeroSection() {
           </div>
 
           {/* Right Column: Interactive Showcase — Client Island */}
-          <HeroProgramShowcase />
+          <div className="lg:col-span-6 w-full flex justify-center items-center">
+            <HeroProgramShowcase />
+          </div>
         </div>
       </div>
     </section>
