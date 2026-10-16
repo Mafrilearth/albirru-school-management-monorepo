@@ -76,3 +76,31 @@
 - **Context:** Traditional ESLint and Prettier configurations require dozens of conflicting plugins, generate slow commit feedback loops (>2000ms), and require fragile workspace configurations.
 - **Decision:** Replace ESLint and Prettier with Biome v2 (`@biomejs/biome`) as the unified linter and formatter.
 - **Consequences:** Sub-200ms formatting and linting verification, enforced LF line endings, 2-space indentation, and automated pre-commit gating via Husky and lint-staged.
+
+---
+
+## ADR-009: Six-Pillar Canonical Navigation & Trilingual Label Architecture
+
+- **Status:** Accepted
+- **Context:** Prior navigation lacked direct access to the root home page while maintaining fragmented menu items, causing ambiguous information boundaries and uneven grid columns. Furthermore, user-facing navigation labels must adapt seamlessly across official languages while preserving canonical global English URL routes.
+- **Decision:** Mandate a strictly ordered Six-Pillar Canonical Information Architecture with 100% Global Language (English) URL routes paired with synchronized single-word, high-prestige labels displayed in the user's active locale:
+  - Canonical English URLs:
+    1. Origin: `/`
+    2. Pillar 1: `/profile`
+    3. Pillar 2: `/academics`
+    4. Pillar 3: `/students`
+    5. Pillar 4: `/news`
+    6. Pillar 5: `/services`
+  - User-Facing Trilingual Single-Word Label Matrix:
+    1. Origin: `Beranda` (ID) | `Home` (EN) | `الرئيسية` (AR)
+    2. Pillar 1: `Profil` (ID) | `Profile` (EN) | `التعريف` (AR)
+    3. Pillar 2: `Akademik` (ID) | `Academics` (EN) | `الأكاديميا` (AR)
+    4. Pillar 3: `Kesiswaan` (ID) | `Students` (EN) | `الطلاب` (AR)
+    5. Pillar 4: `Warta` (ID) | `News` (EN) | `الأخبار` (AR)
+    6. Pillar 5: `Layanan` (ID) | `Services` (EN) | `الخدمات` (AR)
+  The navigation is mathematically centered in a symmetrical 3-column desktop grid (`grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)]`) with 6 equal 1px hairline divided columns (`grid-cols-6 divide-x divide-border border-x border-border`) and an isolated, high-converting admissions call to action (`Apply Online` / `Daftar Online` / `التسجيل الإلكتروني`) on the right.
+- **Consequences:** Provides direct canonical access to the home origin page, guarantees mutually exclusive and collectively exhaustive (MECE) content domains, ensures 100% global language consistency for system routing while honoring native language typography for all user-facing interfaces, and produces symmetrical Swiss Modernist 1px grid alignment across all screen sizes.
+
+
+
+

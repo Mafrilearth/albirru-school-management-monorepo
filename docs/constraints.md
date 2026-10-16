@@ -28,14 +28,20 @@
 
 ---
 
-## 3. Visual Design System & Spatial Constraints
+## 3. Visual Design System & Spatial Constraints (Architectural Kinetic Swiss Bento)
 
 | Constraint | Enforcement Rule | Gating Mechanism |
 | :--- | :--- | :--- |
-| **Zero Border Radius** | `--radius: 0` is strictly enforced. Sharp rectilinear 90-degree right angles across all containers. | Biome CSS and Tailwind inspection |
+| **Zero Border Radius** | `--radius: 0` is strictly enforced. Sharp rectilinear 90-degree right angles across all containers, buttons, inputs, and dialogs. | Biome CSS and Tailwind inspection |
 | **Zero Box Shadows** | `box-shadow: none` across all surfaces. Depth is defined exclusively by 1px hairline border strokes (`border-border`). | Design system token review |
-| **8px Spatial Scale** | All margins, paddings, and gaps must snap to multiples of 8px (4px reserved for micro badge offsets). | Tailwind CSS utility audit |
-| **Zero Hardcoded Hex Colors** | Hexadecimal codes (such as `#0f172a`) in TSX components are prohibited. Use semantic CSS variables (`bg-background`, `text-primary`). | Biome static check |
+| **60–30–10 Spatial Allocation** | 60% negative space canvas, 30% structural bento containers, 10% kinetic Amber-500 accents. Section padding strictly 96px–128px. | Layout QA & visual inspection |
+| **8px Spatial Scale & Baseline** | All margins, paddings, and gaps must snap to multiples of 8px. Vertical text baseline rhythm locked to 4px/8px multiples. | Tailwind CSS utility audit |
+| **Modular Typographic Scale** | Font sizes strictly follow Major Third (1.250) modular scale. Primary Sans + Technical Mono + IBM Plex Sans Arabic. | Design system token verification |
+| **Anti-Orphan Typography** | All headings (`h1`, `h2`, `h3`) must enforce `text-wrap: balance` (or `<Balancer>`) to prevent hanging orphan words. | Component review |
+| **Corner Crosshairs (`+`)** | Module intersections feature 5px hairline crosshairs (`+`) to emphasize architectural drafting precision. | Component template audit |
+| **Kinetic Spring Physics** | Transitions use high-damping spring mechanics: `cubic-bezier(0.16, 1, 0.3, 1)` with mouse-aware spotlight and magnetic CTA. | Animation token review |
+| **Deterministic Performance** | Zero layout shifts ($CLS = 0.000$). All animations run exclusively on GPU compositor properties (`transform`, `opacity`) at 60/120 FPS. | Lighthouse & Speed Insights |
+| **Zero Hardcoded Hex Colors** | Hexadecimal codes (such as `#0f172a`) in TSX components are prohibited. Use semantic OKLCH CSS variables (`bg-background`, `text-primary`). | Biome static check |
 | **W3C WCAG 2.1 AA** | Text contrast must satisfy `>= 4.5:1`. Status indicators must include explicit text labels alongside color dots. | Automated `axe-core` in CI |
 
 ---

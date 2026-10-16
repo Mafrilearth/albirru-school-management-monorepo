@@ -25,41 +25,60 @@ Primary Islamic education institutions require integrated operational management
 
 ---
 
-## 2. Visual Design System & Spatial Architecture
+## 2. Visual Design System & Spatial Architecture: Architectural Kinetic Swiss Bento
 
-The visual presentation adheres to strict mathematical proportions to establish trust, calm, and institutional authority for parents, educators, and regulatory inspectors.
+The system enforces the **Architectural Kinetic Swiss Bento** design system across all applications (`apps/web`, `apps/app`, `apps/docs`, `packages/design-system`). It synthesizes mathematical Swiss Modernist precision, expansive breathing room, tactile kinetic responsiveness, and WCAG 2.1 AA accessibility.
 
-### 2.1 8px Geometric Spatial Scale
-All padding, margin, gap, and dimension definitions must snap to multiples of 8px (with 4px reserved exclusively for micro-adjustments):
+### 2.1 The 60–30–10 Spatial Allocation Law ("Expansive Breathing Room")
+To prevent visual clutter and guarantee generous negative space, all layouts must conform to the 60–30–10 spatial distribution:
+- **60% Negative Space Canvas**: Pure empty space for cognitive breathing room. Vertical section padding is strictly enforced at $96\text{px} - 128\text{px}$ (`py-24` to `py-32`), with page margins maintaining expansive outer gutters.
+- **30% Structural Bento Modules**: Rectilinear cards and containers holding core educational/operational content, with generous internal padding ($32\text{px} - 40\text{px}$ / `p-8` to `p-10`).
+- **10% Kinetic Accents & High-Contrast CTAs**: Concentrated Amber-500 focal points, live pulse indicators, and interactive states.
 
-| Token | Dimension | Use Case |
-| :--- | :--- | :--- |
-| `space-1` | 4px | Micro padding, dense badge offsets, icon gaps |
-| `space-2` | 8px | Input interior padding, button icon gap, tight card margins |
-| `space-3` | 12px | Compact component vertical padding |
-| `space-4` | 16px | Standard button padding, stack gap, table cell padding |
-| `space-6` | 24px | Card content padding, form section gap |
-| `space-8` | 32px | Page header margin, modal container padding |
-| `space-12` | 48px | Grid gap between major dashboard widgets |
-| `space-16` | 64px | Section padding on public landing pages |
-| `space-24` | 96px | Hero banner top/bottom container padding |
+### 2.2 Strict 8px Geometric Spatial Scale & Baseline Rhythm
+All padding, margin, gap, and dimension definitions must strictly snap to multiples of 8px (with 4px reserved exclusively for sub-grid micro-adjustments):
 
-### 2.2 Typography: Major Third Scale (Ratio 1.250)
-Typography utilizes the Major Third modular scale to maintain hierarchy without visual clutter:
+| Token | Dimension | Mathematical Formula | Primary Use Case |
+| :--- | :--- | :--- | :--- |
+| `space-1` | 4px | $8 \times 0.5$ | Micro padding, dense badge offsets, icon gaps |
+| `space-2` | 8px | $8 \times 1.0$ | Input interior padding, button icon gap, tight card margins |
+| `space-3` | 12px | $8 \times 1.5$ | Compact component vertical padding |
+| `space-4` | 16px | $8 \times 2.0$ | Standard button padding, stack gap, table cell padding |
+| `space-6` | 24px | $8 \times 3.0$ | Card content padding, form section gap |
+| `space-8` | 32px | $8 \times 4.0$ | Page header margin, modal container padding |
+| `space-12` | 48px | $8 \times 6.0$ | Bento grid gap between major widgets |
+| `space-16` | 64px | $8 \times 8.0$ | Intermediate module spacing |
+| `space-24` | 96px | $8 \times 12.0$ | Standard section vertical padding |
+| `space-32` | 128px | $8 \times 16.0$ | Public landing page Hero vertical padding |
 
-| Level | Size | Line Height | Tracking | Semantic Usage |
+Vertical baseline rhythm: All line-heights are locked to multiples of 4px/8px to ensure horizontal alignment across adjacent grid columns.
+
+### 2.3 Modular Typographic Scale (Major Third 1.250) & Dual-Font Hierarchy
+Typography adheres strictly to the Major Third ($1.250$) harmonic scale:
+
+$$\text{Base Size} = 16\text{px} \quad \mid \quad \text{Scale Factor} = 1.250^n$$
+
+| Level | Size (rem / px) | Line Height | Tracking | Typographic Role |
 | :--- | :--- | :--- | :--- | :--- |
 | `Display` | 3.052rem (48.8px) | 1.15 | `-0.025em` | Public landing page Hero headline |
-| `Heading 1` | 2.441rem (39.0px) | 1.2 | `-0.02em` | Major page titles (`<h1>`) |
+| `Heading 1` | 2.441rem (39.0px) | 1.20 | `-0.020em` | Major page titles (`<h1>`) |
 | `Heading 2` | 1.953rem (31.2px) | 1.25 | `-0.015em` | Section headers (`<h2>`) |
-| `Heading 3` | 1.563rem (25.0px) | 1.3 | `-0.01em` | Modal titles, card section heads (`<h3>`) |
-| `Body Large`| 1.250rem (20.0px) | 1.5 | `normal` | Hero subheadings, lead paragraphs |
-| `Body Base` | 1.000rem (16.0px) | 1.5 | `normal` | Standard UI copy, form field inputs |
-| `Body Small`| 0.800rem (12.8px) | 1.4 | `+0.01em` | Helper text, validation feedback, table metadata |
-| `Caption`   | 0.640rem (10.2px) | 1.3 | `+0.02em` | Legal disclosures, statutory badges |
+| `Heading 3` | 1.563rem (25.0px) | 1.30 | `-0.010em` | Bento card section titles (`<h3>`) |
+| `Body Large` | 1.250rem (20.0px) | 1.50 | `normal` | Hero subheadings, lead value propositions |
+| `Body Base` | 1.000rem (16.0px) | 1.50 | `normal` | Standard UI copy, inputs, table cells |
+| `Body Small` | 0.800rem (12.8px) | 1.40 | `+0.010em` | Helper text, validation feedback, metadata |
+| `Caption` | 0.640rem (10.2px) | 1.30 | `+0.020em` | Legal disclosures, statutory badges |
 
-### 2.3 Semantic Color Tokens (WCAG 2.1 AA Compliant)
-Hardcoded hexadecimal colors such as `#0f172a` in JSX/TSX are strictly prohibited. Styling must solely reference CSS custom properties:
+#### Dual-Font System
+1. **Primary Humanist Sans**: *Plus Jakarta Sans* / *Inter* for headings and body content.
+2. **Technical Monospace**: *JetBrains Mono* / *Roboto Mono* for systematic matrix labels, system statuses, school IDs, and telemetry badges (`[NPSN: 70010111]`, `[RATIO: 1:15]`, `// 01.00`).
+3. **Arabic Script Harmony**: When `locale === "ar"`, font switches to *IBM Plex Sans Arabic* with proportional line-height scaled to `1.75` for vertical breathing space.
+
+#### Typographic Balance Invariant
+All heading elements (`h1`, `h2`, `h3`) must enforce `text-wrap: balance` (or be wrapped in `<Balancer>`) to prevent orphan words across viewports. Body copy enforces `text-wrap: pretty`.
+
+### 2.4 Semantic Color Tokens & OKLCH Perceptual Uniformity
+Hardcoded hexadecimal colors (e.g. `#0f172a`) in JSX/TSX are strictly prohibited. All colors use OKLCH color-space variables to guarantee uniform perceptual lightness and W3C WCAG 2.1 AA text contrast ($\ge 4.5:1$):
 
 ```css
 :root {
@@ -69,7 +88,7 @@ Hardcoded hexadecimal colors such as `#0f172a` in JSX/TSX are strictly prohibite
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.769 0.188 70.08);   /* Institutional Al-Birru Amber */
+  --primary: oklch(0.769 0.188 70.08);   /* Institutional Tailwind Amber-500 */
   --primary-foreground: oklch(0.145 0 0);
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.145 0 0);
@@ -91,7 +110,7 @@ Hardcoded hexadecimal colors such as `#0f172a` in JSX/TSX are strictly prohibite
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.205 0 0);
   --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.769 0.188 70.08);   /* Institutional Al-Birru Amber */
+  --primary: oklch(0.769 0.188 70.08);   /* Institutional Tailwind Amber-500 */
   --primary-foreground: oklch(0.145 0 0);
   --secondary: oklch(0.269 0 0);
   --secondary-foreground: oklch(0.985 0 0);
@@ -107,10 +126,40 @@ Hardcoded hexadecimal colors such as `#0f172a` in JSX/TSX are strictly prohibite
 }
 ```
 
-### 2.4 Orthogonal Geometry & Pure Flat Depth (Swiss Modernist Grid)
+### 2.5 Orthogonal Geometry, Zero Radius, & Hairline Delineation
 - **Zero Border Radius (`--radius: 0`)**: All layout containers, buttons, cards, dialogs, badges, and form inputs strictly enforce sharp 90-degree rectilinear right angles. Rounded corners and pill geometries are strictly prohibited.
 - **Zero Box-Shadows (`box-shadow: none`)**: All blur elevations, drop shadows, and ambient glows are completely eliminated (`--shadow-*: none`). Spatial containment is established exclusively through 1px hairline border strokes (`border-border`).
-- **Modular Bento Grid**: Layout sections adhere to modular, asymmetrically balanced bento grids with generous whitespace snapping to the 8px geometric spatial scale.
+- **Architectural Corner Crosshairs (`+`)**: Major module intersections feature 5px hairline crosshairs (`+`) rendered via CSS pseudo-elements to reinforce architectural drafting rigor.
+- **Micro-Noise Tactile Surface**: A microscopic 2% SVG noise grain overlay (`pointer-events: none; mix-blend-mode: overlay`) provides archival paper tactile quality without GPU overhead.
+
+### 2.6 Strict Bento Aspect Ratio Constraints & Systematic Indexing
+Bento modules eliminate ragged height discrepancies by locking cards into mathematical aspect ratios:
+- `aspect-square` ($1:1$): Compact stat meters, category badges, avatar matrices.
+- `aspect-[2/1]`: Double-column horizontal information cards.
+- `aspect-video` ($16:9$): Facility showcase media, curriculum video modules.
+- `aspect-[21/9]`: Full-width telemetry banners.
+
+Every section features a systematic monospace matrix index: `// 01.00 — FITRAH & TAHFIDZ`, with bento cards tagged with telemetry coordinates (`[CARD_01]`, `[RATIO: 1:15]`).
+
+### 2.7 Fluid Interpolation Mathematics (`clamp()`)
+To ensure responsive proportions without abrupt breakpoint snapping, typographic scales and container gutters interpolate fluidly:
+
+$$\text{Value} = \text{clamp}\left(V_{\min},\; V_{\min} + (V_{\max} - V_{\min}) \times \frac{100\text{vw} - W_{\min}}{W_{\max} - W_{\min}},\; V_{\max}\right)$$
+
+### 2.8 Physics-Based Spring Motion & Kinetic Micro-Interactions
+Motion is strictly purposeful, realistic, and non-distracting:
+- **Spring Physics Curves**: Transitions use high-damping spring mechanics: `cubic-bezier(0.16, 1, 0.3, 1)` (stiffness: 350, damping: 25).
+- **Mouse-Aware Spotlight**: Bento card borders illuminate with subtle Amber-500 radiance dynamically driven by cursor coordinates (`--mouse-x`, `--mouse-y`).
+- **Magnetic Buttons**: Primary CTA buttons exhibit subtle magnetic pull ($\pm 4\text{px} - 6\text{px}$) when cursor enters a $20\text{px}$ proximity threshold.
+- **Kinetic Counters**: Numerical stats animate smoothly from 0 upon entering viewport.
+- **Live Pulse**: Operational status indicators incorporate subtle ping/pulse animations.
+- **Micro-Haptics (Mobile)**: Primary touch interactions trigger subtle $10\text{ms}$ vibration feedback (`navigator.vibrate(10)`).
+- **Reduced Motion Governance**: All animations immediately collapse to instant state switches when `@media (prefers-reduced-motion: reduce)` is detected.
+
+### 2.9 Deterministic Performance Invariants (CLS = 0.000 & 60 FPS)
+- All layout dimensions reserve deterministic bounding boxes to ensure Cumulative Layout Shift ($CLS = 0.000$).
+- All kinetic animations animate exclusively on compositor properties (`transform`, `opacity`) locked to a consistent 60 FPS / 120 FPS runtime budget.
+- Bento cards maintain strict state machine rendering across 4 states: Skeleton Shimmer $\to$ Empty State $\to$ Error State $\to$ Live State.
 
 ---
 

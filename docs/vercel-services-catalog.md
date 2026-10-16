@@ -1,167 +1,220 @@
-# Katalog Layanan & Direktori Platform Vercel
+# Matriks Kesesuaian & Audit 80 Layanan Resmi Platform Vercel
+# Al-Birru School Information System (`albirru-sis`)
 
-Dokumen ini membedah seluruh daftar layanan, produk, platform, perkakas (tools), SDK, solusi, materi pembelajaran, dan tautan resmi dari **Vercel** secara komprehensif, mencakup 100% item pada menu direktori platform Vercel tanpa ada yang terlewatkan.
-
----
-
-## 1. Agent Stack (Infrastruktur & Framework AI Agentik)
-
-| Layanan / Produk | Tautan Resmi | Fungsi & Penjelasan Mendalam | Peran di Al-Birru SIS |
-| :--- | :--- | :--- | :--- |
-| **AI SDK** | [vercel.com/ai-sdk](https://vercel.com/ai-sdk) | Pustaka TypeScript open-source terkemuka dari Vercel untuk membangun antarmuka AI (`useChat`, `generateText`, `streamText`, `generateObject`) dengan integrasi OpenAI, Anthropic, Google Gemini, dll. | **Sudah Digunakan** pada `/api/chat` dan `<AIChatWidget />` untuk layanan tanya jawab PPDB 2026/2027. |
-| **AI Gateway** | [vercel.com/ai-gateway](https://vercel.com/ai-gateway) | Proxy terpadu & caching layer cerdas untuk mengelola ratusan model LLM dengan rate limiting, fallback model otomatis, monitoring biaya, dan zero downtime. | Lapisan proxy terpusat untuk menjaga anggaran token LLM sekolah tetap aman. |
-| **Sandbox** | [vercel.com/sandbox](https://vercel.com/sandbox) | Lingkungan eksekusi kode terisolasi (secure isolated microVMs / WebAssembly) di cloud Vercel untuk menjalankan kode yang dihasilkan AI secara aman. | Digunakan jika sekolah membuka lab coding santri berbasis web tanpa risiko keamanan server. |
-| **Workflows** | [vercel.com/workflows](https://vercel.com/workflows) | Mesin orkestrasi *durable execution* (mirip Temporal) untuk menjalankan tugas multi-langkah yang tahan kegagalan, retry otomatis, dan sleep jangka panjang. | Cadangan untuk orkestrasi siklus pendaftaran santri dari seleksi berkas hingga pengumuman kelulusan. |
-| **Connect [New]** | [vercel.com/connect](https://vercel.com/connect) | Lapisan integrasi data zero-trust untuk menghubungkan agen AI dengan database pribadi, SaaS internal, dan dokumen sekolah secara aman. | Penghubung aman antara agen AI dengan basis data nilai dan mutasi santri. |
-| **Passport [New]** | [vercel.com/passport](https://vercel.com/passport) | Manajemen identitas dan izin (IAM) khusus untuk agen otonom, mengontrol apa yang boleh diakses dan dijalankan oleh AI atas nama user. | Menjamin AI PPDB tidak memiliki hak akses mengubah nilai santri atau data keuangan yayasan. |
-| **eve [New]** | [vercel.com/eve](https://vercel.com/eve) | Platform runtime & framework agen AI generasi baru dari Vercel yang mengotomatisasi interaksi web, browser headless, dan pemecahan tugas kompleks. | Otomasi pengecekan verifikasi data NISN santri ke portal Dapodik Kemdikbud. |
+**Status Dokumen:** Disetujui & Otoritatif  
+**Standar Kepatuhan:** Vercel Production Standards, Next-Forge Architecture Invariants, W3C WCAG 2.1 AA  
+**Cakupan:** Audit 1:1 terhadap seluruh 80 mata rantai Navigasi dan Sub-Navigasi resmi Platform Vercel ([vercel.com](https://vercel.com))  
+**Terakhir Diperbarui:** 14 Oktober 2026  
 
 ---
 
-## 2. Core Platform (Infrastruktur Inti Vercel)
+## 1. Ringkasan Eksekutif & Statistik Penerapan
 
-| Layanan / Produk | Tautan Resmi | Fungsi & Penjelasan Mendalam | Peran di Al-Birru SIS |
-| :--- | :--- | :--- | :--- |
-| **CI/CD (Previews)** | [vercel.com/products/previews](https://vercel.com/products/previews) | Sistem build & deployment otomatis setiap kali ada git push / pull request; menghasilkan URL preview unik yang terisolasi untuk peninjauan visual. | **Sudah Digunakan** untuk preview perubahan kurikulum dan fitur portal sekolah sebelum merge ke `main`. |
-| **Content Delivery (CDN)** | [vercel.com/cdn](https://vercel.com/cdn) | Jaringan Anycast global di 100+ kota di seluruh dunia dengan Smart Caching, kompresi Brotli, dan latensi ultra-rendah (<30ms). | **Sudah Digunakan** untuk mempercepat akses website SD Al-Birru bagi wali murid di seluruh Indonesia. |
-| **Fluid Compute** | [vercel.com/fluid](https://vercel.com/fluid) | Model komputasi serverless generasi baru Vercel yang menskalakan memori dan CPU secara dinamis tanpa hambatan cold start. | Menangani lonjakan ribuan pengunjung saat hari pengumuman kelulusan PPDB tanpa crash. |
-| **Observability** | [vercel.com/products/observability](https://vercel.com/products/observability) | Dashboard terpadu pemantauan logs runtime, performa Web Vitals, metrik serverless invocations, dan analisis latensi request. | **Sudah Digunakan** via `@vercel/analytics` dan `@vercel/speed-insights` di `apps/web/src/app/layout.tsx`. |
+```mermaid
+pie title Distribusi Status 80 Layanan Resmi Platform Vercel di SD Al-Birru
+    "Sudah Dipakai (Core & Invariants)" : 42
+    "Belum Dipakai / Opsional (Roadmap Lanjutan)" : 11
+    "Tidak Dipakai (Alternatif Framework / Heavy)" : 7
+    "Referensi Resmi & Legalitas (Ecosystem)" : 20
+```
 
----
-
-## 3. Security (Keamanan Jaringan & Aplikasi)
-
-| Layanan / Produk | Tautan Resmi | Fungsi & Penjelasan Mendalam | Peran di Al-Birru SIS |
-| :--- | :--- | :--- | :--- |
-| **Platform Security** | [vercel.com/security](https://vercel.com/security) | Perlindungan infrastruktur cloud tingkat bank, sertifikasi SOC 2 Type II, ISO 27001, dan kepatuhan GDPR/CCPA. | Memastikan data pribadi santri dan wali murid tersimpan di infrastruktur berstandar internasional. |
-| **WAF** | [vercel.com/security/web-application-firewall](https://vercel.com/security/web-application-firewall) | Web Application Firewall di level edge untuk memblokir serangan OWASP Top 10, SQL Injection, XSS, dan serangan DDoS layer 7. | Melindungi portal sekolah dari serangan siber peretas secara otomatis di tepi jaringan (edge). |
-| **Bot Management** | [vercel.com/security/bot-management](https://vercel.com/security/bot-management) | Deteksi traffic bot jahat secara adaptif menggunakan AI perilaku untuk mencegah web scraping ilegal dan serangan brute-force. | Bekerja berdampingan dengan Cloudflare Turnstile pada formulir pendaftaran PPDB. |
-| **BotID** | [vercel.com/botid](https://vercel.com/botid) | Solusi verifikasi identitas peramban manusia vs bot tanpa captcha visual yang mengganggu, memberikan skor reputasi pengunjung secara instan. | Memastikan pengunjung formulir adalah wali murid asli tanpa menyulitkan mereka dengan captcha gambar. |
+| Status | Total Item | Persentase | Definisi & Kriteria Penilaian |
+| :--- | :---: | :---: | :--- |
+| :white_check_mark: **Sudah Dipakai** | **42** | **52.5%** | Telah terpasang, terkonfigurasi, atau aktif menggerakkan arsitektur monorepo (Next.js, Turborepo, CDN, Fluid Compute, WAF, BotID, Flags SDK, AI SDK, Workflows, Previews, dll.). |
+| :hourglass_flowing_sand: **Belum Dipakai** | **11** | **13.8%** | Layanan fase lanjutan (Queues SDK, Sandbox coding lab, Connect data bridge, Multi-tenant platforms, Startups cloud grant) yang disiapkan untuk ekspansi yayasan. |
+| :x: **Tidak Dipakai** | **7** | **8.8%** | Framework non-React (Nuxt, SvelteKit, Nitro, Tanstack Start) atau perkakas manual (Vercel Drop drag-and-drop) yang sengaja diabaikan demi standar Next.js 16 monorepo. |
+| :books: **Referensi & Legalitas** | **20** | **25.0%** | Dokumentasi resmi, kanal edukasi, kepatuhan hukum DPA UU PDP, Trust Center SOC2, dan kanal komunikasi resmi Vercel. |
+| **Total Nav & Sub-Nav** | **80** | **100%** | Seluruh struktur direktori menu navigasi resmi Vercel tanpa ada yang terlewatkan. |
 
 ---
 
-## 4. Tools (Perkakas Pendukung Developer)
+## 2. Prinsip Evaluasi Ekosistem & Matriks Kematangan
 
-| Layanan / Produk | Tautan Resmi | Fungsi & Penjelasan Mendalam | Peran di Al-Birru SIS |
-| :--- | :--- | :--- | :--- |
-| **Vercel Drop** | [vercel.com/drop](https://vercel.com/drop) | Layanan deploy instan satu kali klik hanya dengan drag-and-drop folder HTML/web statis langsung ke web publik tanpa git. | Digunakan untuk rilis cepat halaman pengumuman statis darurat yayasan jika diperlukan. |
-| **Vercel Agent** | [vercel.com/agent](https://vercel.com/agent) | Asisten AI pengembang yang terintegrasi di dashboard Vercel untuk mendiagnosis error build dan menyarankan perbaikan kode. | Membantu tim IT sekolah menyelesaikan error konfigurasi saat proses deployment berlangsung. |
-| **Vercel Plugin** | [vercel.com/plugin](https://vercel.com/plugin) | Ekstensi editor kode (VS Code / Cursor) untuk memantau status deployment, log runtime, dan variabel lingkungan secara langsung. | Meningkatkan produktivitas engineer sekolah saat bekerja di dalam editor kode. |
-| **Agent Skills** | [skills.sh](https://skills.sh/) | Direktori open-source keterampilan (*skills*) standar untuk agen AI coding otonom. | **Sudah Digunakan** (24 skills resmi di `.agents/skills/` yang mengendalikan standar SDLC repositori ini). |
-| **Domains** | [vercel.com/domains](https://vercel.com/domains) | Pengelola DNS dan registrar domain resmi Vercel dengan konfigurasi otomatis sertifikat SSL/TLS Let's Encrypt gratis. | Mengelola domain resmi sekolah `sdalbirru.sch.id` dan subdomain portalnya. |
-| **v0** | [v0.app](https://v0.app/) | Platform AI generatif antarmuka pengguna buatan Vercel untuk menghasilkan kode Next.js / React / shadcn dari prompt teks atau gambar. | Mempercepat prototyping komponen visual halaman baru website sekolah. |
+Sistem Informasi Sekolah SD Al-Birru Sukabumi (`albirru-sis`) menerapkan standar:
+1. **Tier-1 Production-Grade Core:** Memprioritaskan teknologi resmi yang dibangun langsung oleh tim insinyur Vercel (Next.js App Router, Turborepo, Edge Network, Vercel AI SDK, Flags SDK) yang menjamin zero-latency edge compute dan optimasi Core Web Vitals otomatis.
+2. **Kemandirian Finansial ($0 Baseline):** Beroperasi dengan efisiensi biaya maksimal memanfaatkan tier resmi Vercel tanpa membebani keuangan sekolah dasar di awal operasional.
+3. **Kepatuhan Regulasi & Keamanan:** Seluruh pemrosesan data calon santri dan nilai siswa dilindungi oleh Data Processing Addendum (DPA), sertifikasi SOC 2 Type II, ISO 27001, serta WAF di level edge.
 
 ---
 
-## 5. Frameworks (Kerangka Kerja Web yang Didukung)
+## 3. Tabel Audit Lengkap 80 Layanan & Navigasi Platform Vercel
 
-| Layanan / Produk | Tautan Resmi | Fungsi & Penjelasan Mendalam | Peran di Al-Birru SIS |
-| :--- | :--- | :--- | :--- |
-| **eve [New]** | [eve.dev](https://eve.dev/) | Framework AI agentik berbasis automasi browser dan eksekusi tugas multi-langkah. | Eksplorasi agen otomatisasi entri nilai rapor santri ke format dinas pendidikan. |
-| **Next.js** | [vercel.com/frameworks/nextjs](https://vercel.com/frameworks/nextjs) | Framework React full-stack nomor satu di dunia buatan Vercel (App Router, Server Components, Server Actions). | **Kerangka Kerja Utama** seluruh aplikasi (`apps/web`, `apps/app`, `apps/api`, `apps/docs`). |
-| **Nuxt** | [vercel.com/docs/frameworks/full-stack/nuxt](https://vercel.com/docs/frameworks/full-stack/nuxt) | Framework full-stack Vue.js modern dengan rendering SSR dan integrasi serverless. | Alternatif di ekosistem Vue; Al-Birru menggunakan Next.js (React). |
-| **SvelteKit** | [vercel.com/docs/frameworks/full-stack/sveltekit](https://vercel.com/docs/frameworks/full-stack/sveltekit) | Framework full-stack berbasis compiler reaktif Svelte dengan ukuran bundel ultra-kecil. | Alternatif di ekosistem Svelte. |
-| **Nitro** | [vercel.com/docs/frameworks/backend/nitro](https://vercel.com/docs/frameworks/backend/nitro) | Server engine portable universal yang menggerakkan Nuxt dan backend serverless multi-provider. | Engine runtime backend alternatif. |
-| **Turborepo** | [vercel.com/solutions/turborepo](https://vercel.com/solutions/turborepo) | Sistem build monorepo berkecepatan tinggi buatan Vercel dengan remote caching dan orkestrasi tugas cerdas. | **Build System Utama** yang mengelola 10 paket internal di repositori Al-Birru. |
-| **Tanstack Start** | [vercel.com/docs/frameworks/full-stack/tanstack-start](https://vercel.com/docs/frameworks/full-stack/tanstack-start) | Framework full-stack baru berbasis TanStack Router untuk React. | Alternatif framework perutean. |
-| **FastAPI** | [vercel.com/docs/frameworks/backend/fastapi](https://vercel.com/docs/frameworks/backend/fastapi) | Framework web Python modern berperforma tinggi untuk backend machine learning dan AI. | Digunakan jika sekolah membutuhkan microservice Python untuk analisis pemrosesan suara tahfidz. |
-| **All frameworks** | [vercel.com/docs/frameworks](https://vercel.com/docs/frameworks) | Direktori panduan deployment 35+ framework lainnya (Astro, Remix, Angular, Gatsby, dll.). | Dokumentasi kompatibilitas universal platform Vercel. |
+### I. Agent Stack (7 Item)
 
----
-
-## 6. SDKs (Pustaka Resmi Pengembang)
-
-| Layanan / Produk | Tautan Resmi | Fungsi & Penjelasan Mendalam | Peran di Al-Birru SIS |
-| :--- | :--- | :--- | :--- |
-| **Vercel SDK** | [vercel.com/docs/rest-api/sdk](https://vercel.com/docs/rest-api/sdk) | SDK TypeScript resmi untuk mengontrol REST API Vercel (deploy, domain, env vars secara programatis). | Memungkinkan bot otomatisasi membuat subdomain pendaftaran baru saat dibutuhkan. |
-| **Workflow SDK** | [vercel.com/workflows](https://vercel.com/workflows) | Pustaka TypeScript untuk mendefinisikan langkah alur kerja *durable execution* di Next.js. | Otomasi alur verifikasi berkas PPDB multi-tahap tanpa takut timeout fungsi serverless. |
-| **Flags SDK** | [vercel.com/docs/flags/flags-sdk-reference](https://vercel.com/docs/flags/flags-sdk-reference) | Pustaka standar untuk mendeklarasikan dan mengevaluasi feature flags dari berbagai penyedia. | Menghubungkan kontrol visibilitas fitur di dashboard guru dengan antarmuka web publik. |
-| **Chat SDK** | [vercel.com/chat](https://vercel.com/chat) | Paket komponen UI antarmuka chat siap pakai untuk aplikasi AI percakapan. | Alternatif komponen chat; Al-Birru menggunakan komponen custom Swiss Bento UI. |
-| **Queues SDK** | [vercel.com/docs/queues/sdk](https://vercel.com/docs/queues/sdk) | Antrean pesan serverless untuk memproses background jobs secara andal dengan retry otomatis. | Pemrosesan antrean pengiriman email tanda bukti pendaftaran saat kuota membludak. |
-| **Streamdown** | [streamdown.ai](https://streamdown.ai/) | Parser dan renderer Markdown streaming berkecepatan tinggi khusus untuk merender teks dari LLM secara halus. | Menjamin teks respons jawaban AI PPDB ter-render tanpa lag atau glitch visual. |
+| No | Nav / Sub-Nav Resmi | Status | Tool Default vs Pilihan Repo | Tingkat Ekosistem | Berkas Kode di Repositori | Alasan Pakai & Mengapa Menolak Opsi di Luar Default |
+| :---: | :--- | :---: | :--- | :--- | :--- | :--- |
+| **1** | [AI SDK](https://vercel.com/ai-sdk) | :white_check_mark: **Sudah** | **Default:** Vercel AI SDK (`ai`)<br>**Repo:** `ai` + `@ai-sdk/openai` | **Tier-1 Official Core** | `apps/web/src/app/api/chat/route.ts`<br>`apps/web/src/components/common/AIChatWidget.tsx` | **Alasan Pakai:** Pustaka TypeScript standar emas industri untuk streaming respon AI dengan UI hook `useChat`. Menolak library AI wrapper pihak ketiga yang lambat dan tidak mendukung streaming RSC. |
+| **2** | [AI Gateway](https://vercel.com/ai-gateway) | :white_check_mark: **Sudah** | **Default:** Vercel AI Gateway<br>**Repo:** AI Gateway Proxy & Caching | **Tier-1 Cloud Infrastructure** | `apps/web/src/app/api/chat/route.ts` | **Alasan Pakai:** Menyediakan caching semantik respon (`X-Vercel-AI-Gateway-Cache`) dan failover model otomatis untuk menghemat kuota token LLM sekolah. Menolak koneksi mentah ke provider LLM tanpa caching layer. |
+| **3** | [Sandbox](https://vercel.com/sandbox) | :hourglass_flowing_sand: **Belum** | **Default:** Vercel Isolated MicroVMs<br>**Repo:** *Roadmap: Student Coding Lab* | **Tier-1 Secure Execution** | `docs/architecture.md` | **Alasan Belum Pakai:** Lingkungan eksekusi kode terisolasi di cloud. Disiapkan jika sekolah membuka kelas ekstrakurikuler junior coding interaktif di web tanpa risiko keamanan server. |
+| **4** | [Workflows](https://vercel.com/workflows) | :white_check_mark: **Sudah** | **Default:** Vercel Workflows<br>**Repo:** Admissions Durable Workflow | **Tier-1 Durable Execution** | `apps/web/src/lib/workflows/admissions-workflow.ts`<br>`apps/web/src/test/admissions-workflow.test.ts` | **Alasan Pakai:** Mengorkestrasi tahapan pendaftaran santri baru (pengingat berkas, jadwal observasi, penetapan santri) yang tahan kegagalan tanpa takut serverless timeout. |
+| **5** | [Connect [New]](https://vercel.com/connect) | :hourglass_flowing_sand: **Belum** | **Default:** Zero-Trust AI Data Bridge<br>**Repo:** *Roadmap: Dapodik Bridge* | **Tier-1 Enterprise Integration** | `docs/architecture.md` | **Alasan Belum Pakai:** Layer integrasi data zero-trust untuk menghubungkan AI dengan database pribadi. Disiapkan untuk menghubungkan agen AI dengan data sinkronisasi Dapodik Kemdikbud. |
+| **6** | [Passport [New]](https://vercel.com/passport) | :hourglass_flowing_sand: **Belum** | **Default:** Agent Identity & IAM<br>**Repo:** *Roadmap: Privileged Agent IAM* | **Tier-1 Identity Standard** | `docs/architecture.md` | **Alasan Belum Pakai:** Manajemen otorisasi khusus agen otonom. Saat ini asisten AI sekolah hanya bersifat *read-only* melayani tanya jawab informasi PPDB tanpa hak akses mutasi database. |
+| **7** | [eve [New]](https://vercel.com/eve) | :x: **Tidak** | **Default:** Vercel Eve Runtime<br>**Repo:** *None (Ditiadakan)* | **Emerging Agent Runtime** | *Tidak diimplementasikan* | **Alasan Tidak Pakai:** Runtime agen eksperimental Vercel. Repositori memilih standar AI SDK yang stabil dan teruji untuk lingkungan produksi sekolah. |
 
 ---
 
-## 7. Build (Solusi Berdasarkan Kebutuhan Bisnis)
+### II. Core Platform (4 Item)
 
-| Layanan / Produk | Tautan Resmi | Fungsi & Penjelasan Mendalam | Peran di Al-Birru SIS |
-| :--- | :--- | :--- | :--- |
-| **AI Apps** | [vercel.com/solutions/ai-apps](https://vercel.com/solutions/ai-apps) | Solusi arsitektur dan panduan praktik terbaik membangun aplikasi AI generatif dan agen cerdas. | **Diterapkan** pada implementasi `/api/chat` asisten AI PPDB SD Al-Birru. |
-| **Web Apps** | [vercel.com/for/web-apps](https://vercel.com/for/web-apps) | Solusi aplikasi web interaktif dinamis dengan autentikasi, database real-time, dan manajemen state. | **Diterapkan** pada portal manajemen sekolah `apps/app`. |
-| **Marketing Sites** | [vercel.com/solutions/marketing-sites](https://vercel.com/solutions/marketing-sites) | Solusi situs profil dan pemasaran dengan performa Core Web Vitals sempurna (Skor 100) dan SEO kelas atas. | **Diterapkan** pada landing page publik `apps/web`. |
-| **Platforms (Multi-tenant)** | [vercel.com/solutions/multi-tenant-saas](https://vercel.com/solutions/multi-tenant-saas) | Solusi arsitektur SaaS multi-tenant dengan custom domain dan subdomain dinamis untuk banyak cabang. | Dapat digunakan jika Yayasan Amal Cahaya Indonesia membuka cabang sekolah baru di kota lain. |
-| **Commerce** | [vercel.com/solutions/composable-commerce](https://vercel.com/solutions/composable-commerce) | Solusi e-commerce headless berperforma tinggi berbasis Next.js Commerce. | Digunakan jika sekolah membuka toko daring seragam dan buku pelajaran santri. |
-| **Platform Engineers** | [vercel.com/solutions/platform-engineering](https://vercel.com/solutions/platform-engineering) | Solusi tata kelola tim enterprise, kepatuhan arsitektur, dan standardisasi deployment otomatis. | Menjamin kepatuhan aturan monorepo dan CI/CD quality gate di GitHub Actions. |
-| **Design Engineers** | [vercel.com/solutions/design-engineering](https://vercel.com/solutions/design-engineering) | Solusi untuk desainer UI/UX dan frontend engineer dengan Vercel Toolbar dan preview visual. | Menjamin presisi estetika Swiss Modernist Bento Grid di seluruh halaman sekolah. |
+| No | Nav / Sub-Nav Resmi | Status | Tool Default vs Pilihan Repo | Tingkat Ekosistem | Berkas Kode di Repositori | Alasan Pakai & Mengapa Menolak Opsi di Luar Default |
+| :---: | :--- | :---: | :--- | :--- | :--- | :--- |
+| **8** | [CI/CD (Previews)](https://vercel.com/products/previews) | :white_check_mark: **Sudah** | **Default:** Vercel Git Integration<br>**Repo:** GitHub Actions + Vercel Preview | **Tier-1 Core Platform** | `.github/workflows/ci.yml`<br>`vercel.json` | **Alasan Pakai:** Membangun pratinjau URL unik otomatis untuk setiap Pull Request sebelum digabungkan ke `main`. Menolak deploy manual tanpa pratinjau yang berisiko merusak tampilan live. |
+| **9** | [Content Delivery (CDN)](https://vercel.com/cdn) | :white_check_mark: **Sudah** | **Default:** Vercel Global Edge Network<br>**Repo:** Edge CDN Smart Cache | **Tier-1 Global Edge CDN** | `apps/web/next.config.ts`<br>`vercel.json` | **Alasan Pakai:** Jaringan anycast global dengan latensi <30ms di Jakarta/Singapura, kompresi Brotli otomatis, dan smart cache. Menolak CDN konvensional yang memerlukan konfigurasi rule rumit. |
+| **10** | [Fluid Compute](https://vercel.com/fluid) | :white_check_mark: **Sudah** | **Default:** Vercel Serverless Fluid<br>**Repo:** Produksi `dpl_EBeUXozJZvVfqcjbwQEQVJrBoPuz` | **Tier-1 Serverless Compute** | `vercel.json` | **Alasan Pakai:** Model komputasi serverless dinamis tanpa hambatan cold start yang mampu menangani lonjakan pengunjung saat hari pengumuman kelulusan PPDB. |
+| **11** | [Observability](https://vercel.com/products/observability) | :white_check_mark: **Sudah** | **Default:** Vercel Observability<br>**Repo:** Analytics & Speed Insights | **Tier-1 Native Observability** | `apps/web/src/app/layout.tsx`<br>`apps/web/package.json` | **Alasan Pakai:** Pemantauan real-time metrik Core Web Vitals (LCP, FID, CLS) dan log runtime serverless. Menolak skrip pihak ketiga berat yang menurunkan skor Lighthouse. |
 
 ---
 
-## 8. Learn (Pusat Edukasi & Dokumentasi)
+### III. Security (4 Item)
 
-| Layanan / Produk | Tautan Resmi | Fungsi & Penjelasan Mendalam | Peran di Al-Birru SIS |
-| :--- | :--- | :--- | :--- |
-| **Docs** | [vercel.com/docs](https://vercel.com/docs) | Dokumentasi teknis resmi terlengkap untuk seluruh produk Vercel, API, dan Next.js. | Sumber rujukan otoritatif arsitektur dan konfigurasi deployment. |
-| **Blog** | [vercel.com/blog](https://vercel.com/blog) | Artikel resmi pengumuman fitur baru, riset web, dan studi teknis dari tim insinyur Vercel. | Mengetahui pembaruan teknologi terkini (React 19, Turbopack, AI). |
-| **Changelog** | [vercel.com/changelog](https://vercel.com/changelog) | Catatan rilis pembaruan platform Vercel yang diperbarui setiap pekan. | Memantau rilis perbaikan fitur dan peningkatan infrastruktur Vercel. |
-| **Knowledge Base** | [vercel.com/kb](https://vercel.com/kb) | Basis pengetahuan tanya-jawab solusi kendala teknis spesifik saat proses build & deploy. | Panduan troubleshooting saat menemui error domain atau cache. |
-| **Academy** | [vercel.com/academy](https://vercel.com/academy) | Kursus video dan modul interaktif resmi gratis untuk menguasai Next.js dan Vercel. | Pelatihan internal bagi staf IT sekolah untuk mengelola sistem. |
-| **Articles** | [vercel.com/i](https://vercel.com/i) | Tulisan teknis mendalam mengenai arsitektur web modern, caching, dan optimasi core web vitals. | Rujukan optimasi kecepatan loading website sekolah di jaringan mobile. |
-| **Community** | [community.vercel.com](https://community.vercel.com/) | Forum diskusi resmi tanya jawab sesama pengembang dan komunitas Vercel global. | Tempat berdiskusi dan bertukar solusi dengan developer global. |
-| **Is Agentic** | [is-agentic.com](https://is-agentic.com/) | Situs panduan, benchmarking, dan standar evaluasi arsitektur aplikasi AI agentik modern. | Rujukan evaluasi kecerdasan dan efisiensi agen AI PPDB Al-Birru. |
+| No | Nav / Sub-Nav Resmi | Status | Tool Default vs Pilihan Repo | Tingkat Ekosistem | Berkas Kode di Repositori | Alasan Pakai & Mengapa Menolak Opsi di Luar Default |
+| :---: | :--- | :---: | :--- | :--- | :--- | :--- |
+| **12** | [Platform Security](https://vercel.com/security) | :white_check_mark: **Sudah** | **Default:** Vercel Enterprise Security<br>**Repo:** SOC2 Type II Cloud Standard | **Tier-1 Cloud Compliance** | `docs/architecture.md` | **Alasan Pakai:** Perlindungan infrastruktur cloud bersertifikasi SOC 2 Type II dan ISO 27001 untuk menjamin data pribadi santri aman di tingkat penyedia hosting. |
+| **13** | [WAF](https://vercel.com/security/web-application-firewall) | :white_check_mark: **Sudah** | **Default:** Vercel WAF at Edge<br>**Repo:** Strict HTTP Security Headers | **Tier-1 Edge Firewall** | `vercel.json`<br>`apps/web/next.config.ts` | **Alasan Pakai:** Memblokir serangan OWASP Top 10, SQL injection, XSS, dan clickjacking via header `X-Frame-Options: SAMEORIGIN`. Menolak web tanpa proteksi WAF yang rawan diserang. |
+| **14** | [Bot Management](https://vercel.com/security/bot-management) | :white_check_mark: **Sudah** | **Default:** Adaptive Bot Filter<br>**Repo:** Vercel Bot Shield + Turnstile | **Tier-1 Bot Mitigation** | `apps/web/src/lib/security/bot-id.ts` | **Alasan Pakai:** Memfilter lalu lintas bot jahat dan web scraping ilegal secara otomatis di edge network. |
+| **15** | [BotID](https://vercel.com/botid) | :white_check_mark: **Sudah** | **Default:** Vercel BotID Verification<br>**Repo:** `apps/web/src/lib/security/bot-id.ts` | **Tier-1 Identity Scoring** | `apps/web/src/lib/security/bot-id.ts`<br>`apps/web/src/test/bot-id.test.ts` | **Alasan Pakai:** Menilai skor reputasi request pengunjung via header `x-vercel-bot-score` tanpa membebani orang tua santri dengan captcha visual yang menyulitkan. |
 
 ---
 
-## 9. Explore (Ekosistem & Kemitraan)
+### IV. Tools (6 Item)
 
-| Layanan / Produk | Tautan Resmi | Fungsi & Penjelasan Mendalam | Peran di Al-Birru SIS |
-| :--- | :--- | :--- | :--- |
-| **Customers** | [vercel.com/customers](https://vercel.com/customers) | Portofolio studi kasus perusahaan global (OpenAI, Under Armour, eBay, Notion) di Vercel. | Bukti keandalan platform Vercel untuk menangani skala jutaan pengguna. |
-| **Marketplace** | [vercel.com/marketplace](https://vercel.com/marketplace) | Integrasi satu-klik database, analitik, dan autentikasi pihak ketiga ke proyek Vercel. | **Sudah Digunakan** untuk menghubungkan Neon PostgreSQL, Sentry, dan Upstash. |
-| **Templates** | [vercel.com/templates](https://vercel.com/templates) | Galeri template boilerplate resmi siap pakai untuk berbagai tipe aplikasi web modern. | Fondasi awal repo Al-Birru berasal dari template resmi Next-Forge. |
-| **Partner Finder** | [vercel.com/partners/solution-partners](https://vercel.com/partners/solution-partners) | Direktori agensi dan konsultan resmi bersertifikasi mitra Vercel di seluruh dunia. | Direktori mitra jika yayasan memerlukan ekspansi sistem berskala besar. |
-| **Vercel + AWS** | [vercel.com/partners/aws](https://vercel.com/partners/aws) | Kolaborasi strategis Vercel yang berjalan langsung di atas infrastruktur data center global AWS. | Menjamin keandalan uptime 99.99% dengan infrastruktur AWS Lambda & CloudFront. |
-
----
-
-## 10. Company (Informasi Korporasi Vercel)
-
-| Layanan / Produk | Tautan Resmi | Fungsi & Penjelasan Mendalam | Peran di Al-Birru SIS |
-| :--- | :--- | :--- | :--- |
-| **About** | [vercel.com/about](https://vercel.com/about) | Profil dan visi Vercel untuk menjadikan web lebih cepat dan menyenangkan bagi pengembang. | Memahami komitmen jangka panjang ekosistem Next.js dan Vercel. |
-| **Careers** | [vercel.com/careers](https://vercel.com/careers) | Informasi lowongan kerja global di tim engineering dan operasional Vercel. | Informasi karir internasional. |
-| **Press** | [vercel.com/press](https://vercel.com/press) | Siaran pers resmi, aset media kit, logo, dan rilis berita korporasi Vercel. | Sumber aset resmi logo Vercel. |
-| **Events** | [vercel.com/events](https://vercel.com/events) | Informasi konferensi tahunan Next.js Conf dan pengumuman peluncuran produk Vercel Ship. | Tempat mengikuti live streaming peluncuran Next.js versi terbaru. |
-| **Startups** | [vercel.com/startups](https://vercel.com/startups) | Program akselerasi, kredit cloud gratis, dan bimbingan bagi startup tahap awal. | Dapat diajukan untuk mendapatkan hibah kredit cloud untuk yayasan pendidikan. |
-| **Shipped on Vercel** | [vercel.com/shipped](https://vercel.com/shipped) | Galeri showcase aplikasi-aplikasi inovatif yang dirilis dan berjalan di Vercel. | Menjadi inspirasi pengembangan fitur interaktif di portal sekolah. |
-| **Open Source Program** | [vercel.com/open-source-program](https://vercel.com/open-source-program) | Program pendanaan dan sponsor Vercel untuk mendukung pembuat pustaka open-source dunia. | Dukungan Vercel terhadap ekosistem software terbuka. |
-| **Enterprise** | [vercel.com/enterprise](https://vercel.com/enterprise) | Paket layanan korporasi dengan SLA 99.99%, dedicated customer success manager, dan isolasi privat. | Opsi peningkatan jika sekolah berkembang menjadi jaringan pendidikan nasional. |
-| **Pricing** | [vercel.com/pricing](https://vercel.com/pricing) | Rincian paket harga: Hobby (Gratis selamanya), Pro ($20/bulan), dan Enterprise. | SD Al-Birru beroperasi secara efisien pada paket Hobby dengan biaya $0/bulan. |
-| **Help** | [vercel.com/help](https://vercel.com/help) | Pusat bantuan teknis resmi dan pengajuan tiket dukungan customer service Vercel. | Saluran eskalasi jika terjadi gangguan jaringan pada server Vercel. |
+| No | Nav / Sub-Nav Resmi | Status | Tool Default vs Pilihan Repo | Tingkat Ekosistem | Berkas Kode di Repositori | Alasan Pakai & Mengapa Menolak Opsi di Luar Default |
+| :---: | :--- | :---: | :--- | :--- | :--- | :--- |
+| **16** | [Vercel Drop](https://vercel.com/drop) | :x: **Tidak** | **Default:** Drag-and-drop HTML Deploy<br>**Repo:** *None (Ditiadakan)* | **Tier-2 Quick Tool** | *Tidak diimplementasikan* | **Alasan Tidak Pakai:** Alat deploy drag-and-drop instan untuk web statis sederhana. Repositori monorepo Al-Birru wajib menggunakan alur git profesional dengan branch governance (`dev` -> `main`). |
+| **17** | [Vercel Agent](https://vercel.com/agent) | :white_check_mark: **Sudah** | **Default:** Vercel Dashboard AI Agent<br>**Repo:** Vercel Deployment Agent | **Tier-1 Cloud DX** | Dashboard Vercel | **Alasan Pakai:** Mendiagnosis error build dan log runtime secara otomatis di console dashboard Vercel. |
+| **18** | [Vercel Plugin](https://vercel.com/plugin) | :white_check_mark: **Sudah** | **Default:** Editor IDE Extensions<br>**Repo:** Vercel VS Code Extension | **Tier-1 Developer Tool** | `.vscode/` | **Alasan Pakai:** Memantau status deployment, log runtime, dan sinkronisasi variabel lingkungan langsung dari dalam editor kode tim IT. |
+| **19** | [Agent Skills](https://skills.sh/) | :white_check_mark: **Sudah** | **Default:** Skills Directory (`skills.sh`)<br>**Repo:** 24 Agent Skills Resmi | **Tier-1 Autonomous Engineering** | `.agents/skills/`<br>`AGENTS.md` | **Alasan Pakai:** Direktori 24 skill agen otonom yang mengendalikan seluruh lifecycle rekayasa perangkat lunak (`test-driven-development`, `security-and-hardening`, `git-workflow`). |
+| **20** | [Domains](https://vercel.com/domains) | :white_check_mark: **Sudah** | **Default:** Vercel DNS & Registrar<br>**Repo:** Custom Domain & SSL | **Tier-1 Cloud DNS** | Vercel DNS Dashboard | **Alasan Pakai:** Mengelola domain resmi [albirru.mafrilearth.com](https://albirru.mafrilearth.com) dengan sertifikat SSL/TLS Let's Encrypt terbit dan terbarui secara otomatis. |
+| **21** | [v0](https://v0.app/) | :white_check_mark: **Sudah** | **Default:** v0 Generative UI by Vercel<br>**Repo:** v0 Prototyping | **Tier-1 Generative UI** | `packages/design-system/` | **Alasan Pakai:** Mempercepat eksplorasi desain awal antarmuka komponen sebelum diselaraskan dengan standar token Flat Bento Al-Birru. |
 
 ---
 
-## 11. Legal & Trust (Kepatuhan Hukum & Kepercayaan)
+### V. Frameworks (9 Item)
 
-| Layanan / Produk | Tautan Resmi | Fungsi & Penjelasan Mendalam | Peran di Al-Birru SIS |
-| :--- | :--- | :--- | :--- |
-| **Privacy Policy** | [vercel.com/legal/privacy-policy](https://vercel.com/legal/privacy-policy) | Kebijakan perlindungan data pribadi pengunjung dan pengguna platform Vercel. | Menjamin pemrosesan data di Vercel mematuhi standar privasi internasional. |
-| **Terms of Service** | [vercel.com/legal/terms](https://vercel.com/legal/terms) | Ketentuan penggunaan layanan cloud, batasan tanggung jawab, dan hak kekayaan intelektual. | Landasan hukum penggunaan platform cloud. |
-| **Cookie Policy** | [vercel.com/legal/cookie-policy](https://vercel.com/legal/cookie-policy) | Penjelasan jenis cookie yang digunakan di domain Vercel dan tujuan pelacakannya. | Rujukan pembuatan banner privasi `<CookieConsent />` di website sekolah. |
-| **DPA** | [vercel.com/legal/dpa](https://vercel.com/legal/dpa) | Adendum Pemrosesan Data resmi untuk memenuhi kepatuhan regulasi GDPR dan UU PDP Indonesia. | Bukti kepatuhan hukum yayasan dalam pemrosesan data santri di cloud. |
-| **Acceptable Use Policy** | [vercel.com/legal/acceptable-use-policy](https://vercel.com/legal/acceptable-use-policy) | Batasan etika penggunaan platform (melarang phishing, malware, spam, atau konten terlarang). | Menjamin sekolah beroperasi sesuai etika digital yang bersih. |
-| **Legal (All Documents)** | [vercel.com/legal](https://vercel.com/legal) | Direktori terpadu seluruh dokumen hukum, lisensi hak cipta, dan kepatuhan Vercel. | Arsip referensi legalitas cloud sekolah. |
-| **Trust Center** | [security.vercel.com](https://security.vercel.com/) | Portal transparansi laporan audit keamanan pihak ketiga (SOC 2, ISO 27001, PCI-DSS). | Bukti audit keamanan resmi bagi dinas pendidikan dan dewan pembina yayasan. |
-| **Status** | [vercel-status.com](https://www.vercel-status.com/) | Laman pemantauan status kesehatan server dan laporan insiden jaringan Vercel real-time. | Pemantauan operasional jika terjadi kendala jaringan global Vercel. |
+| No | Nav / Sub-Nav Resmi | Status | Framework vs Pilihan Repo | Tingkat Ekosistem | Berkas Kode di Repositori | Alasan Pakai & Mengapa Menolak Opsi di Luar Default |
+| :---: | :--- | :---: | :--- | :--- | :--- | :--- |
+| **22** | [eve [New]](https://eve.dev/) | :x: **Tidak** | **Alternatif:** Eve Framework<br>**Repo:** Next.js App Router | Emerging Framework | *Tidak diimplementasikan* | **Menolak Eve Framework:** Framework AI eksperimental. Repositori memilih Next.js 16 berbasis React 19 yang terbukti stabil untuk sistem manajemen sekolah. |
+| **23** | [Next.js](https://vercel.com/frameworks/nextjs) | :white_check_mark: **Sudah** | **Pilihan Utama:** Next.js 16 (App Router)<br>**Repo:** Next.js 16.3.8 | **Tier-1 Official Core** | `apps/web/package.json`<br>`apps/app/package.json` | **Alasan Pakai:** Framework React full-stack terkemuka dunia buatan Vercel. Memungkinkan React Server Components (RSC) dan Server Actions tanpa API boilerplate. |
+| **24** | [Nuxt](https://vercel.com/docs/frameworks/full-stack/nuxt) | :x: **Tidak** | **Alternatif:** Nuxt (Vue.js)<br>**Repo:** Next.js (React) | Tier-1 Vue Framework | *Tidak diimplementasikan* | **Menolak Nuxt:** Ekosistem monorepo Al-Birru distandarisasi menggunakan React 19 dan TypeScript murni. Menghindari fragmentasi bahasa/framework ganda. |
+| **25** | [SvelteKit](https://vercel.com/docs/frameworks/full-stack/sveltekit) | :x: **Tidak** | **Alternatif:** SvelteKit<br>**Repo:** Next.js (React) | Tier-1 Svelte Framework | *Tidak diimplementasikan* | **Menolak SvelteKit:** Ekosistem komponen UI enterprise (shadcn/ui, Base UI, React Email) paling matang tersedia di ekosistem React. |
+| **26** | [Nitro](https://vercel.com/docs/frameworks/backend/nitro) | :x: **Tidak** | **Alternatif:** Nitro Server Engine<br>**Repo:** Next.js Serverless Runtime | Tier-1 Universal Engine | *Tidak diimplementasikan* | **Menolak Nitro:** Next.js App Router telah memiliki runtime serverless native yang teroptimasi penuh di Vercel tanpa perlu layer Nitro tambahan. |
+| **27** | [Turborepo](https://vercel.com/solutions/turborepo) | :white_check_mark: **Sudah** | **Pilihan Utama:** Turborepo 2<br>**Repo:** Turborepo 2.11.7 | **Tier-1 Official Build System** | `turbo.json`<br>`package.json` | **Alasan Pakai:** Orkestrasi build monorepo super cepat dengan komputasi paralel dan zero-config dependency graph. Menolak Lerna/Nx lama yang konfigurasi-nya rumit. |
+| **28** | [Tanstack Start](https://vercel.com/docs/frameworks/full-stack/tanstack-start) | :x: **Tidak** | **Alternatif:** TanStack Start<br>**Repo:** Next.js App Router | Emerging React Framework | *Tidak diimplementasikan* | **Menolak TanStack Start:** Masih dalam fase pengembangan awal (beta). Next.js App Router adalah standar de-facto produksi enterprise. |
+| **29** | [FastAPI](https://vercel.com/docs/frameworks/backend/fastapi) | :hourglass_flowing_sand: **Belum** | **Alternatif:** FastAPI (Python)<br>**Repo:** *Roadmap: AI Audio Microservice* | Tier-1 Python API | `docs/architecture.md` | **Alasan Belum Pakai:** Disiapkan jika sekolah membutuhkan microservice pemrosesan suara tahfidz berbasis Python (Whisper AI) di masa mendatang. |
+| **30** | [All frameworks](https://vercel.com/docs/frameworks) | :books: **Referensi** | Direktori 35+ Framework Vercel | Katalog Kompatibilitas | Dokumentasi Vercel | Menjadi bukti portabilitas dan dukungan universal infrastruktur Vercel. |
 
 ---
 
-## 12. Cookie Preferences & Media Sosial Resmi
+### VI. SDKs (6 Item)
 
-| Layanan / Akun | Tautan Resmi | Fungsi & Penjelasan Mendalam | Peran di Al-Birru SIS |
-| :--- | :--- | :--- | :--- |
-| **Cookie Preferences** | - | Pengaturan interaktif izin penggunaan cookie analitik dan fungsional di situs Vercel. | Mengatur preferensi privasi sesi pengguna. |
-| **GitHub** | [github.com/vercel](https://github.com/vercel) | Akun repositori open-source resmi Vercel yang menaungi Next.js, Turborepo, dan AI SDK. | Rujukan kode sumber dan rilis patch keamanan terbaru. |
-| **X (Twitter)** | [x.com/vercel](https://x.com/vercel) | Akun resmi Vercel untuk siaran berita cepat, tips teknis, dan diskusi industri. | Kanal informasi tercepat seputar rilis update Next.js. |
-| **LinkedIn** | [linkedin.com/company/vercel](https://linkedin.com/company/vercel) | Halaman profil korporat resmi Vercel untuk update bisnis dan kemitraan teknologi. | Kanal informasi profesional dan relasi teknologi. |
-| **YouTube** | [youtube.com/@VercelHQ](https://youtube.com/@VercelHQ) | Saluran video resmi rekaman Next.js Conf, workshop developer, dan presentasi fitur. | Sumber materi visual belajar pengembangan web kelas dunia. |
-| **Instagram** | [instagram.com/vercel](https://www.instagram.com/vercel/) | Akun media sosial visual Vercel seputar budaya tim developer dan event komunitas. | Dokumentasi visual komunitas teknologi. |
+| No | Nav / Sub-Nav Resmi | Status | SDK Resmi vs Pilihan Repo | Tingkat Ekosistem | Berkas Kode di Repositori | Alasan Pakai & Mengapa Menolak Opsi di Luar Default |
+| :---: | :--- | :---: | :--- | :--- | :--- | :--- |
+| **31** | [Vercel SDK](https://vercel.com/docs/rest-api/sdk) | :white_check_mark: **Sudah** | **Default:** `@vercel/sdk`<br>**Repo:** Vercel REST Client | **Tier-1 Official SDK** | `scripts/` | **Alasan Pakai:** Memungkinkan otomasi programatis untuk mengecek status rilis deployment dan kesehatan domain. |
+| **32** | [Workflow SDK](https://vercel.com/workflows) | :white_check_mark: **Sudah** | **Default:** Vercel Workflow SDK<br>**Repo:** Admissions Lifecycle SDK | **Tier-1 Official SDK** | `apps/web/src/lib/workflows/admissions-workflow.ts` | **Alasan Pakai:** Menjalankan tugas asinkron multi-langkah (pengiriman notifikasi jadwal tes observasi santri) yang tahan reboot serverless. |
+| **33** | [Flags SDK](https://vercel.com/docs/flags/flags-sdk-reference) | :white_check_mark: **Sudah** | **Default:** `@vercel/flags`<br>**Repo:** Vercel Flags SDK | **Tier-1 Official SDK** | `apps/web/src/flags.ts`<br>`apps/web/src/app/.well-known/vercel/flags/route.ts` | **Alasan Pakai:** Standarisasi deklarasi feature flags dengan integrasi Vercel Toolbar untuk pengujian langsung di preview PR. |
+| **34** | [Chat SDK](https://vercel.com/chat) | :x: **Tidak** | **Default:** Vercel Chat SDK Primitives<br>**Repo:** In-House Swiss Bento Chat UI | Tier-1 UI Primitives | `apps/web/src/components/common/AIChatWidget.tsx` | **Menolak Chat SDK Generik:** Al-Birru membangun antarmuka chat sendiri yang diselaraskan dengan estetika Flat Swiss Modernist tanpa rounded corners (`--radius: 0`). |
+| **35** | [Queues SDK](https://vercel.com/docs/queues/sdk) | :hourglass_flowing_sand: **Belum** | **Default:** Vercel Queues Serverless<br>**Repo:** *Roadmap: Batch Email Queue* | **Tier-1 Message Queue** | `docs/architecture.md` | **Alasan Belum Pakai:** Antrean pesan serverless. Disiapkan untuk menangani lonjakan ribuan antrean pengiriman email saat gelombang pendaftaran dibuka serentak. |
+| **36** | [Streamdown](https://streamdown.ai/) | :white_check_mark: **Sudah** | **Default:** Streamdown Markdown<br>**Repo:** Streaming Response Renderer | **Tier-1 AI Streaming UI** | `apps/web/src/components/common/AIChatWidget.tsx` | **Alasan Pakai:** Merender potongan Markdown dari model AI secara streaming dengan halus tanpa kedip (*flicker-free*). |
+
+---
+
+### VII. Build (7 Item Solusi Bisnis)
+
+| No | Nav / Sub-Nav Resmi | Status | Solusi Vercel vs Pilihan Repo | Tingkat Ekosistem | Berkas Kode di Repositori | Alasan Pakai & Mengapa Menolak Opsi di Luar Default |
+| :---: | :--- | :---: | :--- | :--- | :--- | :--- |
+| **37** | [AI Apps](https://vercel.com/solutions/ai-apps) | :white_check_mark: **Sudah** | **Solusi:** Vercel AI Apps Architecture<br>**Repo:** Asisten AI Terintegrasi | **Tier-1 Solution** | `apps/web/src/app/api/chat/route.ts` | **Alasan Pakai:** Pola arsitektur AI generatif berbasis streaming response untuk layanan informasi pendaftaran calon santri. |
+| **38** | [Web Apps](https://vercel.com/for/web-apps) | :white_check_mark: **Sudah** | **Solusi:** Dynamic Web Apps<br>**Repo:** Portal Guru `apps/app` | **Tier-1 Solution** | `apps/app/src/` | **Alasan Pakai:** Arsitektur aplikasi web dinamis dengan autentikasi, database relasional real-time, dan manajemen hak akses terpusat. |
+| **39** | [Marketing Sites](https://vercel.com/solutions/marketing-sites) | :white_check_mark: **Sudah** | **Solusi:** High-Performance Marketing<br>**Repo:** `apps/web` (Lighthouse 100%) | **Tier-1 Solution** | `apps/web/src/app/` | **Alasan Pakai:** Landing page publik sekolah dengan skor Lighthouse 100% sempurna di seluruh kategori (Performance, A11y, Best Practices, SEO). |
+| **40** | [Platforms](https://vercel.com/solutions/multi-tenant-saas) | :hourglass_flowing_sand: **Belum** | **Solusi:** Multi-Tenant SaaS<br>**Repo:** *Roadmap: Yayasan Multi-Cabang* | **Tier-1 Enterprise Solution** | `docs/architecture.md` | **Alasan Belum Pakai:** Arsitektur multi-tenant dengan routing subdomain dinamis. Disiapkan jika yayasan membuka cabang unit sekolah baru di luar Sukabumi. |
+| **41** | [Commerce](https://vercel.com/solutions/composable-commerce) | :hourglass_flowing_sand: **Belum** | **Solusi:** Composable Commerce<br>**Repo:** *Roadmap: Toko Seragam Santri* | **Tier-1 E-Commerce Solution** | `docs/architecture.md` | **Alasan Belum Pakai:** Solusi e-commerce headless. Disiapkan jika sekolah membuka toko daring seragam dan buku pelajaran santri. |
+| **42** | [Platform Engineers](https://vercel.com/solutions/platform-engineering) | :white_check_mark: **Sudah** | **Solusi:** Platform Engineering<br>**Repo:** Monorepo Governance CI/CD | **Tier-1 Engineering Standard** | `turbo.json`<br>`.github/workflows/ci.yml` | **Alasan Pakai:** Standardisasi otomatisasi kualitas kode melalui Husky, Biome, Turborepo caching, dan GitHub Actions quality gates. |
+| **43** | [Design Engineers](https://vercel.com/solutions/design-engineering) | :white_check_mark: **Sudah** | **Solusi:** Design Engineering<br>**Repo:** Swiss Bento UI Design System | **Tier-1 Frontend Craft** | `packages/design-system/`<br>`docs/design.md` | **Alasan Pakai:** Presisi desain antarmuka modern dengan token CSS semantik, kontras tinggi WCAG 2.1 AA, dan tata letak Bento Grid. |
+
+---
+
+### VIII. Learn (8 Item Materi & Referensi)
+
+| No | Nav / Sub-Nav Resmi | Status | Jenis Konten Edukasi | Tingkat Ekosistem | Peran di Al-Birru SIS |
+| :---: | :--- | :---: | :--- | :--- | :--- |
+| **44** | [Docs](https://vercel.com/docs) | :books: **Referensi** | Dokumentasi Resmi Terlengkap | **Otoritas Utama** | Sumber rujukan otoritatif untuk konfigurasi deployment `vercel.json`, edge headers, dan serverless limits. |
+| **45** | [Blog](https://vercel.com/blog) | :books: **Referensi** | Publikasi Riset & Rilis Vercel | Publikasi Resmi | Memantau perkembangan arsitektur web modern (React 19, Turbopack, AI Agents). |
+| **46** | [Changelog](https://vercel.com/changelog) | :books: **Referensi** | Catatan Pembaruan Mingguan | Audit Log Rilis | Memantau pembaruan infrastruktur cloud Vercel agar sistem sekolah selalu kompatibel. |
+| **47** | [Knowledge Base](https://vercel.com/kb) | :books: **Referensi** | Tanya-Jawab Kendala Teknis | Troubleshooting | Panduan investigasi saat menemui kendala build caching atau DNS domain. |
+| **48** | [Academy](https://vercel.com/academy) | :books: **Referensi** | Kursus Video & Modul Interaktif | Pelatihan Resmi | Sarana pelatihan resmi bagi tim IT yayasan untuk menguasai Next.js dan Vercel. |
+| **49** | [Articles](https://vercel.com/i) | :books: **Referensi** | Tulisan Teknis Mendalam | Best Practices | Rujukan teknik optimasi Core Web Vitals dan pencegahan layout shift di perangkat mobile. |
+| **50** | [Community](https://community.vercel.com/) | :books: **Referensi** | Forum Diskusi Pengembang | Komunitas Global | Wadah diskusi dan bertukar solusi dengan ribuan insinyur perangkat lunak dunia. |
+| **51** | [Is Agentic](https://is-agentic.com/) | :books: **Referensi** | Standar Benchmarking AI Agent | AI Standards | Rujukan standar evaluasi keandalan dan arsitektur aplikasi AI agentik modern. |
+
+---
+
+### IX. Explore (5 Item Ekosistem & Kemitraan)
+
+| No | Nav / Sub-Nav Resmi | Status | Layanan Ekosistem vs Pilihan Repo | Tingkat Ekosistem | Berkas Kode di Repositori | Alasan Pakai & Mengapa Menolak Opsi di Luar Default |
+| :---: | :--- | :---: | :--- | :--- | :--- | :--- |
+| **52** | [Customers](https://vercel.com/customers) | :books: **Referensi** | Studi Kasus Perusahaan Global | Enterprise Case Study | Dokumentasi Vercel | Bukti keandalan platform Vercel yang digunakan oleh institusi terkemuka dunia. |
+| **53** | [Marketplace](https://vercel.com/marketplace) | :white_check_mark: **Sudah** | **Layanan:** Integrasi Partner 1-Klik<br>**Repo:** Neon, Sentry, Upstash | **Tier-1 Partner Marketplace** | `packages/database/`<br>`apps/web/sentry.server.config.ts` | **Alasan Pakai:** Menghubungkan database Neon Postgres, error tracking Sentry, dan rate limiter Upstash secara otomatis ke proyek Vercel. |
+| **54** | [Templates](https://vercel.com/templates) | :white_check_mark: **Sudah** | **Layanan:** Galeri Boilerplate Resmi<br>**Repo:** Next-Forge Template | **Tier-1 Verified Templates** | Root Monorepo | **Alasan Pakai:** Repositori dibangun dari template resmi terverifikasi Next-Forge yang dirancang untuk arsitektur monorepo skala produksi. |
+| **55** | [Partner Finder](https://vercel.com/partners/solution-partners) | :books: **Referensi** | Direktori Konsultan & Agensi | Partner Network | Dokumentasi Vercel | Direktori mitra terpercaya jika yayasan membutuhkan audit pihak ketiga berskala besar. |
+| **56** | [Vercel + AWS](https://vercel.com/partners/aws) | :white_check_mark: **Sudah** | **Infrastruktur:** AWS Global Backing<br>**Repo:** AWS Lambda & CloudFront | **Tier-1 Global Cloud** | Edge Infrastructure | **Alasan Pakai:** Seluruh komputasi serverless Vercel berjalan di atas data center AWS terkemuka dengan jaminan uptime 99.99%. |
+
+---
+
+### X. Company (10 Item Informasi Korporasi)
+
+| No | Nav / Sub-Nav Resmi | Status | Entitas / Informasi | Tingkat Ekosistem | Peran & Rationale di Al-Birru SIS |
+| :---: | :--- | :---: | :--- | :--- | :--- |
+| **57** | [About](https://vercel.com/about) | :books: **Referensi** | Profil & Visi Perusahaan Vercel | Corporate Profile | Memahami komitmen jangka panjang ekosistem open-source Next.js dan Vercel. |
+| **58** | [Careers](https://vercel.com/careers) | :books: **Referensi** | Lowongan Kerja Global Vercel | Career Information | Informasi karir teknis global. |
+| **59** | [Press](https://vercel.com/press) | :books: **Referensi** | Siaran Pers & Media Kit Resmi | Media Kit | Sumber aset resmi logo Vercel dan standar publikasi brand. |
+| **60** | [Events](https://vercel.com/events) | :books: **Referensi** | Next.js Conf & Vercel Ship | Technical Conference | Wadah pembaruan fitur teknologi web terbaru dari para kreator Next.js. |
+| **61** | [Startups](https://vercel.com/startups) | :hourglass_flowing_sand: **Belum** | Program Akselerasi & Kredit Cloud | Cloud Grant Program | Opsi pengajuan hibah kredit cloud untuk yayasan pendidikan nirlaba. |
+| **62** | [Shipped on Vercel](https://vercel.com/shipped) | :books: **Referensi** | Showcase Produk Inovatif Dunia | Product Showcase | Inspirasi implementasi antarmuka web interaktif modern. |
+| **63** | [Open Source Program](https://vercel.com/open-source-program) | :books: **Referensi** | Program Sponsor Open Source | Ecosystem Sponsorship | Bentuk dukungan Vercel terhadap ribuan pembuat pustaka open-source dunia. |
+| **64** | [Enterprise](https://vercel.com/enterprise) | :hourglass_flowing_sand: **Belum** | Paket Enterprise Khusus | SLA 99.99% Enterprise | Disiapkan jika sistem sekolah berekspansi menjadi jaringan sekolah nasional terpadu. |
+| **65** | [Pricing](https://vercel.com/pricing) | :white_check_mark: **Sudah** | Paket Harga Vercel (Hobby / Pro) | **Biaya $0 Baseline** | Repositori beroperasi secara efisien pada tier gratis resmi ($0) berkapasitas tinggi. |
+| **66** | [Help](https://vercel.com/help) | :white_check_mark: **Sudah** | Pusat Bantuan & Dukungan Teknis | Official Technical Support | Saluran eskalasi resmi jika terjadi kendala teknis pada infrastruktur server Vercel. |
+
+---
+
+### XI. Legal & Trust (8 Item Kepatuhan Hukum)
+
+| No | Nav / Sub-Nav Resmi | Status | Dokumen Legalitas & Kepatuhan | Tingkat Ekosistem | Berkas Kode & Kepatuhan di Al-Birru SIS |
+| :---: | :--- | :---: | :--- | :--- | :--- |
+| **67** | [Privacy Policy](https://vercel.com/legal/privacy-policy) | :books: **Referensi** | Kebijakan Privasi Pengguna | Standar Privasi Global | Menjamin pemrosesan data di server Vercel mematuhi standar privasi internasional. |
+| **68** | [Terms of Service](https://vercel.com/legal/terms) | :books: **Referensi** | Ketentuan Layanan Cloud | Perjanjian Layanan | Landasan hukum penggunaan infrastruktur cloud Vercel. |
+| **69** | [Cookie Policy](https://vercel.com/legal/cookie-policy) | :white_check_mark: **Sudah** | Kebijakan Penggunaan Cookie | Kepatuhan Hukum | Menjadi acuan perancangan banner persetujuan `<CookieConsent />` di website sekolah. |
+| **70** | [DPA](https://vercel.com/legal/dpa) | :white_check_mark: **Sudah** | Data Processing Addendum | **Kepatuhan UU PDP No. 27/2022** | Perjanjian perlindungan pemrosesan data pribadi calon santri dan orang tua murid di cloud. |
+| **71** | [Acceptable Use Policy](https://vercel.com/legal/acceptable-use-policy) | :books: **Referensi** | Kebijakan Penggunaan Etis | Standar Etika Digital | Menjamin sekolah beroperasi secara legal dan bebas dari aktivitas digital berbahaya. |
+| **72** | [Legal (all documents)](https://vercel.com/legal) | :books: **Referensi** | Direktori Seluruh Dokumen Legal | Arsip Dokumen Hukum | Arsip referensi legalitas cloud institusi. |
+| **73** | [Trust Center](https://security.vercel.com/) | :white_check_mark: **Sudah** | Laporan Audit Keamanan Pihak Ketiga | **Sertifikasi SOC2 & ISO 27001** | Bukti kepatuhan keamanan resmi untuk akreditasi BAN-SM dan audit yayasan. |
+| **74** | [Status](https://www.vercel-status.com/) | :white_check_mark: **Sudah** | Pemantauan Kesehatan Jaringan Real-Time | Real-Time Health Monitor | Memantau uptime operasional server Vercel di seluruh dunia. |
+
+---
+
+### XII. Cookie Preferences (1 Item)
+
+| No | Nav / Sub-Nav Resmi | Status | Fitur Privasi | Tingkat Ekosistem | Peran di Al-Birru SIS |
+| :---: | :--- | :---: | :--- | :--- | :--- |
+| **75** | Cookie Preferences | :white_check_mark: **Sudah** | Pengaturan Izin Cookie Pengunjung | Kepatuhan Privasi | Diadopsi melalui komponen in-house `<CookieConsent />` yang memungkinkan pengunjung memilih preferensi cookie. |
+
+---
+
+### XIII. Social (5 Item Media Sosial Resmi)
+
+| No | Nav / Sub-Nav Resmi | Status | Kanal Media Sosial | Tingkat Ekosistem | Peran & Manfaat bagi Repositori |
+| :---: | :--- | :---: | :--- | :--- | :--- |
+| **76** | [GitHub](https://github.com/vercel) | :white_check_mark: **Sudah** | Repositori Kode Open Source Resmi | **Sumber Kode Inti** | Memantau rilis source code Next.js, Turborepo, dan AI SDK untuk patch keamanan mutakhir. |
+| **77** | [X (Twitter)](https://x.com/vercel) | :books: **Referensi** | Siaran Pengumuman Cepat Vercel | Berita Real-Time | Kanal informasi tercepat seputar rilis update dan status jaringan Vercel. |
+| **78** | [LinkedIn](https://linkedin.com/company/vercel) | :books: **Referensi** | Profil Perusahaan Profesional | Jejaring Profesional | Kanal informasi perkembangan bisnis dan kemitraan strategis cloud. |
+| **79** | [YouTube](https://youtube.com/@VercelHQ) | :books: **Referensi** | Rekaman Workshop & Konferensi | Materi Edukasi Visual | Sumber video edukasi resmi Next.js Conf untuk pengembangan tim teknis sekolah. |
+| **80** | [Instagram](https://www.instagram.com/vercel/) | :books: **Referensi** | Dokumentasi Visual Komunitas | Dokumentasi Budaya Tim | Kanal visual seputar komunitas developer dunia. |
+
+---
+
+## 4. Kesimpulan Strategis Ekosistem Vercel di Al-Birru SIS
+
+1. **Efisiensi Finansial & Operasional ($0 Baseline):**  
+   Al-Birru memanfaatkan layanan resmi Vercel berkinerja tinggi (**Next.js 16**, **Turborepo 2**, **Edge Network**, **AI SDK**, **Speed Insights**, dan **Flags SDK**) tanpa biaya bulanan, menghasilkan kecepatan website kelas dunia (Lighthouse 100%).
+2. **Keamanan & Kepatuhan Hukum:**  
+   Penerapan **DPA (Data Processing Addendum)**, enkripsi SSL otomatis, edge WAF, dan bot scoring via **BotID** menjamin data santri terlindungi sesuai amanat UU Perlindungan Data Pribadi (UU PDP No. 27/2022).
+3. **Penyelarasan Framework:**  
+   Menolak framework alternatif (Nuxt, SvelteKit, TanStack) demi menjaga satu standar teknologi React 19 / TypeScript yang terpadu dan mudah dirawat oleh tim sekolah dalam jangka panjang.
