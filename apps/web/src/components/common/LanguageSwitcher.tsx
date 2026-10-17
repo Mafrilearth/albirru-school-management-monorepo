@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useLanguage } from "@/lib/i18n/context";
 import type { Locale } from "@/lib/i18n/dictionary";
+import { cn } from "@/lib/utils";
 
 const LANGUAGE_OPTIONS: {
   code: Locale;
@@ -28,7 +29,13 @@ const LANGUAGE_OPTIONS: {
   { code: "en", label: "English", nativeLabel: "English", flag: "🇬🇧" },
 ];
 
-export function LanguageSwitcher() {
+interface LanguageSwitcherProps {
+  triggerClassName?: string;
+}
+
+export function LanguageSwitcher({
+  triggerClassName,
+}: LanguageSwitcherProps = {}) {
   const { locale, setLocale } = useLanguage();
   const router = useRouter();
   const pathname = usePathname() || "/";
@@ -51,7 +58,10 @@ export function LanguageSwitcher() {
             variant="ghost"
             size="sm"
             aria-label="Pilih Bahasa / Change Language"
-            className="h-full px-3 gap-1.5 rounded-none border-0 font-mono text-xs uppercase tracking-wider hover:bg-muted/40 shadow-none bg-transparent"
+            className={cn(
+              "h-full px-3 gap-1.5 rounded-none border-0 font-mono text-xs uppercase tracking-wider hover:bg-muted/40 shadow-none bg-transparent",
+              triggerClassName,
+            )}
           />
         }
       >

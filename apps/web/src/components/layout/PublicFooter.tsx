@@ -152,8 +152,8 @@ export function PublicFooter() {
         </div>
       </div>
 
-      {/* Bottom Legal & Copyright Bar — Flush in Grid */}
-      <div className="w-full p-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-muted-foreground bg-muted/10">
+      {/* Bottom Legal & Copyright Bar — Flush in Grid with Clearance for Floating Bottom Dock */}
+      <div className="w-full p-6 pb-20 sm:pb-24 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-muted-foreground bg-muted/10">
         <p>
           © {currentYear} Sekolah Dasar Islam Al-Birru. Seluruh hak cipta
           dilindungi.

@@ -3,12 +3,18 @@ import { cn } from "@/lib/utils";
 
 interface BrandLogoProps {
   className?: string;
+  svgClassName?: string;
+  titleClassName?: string;
+  subtitleClassName?: string;
   isDarkBackground?: boolean;
   ariaLabel?: string;
 }
 
 export function BrandLogo({
   className,
+  svgClassName,
+  titleClassName,
+  subtitleClassName,
   isDarkBackground = false,
   ariaLabel = "Al-Birru - Sekolah Dasar Islam",
 }: BrandLogoProps) {
@@ -16,23 +22,27 @@ export function BrandLogo({
     <Link
       href="/"
       className={cn(
-        "flex h-full items-center justify-center gap-3 px-4 sm:px-6 xl:px-8 outline-none",
+        "flex h-full items-center justify-center gap-3 px-4 sm:px-6 xl:px-8 outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
         className,
       )}
       aria-label={ariaLabel}
     >
       <svg
-        viewBox="0 0 100 135"
-        className="h-12 w-auto shrink-0"
+        viewBox="6 4.5 88 116"
+        className={cn("h-12 w-auto shrink-0", svgClassName)}
         xmlns="http://www.w3.org/2000/svg"
       >
-        {/* Unified Outer Shield (Black Border) */}
+        {/* Unified Outer Shield (Black Border with sharp mitered 3 top corners) */}
         {/* We draw the path with a thick stroke to guarantee mathematically perfect uniform thickness everywhere. */}
         <path
           d="M 50 18 L 82 34 L 82 74 A 32 34 0 0 1 18 74 L 18 34 Z"
-          className="fill-foreground stroke-foreground"
+          className={cn(
+            "fill-foreground stroke-foreground",
+            isDarkBackground && "fill-white stroke-white",
+          )}
           strokeWidth="24"
-          strokeLinejoin="round"
+          strokeLinejoin="miter"
+          strokeMiterlimit="4"
         />
 
         {/* Inner Shield (Amber/Yellow Base) */}
@@ -42,23 +52,70 @@ export function BrandLogo({
           className="fill-amber-400"
         />
 
-        {/* Central Emblem: 45-Degree Diamond with 16-Point Star Cutout */}
+        {/* Central Emblem: Kotak Tengah Sisi Lengkung (Arc R=28), Tepat 16 Lancip (Kardinal Terpanjang, Serong Panjang Setengah Diapit 2 Lancip Kecil) */}
         <path
           fillRule="evenodd"
           clipRule="evenodd"
-          d="M 50 43 L 70 63 L 50 83 L 30 63 Z
-             M 50 41 L 50.9 58.6 L 53.4 54.7 L 52.5 59.3 L 59.2 53.8 L 53.7 60.5 L 58.3 59.6 L 54.4 62.1 
-             L 72 63 L 54.4 63.9 L 58.3 66.4 L 53.7 65.5 L 59.2 72.2 L 52.5 66.7 L 53.4 71.3 L 50.9 67.4 
-             L 50 85 L 49.1 67.4 L 46.6 71.3 L 47.5 66.7 L 40.8 72.2 L 46.3 65.5 L 41.7 66.4 L 45.6 63.9 
-             L 28 63 L 45.6 62.1 L 41.7 59.6 L 46.3 60.5 L 40.8 53.8 L 47.5 59.3 L 46.6 54.7 L 49.1 58.6 Z"
-          className="fill-foreground"
+          d="M 50 43
+             A 28 28 0 0 1 70 63
+             A 28 28 0 0 1 50 83
+             A 28 28 0 0 1 30 63
+             A 28 28 0 0 1 50 43 Z
+             M 50 40.5
+             L 51.1 57.6
+             L 54.0 53.3
+             L 53.1 58.4
+             L 61.0 52.0
+             L 54.6 59.9
+             L 59.7 59.0
+             L 55.4 61.9
+             L 72.5 63
+             L 55.4 64.1
+             L 59.7 67.0
+             L 54.6 66.1
+             L 61.0 74.0
+             L 53.1 67.6
+             L 54.0 72.7
+             L 51.1 68.4
+             L 50 85.5
+             L 48.9 68.4
+             L 46.0 72.7
+             L 46.9 67.6
+             L 39.0 74.0
+             L 45.4 66.1
+             L 40.3 67.0
+             L 44.6 64.1
+             L 27.5 63
+             L 44.6 61.9
+             L 40.3 59.0
+             L 45.4 59.9
+             L 39.0 52.0
+             L 46.9 58.4
+             L 46.0 53.3
+             L 48.9 57.6 Z"
+          className={cn(
+            "fill-foreground",
+            isDarkBackground && "fill-slate-950",
+          )}
         />
       </svg>
-      <div className="flex flex-col justify-center text-start">
-        <span className="font-sans font-black text-lg xl:text-xl leading-none text-foreground tracking-tight">
+      <div className="flex flex-col justify-center text-start select-none">
+        <span
+          className={cn(
+            "font-sans font-black text-xl sm:text-2xl leading-none tracking-tight text-foreground transition-colors",
+            isDarkBackground && "text-white",
+            titleClassName,
+          )}
+        >
           Al-Birru
         </span>
-        <span className="font-mono text-[9px] xl:text-[10px] font-bold text-muted-foreground uppercase tracking-widest mt-1">
+        <span
+          className={cn(
+            "font-mono text-[9.5px] sm:text-[10px] font-bold uppercase tracking-[0.22em] text-muted-foreground leading-none mt-1 sm:mt-1.5 transition-colors",
+            isDarkBackground && "text-zinc-400",
+            subtitleClassName,
+          )}
+        >
           Sekolah Dasar Islam
         </span>
       </div>

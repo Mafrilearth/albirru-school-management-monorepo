@@ -10,7 +10,6 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { ClientWidgets } from "@/components/common/ClientWidgets";
 import { GlobalGrid } from "@/components/common/GlobalGrid";
-import { AnnouncementBanner } from "@/components/layout/AnnouncementBanner";
 import { PublicFooter } from "@/components/layout/PublicFooter";
 import { PublicNavbar } from "@/components/layout/PublicNavbar";
 import { ScrollProgressBar } from "@/components/layout/ScrollProgressBar";
@@ -225,7 +224,6 @@ export default async function LocaleLayout({
                     <ScrollProgressBar />
                     <GlobalGrid />
                     <div className="w-full bg-background flex flex-col min-h-screen relative z-10 shadow-none">
-                      <AnnouncementBanner />
                       <PublicNavbar />
                       <main
                         id="main-content"

@@ -11,8 +11,13 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useLanguage } from "@/lib/i18n/context";
+import { cn } from "@/lib/utils";
 
-export function ThemeToggle() {
+interface ThemeToggleProps {
+  triggerClassName?: string;
+}
+
+export function ThemeToggle({ triggerClassName }: ThemeToggleProps = {}) {
   const { theme, setTheme } = useTheme();
   const { t } = useLanguage();
   const [mounted, setMounted] = useState(false);
@@ -49,7 +54,10 @@ export function ThemeToggle() {
             variant="ghost"
             size="sm"
             aria-label={t.theme.toggle}
-            className="h-full px-3.5 rounded-none border-0 hover:bg-muted/40 shadow-none bg-transparent"
+            className={cn(
+              "h-full px-3.5 rounded-none border-0 hover:bg-muted/40 shadow-none bg-transparent",
+              triggerClassName,
+            )}
           />
         }
       >

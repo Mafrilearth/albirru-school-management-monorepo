@@ -1,6 +1,15 @@
 "use client";
 
-import { Menu } from "lucide-react";
+import {
+  GraduationCap,
+  HeartHandshake,
+  Home,
+  Menu,
+  Newspaper,
+  School,
+  Sparkles,
+  Users,
+} from "lucide-react";
 import { BrandLogo } from "@/components/common/BrandLogo";
 import { LanguageSwitcher } from "@/components/common/LanguageSwitcher";
 import { ThemeToggle } from "@/components/common/ThemeToggle";
@@ -21,54 +30,41 @@ export function PublicNavbar() {
   const { t } = useLanguage();
 
   const navLinks = [
-    { href: "/", label: t.nav.home },
-    { href: "/profile", label: t.nav.profile },
-    { href: "/academics", label: t.nav.academics },
-    { href: "/students", label: t.nav.students },
-    { href: "/news", label: t.nav.news },
-    { href: "/services", label: t.nav.services },
+    { href: "/", label: t.nav.home, icon: Home },
+    { href: "/profile", label: t.nav.profile, icon: School },
+    { href: "/academics", label: t.nav.academics, icon: GraduationCap },
+    { href: "/students", label: t.nav.students, icon: Users },
+    { href: "/news", label: t.nav.news, icon: Newspaper },
+    { href: "/services", label: t.nav.services, icon: HeartHandshake },
   ];
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-border bg-background/95 backdrop-blur-md supports-[backdrop-filter]:bg-background/80">
-      <div className="w-full px-4 sm:px-6 lg:px-8 flex xl:grid xl:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] min-h-16 items-stretch justify-between">
-        {/* Brand Area */}
-        <div className="flex items-center justify-start h-full">
-          <BrandLogo className="px-0 sm:px-0 xl:px-0" />
+    <>
+      {/* Top Floating Controls Bar: Transparent fixed wrapper */}
+      <header className="fixed top-2.5 sm:top-3.5 left-0 w-full z-50 pointer-events-none px-3 sm:px-6 flex items-center justify-between">
+        {/* Top-Left: Floating Fixed Brand Logo (Glassmorphism Rounded-Full Capsule) */}
+        <div className="pointer-events-auto">
+          <div className="rounded-full bg-background/70 backdrop-blur-xl supports-[backdrop-filter]:bg-background/60 border border-border/80 ring-1 ring-border/50 shadow-sm hover:border-foreground/40 hover:bg-background/85 hover:ring-border/80 transition-all duration-300 flex items-center">
+            <BrandLogo
+              className="h-auto pl-4 pr-6 py-2 sm:pl-5 sm:pr-8 sm:py-2.5 gap-3 sm:gap-4 rounded-full"
+              svgClassName="h-9 sm:h-10 w-auto shrink-0"
+              titleClassName="text-base sm:text-xl"
+              subtitleClassName="text-[8.5px] sm:text-[10px]"
+            />
+          </div>
         </div>
 
-        {/* Center Column: Grid Navigation (6 Equal Columns, Symmetrical Margin) */}
-        <nav className="hidden xl:grid grid-cols-6 min-h-16 items-stretch">
-          {navLinks.map((link) => {
-            const isActive =
-              pathname === link.href ||
-              (link.href !== "/" && pathname.startsWith(`${link.href}/`));
-            return (
-              <Link
-                key={link.href}
-                href={link.href}
-                aria-current={isActive ? "page" : undefined}
-                className={cn(
-                  "flex items-center justify-center px-5 py-2 text-sm font-medium transition-colors select-none text-center h-full border-b-2",
-                  isActive
-                    ? "border-b-foreground text-foreground font-semibold bg-muted/60"
-                    : "border-b-transparent text-muted-foreground hover:text-foreground hover:bg-muted/40",
-                )}
-              >
-                {link.label}
-              </Link>
-            );
-          })}
-        </nav>
+        {/* Top-Right: Floating Individual Glass Buttons (Multilang & Theme Toggle & Mobile Menu) */}
+        <div className="pointer-events-auto flex items-center gap-2 sm:gap-2.5">
+          {/* Individual Language Switcher Floating Button */}
+          <LanguageSwitcher triggerClassName="h-10 sm:h-11 px-3.5 sm:px-4 rounded-full bg-background/70 backdrop-blur-xl supports-[backdrop-filter]:bg-background/60 border border-border/80 ring-1 ring-border/50 shadow-sm hover:border-foreground/40 hover:bg-background/85 hover:ring-border/80 transition-all duration-300 gap-2 font-mono text-xs font-semibold" />
 
-        {/* Global Controls (Desktop & Mobile) */}
-        <div className="flex items-stretch justify-end h-full gap-0">
-          <LanguageSwitcher />
-          <ThemeToggle />
+          {/* Individual Theme Toggle Floating Button */}
+          <ThemeToggle triggerClassName="size-10 sm:size-11 p-0 rounded-full bg-background/70 backdrop-blur-xl supports-[backdrop-filter]:bg-background/60 border border-border/80 ring-1 ring-border/50 shadow-sm hover:border-foreground/40 hover:bg-background/85 hover:ring-border/80 transition-all duration-300 flex items-center justify-center" />
 
-          {/* Mobile/Tablet Menu Trigger */}
+          {/* Mobile Menu Trigger Floating Button (Accessible Drawer) */}
           <Sheet>
-            <SheetTrigger className="xl:hidden inline-flex items-center justify-center px-3 h-full rounded-none border-0 bg-transparent hover:bg-accent hover:text-accent-foreground transition-colors">
+            <SheetTrigger className="xl:hidden size-10 sm:size-11 rounded-full bg-background/70 backdrop-blur-xl supports-[backdrop-filter]:bg-background/60 border border-border/80 ring-1 ring-border/50 shadow-sm hover:border-foreground/40 hover:bg-background/85 hover:ring-border/80 transition-all duration-300 inline-flex items-center justify-center">
               <Menu className="size-4" />
               <span className="sr-only">{t.nav.openMenu}</span>
             </SheetTrigger>
@@ -88,19 +84,21 @@ export function PublicNavbar() {
                       pathname === link.href ||
                       (link.href !== "/" &&
                         pathname.startsWith(`${link.href}/`));
+                    const Icon = link.icon;
                     return (
                       <Link
                         key={link.href}
                         href={link.href}
                         aria-current={isActive ? "page" : undefined}
                         className={cn(
-                          "px-4 py-3 text-base font-medium rounded-none border-b border-border transition-colors",
+                          "flex items-center gap-3 px-4 py-3 text-base font-medium rounded-none border-b border-border transition-colors",
                           isActive
                             ? "bg-muted text-foreground font-semibold border-l-2 border-l-foreground"
                             : "text-muted-foreground hover:bg-muted/40 hover:text-foreground",
                         )}
                       >
-                        {link.label}
+                        <Icon className="size-4 shrink-0" aria-hidden="true" />
+                        <span>{link.label}</span>
                       </Link>
                     );
                   })}
@@ -118,7 +116,68 @@ export function PublicNavbar() {
             </SheetContent>
           </Sheet>
         </div>
-      </div>
-    </header>
+      </header>
+
+      {/* Bottom-Center: Floating Navigation Dock */}
+      <nav
+        aria-label="Navigasi Utama"
+        className="fixed bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 z-50 pointer-events-auto max-w-[calc(100vw-1.5rem)] select-none"
+      >
+        <div className="rounded-full bg-background/80 backdrop-blur-xl supports-[backdrop-filter]:bg-background/70 border border-border/80 ring-1 ring-border/50 shadow-lg p-1.5 sm:p-2 flex items-center gap-1 sm:gap-1.5 overflow-x-auto no-scrollbar">
+          {navLinks.map((link) => {
+            const isActive =
+              pathname === link.href ||
+              (link.href !== "/" && pathname.startsWith(`${link.href}/`));
+            const Icon = link.icon;
+
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                aria-current={isActive ? "page" : undefined}
+                aria-label={link.label}
+                title={link.label}
+                className={cn(
+                  "group relative flex items-center justify-center rounded-full transition-all duration-300 ease-out outline-none focus-visible:ring-2 focus-visible:ring-ring shrink-0",
+                  isActive
+                    ? "bg-foreground text-background font-semibold shadow-xs px-3.5 sm:px-4 py-1.5 sm:py-2 gap-2"
+                    : "text-muted-foreground hover:text-foreground hover:bg-muted/60 size-9 sm:size-10",
+                )}
+              >
+                <Icon
+                  aria-hidden="true"
+                  className={cn(
+                    "size-4 shrink-0 transition-transform duration-200 group-hover:scale-110",
+                    isActive && "scale-100",
+                  )}
+                />
+                {isActive && (
+                  <span className="text-xs sm:text-sm font-semibold whitespace-nowrap animate-in fade-in duration-200">
+                    {link.label}
+                  </span>
+                )}
+                {!isActive && <span className="sr-only">{link.label}</span>}
+              </Link>
+            );
+          })}
+
+          {/* Separator & Admissions CTA Button */}
+          <div
+            className="h-4 w-px bg-border/80 mx-1 shrink-0"
+            aria-hidden="true"
+          />
+          <Link
+            href="/admissions"
+            aria-label={t.actions.apply}
+            title={t.actions.apply}
+            className="flex items-center justify-center whitespace-nowrap px-3 sm:px-4 py-1.5 sm:py-2 gap-1.5 text-xs sm:text-sm font-bold rounded-full bg-primary text-primary-foreground hover:bg-foreground hover:text-background transition-all duration-200 shadow-xs shrink-0"
+          >
+            <Sparkles aria-hidden="true" className="size-3.5 shrink-0" />
+            <span className="hidden sm:inline">{t.actions.apply}</span>
+            <span className="sm:hidden">{t.actions.apply}</span>
+          </Link>
+        </div>
+      </nav>
+    </>
   );
 }

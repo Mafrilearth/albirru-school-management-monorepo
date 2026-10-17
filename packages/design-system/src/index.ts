@@ -1,6 +1,6 @@
 // Theme & Providers
 export * from "./components/ThemeToggle";
-// All 64 shadcn & Base UI Components
+// All 66 shadcn & Base UI Components
 export * from "./components/ui/accordion";
 export * from "./components/ui/alert";
 export * from "./components/ui/alert-dialog";
@@ -17,6 +17,7 @@ export * from "./components/ui/card";
 export * from "./components/ui/carousel";
 export * from "./components/ui/chart";
 export * from "./components/ui/checkbox";
+export * from "./components/ui/code-block";
 export * from "./components/ui/collapsible";
 export * from "./components/ui/combobox";
 export * from "./components/ui/command";
@@ -64,9 +65,12 @@ export * from "./components/ui/toast";
 export * from "./components/ui/toggle";
 export * from "./components/ui/toggle-group";
 export * from "./components/ui/tooltip";
+export * from "./components/ui/trace";
 export * from "./components/ui/typography";
 // Hooks & Utilities
+export * from "./hooks/use-highlighted-code";
 export * from "./hooks/use-mobile";
+export * from "./lib/highlighter";
 export * from "./lib/motion";
 export * from "./lib/utils";
 export * from "./providers/ThemeProvider";

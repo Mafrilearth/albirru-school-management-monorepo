@@ -3,9 +3,9 @@
 
 **Status Dokumen:** Disetujui & Otoritatif  
 **Standar Kepatuhan:** shadcn/ui Base UI Specification, Tailwind CSS v4, Next-Forge Design Invariants, W3C WCAG 2.1 AA  
-**Cakupan Audit:** 100% Seluruh Menu Navigasi, Sub-Navigasi, 64 Komponen Resmi, Ekosistem `@shadcn/react`, Form Helpers, Utilities, dan Registry ([ui.shadcn.com](https://ui.shadcn.com))  
+**Cakupan Audit:** 100% Seluruh Menu Navigasi, Sub-Navigasi, 66 Komponen Resmi, Ekosistem `@shadcn/react`, Form Helpers, Utilities, dan Registry ([ui.shadcn.com](https://ui.shadcn.com))  
 **Status Instalasi:** :white_check_mark: **100% Komponen & Style Global Terinstal Sesuai Standar Default Pabrikan (Pristine Default Registry)**  
-**Terakhir Diperbarui:** 14 Oktober 2026  
+**Terakhir Diperbarui:** 17 Oktober 2026  
 
 ---
 
@@ -13,8 +13,8 @@
 
 ```mermaid
 pie title Distribusi Status Fitur & Komponen shadcn/ui di SD Al-Birru
-    "Aktif Digunakan di Web & PPDB (Core Production)" : 32
-    "Tersedia Default di Design System (Ready for Admin/Portal)" : 32
+    "Aktif Digunakan di Web & PPDB (Core Production)" : 43
+    "Tersedia Default di Design System (Ready for Admin/Portal)" : 23
     "Tools Ekosistem, Forms & Registry Aktif" : 18
     "Alternatif Komunitas / Non-Target" : 6
 ```
@@ -30,12 +30,12 @@ pie title Distribusi Status Fitur & Komponen shadcn/ui di SD Al-Birru
 ## 2. Status Penyelarasan Style Global & Komponen Default
 
 Semua komponen dan variabel gaya global telah diselaraskan kembali ke **100% Default Resmi (Pristine Registry)**:
-1. **Komponen UI:** 64 berkas komponen di `apps/web/src/components/ui/` dan `packages/design-system/src/components/ui/` terinstal langsung dari registry resmi `@shadcn` berbasis arsitektur `@base-ui/react` (Base Nova style).
-2. **Preset & Theming:** Menggunakan konfigurasi resmi `preset: b48` (`style: base-nova`, `baseColor: neutral`, `cssVariables: true`, `iconLibrary: lucide`, `rtl: true`).
-3. **Primary Color:** Mengadopsi **Amber-500 murni** (`oklch(0.769 0.188 70.08)` / `#f59e0b`) sebagai warna aksen tingkat ke-6 dari 11 skala shading Tailwind, dengan teks kontras tinggi gelap (`oklch(0.145 0 0)`).
-4. **Adaptive Secondary Color (Inverted Shading):**
-   - **Mode Terang (`:root`):** Menggunakan nuansa **gelap & netral** (shading 950: `oklch(0.145 0 0)`) dengan teks terang (shading 50: `oklch(0.985 0 0)`).
-   - **Mode Gelap (`.dark`):** Menggunakan nuansa **terang berlawanan** (shading 50: `oklch(0.985 0 0)`) dengan teks gelap (shading 950: `oklch(0.145 0 0)`).
+1. **Komponen UI:** 66 berkas komponen di `apps/web/src/components/ui/` dan `packages/design-system/src/components/ui/` terinstal langsung dari registry resmi `@shadcn` berbasis arsitektur `@base-ui/react` (Base Nova style).
+2. **Preset & Theming:** Menggunakan konfigurasi resmi `preset: b48` (`style: base-nova`, `baseColor: neutral`, `theme: neutral`, `cssVariables: true`, `iconLibrary: lucide`, `rtl: true`).
+3. **Primary Color:** Mengadopsi **Neutral Monochrome murni** (`oklch(0.205 0 0)` mode terang dan `oklch(0.922 0 0)` mode gelap), dengan teks kontras tinggi (`oklch(0.985 0 0)` / `oklch(0.205 0 0)`).
+4. **Adaptive Secondary Color:**
+   - **Mode Terang (`:root`):** Nuansa netral terang (`oklch(0.97 0 0)`) dengan teks gelap kontras (`oklch(0.205 0 0)`).
+   - **Mode Gelap (`.dark`):** Nuansa netral gelap (`oklch(0.269 0 0)`) dengan teks terang kontras (`oklch(0.985 0 0)`).
 5. **Canonical Helper:** `cn()` diimplementasikan secara standar dan kanonikal menggunakan `clsx` + `tailwind-merge`.
 6. **Bebas Modifikasi:** Seluruh file komponen murni menggunakan kode resmi registry tanpa modifikasi logika internal.
 
@@ -132,6 +132,8 @@ Semua komponen dan variabel gaya global telah diselaraskan kembali ke **100% Def
 | **62** | **Toggle Group** | :white_check_mark: **Aktif Digunakan** | `apps/web/src/components/ui/toggle-group.tsx` | Pemilihan kelompok opsi (misal: pilihan hari tes observasi santri). |
 | **63** | **Tooltip** | :white_check_mark: **Aktif Digunakan** | `apps/web/src/components/ui/tooltip.tsx` | Petunjuk singkat saat kursor diarahkan ke tombol ikon informasi. |
 | **64** | **Typography** | :white_check_mark: **Aktif Digunakan** | `apps/web/src/components/ui/typography.tsx` | Komponen tipografi resmi untuk format judul, kutipan, dan teks paragraf. |
+| **65** | **Code Block** | :package: **Tersedia Default** | `apps/web/src/components/ui/code-block.tsx` & `packages/design-system/src/components/ui/code-block.tsx` | Blok kode sintaksis berbasis Shiki untuk dokumentasi teknis dan panduan integrasi sistem. |
+| **66** | **Trace** | :package: **Tersedia Default** | `apps/web/src/components/ui/trace.tsx` & `packages/design-system/src/components/ui/trace.tsx` | Visualisasi jejak eksekusi (collapsible execution trace) dan observability alur proses. |
 
 ---
 
@@ -177,10 +179,12 @@ Semua komponen dan variabel gaya global telah diselaraskan kembali ke **100% Def
 ## 4. Hasil Verifikasi Sistem (Semua Hijau 100%)
 
 1. **Integritas Komponen Default:**  
-   Seluruh 64 komponen terinstal langsung melalui `npx shadcn@latest add --all --overwrite` dengan preset `b48` (`base-nova` neutral).
+   Seluruh 66 komponen terinstal langsung melalui `npx shadcn@latest add --all --overwrite` dengan preset `b48` (`base-nova` neutral).
 2. **Kesesuaian Tipe TypeScript:**  
    Perintah `pnpm run check-types` keluar dengan **Exit Code 0** (0 error pada seluruh 10 paket monorepo).
 3. **Pengujian Unit Otomatis:**  
-   Perintah `pnpm run test` keluar dengan **Exit Code 0** (18 test files, 71 tests passed 100%).
+   Perintah `pnpm run test` keluar dengan **Exit Code 0** (18 test files, 75 tests passed 100%).
 4. **Linter & Formatter Biome:**  
-   Perintah `npx biome check .` keluar dengan **Exit Code 0** (342 berkas terverifikasi bersih).
+   Perintah `npx biome check .` keluar dengan **Exit Code 0** (362 berkas terverifikasi bersih).
+5. **Kompilasi Produksi Turbopack:**  
+   Perintah `pnpm run build` keluar dengan **Exit Code 0** (7 dari 7 aplikasi dan paket berhasil dibangun).
