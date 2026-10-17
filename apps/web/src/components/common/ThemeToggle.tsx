@@ -17,6 +17,10 @@ interface ThemeToggleProps {
   triggerClassName?: string;
 }
 
+/**
+ * Theme Toggle Component
+ * Supports Light, Dark, and System Theme Modes.
+ */
 export function ThemeToggle({ triggerClassName }: ThemeToggleProps = {}) {
   const { theme, setTheme } = useTheme();
   const { t } = useLanguage();
@@ -55,7 +59,7 @@ export function ThemeToggle({ triggerClassName }: ThemeToggleProps = {}) {
             size="sm"
             aria-label={t.theme.toggle}
             className={cn(
-              "h-full px-3.5 rounded-none border-0 hover:bg-muted/40 shadow-none bg-transparent",
+              "h-full px-3.5 rounded-lg border-0 hover:bg-muted/40 shadow-none bg-transparent",
               triggerClassName,
             )}
           />
@@ -68,16 +72,16 @@ export function ThemeToggle({ triggerClassName }: ThemeToggleProps = {}) {
       <DropdownMenuContent
         align="end"
         sideOffset={6}
-        className="min-w-[9.5rem] w-auto rounded-none border border-border bg-popover p-1 shadow-none z-50"
+        className="min-w-[9.5rem] w-auto rounded-lg border border-border bg-popover p-1 shadow-none z-50"
       >
-        {options.map((opt) => {
-          const Icon = opt.icon;
-          const isSelected = currentTheme === opt.id;
+        {options.map((option) => {
+          const Icon = option.icon;
+          const isSelected = currentTheme === option.id;
           return (
             <DropdownMenuItem
-              key={opt.id}
-              onClick={() => setTheme(opt.id)}
-              className="flex items-center justify-between px-3 py-2 text-xs rounded-none cursor-pointer hover:bg-muted data-[highlighted]:bg-muted transition-colors"
+              key={option.id}
+              onClick={() => setTheme(option.id)}
+              className="flex items-center justify-between px-3 py-2 text-xs rounded-md cursor-pointer hover:bg-muted data-[highlighted]:bg-muted transition-colors"
             >
               <div className="flex items-center gap-2">
                 <Icon className="size-3.5 text-muted-foreground" />
@@ -86,7 +90,7 @@ export function ThemeToggle({ triggerClassName }: ThemeToggleProps = {}) {
                     isSelected ? "font-bold text-primary" : "text-foreground"
                   }
                 >
-                  {opt.label}
+                  {option.label}
                 </span>
               </div>
               {isSelected && <Check className="size-3 text-primary" />}

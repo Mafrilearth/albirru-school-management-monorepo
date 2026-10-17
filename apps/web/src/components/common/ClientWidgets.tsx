@@ -1,35 +1,9 @@
 "use client";
 
-import dynamic from "next/dynamic";
-
-const FloatingWhatsApp = dynamic(
-  () =>
-    import("@/components/common/FloatingWhatsApp").then(
-      (mod) => mod.FloatingWhatsApp,
-    ),
-  { ssr: false },
-);
-
-const CookieConsent = dynamic(
-  () =>
-    import("@/components/common/CookieConsent").then(
-      (mod) => mod.CookieConsent,
-    ),
-  { ssr: false },
-);
-
-const ScrollToTop = dynamic(
-  () =>
-    import("@/components/common/ScrollToTop").then((mod) => mod.ScrollToTop),
-  { ssr: false },
-);
-
+/**
+ * ClientWidgets
+ * Clean viewport: Zero floating widgets, zero intrusive popups, zero floating WA/scroll buttons.
+ */
 export function ClientWidgets() {
-  return (
-    <>
-      <FloatingWhatsApp />
-      <CookieConsent />
-      <ScrollToTop />
-    </>
-  );
+  return null;
 }

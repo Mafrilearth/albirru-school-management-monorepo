@@ -1,4 +1,7 @@
+"use client";
+
 import { Link } from "@/i18n/navigation";
+import { useLanguage } from "@/lib/i18n/context";
 import { cn } from "@/lib/utils";
 
 interface BrandLogoProps {
@@ -8,6 +11,8 @@ interface BrandLogoProps {
   subtitleClassName?: string;
   isDarkBackground?: boolean;
   ariaLabel?: string;
+  title?: string;
+  subtitle?: string;
 }
 
 export function BrandLogo({
@@ -16,8 +21,14 @@ export function BrandLogo({
   titleClassName,
   subtitleClassName,
   isDarkBackground = false,
-  ariaLabel = "Al-Birru - Sekolah Dasar Islam",
+  ariaLabel,
+  title,
+  subtitle,
 }: BrandLogoProps) {
+  const { t } = useLanguage();
+  const displayTitle = title ?? t.brand.title;
+  const displaySubtitle = subtitle ?? t.brand.subtitle;
+  const displayAriaLabel = ariaLabel ?? t.brand.ariaLabel;
   return (
     <Link
       href="/"
@@ -25,7 +36,7 @@ export function BrandLogo({
         "flex h-full items-center justify-center gap-3 px-4 sm:px-6 xl:px-8 outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
         className,
       )}
-      aria-label={ariaLabel}
+      aria-label={displayAriaLabel}
     >
       <svg
         viewBox="6 4.5 88 116"
@@ -107,7 +118,7 @@ export function BrandLogo({
             titleClassName,
           )}
         >
-          Al-Birru
+          {displayTitle}
         </span>
         <span
           className={cn(
@@ -116,7 +127,7 @@ export function BrandLogo({
             subtitleClassName,
           )}
         >
-          Sekolah Dasar Islam
+          {displaySubtitle}
         </span>
       </div>
     </Link>

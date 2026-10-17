@@ -1,176 +1,141 @@
 "use client";
 
-import { MessageCircle, Phone, Sparkles } from "lucide-react";
-import { ScrollReveal } from "@/components/common/ScrollReveal";
+import { Sparkles } from "lucide-react";
+import { useMemo } from "react";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Button } from "@/components/ui/button";
+import { useLanguage } from "@/lib/i18n/context";
 
-interface FaqItem {
-  id: string;
-  num: string;
-  question: string;
-  answer: string;
-}
-
-const faqs: FaqItem[] = [
-  {
-    id: "faq-hours",
-    num: "01",
-    question:
-      "What are the daily school hours and operational routine for students?",
-    answer:
-      "Student activities run Monday through Thursday from 07:15 AM to 03:00 PM. The day begins with congregational Dhuha prayer and morning tahfidz talaqqi halaqah, followed by Merdeka Curriculum thematic learning, congregational Dhuhr prayer, and shared lunch. On Fridays, school dismisses early at 11:30 AM in preparation for Friday congregational prayers.",
-  },
-  {
-    id: "faq-catering",
-    num: "02",
-    question:
-      "What are the standards for student school lunches and nutritional catering?",
-    answer:
-      "SD Al-Birru provides hygienic, wholesome hot lunches with daily balanced menus (complex carbohydrates, animal and plant proteins, fresh vegetables, and fruits) free from excessive synthetic additives. Mealtime also reinforces Islamic dining adab: seated etiquette, communal prayers, mindful eating, and zero food waste.",
-  },
-  {
-    id: "faq-shuttle",
-    num: "03",
-    question:
-      "Is there a school bus shuttle service available for students living further away?",
-    answer:
-      "Yes, official air-conditioned shuttle transport is available with integrated routes across Sukabumi City and Regency. Each shuttle is accompanied by dedicated school staff and connected with parents via real-time communications to ensure student safety, punctuality, and travel comfort.",
-  },
-  {
-    id: "faq-matrikulasi",
-    num: "04",
-    question:
-      "What if a prospective student is not yet fluent in hijaiyah letters or reading Iqra'?",
-    answer:
-      "Parents need not worry. We host an intensive tahsin matriculation program during the first 3 months of the odd semester. Teachers guide students through patient, personalized talaqqi from the fundamentals without judging baseline abilities, ensuring children feel encouraged, safe, and enthusiastic.",
-  },
-  {
-    id: "faq-observation",
-    num: "05",
-    question:
-      "What does the new student admissions observation process entail?",
-    answer:
-      "Observations are designed with a child-friendly assessment approach through guided educational play activities to observe fine/gross motor readiness, emotional independence, and social interactions. We do not enforce rigid reading/writing/arithmetic tests as pass-fail barriers, and include a partnership dialogue session with parents to align home and school values.",
-  },
-];
-
+/**
+ * FaqSection — Admissions & Academic Readiness FAQ
+ * Architecture: Uniform Functional Minimalism on an 8px Modular Scale
+ * Standards:
+ * - Mathematical Invariants: Section py-16 sm:py-20 lg:py-24, cards p-6 sm:p-8, 1px border.
+ * - Single Responsibility: Clear academic and admission guidance without duplicating phone/email/map contacts.
+ * - Interactive: Smooth accordion expand/collapse, hover state, and number badges.
+ * - Full Localization: English, Indonesian, Arabic (with Eastern Arabic numbers).
+ */
 export function FaqSection() {
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqs.map((faq) => ({
-      "@type": "Question",
-      name: faq.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: faq.answer,
+  const { t, locale } = useLanguage();
+
+  const isArabic = locale === "ar";
+  const numPrefix = isArabic ? "٠" : "0";
+
+  const faqItems = useMemo(
+    () => [
+      {
+        id: "faq-1",
+        num: `${numPrefix}${isArabic ? "١" : "1"}`,
+        question: t.faq.q1,
+        answer: t.faq.a1,
       },
-    })),
-  };
+      {
+        id: "faq-2",
+        num: `${numPrefix}${isArabic ? "٢" : "2"}`,
+        question: t.faq.q2,
+        answer: t.faq.a2,
+      },
+      {
+        id: "faq-3",
+        num: `${numPrefix}${isArabic ? "٣" : "3"}`,
+        question: t.faq.q3,
+        answer: t.faq.a3,
+      },
+      {
+        id: "faq-4",
+        num: `${numPrefix}${isArabic ? "٤" : "4"}`,
+        question: t.faq.q4,
+        answer: t.faq.a4,
+      },
+    ],
+    [t, isArabic, numPrefix],
+  );
+
+  const faqSchema = useMemo(
+    () => ({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: faqItems.map((faq) => ({
+        "@type": "Question",
+        name: faq.question,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: faq.answer,
+        },
+      })),
+    }),
+    [faqItems],
+  );
 
   return (
     <section
-      aria-labelledby="faq-section-heading"
-      className="py-24 sm:py-32 lg:py-36 bg-background border-b border-border relative overflow-hidden"
+      id="faq"
+      aria-labelledby="faq-heading"
+      className="w-full relative py-16 sm:py-20 lg:py-24 bg-background border-b border-border overflow-hidden"
     >
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          {/* Left Column */}
-          <div className="lg:col-span-5 lg:sticky lg:top-28">
-            <ScrollReveal direction="up" delay={0.1}>
-              <div className="inline-flex items-center gap-2 px-3 py-1 mb-6 border border-border bg-muted/40 text-foreground">
-                <span className="size-1.5 bg-primary" />
-                <span className="font-mono text-[11px] font-semibold uppercase tracking-widest text-muted-foreground">
-                  PERTANYAAN UMUM &amp; KEGIATAN SANTRI
-                </span>
+
+      <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+          {/* Left Column: Context & Overview (5 Cols) */}
+          <div className="lg:col-span-5 flex flex-col items-start text-start">
+            <div className="inline-flex items-center gap-2 px-3 py-1 mb-4 rounded-md border border-border bg-muted/60 text-xs font-mono font-semibold uppercase tracking-wider text-foreground">
+              <span className="size-2 rounded-full bg-amber-500 animate-pulse" />
+              <span>{t.faq.badge}</span>
+            </div>
+
+            <h2
+              id="faq-heading"
+              className="text-3xl sm:text-4xl lg:text-5xl font-black text-foreground tracking-tight leading-tight text-balance"
+            >
+              {t.faq.title}
+            </h2>
+
+            <p className="mt-4 text-base sm:text-lg text-muted-foreground leading-relaxed">
+              {t.faq.subtitle}
+            </p>
+
+            {/* Pedagogy Note Card */}
+            <div className="mt-8 p-6 rounded-lg border border-border bg-muted/30 w-full flex flex-col gap-3">
+              <div className="flex items-center gap-2 text-xs font-mono font-bold text-amber-500 uppercase tracking-wider">
+                <Sparkles className="size-4 shrink-0" />
+                <span>Prinsip Seleksi Ramah Anak</span>
               </div>
-
-              <h2
-                id="faq-section-heading"
-                className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-foreground tracking-tight leading-[1.15]"
-              >
-                Frequently Asked Questions &amp; Daily Student Life
-              </h2>
-
-              <p className="mt-5 text-base text-muted-foreground leading-relaxed">
-                Clear answers regarding daily schedules, nutrition, school bus
-                routes, and academic matriculation at SD Al-Birru.
+              <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                Observasi masuk difokuskan pada pemetaan tahap perkembangan
+                fitrah, bukan penyeleksian diskriminatif. Setiap anak memiliki
+                keunikan potensi yang siap dibina bersama.
               </p>
-
-              {/* Consultation Monolith Card */}
-              <div className="mt-8 p-6 sm:p-7 rounded-none border border-border bg-card/60 relative group">
-                <div className="flex items-center gap-2 text-primary font-mono font-semibold text-xs mb-2 uppercase tracking-wider">
-                  <Sparkles className="size-4" />
-                  <span>// Direct Consultation Liaison</span>
-                </div>
-                <p className="text-xs text-muted-foreground leading-relaxed mb-6">
-                  Our admissions consultation team is ready to answer specific
-                  inquiries about your child&apos;s development and school
-                  readiness.
-                </p>
-
-                <div className="flex flex-col gap-3 font-mono text-xs">
-                  <Button
-                    render={
-                      <a
-                        href="https://wa.me/6281234567890"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      />
-                    }
-                    nativeButton={false}
-                    className="w-full gap-2 font-mono text-xs uppercase tracking-wider rounded-none shadow-none"
-                  >
-                    <MessageCircle className="size-4" />
-                    <span>WhatsApp Admissions Team</span>
-                  </Button>
-
-                  <Button
-                    render={<a href="tel:+6281234567890" />}
-                    nativeButton={false}
-                    variant="outline"
-                    className="w-full gap-2 font-mono text-xs uppercase tracking-wider rounded-none shadow-none border-border"
-                  >
-                    <Phone className="size-4 text-muted-foreground" />
-                    <span>Hotline: (0266) 123-456</span>
-                  </Button>
-                </div>
-              </div>
-            </ScrollReveal>
+            </div>
           </div>
 
-          {/* Right Column: Shadcn Accordion */}
-          <div className="lg:col-span-7">
+          {/* Right Column: Accordion Items (7 Cols) */}
+          <div className="lg:col-span-7 w-full flex flex-col gap-4">
             <Accordion
-              defaultValue={["faq-hours"]}
-              className="w-full flex flex-col gap-3"
+              defaultValue={["faq-1"]}
+              className="w-full flex flex-col gap-4"
             >
-              {faqs.map((faq) => (
+              {faqItems.map((faq) => (
                 <AccordionItem
                   key={faq.id}
                   value={faq.id}
-                  className="border border-border rounded-none px-6 bg-card/60 shadow-none overflow-hidden hover:border-foreground/30 transition-colors"
+                  className="rounded-lg border border-border bg-card p-6 shadow-none hover:border-foreground/30 transition-all duration-200"
                 >
-                  <AccordionTrigger className="hover:no-underline py-5 text-left font-bold text-foreground text-base sm:text-lg tracking-tight">
-                    <span className="flex items-center gap-3">
-                      <span className="font-mono text-xs text-foreground font-bold px-1.5 py-0.5 border border-border bg-muted/40">
-                        {faq.num}
-                      </span>
-                      <span>{faq.question}</span>
+                  <AccordionTrigger className="hover:no-underline py-0 text-start font-bold text-foreground text-base sm:text-lg tracking-tight flex items-start gap-3">
+                    <span className="font-mono text-xs text-amber-500 font-bold px-2 py-1 rounded border border-amber-500/30 bg-amber-400/10 shrink-0 mt-0.5">
+                      {faq.num}
                     </span>
+                    <span className="flex-1 pr-2">{faq.question}</span>
                   </AccordionTrigger>
 
-                  <AccordionContent className="pb-5 pt-1 text-muted-foreground text-sm sm:text-base leading-relaxed border-t border-border/40 mt-1">
+                  <AccordionContent className="pt-4 mt-3 border-t border-border/60 text-muted-foreground text-sm sm:text-base leading-relaxed">
                     <p>{faq.answer}</p>
                   </AccordionContent>
                 </AccordionItem>

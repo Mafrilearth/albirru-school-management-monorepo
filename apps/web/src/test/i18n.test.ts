@@ -15,15 +15,44 @@ describe("i18n Translation Dictionary", () => {
     }
   });
 
-  it("verifies Arabic dictionary contains expected Arabic characters", () => {
+  it("verifies Arabic dictionary contains expected Arabic characters and Eastern Arabic numerals", () => {
     expect(DICTIONARY.ar.badges.admissionsOpen).toContain("التسجيل");
     expect(DICTIONARY.ar.nav.home).toBe("الرئيسية");
     expect(DICTIONARY.ar.nav.applyOnline).toBe("التسجيل الإلكتروني");
+    expect(DICTIONARY.ar.brand.title).toBe("الـبِـرّ");
+    expect(DICTIONARY.ar.brand.subtitle).toBe("المدرسة الابتدائية الإسلامية");
+    expect(DICTIONARY.ar.admissions.step1Number).toBe("٠١");
+    expect(DICTIONARY.ar.metrics.npsnValue).toBe("٧٠٠١٠١١١");
+    expect(DICTIONARY.ar.hero.videoDuration).toBe("٠٢:٣٠");
+    expect(DICTIONARY.ar.theme.toggle).toBe("تبديل المظهر");
+    expect(DICTIONARY.ar.routine.slot1Step).toBe("٠١");
+    expect(DICTIONARY.ar.testimonials.parent1Batch).toBe("الدفعة الثانية");
+    expect(DICTIONARY.ar.faq.q1).toContain("القراءة");
+    expect(DICTIONARY.ar.contact.copyAddress).toBe("نسخ العنوان");
   });
 
-  it("verifies Indonesian dictionary matches Al-Birru identity", () => {
+  it("verifies Indonesian and English brand translations match Al-Birru identity", () => {
     expect(DICTIONARY.id.badges.tahfidzFocus).toContain("3 Juz");
     expect(DICTIONARY.id.badges.quotaRemaining).toContain("14 Kursi");
+    expect(DICTIONARY.id.brand.title).toBe("Al-Birru");
+    expect(DICTIONARY.id.brand.subtitle).toBe("Sekolah Dasar Islam");
+    expect(DICTIONARY.id.admissions.step1Number).toBe("01");
+    expect(DICTIONARY.id.routine.slot1Step).toBe("01");
+    expect(DICTIONARY.id.testimonials.parent1Author).toBe(
+      "Aisyah Nurul Fadhilah, S.Pd.",
+    );
+    expect(DICTIONARY.id.faq.q1).toContain("membaca");
+    expect(DICTIONARY.id.contact.copyAddress).toBe("Salin Alamat");
+
+    expect(DICTIONARY.en.brand.title).toBe("Al-Birru");
+    expect(DICTIONARY.en.brand.subtitle).toBe("Islamic Primary School");
+    expect(DICTIONARY.en.admissions.step1Number).toBe("01");
+    expect(DICTIONARY.en.routine.slot1Step).toBe("01");
+    expect(DICTIONARY.en.testimonials.parent1Author).toBe(
+      "Aisyah Nurul Fadhilah, S.Pd.",
+    );
+    expect(DICTIONARY.en.faq.q1).toContain("reading");
+    expect(DICTIONARY.en.contact.copyAddress).toBe("Copy Address");
   });
 
   it("verifies 6-pillar single-word trilingual navigation synchronization", () => {

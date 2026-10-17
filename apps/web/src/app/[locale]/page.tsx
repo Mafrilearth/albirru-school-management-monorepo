@@ -1,56 +1,34 @@
-import dynamic from "next/dynamic";
 import { AccreditationStrip } from "@/components/sections/AccreditationStrip";
+import { AdmissionsSection } from "@/components/sections/AdmissionsSection";
+import { CurriculumSection } from "@/components/sections/CurriculumSection";
+import { DayAtAlbirruSection } from "@/components/sections/DayAtAlbirruSection";
+import { FacilitiesSection } from "@/components/sections/FacilitiesSection";
+import { FaqSection } from "@/components/sections/FaqSection";
 import { HeroSection } from "@/components/sections/HeroSection";
+import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
 
 /**
- * Below-the-fold sections are lazy-loaded via next/dynamic to reduce
- * the initial JavaScript bundle by ~324 KiB and eliminate 4 long
- * main-thread tasks (TBT 110ms → ~0ms).
- *
- * AccreditationStrip and HeroSection are kept static because they are
- * RSCs that paint above the fold for LCP/FCP.
+ * Public Landing Page (Single-Page Layout)
+ * Architecture: Rhythmic Cadence on an 8px Modular Scale (Zero Bento Fatigue)
+ * Standards:
+ * - Varied Layout Cadence: Split Hero -> Statutory Data Bar -> Asymmetric Media Showcase ->
+ *   Interactive Timeline Tabs -> Architectural Photography -> Editorial Quotes ->
+ *   Hairline Line Accordion -> 4-Step Registration & Unified Contact.
+ * - Mathematical Invariants: Section py-16 sm:py-20 lg:py-24, cards p-6 sm:p-8, flat topology, 1px border.
+ * - Single Responsibility: Location & direct contact belong strictly to Admissions/Contact section.
+ * - Multi-language: Full ID, EN, AR support with formal, non-abbreviated content and Eastern Arabic numbers.
  */
-const BentoValuesSection = dynamic(
-  () =>
-    import("@/components/sections/BentoValuesSection").then(
-      (mod) => mod.BentoValuesSection,
-    ),
-  { ssr: true },
-);
-
-const DayAtAlbirruSection = dynamic(
-  () =>
-    import("@/components/sections/DayAtAlbirruSection").then(
-      (mod) => mod.DayAtAlbirruSection,
-    ),
-  { ssr: true },
-);
-
-const LatestNewsPreview = dynamic(
-  () =>
-    import("@/components/sections/LatestNewsPreview").then(
-      (mod) => mod.LatestNewsPreview,
-    ),
-  { ssr: true },
-);
-
-const CTASection = dynamic(
-  () =>
-    import("@/components/sections/CTASection").then((mod) => mod.CTASection),
-  { ssr: true },
-);
-
 export default function PublicLandingPage() {
   return (
-    <>
+    <div className="w-full flex flex-col">
       <HeroSection />
-      <div className="w-full max-w-7xl mx-auto border-x border-border">
-        <AccreditationStrip />
-        <BentoValuesSection />
-        <DayAtAlbirruSection />
-        <LatestNewsPreview />
-        <CTASection />
-      </div>
-    </>
+      <AccreditationStrip />
+      <CurriculumSection />
+      <DayAtAlbirruSection />
+      <FacilitiesSection />
+      <TestimonialsSection />
+      <FaqSection />
+      <AdmissionsSection />
+    </div>
   );
 }

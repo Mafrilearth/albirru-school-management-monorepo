@@ -33,14 +33,19 @@ interface LanguageSwitcherProps {
   triggerClassName?: string;
 }
 
+/**
+ * Language Switcher Component
+ * Supports trilingual localization (ID, AR, EN) with seamless URL synchronization.
+ */
 export function LanguageSwitcher({
   triggerClassName,
 }: LanguageSwitcherProps = {}) {
-  const { locale, setLocale } = useLanguage();
+  const { locale, setLocale, t } = useLanguage();
   const router = useRouter();
   const pathname = usePathname() || "/";
   const current =
-    LANGUAGE_OPTIONS.find((opt) => opt.code === locale) || LANGUAGE_OPTIONS[0];
+    LANGUAGE_OPTIONS.find((option) => option.code === locale) ||
+    LANGUAGE_OPTIONS[0];
 
   const handleSelectLanguage = (newLocale: Locale) => {
     setLocale(newLocale);
@@ -57,9 +62,9 @@ export function LanguageSwitcher({
           <Button
             variant="ghost"
             size="sm"
-            aria-label="Pilih Bahasa / Change Language"
+            aria-label={t.nav.changeLanguage}
             className={cn(
-              "h-full px-3 gap-1.5 rounded-none border-0 font-mono text-xs uppercase tracking-wider hover:bg-muted/40 shadow-none bg-transparent",
+              "h-full px-3 gap-1.5 rounded-lg border-0 font-mono text-xs uppercase tracking-wider hover:bg-muted/40 shadow-none bg-transparent",
               triggerClassName,
             )}
           />
@@ -71,29 +76,29 @@ export function LanguageSwitcher({
       <DropdownMenuContent
         align="end"
         sideOffset={6}
-        className="min-w-[11rem] w-auto rounded-none border border-border bg-popover p-1 shadow-none"
+        className="min-w-[11rem] w-auto rounded-lg border border-border bg-popover p-1 shadow-none"
       >
-        {LANGUAGE_OPTIONS.map((opt) => {
-          const isSelected = opt.code === locale;
+        {LANGUAGE_OPTIONS.map((option) => {
+          const isSelected = option.code === locale;
           return (
             <DropdownMenuItem
-              key={opt.code}
-              onClick={() => handleSelectLanguage(opt.code)}
-              className="flex items-center justify-between px-3 py-2 text-xs rounded-none cursor-pointer hover:bg-muted data-[highlighted]:bg-muted transition-colors"
+              key={option.code}
+              onClick={() => handleSelectLanguage(option.code)}
+              className="flex items-center justify-between px-3 py-2 text-xs rounded-md cursor-pointer hover:bg-muted data-[highlighted]:bg-muted transition-colors"
             >
               <div className="flex items-center gap-2">
-                <span>{opt.flag}</span>
+                <span>{option.flag}</span>
                 <span
                   className={
                     isSelected ? "font-bold text-primary" : "text-foreground"
                   }
                 >
-                  {opt.nativeLabel}
+                  {option.nativeLabel}
                 </span>
               </div>
               <div className="flex items-center gap-1.5">
                 <span className="text-[10px] font-mono text-muted-foreground uppercase">
-                  {opt.code}
+                  {option.code}
                 </span>
                 {isSelected && <Check className="size-3 text-primary" />}
               </div>

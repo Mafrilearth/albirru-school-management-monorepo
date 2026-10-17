@@ -1,97 +1,86 @@
-import { Award, Building2, CheckCircle2, ShieldCheck } from "lucide-react";
-import { cn } from "@/lib/utils";
+"use client";
 
-interface StatutoryItem {
-  id: string;
-  label: string;
-  value: string;
-  subValue?: string;
-  icon: typeof ShieldCheck;
-}
+import { Award, BookOpen, ShieldCheck, Users } from "lucide-react";
+import { useLanguage } from "@/lib/i18n/context";
 
-const statutoryData: readonly StatutoryItem[] = [
-  {
-    id: "curriculum",
-    label: "Pendekatan Kurikulum",
-    value: "Kurikulum Terpadu",
-    subValue: "Integrasi Nilai Islam & Sains Modern",
-    icon: ShieldCheck,
-  },
-  {
-    id: "character",
-    label: "Pembinaan Karakter",
-    value: "Pendidikan Adab & Fitrah",
-    subValue: "Pembiasaan Akhlak Mulia Sejak Dini",
-    icon: Award,
-  },
-  {
-    id: "learning",
-    label: "Metode Pembelajaran",
-    value: "Talaqqi & Eksplorasi",
-    subValue: "Bimbingan Intensif & Interaktif",
-    icon: Building2,
-  },
-  {
-    id: "environment",
-    label: "Lingkungan Belajar",
-    value: "Kondusif & Ramah Anak",
-    subValue: "Mendukung Potensi Unik Setiap Santri",
-    icon: CheckCircle2,
-  },
-];
-
+/**
+ * Accreditation Strip Component
+ * Architecture: Swiss Typographic Gauge (Edge-to-Edge Line Grid, Zero Card Boxes)
+ * Standards:
+ * - High-impact typography: Oversized metrics with monospace coordinates.
+ * - Tactile hover: Ambient amber line glow and micro-shift.
+ * - Flat topology: 1px divider lines, zero box-shadows.
+ */
 export function AccreditationStrip() {
+  const { t } = useLanguage();
+
+  const metrics = [
+    {
+      id: "accreditation",
+      code: "01 // BAN-PDM",
+      label: t.metrics.accreditationLabel,
+      value: t.metrics.accreditationValue,
+      icon: Award,
+    },
+    {
+      id: "npsn",
+      code: "02 // KEMENDIKBUD",
+      label: t.metrics.npsnLabel,
+      value: t.metrics.npsnValue,
+      icon: ShieldCheck,
+    },
+    {
+      id: "ratio",
+      code: "03 // FITRAH RATIO",
+      label: t.metrics.ratioLabel,
+      value: t.metrics.ratioValue,
+      icon: Users,
+    },
+    {
+      id: "tahfidz",
+      code: "04 // SANAD MUTQIN",
+      label: t.metrics.tahfidzLabel,
+      value: t.metrics.tahfidzValue,
+      icon: BookOpen,
+    },
+  ];
+
   return (
     <section
-      aria-label="Identitas Kelembagaan dan Legalitas"
-      className="w-full border-b border-border bg-card relative z-20"
+      aria-label="Statutory Metrics"
+      className="w-full border-b border-border bg-card/60 backdrop-blur-sm relative"
     >
-      <div className="w-full">
-        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 list-none p-0 m-0">
-          {statutoryData.map((item, index) => {
+      <div className="w-full max-w-[1440px] mx-auto">
+        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 list-none p-0 m-0 divide-y sm:divide-y-0 sm:divide-x divide-border">
+          {metrics.map((item) => {
             const Icon = item.icon;
-            const isLastOnDesktop = index === statutoryData.length - 1;
-            const isEvenOnTablet = index % 2 === 0;
-            const isFirstRowOnTablet = index < 2;
-            const isLastOnMobile = index === statutoryData.length - 1;
-
             return (
               <li
                 key={item.id}
-                className={cn(
-                  "relative flex items-center gap-4 p-5 sm:p-6 transition-colors duration-150 hover:bg-muted/40 group shadow-none",
-                  // Mobile vertical dividing borders
-                  !isLastOnMobile ? "border-b border-border" : "border-b-0",
-                  // Tablet 2-column borders
-                  isEvenOnTablet
-                    ? "sm:border-r sm:border-border"
-                    : "sm:border-r-0",
-                  isFirstRowOnTablet
-                    ? "sm:border-b sm:border-border"
-                    : "sm:border-b-0",
-                  // Desktop 4-column borders (no bottom border because section has border-b)
-                  !isLastOnDesktop
-                    ? "lg:border-r lg:border-border"
-                    : "lg:border-r-0",
-                  "lg:border-b-0",
-                )}
+                className="group relative flex flex-col justify-between p-6 sm:p-8 hover:bg-muted/40 transition-colors duration-200 overflow-hidden"
               >
-                <div className="flex size-10 shrink-0 items-center justify-center bg-muted/60 text-foreground group-hover:bg-muted group-hover:text-foreground border border-border group-hover:border-foreground/30 rounded-none transition-colors duration-150">
-                  <Icon className="size-5" aria-hidden="true" />
+                {/* Top Coordinate Bar */}
+                <div className="flex items-center justify-between mb-4">
+                  <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/80 group-hover:text-amber-500 transition-colors">
+                    [{item.code}]
+                  </span>
+                  <div className="size-8 rounded-md bg-muted/40 border border-border flex items-center justify-center text-muted-foreground group-hover:text-amber-500 group-hover:border-amber-400/40 transition-all duration-200">
+                    <Icon className="size-4" aria-hidden="true" />
+                  </div>
                 </div>
-                <div className="min-w-0 flex-1">
-                  <p className="font-mono text-[10px] font-bold uppercase tracking-widest text-muted-foreground truncate">
-                    {item.label}
-                  </p>
-                  <p className="mt-1 text-sm sm:text-base font-bold text-foreground tracking-tight truncate">
+
+                {/* Metric Value & Label */}
+                <div>
+                  <div className="text-xl sm:text-2xl font-black font-mono tracking-tight text-foreground group-hover:text-amber-500 transition-colors duration-200">
                     {item.value}
-                  </p>
-                  {item.subValue ? (
-                    <span className="block font-mono text-[10px] text-muted-foreground truncate mt-0.5">
-                      {item.subValue}
-                    </span>
-                  ) : null}
+                  </div>
+                  <div className="text-xs font-mono text-muted-foreground mt-1 uppercase tracking-wider">
+                    {item.label}
+                  </div>
                 </div>
+
+                {/* Active Hairline Accent Indicator on Hover */}
+                <div className="absolute bottom-0 inset-x-0 h-0.5 bg-transparent group-hover:bg-amber-400 transition-colors duration-200" />
               </li>
             );
           })}

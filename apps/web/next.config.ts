@@ -41,6 +41,8 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   compress: true,
+  devIndicators: false,
+  agentRules: false,
   transpilePackages: ["@albirru/design-system", "@albirru/database"],
   experimental: {
     optimizePackageImports: [
