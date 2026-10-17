@@ -65,7 +65,7 @@ export function PublicNavbar() {
           {/* Mobile Menu Trigger Floating Button (Accessible Drawer) */}
           <Sheet>
             <SheetTrigger className="xl:hidden size-10 sm:size-11 rounded-full bg-background/70 backdrop-blur-xl supports-[backdrop-filter]:bg-background/60 border border-border/80 ring-1 ring-border/50 shadow-sm hover:border-foreground/40 hover:bg-background/85 hover:ring-border/80 transition-all duration-300 inline-flex items-center justify-center">
-              <Menu className="size-4" />
+              <Menu className="size-5" />
               <span className="sr-only">{t.nav.openMenu}</span>
             </SheetTrigger>
             <SheetContent
@@ -97,7 +97,7 @@ export function PublicNavbar() {
                             : "text-muted-foreground hover:bg-muted/40 hover:text-foreground",
                         )}
                       >
-                        <Icon className="size-4 shrink-0" aria-hidden="true" />
+                        <Icon className="size-5 shrink-0" aria-hidden="true" />
                         <span>{link.label}</span>
                       </Link>
                     );
@@ -141,13 +141,13 @@ export function PublicNavbar() {
                   "group relative flex items-center justify-center rounded-full transition-all duration-300 ease-out outline-none focus-visible:ring-2 focus-visible:ring-ring shrink-0",
                   isActive
                     ? "bg-foreground text-background font-semibold shadow-xs px-3.5 sm:px-4 py-1.5 sm:py-2 gap-2"
-                    : "text-muted-foreground hover:text-foreground hover:bg-muted/60 size-9 sm:size-10",
+                    : "text-muted-foreground hover:text-foreground hover:bg-muted/60 size-10 sm:size-11",
                 )}
               >
                 <Icon
                   aria-hidden="true"
                   className={cn(
-                    "size-4 shrink-0 transition-transform duration-200 group-hover:scale-110",
+                    "size-5 sm:size-[21px] shrink-0 transition-transform duration-200 group-hover:scale-110",
                     isActive && "scale-100",
                   )}
                 />
@@ -163,16 +163,19 @@ export function PublicNavbar() {
 
           {/* Separator & Admissions CTA Button */}
           <div
-            className="h-4 w-px bg-border/80 mx-1 shrink-0"
+            className="h-5 w-px bg-border/80 mx-1 shrink-0"
             aria-hidden="true"
           />
           <Link
             href="/admissions"
             aria-label={t.actions.apply}
             title={t.actions.apply}
-            className="flex items-center justify-center whitespace-nowrap px-3 sm:px-4 py-1.5 sm:py-2 gap-1.5 text-xs sm:text-sm font-bold rounded-full bg-primary text-primary-foreground hover:bg-foreground hover:text-background transition-all duration-200 shadow-xs shrink-0"
+            className="flex items-center justify-center whitespace-nowrap px-3.5 sm:px-4.5 py-1.5 sm:py-2 gap-1.5 sm:gap-2 text-xs sm:text-sm font-bold rounded-full bg-primary text-primary-foreground hover:bg-foreground hover:text-background transition-all duration-200 shadow-xs shrink-0"
           >
-            <Sparkles aria-hidden="true" className="size-3.5 shrink-0" />
+            <Sparkles
+              aria-hidden="true"
+              className="size-4 sm:size-4.5 shrink-0"
+            />
             <span className="hidden sm:inline">{t.actions.apply}</span>
             <span className="sm:hidden">{t.actions.apply}</span>
           </Link>

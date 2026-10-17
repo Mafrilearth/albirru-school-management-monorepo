@@ -65,7 +65,7 @@ export function LanguageSwitcher({
           />
         }
       >
-        <Globe className="size-3.5 text-muted-foreground" />
+        <Globe className="size-4 text-muted-foreground" />
         <span className="font-semibold">{current.code.toUpperCase()}</span>
       </DropdownMenuTrigger>
       <DropdownMenuContent
