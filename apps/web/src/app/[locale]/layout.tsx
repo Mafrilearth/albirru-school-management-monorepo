@@ -110,6 +110,9 @@ export const metadata: Metadata = {
     ],
     apple: [{ url: "/apple-icon", sizes: "180x180", type: "image/png" }],
   },
+  verification: {
+    google: "axxY_kb9CE9Ehzoo8S0RatzCeFY9i9Qmotgxn2P9UPZ4",
+  },
 };
 
 const schoolStructuredData = {
