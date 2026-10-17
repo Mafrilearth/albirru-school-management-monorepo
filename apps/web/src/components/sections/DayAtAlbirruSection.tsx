@@ -109,7 +109,7 @@ export function DayAtAlbirruSection() {
       <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="max-w-3xl mb-12 sm:mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 mb-4 rounded-md border border-border bg-background text-xs font-mono font-semibold uppercase tracking-wider text-foreground">
+          <div className="inline-flex items-center gap-2 px-3 py-1 mb-4 rounded-none border border-border bg-background text-xs font-mono font-semibold uppercase tracking-wider text-foreground">
             <span className="size-2 rounded-full bg-amber-500 animate-pulse" />
             <span>{t.routine.badge}</span>
           </div>
@@ -126,12 +126,8 @@ export function DayAtAlbirruSection() {
           </p>
         </div>
 
-        {/* Connected Horizontal Timeline Rail */}
-        <div className="relative mb-8">
-          {/* Background Connecting Rail Line */}
-          <div className="hidden lg:block absolute top-1/2 inset-x-8 h-px bg-border -translate-y-1/2 z-0" />
-
-          {/* Stepper Nodes */}
+        {/* Stepper Runway Cards */}
+        <div className="mb-8">
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 lg:gap-4 relative z-10">
             {scheduleSlots.map((slot, idx) => {
               const isSelected = selectedIdx === idx;
@@ -143,29 +139,29 @@ export function DayAtAlbirruSection() {
                   type="button"
                   onClick={() => setSelectedIdx(idx)}
                   className={cn(
-                    "p-4 rounded-lg text-start cursor-pointer transition-all duration-200 border relative overflow-hidden active:scale-[0.98] flex flex-col justify-between h-28",
+                    "p-4 rounded-none text-start cursor-pointer transition-all duration-150 border relative overflow-hidden active:scale-[0.99] flex flex-col justify-between h-28 bg-background",
                     isSelected
-                      ? "border-amber-500 bg-background shadow-none"
-                      : "border-border bg-background/60 hover:bg-background hover:border-foreground/30 text-muted-foreground",
+                      ? "border-amber-500 text-foreground"
+                      : "border-border hover:border-foreground/40 text-muted-foreground",
                   )}
                 >
                   <div className="flex items-center justify-between w-full">
                     <div
                       className={cn(
-                        "size-7 rounded-md flex items-center justify-center transition-colors",
+                        "size-7 rounded-none flex items-center justify-center transition-colors border",
                         isSelected
-                          ? "bg-amber-400 text-slate-950 font-bold"
-                          : "bg-muted/60 text-muted-foreground",
+                          ? "bg-amber-400 text-slate-950 font-bold border-amber-500"
+                          : "bg-muted/40 text-muted-foreground border-border",
                       )}
                     >
                       <SlotIcon className="size-3.5" />
                     </div>
                     <span
                       className={cn(
-                        "font-mono text-[10px] font-bold px-1.5 py-0.5 rounded border",
+                        "font-mono text-[10px] font-bold px-1.5 py-0.5 rounded-none border",
                         isSelected
                           ? "border-amber-500/40 text-amber-500 bg-amber-400/10"
-                          : "border-border text-muted-foreground bg-muted/30",
+                          : "border-border text-muted-foreground bg-muted/20",
                       )}
                     >
                       {slot.step}
@@ -200,7 +196,7 @@ export function DayAtAlbirruSection() {
         </div>
 
         {/* The Open Journal Canvas (Zero Nested Box Repetition) */}
-        <div className="rounded-lg border border-border bg-background p-6 sm:p-10 lg:p-12 relative overflow-hidden shadow-none">
+        <div className="rounded-none border border-border bg-background p-6 sm:p-10 lg:p-12 relative overflow-hidden shadow-none">
           {/* Subtle Ambient Giant Time Watermark */}
           <div className="absolute right-6 -bottom-6 font-mono font-black text-7xl sm:text-9xl text-muted/30 select-none pointer-events-none tracking-tighter">
             {activeSlot.step}
@@ -218,7 +214,7 @@ export function DayAtAlbirruSection() {
               {/* Left Column: Activity Journal Info (8 Columns) */}
               <div className="lg:col-span-8 flex flex-col gap-5">
                 <div className="flex items-center gap-3">
-                  <div className="size-12 rounded-lg bg-amber-400/10 border border-amber-400/30 flex items-center justify-center text-amber-500 shrink-0">
+                  <div className="size-12 rounded-none bg-amber-400/10 border border-amber-400/30 flex items-center justify-center text-amber-500 shrink-0">
                     <IconComponent className="size-6" />
                   </div>
                   <div>
@@ -250,7 +246,7 @@ export function DayAtAlbirruSection() {
                   {activeSlot.values.map((val) => (
                     <div
                       key={val}
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-border bg-muted/40 text-xs font-mono font-medium text-foreground hover:border-foreground/30 hover:bg-muted/80 transition-colors"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-none border border-border bg-muted/40 text-xs font-mono font-medium text-foreground hover:border-foreground/30 hover:bg-muted/80 transition-colors"
                     >
                       <CheckCircle2 className="size-3.5 text-emerald-500 shrink-0" />
                       <span>{val}</span>
@@ -260,7 +256,7 @@ export function DayAtAlbirruSection() {
               </div>
 
               {/* Right Column: Teacher Mentorship Logbook (4 Columns) */}
-              <div className="lg:col-span-4 rounded-lg border border-border bg-muted/30 p-6 flex flex-col gap-4">
+              <div className="lg:col-span-4 rounded-none border border-border bg-muted/30 p-6 flex flex-col gap-4">
                 <div className="flex items-center gap-2 text-xs font-mono font-bold text-foreground uppercase tracking-wider">
                   <UserCheck className="size-4 text-amber-500 shrink-0" />
                   <span>{t.routine.mentorshipBadge}</span>
