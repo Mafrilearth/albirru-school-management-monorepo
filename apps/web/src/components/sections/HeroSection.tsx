@@ -39,7 +39,7 @@ export function HeroSection() {
           {/* Left Column: Focused Lead Content (7 Columns) */}
           <div className="lg:col-span-7 flex flex-col items-start text-start">
             {/* Status Indicator Badge */}
-            <div className="inline-flex items-center gap-2 px-3 py-1 mb-6 rounded-md border border-border bg-muted/60 text-xs font-mono font-semibold uppercase tracking-wider text-foreground">
+            <div className="squircle inline-flex items-center gap-2 px-3.5 py-1.5 mb-6 border border-border bg-muted/60 text-xs font-mono font-semibold uppercase tracking-wider text-foreground">
               <span className="size-2 rounded-full bg-emerald-500 animate-pulse" />
               <span>{t.hero.badgeStatus}</span>
             </div>
@@ -62,7 +62,7 @@ export function HeroSection() {
               <Button
                 type="button"
                 onClick={handleWhatsAppClick}
-                className="h-12 px-6 rounded-lg font-bold text-sm bg-amber-400 hover:bg-amber-500 text-slate-950 active:scale-[0.98] transition-all duration-150 flex items-center justify-center gap-2 cursor-pointer shadow-none"
+                className="squircle h-12 px-7 font-bold text-sm bg-primary hover:bg-amber-500 text-slate-950 active:scale-[0.98] transition-all duration-150 flex items-center justify-center gap-2 cursor-pointer shadow-none"
               >
                 <MessageCircle className="size-4 shrink-0 transition-transform duration-150 group-hover:rotate-6" />
                 <span>{t.hero.primaryAction}</span>
@@ -72,7 +72,7 @@ export function HeroSection() {
                 variant="outline"
                 render={<a href="#curriculum" />}
                 nativeButton={false}
-                className="h-12 px-6 rounded-lg font-bold text-sm border-border hover:bg-muted hover:border-foreground/30 active:scale-[0.98] text-foreground transition-all duration-150 flex items-center justify-center gap-2 cursor-pointer shadow-none"
+                className="squircle h-12 px-7 font-bold text-sm border-border hover:bg-muted hover:border-foreground/30 active:scale-[0.98] text-foreground transition-all duration-150 flex items-center justify-center gap-2 cursor-pointer shadow-none"
               >
                 <BookOpen className="size-4 text-muted-foreground shrink-0" />
                 <span>{t.hero.secondaryAction}</span>
@@ -83,7 +83,7 @@ export function HeroSection() {
           {/* Right Column: Consistent Media Cluster (5 Columns) */}
           <div className="lg:col-span-5 flex flex-col gap-4 w-full">
             {/* Primary Video Showcase Card */}
-            <div className="relative group rounded-lg border border-border bg-card overflow-hidden hover:border-foreground/30 transition-colors duration-200 shadow-none">
+            <div className="squircle relative group border border-border bg-card overflow-hidden hover:border-foreground/30 transition-colors duration-200 shadow-none">
               <div className="relative aspect-video w-full overflow-hidden bg-slate-950">
                 <Image
                   src="/images/campus/hero-showcase.jpg"
@@ -97,7 +97,7 @@ export function HeroSection() {
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent" />
 
                 {/* Standardized Image Badge */}
-                <div className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-slate-950/80 backdrop-blur-md border border-white/10 text-xs font-mono font-bold text-amber-400">
+                <div className="squircle absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1 bg-slate-950/80 backdrop-blur-md border border-white/10 text-xs font-mono font-bold text-amber-400">
                   <span>{t.hero.videoBadge}</span>
                 </div>
 
@@ -106,7 +106,7 @@ export function HeroSection() {
                   type="button"
                   onClick={() => setIsVideoOpen(true)}
                   aria-label={t.hero.videoWatchAction}
-                  className="absolute inset-0 m-auto size-14 rounded-full bg-amber-400 hover:bg-amber-500 text-slate-950 flex items-center justify-center transition-all duration-200 transform group-hover:scale-105 active:scale-95 cursor-pointer shadow-none"
+                  className="squircle absolute inset-0 m-auto size-14 bg-amber-400 hover:bg-amber-500 text-slate-950 flex items-center justify-center transition-all duration-200 transform group-hover:scale-105 active:scale-95 cursor-pointer shadow-none"
                 >
                   <Play className="size-6 fill-current translate-x-0.5" />
                 </button>
@@ -124,8 +124,8 @@ export function HeroSection() {
             </div>
 
             {/* Authentic Achievement Card */}
-            <div className="group rounded-lg border border-border bg-card p-6 flex items-center gap-4 hover:border-foreground/30 hover:bg-muted/20 transition-all duration-200 ease-out shadow-none">
-              <div className="relative size-16 shrink-0 rounded-lg overflow-hidden border border-border bg-muted">
+            <div className="squircle group border border-border bg-card p-6 flex items-center gap-4 hover:border-foreground/30 hover:bg-muted/20 transition-all duration-200 ease-out shadow-none">
+              <div className="squircle relative size-16 shrink-0 overflow-hidden border border-border bg-muted">
                 <Image
                   src="/images/achievements/regis-yasir-al-jabbar.png"
                   alt={t.hero.achievementStudent}
