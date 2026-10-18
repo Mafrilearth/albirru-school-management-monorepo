@@ -154,3 +154,16 @@
     scroll-behavior: smooth;
   }
 }
+
+/* [CUSTOM AL-BIRRU: SQUIRCLE GEOMETRY]
+   Utilitas untuk memotong kontur elemen menjadi kurva Superellipse / Squircle organik.
+   Sudut dan keempat sisinya melengkung halus berkesinambungan (khas Samsung One UI / Apple).
+   Dapat dipasang ke komponen apa pun: tombol, kartu, avatar, badge, atau wadah ikon. */
+@utility squircle {
+  mask-image: url('data:image/svg+xml;utf8,<svg preserveAspectRatio="none" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M 0,50 C 0,14 14,0 50,0 C 86,0 100,14 100,50 C 100,86 86,100 50,100 C 14,100 0,86 0,50 Z" fill="black"/></svg>');
+  mask-size: 100% 100%;
+  mask-repeat: no-repeat;
+  -webkit-mask-image: url('data:image/svg+xml;utf8,<svg preserveAspectRatio="none" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M 0,50 C 0,14 14,0 50,0 C 86,0 100,14 100,50 C 100,86 86,100 50,100 C 14,100 0,86 0,50 Z" fill="black"/></svg>');
+  -webkit-mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+}
